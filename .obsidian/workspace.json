@@ -1,0 +1,173 @@
+{
+  "main": {
+    "id": "cd48afec41af8c70",
+    "type": "split",
+    "children": [
+      {
+        "id": "d1618c794b81e03b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "96fff6f7b238fe9a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b22dbd8204e137c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "4f03728d26dca1d7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a5cbd5b2811bd4fe",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "custom"
+              }
+            }
+          },
+          {
+            "id": "733914ede5f222ee",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ced252e80acf5b12",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 236.5
+  },
+  "right": {
+    "id": "e39dcbf669ddf36e",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8b37c5039673be3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5a2648da654839bb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "8307a855ead219c9",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "889847e3f3f5cd29",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": true,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b8f56527836f7b3b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c58cd4e98a068b8c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 319.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "canvas:新建白板": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "96fff6f7b238fe9a",
+  "lastOpenFiles": [
+    "java/Spring/SpringCloud/111.md",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230223154825.png",
+    "java/Spring/SpringCloud/attachments",
+    "java/Spring/SpringCloud/未命名.canvas",
+    "java/Spring/SpringCloud/SpringCloud.md",
+    "java/Spring/【其他】.md",
+    "java/JUC 并发编程.pdf",
+    "java/JAVA 基础.md",
+    "java/JAVA 基础.pdf",
+    "attachments/Pasted image 20230223144200.png",
+    "123.md",
+    "attachments/Pasted image 20230223144152.png",
+    "attachments/Pasted image 20230223144030 1.png",
+    "attachments/Pasted image 20230223144030.png",
+    "attachments/Pasted image 20230223144029.png",
+    "attachments",
+    "java/Spring/SpringCloud",
+    "java/Spring",
+    "java/未命名.canvas",
+    "08、SpringMVC/08、SpringMVC.md",
+    "未命名.canvas"
+  ]
+}

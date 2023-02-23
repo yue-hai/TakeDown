@@ -1,0 +1,59 @@
+{
+  "statusBarOrder": [],
+  "ribbonBarOrder": [],
+  "fileExplorerOrder": {
+    "/": [
+      "其他",
+      "前端",
+      "java",
+      "linux"
+    ],
+    "其他": [
+      "其他/软件使用",
+      "其他/小工具.docx",
+      "其他/小工具.md",
+      "其他/小工具.pdf",
+      "其他/Docker.docx",
+      "其他/Git.md",
+      "其他/Git.pdf",
+      "其他/Docker.md",
+      "其他/Docker.pdf",
+      "其他/Git.docx"
+    ],
+    "java": [
+      "java/【其他】.docx",
+      "java/【其他】.md",
+      "java/【其他】.pdf",
+      "java/JAVA 基础.docx",
+      "java/JAVA 基础.md",
+      "java/JAVA 基础.pdf",
+      "java/JUC 并发编程.docx",
+      "java/JUC 并发编程.md",
+      "java/JUC 并发编程.pdf",
+      "java/MyBatis",
+      "java/Redis.docx",
+      "java/Spring",
+      "java/Redis.md",
+      "java/Redis.pdf"
+    ],
+    "java/Spring": [
+      "java/Spring/【其他】.docx",
+      "java/Spring/attachments",
+      "java/Spring/【其他】.md",
+      "java/Spring/【其他】.pdf",
+      "java/Spring/10、SSM整合开发.md",
+      "java/Spring/08、SpringMVC.md",
+      "java/Spring/SpringBoot",
+      "java/Spring/SpringCloud"
+    ],
+    "java/Spring/SpringCloud": [
+      "java/Spring/SpringCloud/attachments",
+      "java/Spring/SpringCloud/111.md",
+      "java/Spring/SpringCloud/SpringCloud.md"
+    ]
+  },
+  "actionBarOrder": {},
+  "autoHide": true,
+  "autoHideDelay": 2000,
+  "dragDelay": 200
+}

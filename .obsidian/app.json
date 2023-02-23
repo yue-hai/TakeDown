@@ -1,0 +1,14 @@
+{
+  "promptDelete": false,
+  "attachmentFolderPath": "./attachments",
+  "readableLineLength": false,
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "spellcheckLanguages": [
+    "zh-CN",
+    "en-US"
+  ],
+  "spellcheck": true,
+  "newFileLocation": "root",
+  "userIgnoreFilters": null
+}
