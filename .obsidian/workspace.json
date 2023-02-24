@@ -11,8 +11,12 @@
             "id": "96fff6f7b238fe9a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "未命名.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -80,7 +84,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "未命名.md"
+              }
             }
           },
           {
@@ -97,6 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "未命名.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,6 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,6 +156,13 @@
   },
   "active": "96fff6f7b238fe9a",
   "lastOpenFiles": [
+    "其他/Docker.md",
+    "其他/Git.md",
+    "未命名.md",
+    "attachments/~$ringCloud.docx",
+    "java/Spring/10、SSM整合开发.md",
+    "attachments/SpringCloud.docx",
+    "attachments",
     "java/Spring/SpringCloud/111.md",
     "java/Spring/SpringCloud/attachments/Pasted image 20230223154825.png",
     "java/Spring/SpringCloud/attachments",
@@ -163,7 +178,6 @@
     "attachments/Pasted image 20230223144030 1.png",
     "attachments/Pasted image 20230223144030.png",
     "attachments/Pasted image 20230223144029.png",
-    "attachments",
     "java/Spring/SpringCloud",
     "java/Spring",
     "java/未命名.canvas",
