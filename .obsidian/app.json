@@ -10,5 +10,8 @@
   ],
   "spellcheck": true,
   "newFileLocation": "root",
-  "userIgnoreFilters": null
+  "userIgnoreFilters": null,
+  "alwaysUpdateLinks": true,
+  "autoConvertHtml": false,
+  "showLineNumber": true
 }

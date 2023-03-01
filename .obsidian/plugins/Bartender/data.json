@@ -3,6 +3,7 @@
   "ribbonBarOrder": [],
   "fileExplorerOrder": {
     "/": [
+      "【PDF + Word】",
       "其他",
       "前端",
       "java",
@@ -37,12 +38,10 @@
       "java/Redis.pdf"
     ],
     "java/Spring": [
-      "java/Spring/【其他】.docx",
       "java/Spring/attachments",
       "java/Spring/【其他】.md",
-      "java/Spring/【其他】.pdf",
-      "java/Spring/10、SSM整合开发.md",
       "java/Spring/08、SpringMVC.md",
+      "java/Spring/10、SSM整合开发.md",
       "java/Spring/SpringBoot",
       "java/Spring/SpringCloud"
     ],

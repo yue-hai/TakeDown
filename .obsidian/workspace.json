@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d1618c794b81e03b",
+        "id": "024437234086860b",
         "type": "tabs",
         "children": [
           {
-            "id": "96fff6f7b238fe9a",
+            "id": "57db75aab71eac59",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名.md",
+                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 236.5
+    "width": 250.5
   },
   "right": {
     "id": "e39dcbf669ddf36e",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名.md"
+                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md"
               }
             }
           },
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "未命名.md",
+                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "未命名.md",
+                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,34 +154,56 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "96fff6f7b238fe9a",
+  "active": "57db75aab71eac59",
   "lastOpenFiles": [
-    "其他/Docker.md",
-    "其他/Git.md",
-    "未命名.md",
-    "attachments/~$ringCloud.docx",
-    "java/Spring/10、SSM整合开发.md",
-    "attachments/SpringCloud.docx",
-    "attachments",
-    "java/Spring/SpringCloud/111.md",
-    "java/Spring/SpringCloud/attachments/Pasted image 20230223154825.png",
-    "java/Spring/SpringCloud/attachments",
-    "java/Spring/SpringCloud/未命名.canvas",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301124753.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301123726.png",
     "java/Spring/SpringCloud/SpringCloud.md",
-    "java/Spring/【其他】.md",
-    "java/JUC 并发编程.pdf",
-    "java/JAVA 基础.md",
-    "java/JAVA 基础.pdf",
-    "attachments/Pasted image 20230223144200.png",
-    "123.md",
-    "attachments/Pasted image 20230223144152.png",
-    "attachments/Pasted image 20230223144030 1.png",
-    "attachments/Pasted image 20230223144030.png",
-    "attachments/Pasted image 20230223144029.png",
-    "java/Spring/SpringCloud",
-    "java/Spring",
+    "java/Spring/SpringCloud/SpringCloudAlibaba.md",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301112205.png",
+    "【PDF + Word】/java/Spring/SpringCloud/SpringCloud.pdf",
+    "【PDF + Word】/java/Spring/SpringCloud/SpringCloud.docx",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301111239.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301110012.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301105945.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301105211.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301105146.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301101555.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301101430.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230301101226.png",
+    "java/Spring/SpringCloud/attachments",
+    "标题.md",
+    "java/Redis.md",
+    "java/Spring/SpringCloud/未命名.canvas",
+    "【PDF + Word】/其他/软件使用/WindTerm.pdf",
+    "【PDF + Word】/其他/软件使用/VS Code.pdf",
+    "【PDF + Word】/其他/软件使用/Idea.pdf",
+    "【PDF + Word】/其他/软件使用/Execl.pdf",
+    "【PDF + Word】/java/Spring/SpringBoot/Spring Boot.docx",
+    "【PDF + Word】/java/Spring/SpringBoot/Spring Boot.pdf",
+    "【PDF + Word】/java/Spring/SpringBoot/attachments",
+    "【PDF】/java/Spring/10、SSM整合开发.md",
+    "【PDF】/java/Spring/【其他】.md",
+    "【PDF】/java/Spring/SpringBoot/11、SpringBoot2.md",
+    "【PDF】/java/Spring/SpringBoot/Spring Boot.md",
+    "【PDF】/java/Spring/SpringCloud/SpringCloud.md",
+    "【PDF】/前端/三件套/Promise 从入门到自定义.md",
+    "【PDF】/前端/三件套/JavaScript.md",
+    "【PDF】/前端/三件套/HTML5 新特性.md",
+    "【PDF】/前端/三件套/HTML.md",
+    "【PDF】/前端/三件套/ES6-11 - JavaScript 新特性.md",
+    "【PDF】/前端/三件套/CSS.md",
+    "【PDF】/前端/UI 组件库/Bootstrap 快速入门.md",
+    "【PDF】/前端/UI 组件库/Ant Design Vue.md",
+    "【PDF】/前端/JS 框架/Vue3.md",
+    "【PDF】/前端/JS 框架/Vue2.md",
+    "【PDF】/前端/JS 框架/jQuery.md",
+    "【PDF】/前端/JS 框架/Axios.md",
+    "【PDF】/前端/JS 框架/Ajax.md",
+    "【PDF】/前端/【其他】.md",
+    "【PDF】/其他/软件使用/WindTerm.md",
+    "【PDF】/其他/软件使用/VS Code.md",
     "java/未命名.canvas",
-    "08、SpringMVC/08、SpringMVC.md",
     "未命名.canvas"
   ]
 }
