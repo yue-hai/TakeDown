@@ -5,8 +5,7 @@
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,
   "spellcheckLanguages": [
-    "zh-CN",
-    "en-US"
+    "zh-CN"
   ],
   "spellcheck": true,
   "newFileLocation": "root",
