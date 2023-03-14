@@ -3907,7 +3907,7 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1675325908941-2cce50e3-0ee3-4c26-941f-719d4a307b1e.png#averageHue=%2322211f&clientId=ue8611f81-c30e-4&from=paste&height=265&id=u69f10978&name=image.png&originHeight=265&originWidth=260&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8048&status=done&style=stroke&taskId=u320e33c9-a022-4e06-b28b-e823095007f&title=&width=260)
 
 3. 停止之前启动的 Portainer 容器
-4. 启动新的容器：`ocker run -d -p 9443:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data -v /home/docker/docker/Portainer/:/public portainer/portainer:1.20.2`
+4. 启动新的容器：`docker run -d -p 9443:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data -v /home/docker/docker/Portainer/:/public portainer/portainer:1.20.2`
 5. 注意：汉化包使用的版本为：1.20.2
 6. 浏览器进入：`[http://43.138.106.181:9443/](http://43.138.106.181:9443/)`
 
