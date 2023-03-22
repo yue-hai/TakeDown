@@ -1,19 +1,24 @@
 > 尚硅谷 2020 SpringCloud 框架开发教程：[https://www.bilibili.com/video/BV18E411x7eT/](https://www.bilibili.com/video/BV18E411x7eT/)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676868390430-ab1bfae0-604f-456b-aeb9-beea7e713ee7.png#averageHue=%23fefdfd&clientId=u427792cf-17a4-4&from=paste&height=421&id=q5I3S&name=image.png&originHeight=432&originWidth=1313&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58723&status=done&style=stroke&taskId=ud439b08d-aa52-4e19-83a1-35c9d3c0628&title=&width=1279)
+<a name="Xz932"></a>
 # 一、SpringCloud 简介
 > 1. Spring Cloud 官方文档：[https://cloud.spring.io/spring-cloud-static/Hoxton.SR1/reference/htmlsingle/](https://cloud.spring.io/spring-cloud-static/Hoxton.SR1/reference/htmlsingle/)
 > 2. Spring Cloud 中文文档：[https://www.bookstack.cn/read/spring-cloud-docs/docs-index.md](https://www.bookstack.cn/read/spring-cloud-docs/docs-index.md)
 
+<a name="Tp0tE"></a>
 ## 1、优质集成项目
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676860544050-06e09ecb-ff1e-4ef3-a3b8-0aeb5efdced6.png#averageHue=%23b9bc80&clientId=u427792cf-17a4-4&from=paste&height=733&id=u27d22e4c&name=image.png&originHeight=733&originWidth=1352&originalType=binary&ratio=1&rotation=0&showTitle=false&size=708169&status=done&style=stroke&taskId=ua806a6fb-ec53-40b7-822d-9f044b59e37&title=&width=1352)
+<a name="i3Uf9"></a>
 ## 2、技术栈
 
 - 里面的是官方的，外面的是第三方的
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676860919584-fcf94b57-b314-44ce-8014-2b688acd4e67.png#averageHue=%23cdc68d&clientId=u427792cf-17a4-4&from=paste&height=790&id=u4e74e485&name=image.png&originHeight=790&originWidth=1415&originalType=binary&ratio=1&rotation=0&showTitle=false&size=538644&status=done&style=stroke&taskId=u49e209dd-98c8-4923-bf81-fab1dd6a462&title=&width=1415)
+<a name="wQ5tC"></a>
 ## 3、核心技术栈
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676861063870-5034a489-75e6-4bd7-8323-34f9da145603.png#averageHue=%23072945&clientId=u427792cf-17a4-4&from=paste&height=476&id=udd29a4e6&name=image.png&originHeight=476&originWidth=967&originalType=binary&ratio=1&rotation=0&showTitle=false&size=237339&status=done&style=stroke&taskId=u438f825e-a609-481a-bbb2-d5a825607de&title=&width=967)
+<a name="ztud3"></a>
 ## 4、Springcloud 和 Springboot 之间的依赖关系如何看
 
 1. 版本依赖关系：[https://spring.io/projects/spring-cloud#overview](https://spring.io/projects/spring-cloud#overview)
@@ -152,6 +157,7 @@
 5. 2.X 版本常用的组件 pom
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676863807929-5a8120ed-f2d3-4b56-9bbb-7a9ff2f922c3.png#averageHue=%23f9f2f0&clientId=u427792cf-17a4-4&from=paste&height=554&id=u0abbbd9b&name=image.png&originHeight=554&originWidth=667&originalType=binary&ratio=1&rotation=0&showTitle=false&size=52466&status=done&style=stroke&taskId=ue0710a97-7392-4e79-9450-aaca28a0a37&title=&width=667)
+<a name="VL5Lq"></a>
 ## 5、关于 Cloud 各种组件的停更/升级/替换
 
 - 停更不停用
@@ -162,9 +168,11 @@
 2. 2020年
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676868390430-ab1bfae0-604f-456b-aeb9-beea7e713ee7.png#averageHue=%23fefdfd&clientId=u427792cf-17a4-4&from=paste&height=421&id=uf0c3203e&name=image.png&originHeight=432&originWidth=1313&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58723&status=done&style=stroke&taskId=ud439b08d-aa52-4e19-83a1-35c9d3c0628&title=&width=1279)
+<a name="EPbJo"></a>
 # 二、微服务架构编码构建
 > 约定 > 配置 > 编码
 
+<a name="lyBj5"></a>
 ## 1、创建父项目
 
 1. 创建父项目 SpringCloud
@@ -298,6 +306,7 @@
 7. 执行 mvn:install 将父工程发布到仓库方便子工程继承
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676872286262-7ca2668d-8bb8-4184-9c0b-6e0d30e6f793.png#averageHue=%233b4043&clientId=u427792cf-17a4-4&from=paste&height=349&id=u490ad678&name=image.png&originHeight=349&originWidth=349&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14814&status=done&style=stroke&taskId=u5eb2cc3d-66df-492f-a517-cda22223419&title=&width=349)
+<a name="nLl0J"></a>
 ## 2、创建微服务提供者支付模块 cloud-provider-payment8001
 
 1. 创建子模块 cloud-provider-payment8001
@@ -695,6 +704,7 @@ public class _01_TestController {
 10. 测试：[http://localhost:8001/getTest](http://localhost:8001/getTest)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676878935699-73d06c2c-a4ab-4d71-ab13-6012dbdc1194.png#averageHue=%2374aaed&clientId=u427792cf-17a4-4&from=paste&height=355&id=u2249e066&name=image.png&originHeight=355&originWidth=341&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19625&status=done&style=stroke&taskId=u1a77b133-0347-484e-83c6-858473491db&title=&width=341)
+<a name="AKMgC"></a>
 ## 3、使用 spring-boot-devtools 进行热部署
 
 1. 开启自动构建项目
@@ -716,10 +726,12 @@ public class _01_TestController {
 ```
 
 4. 完成
+<a name="hwCnL"></a>
 ## 4、创建公共通用模块 cloud-api-commons
 > 问题：接下来会创建新模块，也会用到 entities、pom.xml 等，导致重复
 > 这个模块解决的就是这种重复的问题
 
+<a name="Nv37c"></a>
 ### ①、创建公共通用模块 cloud-api-commons
 
 1. 创建模块
@@ -779,6 +791,7 @@ public class _01_TestController {
 3. 将 entities 和 utils 包与其中的内容复制到此项目中
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676938911740-92183f39-b86e-4e70-a9ed-5c2200bcbb5c.png#averageHue=%233e4245&clientId=u4f9c3c22-6d80-4&from=paste&height=279&id=u634c7027&name=image.png&originHeight=279&originWidth=264&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9391&status=done&style=stroke&taskId=uc6eee213-b27e-432a-b7b8-55c212fbf6d&title=&width=264)
+<a name="moCHx"></a>
 ### ②、修改微服务提供者支付模块 cloud-provider-payment8001
 
 1. 修改 pom.xml 文件，删除通用模块中有的依赖，并将通用包作为依赖引入其中
@@ -843,6 +856,7 @@ public class _01_TestController {
 3. 启动 8001 模块，测试
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676939133608-aad50f94-da1b-49a8-ad44-7af6e39f9030.png#averageHue=%2375aaec&clientId=u4f9c3c22-6d80-4&from=paste&height=331&id=uac93badb&name=image.png&originHeight=331&originWidth=339&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19525&status=done&style=stroke&taskId=uf2086d12-1765-4bb7-8750-04c34fced84&title=&width=339)
+<a name="YfjXQ"></a>
 ## 5、创建微服务消费者订单模块 cloud-consumer-order80
 > **RestTemplate：**
 > 1. 官网地址：[https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html)
@@ -1029,17 +1043,22 @@ public JsonResult postOrder(String serial){
 
 10. 测试 postOrder：[http://localhost/postOrder/payment/post?serial=2](http://localhost/postOrder/payment/post?serial=2)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676945559572-6e383a78-61e9-43e8-99a9-b3c9fc5e2cd8.png#averageHue=%23f7f8fe&clientId=u4f9c3c22-6d80-4&from=paste&height=602&id=ueac63f9c&name=image.png&originHeight=602&originWidth=476&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51314&status=done&style=stroke&taskId=ubee8a3d6-614b-46dd-8823-70d999c0f26&title=&width=476)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676945571289-8d4e25a9-6c7c-4322-9084-46bfca14ea7a.png#averageHue=%23897557&clientId=u4f9c3c22-6d80-4&from=paste&height=217&id=u48ecfc2a&name=image.png&originHeight=217&originWidth=479&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12896&status=done&style=stroke&taskId=uc6c88380-f78c-475b-8cf4-c1e9ed3279e&title=&width=479)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676945559572-6e383a78-61e9-43e8-99a9-b3c9fc5e2cd8.png#averageHue=%23f7f8fe&clientId=u4f9c3c22-6d80-4&from=paste&height=602&id=ueac63f9c&name=image.png&originHeight=602&originWidth=476&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51314&status=done&style=stroke&taskId=ubee8a3d6-614b-46dd-8823-70d999c0f26&title=&width=476)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676945571289-8d4e25a9-6c7c-4322-9084-46bfca14ea7a.png#averageHue=%23897557&clientId=u4f9c3c22-6d80-4&from=paste&height=217&id=u48ecfc2a&name=image.png&originHeight=217&originWidth=479&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12896&status=done&style=stroke&taskId=uc6c88380-f78c-475b-8cf4-c1e9ed3279e&title=&width=479)
+<a name="DF76s"></a>
 ## 6、目前工程样图
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676957017591-84045f5f-4dc8-458e-8b7f-d6ce79022c8d.png#averageHue=%23404954&clientId=u4f9c3c22-6d80-4&from=paste&height=167&id=u393ef22c&name=image.png&originHeight=167&originWidth=352&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10681&status=done&style=stroke&taskId=ub4979364-672a-4ffc-ae4f-c16c6aac95a&title=&width=352)
+<a name="ysvVX"></a>
 # 三、服务注册与发现 Eureka、Zookeeper、Consul
+<a name="NYr1E"></a>
 ## 1、Eureka
+<a name="rZmvj"></a>
 ### ①、Eureka 基础知识
+<a name="h7R0E"></a>
 #### Ⅰ、什么是服务治理
 
 1. Spring Cloud 封装了 Netflix 公司开发的 Eureka 模块来实现服务治理
 2. 在传统的 rpc 远程调用框架中，管理每个服务与服务之间依赖关系比较复杂，管理比较复杂，所以需要使用服务治理，管理服务于服务之间依赖关系，可以实现服务调用、负载均衡、容错等，实现服务发现与注册。
+<a name="X3LEc"></a>
 #### Ⅱ、什么是服务注册与发现
 
 1. Eureka 采用了 CS 的设计架构，Eureka Server 作为服务注册功能的服务器，它是服务注册中心。而系统中的其他微服务，使用 Eureka的客户端连接到 Eureka Server 并维持心跳连接。这样系统的维护人员就可以通过 Eureka Server 来监控系统中各个微服务是否正常运行。
@@ -1050,11 +1069,14 @@ public JsonResult postOrder(String serial){
 3. 下左图是 Eureka 系统架构，右图是 Dubbo 的架构，请对比
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676955709782-0c39bc6c-a31b-47c1-b38c-00a3629d594c.png#averageHue=%23fbfaf5&clientId=u4f9c3c22-6d80-4&from=paste&height=380&id=u5ebdb02d&name=image.png&originHeight=380&originWidth=1236&originalType=binary&ratio=1&rotation=0&showTitle=false&size=73223&status=done&style=stroke&taskId=u421b424c-d18a-4353-9734-f04f51bfdc0&title=&width=1236)
+<a name="iqD3U"></a>
 #### Ⅲ、Eureka 两组件
 
 1. Eureka Server 提供服务注册服务：各个微服务节点通过配置启动后，会在 EurekaServer 中进行注册，这样 EurekaServer 中的服务注册表中将会存储所有可用服务节点的信息，服务节点的信息可以在界面中直观看到。
 2. EurekaClient 通过注册中心进行访问：是一个 Java 客户端，用于简化 Eureka Server 的交互，客户端同时也具备一个内置的、使用轮询(round-robin)负载算法的负载均衡器。在应用启动后，将会向 Eureka Server 发送心跳(默认周期为30秒)。如果 Eureka Server 在多个心跳周期内没有接收到某个节点的心跳，EurekaServer 将会从服务注册表中把这个服务节点移除（默认90秒）
+<a name="dWC6m"></a>
 ### ②、单机 Eureka 构建步骤
+<a name="Ed7R4"></a>
 #### Ⅰ、创建服务注册中心 cloud-eureka-server7001
 
 1. 建 Module
@@ -1147,6 +1169,7 @@ public class EurekaServer7001 {
 6. 访问 7001 端口（此时还没有实例显示）
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676958093077-a5ec77aa-c140-49a1-a340-17eb8ef7dc9b.png#averageHue=%23d5d4d3&clientId=u4f9c3c22-6d80-4&from=paste&height=984&id=ua9b92545&name=image.png&originHeight=984&originWidth=1013&originalType=binary&ratio=1&rotation=0&showTitle=false&size=86099&status=done&style=stroke&taskId=ud18326a4-b394-4e16-99a0-94a454eef33&title=&width=1013)
+<a name="Lq26c"></a>
 #### Ⅱ、将 cloud-provider-payment8001 注册进 EurekaServer 成为服务提供者
 
 1. 修改模块 cloud-provider-payment8001 的 pom，引入：`spring-cloud-starter-netflix-eureka-client`
@@ -1296,6 +1319,7 @@ public class ProviderPayment8001 {
 6. 自我保护机制
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676959843364-3411e8a3-a771-44f2-b6b9-ba8561b04f56.png#averageHue=%23e2dddc&clientId=u4f9c3c22-6d80-4&from=paste&height=513&id=u57ba781d&name=image.png&originHeight=513&originWidth=982&originalType=binary&ratio=1&rotation=0&showTitle=false&size=81851&status=done&style=stroke&taskId=u9110a989-77e1-44a3-aff2-866247ad0cd&title=&width=982)
+<a name="M6iLU"></a>
 #### Ⅲ、将 cloud-consumer-order80 注册进 EurekaServer 成为服务消费
 > 与上面相同
 
@@ -1383,7 +1407,9 @@ public class ConsumerOrder80 {
 4. 重启 80 与 7001 模块，测试，已发现 80 实例
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676959968556-84ca06e2-5bfc-4b6c-bdd5-6243f25f3d53.png#averageHue=%23d1d0cf&clientId=u4f9c3c22-6d80-4&from=paste&height=916&id=uda91c9c3&name=image.png&originHeight=916&originWidth=1013&originalType=binary&ratio=1&rotation=0&showTitle=false&size=91325&status=done&style=stroke&taskId=u770ddd5d-cfd4-4376-a091-8e36e6c5f3b&title=&width=1013)
+<a name="TaUts"></a>
 ### ③、集群 Eureka 构建步骤
+<a name="G5jfj"></a>
 #### Ⅰ、Eureka 集群原理说明
 
 - 问题：微服务RPC远程服务调用最核心的是什么
@@ -1392,6 +1418,7 @@ public class ConsumerOrder80 {
 3. 解决办法：搭建 Eureka 注册中心集群 ，实现负载均衡+故障容错
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676960420716-87282ad9-7ab0-4e64-a0a9-5fbb63919f1f.png#averageHue=%23fefdf8&clientId=u4f9c3c22-6d80-4&from=paste&height=327&id=u14f3140e&name=image.png&originHeight=351&originWidth=1141&originalType=binary&ratio=1&rotation=0&showTitle=false&size=52056&status=done&style=stroke&taskId=u04d8d56b-1f00-473f-a966-62c326a93ba&title=&width=1062)
+<a name="Hig87"></a>
 #### Ⅱ、EurekaServer 集群环境构建步骤
 
 1. 修改映射配置：找到 `C:\Windows\System32\drivers\etc` 路径下的 hosts 文件，修改映射配置添加进 hosts 文件；因为要将一台机器当作两台机器用
@@ -1506,6 +1533,7 @@ public class EurekaServer7002 {
 
 }
 ```
+<a name="Rh0CD"></a>
 #### Ⅲ、将支付服务 8001 微服务发布到上面 2 台 Eureka 集群配置中
 
 - 修改 `defaultZone` 属性，添加新增的 Eureka
@@ -1553,6 +1581,7 @@ eureka:
             defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
 
 ```
+<a name="Lox7Y"></a>
 #### Ⅳ、将订单服务 80 微服务发布到上面 2 台 Eureka 集群配置中
 
 - 修改 `defaultZone` 属性，添加新增的 Eureka
@@ -1578,6 +1607,7 @@ eureka:
             # 集群 eureka 间使用 , 分隔
             defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
 ```
+<a name="vswsq"></a>
 #### Ⅴ、测试 Eureka 集群 1
 
 1. 先启动 EurekaServer，7001/7002 服务
@@ -1590,6 +1620,7 @@ eureka:
 5.  EurekaServer，7002：[http://eureka7002.com:7002/](http://eureka7002.com:7002/)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676963611618-c8caf0ba-a402-434b-b4e2-175cdaa95c01.png#averageHue=%23d4d3d2&clientId=u4f9c3c22-6d80-4&from=paste&height=986&id=ue3210263&name=image.png&originHeight=986&originWidth=1013&originalType=binary&ratio=1&rotation=0&showTitle=false&size=106017&status=done&style=stroke&taskId=u8ac52d48-3338-4124-a8e5-91fe9f7d6cd&title=&width=1013)
+<a name="Q8IWu"></a>
 #### Ⅵ、支付服务提供者集群环境构建 cloud-provider-payment8002
 
 1. 参考 cloud-provider-payment8001 新建 cloud-provider-payment8002
@@ -1847,6 +1878,7 @@ public class PaymentController {
 
 13. 问题：不论怎么刷新 80 端口，他调用的支付端口都是 8001，因为在 controller 调用时被写死 8001 了
 14. 解决：在下面解决
+<a name="tYtjp"></a>
 #### Ⅶ、负载均衡
 
 1. 解决上面的问题：修改 80 端口的 controller 类，将端口号更改为服务名
@@ -1935,6 +1967,7 @@ public class ApplicationContextConfig {
 }
 
 ```
+<a name="oWWci"></a>
 #### Ⅷ、测试 Eureka 集群 2
 
 1. 先启动 EurekaServer，7001/7002 服务
@@ -1968,7 +2001,9 @@ public class ApplicationContextConfig {
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676967004861-52b69166-5da8-4fc2-bcb4-c06f83ed4c5a.png#averageHue=%2377b2e1&clientId=u4f9c3c22-6d80-4&from=paste&height=544&id=u917ca1ae&name=image.png&originHeight=544&originWidth=541&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43408&status=done&style=stroke&taskId=ue7cfce7a-d003-4b0e-8b4a-cde66b49853&title=&width=541)
 
 10. Ribbon 和 Eureka 整合后 Consumer 可以直接调用服务而不用再关心地址和端口号，且该服务还有负载功能了。O(∩_∩)O
+<a name="ivkBP"></a>
 ### ④、actuator 微服务信息完善
+<a name="ikWo2"></a>
 #### Ⅰ、主机名称：服务名称修改
 
 1. 当前问题：状态指示会带着主机名
@@ -2099,6 +2134,7 @@ eureka:
 3. 修改之后：
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676968400558-399acae7-ff7e-49a5-a617-dd97e3bb3806.png#averageHue=%23c9c7c6&clientId=u4f9c3c22-6d80-4&from=paste&height=178&id=ufe96bd77&name=image.png&originHeight=178&originWidth=1454&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31631&status=done&style=stroke&taskId=u542bc158-0c83-45d5-becb-856cd15780e&title=&width=1454)
+<a name="hRtJ1"></a>
 #### Ⅱ、访问信息有 IP 信息提示
 
 1. 当前问题：访问路径不会显示 IP 地址
@@ -2232,6 +2268,7 @@ eureka:
 3. 修改之后：
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676968779234-d8e26166-d39e-4c3c-ad0b-1b306b8ff5a0.png#averageHue=%23dad9d8&clientId=u4f9c3c22-6d80-4&from=paste&height=916&id=ucb34ff62&name=image.png&originHeight=916&originWidth=1019&originalType=binary&ratio=1&rotation=0&showTitle=false&size=77245&status=done&style=stroke&taskId=u9d3c5fba-f3de-481f-9fef-060346204c1&title=&width=1019)
+<a name="rlR6S"></a>
 ### ⑤、服务发现 Discovery
 > 对于注册进 eureka 里面的微服务，可以通过服务发现来获得该服务的信息
 
@@ -2414,7 +2451,9 @@ public class PaymentController {
     "data": "OK"
 }
 ```
+<a name="G7uwg"></a>
 ### ⑥、Eureka 自我保护
+<a name="RBGyT"></a>
 #### Ⅰ、概述
 
 1. 保护模式主要用于一组客户端和 Eureka Server 之间存在网络分区场景下的保护。
@@ -2424,6 +2463,7 @@ public class PaymentController {
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677025472780-53b62282-e092-48e4-96b2-ad7be09a1094.png#averageHue=%23f3e4e4&clientId=uc8e9057c-b58a-4&from=paste&height=98&id=u0f5cc5bd&name=image.png&originHeight=98&originWidth=1008&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37258&status=done&style=stroke&taskId=ub04335a8-3e11-49ac-9342-c55409d3ce7&title=&width=1008)
 
 4. 为什么会产生 Eureka 自我保护机制：防止了虽然 EurekaClient 在正常运行，但是其与 EurekaServer 网络不通的情况下，EurekaServer 会立刻将 EurekaClient 服务剔除
+<a name="lAUdr"></a>
 #### Ⅱ、什么是自我保护模式
 
 1. 默认情况下，如果 EurekaServer 在一定时间内没有接收到某个微服务实例的心跳，EurekaServer 将会注销该实例（默认90秒）。但是当网络分区故障发生(延时、卡顿、拥挤)时，微服务与 EurekaServer 之间无法正常通信，以上行为可能变得非常危险了：因为微服务本身其实是健康的，此时本不应该注销这个微服务
@@ -2435,6 +2475,7 @@ public class PaymentController {
 7. 属于 CAP 里面的 AP 分支
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677025671962-10942c20-3053-4c8f-a462-edb2257558ed.png#averageHue=%23f4f0eb&clientId=uc8e9057c-b58a-4&from=paste&height=423&id=uf0406bcf&name=image.png&originHeight=423&originWidth=736&originalType=binary&ratio=1&rotation=0&showTitle=false&size=200851&status=done&style=stroke&taskId=uaba1d1b0-f82a-42e7-9d28-37d474f577e&title=&width=736)
+<a name="luWNK"></a>
 #### Ⅲ、怎么禁止自我保护
 
 1. 在服务注册中心的配置文件 application.yml 中新增配置：`eureka.server.enable-self-preservation=true`
@@ -2468,15 +2509,18 @@ eureka:
 3. 微服务提供者可以修改配置文件，新增以下属性：
    1. `eureka.instance.lease-renewal-interval-in-seconds=30`：Eureka 客户端向服务端发送心跳的时间间隔，单位为秒(默认是30秒)
    2. `eureka.instance.lease-expiration-duration-in-seconds=90`：Eureka 客户端向服务端发送心跳的时间间隔，单位为秒(默认是30秒)
+<a name="dQkOP"></a>
 ## 2、Zookeeper
 > Eureka停止更新了你怎么办：[https://github.com/Netflix/eureka/wiki](https://github.com/Netflix/eureka/wiki)
 > SpringCloud 整合 Zookeeper 代替 Eureka
 
+<a name="HFCZC"></a>
 ### ①、Zookeeper 简介
 
 1. zookeeper 是一个分布式协调工具，可以实现注册中心功能
 2. 关闭 Linux 服务器防火墙后启动 zookeeper 服务器
 3. zookeeper 服务器取代 Eureka 服务器，zookeeper 作为服务注册中心
+<a name="x6spr"></a>
 ### ②、安装 zookeeper
 > 本次使用的是 docker
 
@@ -2684,6 +2728,7 @@ Using config: /conf/zoo.cfg
 2023-02-22 10:17:07,298 [myid:1] - INFO  [main:ZKAuditProvider@42] - ZooKeeper audit is disabled.
 2023-02-22 10:17:07,392 [myid:1] - INFO  [SyncThread:0:FileTxnLog@284] - Creating new log file: log.1
 ```
+<a name="APpIo"></a>
 ### ③、服务提供者 cloud-provider-payment8004
 > zookeeper 节点是临时节点，即一段时间获取不到心跳就会移除节点，相当于关闭了保护模式的 Eureka
 
@@ -2954,6 +2999,7 @@ services    zookeeper
     }
 }
 ```
+<a name="l4F6J"></a>
 ### ④、服务消费者 cloud-consumerzk-order80
 
 1. 新建模块 cloud-consumerzk-order80
@@ -3115,8 +3161,11 @@ public class OrderController {
 7. 访问测试：[http://localhost/getOrder/payment/get](http://localhost/getOrder/payment/get)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677035584499-b3f37a6d-8c5c-442c-9948-791997f8054b.png#averageHue=%2378b2e0&clientId=uc8e9057c-b58a-4&from=paste&height=319&id=u716f190a&name=image.png&originHeight=319&originWidth=490&originalType=binary&ratio=1&rotation=0&showTitle=false&size=34524&status=done&style=stroke&taskId=ud84c0e41-1530-436a-9fae-c92c56a5550&title=&width=490)
+<a name="sAeRG"></a>
 ## 3、Consul
+<a name="ImrAb"></a>
 ### ①、Consul 简介
+<a name="o04CP"></a>
 #### Ⅰ、是什么
 > [https://www.consul.io/intro/index.html](https://www.consul.io/intro/index.html)
 
@@ -3130,6 +3179,7 @@ public class OrderController {
    4. 支持跨数据中心的 WAN 集群
    5. 提供图形界面
    6. 跨平台，支持 Linux、Mac、Windows
+<a name="KMxQn"></a>
 #### Ⅱ、能干嘛
 
 1. 服务发现
@@ -3139,20 +3189,26 @@ public class OrderController {
 5. 可视化 Web 界面
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677040533344-40c1e081-7e4b-49cf-8ed3-f366a162f057.png#averageHue=%23fcfaf7&clientId=uc8e9057c-b58a-4&from=paste&height=589&id=ue2836c81&name=image.png&originHeight=589&originWidth=860&originalType=binary&ratio=1&rotation=0&showTitle=false&size=116062&status=done&style=stroke&taskId=u8da7a108-936e-41ba-bb2e-6de887d0a49&title=&width=860)
+<a name="NKgmH"></a>
 #### Ⅲ、去哪下
 > [https://www.consul.io/downloads.html](https://www.consul.io/downloads.html)
 
+<a name="nWL1r"></a>
 #### Ⅳ、怎么玩
 > [https://www.springcloud.cc/spring-cloud-consul.html](https://www.springcloud.cc/spring-cloud-consul.html)
 
+<a name="tXKIu"></a>
 ### ②、
+<a name="kDORs"></a>
 ## 4、三个注册中心异同点
+<a name="fptNa"></a>
 ### ①、CAP 是什么
 
 1. C：Consistency（强一致性）
 2. A：Availability（可用性）
 3. P：Partition tolerance（分区容错性）
 4. CAP 理论关注粒度是数据，而不是整体系统设计的策略
+<a name="HMaq5"></a>
 ### ②、经典 CAP 图
 
 1. 最多只能同时较好的满足两个。
@@ -3162,33 +3218,41 @@ public class OrderController {
    3. 满足 AP 原则：满足可用性，分区容错性的系统，通常可能对一致性要求低一些。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677041100149-e6318d76-cae3-4f27-9a12-85f38f6df27a.png#averageHue=%2327445f&clientId=uc8e9057c-b58a-4&from=paste&height=584&id=u76832f34&name=image.png&originHeight=584&originWidth=671&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48746&status=done&style=stroke&taskId=u8b179117-cca2-4367-bf9e-2e0d7f9a236&title=&width=671)
+<a name="vyun5"></a>
 ### ③、AP 架构：Eureka
 
 1. 当网络分区出现后，为了保证可用性，系统 B 可以返回旧值，保证系统的可用性。
 2. 结论：违背了一致性C的要求，只满足可用性和分区容错，即AP
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677041238601-b2759e08-c3ea-4dbd-8223-ddac0e49742d.png#averageHue=%23edede8&clientId=uc8e9057c-b58a-4&from=paste&height=509&id=u3fb81732&name=image.png&originHeight=509&originWidth=635&originalType=binary&ratio=1&rotation=0&showTitle=false&size=109020&status=done&style=stroke&taskId=u3fcf6430-6abe-47f7-9634-e2edf073256&title=&width=635)
+<a name="nGZ59"></a>
 ### ④、CP 架构：Zookeeper/Consul
 
 1. 当网络分区出现后，为了保证一致性，就必须拒接请求，否则无法保证一致性
 2. 结论：违背了可用性 A 的要求，只满足一致性和分区容错，即 CP
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677041267949-cb2ca4c0-8e90-4cbe-b177-86bd7d1862cd.png#averageHue=%23fcfbfb&clientId=uc8e9057c-b58a-4&from=paste&height=505&id=udad564fb&name=image.png&originHeight=505&originWidth=646&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59219&status=done&style=stroke&taskId=u18a7d2e8-d5c0-4755-a7d3-0792b9ae3b6&title=&width=646)
+<a name="Yuoj4"></a>
 # 四、负载均衡服务调用 Ribbon
 > 官网：[https://github.com/Netflix/ribbon/wiki/Getting-Started](https://github.com/Netflix/ribbon/wiki/Getting-Started)
 > Ribbon 目前也进入维护模式，未来替换方案：LoadBalancer
 
+<a name="xjP1b"></a>
 ## 1、Ribbon
+<a name="mBlwG"></a>
 ### ①、简介
+<a name="rDSTj"></a>
 #### Ⅰ、Ribbon 是什么
 
 1. Spring Cloud Ribbon 是基于 Netflix Ribbon 实现的一套客户端负载均衡的工具。
 2. 简单的说，Ribbon 是 Netflix 发布的开源项目，主要功能是提供客户端的软件负载均衡算法和服务调用。Ribbon 客户端组件提供一系列完善的配置项如连接超时，重试等。
 3. 简单的说，就是在配置文件中列出 Load Balancer（简称LB）后面所有的机器，Ribbon 会自动的帮助你基于某种规则（如简单轮询，随机连接等）去连接这些机器。
 4. 我们很容易使用 Ribbon 实现自定义的负载均衡算法。
+<a name="RI1PG"></a>
 #### Ⅱ、能干嘛
 > 负载均衡 + RestTemplate 调用
 
+<a name="KLjDI"></a>
 ##### （1）、LB（负载均衡）
 
 1. LB负载均衡(Load Balance)是什么：简单的说就是将用户的请求平摊的分配到多个服务上，从而达到系统的 HA（高可用）。常见的负载均衡有软件 Nginx，LVS，硬件 F5 等。
@@ -3198,11 +3262,14 @@ public class OrderController {
 3. 集中式 LB：即在服务的消费方和提供方之间使用独立的 LB 设施(可以是硬件，如 F5, 也可以是软件，如 nginx)，由该设施负责把访问请求通过某种策略转发至服务的提供方；
 4. 进程内 LB：将 LB 逻辑集成到消费方，消费方从服务注册中心获知有哪些地址可用，然后自己再从这些地址中选择出一个合适的服务器。
 5. Ribbon 就属于进程内 LB，它只是一个类库，集成于消费方进程，消费方通过它来获取到服务提供方的地址。
+<a name="dg7RG"></a>
 ##### （2）、轮询负载访问
 
 1. 轮询算法是最简单的一种负载均衡算法。它的原理是把来自用户的请求轮流分配给内部的服务器：从服务器 1 开始，直到服务器 N，然后重新开始循环。
 2. 算法的优点是其简洁性，它无需记录当前所有连接的状态，所以它是一种无状态调度。
+<a name="Vi0d8"></a>
 ### ②、Ribbon 负载均衡演示
+<a name="ctDwZ"></a>
 #### Ⅰ、架构说明
 
 1. Ribbon 在工作时分成两步：
@@ -3212,16 +3279,20 @@ public class OrderController {
 5. 总结：Ribbon 其实就是一个软负载均衡的客户端组件， 他可以和其他所需请求的客户端结合使用，和 eureka 结合只是其中的一个实例。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677047962628-dc8d4f1d-0215-4ed2-8497-47b4a113a1e3.png#averageHue=%23fefef8&clientId=u92554e7e-b38e-4&from=paste&height=481&id=vn0W7&name=image.png&originHeight=481&originWidth=890&originalType=binary&ratio=1&rotation=0&showTitle=false&size=146245&status=done&style=stroke&taskId=uf24fe799-2c0f-4d51-aa66-cf56044d34e&title=&width=890)
+<a name="Uchbe"></a>
 #### Ⅱ、为什么之前并没有引入 Ribbon 依赖也可以使用负载均衡
 
 - 原因：`spring-cloud-starter-netflix-eureka-client` 自带了 `spring-cloud-starter-ribbon` 引用
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677048343155-c7ffe156-40fe-432a-ba37-bbfad411380f.png#averageHue=%233c4144&clientId=u92554e7e-b38e-4&from=paste&height=560&id=ADr0r&name=image.png&originHeight=560&originWidth=717&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59699&status=done&style=stroke&taskId=uc9c9c9af-f462-4dcc-941d-97936274196&title=&width=717)
+<a name="ir4NJ"></a>
 #### Ⅲ、二说 RestTemplate 的使用
+<a name="vDzzS"></a>
 ##### （1）、官网
 > [https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677048408213-e1fa3220-f90e-4a9f-9cc5-5efaa1073917.png#averageHue=%233e433c&clientId=u92554e7e-b38e-4&from=paste&height=329&id=WEwhh&name=image.png&originHeight=329&originWidth=926&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26077&status=done&style=stroke&taskId=ue19ee78d-479b-4028-bac3-c8baa435d2c&title=&width=926)
+<a name="ZF87n"></a>
 ##### （2）、`getForObjec`、`getForEntity` 方法 
 
 1. `getForObjec`：返回对象为响应体中数据转化成的对象，基本上可以理解为Json
@@ -3326,6 +3397,7 @@ public JsonResult getForEntity(){
     "code": 200
 }
 ```
+<a name="jndFz"></a>
 ##### （3）、`postForObject`、`postForEntity` 方法
 
 1. `postForObject`：与 `getForObjec` 类似，返回对象为响应体中数据转化成的对象，基本上可以理解为Json
@@ -3404,9 +3476,11 @@ public JsonResult postForEntity(String serial){
     "code": 200
 }
 ```
+<a name="shNB1"></a>
 ### ③、Ribbon 核心组件 IRule
 > IRule：根据特定算法中从服务列表中选取一个要访问的服务
 
+<a name="tcnYC"></a>
 #### Ⅰ、IRule 具体算法
 
 1. `com.netflix.loadbalancer.RoundRobinRule`：轮询
@@ -3416,12 +3490,14 @@ public JsonResult postForEntity(String serial){
 5. `BestAvailableRule`：会先过滤掉由于多次访问故障而处于断路器跳闸状态的服务，然后选择一个并发量最小的服务
 6. `AvailabilityFilteringRule`：先过滤掉故障实例，再选择并发较小的实例
 7. `ZoneAvoidanceRule`：默认规则，复合判断 server 所在区域的性能和 server 的可用性选择服务器
+<a name="cNgMq"></a>
 #### Ⅱ、如何替换算法
 > 修改 cloud-consumer-order80
 
+<a name="Vld72"></a>
 ##### （1）、注意配置细节
-官方文档明确给出了警告：这个自定义配置类不能放在 `@ComponentScan` 所扫描的当前包下以及子包下，否则我们自定义的这个配置类就会被所有的 Ribbon 客户端所共享，达不到特殊化定制的目的了。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677052349663-6d04c33d-705e-4c22-ae83-235508688a0b.png#averageHue=%23e9c991&clientId=u1b4568ff-b543-4&from=paste&height=548&id=zjDVU&name=image.png&originHeight=548&originWidth=910&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66774&status=done&style=stroke&taskId=u3b3398fb-605f-4c59-b0df-f1208d7861f&title=&width=910)
+官方文档明确给出了警告：这个自定义配置类不能放在 `@ComponentScan` 所扫描的当前包下以及子包下，否则我们自定义的这个配置类就会被所有的 Ribbon 客户端所共享，达不到特殊化定制的目的了。<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677052349663-6d04c33d-705e-4c22-ae83-235508688a0b.png#averageHue=%23e9c991&clientId=u1b4568ff-b543-4&from=paste&height=548&id=zjDVU&name=image.png&originHeight=548&originWidth=910&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66774&status=done&style=stroke&taskId=u3b3398fb-605f-4c59-b0df-f1208d7861f&title=&width=910)
+<a name="oX7OS"></a>
 ##### （2）、创建新包与配置类
 
 1. 创建新包与配置类
@@ -3488,6 +3564,7 @@ public class ConsumerOrder80 {
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677053176031-a863ba42-1929-48de-85a3-454021b3586b.png#averageHue=%233a4146&clientId=u1b4568ff-b543-4&from=paste&height=201&id=LJOx1&name=image.png&originHeight=201&originWidth=271&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13013&status=done&style=stroke&taskId=u5399a636-028e-49b9-92cf-336a9577aec&title=&width=271)
 
 5. 测试，发现  8001 和 8002 是随机出现，不再是交替出现
+<a name="XVHPi"></a>
 ### ④、Ribbon 负载均衡算法原理
 
 1. 轮询负载均衡算法：rest 接口第几次请求数 % 服务器集群总数量 = 实际调用服务器位置下标，每次服务重启动后 rest 接口计数从 1 开始。
@@ -3506,9 +3583,13 @@ List [1] instances = 127.0.0.1:8001
    3. 当总请求数位 3 时： 3 % 2 =1 对应下标位置为1 ，则获得服务地址为 127.0.0.1:8001
    4. 当总请求数位 4 时： 4 % 2 =0 对应下标位置为0 ，则获得服务地址为 127.0.0.1:8002
    5. 如此类推......
+<a name="gQm0z"></a>
 # 五、服务接口调用 OpenFeign
+<a name="ZrUZo"></a>
 ## 1、OpenFeign
+<a name="qJcdm"></a>
 ### ①、简介
+<a name="NXhZ7"></a>
 #### Ⅰ、OpenFeign 是什么
 > 官网解释：[https://cloud.spring.io/spring-cloud-static/Hoxton.SR1/reference/htmlsingle/#spring-cloud-openfeign](https://cloud.spring.io/spring-cloud-static/Hoxton.SR1/reference/htmlsingle/#spring-cloud-openfeign)
 > GitHub：[https://github.com/spring-cloud/spring-cloud-openfeign](https://github.com/spring-cloud/spring-cloud-openfeign)
@@ -3517,6 +3598,7 @@ List [1] instances = 127.0.0.1:8001
 2. 它的使用方法是定义一个服务接口然后在上面添加注解。
 3. Feign 也支持可拔插式的编码器和解码器。Spring Cloud 对 Feign 进行了封装，使其支持了 Spring MVC 标准注解和 HttpMessageConverters。
 4. Feign 可以与 Eureka 和 Ribbon 组合使用以支持负载均衡
+<a name="NNTQC"></a>
 #### Ⅱ、能干嘛
 
 1.  Feign 旨在使编写 Java Http 客户端变得更容易。
@@ -3524,11 +3606,11 @@ List [1] instances = 127.0.0.1:8001
 3. 但是在实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用。所以，Feign 在此基础上做了进一步封装，由他来帮助我们定义和实现依赖服务接口的定义。
 4. 在 Feign 的实现下，我们只需创建一个接口并使用注解的方式来配置它(以前是 Dao 接口上面标注 Mapper 注解，现在是一个微服务接口上面标注一个 Feign 注解即可)，即可完成对服务提供方的接口绑定，简化了使用 Spring cloud Ribbon 时，自动封装服务调用客户端的开发量。
 5. Feign 集成了 Ribbon：利用 Ribbon 维护了 Payment 的服务列表信息，并且通过轮询实现了客户端的负载均衡。而与 Ribbon 不同的是，通过 feign 只需要定义服务绑定接口且以声明式的方法，优雅而简单的实现了服务调用
+<a name="arO9V"></a>
 #### Ⅲ、Feign 和 OpenFeign 两者区别
 | **Feign** | **OpenFeign** |
 | --- | --- |
-| Feign 是 Spring Cloud 组件中的一个轻量级 RESTful 的 HTTP 服务客户端
-Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中心的服务。Feign的使用方式是：使用Feign的注解定义接口，调用这个接口，就可以调用服务注册中心的服务 | OpenFeign是Spring Cloud 在Feign的基础上支持了SpringMVC的注解，如@RequesMapping等等。OpenFeign的@FeignClient可以解析SpringMVC的@RequestMapping注解下的接口，并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务。 |
+| Feign 是 Spring Cloud 组件中的一个轻量级 RESTful 的 HTTP 服务客户端<br />Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中心的服务。Feign的使用方式是：使用Feign的注解定义接口，调用这个接口，就可以调用服务注册中心的服务 | OpenFeign是Spring Cloud 在Feign的基础上支持了SpringMVC的注解，如@RequesMapping等等。OpenFeign的@FeignClient可以解析SpringMVC的@RequestMapping注解下的接口，并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务。 |
 | ```xml
 <dependency>
     <groupId>org.springframework.cloud</groupId>
@@ -3543,6 +3625,7 @@ Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中
 ```
  |
 
+<a name="e2zre"></a>
 ### ②、OpenFeign 使用步骤
 
 1. 新建模块 cloud-consumer-feign-order80
@@ -3700,9 +3783,11 @@ public class PaymentFeignController {
 8. 测试：[http://localhost/getTest](http://localhost/getTest)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677127720677-83e4ae18-f807-40b8-bcbd-db13b520da02.png#averageHue=%23f8f8fe&clientId=ub651a88b-a4c3-4&from=paste&height=580&id=u605cb9c4&name=image.png&originHeight=580&originWidth=403&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41239&status=done&style=stroke&taskId=uc5513b7a-1fc5-4f62-ac26-1748fdbc7e8&title=&width=403)
+<a name="NL3Ws"></a>
 ### ③、OpenFeign 超时控制
 > OpenFeign 默认等待 1 秒钟，超过后报错 
 
+<a name="Ijk4G"></a>
 #### Ⅰ、超时设置，故意设置超时演示出错情况
 
 1. 服务提供方 8001 故意写暂停程序
@@ -3803,6 +3888,7 @@ public class PaymentFeignController {
 5. 查看 8001 端口输出，看到被正常调用了
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677131207462-9f3c26ec-f2d0-491d-99d8-7a52b3ec288e.png#averageHue=%23719b83&clientId=ub651a88b-a4c3-4&from=paste&height=229&id=u78a7ce08&name=image.png&originHeight=229&originWidth=636&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20961&status=done&style=stroke&taskId=u0bd6de75-1246-432c-adfb-2db2a34b3e8&title=&width=636)
+<a name="Esc1F"></a>
 #### Ⅱ、设置超时时间
 
 1. 默认 Feign 客户端只等待一秒钟，但是服务端处理需要超过 1 秒钟，导致 Feign 客户端不想等待了，直接返回报错。
@@ -3848,6 +3934,7 @@ feign:
 5. 测试：[http://localhost/timeout5s](http://localhost/timeout5s)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677133044856-91739ba9-729a-4e5c-9d7d-417767fe5e91.png#averageHue=%2384d2d5&clientId=ub651a88b-a4c3-4&from=paste&height=199&id=uaba4f7a9&name=image.png&originHeight=199&originWidth=347&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13568&status=done&style=stroke&taskId=u17964324-102c-4f86-8e45-c59d5e52cd3&title=&width=347)
+<a name="aU0Ig"></a>
 ### ④、OpenFeign 日志打印功能
 
 1. Feign 提供了日志打印功能，我们可以通过配置来调整日志级别，从而了解 Feign 中 Http 请求的细节。说白了就是对 Feign 接口的调用情况进行监控和输出
@@ -3952,14 +4039,19 @@ logging:
 2023-02-23 14:32:18.734 DEBUG 10776 --- [p-nio-80-exec-3] com.yuehai.service.PaymentFeignService   : [PaymentFeignService#getTest] <--- END HTTP (233-byte body)
 
 ```
+<a name="JEsky"></a>
 ## 2、
+<a name="bzMvG"></a>
 # 六、服务降级断路器 Hystrix
+<a name="WCVmd"></a>
 ## 1、Hystrix
 > 官网：[https://github.com/Netflix/Hystrix/wiki/How-To-Use](https://github.com/Netflix/Hystrix/wiki/How-To-Use)
 > Hystrix官宣，停更进维；被动修复bugs；不再接受合并请求；不再发布新版本
 > 熔断是机制，降级是手段
 
+<a name="SXwAW"></a>
 ### ①、简介
+<a name="PgVo2"></a>
 #### Ⅰ、分布式系统面临的问题
 
 1. 复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免地失败。
@@ -3969,17 +4061,21 @@ logging:
 5. 所以，通常当你发现一个模块下的某个实例失败后，这时候这个模块依然还会接收流量，然后这个有问题的模块还调用了其他的模块，这样就会发生级联故障，或者叫雪崩。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677135565899-2f05bf4a-93ad-41fd-a3ed-151544a9ae4e.png#averageHue=%238bb26d&clientId=u7561f925-de4c-4&from=paste&height=528&id=u25f3dbd1&name=image.png&originHeight=528&originWidth=1173&originalType=binary&ratio=1&rotation=0&showTitle=false&size=455097&status=done&style=stroke&taskId=u7b502216-6899-4155-9af9-bf627d3cc3d&title=&width=1173)
+<a name="QZrOc"></a>
 #### Ⅱ、是什么
 
 1. Hystrix 是一个用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时、异常等，Hystrix 能够保证在一个依赖出问题的情况下，不会导致整体服务失败，避免级联故障，以提高分布式系统的弹性。
 2. “断路器”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控（类似熔断保险丝），向调用方返回一个符合预期的、可处理的备选响应（FallBack），而不是长时间的等待或者抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间、不必要地占用，从而避免了故障在分布式系统中的蔓延，乃至雪崩。
+<a name="KePfs"></a>
 #### Ⅲ、能干嘛
 
 1. 服务降级
 2. 服务熔断
 3. 接近实时的监控
 4. 。。。。。。
+<a name="Ep02g"></a>
 ### ②、Hystrix 的重要概念
+<a name="E5V0r"></a>
 #### Ⅰ、服务降级
 
 1. 服务器忙，请稍后再试，不让客户端等待并立刻返回一个友好提示，fallback
@@ -3988,13 +4084,16 @@ logging:
    2. 超时
    3. 服务熔断触发服务降级
    4. 线程池/信号量打满也会导致服务降级
+<a name="bjGeg"></a>
 #### Ⅱ、服务限流
 
 1. 类比保险丝达到最大服务访问后，直接拒绝访问，拉闸限电，然后调用服务降级的方法并返回友好提示
 2. 就是保险丝：服务的降级->进而熔断->恢复调用链路
+<a name="X3Rzk"></a>
 #### Ⅲ、服务熔断
 
 - 秒杀高并发等操作，严禁一窝蜂的过来拥挤，大家排队，一秒钟 N 个，有序进行
+<a name="MyKMu"></a>
 ### ③、hystrix 构建
 
 1. 新建模块 cloud-provider-hystrix-payment8007
@@ -4161,15 +4260,14 @@ public class PaymentController {
 
 8. 访问测试正常接口
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141893972-6e3ca703-3818-4308-9061-6a4191c73ba7.png#averageHue=%238ad6d1&clientId=u18d5b3b9-f79e-4&from=paste&height=196&id=ucde90b09&name=image.png&originHeight=196&originWidth=404&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18622&status=done&style=stroke&taskId=u4c924533-f460-4a9c-9468-ed4a161de1a&title=&width=404)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141905257-66cd367e-1900-464c-b711-109cea5dd468.png#averageHue=%23809b74&clientId=u18d5b3b9-f79e-4&from=paste&height=214&id=uf71e0135&name=image.png&originHeight=214&originWidth=689&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22279&status=done&style=stroke&taskId=ue196c6ca-9886-4775-8879-9a2b16c8096&title=&width=689)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141893972-6e3ca703-3818-4308-9061-6a4191c73ba7.png#averageHue=%238ad6d1&clientId=u18d5b3b9-f79e-4&from=paste&height=196&id=ucde90b09&name=image.png&originHeight=196&originWidth=404&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18622&status=done&style=stroke&taskId=u4c924533-f460-4a9c-9468-ed4a161de1a&title=&width=404)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141905257-66cd367e-1900-464c-b711-109cea5dd468.png#averageHue=%23809b74&clientId=u18d5b3b9-f79e-4&from=paste&height=214&id=uf71e0135&name=image.png&originHeight=214&originWidth=689&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22279&status=done&style=stroke&taskId=ue196c6ca-9886-4775-8879-9a2b16c8096&title=&width=689)
 
 9. 访问测试超时接口
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141928649-31e6569a-93d4-450c-a33c-cd1cee6e1b62.png#averageHue=%238bd6d8&clientId=u18d5b3b9-f79e-4&from=paste&height=199&id=ud02f976b&name=image.png&originHeight=199&originWidth=476&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19278&status=done&style=stroke&taskId=udc4023b3-9ce8-464e-bae5-dfc4e6b4b16&title=&width=476)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141939056-03183d0a-4374-4a02-8348-9ab96e9ccfa4.png#averageHue=%235d8c5d&clientId=u18d5b3b9-f79e-4&from=paste&height=215&id=u96cb9633&name=image.png&originHeight=215&originWidth=663&originalType=binary&ratio=1&rotation=0&showTitle=false&size=25741&status=done&style=stroke&taskId=u46e7b676-d9e5-4667-965c-e1a91e0605d&title=&width=663)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141928649-31e6569a-93d4-450c-a33c-cd1cee6e1b62.png#averageHue=%238bd6d8&clientId=u18d5b3b9-f79e-4&from=paste&height=199&id=ud02f976b&name=image.png&originHeight=199&originWidth=476&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19278&status=done&style=stroke&taskId=udc4023b3-9ce8-464e-bae5-dfc4e6b4b16&title=&width=476)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677141939056-03183d0a-4374-4a02-8348-9ab96e9ccfa4.png#averageHue=%235d8c5d&clientId=u18d5b3b9-f79e-4&from=paste&height=215&id=u96cb9633&name=image.png&originHeight=215&originWidth=663&originalType=binary&ratio=1&rotation=0&showTitle=false&size=25741&status=done&style=stroke&taskId=u46e7b676-d9e5-4667-965c-e1a91e0605d&title=&width=663)
 
 10. 目前都是正常访问的
+<a name="oXNQ9"></a>
 ### ④、高并发压力测试
 
 1. 不测了，直接说结果：
@@ -4355,9 +4453,10 @@ public class OrderFeignController {
 7. 访问测试：[http://localhost/hystrixOK](http://localhost/hystrixOK)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677202533284-a9c50598-cd00-46b5-af2e-43a511c74fc8.png#averageHue=%2386d4cf&clientId=u59aa9729-e8f8-4&from=paste&height=193&id=ue58c3253&name=image.png&originHeight=193&originWidth=479&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18818&status=done&style=stroke&taskId=u121fa0a0-b2f3-44e8-a462-64ce67dfb7a&title=&width=479)
+<a name="t6sRJ"></a>
 ### ⑤、Hystrix 服务降级配置
-**降级配置注解：**`@HystrixCommand`
-**设置自身调用超时时间的峰值，峰值内可以正常运行，超过了需要有兜底容错的方法处理，fallback**
+**降级配置注解：**`@HystrixCommand`<br />**设置自身调用超时时间的峰值，峰值内可以正常运行，超过了需要有兜底容错的方法处理，fallback**
+<a name="omxIC"></a>
 #### Ⅰ、提供者 8007 fallback 容错机制
 
 1. 修改 8007 的启动类，添加注解：`@EnableCircuitBreaker`：开启 Hystrix 熔断器
@@ -4433,6 +4532,7 @@ public class ProviderHystrixPayment8007 {
 4. 访问测试 80 端口：[http://localhost/hystrixTimeOut](http://localhost/hystrixTimeOut)，依然是报超时错误
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677207616660-b485c84d-9cc8-4b1b-b1ae-0b1d8ba5c164.png#averageHue=%23f4f2f0&clientId=u59aa9729-e8f8-4&from=paste&height=268&id=u6107cef5&name=image.png&originHeight=268&originWidth=726&originalType=binary&ratio=1&rotation=0&showTitle=false&size=25488&status=done&style=stroke&taskId=u469667f8-be86-49ce-994a-8a7e9a2da6d&title=&width=726)
+<a name="DYvkr"></a>
 #### Ⅱ、消费者 80 fallback 容错机制（一般都放在消费端）
 
 1. 修改 80 的 application.yml 配置文件，因为客户端引入了 feign，服务端不用配置
@@ -4550,6 +4650,7 @@ public class OrderFeignController {
 4. 测试：[http://localhost/hystrixTimeOut](http://localhost/hystrixTimeOut)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677213809375-99b1f4b3-4bb4-4099-94c2-b3cd3b344c84.png#averageHue=%2386d3cf&clientId=u59aa9729-e8f8-4&from=paste&height=198&id=uec65edb8&name=image.png&originHeight=198&originWidth=714&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24521&status=done&style=stroke&taskId=ucbbae67a-0bf1-4748-afef-39c78b17cfa&title=&width=714)
+<a name="bIcQM"></a>
 #### Ⅲ、通用 fallback 容错
 > **独有的 fallback 容错方法 > 通用的 fallback 容错方法**
 > **所以可以除了个别重要核心业务有专属 fallback 容错方法，其它普通的可以使用通用 fallback 容错方法统一跳转到统一处理结果页面**
@@ -4632,6 +4733,7 @@ public class OrderFeignController {
 3. 访问测试：[http://localhost/hystrixTimeOut2](http://localhost/hystrixTimeOut2)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677223198525-1d0b3311-9ecd-4f82-83aa-733f11af2a3e.png#averageHue=%2386d4cf&clientId=u59aa9729-e8f8-4&from=paste&height=194&id=u4daaa488&name=image.png&originHeight=194&originWidth=507&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20698&status=done&style=stroke&taskId=u25d8f775-d6e1-4ae0-b2f6-293715d38e6&title=&width=507)
+<a name="SxriH"></a>
 #### Ⅳ、将 fallback 容错方法放到 service
 > **将 fallback 容错方法和 controller 业务逻辑放在一起太混乱了**
 > 本次案例服务降级处理是在客户端 80 实现完成的，与服务端 8001 没有关系
@@ -4750,14 +4852,17 @@ public class OrderFeignFallbackController {
 5. 访问测试：[http://localhost/fallBack/hystrixTimeOut](http://localhost/fallBack/hystrixTimeOut)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677227794030-f3832498-02fb-4498-a86c-8ca3d4d99b3d.png#averageHue=%238ed7d3&clientId=u59aa9729-e8f8-4&from=paste&height=193&id=u670c7d6d&name=image.png&originHeight=193&originWidth=484&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19095&status=done&style=stroke&taskId=ue3301edb-7e9c-4467-9bd5-c63e3296fec&title=&width=484)
+<a name="zlj2D"></a>
 ### ⑥、服务熔断
 > 断路器：一句话就是家里的保险丝
 > [https://martinfowler.com/bliki/CircuitBreaker.html](https://martinfowler.com/bliki/CircuitBreaker.html)
 
+<a name="x9JSC"></a>
 #### Ⅰ、熔断是什么
 
 1.  熔断机制概述：熔断机制是应对雪崩效应的一种微服务链路保护机制。当扇出链路的某个微服务出错不可用或者响应时间太长时，会进行服务的降级，进而熔断该节点微服务的调用，快速返回错误的响应信息。当检测到该节点微服务调用响应正常后，恢复调用链路。
 2. 在 Spring Cloud 框架里，熔断机制通过 Hystrix 实现。Hystrix 会监控微服务间调用的状况，当失败的调用到一定阈值，缺省是 5 秒内 20 次调用失败，就会启动熔断机制。熔断机制的注解是 `@HystrixCommand`
+<a name="czc4S"></a>
 #### Ⅱ、熔断案例
 
 1. 新建模块 cloud-provider-hystrix-payment8008
@@ -4997,13 +5102,16 @@ public class PaymentController {
 10. 重点：多测试几次错误的访问，再访问正确的地址，发现就算是正确的地址也会返回错误
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677460526594-2bbbd132-b7d6-48e3-8203-8a0b80313208.png#averageHue=%2393d8df&clientId=u59402e4c-90b3-4&from=paste&height=206&id=uf8a96b30&name=image.png&originHeight=206&originWidth=547&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20111&status=done&style=stroke&taskId=uc961a322-9e25-4315-8433-0e8f20e7323&title=&width=547)
+<a name="KWX8P"></a>
 #### Ⅲ、大神结论
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677460933254-e59d298a-df5d-45b6-b043-ff4fdfa97515.png#averageHue=%23f9f8f6&clientId=u59402e4c-90b3-4&from=paste&height=588&id=uaadf3f91&name=image.png&originHeight=588&originWidth=646&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27592&status=done&style=stroke&taskId=u13f76e48-d133-4a28-8553-0ac4f1ff023&title=&width=646)
+<a name="zX3id"></a>
 #### Ⅳ、熔断类型
 
 1. 熔断打开：请求不再进行调用当前服务，内部设置时钟一般为 MTTR（平均故障处理时间)，当打开时长达到所设时钟则进入半熔断状态
 2. 熔断关闭：熔断关闭不会对服务进行熔断
 3. 熔断半开：部分请求根据规则调用当前服务，如果请求成功且符合规则则认为当前服务恢复正常，关闭熔断
+<a name="QgOty"></a>
 #### Ⅴ、官网断路器流程图
 
 1. 流程图
@@ -5112,13 +5220,17 @@ public class PaymentController {
         return "*****fall back str_fallbackMethod";
     }
 ```
+<a name="iNqTe"></a>
 ### ⑦、服务限流
 后面高级篇讲解 alibaba 的 Sentinel 说明
+<a name="BV4XX"></a>
 ### ⑧、hystrix 工作流程
 > [https://github.com/Netflix/Hystrix/wiki/How-it-Works](https://github.com/Netflix/Hystrix/wiki/How-it-Works)
 
+<a name="grrtK"></a>
 #### Ⅰ、官网图例
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677461785563-0dd6e2c9-def5-4006-b472-e5c9eb0a406e.png#averageHue=%23f8f6f3&clientId=u59402e4c-90b3-4&from=paste&height=639&id=u6de4fcb9&name=image.png&originHeight=639&originWidth=1355&originalType=binary&ratio=1&rotation=0&showTitle=false&size=210992&status=done&style=stroke&taskId=uf256a88c-c629-4197-93bf-74d9f4a2d32&title=&width=1355)
+<a name="CSJQC"></a>
 #### Ⅱ、步骤说明
 > 如果我们没有为命令实现降级逻辑或者在降级处理逻辑中抛出了异常， Hystrix 依然会返回一个 Observable 对象， 但是它不会发射任何结果数据， 而是通过 onError 方法通知命令立即中断请求，并通过 onError() 方法将引起命令失败的异常发送给调用者。
 
@@ -5135,10 +5247,12 @@ public class PaymentController {
 7. Hystrix会将 "成功"、"失败"、"拒绝"、"超时" 等信息报告给断路器， 而断路器会维护一组计数器来统计这些数据。断路器会使用这些统计数据来决定是否要将断路器打开，来对某个依赖服务的请求进行 "熔断/短路"。
 8. 当命令执行失败的时候， Hystrix 会进入 fallback 尝试回退处理， 我们通常也称该操作为 "服务降级"。而能够引起服务降级处理的情况有下面几种：第4步： 当前命令处于"熔断/短路"状态，断路器是打开的时候。第5步： 当前命令的线程池、 请求队列或 者信号量被占满的时候。第6步：HystrixObservableCommand.construct() 或 HystrixCommand.run() 抛出异常的时候。
 9. 当Hystrix命令执行成功之后， 它会将处理结果直接返回或是以Observable 的形式返回。
+<a name="jQ9Bt"></a>
 ### ⑨、服务监控 hystrixDashboard
 > 除了隔离依赖服务的调用以外，Hystrix 还提供了准实时的调用监控（Hystrix Dashboard），Hystrix 会持续地记录所有通过 Hystrix 发起的请求的执行信息，并以统计报表和图形的形式展示给用户，包括每秒执行多少请求多少成功，多少失败等。Netflix 通过 hystrix-metrics-event-stream 项目实现了对以上指标的监控。
 > Spring Cloud 也提供 了Hystrix Dashboard 的整合，对监控内容转化成可视化界面。
 
+<a name="mFHZm"></a>
 #### Ⅰ、仪表盘 9001
 
 1. 新建模块 cloud-consumer-hystrix-dashboard9001
@@ -5269,6 +5383,7 @@ public class ProviderHystrixPayment8008 {
 7. 启动项目，访问：[http://localhost:9001/hystrix](http://localhost:9001/hystrix)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677464105650-ac9cfd64-f144-4760-b139-57aa4f7daad9.png#averageHue=%23f8f8f7&clientId=u59402e4c-90b3-4&from=paste&height=728&id=u5ef04cf9&name=image.png&originHeight=728&originWidth=1023&originalType=binary&ratio=1&rotation=0&showTitle=false&size=135444&status=done&style=stroke&taskId=u0d41bb55-1c2c-43d0-ba34-98e349b441e&title=&width=1023)
+<a name="nHFI7"></a>
 #### Ⅱ、断路器演示(服务监控 hystrixDashboard)
 
 1. 输入要监控的地址，如：[http://localhost:8008/hystrix.stream](http://localhost:8008/hystrix.stream)，点击 Monitor Stream
@@ -5297,14 +5412,19 @@ public class ProviderHystrixPayment8008 {
 4. 搞懂一个才能看懂复杂的
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677465054802-768d2e4d-0919-46f8-8881-bd65b70a6ffd.png#averageHue=%23f7f6f3&clientId=u59402e4c-90b3-4&from=paste&height=363&id=u14672d29&name=image.png&originHeight=363&originWidth=640&originalType=binary&ratio=1&rotation=0&showTitle=false&size=216481&status=done&style=stroke&taskId=ucb2b61ff-6bdf-4137-ae3a-0cef0486ca5&title=&width=640)
+<a name="efSWB"></a>
 ## 2、
+<a name="vGFtd"></a>
 # 七、路由网关 Gateway
+<a name="UjXay"></a>
 ## 1、Gateway
 > 官网：
 > 上一代 zuul 1.X：[https://github.com/Netflix/zuul/wiki](https://github.com/Netflix/zuul/wiki)
 > 当前 gateway：[https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.1.RELEASE/reference/html/](https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.1.RELEASE/reference/html/)
 
+<a name="dnT5j"></a>
 ### ①、简介
+<a name="nmonL"></a>
 #### Ⅰ、是什么
 
 1.  Cloud 全家桶中有个很重要的组件就是网关，在 1.x 版本中都是采用的 Zuul 网关；但在 2.x 版本中，zuul 的升级一直跳票，SpringCloud 最后自己研发了一个网关替代 Zuul，那就是 SpringCloud Gateway 一句话：gateway 是原 zuul 1.x 版的替代
@@ -5321,6 +5441,7 @@ public class ProviderHystrixPayment8008 {
 6. 源码架构
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466005985-023e630b-f4f2-4152-8aca-38dbc67b9057.png#averageHue=%23f8f0ee&clientId=u59402e4c-90b3-4&from=paste&height=577&id=uae2bc2c7&name=image.png&originHeight=577&originWidth=688&originalType=binary&ratio=1&rotation=0&showTitle=false&size=52844&status=done&style=stroke&taskId=u9214edbb-89ee-4dce-91f2-ad8388c04bd&title=&width=688)
+<a name="v4cvX"></a>
 #### Ⅱ、能干嘛
 
 1. 反向代理
@@ -5329,8 +5450,10 @@ public class ProviderHystrixPayment8008 {
 4. 熔断
 5. 日志监控
 6. 。。。。。。
+<a name="LGm5t"></a>
 #### Ⅲ、微服务架构中网关在哪里
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466055953-944adbc1-0cd2-490a-a39f-f2288804b7ec.png#averageHue=%23e2e6bc&clientId=u59402e4c-90b3-4&from=paste&height=464&id=u9a725462&name=image.png&originHeight=464&originWidth=644&originalType=binary&ratio=1&rotation=0&showTitle=false&size=225297&status=done&style=stroke&taskId=ufab099a9-b0a2-46e7-b4e2-278e91f6ab2&title=&width=644)
+<a name="ifZFv"></a>
 #### Ⅳ、SpringCloud Gateway 的特性
 
 1. 基于 Spring Framework 5, Project Reactor 和 Spring Boot 2.0 进行构建；
@@ -5341,6 +5464,7 @@ public class ProviderHystrixPayment8008 {
 6. 易于编写的 Predicate（断言）和 Filter（过滤器）；
 7. 请求限流功能；
 8. 支持路径重写。
+<a name="mJeDa"></a>
 #### Ⅴ、SpringCloud Gateway 与 Zuul 的区别
 
 - 在 SpringCloud Finchley 正式版之前，Spring Cloud 推荐的网关是 Netflix 提供的 Zuul：
@@ -5349,6 +5473,7 @@ public class ProviderHystrixPayment8008 {
 3. Zuul 2.x 理念更先进，想基于 Netty 非阻塞和支持长连接，但 SpringCloud 目前还没有整合。 Zuul 2.x 的性能较 Zuul 1.x 有较大提升。在性能方面，根据官方提供的基准测试， Spring Cloud Gateway 的 RPS（每秒请求数）是 Zuul 的 1. 6 倍。
 4. Spring Cloud Gateway 建立 在 Spring Framework 5、 Project Reactor 和 Spring Boot 2 之上， 使用非阻塞 API。
 5. Spring Cloud Gateway 还 支持 WebSocket， 并且与 Spring 紧密集成拥有更好的开发体验
+<a name="Gk3tU"></a>
 #### Ⅵ、Zuul 1.x 模型
 
 1. Springcloud 中所集成的 Zuul 版本，采用的是 Tomcat 容器，使用的是传统的 Servlet IO 处理模型。
@@ -5357,11 +5482,11 @@ public class ProviderHystrixPayment8008 {
 4. container 运行时接受请求，并为每个请求分配一个线程（一般从线程池中获取空闲线程）然后调用 service()。
 5. container 关闭时调用 servlet destory() 销毁 servlet；
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466737715-5e472d9c-b22c-4c4a-99c7-3b202f452e49.png#averageHue=%23efefef&clientId=u59402e4c-90b3-4&from=paste&height=251&id=uec3b9f60&name=image.png&originHeight=251&originWidth=839&originalType=binary&ratio=1&rotation=0&showTitle=false&size=72911&status=done&style=stroke&taskId=u994169a5-5bde-4975-b747-4440272f44c&title=&width=839)
-上述模式的缺点：
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466737715-5e472d9c-b22c-4c4a-99c7-3b202f452e49.png#averageHue=%23efefef&clientId=u59402e4c-90b3-4&from=paste&height=251&id=uec3b9f60&name=image.png&originHeight=251&originWidth=839&originalType=binary&ratio=1&rotation=0&showTitle=false&size=72911&status=done&style=stroke&taskId=u994169a5-5bde-4975-b747-4440272f44c&title=&width=839)<br />上述模式的缺点：
 
 1. servlet 是一个简单的网络 IO 模型，当请求进入 servlet container 时，servlet container 就会为其绑定一个线程，在并发不高的场景下这种模型是适用的。但是一旦高并发(比如抽风用 jemeter 压)，线程数量就会上涨，而线程资源代价是昂贵的（上线文切换，内存消耗大）严重影响请求的处理时间。在一些简单业务场景下，不希望为每个 request 分配一个线程，只需要 1 个或几个线程就能应对极大并发的请求，这种业务场景下 servlet 模型没有优势
 2. 所以 Zuul 1.X 是基于 servlet 之上的一个阻塞式处理模型，即 spring 实现了处理所有 request 请求的一个 servlet（DispatcherServlet）并由该 servlet 阻塞式处理处理。所以 Springcloud Zuul 无法摆脱 servlet 模型的弊端
+<a name="lIqff"></a>
 #### Ⅶ、GateWay 模型
 > [https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-new-framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-new-framework)
 
@@ -5369,8 +5494,8 @@ public class ProviderHystrixPayment8008 {
 2. 但是，在 Servlet3.1 之后有了异步非阻塞的支持。而 WebFlux 是一个典型非阻塞异步的框架，它的核心是基于 Reactor 的相关 API 实现的。相对于传统的 web 框架来说，它可以运行在诸如 Netty，Undertow 及支持 Servlet3.1 的容器上。非阻塞式+函数式编程（Spring5 必须让你使用 java8） 
 3. Spring WebFlux 是 Spring 5.0 引入的新的响应式框架，区别于 Spring MVC，它不需要依赖 Servlet API，它是完全异步非阻塞的，并且基于 Reactor 来实现响应式流规范。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466845846-5dc6e58a-ea6c-4b2a-8ca6-a35c1210bba9.png#averageHue=%23eae6e4&clientId=u59402e4c-90b3-4&from=paste&height=624&id=u90794e2a&name=image.png&originHeight=624&originWidth=956&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152269&status=done&style=stroke&taskId=u5463c851-a8d3-4f6c-9ce6-587f990f07c&title=&width=956)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466850892-1146023d-65c1-4034-8c70-08d70d22bf6d.png#averageHue=%23fcfaf7&clientId=u59402e4c-90b3-4&from=paste&height=254&id=ua5460048&name=image.png&originHeight=254&originWidth=916&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54431&status=done&style=stroke&taskId=ucbd40631-9a7a-4ade-ba82-2e77fa6c484&title=&width=916)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466845846-5dc6e58a-ea6c-4b2a-8ca6-a35c1210bba9.png#averageHue=%23eae6e4&clientId=u59402e4c-90b3-4&from=paste&height=624&id=u90794e2a&name=image.png&originHeight=624&originWidth=956&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152269&status=done&style=stroke&taskId=u5463c851-a8d3-4f6c-9ce6-587f990f07c&title=&width=956)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677466850892-1146023d-65c1-4034-8c70-08d70d22bf6d.png#averageHue=%23fcfaf7&clientId=u59402e4c-90b3-4&from=paste&height=254&id=ua5460048&name=image.png&originHeight=254&originWidth=916&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54431&status=done&style=stroke&taskId=ucbd40631-9a7a-4ade-ba82-2e77fa6c484&title=&width=916)
+<a name="D7AKA"></a>
 ### ②、三大核心概念
 
 1. Route(路由)：路由是构建网关的基本模块，它由 ID，目标 URI，一系列的断言和过滤器组成，如果断言为 true 则匹配该路由
@@ -5382,6 +5507,7 @@ public class ProviderHystrixPayment8008 {
    3. 而 filter，就可以理解为一个无所不能的拦截器。有了这两个元素，再加上目标 uri，就可以实现一个具体的路由了
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677467064043-d80d635e-559f-4470-b338-135adbc5bc30.png#averageHue=%23d0e1c4&clientId=u59402e4c-90b3-4&from=paste&height=295&id=u355fea29&name=image.png&originHeight=295&originWidth=712&originalType=binary&ratio=1&rotation=0&showTitle=false&size=96648&status=done&style=stroke&taskId=ue0c715db-4460-4162-b037-4daa6ae7841&title=&width=712)
+<a name="R2y90"></a>
 ### ③、Gateway 工作流程
 
 1. 核心逻辑：路由转发+执行过滤器链
@@ -5393,6 +5519,7 @@ public class ProviderHystrixPayment8008 {
    5. 在“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控等有着非常重要的作用。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677467470384-706eae56-cb7d-469f-bf71-2cad3007e50d.png#averageHue=%23f5f5f5&clientId=u59402e4c-90b3-4&from=paste&height=581&id=ud7a4e92a&name=image.png&originHeight=581&originWidth=429&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26911&status=done&style=stroke&taskId=ub32d2f05-8c13-459c-be02-f684d428b3f&title=&width=429)
+<a name="jHpt3"></a>
 ### ④、入门配置
 
 1. 新建模块 cloud-gateway-gateway9527
@@ -5523,6 +5650,7 @@ public class Gateway9527 {
 9. 访问 9527：[http://localhost:9527/test/triangle](http://localhost:9527/test/triangle)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677477588934-2f3da1ef-c6ca-42e3-b947-165ee586f7a4.png#averageHue=%2389d5d1&clientId=u59402e4c-90b3-4&from=paste&height=193&id=u4e632140&name=image.png&originHeight=193&originWidth=404&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15381&status=done&style=stroke&taskId=uf6b0885c-fbf6-40e1-b1f1-169eed78ed7&title=&width=404)
+<a name="BIr1E"></a>
 ### ⑤、通过微服务名实现动态路由
 > 默认情况下 Gateway 会根据注册中心注册的服务列表，以注册中心上微服务名为路径创建动态路由进行转发，从而实现动态路由的功能
 
@@ -5609,14 +5737,17 @@ public JsonResult triangle() {
 5. 访问测试：[http://localhost:9527/hystrix/triangle](http://localhost:9527/hystrix/triangle)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677480393694-51740445-82b8-4068-afa9-0948214fc3cf.png#averageHue=%2389d5d7&clientId=u59402e4c-90b3-4&from=paste&height=197&id=u2315f07e&name=image.png&originHeight=197&originWidth=348&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15028&status=done&style=stroke&taskId=u44fcfd88-a84d-44e1-a1f5-e36227ffd83&title=&width=348)
+<a name="vX149"></a>
 ### ⑥、Predicate 的使用
 > [https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.1.RELEASE/reference/html/#gateway-request-predicates-factories](https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.1.RELEASE/reference/html/#gateway-request-predicates-factories)
 
+<a name="Zkj9h"></a>
 #### Ⅰ、Predicate 是什么
 
 - 启动 gateway9527，启动日志的显示：
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677480894520-df50051d-40d5-4546-96c6-8dc3405ec5c7.png#averageHue=%23312f2e&clientId=u59402e4c-90b3-4&from=paste&height=352&id=u0cc5a8b6&name=image.png&originHeight=352&originWidth=655&originalType=binary&ratio=1&rotation=0&showTitle=false&size=52081&status=done&style=stroke&taskId=u7a696c0d-f126-4034-97d2-229ad0ad3c4&title=&width=655)
+<a name="PqpNi"></a>
 #### Ⅱ、Route Predicate Factories 是什么
 
 1. Spring Cloud Gateway 将路由匹配作为 Spring WebFlux HandlerMapping 基础架构的一部分。
@@ -5625,6 +5756,7 @@ public JsonResult triangle() {
 4. 所有这些谓词都匹配 HTTP 请求的不同属性。多种谓词工厂可以组合，并通过逻辑 and。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677481145141-f85ca5ee-88be-4446-9eac-1a2644ecb927.png#averageHue=%23d5b687&clientId=u59402e4c-90b3-4&from=paste&height=866&id=u6f407260&name=image.png&originHeight=866&originWidth=1543&originalType=binary&ratio=1&rotation=0&showTitle=false&size=192411&status=done&style=stroke&taskId=u16bb5361-f985-467e-9a2c-202c113d321&title=&width=1543)
+<a name="TrqfG"></a>
 #### Ⅲ、常用的 Route Predicate
 > 说白了，Predicate 就是为了实现一组匹配规则，让请求过来找到对应的 Route 进行处理。
 
@@ -5722,17 +5854,21 @@ eureka:
         # 访问路径可以显示 IP 地址
         prefer-ip-address: true
 ```
+<a name="WVpiz"></a>
 ### ⑦、Filter 的使用
 > [https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.1.RELEASE/reference/html/#gatewayfilter-factories](https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.1.RELEASE/reference/html/#gatewayfilter-factories)
 
+<a name="BYNhd"></a>
 #### Ⅰ、是什么
 
 1. 路由过滤器可用于修改进入的 HTTP 请求和返回的 HTTP 响应，路由过滤器只能指定路由进行使用。
 2. Spring Cloud Gateway 内置了多种路由过滤器，他们都由 GatewayFilter 的工厂类来产生
+<a name="TXZmf"></a>
 #### Ⅱ、Spring Cloud Gateway 的 Filter
 
 1. 两个生命周期：pre、post
 2. 两个种类：GatewayFilter 、GlobalFilter
+<a name="FaOMt"></a>
 #### Ⅲ、常用的 GatewayFilter
 
 1. AddRequestParameter
@@ -5752,8 +5888,8 @@ routes:
             - Path=/test/**
 ```
 
-2. 
-
+2. <br />
+<a name="SWgLX"></a>
 #### Ⅳ、自定义过滤器
 
 1. 创建 `filter/MyLoginGateWayFilter` 实现类，实现 `GlobalFilter`、 `Ordered` 接口
@@ -5803,24 +5939,28 @@ public class MyLoginGateWayFilter implements GlobalFilter, Ordered {
 
 2. 访问测试，不加参数：[http://localhost:9527/test/getTest](http://localhost:9527/test/getTest)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486536426-567bef94-9155-433a-ba0c-901c2c7296e6.png#averageHue=%23f4f3f3&clientId=u59402e4c-90b3-4&from=paste&height=544&id=ua5f9e805&name=image.png&originHeight=544&originWidth=1023&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27403&status=done&style=stroke&taskId=u9dfabef6-d0d3-41fd-b606-747a3541acc&title=&width=1023)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486703782-c3933dcb-746b-474b-9618-e0462af29381.png#averageHue=%23528757&clientId=u59402e4c-90b3-4&from=paste&height=231&id=uc2802ebd&name=image.png&originHeight=231&originWidth=463&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18430&status=done&style=stroke&taskId=u6d9373c1-b2ca-4141-b0f6-a823d47f021&title=&width=463)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486536426-567bef94-9155-433a-ba0c-901c2c7296e6.png#averageHue=%23f4f3f3&clientId=u59402e4c-90b3-4&from=paste&height=544&id=ua5f9e805&name=image.png&originHeight=544&originWidth=1023&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27403&status=done&style=stroke&taskId=u9dfabef6-d0d3-41fd-b606-747a3541acc&title=&width=1023)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486703782-c3933dcb-746b-474b-9618-e0462af29381.png#averageHue=%23528757&clientId=u59402e4c-90b3-4&from=paste&height=231&id=uc2802ebd&name=image.png&originHeight=231&originWidth=463&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18430&status=done&style=stroke&taskId=u6d9373c1-b2ca-4141-b0f6-a823d47f021&title=&width=463)
 
 3. 访问测试，加参数：[http://localhost:9527/test/getTest?username=1](http://localhost:9527/test/getTest?username=1)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486570276-0069d5d6-5880-4104-b31f-f2b15b9db01a.png#averageHue=%23f8f8fe&clientId=u59402e4c-90b3-4&from=paste&height=577&id=ufeec274e&name=image.png&originHeight=577&originWidth=514&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43613&status=done&style=stroke&taskId=ud4437b39-1026-4a47-bef1-c5fa07e39aa&title=&width=514)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486682220-a7f06c01-23f2-4be1-b0a0-552ff8e93b0a.png#averageHue=%23528757&clientId=u59402e4c-90b3-4&from=paste&height=219&id=uf00f76c7&name=image.png&originHeight=219&originWidth=448&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18106&status=done&style=stroke&taskId=u5ca19c90-9102-4108-ad4f-0d1d540d6b4&title=&width=448)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486570276-0069d5d6-5880-4104-b31f-f2b15b9db01a.png#averageHue=%23f8f8fe&clientId=u59402e4c-90b3-4&from=paste&height=577&id=ufeec274e&name=image.png&originHeight=577&originWidth=514&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43613&status=done&style=stroke&taskId=ud4437b39-1026-4a47-bef1-c5fa07e39aa&title=&width=514)<br />![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677486682220-a7f06c01-23f2-4be1-b0a0-552ff8e93b0a.png#averageHue=%23528757&clientId=u59402e4c-90b3-4&from=paste&height=219&id=uf00f76c7&name=image.png&originHeight=219&originWidth=448&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18106&status=done&style=stroke&taskId=u5ca19c90-9102-4108-ad4f-0d1d540d6b4&title=&width=448)
+<a name="rokGP"></a>
 ## 2、
+<a name="j2g7Q"></a>
 # 八、配置中心 Config
+<a name="w28PL"></a>
 ## 1、Config
 > [https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.2.1.RELEASE/reference/html/](https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.2.1.RELEASE/reference/html/)
 
+<a name="AXxR9"></a>
 ### ①、简介
+<a name="B5kC3"></a>
 #### Ⅰ、分布式系统面临的配置问题
 
 1. 微服务意味着要将单体应用中的业务拆分成一个个子服务，每个服务的粒度相对较小，因此系统中会出现大量的服务。我们每一个微服务自己带着一个 application.yml，上百个配置文件的管理......
 2. 由于每个服务都需要必要的配置信息才能运行，所以一套集中式的、动态的配置管理设施是必不可少的。
 3. SpringCloud 提供了 ConfigServer 来解决这个问题。
+<a name="TJkZO"></a>
 #### Ⅱ、是什么
 
 1. SpringCloud Config 为微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环境提供了一个中心化的外部配置。
@@ -5829,6 +5969,7 @@ public class MyLoginGateWayFilter implements GlobalFilter, Ordered {
 4. 客户端则是通过指定的配置中心来管理应用资源，以及与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息配置服务器默认采用 git 来存储配置信息，这样就有助于对环境配置进行版本管理，并且可以通过 git 客户端工具来方便的管理和访问配置内容。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677487586592-f6a5952e-224d-4712-9a8d-86b3f81baa66.png#averageHue=%23f1e7c9&clientId=u7083f5d4-653c-4&from=paste&height=305&id=u11c1914b&name=image.png&originHeight=305&originWidth=843&originalType=binary&ratio=1&rotation=0&showTitle=false&size=87335&status=done&style=stroke&taskId=uc99eab39-b29f-4986-b374-38eadaf2854&title=&width=843)
+<a name="nmWqB"></a>
 #### Ⅲ、能干嘛
 
 1. 集中管理配置文件
@@ -5836,9 +5977,11 @@ public class MyLoginGateWayFilter implements GlobalFilter, Ordered {
 3. 运行期间动态调整配置，不再需要在每个服务部署的机器上编写配置文件，服务会向配置中心统一拉取配置自己的信息
 4. 当配置发生变动时，服务不需要重启即可感知到配置的变化并应用新的配置
 5. 将配置信息以 REST 接口的形式暴露，post、curl 访问刷新均可
+<a name="XmyeX"></a>
 #### Ⅳ、与 GitHub 整合配置
 
 - 由于 SpringCloud Config 默认使用 Git 来存储配置文件(也有其它方式，比如支持 SVN 和本地文件)， 但最推荐的还是 Git，而且使用的是 http/https 访问的形式
+<a name="ffFfB"></a>
 ### ②、Config 服务端配置与测试
 
 1. 在 gitee 上创建一个仓库 SpringCloud-config
@@ -6034,6 +6177,7 @@ public class ConfigCenter3344 {
 12. 访问测试：[http://config-3344.com:3344/payment-8001-8002/master](http://config-3344.com:3344/payment-8001-8002/master)，倒序输入路径且不输入文件后缀，返回的是 json
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677550089251-17bc0a17-f917-4a3e-9220-7c88602b02ff.png#averageHue=%23f7f8fe&clientId=uc7cdcb49-d605-4&from=paste&height=684&id=u6c7b3b11&name=image.png&originHeight=684&originWidth=1023&originalType=binary&ratio=1&rotation=0&showTitle=false&size=155650&status=done&style=stroke&taskId=u18ea7933-8e78-4910-9693-2fff35bed40&title=&width=1023)
+<a name="Rm28v"></a>
 ### ③、Config 客户端配置与测试
 
 1. SpringCloud-config 项目中新增配置文件 cloud-config-client.yml，输入内容并提交到 git
@@ -6224,6 +6368,7 @@ public class ConfigClientController {
    3. 刷新 3355，发现 ConfigClient 客户端没有任何响应
    4. 3355 没有变化除非自己重启或者重新加载
    5. 难到每次运维修改配置文件，客户端都需要重启？？噩梦
+<a name="n37P4"></a>
 ### ④、Config 客户端之动态刷新
 > 避免每次更新配置都要重启客户端微服务 3355
 
@@ -6331,15 +6476,20 @@ public class ConfigClientController {
 9. 第三次访问测试：[http://localhost:3355/getConfig](http://localhost:3355/getConfig)，发生了变化
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1677563269170-7f5c7c37-d40c-4786-8e39-80eb9b1d9ea8.png#averageHue=%238bd3e0&clientId=uc7cdcb49-d605-4&from=paste&height=234&id=u571623b3&name=image.png&originHeight=234&originWidth=1023&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41711&status=done&style=stroke&taskId=udc20f731-7d21-45cb-9f0a-92820d13900&title=&width=1023)
+<a name="mcsr7"></a>
 ### ⑤、想想还有什么问题？
 
 1. 假如有多个微服务客户端 3355/3366/3377。。。。。。
 2. 每个微服务都要执行一次 post 请求，手动刷新？
 3. 可否广播，一次通知，处处生效？
 4. 我们想大范围的自动刷新，求方法
+<a name="nX8Hj"></a>
 ## 2、
+<a name="gycg3"></a>
 # 九、消息总线 Bus
+<a name="BffzB"></a>
 ## 1、Bus
+<a name="va9dq"></a>
 ### ①、简介
 
 1. Spring Cloud Bus 配合 Spring Cloud Config 使用可以实现配置的动态刷新。
@@ -6353,12 +6503,21 @@ public class ConfigClientController {
 
 4. 什么是总线：在微服务架构的系统中，通常会使用轻量级的消息代理来构建一个共用的消息主题，并让系统中所有微服务实例都连接上来。由于该主题中产生的消息会被所有实例监听和消费，所以称它为消息总线。在总线上的各个实例，都可以方便地广播一些需要让其他连接在该主题上的实例都知道的消息。
 5. 基本原理：ConfigClient 实例都监听 MQ 中同一个 topic(默认是 springCloudBus)。当一个服务刷新数据的时候，它会把这个信息放入到 Topic 中，这样其它监听同一 Topic 的服务就能得到通知，然后去更新自身的配置。
+<a name="vbCSl"></a>
 ### ②、先不看
+<a name="rmelS"></a>
 ### ③、
+<a name="JxDru"></a>
 ### ④、
+<a name="sxY9y"></a>
 ### ⑤、
+<a name="lmpNn"></a>
 ### ⑥、
+<a name="y9nAZ"></a>
 ### ⑦、
+<a name="NfOKs"></a>
 ## 2、
+<a name="w0dwF"></a>
 # 十、消息驱动 Stream
+<a name="O1IrX"></a>
 # 十一、分布式请求链路跟踪 Sleuth

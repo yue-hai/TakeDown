@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "32ff9530b23dd138",
+        "id": "fc452495423587d6",
         "type": "tabs",
         "children": [
           {
-            "id": "f0893b541532c242",
+            "id": "716a84fa1a5cc9f0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -18,21 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "8cf503d6a58583f6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md"
+                "file": "java/Spring/SpringCloud/SpringCloud.md"
               }
             }
           },
@@ -116,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md",
+                "file": "java/Spring/SpringCloud/SpringCloud.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "java/Spring/SpringCloud/SpringCloudAlibaba.md",
+                "file": "java/Spring/SpringCloud/SpringCloud.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -167,39 +154,41 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "8cf503d6a58583f6",
+  "active": "716a84fa1a5cc9f0",
   "lastOpenFiles": [
-    "java/Spring/SpringCloud/SpringCloud.md",
     "java/Spring/SpringCloud/SpringCloudAlibaba.md",
-    "java/Spring/SpringCloud/attachments/Pasted image 20230314091915.png",
-    "java/Spring/SpringCloud/attachments/Pasted image 20230314091152.png",
-    "其他/Docker.md",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322110000.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322105944.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322105901.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322105816.png",
+    "标题.md",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322104936.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322102415.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322102150.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322094530.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322094455.png",
+    "java/Spring/SpringCloud/attachments/Pasted image 20230322094444.png",
+    "java/Spring/SpringCloud/SpringCloud.md",
     "【PDF + Word】/其他/Docker.pdf",
+    "java/MyBatis/MyBatisPlus.md",
+    "【PDF + Word】/java/Spring/SpringCloud/SpringCloud.pdf",
+    "attachments/Pasted image 20230315094705.png.md",
+    "attachments",
+    "其他/Docker.md",
     "python/Python 基础.md",
     "java/Redis.md",
-    "java/Spring/SpringCloud/attachments/Pasted image 20230313154958.png",
-    "java/Spring/SpringCloud/attachments/Pasted image 20230313154914.png",
     "python/attachments/05.scrapy.pdf",
-    "python/attachments/save.png",
-    "python/attachments/Pasted image 20230313100315.png",
-    "python/attachments/Pasted image 20230313100305.png",
-    "python/attachments/Pasted image 20230313092210.png",
-    "python/attachments/Pasted image 20230313084414.png",
     "python/attachments/edgedriver_win64.zip",
-    "python/attachments/Pasted image 20230313083559.png",
     "前端/三件套/ES6-11 - JavaScript 新特性.md",
     "【PDF + Word】/linux/Smart/Smart 编程.pdf",
     "python/attachments/QQ录屏20230306082712.mp4",
     "java开发规约.pdf",
-    "标题.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "python/attachments",
     "Python基础.md",
     "python",
     "attachments/Pasted image 20230301165055.png.md",
-    "【PDF + Word】/java/Redis.pdf",
-    "【PDF + Word】/java/Redis.docx",
     "java/Spring/SpringCloud/未命名.canvas",
     "【PDF】/java/Spring/10、SSM整合开发.md",
     "【PDF】/java/Spring/【其他】.md",
@@ -215,8 +204,6 @@
     "【PDF】/前端/UI 组件库/Bootstrap 快速入门.md",
     "【PDF】/前端/UI 组件库/Ant Design Vue.md",
     "【PDF】/前端/JS 框架/Vue3.md",
-    "【PDF】/前端/JS 框架/Vue2.md",
-    "【PDF】/前端/JS 框架/jQuery.md",
     "java/未命名.canvas"
   ]
 }
