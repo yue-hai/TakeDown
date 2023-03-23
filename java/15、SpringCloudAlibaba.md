@@ -9,6 +9,9 @@
 > 
 > 版本对应说明：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
 > 
+> ![](attachments/Pasted%20image%2020230323101342.png)
+> 
+> ![](../Spring%20Cloud%20Alibaba.xmind)
 ## 1、为什么会出现 SpringCloud Alibaba
 <font color="#c00000">Spring Cloud Netflix 项目进入维护模式</font>
 
@@ -4252,14 +4255,14 @@ management:
 > 3. Spring Cloud Alibaba：2.2.10-RC1
 > 4. Nacos：2.2.0
 > 5. Seata：1.6.1
-> 6. mysql：5.7，Seata 1.6.1 不支持 8.0 以上的 mysql
+> 6. mysql：5.7，Seata 1.6.1 不支持 8.0 以上的 mysql（好吧其实是支持的）
 > 
 > <font color="#ff0000">避免直接拉取 latest 版本镜像，latest 版本并不一定是 released 版本，为避免不必要的问题，请到 docker 镜像仓库确定要拉取的镜像版本。</font>
 
 ### ①、部署 mysql
 
-1. 拉取镜像：`docker pull mysql:5.7`
-2. 启动容器：`docker run -d -p 3306:3306 --privileged=true -v ~/docker/VOLUME/mysql/log:/var/log/mysql -v ~/docker/VOLUME/mysql/data:/var/lib/mysql -v ~/docker/VOLUME/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql:5.7`
+1. 拉取镜像：`docker pull mysql:latest`
+2. 启动容器：`docker run -d -p 3306:3306 --privileged=true -v ~/docker/VOLUME/mysql/mysql/log:/var/log/mysql -v ~/docker/VOLUME/mysql/mysql/data:/var/lib/mysql -v ~/docker/VOLUME/mysql/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql:latest``
 3. 连接测试：
 
 ![](attachments/Pasted%20image%2020230321091050.png)
@@ -4725,7 +4728,7 @@ store.db.dbType=mysql
 # 需要根据mysql的版本调整driverClassName
 # mysql8及以上版本对应的driver：com.mysql.cj.jdbc.Driver
 # mysql8以下版本的driver：com.mysql.jdbc.Driver
-store.db.driverClassName=com.mysql.jdbc.Driver
+store.db.driverClassName=com.mysql.cj.jdbc.Driver
 # 注意根据生产实际情况调整参数host和port
 store.db.url=jdbc:mysql://43.138.106.181:3306/seata?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false
 # 数据库用户名
@@ -4738,7 +4741,7 @@ service.vgroupMapping.storage_tx_group=default
 service.vgroupMapping.account_tx_group=default
 ```
 
-![](attachments/Pasted%20image%2020230321103501.png)
+![](attachments/Pasted%20image%2020230323103921.png)
 
 6. 进入 mysql，创建数据库 seata，并执行以下 sql：
 	1. 下载完整版 seata：http://seata.io/zh-cn/blog/download.html

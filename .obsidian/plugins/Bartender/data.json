@@ -14,15 +14,10 @@
     ],
     "其他": [
       "其他/软件使用",
-      "其他/小工具.docx",
+      "其他/文件处理",
       "其他/小工具.md",
-      "其他/小工具.pdf",
-      "其他/Docker.docx",
       "其他/Git.md",
-      "其他/Git.pdf",
-      "其他/Docker.md",
-      "其他/Docker.pdf",
-      "其他/Git.docx"
+      "其他/Docker.md"
     ],
     "java": [
       "java/attachments",
@@ -38,6 +33,7 @@
       "java/13、Redis.md",
       "java/14、SpringCloud.md",
       "java/15、SpringCloudAlibaba.md",
+      "java/16、设计模式.md",
       "java/JUC 并发编程.md"
     ],
     "java/Spring": [
