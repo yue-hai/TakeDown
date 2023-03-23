@@ -28,16 +28,17 @@
       "java/attachments",
       "java/【其他】.md",
       "java/00、其他小笔记.md",
-      "java/JAVA 基础.md",
+      "java/01、JAVA 基础.md",
       "java/07、IDEA中Maven和Git快速配置及使用.md",
       "java/08、SpringMVC.md",
       "java/09、MyBatis.md",
       "java/10、SSM整合开发.md",
       "java/11、SpringBoot2.md",
-      "java/JUC 并发编程.md",
-      "java/MyBatis",
-      "java/Spring",
-      "java/Redis.md"
+      "java/12、MyBatisPlus.md",
+      "java/13、Redis.md",
+      "java/14、SpringCloud.md",
+      "java/15、SpringCloudAlibaba.md",
+      "java/JUC 并发编程.md"
     ],
     "java/Spring": [
       "java/Spring/attachments",
