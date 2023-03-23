@@ -25,20 +25,19 @@
       "其他/Git.docx"
     ],
     "java": [
-      "java/【其他】.docx",
+      "java/attachments",
       "java/【其他】.md",
-      "java/【其他】.pdf",
-      "java/JAVA 基础.docx",
+      "java/00、其他小笔记.md",
       "java/JAVA 基础.md",
-      "java/JAVA 基础.pdf",
-      "java/JUC 并发编程.docx",
+      "java/07、IDEA中Maven和Git快速配置及使用.md",
+      "java/08、SpringMVC.md",
+      "java/09、MyBatis.md",
+      "java/10、SSM整合开发.md",
+      "java/11、SpringBoot2.md",
       "java/JUC 并发编程.md",
-      "java/JUC 并发编程.pdf",
       "java/MyBatis",
-      "java/Redis.docx",
       "java/Spring",
-      "java/Redis.md",
-      "java/Redis.pdf"
+      "java/Redis.md"
     ],
     "java/Spring": [
       "java/Spring/attachments",

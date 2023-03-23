@@ -30,19 +30,19 @@
 
 ## 1、创建一个maven工程
 
-<img src="./img/01、创建一个maven工程.png" />
+<img src="./attachments/01、创建一个maven工程.png" />
 
-<img src="./img/02、创建一个maven工程2.png" />
+<img src="./attachments/02、创建一个maven工程2.png" />
 
 
 ## 2、修改 Maven 设置
 
-<img src="./img/04、修改Maven设置.png" />
+<img src="./attachments/04、修改Maven设置.png" />
 
 
 ## 3、添加 web 构件
 
-<img src="./img/03、添加web构件.png" />
+<img src="./attachments/03、添加web构件.png" />
 
 
 ## 4、引入项目依赖的jar包，pom.xml 文件：
@@ -234,14 +234,14 @@
 
 ## 6、创建数据库及数据库表
 
-<img src="./img/07、创建数据库及数据库表.png" />
+<img src="./attachments/07、创建数据库及数据库表.png" />
 
 
 ## 7、编写 ssm 整合的关键配置文件
 - web.xml，spring、springmvc、mybatis 的配置文件
 1. 项目结构：
 
-<img src="./img/08、项目结构.png" />
+<img src="./attachments/08、项目结构.png" />
 
 2. web.xml
 ```xml
@@ -895,7 +895,7 @@
 
 # 五、查询
 
-<img src="./img/09、查询.png" />
+<img src="./attachments/09、查询.png" />
 
 ## 1、查询逻辑
 1. 访问 index.jsp 页面
@@ -1588,13 +1588,13 @@
 ```
 - 此处有个 bug，查出来的数据顺序不对，说是乱序倒也不是乱序，不知道咋回事，以后再看看吧
 
-<img src="./img/11、查询的bug.png" />
+<img src="./attachments/11、查询的bug.png" />
 
 
 
 # 六、新增
 
-<img src="./img/10、新增.png" />
+<img src="./attachments/10、新增.png" />
 
 - 新增-逻辑
 1. 在 list2.jsp 页面点击"新增"
@@ -2405,7 +2405,7 @@
 
 # 七、修改
 
-<img src="./img/12、修改.png" />
+<img src="./attachments/12、修改.png" />
 
 - 修改-逻辑
 1. 点击编辑
@@ -3194,7 +3194,7 @@
 
 # 八、删除
 
-<img src="./img/13、删除.png" />
+<img src="./attachments/13、删除.png" />
 
 - 删除-逻辑
 1. 单个删除
@@ -4045,4 +4045,4 @@
 
 # 九、总结
 
-<img src="./img/14、总结.png" />
+<img src="./attachments/14、总结.png" />

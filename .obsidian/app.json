@@ -1,6 +1,6 @@
 {
   "promptDelete": false,
-  "attachmentFolderPath": "./attachments",
+  "attachmentFolderPath": "java/Spring/attachments",
   "readableLineLength": false,
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,

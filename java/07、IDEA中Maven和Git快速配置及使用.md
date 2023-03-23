@@ -4,9 +4,9 @@
 3. 解压 Maven 的核心程序。将 apache-maven-3.6.3-bin.zip 解压到一个非中文无空格的目录下。
 4. 配置环境变量。
 
-<img src="./img/03、配置环境变量1.png" />
+<img src="./attachments/03、配置环境变量1.png" />
 
-<img src="./img/04、配置环境变量2.png" />
+<img src="./attachments/04、配置环境变量2.png" />
 
 5. 查看 Maven 版本信息验证安装是否正确
 ```java
@@ -75,26 +75,26 @@
 ## 1、配置自带的 Maven 插件
 1. Idea 自带的 Maven 在 Idea 的安装目录的 plugins 目录中
 
-<img src="./img/02、Idea自带的Maven在Idea的安装目录的plugins目录中.png" />
+<img src="./attachments/02、Idea自带的Maven在Idea的安装目录的plugins目录中.png" />
 
 2. 在自带的 Maven 里配置了本地仓库之后，打开 Idea 配置为我们自己配置的 Maven
 
-<img src="./img/05、配置我们自己安装的Maven.png" />
+<img src="./attachments/05、配置我们自己安装的Maven.png" />
 
 3. 设置 Maven 自动导包
 
-<img src="./img/06、设置Maven自动导包.png" />
+<img src="./attachments/06、设置Maven自动导包.png" />
 
 
 
 # 四、在 Idea 中创建 Maven 项目
 1. 创建 Java 工程
 
-<img src="./img/07、创建Java工程.png" />
+<img src="./attachments/07、创建Java工程.png" />
 
 2. 点击 Next，配置要继承的模块（如果直接创建的是 Project 不存在这一项）、坐标（GAV）、路径。不同的 Idea 版本可能有所差别，我使用的是 2019.3.3的版本
 
-<img src="./img/08、创建Java工程2.png" />
+<img src="./attachments/08、创建Java工程2.png" />
 
 3. 点击 Finish 即可创建成功
 4. 配置 Maven 的核心配置文件 pom.xml
@@ -122,17 +122,17 @@
 ```
 5. 点击右侧 Maven 查看依赖
 
-<img src="./img/09、配置Maven的核心配置文件pom.xml.png" />
+<img src="./attachments/09、配置Maven的核心配置文件pom.xml.png" />
 
 6. 使用 Maven 的方式运行 Maven 工程
 
-<img src="./img/10、使用Maven的方式运行Maven工程.png" />
+<img src="./attachments/10、使用Maven的方式运行Maven工程.png" />
 
 
 # 五、创建 Web 工程（了解）
 1. 创建简单的 Maven 工程，打包方式为 war 包
 
-<img src="./img/11、创建简单的Maven工程.png" />
+<img src="./attachments/11、创建简单的Maven工程.png" />
 
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -151,33 +151,33 @@
 ```
 2. 点击 Project Structure
 
-<img src="./img/12、点击ProjectStructure.png" />
+<img src="./attachments/12、点击ProjectStructure.png" />
 
 3. 选择对应的 Module，设置 Web 目录
 
-<img src="./img/13、选择对应的Module设置Web目录.png" />
+<img src="./attachments/13、选择对应的Module设置Web目录.png" />
 
-<img src="./img/14、选择对应的Module设置Web目录2.png" />
+<img src="./attachments/14、选择对应的Module设置Web目录2.png" />
 
 4. 弹出提示框，选择版本后点击 OK
 
-<img src="./img/15、弹出提示框选择版本后点击OK.png" />
+<img src="./attachments/15、弹出提示框选择版本后点击OK.png" />
 
 5. 生成 web.xml 文件
 
-<img src="./img/16、生成web.xml文件.png" />
+<img src="./attachments/16、生成web.xml文件.png" />
 
 6. 设置存放 web 页面文件的目录后点击 OK
 
-<img src="./img/17、设置存放页面的目录的位置和名称.png" />
+<img src="./attachments/17、设置存放页面的目录的位置和名称.png" />
 
 7. 发现项目中多了一个 web 目录，而且目录上有一个蓝点
 
-<img src="./img/18、发现项目中多了一个web目录而且目录上有一个蓝点.png" />
+<img src="./attachments/18、发现项目中多了一个web目录而且目录上有一个蓝点.png" />
 
 8. 在 web 目录下创建 index.jsp 页面
 
-<img src="./img/19、在web目录下创建index.jsp页面.png" />
+<img src="./attachments/19、在web目录下创建index.jsp页面.png" />
 
 9.  部署到 Tomcat 上运行
 
@@ -186,19 +186,19 @@
 # 六、在 Idea 中导入 Maven 项目
 1. 点击 Project Structure
 
-<img src="./img/20、点击ProjectStructure.png" />
+<img src="./attachments/20、点击ProjectStructure.png" />
 
 2. 点击 Modules→➕→Import Module
 
-<img src="./img/21、点击%20Modules→➕→Import%20Module.png" />
+<img src="./attachments/21、点击%20Modules→➕→Import%20Module.png" />
 
 3. 找到项目所在的位置
 
-<img src="./img/22、找到项目所在的位置.png" />
+<img src="./attachments/22、找到项目所在的位置.png" />
 
 4. 选择 Import module from external model（从外部模型导入模块）→Maven→Finish
 
-<img src="./img/23、选择%20Import%20module%20from%20external%20model（从外部模型导入模块）→Maven→Finish.png" />
+<img src="./attachments/23、选择%20Import%20module%20from%20external%20model（从外部模型导入模块）→Maven→Finish.png" />
 
 
 

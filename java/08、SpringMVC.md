@@ -38,13 +38,13 @@
 ## 2、创建maven工程
 1. 创建maven工程
 
-<img src="./img/01、创建maven工程.png" />
+<img src="./attachments/01、创建maven工程.png" />
 
-<img src="./img/02、创建maven工程2.png" />
+<img src="./attachments/02、创建maven工程2.png" />
 
 2. 添加web模块
 
-<img src="./img/03、添加web模块.png" />
+<img src="./attachments/03、添加web模块.png" />
 
 3. 打包方式：war
 ```xml
@@ -97,7 +97,7 @@
 ```
 - 注：由于 Maven 的传递性，我们不必将所有需要的包全部配置依赖，而是配置最顶端的依赖，其他靠传递性导入。
 
-<img src="./img/04、添加依赖.png" />
+<img src="./attachments/04、添加依赖.png" />
 
 
 ## 3、配置web.xml
@@ -165,7 +165,7 @@
 ```
 3. 创建 sprngmvc 配置文件
 
-<img src="./img/05、创建springmvc配置文件.png" />
+<img src="./attachments/05、创建springmvc配置文件.png" />
 
 4. 注：< url-pattern >标签中使用/和/*的区别：
    1. /所匹配的请求可以是/login或.html或.js或.css方式的请求路径，但是/不能匹配.jsp请求路径的请求，因此就可以避免在访问jsp页面时，该请求被DispatcherServlet处理，从而找不到相应的页面
@@ -253,7 +253,7 @@
 ## 6、测试HelloWorld
 - 当前项目结构
 
-<img src="./img/06、项目结构.png" />
+<img src="./attachments/06、项目结构.png" />
 
 1. 实现对首页的访问
 ```java
@@ -903,7 +903,7 @@ public class TestController {
 ## 7、解决获取请求参数的乱码问题
 - 解决获取请求参数的乱码问题，可以使用SpringMVC提供的编码过滤器CharacterEncodingFilter，但是必须在web.xml中进行注册
 
-<img src="./img/07、解决get获取请求参数的乱码问题.png" />
+<img src="./attachments/07、解决get获取请求参数的乱码问题.png" />
 
 ```xml
     <!--配置springMVC的编码过滤器-->
@@ -1084,7 +1084,7 @@ public class TestController {
     public class BindingAwareModelMap extends ExtendedModelMap {}
 ```
 - ModelMap的接口与实现类
-<img src="./img/08、ModelMap的接口与实现类.png" />
+<img src="./attachments/08、ModelMap的接口与实现类.png" />
 
 
 ## 7、向session域共享数据
@@ -1189,7 +1189,7 @@ success.html<br/>
 </html>
 ```
 
-<img src="./img/09、ThymeleafView.png" />
+<img src="./attachments/09、ThymeleafView.png" />
 
 
 ## 2、转发视图
@@ -1219,7 +1219,7 @@ success.html<br/>
     <a th:href="@{/testForward}">测试转发视图Forward</a>
 ```
 
-<img src="./img/10、转发视图.png" />
+<img src="./attachments/10、转发视图.png" />
 
 
 ## 3、重定向视图
@@ -1250,7 +1250,7 @@ success.html<br/>
     <a th:href="@{/testRedirect}">测试重定向视图testRedirect</a>
 ```
 
-<img src="./img/11、重定向视图.png" />
+<img src="./attachments/11、重定向视图.png" />
 
 
 ## 4、视图控制器view-controller
@@ -1533,7 +1533,7 @@ success.html<br/>
 ```
 3. 配置 web 模块
 
-<img src="./img/12、配置web模块.png" />
+<img src="./attachments/12、配置web模块.png" />
 
 4. 配置 web.xml 文件
 ```xml
@@ -1861,7 +1861,7 @@ success.html<br/>
 ## 5、具体功能：删除
 1. 引入的 vue.js 的位置
 
-<img src="./img/13、引入的vue.js的位置.png" />
+<img src="./attachments/13、引入的vue.js的位置.png" />
 
 2. 在 springMVC 配置文件中开放对静态资源的访问
 ```xml
@@ -2239,7 +2239,7 @@ success.html<br/>
 ## 5、SpringMVC处理ajax
 1. 导入 vue.js 与 axios.js 文件
 
-<img src="./img/14、导入vue.js与axios.js文件.png" />
+<img src="./attachments/14、导入vue.js与axios.js文件.png" />
 
 2. HttpController 控制器中的方法
 ```java
@@ -2304,7 +2304,7 @@ success.html<br/>
 ```
 5. 输出结果
 
-<img src="./img/15、测试通过@ResponseBody处理ajax请求.png" />
+<img src="./attachments/15、测试通过@ResponseBody处理ajax请求.png" />
 
 
 ## 6、@RestController注解（常用）
@@ -2391,7 +2391,7 @@ success.html<br/>
 ```
 5. 输出结果
 
-<img src="./img/16、下载.png" />
+<img src="./attachments/16、下载.png" />
 
 
 ## 2、文件上传
@@ -2618,7 +2618,7 @@ success.html<br/>
 ```
 6. 结果
 
-<img src="./img/17、错误结果.png" />
+<img src="./attachments/17、错误结果.png" />
 
 
 ## 2、基于注解的异常处理
@@ -2885,7 +2885,7 @@ success.html<br/>
 ## 2、DispatcherServlet （前端控制器）初始化过程
 - DispatcherServlet 本质上是一个 Servlet，所以天然的遵循 Servlet 的生命周期。所以宏观上是 Servlet 生命周期来进行调度。
 
-<img src="./img/18、DispatcherServlet（前端控制器）初始化过程.png" />
+<img src="./attachments/18、DispatcherServlet（前端控制器）初始化过程.png" />
 
 1. 初始化 WebApplicationContext，所在类：org.springframework.web.servlet.FrameworkServlet
 ```java
@@ -3272,15 +3272,15 @@ success.html<br/>
 - 再判断是否配置了mvc:default-servlet-handler
 1. 如果没配置，则控制台报映射查找不到，客户端展示404错误
 
-<img src="./img/19、控制台报映射查找不到，客户端展示404错误.png" />
+<img src="./attachments/19、控制台报映射查找不到，客户端展示404错误.png" />
 
-<img src="./img/20、控制台报映射查找不到，客户端展示404错误2.png" />
+<img src="./attachments/20、控制台报映射查找不到，客户端展示404错误2.png" />
 
 2.  如果有配置，则访问目标资源（一般为静态资源，如：JS,CSS,HTML），找不到客户端也会展示404错误
 
-<img src="./img/21、访问目标资源，找不到客户端也会展示404错误.png" />
+<img src="./attachments/21、访问目标资源，找不到客户端也会展示404错误.png" />
 
-<img src="./img/22、访问目标资源，找不到客户端也会展示404错误2.png" />
+<img src="./attachments/22、访问目标资源，找不到客户端也会展示404错误2.png" />
 
 
 ### (2)、存在则执行下面的流程

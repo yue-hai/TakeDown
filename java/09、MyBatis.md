@@ -5,11 +5,11 @@
 ---
 - Hibernate
 
-<img src="./img/01、Hibernate.png" />
+<img src="./attachments/01、Hibernate.png" />
 
 - MyBatis
 
-<img src="./img/02、MyBatis.png" />
+<img src="./attachments/02、MyBatis.png" />
 
 
 ## 1、MyBatis历史
@@ -35,15 +35,15 @@
 
 - 主页
 
-<img src="./img/03、去哪里找MyBatis-1.png" />
+<img src="./attachments/03、去哪里找MyBatis-1.png" />
 
 - 官方文档
 
-<img src="./img/04、去哪里找MyBatis-2.png" />
+<img src="./attachments/04、去哪里找MyBatis-2.png" />
 
 - 下载
 
-<img src="./img/05、去哪里找MyBatis-3.png" />
+<img src="./attachments/05、去哪里找MyBatis-3.png" />
 
 
 
@@ -68,15 +68,15 @@
 ```
 3. 往数据库中添加数据
 
-<img src="./img/06、往数据库中添加数据.png" />
+<img src="./attachments/06、往数据库中添加数据.png" />
 
 4. 项目结构
 
-<img src="./img/07、项目结构.png" />
+<img src="./attachments/07、项目结构.png" />
 
 5. 导入 jar 包
 
-<img src="./img/08、导入jar包.png" />
+<img src="./attachments/08、导入jar包.png" />
 
 6. 创建日志所需的 log4j.xml 配置文件
 ```xml
@@ -239,11 +239,11 @@
 ## 2、MyBatis 接口式编程
 1. 项目结构
 
-<img src="./img/09、项目结构2.png" />
+<img src="./attachments/09、项目结构2.png" />
 
 2. 导入 jar 包
 
-<img src="./img/08、导入jar包.png" />
+<img src="./attachments/08、导入jar包.png" />
 
 3. 创建日志所需的 log4j.xml 配置文件
 ```xml
@@ -510,7 +510,7 @@
 ## 2、settings设置
 - 这是 MyBatis 中极为重要的调整设置，它们会改变 MyBatis 的运行时行为。
 
-<img src="./img/10、settings设置.png" />
+<img src="./attachments/10、settings设置.png" />
 
 - mybatis-config.xml 全局配置文件
 ```xml
@@ -667,7 +667,7 @@
 4. 从 MyBatis3.4.5 开始，MyBatis 默认支持 JSR-310（日期和时间 API）
 5. MyBatis3.4 以前手动注册的方式：
 
-<img src="./img/11、MyBatis3.4以前手动注册的方式.png" />
+<img src="./attachments/11、MyBatis3.4以前手动注册的方式.png" />
 
 
 ## 6、自定义类型处理器
@@ -920,7 +920,7 @@
 ```
 4. 使用<font color="blue">注册接口</font>或<font color="blue">批量注册</font>方式，需要将 sql 映射文件和接口文件放到同一个目录下，但是这样会导致条理不清晰，所以可以在资源目录建一个与 dao 包目录相同的目录。这样看起来目录不同，但是编译以后，因为目录相同，会便宜到同一个目录中，与放到同一个目录效果一样
 
-<img src="./img/12、批量注册.png" />
+<img src="./attachments/12、批量注册.png" />
 
 
 
@@ -939,7 +939,7 @@
 
 ## 1、insert、update、delete元素
 
-<img src="./img/13、insert、update、delete元素.png" />
+<img src="./attachments/13、insert、update、delete元素.png" />
 
 - MyBatis 允许增删改指定定义以下类型返回值：Integer、Long、Boolean、void
 - 我们需要手动提交数据
@@ -949,7 +949,7 @@
 ```
 1. 项目结构
 
-<img src="./img/14、04_mapper项目结构.png" />
+<img src="./attachments/14、04_mapper项目结构.png" />
 
 2. mybatis-config.xml 全局配置文件
 ```xml
@@ -1137,7 +1137,7 @@
 
 ## 2、主键生成方式
 
-<img src="./img/15、selectKey.png" />
+<img src="./attachments/15、selectKey.png" />
 
 - 若数据库<font color="red">支持自动生成主键</font>的字段（比如 MySQL 和 SQL Server），则可以设置 <font color="blue">useGeneratedKeys="true"</font> ，然后再把 <font color="blue">keyProperty</font> 设置到目标属性上。
 1. Mapper 接口类 EmployeeMapper
@@ -1526,7 +1526,7 @@
     }
 ```
 
-<img src="./img/16、select元素.png" />
+<img src="./attachments/16、select元素.png" />
 
 
 ## 6、自动映射（全局setting与resultMap）
@@ -1632,7 +1632,7 @@
 ## 8、id & result
 - id 和 result 映射一个单独列的值到<font color="red">简单数据类型</font>(字符串,整型,双精度浮点数,日期等)的属性或字段。
 
-<img src="./img/18、id&result.png" />
+<img src="./attachments/18、id&result.png" />
 
 1. 对 mybatis 数据库的修改
 ```java
@@ -1651,7 +1651,7 @@
 ```
 2. 添加数据
 
-<img src="./img/17、添加数据.png" />
+<img src="./attachments/17、添加数据.png" />
 
 3. 员工实体类 Employee
 ```java
@@ -3244,7 +3244,7 @@
    - key:hashCode+查询的SqlId+编写的sql查询语句+参数
 4. 在 mybatis3.1 之后, 可以配置本地缓存的作用域. 在 mybatis.xml 中配置
 
-<img src="./img/19、一级缓存配置.png" />
+<img src="./attachments/19、一级缓存配置.png" />
 
 
 ## 2、一级缓存演示
@@ -3805,7 +3805,7 @@
 
 ## 7、缓存原理图解
 
-<img src="./img/20、缓存原理图解.png" />
+<img src="./attachments/20、缓存原理图解.png" />
 
 
 
@@ -3813,11 +3813,11 @@
 
 1. 新建工程及结构
 
-<img src="./img/22、新建工程及结构.png" />
+<img src="./attachments/22、新建工程及结构.png" />
 
 2. <font color="red">导入整合 ehcache 所需的 jar 包</font>
 
-<img src="./img/21、第三方缓存的整合（ehcache）.png" />
+<img src="./attachments/21、第三方缓存的整合（ehcache）.png" />
 
 3. 在资源文件夹中创建 ehcache 所需的配置文件
 ```xml
@@ -4110,18 +4110,18 @@
 ```
 11. 配置的 ehcache 缓存文件夹：
 
-<img src="./img/23、配置的ehcache缓存文件夹.png" />
+<img src="./attachments/23、配置的ehcache缓存文件夹.png" />
 
 12. <font color="red">MyBatis 整合第三方缓存的流程图解</font>
 
-<img src="./img/24、MyBatis整合第三方缓存的流程图解.png" />
+<img src="./attachments/24、MyBatis整合第三方缓存的流程图解.png" />
 
 
 # 八、MyBatis-Spring整合
 1. 查看不同MyBatis版本整合Spring时使用的适配包；
    - http://www.mybatis.org/spring/
 
-<img src="./img/25、查看不同MyBatis版本整合Spring时使用的适配包.png" />
+<img src="./attachments/25、查看不同MyBatis版本整合Spring时使用的适配包.png" />
 
 2. 下载整合适配包：
    - https://github.com/mybatis/spring/releases
@@ -4132,7 +4132,7 @@
 1. 创建 maven 工程
 2. 项目结构：
 
-<img src="./img/26、MyBatis-Spring整合项目结构.png" />
+<img src="./attachments/26、MyBatis-Spring整合项目结构.png" />
 
 3. 导入依赖，pom.xml：
 ```xml
@@ -4701,7 +4701,7 @@
 
 ## 2、工程结构
 
-<img src="./img/27、逆向工程结构.png" />
+<img src="./attachments/27、逆向工程结构.png" />
 
 
 ## 3、MBG配置文件
@@ -4852,43 +4852,43 @@
 # 十、MyBatis-工作原理
 - MyBatis分层架构
 
-<img src="./img/28、MyBatis分层架构.png" />
+<img src="./attachments/28、MyBatis分层架构.png" />
 
 - MyBatis工作原理
 
-<img src="./img/29、MyBatis工作原理.png" />
+<img src="./attachments/29、MyBatis工作原理.png" />
 
 ## 1、SqlSessionFactory 的初始化
 
-<img src="./img/30、根据配置文件创建SQLSessionFactory.png" />
+<img src="./attachments/30、根据配置文件创建SQLSessionFactory.png" />
 
-<img src="./img/31、SqlSessionFactory的初始化1.png" />
+<img src="./attachments/31、SqlSessionFactory的初始化1.png" />
 
-<img src="./img/32、SqlSessionFactory的初始化2.png" />
+<img src="./attachments/32、SqlSessionFactory的初始化2.png" />
 
-<img src="./img/33、SqlSessionFactory的初始化3.png" />
+<img src="./attachments/33、SqlSessionFactory的初始化3.png" />
 
-<img src="./img/34、SqlSessionFactory的初始化4.png" />
+<img src="./attachments/34、SqlSessionFactory的初始化4.png" />
 
 
 ## 2、openSession 获取 sqlSession 对象
 
-<img src="./img/35、openSession获取sqlSession对象.png" />
+<img src="./attachments/35、openSession获取sqlSession对象.png" />
 
 
 ## 3、getMapper 获取到接口的代理对象
 
-<img src="./img/36、getMapper获取到接口的代理对象.png" />
+<img src="./attachments/36、getMapper获取到接口的代理对象.png" />
 
 
 ## 4、查询流程的总结
 
-<img src="./img/37、查询流程的总结.png" />
+<img src="./attachments/37、查询流程的总结.png" />
 
 
 ## 5、MyBatis 原理总结
 
-<img src="./img/38、MyBatis原理总结.png" />
+<img src="./attachments/38、MyBatis原理总结.png" />
 
 
 
@@ -5082,7 +5082,7 @@
 2. plugin：生成动态代理对象，可以使用MyBatis提供的Plugin类的wrap方法
 3. setProperties：注入插件配置时设置的属性
 
-<img src="./img/39、Interceptor接口.png" />
+<img src="./attachments/39、Interceptor接口.png" />
 
 
 ## 4、多个插件的运行流程
@@ -5240,7 +5240,7 @@
     Process finished with exit code 0
 ```
 
-<img src="./img/40、多个插件的运行流程.png" />
+<img src="./attachments/40、多个插件的运行流程.png" />
 
 
 ## 5、开发插件
@@ -5409,7 +5409,7 @@
     Process finished with exit code 0
 ```
 
-<img src="./img/41、开发插件.png" />
+<img src="./attachments/41、开发插件.png" />
 
 
 
@@ -5772,7 +5772,7 @@
 1. MyBatis对存储过程的游标提供了一个JdbcType=CURSOR的支持，可以智能的把游标读取到的数据，映射到我们声明的结果集中
 2. 调用实例：
 
-<img src="./img/42、游标处理调用实例.png" />
+<img src="./attachments/42、游标处理调用实例.png" />
 
 3. 数据库链接参数配置
 ```java
@@ -5813,7 +5813,7 @@
 ```
 6. sql 语句
 
-<img src="./img/43、sql语句.png" />
+<img src="./attachments/43、sql语句.png" />
 
 
 ## 4、自定义 TypeHandler 处理枚举枚举
@@ -5916,7 +5916,7 @@
 ```
 3. 修改数据库 tbl_employee 表，添加 empStatus 字段
 
-<img src="./img/44、修改数据库tbl_employee表，添加empStatus字段.png" />
+<img src="./attachments/44、修改数据库tbl_employee表，添加empStatus字段.png" />
 
 
 ### 1、使用 EnumOrdinalTypeHandler 枚举类型处理器
@@ -5997,7 +5997,7 @@
 ```
 5. 数据库保存的结果：
 
-<img src="./img/45、数据库保存的结果.png" />
+<img src="./attachments/45、数据库保存的结果.png" />
 
 1. 默认 mybatis 在处理枚举对象的时候保存的是枚举的名字：EnumTypeHandler，这里在全局配置文件里配置了类型处理器：EnumOrdinalTypeHandler，改为了保存索引
 
@@ -6113,7 +6113,7 @@
 ```
 5. 数据库保存的结果：
 
-<img src="./img/46、数据库保存的结果2.png" />
+<img src="./attachments/46、数据库保存的结果2.png" />
 
 
 ## 3、也可以在处理某个字段的时候告诉 MyBatis 用什么类型处理器
