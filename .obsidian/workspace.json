@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "java/16、设计模式.md",
+                "file": "前端/JS 框架/Vue3.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "java/16、设计模式.md"
+                "file": "前端/JS 框架/Vue3.md"
               }
             }
           },
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "java/16、设计模式.md",
+                "file": "前端/JS 框架/Vue3.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "java/16、设计模式.md",
+                "file": "前端/JS 框架/Vue3.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,9 +156,15 @@
   },
   "active": "f2b1ef8987d25a34",
   "lastOpenFiles": [
-    "其他/文件处理/音频处理.md",
-    "java/16、设计模式.md",
     "标题.md",
+    "前端/JS 框架/Vue3.md",
+    "前端/JS 框架/Vue2.md",
+    "java/15、SpringCloudAlibaba.md",
+    "java/16、设计模式.md",
+    "其他/文件处理/音频处理.md",
+    "java/14、SpringCloud.md",
+    "java/attachments/Pasted image 20230323145954.png",
+    "java/attachments/Pasted image 20230323145923.png",
     "其他/文件处理",
     "其他/小工具.md",
     "java/【其他】.md",
@@ -166,12 +172,10 @@
     "java/00、其他小笔记.md",
     "attachments/Pasted image 20230315094705.png.md",
     "java/JUC 并发编程.md",
-    "java/15、SpringCloudAlibaba.md",
     "java/attachments/Pasted image 20230323103921.png",
     "java/attachments/Pasted image 20230323101342.png",
     "java/attachments/Pasted image 20230321103501.png",
     "Spring Cloud Alibaba.xmind",
-    "java/14、SpringCloud.md",
     "java/Spring/10、SSM整合开发.md",
     "java/13、Redis.md",
     "java/12、MyBatisPlus.md",
@@ -181,8 +185,6 @@
     "java/attachments/Pasted image 20230322093859.png",
     "java/attachments/Pasted image 20230322093521.png",
     "java/attachments/Pasted image 20230322093504.png",
-    "java/attachments/Pasted image 20230322090637.png",
-    "java/attachments/Pasted image 20230322090326.png",
     "java/13、SpringCloud.md",
     "java/14、SpringCloudAlibaba.md",
     "java/Spring/SpringCloud/14、SpringCloudAlibaba.md",
@@ -192,8 +194,6 @@
     "linux/linux/Liunx 基础.md",
     "linux/linux/正则表达式.md",
     "java/JAVA 基础.md",
-    "java/11、SpringBoot2.md",
-    "java/10、SSM整合开发.md",
     "java/attachments",
     "java/新建文件夹",
     "LICENSE",

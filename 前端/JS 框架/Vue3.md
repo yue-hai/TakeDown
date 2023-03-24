@@ -4,9 +4,7 @@
 > [vue3.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1674895998765-73325236-a16c-44ca-a13d-93018e8f61e6.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1674895998765-73325236-a16c-44ca-a13d-93018e8f61e6.jpeg%22%2C%22name%22%3A%22vue3.jpg%22%2C%22size%22%3A482636%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22type%22%3A%22image%2Fjpeg%22%2C%22taskId%22%3A%22u49fdcf8b-79f6-4f24-9d58-c71a6a1edf7%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u9f6ab211%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
 
 # 一、Vue3 简介
-:::info
 
-:::
 ## 1、Vue3 简介
 
 - 2020年9月18日，Vue.js发布3.0版本，代号：One Piece（海贼王）
@@ -1717,11 +1715,11 @@ Vue.directive('focus', {
 > 过滤器虽然这看起来很方便，但它需要一个自定义语法，打破大括号内表达式是 “只是 JavaScript” 的假设，这不仅有学习成本，而且有实现成本！建议用方法调用或计算属性去替换过滤器。
 
 6. ......
-## 4、
-## 5、
-## 6、
+
 # 八、追加
+
 ## 1、使用 svg
+
 > 阿里巴巴矢量图标库：[https://www.iconfont.cn/](https://www.iconfont.cn/)
 
 1. 进入网站，选择矢量图
@@ -2127,10 +2125,9 @@ Vue.directive('focus', {
 ```
 
 2. 1
-3. 1
-4. 1
-5. 1
 ### ②、使用 SVG 文件
+
+> <font color="#ff0000">现在可以直接使用 `img` 标签引入 `svg` 文件</font>
 
 1. 安装依赖：`npm install svg-sprite-loader -D`
 2. 创建目录：src/icons/svg ，将下载的 svg 文件放入其中
@@ -2611,38 +2608,142 @@ let userId=route.query.userId;
 //params
 let userId=route.params.userId;
 ```
-### ④、
-### ⑤、
-## 5、
-## 6、
+
+### ④、创建多个路由文件
+
+1. 在 router 目录下创建 `index.js` 文件
+
+```js
+// 引入 路由 vue-router
+import {createRouter, createWebHistory} from 'vue-router'
+// 导入路由页面的配置
+import gather from './gather'
+
+// 路由参数配置，默认暴露
+export default createRouter({
+    // 使用hash(createWebHashHistory)模式，(createWebHistory是HTML5历史模式，支持SEO)
+    history: createWebHistory(),
+    routes: gather
+})
+```
+
+2. 在 router 目录下创建 `gather.js` 路由汇总文件
+
+```js
+// 路由汇总文件，引入其他路由文件
+import home from "@/router/home.js";
+import music from "@/router/music"
+
+export default [
+    ...home,
+    ...music
+]
+```
+
+3. 在 router 目录下创建 `home.js` ，代表主页的路由文件
+
+```js
+// 路径配置
+export default [
+    {
+        // 登录页
+        path: '/',
+        name: 'Login',
+        component: () => import('@/pages/home/Login.vue')
+    },{
+        // 主页
+        path: '/Home',
+        name: 'Home',
+        component: () => import('@/pages/home/Home.vue')
+    }
+]
+```
+
+4. 在 router 目录下创建 `music.js` ，代表音乐的路由文件
+
+```js
+// 路径配置
+export default [
+
+]
+```
+
+## 5、vite 创建的 vue3 中使用 `@` 作为根路径
+
+- 在 `vite.config.js` 中配置
+
+
+```js
+import {defineConfig} from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { resolve } from "path"
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    plugins: [vue()],
+    // 配置根路径
+    resolve: {
+        // 配置根路径别名
+        alias: {
+            "@": resolve(__dirname, "./src")
+        }
+    }
+})
+
+```
+
+## 6、vue3 中使用 setup 语法糖时使用 props 接收参数
+
+1. 父组件传递参数
+
+```vue
+<template>
+    <div v-for="card in data" :key="card.id">
+        <HomeCards :card="card"></HomeCards>
+    </div>
+</template>
+
+<script setup>
+    // 引入组件
+    import HomeCards from "@/pages/home/HomeCards.vue";
+    
+    const data = [
+        { id: 1, imgPath: "src/assets/svg/月亮.svg", introduce: "月海" },
+        { id: 2, imgPath: "src/assets/svg/海浪.svg", introduce: "月海" },
+        { id: 3, imgPath: "src/assets/svg/唱歌.svg", introduce: "音乐" },
+        { id: 4, imgPath: "src/assets/svg/让电脑开口说话.svg", introduce: "论坛" },
+    ]
+</script>
+
+<style scoped>
+
+</style>
+```
+
+2. 子组件接收参数
+
+```vue
+<template>
+    <div class="book">
+        <p>{{props.card.introduce}}</p>
+        <div class="cover">
+            <img :src="props.card.imgPath" alt="">
+        </div>
+    </div>
+</template>
+
+<script setup>
+    // 接收父组件传递的参数
+    const props = defineProps(["card"])
+
+</script>
+```
+
 ## 7、
+
 ## 8、
+
 ## 9、
 
----
 
-### ①、
-### ②、
-### ③、
-### ④、
-### ⑤、
-### ⑥、
-### ⑦、
-### ⑧、
-### ⑨、
-### ⑩、
-### ⑪、⑫、⑬、⑭、⑮、⑯、⑰、⑱、⑲、⑳
-### ㉑、㉒、㉓、㉔、㉕、㉖、㉗、㉘、㉙、㉚
-### ㉛、㉜、㉝、㉞、㉟、㊱、㊲、㊳、㊴、㊵
-### ㊶、㊷、㊸、㊹、㊺、㊻、㊼、㊽、㊾、㊿
-#### Ⅰ、
-#### Ⅱ、
-#### Ⅲ、
-#### Ⅳ、
-#### Ⅴ、
-#### Ⅵ、
-#### Ⅶ、
-#### Ⅷ、
-#### Ⅸ、
-#### Ⅹ、
 
