@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 250.5
+    "width": 252.5
   },
   "right": {
     "id": "e39dcbf669ddf36e",
@@ -156,6 +156,8 @@
   },
   "active": "9f9483b5900c6a15",
   "lastOpenFiles": [
+    "Android/attachments/Pasted image 20230413211232.png",
+    "Android/attachments/Pasted image 20230413211225.png",
     "Android/Android 基础.md",
     "Android/attachments/Pasted image 20230412090846.png",
     "Android/attachments/Pasted image 20230411133129.png",
@@ -166,7 +168,6 @@
     "Android/attachments/Pasted image 20230412084803.png",
     "Android/attachments/Pasted image 20230412084720.png",
     "Android/attachments/Pasted image 20230412084422.png",
-    "Android/attachments/Pasted image 20230412084212.png",
     "标题.md",
     "Android/attachments",
     "java/14、SpringCloud.md",

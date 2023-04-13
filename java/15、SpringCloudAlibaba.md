@@ -4262,8 +4262,13 @@ management:
 ### ①、部署 mysql
 
 1. 拉取镜像：`docker pull mysql:latest`
-2. 启动容器：`docker run -d -p 3306:3306 --privileged=true -v ~/docker/VOLUME/mysql/mysql/log:/var/log/mysql -v ~/docker/VOLUME/mysql/mysql/data:/var/lib/mysql -v ~/docker/VOLUME/mysql/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql:latest``
-3. 连接测试：
+2. 启动临时容器，复制文件：`docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql:latest`
+3. 复制文件：
+	1. 数据：`docker cp yuehai-mysql:/var/lib/mysql /home/docker/docker/VOLUME/mysql/mysql/data`
+	2. 配置文件：`docker cp yuehai-mysql:/etc/mysql/conf.d /home/docker/docker/VOLUME/mysql/mysql/conf`
+	3. 日志文件：创建 log 目录即可
+4. 删除容器重新创建：`docker run -d -p 3306:3306 --privileged=true -v ~/docker/VOLUME/mysql/mysql/log:/var/log/mysql -v ~/docker/VOLUME/mysql/mysql/data:/var/lib/mysql -v ~/docker/VOLUME/mysql/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql:latest`
+5. 连接测试：
 
 ![](attachments/Pasted%20image%2020230321091050.png)
 

@@ -974,64 +974,289 @@ hai
 ```Kotlin
 package com.yuehai.kotlin._04_OtherDataType
 
-import org.junit.Test
 
 /**
 @author 月海
 @create 2023/4/13 16:42
  */
-class _02_Array {
-	@Test
-	fun myFun(){
-		// 1、使用函数 arrayOf() 创建
-		var arr:Array<Int> = arrayOf(5,1,4,6)
-		// 使用工厂函数创建
-		var arr2:Array<Int> = Array(4) { i: Int -> i * 2 }
-		
-		// 2、遍历数组
-		arr.forEach { i: Int -> print("$i， ") }
-		println()
-		arr2.forEach { i: Int -> print("$i， ") }
-		
-		// 3、使用下标通过索引获取元素，get 也是通过索引获取
-		println(arr[2])
-		println(arr.get(2))
-		
-		// 4、获取数组大小
-		println(arr.size)
-		
-		// 5、使用下标通过索引设置元素，set 也是通过索引设置
-		arr[2] = 20000
-		println(arr[2])
-		
-		arr.set(3, 30000)
-		println(arr.get(3))
-		
-	}
+fun main(){
+	// 1、使用函数 arrayOf() 创建
+	val arr:Array<Int> = arrayOf(5,1,4,6)
+	// 使用工厂函数创建
+	val arr2:Array<Int> = Array(4) { i: Int -> i * 2 }
+	// 不使用泛型，使用对应类型的 arrayOf 方法创建数组
+	val arr3 = intArrayOf(4,8,87,9,7)
+
+	// 2、遍历数组
+	arr.forEach { i: Int -> print("$i， ") }
+	println()
+	arr2.forEach { i: Int -> print("$i， ") }
+	println()
+	arr3.forEach { i: Int -> print("$i， ") }
+
+	// 3、使用下标通过索引获取元素，get 也是通过索引获取
+	println(arr3[2])
+	println(arr3.get(2))
+
+	// 4、获取数组大小
+	println(arr3.size)
+
+	// 5、使用下标通过索引设置元素，set 也是通过索引设置
+	arr3[2] = 20000
+	println(arr3[2])
+	arr3.set(3, 30000)
+	println(arr3.get(3))
 }
 ```
 
 ```Kotlin
 5， 1， 4， 6， 
-0， 2， 4， 6， 4
-4
-4
+0， 2， 4， 6， 
+4， 8， 87， 9， 7， 87
+87
+5
 20000
 30000
 
 进程已结束,退出代码0
 ```
 
-## 3、
+## 3、集合 `List`
 
-## 4、
+1. `List` 集合的最大特征就是集合元素都有对应的顺序索引。`List` 集合允许使用重复元素，可以通过索引来访问指定位置的集合元素
+2. `list` 与 `java` 类似，分为不可变集合 `list` 和可变集合 `mutableList`
 
-## 5、
+```Kotlin
+package com.yuehai.kotlin._04_OtherDataType
 
-## 6、
+/**
+@author 月海
+@create 2023/4/13 18:29
+ */
+fun main() {
+    // 1、创建集合
+    // listOf()：该函数返回不可变的List集合。该函数可接受0个或多个参数，这些参数将作为集合的元素。
+    // listOfNotNull()：该函数返回不可变的List集合。该函数与前一个函数的唯一区别是,该函数会自动去掉传入的一系列参数中的null值。
+    // mutableListOf()：该函数返回可变的MutableList集合。该函数可接受0个或多个参数，这些参数将作为集合的元素。
+    // arrayListOf()：该函数返回可变的ArrayList集合。该函数可接受0个或多个参数，这些参数将作为集合的元素。
+    // 定义不可变集合；只读的，不可变的、可序列化的
+    val list:List<Int> = listOf(4,57,746)
+    // 定义可变集合；
+    // 在 MutableList 中，除了继承 List中 的那些函数外，另外新增了 add/addAll、remove/removeAll/removeAt、set、clear、retainAll 等更新修改的操作函数。
+    val mutableList:MutableList<Int> = mutableListOf(5,4,7,78,56)
+    // 如果已经有了一个不可变的List，想把他转换成可变的List，可直接调用转换函数toMutableList()
+    val toMutableList = list.toMutableList();
 
-## 7、
+    // 2、添加
+    mutableList.add(1000)
+    // 根据下标添加，会使后面的元素全部后移一位
+    mutableList.add(0, 1000)
 
+    // 3、遍历
+    mutableList.forEach { l: Int -> print("$l， ") }
+    println()
+
+    // 4、判断是否为空
+    toMutableList.clear()
+    println(toMutableList.isEmpty())
+}
+```
+
+```Kotlin
+1000， 5， 4， 7， 78， 56， 1000， 
+true
+
+进程已结束,退出代码0
+```
+
+3. 常用方法：
+4. 常见的 `List` 元素操作函数
+
+| 方法                                                       | 描述                                                                                                                          |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `add`、`remove`、`set`、`clear`                                    | 这几个操作符与Java中的List一样                                                                                                |
+| `toMutableList()`                                            | 将不可变集合变为可变集合                                                                                                      |
+| `retainAll`                                                  | 取两个集合交集                                                                                                                |
+| `contains(element: T): Boolean`                              | 判断集合中是否有指定元素，有就返回true，否则返回false                                                                         |
+| `elementAt(index: Int): T`                                 | 查找下标对应的元素，如果下标越界会抛IndexOutOfBoundsException                                                                 |
+| `elementAtOrElse(index: Int, defaultValue: (Int) -> T): T` | 查找下标对应元素，如果越界会根据方法返回默认值                                                                                |
+| `elementAtOrNull(index: Int): T?`                          | 查找下标对应元素，如果越界就返回null                                                                                          |
+| `first()`                                                  | 返回集合第1个元素，如果是空集，抛出异常java.util.NoSuchElementException: List is empty.                                       |
+| `firstOrNull(): T?`                                        | 返回集合第1个元素，如果是空集, 对空指针异常处理的函数，如果集合为空，则返回null                                               |
+| `first(predicate: (T) -> Boolean): T`                      | 返回符合条件的第一个元素，没有则抛异常NoSuchElementException                                                                  |
+| `firstOrNull(predicate: (T) -> Boolean): T?`               | 返回符合条件的第一个元素，没有就返回null                                                                                      |
+| `indexOf(element: T): Int`                                 | 返回指定元素的下标，没有就返回-1                                                                                              |
+| `indexOfFirst(predicate: (T) -> Boolean): Int`             | 返回第一个符合条件的元素的下标，没有就返回-1                                                                                  |
+| `indexOfLast(predicate: (T) -> Boolean): Int`              | 返回最后一个符合条件的元素下标，没有就返回-1                                                                                  |
+| `last()`                                                   | 返回集合最后一个元素，空集则抛出异常NoSuchElementException                                                                    |
+| `last(predicate: (T) -> Boolean): T`                       | 返回符合条件的最后一个元素，没有就抛NoSuchElementException                                                                    |
+| `lastOrNull(predicate: (T) -> Boolean): T?`                | 返回符合条件的最后一个元素，没有就返回null                                                                                    |
+| `lastIndexOf(element: T): Int`                             | 返回符合条件的最后一个元素的下标，没有就返回-1                                                                                |
+| `single(): T`                                              | 该集合如果只有1个元素，则返回该元素。为空时会抛出NoSuchElementException 异常，存在多个元素时会抛 IllegalArgumentException异常 |
+| `singleOrNull(): T?`                                       | 返回符合条件单个元素, 如果集合为空或者有多个元素，则返回null                                                                  |
+| `single(predicate: (T) -> Boolean): T`                     | 返回符合条件的单个元素，如有没有符合的抛异常NoSuchElementException，或超过一个的抛异常IllegalArgumentException                |
+| `singleOrNull(predicate: (T) -> Boolean): T?`              | 返回符合条件单个元素，如果未找到符合的元素或找到多个元素，则返回null                                                          |
+
+5. `List` 集合运算的基本函数
+
+| 方法                                       | 描述                                                                                                  |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `any(): Boolean`                           | 判断集合元素，如果集合为空，返回false, 集合中存有一个或多个元素时返回true                             |
+| `any(predicate: (T) -> Boolean): Boolean`  | 判断集合元素，如果集合为空或者没有符号条件的元素返回false, 集合中存有一个或多个元素符合条件时返回true |
+| `all(predicate: (T) -> Boolean): Boolean`  | 当且仅当该集合中所有元素都满足条件时，返回true；否则都返回false。                                     |
+| `none(): Boolean`                          | 如果集合中没有元素，则返回true，否则返回false                                                         |
+| `none(predicate: (T) -> Boolean): Boolean` | 如果集合中没有符合匹配条件的元素，返回true，否则返回false                                             |
+| `count(): Int`                             | 返回集合元素个数                                                                                      |
+|`count(predicate: (T) -> Boolean): Int`|返回符合匹配条件的元素的个数|
+|`max, min`|查询最大，最小元素，空集返回null|
+
+6. 过滤操作函数
+
+| 方法                 | 描述                                      |
+| -------------------- | ----------------------------------------- |
+| `take(n: Int): List` | 根据传入的参数挑出该集合前n个元素的子集合 |
+
+7. 映射操作符
+
+| 方法                               | 描述                                                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `map(transform: (T) -> R): List`   | 将集合中的元素通过转换函数transform映射后的结果，存到一个集合中返回                                     |
+| `mapNotNull(transform: (T) -> R?)` | 遍历集合每个元素，得到通过函数算子transform映射之后的值，剔除掉这些值中的null，返回一个无null元素的集合 |
+
+8. 排序操作符
+
+| 方法                       | 描述                                                               |
+| -------------------------- | ------------------------------------------------------------------ |
+| `reversed(): List`         | 倒序排列集合元素。如:[1, 2, 7, 6, 4, 5]排列后为:[5, 4, 6, 7, 2, 1] |
+| `sorted(): List`           | 升序排序                                                           |
+| `sortedDescending(): List` | 降序排序                                                           |
+|`sortedBy和sortedByDescending`|可变集合MutableList的排序操作。根据函数映射的结果进行升序排序和降序排序|
+
+9. 生产操作符
+
+| 方法                             | 描述                                                |
+| -------------------------------- | --------------------------------------------------- |
+| `zip(other: Iterable): List`     | 合拢 转换是根据两个集合中具有相同位置的元素构建配对 |
+| `plus(elements: Iterable): List` | 合并两个List                                        |
+
+## 4、不可重复集合 `Set`
+
+1. Kotlin 的 `Collection` 集合和 `Set` 集合的功能基本相同，`Set` 集合只是为 `Collection` 集合增加了额外的限制：集合元素不允许重复
+
+```Kotlin
+package com.yuehai.kotlin._04_OtherDataType
+
+/**
+@author 月海
+@create 2023/4/13 19:29
+ */
+fun main() {
+    // 1、创建不可变集合，返回值是Set，集合元素按添加顺序排列
+    val set = setOf("Java", "Kotlin", "Go")
+    // 创建可变集合，返回值是MutableSet，集合元素按添加顺序排列
+    val mutableSet = mutableSetOf("Java", "Kotlin", "Go")
+    // 创建 HashSet 集合，不保证元素的顺序
+    val hashSet = hashSetOf("Java", "Kotlin", "Go")
+    // 创建 LinkedHashSet 集合，集合元素按添加顺序排列
+    val linkedHashSet = linkedSetOf("Java", "Kotlin", "Go")
+    // 创建 TreeSet 集合，集合元素由小到大排列
+    val treeSet = sortedSetOf("Java", "Kotlin", "Go")
+
+    // 2、遍历
+    hashSet.forEach { s -> print("$s， ") }
+
+}
+```
+
+```Kotlin
+Go， Java， Kotlin， 
+进程已结束,退出代码0
+```
+
+## 5、键值对集合 `Map`
+
+1. Kotlin的Map集合用于保存key-value对，其也被分为可变的和不可变的
+
+```Kotlin
+package com.yuehai.kotlin._04_OtherDataType
+
+/**
+@author 月海
+@create 2023/4/13 19:44
+ */
+fun main() {
+    // 1、创建不可变集合，返回值是 Map，按添加顺序排列
+    val map = mapOf("Java" to 86, "Kotlin" to 92, "Go" to 78)
+    // 创建可变集合，按添加顺序排列
+    val mutableMap = mutableMapOf("Java" to 86, "Kotlin" to 92, "Go" to 78)
+    // 创建 HashMap 集合，不保证排列顺序
+    val hashMap = hashMapOf("Java" to 86, "Kotlin" to 92, "Go" to 78)
+    // 创建 LinkedHashMap，按添加顺序排列
+    val linkedHashMap = linkedMapOf("Java" to 86, "Kotlin" to 92, "Go" to 78)
+    //创建 TreeMap 集合，按 key 由小到大排列
+    val treeMap = sortedMapOf("Java" to 86, "Kotlin" to 92, "Go" to 78)
+
+    // 2、增删改查
+    hashMap["月海"] = 16
+    hashMap.remove("Go")
+    hashMap["Java"] = 100
+    hashMap["Java"]
+
+
+    // 3、遍历
+    // 遍历 Map 的 key-value 对，entris 元素返回 key-value 对组成的 Set
+    for (en in hashMap.entries) {
+        print("${en.key}->${en.value}， ")
+    }
+    println()
+    // 先遍历 Map 的 key，再通过 key 获取 value
+    for (key in hashMap.keys) {
+        print("${key}->${hashMap[key]}， ")
+    }
+    println()
+    // 直接用 for-in 循环遍历 Map
+    for ((key, value) in hashMap) {
+        print("${key}->${value}， ")
+    }
+    println()
+    // 用 Lambda 表达式遍历 Map
+    hashMap.forEach { print("${it.key}->${it.value}， ") }
+    println()
+
+
+    // 对 Map 集合元素进行过滤：要求 key 包含 li
+    println(hashMap.filter { "li" in it.key })
+
+    // 将每个 key-value 对映射成新值，返回所有新值组成的 Map 集合
+    println(hashMap.map { "${it.key}有${it.value}节课" })
+
+    // 根据 key 获取最大值
+    println(hashMap.maxBy { it.key })
+    // 根据 value 获取最小值
+    println(hashMap.minBy { it.value })
+
+    val bMap= mapOf("Lua" to 67,"Erlang" to 73,"Kotlin" to 100)
+    // 求并集
+    println(hashMap + bMap)
+    // 集合相减
+    println(hashMap - bMap)
+}
+```
+
+```Kotlin
+Java->100， 月海->16， Kotlin->92， 
+Java->100， 月海->16， Kotlin->92， 
+Java->100， 月海->16， Kotlin->92， 
+Java->100， 月海->16， Kotlin->92， 
+{Kotlin=92}
+[Java有100节课, 月海有16节课, Kotlin有92节课]
+月海=16
+月海=16
+{Java=100, 月海=16, Kotlin=100, Lua=67, Erlang=73}
+{Java=100, 月海=16, Kotlin=92}
+
+进程已结束,退出代码0
+```
 
 # 五、函数
 
@@ -1044,39 +1269,35 @@ class _02_Array {
 ```Kotlin
 package com.yuehai.kotlin._05_fun
 
-import org.junit.Test
 
 /**
 @author 月海
 @create 2023/4/13 11:11
  */
-class _01_funDefine {
-	@Test
-	fun myFun(){
-		// 1、函数定义使用关键字 fun，参数格式为：参数 : 类型
-		fun sum(a:Int, b:Int): Int {
-			return a + b;
-		}
-		println(sum(1, 2))
-		
-		// 2、表达式作为函数体，返回类型自动推断：
-		fun sum2(a:Int, b:Int) = a + b;
-		// public 方法则必须明确写出返回类型
-		// public fun sum2(a:Int, b:Int):Int= a + b;
-		println(sum2(1, 2))
-		
-		// 3、无返回值的函数(类似Java中的void)：
-		fun sum3() {
-			println(1 + 2);
-		}
-		sum3();
-		
-		// 4、如果是返回 Unit （无返回值 void）类型，则可以省略(对于public方法也是这样)
-		fun sum4():Unit {
-			println(1 + 2);
-		}
-		sum3();
+fun main() {
+	// 1、函数定义使用关键字 fun，参数格式为：参数 : 类型
+	fun sum(a:Int, b:Int): Int {
+		return a + b;
 	}
+	println(sum(1, 2))
+
+	// 2、表达式作为函数体，返回类型自动推断：
+	fun sum2(a:Int, b:Int) = a + b;
+	// public 方法则必须明确写出返回类型
+	// public fun sum2(a:Int, b:Int):Int= a + b;
+	println(sum2(1, 2))
+
+	// 3、无返回值的函数(类似Java中的void)：
+	fun sum3() {
+		println(1 + 2);
+	}
+	sum3();
+
+	// 4、如果是返回 Unit （无返回值 void）类型，则可以省略(对于public方法也是这样)
+	fun sum4():Unit {
+		println(1 + 2);
+	}
+	sum3();
 }
 ```
 
@@ -1096,26 +1317,21 @@ class _01_funDefine {
 ```Kotlin
 package com.yuehai.kotlin._05_fun
 
-import org.junit.Test
-
 /**
 @author 月海
 @create 2023/4/13 12:45
  */
-class _02_funVariableLengthParameter {
-	@Test
-	fun myFun(){
-		// 函数的变长参数可以用 vararg 关键字进行标识：
-		fun fun1(a:Int, b:Int, vararg args:Int){
-			println("a + b：${a + b}");
-			for (arg in args) {
-				println(arg)
-			}
+fun main() {
+	// 函数的变长参数可以用 vararg 关键字进行标识：
+	fun fun1(a:Int, b:Int, vararg args:Int){
+		println("a + b：${a + b}");
+		for (arg in args) {
+			println(arg)
 		}
-		
-		// 调用函数
-		fun1(1,2,3,4,5,6,4,5,1000)
 	}
+
+	// 调用函数
+	fun1(1,2,3,4,5,6,4,5,1000)
 }
 ```
 
@@ -1137,29 +1353,23 @@ a + b：3
 ```Kotlin
 package com.yuehai.kotlin._05_fun
 
-import org.junit.Test
-
 /**
 @author 月海
 @create 2023/4/13 12:50
  */
-class _03_Lambda {
-	@Test
-	fun myFun(){
-		// 定义普通函数
-		fun fun1(a:Int, b:Int):Int{
-			return a + b;
-		}
-		// 定义 lambda 表达式，有参数
-		val fun2:(Int, Int) -> Int = { a, b -> a + b }
-		// 定义 lambda 表达式，无参数
-		val fun3: () -> Unit = { println("123") }
-		
-		println(fun1(1, 2))
-		println(fun2(1, 2))
-		fun3()
-		
+fun main() {
+	// 定义普通函数
+	fun fun1(a:Int, b:Int):Int{
+		return a + b;
 	}
+	// 定义 lambda 表达式，有参数
+	val fun2:(Int, Int) -> Int = { a, b -> a + b }
+	// 定义 lambda 表达式，无参数
+	val fun3: () -> Unit = { println("123") }
+
+	println(fun1(1, 2))
+	println(fun2(1, 2))
+	fun3()
 }
 ```
 
@@ -1171,13 +1381,198 @@ class _03_Lambda {
 进程已结束,退出代码0
 ```
 
-## 4、
+## 4、将函数作为参数传递
 
-## 5、
+```Kotlin
+package com.yuehai.kotlin._05_fun
 
-## 6、
+/**
+@author 月海
+@create 2023/4/13 20:30
+ */
+fun main() {
+    // 接收函数作为参数
+    fun fun4(a:Int, b:Int, c:(a:Int, b:Int)->Int):Int{
+        val c1 = c(a, b)
+        return c1 + 100
+    }
 
-# 六、
+    // 位置参数；调用函数，传递普通参数和函数参数
+    println(fun4(10, 20, { a, b -> a * b }))
+
+    // 命名参数；命名参数和位置参数是不能混在一起使用
+    println(fun4(a=10, b=20, c={ a, b -> a * b }))
+
+    // 将 Lambda 实参移出括号；如果函数是作为最后一个参数，才可以在以 lambda 表达式的方式在参数列表外传递
+    println(fun4(10, 20) { a, b -> a * b })
+
+    // 非 Lambda 函数
+    println(fun4(10, 20) { a, b ->
+        val c = a + b
+        return@fun4 c * 10
+    })
+
+}
+```
+
+## 5、内联函数之 `with`
+
+1. `with` 函数和前面的几个函数使用方式略有不同，因为它不是以扩展的形式存在的。
+2. 它是将某对象作为函数的参数，在函数块内可以通过 `this` 指代该对象。返回值为函数块的最后一行或指定 `return` 表达式
+3. `with` 函数的适用的场景：适用于调用同一个类的多个方法时，可以省去类名重复，直接调用类的方法即可，经常用于 `Android` 中 `RecyclerView` 中 `onBinderViewHolder` 中，数据 `model` 的属性映射到 `UI` 上
+
+```Kotlin
+package com.yuehai.kotlin._05_fun
+
+/**
+@author 月海
+@create 2023/4/13 20:53
+ */
+fun main() {
+    // 1、首先，我们定义一个数据类 Person
+    data class Person(var name: String, var age: String)
+
+    // 2、然后，实例化一个 Person
+    val person = Person("张三", "23")
+
+    // 3、不使用 with 的调用
+    person.name = "月海"
+    person.age = "16"
+    println("name：${person.name}，age：${person.age}")
+
+    // 4、使用 with 的调用
+    with(person) {
+        name = "言"
+        age = "14"
+    }
+    println("name：${person.name}，age：${person.age}")
+
+}
+```
+
+```Kotlin
+name：月海，age：16
+name：言，age：14
+
+进程已结束,退出代码0
+```
+
+## 6、内联扩展函数之 `let`
+
+1. `let` 扩展函数的实际上是一个作用域函数，当你需要去定义一个变量在一个特定的作用域范围内，`let` 函数的是一个不错的选择
+2. `let` 函数另一个作用就是可以避免写一些判断 `null` 的操作
+3. let函数适用的场景
+	1. 场景一：最常用的场景就是使用 `let` 函数处理需要针对一个可 `null` 的对象统一做判空处理。
+	2. 场景二：然后就是需要去明确一个变量所处特定的作用域范围内可以使用
+4. `let` 函数使用前后的对比
+
+```Kotlin
+// 没有使用 let 函数的代码是这样的，看起来不够优雅
+mVideoPlayer?.setVideoView(activity.course_video_view)
+mVideoPlayer?.setControllerView(activity.course_video_controller_view)
+mVideoPlayer?.setCurtainView(activity.course_video_curtain_view)
+
+// 没有使用 let 函数的代码是这样的，看起来不够优雅
+mVideoPlayer?.let {
+    it.setVideoView(activity.course_video_view)
+    it.setControllerView(activity.course_video_controller_view)
+    it.setCurtainView(activity.course_video_curtain_view)
+}
+```
+
+## 7、内联扩展函数之 `run`
+
+1. `run` 函数实际上可以说是 `let` 和 `with` 两个函数的结合体，`run` 函数只接收一个 `lambda` 函数为参数，以闭包形式返回，返回值为最后一行的值或者指定的 return 的表达式
+2. `run` 函数的适用场景：适用于 `let`、`with` 函数任何场景。因为 `run` 函数是 `let`、`with` 两个函数结合体，准确来说它弥补了 `let` 函数在函数体内必须使用 `it` 参数替代对象，在 `run` 函数中可以像 `with` 函数一样可以省略，直接访问实例的公有属性和方法，另一方面它弥补了 `with` 函数传入对象判空问题，在 `run` 函数中可以像 `let` 函数一样做判空处理
+
+```Kotlin
+// with 代码
+override fun onBindViewHolder(holder: ViewHolder, position: Int){
+  val item = getItem(position)?: return
+
+  with(item){
+
+   holder.tvNewsTitle.text = StringUtils.trimToEmpty(titleEn)
+    holder.tvNewsSummary.text = StringUtils.trimToEmpty(summary)
+    holder.tvExtraInf = "难度：$gradeInfo | 单词数：$length | 读后感: $numReviews"
+    ...  
+  }
+}
+
+//使用 run 函数后的优化
+override fun onBindViewHolder(holder: ViewHolder, position: Int){
+
+ getItem(position)?.run{
+   holder.tvNewsTitle.text = StringUtils.trimToEmpty(titleEn)
+    holder.tvNewsSummary.text = StringUtils.trimToEmpty(summary)
+    holder.tvExtraInf = "难度：$gradeInfo | 单词数：$length | 读后感: $numReviews"
+    ...  
+  }
+}
+```
+
+## 8、内联扩展函数之 `apply`
+
+1. 整体作用功能和 run 函数很像，唯一不同点就是它返回的值是对象本身，而 run 函数是一个闭包形式返回，返回的是最后一行的值。正是基于这一点差异它的适用场景稍微与 run 函数有点不一样。
+2. apply 一般用于一个对象实例初始化的时候，需要对对象中的属性进行赋值。或者动态 inflate 出一个 XML 的 View 的时候需要给 View 绑定数据也会用到，这种情景非常常见。特别是在我们开发中会有一些数据 model 向View model 转化实例化的过程中需要用到
+
+```Kotlin
+// 没有使用apply函数的代码是这样的，看起来不够优雅
+mSheetDialogView = View.inflate(activity, R.layout.biz_exam_plan_layout_sheet_inner, null)
+mSheetDialogView.course_comment_tv_label.paint.isFakeBoldText = true
+mSheetDialogView.course_comment_tv_score.paint.isFakeBoldText = true
+mSheetDialogView.course_comment_tv_cancel.paint.isFakeBoldText = true
+mSheetDialogView.course_comment_tv_confirm.paint.isFakeBoldText = true
+mSheetDialogView.course_comment_seek_bar.max = 10
+mSheetDialogView.course_comment_seek_bar.progress = 0
+
+// 使用apply函数后的代码是这样的
+mSheetDialogView = View.inflate(activity, R.layout.biz_exam_plan_layout_sheet_inner, null).apply{
+    course_comment_tv_label.paint.isFakeBoldText = true
+    course_comment_tv_score.paint.isFakeBoldText = true
+    course_comment_tv_cancel.paint.isFakeBoldText = true
+    course_comment_tv_confirm.paint.isFakeBoldText = true
+    course_comment_seek_bar.max = 10
+    course_comment_seek_bar.progress = 0
+}
+
+// 多层级判空问题
+if (mSectionMetaData == null || mSectionMetaData.questionnaire == null || mSectionMetaData.section == null) {
+    return;
+}
+if (mSectionMetaData.questionnaire.userProject != null) {
+    renderAnalysis();
+    return;
+}
+if (mSectionMetaData.section != null && !mSectionMetaData.section.sectionArticles.isEmpty()) {
+    fetchQuestionData();
+    return;
+}
+
+// kotlin的apply函数优化
+mSectionMetaData?.apply{
+//mSectionMetaData不为空的时候操作mSectionMetaData
+}?.questionnaire?.apply{
+//questionnaire不为空的时候操作questionnaire
+}?.section?.apply{
+//section不为空的时候操作section
+}?.sectionArticle?.apply{
+//sectionArticle不为空的时候操作sectionArticle
+}
+```
+
+## 9、内联扩展函数之 `also`
+
+1. also 函数的结构实际上和 let 很像唯一的区别就是返回值的不一样，let 是以闭包的形式返回，返回函数体内最后一行的值，如果最后一行为空就返回一个 Unit 类型的默认值。而 also 函数返回的则是传入对象的本身
+2. 适用于 let 函数的任何场景，also 函数和 let 很像，只是唯一的不同点就是 let 函数最后的返回值是最后一行的返回值而 also 函数的返回值是返回当前的这个对象。一般可用于多个扩展函数链式调用
+
+## 10、`let`、`with`、`run`、`apply`、`also` 函数区别
+
+![](attachments/Pasted%20image%2020230413211225.png)
+
+![](attachments/Pasted%20image%2020230413211232.png)
+
+# 六、类和对象
 
 # 七、
 
