@@ -1124,6 +1124,33 @@ idea 提示：
 4. 修改邮箱：`git config --global user.email "邮箱"`
 
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1663657518489-50497a21-63d7-44dd-8870-ee2828ff362b.png#clientId=u7173aa62-aa79-4&from=paste&height=552&id=u5579bfce&name=image.png&originHeight=552&originWidth=875&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20054&status=done&style=stroke&taskId=u9d999db3-d7be-41a6-9314-8e2a7a708b4&title=&width=875)
-### ②、
+### ②、本地自建仓库推送到新建 git
+
+1. 提交
+
+![](attachments/Pasted%20image%2020230329101938.png)
+
+2. 推送，此时推送应该是被拒
+
+![](attachments/Pasted%20image%2020230329103017.png)
+
+3. 日志中多了远程选项，选中远程，点击提取所有远程
+
+![](attachments/Pasted%20image%2020230329102203.png)
+
+4. 右键远程分支，新建分支
+
+![](attachments/Pasted%20image%2020230329102252.png)
+
+![](attachments/Pasted%20image%2020230329102327.png)
+
+5. 签出到 master 分支，右键新建的分支，选择将 master 变基到新分支
+
+![](attachments/Pasted%20image%2020230329103321.png)
+
+6. 完成，可以推送 master 分支，此时可删除新建的分支
+
 ### ③、
+
 ### ④、
+

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d8e75ae296f2b602",
+        "id": "344d1df5f722c675",
         "type": "tabs",
         "children": [
           {
-            "id": "f2b1ef8987d25a34",
+            "id": "9f9483b5900c6a15",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端/JS 框架/Vue3.md",
+                "file": "Android/Android 基础.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端/JS 框架/Vue3.md"
+                "file": "Android/Android 基础.md"
               }
             }
           },
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "前端/JS 框架/Vue3.md",
+                "file": "Android/Android 基础.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "前端/JS 框架/Vue3.md",
+                "file": "Android/Android 基础.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,17 +154,38 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f2b1ef8987d25a34",
+  "active": "9f9483b5900c6a15",
   "lastOpenFiles": [
+    "Android/Android 基础.md",
+    "Android/attachments/Pasted image 20230412090846.png",
+    "Android/attachments/Pasted image 20230411133129.png",
+    "Android/attachments/Pasted image 20230412090708.png",
+    "Android/attachments/Pasted image 20230412090555.png",
+    "Android/attachments/Pasted image 20230411132900.png",
+    "Android/attachments/Pasted image 20230412084903.png",
+    "Android/attachments/Pasted image 20230412084803.png",
+    "Android/attachments/Pasted image 20230412084720.png",
+    "Android/attachments/Pasted image 20230412084422.png",
+    "Android/attachments/Pasted image 20230412084212.png",
     "标题.md",
-    "前端/JS 框架/Vue3.md",
-    "前端/JS 框架/Vue2.md",
+    "Android/attachments",
+    "java/14、SpringCloud.md",
+    "Android",
     "java/15、SpringCloudAlibaba.md",
+    "java/12、MyBatisPlus.md",
+    "前端/JS 框架/Vue2.md",
+    "前端/JS 框架/Vue3.md",
+    "前端/UI 组件库/Bootstrap 快速入门.md",
+    "前端/UI 组件库/Ant Design Vue.md",
+    "linux/linux/Liunx 基础.md",
+    "linux/Smart/Smart 基础.md",
+    "linux/Smart/Smart 编程.md",
+    "其他/软件使用/Idea.md",
+    "其他/软件使用/attachments",
+    "其他/Git.md",
+    "其他/attachments",
     "java/16、设计模式.md",
     "其他/文件处理/音频处理.md",
-    "java/14、SpringCloud.md",
-    "java/attachments/Pasted image 20230323145954.png",
-    "java/attachments/Pasted image 20230323145923.png",
     "其他/文件处理",
     "其他/小工具.md",
     "java/【其他】.md",
@@ -172,36 +193,14 @@
     "java/00、其他小笔记.md",
     "attachments/Pasted image 20230315094705.png.md",
     "java/JUC 并发编程.md",
-    "java/attachments/Pasted image 20230323103921.png",
-    "java/attachments/Pasted image 20230323101342.png",
-    "java/attachments/Pasted image 20230321103501.png",
     "Spring Cloud Alibaba.xmind",
     "java/Spring/10、SSM整合开发.md",
     "java/13、Redis.md",
-    "java/12、MyBatisPlus.md",
     "java/MyBatisPlus.md",
-    "java/attachments/Pasted image 20230322094444.png",
-    "java/attachments/Pasted image 20230322094422.png",
-    "java/attachments/Pasted image 20230322093859.png",
-    "java/attachments/Pasted image 20230322093521.png",
-    "java/attachments/Pasted image 20230322093504.png",
-    "java/13、SpringCloud.md",
-    "java/14、SpringCloudAlibaba.md",
-    "java/Spring/SpringCloud/14、SpringCloudAlibaba.md",
-    "java/Spring/SpringCloud/13、SpringCloud.md",
-    "java/12、Redis.md",
-    "java/Spring/08、SpringMVC.md",
-    "linux/linux/Liunx 基础.md",
-    "linux/linux/正则表达式.md",
-    "java/JAVA 基础.md",
     "java/attachments",
     "java/新建文件夹",
     "LICENSE",
     "【PDF + Word】/其他/Docker.pdf",
-    "【PDF + Word】/java/Spring/SpringCloud/SpringCloud.pdf",
-    "attachments",
-    "python/attachments/05.scrapy.pdf",
-    "python/attachments/edgedriver_win64.zip",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",

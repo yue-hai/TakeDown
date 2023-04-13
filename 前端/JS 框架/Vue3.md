@@ -2740,6 +2740,7 @@ export default defineConfig({
 ```
 
 ## 7、
+docker run -d --name yuehai-java -p 9901:9901 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 bash /usr/src/myapp/start_cloud.sh
 
 ## 8、
 

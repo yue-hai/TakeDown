@@ -1919,15 +1919,15 @@ portainer/portainer                                       1.20.2    19d07168491a
 docker@VM-8-15-ubuntu:~$ 
 ```
 
-2. 启动：`docker run --name sentinel -d -p 8849:8858 -d bladex/sentinel-dashboard`
+2. 启动：`docker run --name yuehai-sentinel -d -p 8849:8858 -d bladex/sentinel-dashboard`
 
 ```bash
-docker@VM-8-15-ubuntu:~$ docker run --name sentinel -d -p 8849:8858 -d bladex/sentinel-dashboard
+docker@VM-8-15-ubuntu:~$ docker run --name yuehai-sentinel -d -p 8849:8858 -d bladex/sentinel-dashboard
 56bf2c813dd09fb84c674c652224491cbb5a59386989fd05d19fac9bff25932c
 
 docker@VM-8-15-ubuntu:~$ docker ps
 CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS             PORTS                                                 NAMES
-56bf2c813dd0   bladex/sentinel-dashboard    "java -Djava.securit…"   23 seconds ago   Up 22 seconds      0.0.0.0:8849->8858/tcp, :::8849->8858/tcp             sentinel
+56bf2c813dd0   bladex/sentinel-dashboard    "java -Djava.securit…"   23 seconds ago   Up 22 seconds      0.0.0.0:8849->8858/tcp, :::8849->8858/tcp             yuehai-sentinel
 86486e02b952   portainer/portainer:1.20.2   "/portainer"             11 days ago      Up About an hour   0.0.0.0:9443->9000/tcp, :::9443->9000/tcp             Portainer
 
 docker@VM-8-15-ubuntu:~$ 
