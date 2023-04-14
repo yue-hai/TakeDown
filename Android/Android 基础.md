@@ -275,6 +275,8 @@ internal object EmptyList : List<Nothing>...
 
 1. 变量：`var`
 2. 常量：`val`
+3. 指定类型：`val 变量名:类型名`
+4. 指定变量可为空：`val 变量名:类型名?`
 
 ```Kotlin
 package com.yuehai.kotlin._01_variable
@@ -332,24 +334,52 @@ fun parseInt(str: String): Int? {
 2. 区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例：
 
 ```Kotlin
-for (i in 1..4) print(i) // 输出“1234”
+package com.yuehai.kotlin._02_BasicGrammar
 
-for (i in 4..1) print(i) // 什么都不输出
+/**
+@author 月海
+@create 2023/4/14 9:16
+ */
+fun main() {
+	// 区间默认由小到大，输出 1234
+	println("---- 区间默认由小到大 ----")
+	for (i in 1..4) print("$i， ")
+	// 区间默认由小到大，由大到小则会什么都不输出
+	println("---- 区间默认由小到大，由大到小则会什么都不输出 ----")
+	for (i in 4..1) print("$i， ")
+	
+	// until，半包区间，包左不包右
+	println("---- until，半包区间，包左不包右 ----")
+	for (i in 1 until  4) print("$i， ")
+	
+	// downTo ，倒序，由大到小的区间
+	println("---- downTo ，倒序，由大到小的区间 ----")
+	for (i in 4 downTo 1) print("$i， ")
+	
+	// step 跳步，跳过只当步长
+	println("---- step 跳步，跳过只当步长 ----")
+	for (i in 1 .. 4 step 2) print("$i， ")
+	
+	// 判断是否在区间内；等同于 1 <= num && num <= 10
+	println("---- 判断是否在区间内；等同于 1 <= num && num <= 10 ----")
+	val num = 8
+	if (num in 1..10) {
+		println(num)
+	}
 
-if (i in 1..10) { // 等同于 1 <= i && i <= 10
-    println(i)
 }
+```
 
-// 使用 step 指定步长
-for (i in 1..4 step 2) print(i) // 输出“13”
+```Kotlin
+---- 区间默认由小到大 ----
+1， 2， 3， 4， ---- 区间默认由小到大，由大到小则会什么都不输出 ----
+---- until，半包区间，包左不包右 ----
+1， 2， 3， ---- downTo ，倒序，由大到小的区间 ----
+4， 3， 2， 1， ---- step 跳步，跳过只当步长 ----
+1， 3， ---- 判断是否在区间内；等同于 1 <= num && num <= 10 ----
+8
 
-for (i in 4 downTo 1 step 2) print(i) // 输出“42”
-
-
-// 使用 until 函数排除结束元素
-for (i in 1 until 10) {   // i in [1, 10) 排除了 10
-     println(i)
-}
+进程已结束,退出代码0
 ```
 
 ## 7、条件控制
@@ -534,33 +564,39 @@ import org.junit.Test
 @author 月海
 @create 2023/4/13 13:55
  */
-class _08_02_for {
-	@Test
-	fun myFun(){
-		// 创建一个集合
-		val list:List<Int> = mutableListOf<Int>(5,1,4,7,8,2)
-		
-		// 1、for 循环可以对任何提供迭代器（`iterator`）的对象进行遍历
-		println("---- 直接遍历 ----------------")
-		for (i in list) {
-			println(i)
-		}
-		
-		// 2、通过索引进行遍历；这种"在区间上遍历"会编译成优化的实现而不会创建额外对象
-		println("---- 通过索引进行遍历 ----------------")
-		for (index in list.indices) {
-			println(list[index])
-		}
-		
-		// 3、使用库函数 withIndex，直接获得 值 和 索引
-		println("---- 使用库函数 withIndex 遍历 ----------------")
-		for ( (index, value) in list.withIndex()) {
-			println("索引为：$index，值为：$value")
-		}
-		
-		// 4、lambda 表达式
-		println("---- lambda 表达式 ----------------")
-		list.forEach { l -> println(l) }
+fun main() {
+	// 创建一个集合
+	val list:List<Int> = mutableListOf<Int>(5,1,4,7,8,2)
+	
+	// 1、for 循环可以对任何提供迭代器（`iterator`）的对象进行遍历
+	println("---- 直接遍历 ----------------")
+	for (i in list) {
+		println(i)
+	}
+	
+	// 2、通过索引进行遍历；这种"在区间上遍历"会编译成优化的实现而不会创建额外对象
+	println("---- 通过索引进行遍历 ----------------")
+	for (index in list.indices) {
+		println(list[index])
+	}
+	
+	// 3、使用库函数 withIndex，直接获得 值 和 索引
+	println("---- 使用库函数 withIndex 遍历 ----------------")
+	for ( (index, value) in list.withIndex()) {
+		println("索引为：$index，值为：$value")
+	}
+	
+	// 4、lambda 表达式
+	println("---- lambda 表达式 ----------------")
+	list.forEach { l -> println(l) }
+	println("---- 更简单的 lambda 表达式 ----------------")
+	list.forEach { println(it) }
+	
+	// 5、传递函数
+	println("---- 传递函数 ----------------")
+	list.forEach {
+		val a = it * 10;
+		println(a * 10)
 	}
 }
 ```
@@ -594,6 +630,20 @@ class _08_02_for {
 7
 8
 2
+---- 更简单的 lambda 表达式 ----------------
+5
+1
+4
+7
+8
+2
+---- 传递函数 ----------------
+500
+100
+400
+700
+800
+200
 
 进程已结束,退出代码0
 ```
@@ -1263,12 +1313,15 @@ Java->100， 月海->16， Kotlin->92，
 ## 1、函数定义
 
 1. 函数定义使用关键字 fun，参数格式为：参数 : 类型
-2. 表达式作为函数体，返回类型自动推断：
-3. 无返回值的函数(类似Java中的void)：
+2. 因为是函数式的语言，所以必须要有返回值：
+	1. `Unit`：无返回值，类似 java 中的 `void`
+	2. `Any`：全部类型，类似 java 中的 `Object`
+	3. `Nothing`：这个方法就是无法正常返回的
+	4. 这三个的具体定义在第二章，第 3 节
+3. 在函数中可指定变量不可为空：`变量名!!`
 
 ```Kotlin
 package com.yuehai.kotlin._05_fun
-
 
 /**
 @author 月海
@@ -1277,7 +1330,8 @@ package com.yuehai.kotlin._05_fun
 fun main() {
 	// 1、函数定义使用关键字 fun，参数格式为：参数 : 类型
 	fun sum(a:Int, b:Int): Int {
-		return a + b;
+		// a!!：指定 a 不可为空，若为空则会报错
+		return a!! + b;
 	}
 	println(sum(1, 2))
 
@@ -1573,6 +1627,654 @@ mSectionMetaData?.apply{
 ![](attachments/Pasted%20image%2020230413211232.png)
 
 # 六、类和对象
+
+## 1、类定义
+
+### ①、属性和方法
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 10:09
+ */
+
+/**
+ * 定义类，类名为：Person
+ *
+ * Kotlin 中的类可以有一个 主构造器，以及一个或多个次构造器
+ * 主构造器是类头部的一部分，位于类名称之后，使用 constructor 关键词定义，不能包含任何代码
+ * 如果主构造器没有任何注解，也没有任何可见度修饰符，那么constructor关键字可以省略
+ */
+class Person (name:String?, age:Int?) {
+	
+	// 成员变量，默认 public
+	var name = name
+		/**
+		 * 属性的 get set 方法；此处的 field 就代表 get set 所在的这个变量
+		 * 设置了 get set 方法，则调用时就会自动走 get set 方法
+		 * 不设置也是默认拥有的
+		 */
+		get() = "name：$field"
+		set(value){
+			field = " name 修改：$value"
+		}
+	
+	var age = age
+		// 属性的 get set 方法；此处的 field 就代表 get set 所在的这个变量
+		get() = field?.minus(1)
+		set(value){
+			if (value != null) {
+				field = value - 2
+			}
+		}
+	
+	// 也可以定义为私有方法 private
+	// lateinit 关键字可以延迟初始化，但数据类型不可以是基本类型
+	private lateinit var sex:String;
+	
+	
+	// 成员函数
+	fun play(){
+		println("name：$name，age：$age")
+	}
+	
+}
+
+// 也可以定义一个空类
+class Empty
+
+fun main() {
+	// 实例化类
+	val person = Person("月海", 16)
+	
+	// 设置了 get set 方法，则调用时就会自动走 get set 方法
+	println(person.name)
+	println(person.age)
+	// println(person.sex)
+	
+	person.name = "言"
+	person.age = 14
+	
+	// 调用方法
+	person.play()
+}
+```
+
+```Kotlin
+name：月海
+15
+name：name： name 修改：言，age：11
+
+进程已结束,退出代码0
+```
+
+### ②、构造器
+
+1. Kotlin 中的类可以有一个 主构造器，以及一个或多个次构造器
+2. 主构造器是类头部的一部分，位于类名称之后，使用 constructor 关键词定义
+3. 如果主构造器没有任何注解，也没有任何可见度修饰符，那么constructor关键字可以省略
+4. 主构造器中不能包含任何代码，初始化代码可以放在初始化代码段中，初始化代码段使用 init 关键字作为前缀
+5. 从最后一个次构造函数依次向前代理
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 10:56
+ */
+/**
+ * 定义类，类名为：Person
+ *
+ * Kotlin 中的类可以有一个 主构造器，以及一个或多个次构造器
+ * 主构造器是类头部的一部分，位于类名称之后，使用 constructor 关键词定义
+ * 如果主构造器没有任何注解，也没有任何可见度修饰符，那么constructor关键字可以省略
+ * 主构造器中不能包含任何代码，初始化代码可以放在初始化代码段中，初始化代码段使用 init 关键字作为前缀
+ */
+class Person2 (name:String) {
+	
+	// 成员变量，默认 public
+	var name: String? = null
+	var age:Int? = null
+	// lateinit 关键字可以延迟初始化，但数据类型不可以是基本类型
+	private lateinit var sex:String;
+	
+	// 成员函数
+	fun play(){
+		println("name：$name，age：$age，sex：$sex")
+	}
+	
+	// 主构造器初始化代码块
+	init {
+		println("---- 主构造器初始化代码块 ----")
+		// 可以在此对变量进行初始化（定义时初始化好像更方便）
+		this.name = name
+	}
+	
+	// 次构造函数 1，必须使用 this 代理主构造函数
+	constructor(name:String, age:Int) : this(name){
+		println("---- 次构造函数 1 ----")
+		// 可以在此对变量进行初始化（定义时初始化好像更方便）
+		this.age = age
+	}
+	// 次构造函数 2，必须使用 this 代理主构造函数
+	constructor(name:String, age:Int, sex:String) : this(name, age){
+		println("---- 次构造函数 2 ----")
+		// 也可以对常量或 lateinit 关键字定义函数进行初始化
+		this.sex = sex
+	}
+	
+	
+}
+
+fun main() {
+	// 实例化对象，因为变量定义时并没有赋初始值，所以 person2 和 person3 调用没有传递值的属性时会报错
+	val person = Person2("月海", 16, "0")
+	val person2 = Person2("月海", 16 )
+	val person3 = Person2("月海")
+
+	// 调用方法
+	person.play()
+	// person2.play()
+}
+```
+
+```Kotlin
+---- 主构造器初始化代码块 ----
+---- 次构造函数 1 ----
+---- 次构造函数 2 ----
+---- 主构造器初始化代码块 ----
+---- 次构造函数 1 ----
+---- 主构造器初始化代码块 ----
+name：月海，age：16，sex：0
+
+进程已结束,退出代码0
+```
+
+6. 更简便的属性定义
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 10:56
+ */
+/**
+ * 定义类，类名为：Person
+ *
+ * 可以在构造器中直接定义成员属性，实例化时可直接被赋值
+ */
+class Person2b (
+	var name: String,
+	var age: Int,
+	private var sex: String
+) {
+	
+	// 成员函数
+	fun play(){
+		println("name：$name，age：$age，sex：$sex")
+	}
+	
+}
+
+fun main() {
+	// 实例化对象，因为变量定义时并没有赋初始值，所以 person2 和 person3 调用没有传递值的属性时会报错
+	val person = Person2b("月海", 16, "0")
+
+	// 调用方法
+	person.play()
+	
+	// 设置属性
+	person.name = "言"
+	// 获取属性
+	println(person.name)
+}
+```
+
+```Kotlin
+name：月海，age：16，sex：0
+言
+
+进程已结束,退出代码0
+```
+
+### ③、权限修饰符
+
+1. 类修饰符，标示类本身特性：
+	1. `final`：类不可继承，默认修饰符
+	2. `open`：类可继承，类默认是 `final` 的
+	3. `abstract`：抽象类
+	4. `enum`：枚举类
+	5. `annotation`：注解类
+2. 属性方法修饰符：
+	1. `public`，公共的，所有调用的地方都可见；默认权限修饰符
+	2. `private`，私有的，仅在同一个文件中可见
+	3. `protected`，受保护的，同一个文件中或子类可见
+	4. `internal`，内部的，同一个模块中可见（与 java 不能混用）；使用场景：你定义了一个方法，自己的其他方法要用到它，但是你又不希望别人实例化了这个类之后用对象来调用这个方法
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 12:56
+ */
+
+/**
+ * 类的修饰符，标示类本身特性：
+ * final		：类不可继承，默认修饰符
+ * open			：类可继承，类默认是 final 的
+ * abstract		：抽象类
+ * enum			：枚举类
+ * annotation	：注解类
+ */
+open class Person3(
+	// public，公共的，所有调用的地方都可见；默认权限修饰符
+	public var name:String,
+	// private，私有的，仅在同一个文件中可见
+	private var sex:Char,
+	// protected，受保护的，同一个文件中或子类可见
+	protected var age:Int,
+	
+) {
+	
+	// internal，内部的，同一个模块中可见（与 java 不能混用）
+	// 使用场景：你定义了一个方法，自己的其他方法要用到它，但是你又不希望别人实例化了这个类之后用对象来调用这个方法
+	internal fun fun1(){
+		println("只能我自己用！")
+	}
+	
+}
+```
+
+### ④、嵌套类、内部类和匿名内部类
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 13:20
+ */
+class Person4(
+	var name:String,
+	var age:Int,
+	private var sex:Char,
+	) {
+	
+	// 我们可以把类嵌套在其他类中
+	class yueHai{
+		fun play(){
+			println("月海")
+		}
+	}
+	
+	// 内部类定义：使用 inner 关键字
+	// 内部类会带有一个对外部类的对象的引用，所以内部类可以访问外部类成员属性和成员函数
+	inner class yan{
+		// 获取外部类的成员变量：
+		val yanName = name;
+		// 为了消除歧义，要访问来自外部作用域的 this，我们使用 this@label，其中 @label 是一个 代指 this 来源的标签
+		val yanAge = this@Person4.age
+		
+		fun play(){
+			println("${yanName}，$yanAge")
+		}
+	}
+	
+	/**
+	 * 匿名内部类，使用对象表达式来创建匿名内部类，要使用接口
+	 *
+	 * 1、定义一个接口，并在其中定义一个抽象方法
+	 * 2、定义一个方法，传入定义的接口
+	 * 3、在方法中调用接口中的抽象方法
+	 * 4、调用匿名内部类，使用对象表达式来创建匿名内部类，实现其方法
+	 */
+	// 2、定义一个方法，传入定义的接口
+	fun game(play: Play){
+		// 3、在方法中调用接口中的抽象方法
+		play.game()
+	}
+	
+	
+}
+
+// 1、定义一个接口
+interface Play{
+	// 1.2、在接口中定义一个抽象方法
+	fun game()
+}
+
+fun main() {
+	// 调用嵌套类
+	Person4.yueHai().play()
+	
+	// 调用内部类
+	Person4("月海", 16, '0').yan().play()
+	
+	// 4、调用匿名内部类，使用对象表达式来创建匿名内部类，实现其方法
+	Person4("月海", 16, '0').game(object : Play{
+		override fun game() {
+			println("调用匿名内部类，使用对象表达式来创建匿名内部类，实现其方法")
+		}
+	})
+	
+}
+```
+
+```Kotlin
+月海
+月海，16
+调用匿名内部类，使用对象表达式来创建匿名内部类，实现其方法
+
+进程已结束,退出代码0
+```
+
+## 2、继承
+
+### ①、父类
+
+1. Kotlin 中所有类都继承该 Any 类，它是所有类的超类，对于没有超类型声明的类是默认超类：从 Any 隐式继承：`class Example`
+2. Any 默认提供了三个函数：`equals()、hashCode()、toString()`，因此，所有 Kotlin 类都定义了这些方法；注意：`Any` 不是 `java.lang.Object`
+3. 如果一个类要被继承，可以使用 `open` 关键字进行修饰
+4. 与 java 相同，子类无法多继承，但是可以实现多个接口
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 14:05
+ */
+
+// 定义基类
+open class Play1(
+	val name:String
+) {
+}
+
+// 子类继承父类
+class Game(name:String):Play1(name){
+
+}
+```
+
+### ②、构造函数
+
+1. 如果子类有主构造函数， 则基类必须在主构造函数中立即初始化
+2. 如果子类没有主构造函数，则必须在每一个二级构造函数中用 super 关键字初始化基类，或者在代理另一个构造函数。初始化基类时，可以调用基类的不同构造方法
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 14:24
+ */
+// 定义基类
+open class Play2(
+	val name:String
+) {
+	fun play(){
+		println("玩$name")
+	}
+}
+
+// 如果子类有主构造函数， 则基类必须在主构造函数中立即初始化
+class Game2(name:String):Play2(name){
+
+}
+
+//  如果子类没有主构造函数，则必须在每一个二级构造函数中用 super 关键字初始化基类，或者在代理另一个构造函数。初始化基类时，可以调用基类的不同构造方法
+class Game2b:Play2{
+	constructor(name:String): super(name){
+	
+	}
+}
+
+fun main() {
+	// 调用类中的方法
+	Game2("月海").play()
+	Game2b("月海").play()
+
+}
+```
+
+### ③、重写
+
+1. 在基类中，使用 `fun` 声明函数时，此函数默认为 `final` 修饰，不能被子类重写。如果允许子类重写该函数，那么就要手动添加 `open` 修饰它，子类重写方法使用 `override` 关键词
+2. 属性重写使用 `override` 关键字，属性必须具有兼容类型，每一个声明的属性都可以通过初始化程序或者 `getter` 方法被重写
+3. 可以用一个 `var` 属性重写一个 `val` 属性，但是反过来不行。因为 `val` 属性本身定义了 `getter` 方法，重写为 `var` 属性会在衍生类中额外声明一个 `setter` 方法
+4. 子类继承父类时，不能有跟父类同名的变量，除非父类中该变量为 `private`，或者父类中该变量为 `open` 并且子类用 `override` 关键字重写
+5. 派生类初始化顺序：
+	1. 在构造派生类的新实例的过程中，第一步完成其基类的初始化（在之前只有对基类构造函数参数的求值），因此发生在派生类的初始化逻辑运行之前
+	2. 这意味着，基类构造函数执行时，派生类中声明或覆盖的属性都还没有初始化。
+	3. 如果在基类初始化逻辑中（直接或通过另一个覆盖的 open 成员的实现间接）使用了任何一个这种属性，那么都可能导致不正确的行为或运行时故障。
+	4. 设计一个基类时，应该避免在构造函数、属性初始化器以及 init 块中使用 open 成员
+6. 可以使用 `super` 关键字调用其父类的函数与属性
+7. 在一个内部类中访问外部类的超类，可以通过由外部类名限定的 `super` 关键字来实现
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 14:50
+ */
+// 定义基类
+open class Play3(
+	// 属性重写使用 override 关键字，属性必须具有兼容类型，每一个声明的属性都可以通过初始化程序或者getter方法被重写
+	val name:String = "yuehai",
+	val age:Int = 16
+) {
+	// 在基类中，使用 fun 声明函数时，此函数默认为 final 修饰，不能被子类重写。如果允许子类重写该函数，那么就要手动添加 open 修饰它
+	open fun play(){
+		println("玩$name")
+	}
+}
+
+// 如果子类有主构造函数， 则基类必须在主构造函数中立即初始化
+class Game3(name:String):Play3(name){
+	
+	// 子类重写方法使用 override 关键词
+	override fun play(){
+		// 可以使用 super 关键字调用其父类的函数与属性
+		println("玩${name}的游戏，${super.age}")
+	}
+}
+
+fun main() {
+	// 调用类中的方法
+	Game3("月海").play()
+	
+}
+```
+
+```Kotlin
+玩月海的游戏，16
+
+进程已结束,退出代码0
+```
+
+### ④、抽象类
+
+1. 抽象类：存在抽象方法的类，使用 abstract 关键字定义
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 15:21
+ */
+// 抽象类：存在抽象方法的类，使用 abstract 关键字定义
+abstract class Play4(
+	val name:String = "yuehai",
+	val age:Int = 16
+) {
+	// 抽象方法
+	abstract fun play()
+}
+
+// 如果子类有主构造函数， 则基类必须在主构造函数中立即初始化
+class Game4(name:String):Play4(name){
+	// 子类中要实现父类的抽象方法，不然子类也必须定义为抽象类
+	override fun play() {
+		println("玩${name}的游戏，${super.age}")
+	}
+}
+
+fun main() {
+	// 调用类中的方法
+	Game4("月海").play()
+	
+}
+```
+
+```Kotlin
+玩月海的游戏，16
+
+进程已结束,退出代码0
+```
+
+## 3、接口
+
+1. Kotlin 接口与 Java 8 类似，使用 `interface` 关键字定义接口，允许方法有默认实现
+2. 必须要实现接口中的所有抽象属性和方法
+3. 可以多实现
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 15:27
+ */
+
+// 使用 interface 关键字定义接口，允许方法有默认实现
+interface PlayInterface1{
+	
+	// 接口中的属性只能是抽象的，不允许初始化值，接口不会保存属性值，实现接口时，必须重写属性
+	var name:String
+	
+	// 定义抽象方法 play
+	fun play()
+	// 定义抽象方法 sleep
+	fun sleep()
+	
+	// 定义默认已实现的方法
+	fun game(){
+		println("玩${name}的游戏")
+	}
+	
+}
+
+// 实现接口，可多实现
+class GameInterface1(
+	// 必须要实现接口中的所有抽象属性和方法
+	override var name: String
+):PlayInterface1{
+	
+	override fun play() {
+		println("玩${name}")
+	}
+	
+	override fun sleep() {
+		println("睡${name}")
+	}
+}
+
+fun main() {
+	// 实例化类
+	val gameInterface1 = GameInterface1("月海")
+	
+	// 调用方法
+	gameInterface1.game()
+	gameInterface1.play()
+	gameInterface1.sleep()
+}
+```
+
+```Kotlin
+玩月海的游戏
+玩月海
+睡月海
+
+进程已结束,退出代码0
+```
+
+## 4、数据类
+
+### ①、定义数据类
+
+1. Kotlin 可以创建一个只包含数据的类，关键字为 `data`
+2. 编译器会自动的从主构造函数中根据所有声明的属性提取以下函数：
+
+```Kotlin
+equals()
+hashCode()
+// 格式如 "User(name=John, age=42)"
+toString() 
+// functions 对应于属性，按声明顺序排列
+componentN() 
+// 复制函数
+copy() 
+```
+
+3. 如果这些函数在类中已经被明确定义了，或者从超类中继承而来，就不再会生成。为了保证生成代码的一致性以及有意义，数据类需要满足以下条件：
+	1. 主构造函数至少包含一个参数。
+	2. 所有的主构造函数的参数必须标识为val 或者 var ;
+	3. 数据类不可以声明为 `abstract`、`open`、`sealed` 或者 `inner`;
+	4. 数据类不能继承其他类 (但是可以实现接口)
+
+```Kotlin
+package com.yuehai.kotlin._06_ClassesAndObjects
+
+/**
+@author 月海
+@create 2023/4/14 16:24
+ */
+
+// 定义数据类
+data class User(
+	val name:String,
+	val age:Int,
+)
+
+fun main() {
+	// 实例化数据类
+	val user = User("月海", 16)
+	println(user.toString())
+	
+	// 使用 copy 函数复制对象并修改部分属性
+	val copy = user.copy(name = "言")
+	println(copy)
+}
+```
+
+```Kotlin
+User(name=月海, age=16)
+User(name=言, age=16)
+
+进程已结束,退出代码0
+```
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+## 5、伴生类
+
+## 6、枚举类
+
+## 7、
 
 # 七、
 
