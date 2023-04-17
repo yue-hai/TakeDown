@@ -1319,7 +1319,7 @@ Java->100， 月海->16， Kotlin->92，
 进程已结束,退出代码0
 ```
 
-# 五、函数
+# 五、`Kotlin` 函数
 
 ## 1、函数定义
 
@@ -1637,7 +1637,7 @@ mSectionMetaData?.apply{
 
 ![](attachments/Pasted%20image%2020230413211232.png)
 
-# 六、类和对象
+# 六、`Kotlin` 类和对象
 
 ## 1、类定义
 
@@ -2639,7 +2639,7 @@ fun main() {
 进程已结束,退出代码0
 ```
 
-# 七、泛型
+# 七、`Kotlin` 泛型
 
 ## 1、泛型的使用
 
@@ -2722,7 +2722,7 @@ fun main() {
 }
 ```
 
-# 八、协程
+# 八、`Kotlin` 协程
 
 ## 1、Kotlin 协程
 
@@ -4775,9 +4775,125 @@ internal class BlockRunner<T>(
 }
 ```
 
-# 九、
+# 九、Kotlin 与 Java 的调用
 
-# 十、
+1. Kotlin 在设计之初，就考虑了与 Java 的互操作性。因此 Java 和 Kotlin 是可以很方便的进行互相调用的。
+2. 虽然 Kotlin 完全兼容 Java，但不代表 Kotlin 就是 Java，它们在相互调用但时候，还是有一些需要注意的细节。
+
+## 1、Kotlin 调 Java
+
+### ①、Kotlin 调 Java
+
+1. 首先，几乎所有的 Java 代码，都可以在 Kotlin 中调用而没有任何问题。如在 Kotlin 中使用集合类：
+
+```Kotlin
+import java.util.*
+
+fun demo(source: List<Int>) {
+    val list = ArrayList<Int>()
+    // “for”-循环用于 Java 集合：
+    for (item in source) {
+        list.add(item)
+    }
+    // 操作符约定同样有效：
+    for (i in 0..source.size - 1) {
+        list[i] = source[i] // 调用 get 和 set
+    }
+}
+```
+
+2. 只是在创建对象和使用对象方法的时候，可以有更简洁的方式去使用。
+3. 下面针对一些细节做详细介绍：
+
+### ②、访问普通属性和方法
+
+1. 如果要访问一个 `Java` 对象的私有属性，`Java` 对象都会提供 `Getter` 和 `Setter` 方法，通过相关的 `Getter` 和 `Setter` 方法，就可以拿到属性的值。
+2. 而如果一个 `Java` 类为成员属性提供了 `Getter` 和 `Setter` 方法，则在 Kotlin 中使用该属性的时候，就可以直接通过属性名去访问，而不用调对应的 `Getter` 和 `Setter` 方法，如
+
+```java
+package com.yuehai.kotlin._09_KotlinCallJava;
+
+/**
+ * @author 月海
+ * @create 2023/4/17 9:39
+ */
+public class JavaTest {
+    private String name;
+    private Integer age;
+
+    public JavaTest() {
+    }
+    public JavaTest(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Integer getAge() {
+        return age;
+    }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void play(){
+        System.out.println("玩" + this.name);
+    }
+}
+
+```
+
+```Kotlin
+package com.yuehai.kotlin._09_KotlinCallJava
+
+/**
+@author 月海
+@create 2023/4/17 9:41
+ */
+fun main() {
+	// Kotlin 实例化 Java 类
+	val java = JavaTest("月海", 16)
+	
+	// 调用对象属性
+	println(java.name)
+	// 调用对象方法
+	java.play()
+}
+```
+
+```Kotlin
+月海
+玩月海
+
+进程已结束,退出代码0
+```
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+### ⑥、
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+# 十、`Android` 基础
 
 # 十一、
 
