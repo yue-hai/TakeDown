@@ -4885,25 +4885,559 @@ fun main() {
 
 ## 3、
 
-## 4、
+# 十、`Android` 初识
 
-## 5、
+## 1、`build.gradle` 配置文件
+
+![](attachments/Pasted%20image%2020230417111320.png)
+
+```Kotlin
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.yuehai.android'
+    // 指定编译用的 SDK 版木号。比如 33 表示使用 Android 13.0 编译
+    compileSdk 33
+
+    defaultConfig {
+        // 指定该模块的应用编号,也就是 App 的包名
+        applicationId "com.yuehai.android"
+        // 指定 app 适合运行的最小 SDK 版本号。比如 19 表示至少要在 Android 4.4 上运行
+        minSdk 28
+        // 指定目标设备的 SDK 版本号。表示 App 最希望在哪个版本的 Android 上运行
+        targetSdk 33
+        // 指定 App 的应用版本号
+        versionCode 1
+        // 指定 App 的应用版本名称
+        versionName "1.0"
+
+        // 单元测试
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+// 依赖
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+```
+
+## 2、`AndroidManifest.xml` 清单文件
+
+![](attachments/Pasted%20image%2020230417125817.png)
+
+```Kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    xmlns:android：命名空间
+    package：包名
+    android:versionCode="1"：内部版本号
+    android:versionName="1.0"：用户可见的版本号
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        android:allowBackup，是否允许应用备份。
+            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+            为 true 表示允许，为 false 则表示不允许
+        android:icon，指定 App 在手机屏幕上显示的图标。
+        android:label，指定 App 在手机屏幕上显示的名称。
+        android:roundIcon，指定 App 的圆角图标。
+        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        android:theme，指定 App 的显示风格。
+     -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.02_Android"
+
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        tools:targetApi="31">
+
+        <!--
+            1、Activity 是一个应用程序组件，提供一个屏幕（窗口），，它提供屏幕进行交互,用户可以用来交互为了完成某项任务。
+            2、每个 Activity 都会获得一个用于绘制其用户界面的窗口，窗口可以充满哦屏幕也可以小于屏幕并浮动在其他窗口之上
+            3、一个应用通常是由多个彼此松散联系的 Activity 组成，一般会指定应用中的某个 Activity 为主活动，也就是说首次启动应用时给用户呈现的 Activity。
+
+            android:name=".MainActivity"：打开应用时首先看到的是哪个窗口
+         -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+```
+
+## 3、界面显示与逻辑处理
+
+1. 利用 `XML` 标记描绘应用界面，使用 `JAVA（Kotlin）` 代码书写程序逻辑
+
+![](attachments/Pasted%20image%2020230417130212.png)
+
+### ①、`activity_main.xml`
+
+![](attachments/Pasted%20image%2020230417140616.png)
+
+
+```Kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    最外层；LinearLayout：线性布局
+    xmlns:android="http://schemas.android.com/apk/res/android"：命名空间
+    android:layout_width="match_parent"：宽，match_parent：填充父空间，即 100% 屏幕大小
+    android:layout_height="match_parent"：高
+    android:orientation="vertical"：线性布局（纵向）
+    android:gravity="center"：居中
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <!--
+        TextView：文本框
+        android:id="@+id/yuehai_text"：设置 id，以便于调用
+        android:layout_width="wrap_content"：宽，wrap_content：根据内容大小改变宽度
+        android:layout_height="wrap_content"：高
+        android:text="文本框"：文本框显示文字
+     -->
+    <TextView
+        android:id="@+id/yuehai_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文本框"
+        />
+
+</LinearLayout>
+```
+
+![](attachments/Pasted%20image%2020230417140651.png)
+
+### ②、`MainActivity`
+
+```Kotlin
+package com.yuehai.android
+
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // 设置内容视图；当前的组件显示哪个视图（窗口）
+        // R 就是 res 包
+        setContentView(R.layout.activity_main)
+
+        // 使用 id 修改属性；修改文本框显示文字
+        // 传入的泛型为 xml 中的标签名，即组件类型
+        val textView = findViewById<TextView>(R.id.yuehai_text)
+        // 修改文本框显示文字
+        textView.text = "修改文本框"
+    }
+}
+```
+
+## 4、`activity` 窗口的创建和跳转
+
+1. 在 `layout` 下创建一个窗口文件 `yuehai`
+
+![](attachments/Pasted%20image%2020230417143741.png)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    最外层；LinearLayout：线性布局
+    xmlns:android="http://schemas.android.com/apk/res/android"：命名空间
+    android:layout_width="match_parent"：宽，match_parent：填充父空间，即 100% 屏幕大小
+    android:layout_height="match_parent"：高
+    android:orientation="vertical"：线性布局（纵向）
+    android:gravity="center"：居中
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <!--
+        TextView：文本框
+        android:id="@+id/yuehai_text"：设置 id，以便于调用
+        android:layout_width="wrap_content"：宽，wrap_content：根据内容大小改变宽度
+        android:layout_height="wrap_content"：高
+        android:text="@string/yuehai"：文本框显示文字
+            @string/yuehai：引用 values 下的 strings.xml 中的 name 为 yuehai 的内容
+     -->
+    <TextView
+        android:id="@+id/yuehai_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yuehai"
+        />
+
+</LinearLayout>
+```
+
+2. 在 `res/values/strings.xml` 处定义的数据可在别处进行引用
+
+![](attachments/Pasted%20image%2020230417164008.png)
+
+```xml
+<resources>
+    <string name="app_name">02_Android</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- 在此处定义的数据可在别处进行引用 -->
+    <string name="yuehai">月海</string>
+</resources>
+```
+
+3. 在 `AndroidManifest.xml` 清单文件中进行注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    xmlns:android：命名空间
+    package：包名
+    android:versionCode="1"：内部版本号
+    android:versionName="1.0"：用户可见的版本号
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        android:allowBackup，是否允许应用备份。
+            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+            为 true 表示允许，为 false 则表示不允许
+        android:icon，指定 App 在手机屏幕上显示的图标。
+        android:label，指定 App 在手机屏幕上显示的名称。
+        android:roundIcon，指定 App 的圆角图标。
+        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        android:theme，指定 App 的显示风格。
+     -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.02_Android"
+
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        tools:targetApi="31">
+
+        <!--
+            1、Activity 是一个应用程序组件，提供一个屏幕（窗口），，它提供屏幕进行交互,用户可以用来交互为了完成某项任务。
+            2、每个 Activity 都会获得一个用于绘制其用户界面的窗口，窗口可以充满哦屏幕也可以小于屏幕并浮动在其他窗口之上
+            3、一个应用通常是由多个彼此松散联系的 Activity 组成，一般会指定应用中的某个 Activity 为主活动，也就是说首次启动应用时给用户呈现的 Activity。
+
+            android:name=".MainActivity"：打开应用时首先看到的是哪个窗口
+         -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- 注册新窗口 -->
+        <activity android:name=".Yuehai">
+            <!-- 不是主窗口，所以不用配置 intent-filter -->
+        </activity>
+    </application>
+
+</manifest>
+```
+
+4. 创建 `java/com/yuehai/android/Yuehai.kt` 文件，定义窗口的逻辑
+
+```Kotlin
+package com.yuehai.android
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+// 继承 AppCompatActivity()
+class Yuehai : AppCompatActivity() {
+    // 重写 onCreate(savedInstanceState: Bundle?) 方法
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.yuehai)
+    }
+
+}
+```
+
+5. 为了可以在 `activity_main` 中跳转到这个窗口，需要在 `activity_main.xml` 窗口中增加一个按钮
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    最外层；LinearLayout：线性布局
+    xmlns:android="http://schemas.android.com/apk/res/android"：命名空间
+    android:layout_width="match_parent"：宽，match_parent：填充父空间，即 100% 屏幕大小
+    android:layout_height="match_parent"：高
+    android:orientation="vertical"：线性布局（纵向）
+    android:gravity="center"：居中
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <!--
+        TextView：文本框
+        android:id="@+id/yuehai_text"：设置 id，以便于调用
+        android:layout_width="wrap_content"：宽，wrap_content：根据内容大小改变宽度
+        android:layout_height="wrap_content"：高
+        android:text="文本框"：文本框显示文字
+     -->
+    <TextView
+        android:id="@+id/yuehai_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文本框"
+        />
+    
+    <!--
+        Button：按钮
+        android:id="@+id/yuehai_btn"：设置 id，以便于调用
+        android:layout_width="wrap_content"：宽，wrap_content：根据内容大小改变宽度
+        android:layout_height="wrap_content"：高
+        android:text="跳转到 月海"：按钮显示文字
+     -->
+    <Button
+        android:id="@+id/yuehai_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转到 月海"/>
+
+</LinearLayout>
+```
+
+6. 在 `activity_main.xml` 对应的 `MainActivity.kt` 中添加逻辑代码，给按钮添加点击事件
+
+```Kotlin
+package com.yuehai.android
+
+import android.content.Intent
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // 设置内容视图；当前的组件显示哪个视图（窗口）
+        // R 就是 res 包
+        setContentView(R.layout.activity_main)
+
+        // 使用 id 修改属性；修改文本框显示文字
+        // 传入的泛型为 xml 中的标签名，即组件类型
+        val textView = findViewById<TextView>(R.id.yuehai_text)
+        // 修改文本框显示文字
+        textView.text = "修改文本框"
+
+        // 给按钮添加点击事件
+        findViewById<Button>(R.id.yuehai_btn).setOnClickListener {
+            // 获取 intent 对象
+            val intent = Intent()
+            // 跳转到该工程下的（同一个 Application 中的）activity 或者 service
+            // 参数一为当前 Package 的 context，当前 Activity 的 context 就是 this，其他 Package 可能用到 createPackageContex()
+            // 参数二为你要打开的 Activity 的类名
+            intent.setClass(this, Yuehai().javaClass)
+            // 启动窗口
+            startActivity(intent)
+        }
+    }
+
+}
+```
+
+7. 启动测试
+
+# 十一、`Android` 简单控件
+
+1. 创建新模块：`01_simplecontrol`
+2. 若是没有选默认样式，则可能 `res` 下没有 `layout` 等文件夹，可以自己创建
+
+## 1、文本显示
+
+1. 设置文本内容有两种方式：
+	1. 在 XML 文件中通过属性 `android:text` 设置文本
+	2. 在代码中调用文本视图对象的 `textView.text` 方法设置文本
+2. 引用字符串资源：
+	1. 在 XML 文件中引用 `@string/xxx`
+	2. 在 Java 代码中引用 `R.string.xxx`
+3. 其余设置文本字体大小，颜色等都是可以通过关键词 + 代码提示很容易就能知道怎么写，这里就不赘述。
+4. 在 `layout` 下创建窗口文件 `layout.xml`
+
+![](attachments/Pasted%20image%2020230417160550.png)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center">
+	
+	<TextView
+		android:id="@+id/yuehai_text"
+		android:text="@string/yuehai_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+5. `res/values/strings.xml` 字符串常量
+
+```xml
+<resources>
+	<string name="app_name">01_SimpleControl</string>
+	<string name="yuehai_text">月海 —— 文本框</string>
+</resources>
+```
+
+6. 在 `AndroidManifest.xml` 清单文件中进行注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--
+        android:allowBackup，是否允许应用备份。
+            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+            为 true 表示允许，为 false 则表示不允许
+        android:icon，指定 App 在手机屏幕上显示的图标。
+        android:label，指定 App 在手机屏幕上显示的名称。
+        android:roundIcon，指定 App 的圆角图标。
+        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        android:theme，指定 App 的显示风格。
+     -->
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!--
+            android:name=".MainActivity"：当前注册的窗口是哪个
+         -->
+		<activity
+			android:name=".Layout"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+</manifest>
+```
+
+6. 创建窗口文件对应的 `Layout.kt` 文件，定义窗口的逻辑
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class Layout: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.layout)
+    }
+}
+```
+
+7. 运行测试
+
+## 2、视图基础
+
+## 3、常用布局
+
+## 4、按钮触控
+
+## 5、图像显示
 
 ## 6、
 
-## 7、
 
-# 十、`Android` 基础
+# 十二、`Android` 
 
-# 十一、
+# 十三、`Android` 
 
-# 十二、
+# 十四`Android` 
 
-# 十三、
-
-# 十四
-
-# 十五、
+# 十五、`Android` 
 
 # 十六、
 
