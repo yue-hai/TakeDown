@@ -5524,18 +5524,349 @@ class Layout: AppCompatActivity() {
 1. `Button` 继承于 `TextView`，因此它们拥有的属性都是共通的。
 2. 除此之外，`Button` 最重要的是点击事件。
 	1. 点击监听器：通过 `setOnClickListener` 方法设置。按钮被按住少于 500 毫秒时，会触发点击事件。
-	2. 长按监听器：通过 `setOnLongClickListener` 方法设置。按钮被按住超过 500 毫秒时，会触发长按事件。
-3. 按钮控件 `Button` 由 `TextView` 派生而来，它们之间的区别有：
-	1. `Button` 拥有默认的按钮背景，而 `TextView` 默认无背景;
+	2. 长按监听器：通过 `setOnLongClickListener` 方法设置。按钮被按住超过 500 毫秒时，会触发长按事件；需要返回值， `true` 为成功，`false`  为失败
+3. 有三种设置方式：
+	1. 匿名内部类
+	2. 实现 `OnClickListener` 接口
+	3. `xml` 中配置（不推荐）
+4. 在实际业务中，按钮通常拥有两种状态，即不可用状态与可用状态，它们在外观和功能上的区别如下：
+	1. 不可用按钮：按钮不允许点击，即使点击也没反应，同时按钮文字为灰色
+	2. 可用按钮：按钮允许点击，点击按钮会触发点击事件，同时按钮文字为正常的黑色
+	3. 是否允许点击由 `enabled` 属性控制，属性值为 `true` 时表示允许点击，为 `false` 时表示不 允许
+点击。
+5. 按钮控件 `Button` 由 `TextView` 派生而来，它们之间的区别有：
+	1. `Button` 拥有默认的按钮背景，而 `TextView` 默认无背景：
 	2. `Button` 的内部文本默认居中对齐，而 `TextView` 的内部文本默认靠左对齐；
 	3. `Button` 会默认将英文字母转为大写，而 `TextView` 保持原始的英文大小写;
 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center"
+	android:orientation="vertical">
+	
+	<!--
+	    1、android:text="@string/yuehai_text"：设置文本
+	    2、android:textSize="50px"：设置文本大小
+	        px:它是手机屏幕的最小显示单位，与设备的显示屏有关。
+	        dp:它是与设备无关的显示单位，只与屏幕的尺寸有关。
+	        sp:它专门用来设置字体大小，在系统设置中可以调整字体大小。
+        3、android:textColor="#F44336"：设置文本颜色
+    -->
+	<TextView
+		android:id="@+id/yuehai_text"
+		android:layout_gravity="start"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		
+		android:text="@string/yuehai_text"
+		android:textSize="20sp"
+		android:textColor="#F44336" />
+	
+	<!--
+		1、设置视图宽高 android:layout_width、 android:layout_height；主要有下列三种:
+			match_parent:表示与上级视图保持一致。
+			wrap_content:表示与内容自适应。
+			以 dp 为单位的具体尺寸。
+		2、设置视图的间距 android:layout_margi；有两种方式：
+			采用 layout_margin 属性，它指定了当前视图与周围平级视图之间的距离：包括 layout_margin、layout_marginLeft、layout_marginTop、layout_marginRight、layout_marginBottom
+			采用padding属性，它指定了当前视图与内部下级视图之间的距离：包括padding、paddingLeft、 paddingTop.paddingRight、 paddingBottom
+		3、设置视图的对齐方式 android:layout_gravity；有两种途径:
+			采用 layout_gravity 属性，它指定了当前视图相对于上级视图的对齐方式。
+			采用 gravity 属性，它指定了下级视图相对于当前视图的对齐方式。
+			layout_gravity 与 gravity 的取值包括: left、top、right、bottom，
+			还可以用竖线连接各取值，例如 left|top 表示即靠左又靠上，也就是朝左上角对齐。
+
+	 -->
+	<TextView
+		android:id="@+id/yuehai_text2"
+		android:text="月海 —— 文本框2"
+		android:textSize="20sp"
+		
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:layout_gravity="center" />
+	
+	<Button
+		android:id="@+id/yuehai_btn"
+		android:text="月海 —— 按钮"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+	
+
+</LinearLayout>
+```
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class Layout: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.layout)
+
+        // 1、获取按钮 yuehai_btn 元素
+        val button = findViewById<Button>(R.id.yuehai_btn)
+        
+        // 设置点击事件；
+        // 2.1、方式一：匿名内部类；点击监听器
+        button.setOnClickListener {
+            println("匿名内部类；点击监听器")
+        }
+        // 2.2、方式一：匿名内部类；长按监听器
+        button.setOnLongClickListener {
+            println("匿名内部类；长按监听器")
+            // 禁止点击事件
+            button.isEnabled = false
+            true
+        }
+        
+        // 2、方式二：实现 OnClickListener 接口
+        // button.setOnClickListener(MyOnClick())
+        // button.setOnLongClickListener(MyOnLongClick())
+    }
+}
+
+// 实现 OnClickListener 接口
+class MyOnClick: View.OnClickListener {
+    override fun onClick(p0: View?) {
+        println("实现 OnClickListener 接口；点击监听器")
+    }
+}
+// 实现 OnClickListener 接口
+class MyOnLongClick: View.OnLongClickListener {
+    override fun onLongClick(p0: View?): Boolean {
+        println("实现 OnClickListener 接口；长按监听器")
+        return true
+    }
+    
+}
+```
+
 ## 5、图像显示
 
-## 6、
+1. 图片一般放在 `res/drawable` 目录下，设置图像显示一般有两种方法：
+	1. 在 `XML` 文件中，通过属性 `android:src` 设置图片资源，属性值格式形如 `@drawable/不含扩展名` 的图片名称。
+	2. 在 Java 代码中，调用 `setImageResource` 方法设置图片资源，方法参数格式形如 `R.drawable.不含扩展名` 的图片名称。
 
+### ①、图像的缩放问题
+
+1. `ImageView` 本身默认图片居中显示，若要改变图片的显示方式，可通过 `scaleType` 属性设定
+2. 该属性的取值说明如下
+
+| XML中的缩放类型 | ScaleType类中的缩放类型 | 说明                                                 |
+| --------------- | ----------------------- | ---------------------------------------------------- |
+| fitXY           | FIT XY                  | 拉伸图片使其正好填满视图(图片可能被拉伸变形)         |
+| fitStart        | FIT START               | 保持宽高比例，拉伸图片使其位于视图上方或左侧         |
+| fitCenter       | FIT_ CENTER             | 保持宽高比例，拉伸图片使其位于视图中间               |
+| fitEnd          | FIT_ END                | 保持宽高比例，拉伸图片使其位于视图下方或右侧         |
+| center          | CENTER                  | 保持图片原尺寸，并使其位于视图中间                   |
+| centerCrop      | CENTER_ CROP            | 拉伸图片使其充满视图，并位于视图中间                 |
+| centerlnside    | CENTER INSIDE           | 保持宽高比例，缩小图片使之位于视图中间(只缩小不放大) |
+
+### ②、图像按钮 `ImageButton`
+
+1. `ImageButton` 是显示图片的图像按钮，但它继承自 `ImageView`，而非继承 `Button`。
+2. `ImageButton` 和 `Button` 之间的区别有：
+	1. `Button` 既可显示文本也可显示图片，`ImageButton` 只能显示图片不能显示文本。
+	2. `ImageButton` 上的图像可按比例缩放，而 `Button` 通过背景设置的图像会拉伸变形。
+	3. `Button` 只能靠背景显示一张图片，而 `ImageButton` 可分别在前景和背景显示图片，从而实现两张图片叠加的效果。
+3. 在某些场合，有的字符无法由输入法打出来，或者某些文字以特殊字体展示，就适合适合先切图再放到 `imageButton`。例如：开平方符号 `√`， 等等。
+4. ImageButton 与 ImageView 之间的区别有：
+	1. `ImageButton` 有默认的按钮背景，`ImageView` 默认无背景。
+	2. `ImageButton` 默认的缩放类型为 `center`， 而 `ImageView` 默认的缩放类型为 `fitCenter`.
+
+### ③、同时展示图片与按钮
+
+1. 利用 LinearLayout 对 ImageView 和 TextView 组合布局。
+2. 通过按钮控件 `Button` 的 `drawable ***` 属性设置文本周围的图标。
+	1. drawableTop: 指定文字上方的图片。
+	2. drawableBottom: 指定文字下方的图片。
+	3. drawableLeft: 指定文字左边的图片。
+	4. drawableRight: 指定文字右边的图片。
+	5. drawablePadding: 指定图片与文字的间距。
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center"
+	android:orientation="vertical">
+
+	<!--
+	    1、android:text="@string/yuehai_text"：设置文本
+	    2、android:textSize="50px"：设置文本大小
+	        px:它是手机屏幕的最小显示单位，与设备的显示屏有关。
+	        dp:它是与设备无关的显示单位，只与屏幕的尺寸有关。
+	        sp:它专门用来设置字体大小，在系统设置中可以调整字体大小。
+        3、android:textColor="#F44336"：设置文本颜色
+    -->
+	<TextView
+		android:id="@+id/yuehai_text"
+		android:layout_gravity="start"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+
+		android:text="@string/yuehai_text"
+		android:textSize="20sp"
+		android:textColor="#F44336" />
+
+	<!--
+		1、设置视图宽高 android:layout_width、 android:layout_height；主要有下列三种:
+			match_parent:表示与上级视图保持一致。
+			wrap_content:表示与内容自适应。
+			以 dp 为单位的具体尺寸。
+		2、设置视图的间距 android:layout_margi；有两种方式：
+			采用 layout_margin 属性，它指定了当前视图与周围平级视图之间的距离：包括 layout_margin、layout_marginLeft、layout_marginTop、layout_marginRight、layout_marginBottom
+			采用padding属性，它指定了当前视图与内部下级视图之间的距离：包括padding、paddingLeft、 paddingTop.paddingRight、 paddingBottom
+		3、设置视图的对齐方式 android:layout_gravity；有两种途径:
+			采用 layout_gravity 属性，它指定了当前视图相对于上级视图的对齐方式。
+			采用 gravity 属性，它指定了下级视图相对于当前视图的对齐方式。
+			layout_gravity 与 gravity 的取值包括: left、top、right、bottom，
+			还可以用竖线连接各取值，例如 left|top 表示即靠左又靠上，也就是朝左上角对齐。
+
+	 -->
+	<TextView
+		android:id="@+id/yuehai_text2"
+		android:text="月海 —— 文本框2"
+		android:textSize="20sp"
+
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:layout_gravity="center" />
+
+	<Button
+		android:id="@+id/yuehai_btn"
+		android:text="月海 —— 按钮"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+	<!-- 线性布局 -->
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:orientation="horizontal">
+		
+		<!--
+			图片显示
+			安卓的布局好像原生没有百分比设置，可以用某些依赖实现，比如：Android ConstraintLayout
+		 -->
+		<ImageView
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:src="@drawable/qq"/>
+		
+		<!-- 图片按钮 -->
+		<ImageButton
+				android:id="@+id/yuehai_imageBtn"
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:src="@drawable/wcat"
+				android:scaleType="fitCenter"/>
+		
+		<Button
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:text="图片文字按钮"
+		android:drawableTop="@drawable/wcat"/>
+		
+	</LinearLayout>
+	
+</LinearLayout>
+```
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
+
+class Layout: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.layout)
+
+        // 1、获取按钮 yuehai_btn 元素
+        val button = findViewById<Button>(R.id.yuehai_btn)
+        
+        // 设置点击事件；
+        // 2.1、方式一：匿名内部类；点击监听器
+        button.setOnClickListener {
+            println("匿名内部类；点击监听器")
+        }
+        // 2.2、方式一：匿名内部类；长按监听器
+        button.setOnLongClickListener {
+            println("匿名内部类；长按监听器")
+            // 禁止点击事件
+            button.isEnabled = false
+            true
+        }
+
+        // 2、方式二：实现 OnClickListener 接口
+        // button.setOnClickListener(MyOnClick())
+        // button.setOnLongClickListener(MyOnLongClick())
+
+        // 图片按钮绑定点击事件
+        findViewById<ImageButton>(R.id.yuehai_imageBtn).setOnClickListener {
+            println("点击图片按钮")
+        }
+    }
+}
+
+// 实现 OnClickListener 接口
+class MyOnClick: View.OnClickListener {
+    override fun onClick(p0: View?) {
+        println("实现 OnClickListener 接口；点击监听器")
+    }
+}
+// 实现 OnClickListener 接口
+class MyOnLongClick: View.OnLongClickListener {
+    override fun onLongClick(p0: View?): Boolean {
+        println("实现 OnClickListener 接口；长按监听器")
+        return true
+    }
+    
+}
+```
 
 # 十二、`Android` 
+
+- `Activity` 是安卓开发四大组件之一，非常重要。
+- 感觉类似 `vue` 的路由
+
+## 1、`Activity` 的启动和结束
+
+1. `Activity` 的启动这里指的是跳转，从一个页面跳转到一个新的页面，就相当于启动了一个新的页面。
+
+## 2、`Activity` 的生命周期
+
+## 3、`Activity` 的启动模式
+
+## 4、`Activity` 之间传递信息
+
+## 5、`Activity` 获取一些附加信息
 
 # 十三、`Android` 
 
