@@ -4873,18 +4873,6 @@ fun main() {
 进程已结束,退出代码0
 ```
 
-### ③、
-
-### ④、
-
-### ⑤、
-
-### ⑥、
-
-## 2、
-
-## 3、
-
 # 十、`Android` 初识
 
 ## 1、`build.gradle` 配置文件
@@ -5320,16 +5308,20 @@ class MainActivity : AppCompatActivity() {
 
 1. 创建新模块：`01_simplecontrol`
 2. 若是没有选默认样式，则可能 `res` 下没有 `layout` 等文件夹，可以自己创建
+3. 与 `css` 类似
+4. 属性设置方式基本都有两种：
+	1. 在 XML 文件中通过属性设置
+	2. 在代码中调用文本视图对象设置
 
 ## 1、文本显示
 
-1. 设置文本内容有两种方式：
-	1. 在 XML 文件中通过属性 `android:text` 设置文本
-	2. 在代码中调用文本视图对象的 `textView.text` 方法设置文本
-2. 引用字符串资源：
-	1. 在 XML 文件中引用 `@string/xxx`
-	2. 在 Java 代码中引用 `R.string.xxx`
-3. 其余设置文本字体大小，颜色等都是可以通过关键词 + 代码提示很容易就能知道怎么写，这里就不赘述。
+1. 设置文本：`android:text` 
+	1. 引用字符串资源： `@string/xxx`
+2. 设置文本大小：`android:textSize="50px"`
+	        px:它是手机屏幕的最小显示单位，与设备的显示屏有关。
+	        dp:它是与设备无关的显示单位，只与屏幕的尺寸有关。
+	        sp:它专门用来设置字体大小，在系统设置中可以调整字体大小。
+3. 设置文本颜色：`android:textColor="#F44336"`
 4. 在 `layout` 下创建窗口文件 `layout.xml`
 
 ![](attachments/Pasted%20image%2020230417160550.png)
@@ -5341,11 +5333,19 @@ class MainActivity : AppCompatActivity() {
 	android:layout_height="match_parent"
 	android:gravity="center">
 	
+	<!--
+	    1、android:text="@string/yuehai_text"：设置文本
+	    2、android:textSize="50px"：设置文本大小
+	        px:它是手机屏幕的最小显示单位，与设备的显示屏有关。
+	        dp:它是与设备无关的显示单位，只与屏幕的尺寸有关。
+	        sp:它专门用来设置字体大小，在系统设置中可以调整字体大小。
+        3、android:textColor="#F44336"：设置文本颜色
+	 -->
 	<TextView
 		android:id="@+id/yuehai_text"
 		android:text="@string/yuehai_text"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" />
+		android:textSize="20sp"
+		android:textColor="#F44336" />
 
 </LinearLayout>
 ```
@@ -5401,7 +5401,7 @@ class MainActivity : AppCompatActivity() {
 </manifest>
 ```
 
-6. 创建窗口文件对应的 `Layout.kt` 文件，定义窗口的逻辑
+7. 创建窗口文件对应的 `Layout.kt` 文件，定义窗口的逻辑
 
 ```Kotlin
 package com.yuehai.simplecontrol
@@ -5418,13 +5418,117 @@ class Layout: AppCompatActivity() {
 }
 ```
 
-7. 运行测试
+8. 运行测试
 
 ## 2、视图基础
 
+1. 设置视图宽高 `android:layout_width`、 `android:layout_height`；主要有下列三种:
+	1. `match_parent`：表示与上级视图保持一致。
+	2. `wrap_content`：表示与内容自适应。
+	3. 以 dp 为单位的具体尺寸。
+2. 设置视图的间距 `android:layout_margi`；有两种方式：
+	1. 采用 `layout_margin` 属性，它指定了当前视图与周围平级视图之间的距离：包括 `layout_margin`、`layout_marginLeft`、`layout_marginTop`、`layout_marginRight`、`layout_marginBottom`
+	2. 采用 `padding` 属性，它指定了当前视图与内部下级视图之间的距离：包括 `padding`、`paddingLeft`、 `paddingTop`、`paddingRight`、`paddingBottom`
+3. 3、设置视图的对齐方式 `android:layout_gravity`；有两种途径:
+	1. 采用 `layout_gravity` 属性，它指定了当前视图相对于上级视图的对齐方式。
+	2. 采用 `gravity` 属性，它指定了下级视图相对于当前视图的对齐方式。
+	3. `layout_gravity` 与 `gravity` 的取值包括: `left`、`top`、`right`、`bottom`，
+	4. 还可以用竖线连接各取值，例如 `left|top` 表示即靠左又靠上，也就是朝左上角对齐。
+
+```xml
+<!--
+		1、设置视图宽高 android:layout_width、 android:layout_height；主要有下列三种:
+			match_parent:表示与上级视图保持一致。
+			wrap_content:表示与内容自适应。
+			以 dp 为单位的具体尺寸。
+		2、设置视图的间距 android:layout_margi；有两种方式：
+			采用 layout_margin 属性，它指定了当前视图与周围平级视图之间的距离：包括 layout_margin、layout_marginLeft、layout_marginTop、layout_marginRight、layout_marginBottom
+			采用padding属性，它指定了当前视图与内部下级视图之间的距离：包括padding、paddingLeft、 paddingTop.paddingRight、 paddingBottom
+		3、设置视图的对齐方式 android:layout_gravity；有两种途径:
+			采用 layout_gravity 属性，它指定了当前视图相对于上级视图的对齐方式。
+			采用 gravity 属性，它指定了下级视图相对于当前视图的对齐方式。
+			layout_gravity 与 gravity 的取值包括: left、top、right、bottom，
+			还可以用竖线连接各取值，例如 left|top 表示即靠左又靠上，也就是朝左上角对齐。
+
+	 -->
+	<TextView
+		android:id="@+id/yuehai_text2"
+		android:text="月海 —— 文本框2"
+		android:textSize="20sp"
+		
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:layout_gravity="center" />
+```
+
 ## 3、常用布局
 
-## 4、按钮触控
+- 各种布局可以随意嵌套
+
+### ①、线性布局 LinearLayout
+
+1. 线性布局内部的各视图有两种排列方式：
+	1. `orientation` 属性值为 `horizontal` 时，内部视图在水平方向从左往右排列。
+	2. `orientation` 属性值为 `vertical` 时，内部视图在垂直方向从上往下排列。
+	3. 如果不指定 `orientation` 属性，则 `LinearLayout` 默认水平方向排列。
+2. 特点：<font color="#ff0000">要不水平排列，要不竖直排列</font>，通过 `orintation` 进行设置（`horiztal` 为水平，`vertical` 为竖直）；
+	1. 横向布局只能在一排中横向排列元素
+	2. 纵向布局只能在一列中竖向排列元素
+	3. 所以一个窗口中横向布局和纵向布局要结合使用
+3. 权重属性：通过 `layout_weight` 来设置，在线性布局的直接下级进行设置，表示该下级布局占据的宽高比例。
+4. `layout_width` 填 `0dp` 时，`layout_weight` 表示水平方向的宽度比例。
+5. `layout_height` 填 `0dp` 时，`layout_weight` 表示垂直方向的高度比例。
+
+### ②、相对布局 `RelativeLayout`
+
+1. 相对布局的下级视图位置由其他视图决定。用于确定下级视图位置的参照物分两种：
+	1. 与该视图自身平级的视图
+	2. 该视图的上级视图(也就是它归属的 RelativeLayout)
+2. 如果不设定下级视图的参照物，那么下级视图默认显示在 RelativeLayout 内部的左上角。
+3. 相对位置的一些取值：
+
+| 相对位置的属性取值       | 相对位置说明                     |
+| ------------------------ | -------------------------------- |
+| layout_toLeftOf          | 当前视图在指定视图的左边         |
+| layout_toRightOf         | 当前视图在指定视图的右边         |
+| layout_above             | 当前视图在指定视图的上方         |
+| layout_below             | 当前视图在指定视图的下方         |
+| layout_alignLeft         | 当前视图与指定视图的左侧对齐     |
+| layout_alignRight        | 当前视图与指定视图的右侧对齐     |
+| layout_alignTop          | 当前视图与指定视图的顶部对齐     |
+| layout_alignBottom       | 当前视图与指定视图的底部对齐     |
+| layout_centerlnParent    | 当前视图在上级视图中间           |
+| layout_centerHorizontal  | 当前视图在上级视图的水平方向居中 |
+| layout_centerVertical    | 当前视图在上级视图的垂直方向居中 |
+| layout_alignParentLeft   | 当前视图与上级视图的左侧对齐     |
+| layout_alignParentRight  | 当前视图与上级视图的右侧对齐     |
+| layout_alignParentTop    | 当前视图与上级视图的顶部对齐     |
+| layout_alignParentBottom | 当前视图与上级视图的底部对齐     |
+
+### ③、网格布局 `GridLayout`
+
+1. 网格布局支持多行多列的<font color="#ff0000">表格</font>排列。
+2. 网格布局默认从左往右、从上到下排列，它新增了两个属性:
+3. `columnCount` 属性，它指定了网格的列数，即每行能放多少个视图
+4. `rowCount` 属性，它指定了网格的行数，即每列能放多少个视图;
+
+### ④、滚动视图 `ScrollView`
+
+1. 滚动视图有两种：
+2. `ScrollView`，它是垂直方向的滚动视图；垂直方向滚动时，`layout_width` 属性值设置为 `match_parent`，`layout_height` 属性值设置为 `wrap_content`。
+3. `HorizontalScrollView`，它是水平方向的滚动视图；水平方向滚动时，`layout_width` 属性值设置为 `wrap_content`，`ayout_height` 属性值设置为 `match_parent`。
+
+## 4、按钮
+
+1. `Button` 继承于 `TextView`，因此它们拥有的属性都是共通的。
+2. 除此之外，`Button` 最重要的是点击事件。
+	1. 点击监听器：通过 `setOnClickListener` 方法设置。按钮被按住少于 500 毫秒时，会触发点击事件。
+	2. 长按监听器：通过 `setOnLongClickListener` 方法设置。按钮被按住超过 500 毫秒时，会触发长按事件。
+3. 按钮控件 `Button` 由 `TextView` 派生而来，它们之间的区别有：
+	1. `Button` 拥有默认的按钮背景，而 `TextView` 默认无背景;
+	2. `Button` 的内部文本默认居中对齐，而 `TextView` 的内部文本默认靠左对齐；
+	3. `Button` 会默认将英文字母转为大写，而 `TextView` 保持原始的英文大小写;
 
 ## 5、图像显示
 
