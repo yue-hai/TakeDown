@@ -5781,7 +5781,8 @@ class MyOnLongClick: View.OnLongClickListener {
 				android:layout_height="wrap_content"
 				android:src="@drawable/wcat"
 				android:scaleType="fitCenter"/>
-		
+
+		<!-- 按钮 文字 + 图片 -->
 		<Button
 				android:layout_width="100dp"
 				android:layout_height="wrap_content"
@@ -5851,7 +5852,7 @@ class MyOnLongClick: View.OnLongClickListener {
 }
 ```
 
-# 十二、`Android` 
+# 十二、`Activity` 
 
 - `Activity` 是安卓开发四大组件之一，非常重要。
 - 感觉类似 `vue` 的路由
@@ -5859,30 +5860,1445 @@ class MyOnLongClick: View.OnLongClickListener {
 ## 1、`Activity` 的启动和结束
 
 1. `Activity` 的启动这里指的是跳转，从一个页面跳转到一个新的页面，就相当于启动了一个新的页面。
+2. 从当前页面跳到新页面，跳转代码：`startActivity(Intent(this, Activity01().javaClass))`
+	1. `Intent` 翻译过来为 “意图”，它是一种运行时绑定（run-time binding）机制
+	2. 可以应用于两个应用间的通讯交互，也能够应用于在同一个应用下不同组件的交互（activity、service、broadcast receiver
+	3. 此处的参数 1：本窗口
+	4. 此处的参数 2：要跳转到的窗口的 class 类
+3. 从当前页面回到上一个页面，相当于关闭当前页面，返回代码如下：`finish()`
+4. 新建 `activity_01.xml` 窗口
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<!-- 按钮 -->
+	<Button
+		android:id="@+id/yuehai_activity01_btn"
+		android:text="activity01 -> 02"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+5. 新建 `activity_01.xml` 窗口对应的代码文件
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class Activity01:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_01)
+
+        // 按钮；点击进行跳转
+        findViewById<Button>(R.id.yuehai_activity01_btn).setOnClickListener {
+            /**
+             * Intent 翻译过来为 “意图”，它是一种运行时绑定（run-time binding）机制
+             * 可以应用于两个应用间的通讯交互，也能够应用于在同一个应用下不同组件的交互（activity、service、broadcast receiver
+             * 此处的参数 1：本窗口
+             * 此处的参数 2：要跳转到的窗口的 class 类
+             */
+            val intent = Intent(this, Activity02().javaClass)
+            // 跳转到 Activity02 窗口，传递 intent 对象
+            startActivity(intent)
+        }
+    }
+}
+```
+
+6. 新建 `activity_02.xml` 窗口
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<!-- 按钮 -->
+	<Button
+		android:id="@+id/yuehai_activity02_btn"
+		android:text="activity02 -> 01"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start|top"/>
+	
+	<!--
+		返回按钮
+		文字颜色：android:textColor="@color/black"
+		背景颜色：android:backgroundTint="@color/teal_200"
+	 -->
+	<Button
+		android:id="@+id/yuehai_activity02_back"
+		android:text="返回"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:backgroundTint="@color/teal_200"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end|top"/>
+
+</LinearLayout>
+```
+
+7. 新建 `activity_02.xml` 窗口对应的代码文件
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class Activity02:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_02)
+
+        // 按钮；点击进行跳转
+        findViewById<Button>(R.id.yuehai_activity02_btn).setOnClickListener {
+            /**
+             * Intent 翻译过来为 “意图”，它是一种运行时绑定（run-time binding）机制
+             * 可以应用于两个应用间的通讯交互，也能够应用于在同一个应用下不同组件的交互（activity、service、broadcast receiver
+             * 此处的参数 1：本窗口
+             * 此处的参数 2：要跳转到的窗口的 class 类
+             */
+            // 跳转到 Activity01 窗口，传递 intent 对象
+            startActivity(Intent(this, Activity01().javaClass))
+        }
+
+        // 返回按钮；点击关闭当前页面，返回上个页面
+        findViewById<Button>(R.id.yuehai_activity02_back).setOnClickListener {
+            // 结束当前的活动页面
+            finish()
+        }
+    }
+}
+```
+
+8. 在 `AndroidManifest.xml` 清单文件中注册窗口
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--
+        android:allowBackup，是否允许应用备份。
+            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+            为 true 表示允许，为 false 则表示不允许
+        android:icon，指定 App 在手机屏幕上显示的图标。
+        android:label，指定 App 在手机屏幕上显示的名称。
+        android:roundIcon，指定 App 的圆角图标。
+        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        android:theme，指定 App 的显示风格。
+     -->
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- android:name=".MainActivity"：当前注册的窗口是哪个 -->
+		<activity
+			android:name=".Layout"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+		<activity
+			android:name=".Activity01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<!-- 是主窗口，要配置 intent-filter -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+		<activity
+			android:name=".Activity02"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+	</application>
+</manifest>
+```
 
 ## 2、`Activity` 的生命周期
 
+### ①、生命周期
+
+1. `onCreate`：创建活动。把页面布局加载进内存，进入了初始状态。
+2. `onStart`：开始活动。把活动页面显示在屏幕上，进入了就绪状态。
+3. `onResume`：恢复活动。活动页面进入活跃状态，能够与用户正常交互，例如允许响应用户的点击动作、允许用户输入文字等等。
+4. `onPause`：暂停活动。页面进入暂停状态，无法与用户正常交互。
+5. `onStop`：停止活动。页面将不在屏幕上显示。
+6. `onDestroy`：销毁活动。回收活动占用的系统资源，把页面从内存中清除。
+7. `onRestart`：重启活动。重新加载内存中的页面数据。
+8. `onNewIntent`：重用已有的活动实例
+
+![](attachments/Pasted%20image%2020230419105744.png)
+
+### ②、各状态之间的切换过程
+
+1. 打开新页面的方法调用顺序为：`onCreate → onStart → onResume`
+2. 关闭旧页面的方法调用顺序为：`onPause → onStop → onDestroy`
+
+![](attachments/Pasted%20image%2020230419105858.png)
+
 ## 3、`Activity` 的启动模式
+
+- Android 允许在创建 `Activity` 时设置启动模式，通过启动模式控制 `Activity` 的出入栈行为
+
+### ①、简介
+
+1. 某 App 先后打开两个活动，此时活动栈的变动情况如下图所示。
+
+![](attachments/Pasted%20image%2020230419110418.png)
+
+2. 依次结束已打开的两个活动，此时活动栈的变动情况如下图所示
+
+![](attachments/Pasted%20image%2020230419110428.png)
+
+### ②、静态设置
+
+#### Ⅰ、设置方式
+
+1. 打开 `AndroidManifest.xml` 清单文件，给 `activity` 添加属性 `android:launchMode`。如以下表示该 `activity` 使用 `standard` 标准模式，默认也是标准模式
+
+```xml
+<!--
+			android:name=".MainActivity"：当前注册的窗口是哪个
+			android:exported="true"：表示当前 Activity 是否可以被另一个 Application 的组件启动：true 允许被启动；false 不允许被启动
+			android:label="@string/app_name"：标识当前窗口名
+			android:launchMode="standard"：指定启动模式
+		 -->
+		<activity
+			android:name=".Activity01"
+			android:exported="true"
+			android:label="@string/app_name"
+			android:launchMode="standard">
+			<!-- 是主窗口，要配置 intent-filter -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+```
+
+2. `launchMode` 属性的取值说明：
+
+| launchMode属性值 | 说明                                                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- |
+| standard         | 标准（默认）模式，无论何时启动哪个活动，都是重新创建该页面的实例并放入栈顶。<br/>如果不指定 `launchMode` 属性，则默认为标准模式      |
+| singleTop        | 栈顶复用模式，启动新活动时，判断如果栈顶正好就是该活动的实例，则重用该实例<br/>否则创建新的实例并放入栈顶，也就是按照 `standard` 模式处理 |
+| singleTask       | 栈内复用模式，启动新活动时，判断如果栈中存在该活动的实例，则重用该实例,并清除位于该实例上面的所有实例<br/>否则按照 `standard` 模式处理    |
+| singlelnstance   | 全局唯一模式，将该活动的实例放入一个新栈中，原栈的实例列表保持不变                                                  |
+
+### ③、动态设置
+
+1. 通过 Intent 动态设置 Activity 启动模式：`intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP`
+2. `intent.flags` 的取值有：
+
+| lntent类的启动标志 | 说明 |
+| ------------------ | ---- |
+|Intent.FLAG_ACTIVITY_NEW_TASK|开辟一个新的任务栈<br />该值类似于 `launchMode="standard"`<br />不同之处在于，如果原来不存在活动栈，则会创建一个新栈|
+|Intent.FLAG_ACTIVrTY_SINGLE_TOP|当栈顶为待跳转的活动实例之时，则重用栈顶的实例<br />该值等同于 `launchMode="singleTop"`|
+|Intent.FLAG_ACTIVITY_CLEAR_TOP|当栈中存在待跳转的活动实例时，则重新创建一个新实例，并清除原实例上方的所有实例<br />该值与 `launchMode="singleTask"` 类似<br />但 `singleTask` 采取 `onNewIntent` 方法启用原任务﹐而 `FLAG_ACTIVrrY_CLEAR_TOP` 采取先调用 `onDestroy` 再调用 `onCreate` 来创建新任务|
+|Intent.FLAG_ACTIVITY_NO_HISTORY|该标志与 `launchMode="standard"` 情况类似，但栈中不保存新启动的活动实例<br />这样下次无论以何种方式再启动该实例，也要走 `standard` 模式的完整流程|
+|Intent.FLAG_ACTIVrrY_CLEAR_TASK|该标志非常暴力，跳转到新页面时，栈中的原有实例都被清空<br />注意该标志需要结合 F`LAG_ACTIVITY_NEW_TASK` 使用，即 `setFlags` 方法的参数为 `Intent.FLAG_ACTIVITY_CLEAR_TASK 丨 Intent.FLAG_ACTIVITY_NEW_TASK` |
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class Activity01:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_01)
+
+        // 按钮；点击进行跳转
+        findViewById<Button>(R.id.yuehai_activity01_btn).setOnClickListener {
+            /**
+             * Intent 翻译过来为 “意图”，它是一种运行时绑定（run-time binding）机制
+             * 可以应用于两个应用间的通讯交互，也能够应用于在同一个应用下不同组件的交互（activity、service、broadcast receiver
+             * 此处的参数 1：本窗口
+             * 此处的参数 2：要跳转到的窗口的 class 类
+             */
+            val intent = Intent(this, Activity02().javaClass)
+
+            // 通过 Intent 动态设置 Activity 启动模式
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+            // 跳转到 Activity02 窗口，传递 intent 对象
+            startActivity(intent)
+        }
+    }
+}
+```
 
 ## 4、`Activity` 之间传递信息
 
+### ①、介绍
+
+1. `Intent` 能够让 Android 各组件之间进行沟通。
+2. `Intent` 可以完成 3 部分工作：
+	1. 表明本次通信从哪里来，往哪里走，要怎么走。
+	2. 发送方可以携带消息给接收方，接收方可以从收到的 `Intent` 解析数据。
+	3. 发送方如果想要知道接收方的处理结果，接收方也可以通过 `Intent` 返回结果。
+3. `Intent` 的一些组成元素：
+
+| 元素名称  | 设置方法     | 说明与用途                        |
+| --------- | ------------ | --------------------------------- |
+| Component | setComponent | 组件，它指定意图的来源与目标      |
+| Action    | setAction    | 动作，它指定意图的动作行为        |
+| Data      | setData      | 即Uri，它指定动作要操纵的数据路径 |
+| category  | addCategory  | 类别，它指定意图的操作类别        |
+| Type      | setType      | 数据类型，它指定消息的数据类型    |
+| Extras    | putExtras    | 扩展信息，它指定装载的包裹信息    |
+| Flags     | setFlags     | 标志位，它指定活动的启动标志      |
+
+### ②、显式 `Intent`
+
+1. 在 `Intent` 的构造函数中指定：
+
+```Kotlin
+val intent = Intent(this, Activity02().javaClass)
+```
+
+2. 调用 `setClass` 指定
+
+```Kotlin
+val intent = Intent()
+intent.setClass(this, Activity02().javaClass)
+```
+
+3. 调用 `setComponent` 指定
+
+```Kotlin
+val intent = Intent()
+val componentName = ComponentName(this, Activity02().javaClass)
+intent.component = componentName
+```
+
+### ③、隐式 `Intent`
+
+1. 没有明确指定所要跳转的页面，而是通过一些动作字符串来让系统自动匹配。
+2. 通常是 App 不想向外暴露 `Activity` 的名称，只给出一些定义好的字符串。这些字符串可以自己定义，也有系统定义的。
+3. 常见的系统动作如下：
+
+| `lntent` 类的系统动作常量名 | 系统动作的常量值             | 说明            |
+| ------------------------ | ---------------------------- | --------------- |
+| ACTION_MAIN              | android.intent.action.MAIN   | App启动时的入口 |
+| ACTION_VIEw              | android.intent.action.VIEW   | 向用户显示数据  |
+| ACTION_SEND              | android.intent.action.SEND   | 分享内容        |
+| ACTION_CALL              | android.intent.action.CALL   | 直接拨号        |
+| ACITON_DIAL              | android.intent.action.DIAL   | 准备拨号        |
+| ACTION_SENDTO            | android.intent.action.SENDTO | 发送短信        |
+| ACTION_ANSWER            | android.intent.action.ANSWER | 接听电话        |
+
+#### Ⅰ、下面以调用系统拨号页面举例
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+
+class Activity01:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_01)
+
+        // 按钮；点击进行跳转
+        findViewById<Button>(R.id.yuehai_activity01_btn).setOnClickListener {
+
+            // 2.1、隐式 Intent 传递：
+            val phone: String = "12345"
+            val intent = Intent()
+            // 这里表示设置意图动作为准备拨号
+            intent.action = Intent.ACTION_DIAL
+            intent.data = Uri.parse("tel:$phone")
+
+            // 跳转到拨号窗口，传递 intent 对象；隐式指定了拨号窗口
+            startActivity(intent)
+        }
+    }
+}
+```
+
+#### Ⅱ、跳转到自己定义的 `activity`
+
+1. 在 `AndroidManifest.xml` 清单找到该 `activity`，添加 `action` 和 `category` 标签，同时设置 `exported` 为 `true`，表示允许被其他 `activity` 调用。
+
+```xml
+<!--
+			android:name=".MainActivity"：当前注册的窗口是哪个
+			android:exported="true"：表示当前 Activity 是否可以被另一个 Application 的组件启动：true 允许被启动；false 不允许被启动
+			android:label="@string/app_name"：标识当前窗口名
+			android:launchMode="standard"：指定启动模式
+		 -->
+		<activity
+			android:name=".Activity01"
+			android:exported="true"
+			android:label="@string/app_name"
+			android:launchMode="standard">
+			<!-- 是主窗口，要配置 intent-filter -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+		
+		<activity
+			android:name=".Activity02"
+			android:exported="true"
+			android:label="@string/app_name">
+			
+			<intent-filter>
+				<!-- 设置隐式调用 intent 的名称 -->
+				<action android:name="android.intent.action.Activity02" />
+				<!-- 设置隐式调用 intent 的类型 -->
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+```
+
+2. 调用过程和上面一样：
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+
+class Activity01:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_01)
+
+        // 按钮；点击进行跳转
+        findViewById<Button>(R.id.yuehai_activity01_btn).setOnClickListener {
+            
+            // 2.2、隐式 Intent 传递：跳转到自己定义的 activity
+            val phone: String = "12345"
+            val intent = Intent()
+            // 设置值为 AndroidManifest.xml 中 action 标签的 android:name 值
+            intent.action = "android.intent.action.Activity02"
+            // 设置值为 AndroidManifest.xml 中 category 标签的 android:name 值
+            intent.addCategory(Intent.CATEGORY_DEFAULT)
+
+            // 跳转到跳转到自己定义的 activity，传递 intent 对象；隐式指定了拨号窗口
+            startActivity(intent)
+        }
+    }
+}
+```
+
+### ④、向下一个 `Activity` 发送消息
+
+1. Intent 重载了很多 putExtra 方法用于传递各种类型的信息，包括整数类型，字符串等。
+2. 但是显然通过调用 putExtra 方法会很不好管理，因为数据都是零碎传递。
+3. 所以 Android 引入了 `Bundle`，其内部是一个 `Map`，使用起来也和 `Map` 一样
+4. Bundle 对各类型数据的读写方法说明：
+
+| 数据类型     | 读方法             | 写方法             |
+| ------------ | ------------------ | ------------------ |
+| 整型数       | getInt             | putInt             |
+| 浮点数       | getFloat           | putFloat           |
+| 双精度数     | getDouble          | putDouble          |
+| 布尔值       | getBoolean         | putBoolean         |
+| 字符串       | getString          | putString          |
+| 字符串数组   | getStringArray     | putStringArray     |
+| 字符串列表   | getStringArrayList | putStringArrayList |
+| 可序列化结构 | getSerializable    | putSerializable    |
+
+5. 向下一个 Activity 发送消息
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+
+class Activity01:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_01)
+
+        // 按钮；点击进行跳转
+        findViewById<Button>(R.id.yuehai_activity01_btn).setOnClickListener {
+
+            // 4、向下一个 Activity 发送消息
+            // 4.1、显式 Intent 传递：在 Intent 的构造函数中指定：
+            val intent = Intent(this, Activity02().javaClass)
+            // 4.2、通过 bundle 包装数据
+            val bundle = Bundle()
+            bundle.putString("stringKey", "stringValue")
+            // 4.3、将 bundle 放入 intent 对象中
+            intent.putExtras(bundle);
+
+            // 4.5、跳转到跳转到自己定义的 activity，传递 intent 对象；隐式指定了拨号窗口
+            startActivity(intent)
+        }
+    }
+}
+```
+
+6. 接收消息
+
+```Kotlin
+package com.yuehai.simplecontrol
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class Activity02:AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_02)
+
+        // 4.6、跳转到的 Activity 就可以通过 intent 获取到所想要的数据了
+        val bundle = intent.extras
+        val stringValue = bundle!!.getString("stringKey")
+        println("stringValue：$stringValue")
+    }
+}
+```
+
+### ⑤、向上一个 `Activity` 返回消息
+
+- 有问题这个代码
+
+```Kotlin
+// 5、回调函数，返回到这个页面时所执行的程序
+        val someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // 5.4、获取到返回的数据
+                val data = result.data
+                println("stringResultKey：${data}")
+            }
+        }
+
+        // 按钮；点击进行跳转 yuehai_activity01_Result
+        findViewById<Button>(R.id.yuehai_activity01_Result).setOnClickListener {
+            // someActivityResultLauncher
+            someActivityResultLauncher.launch(Intent(this, Activity02().javaClass))
+        }
+```
+
+```Kotlin
+// 返回按钮；点击关闭当前页面，返回上个页面
+        findViewById<Button>(R.id.yuehai_activity02_back).setOnClickListener {
+
+            // 5.1、通过 bundle 包装数据
+            val bundle = Bundle()
+            bundle.putString("stringResultKey", "stringResultValue")
+            // 5.2、将 bundle 放入 intent 对象中
+            intent.putExtras(bundle)
+            // 5.3、返回数据给上一个页面
+            setResult(Activity.RESULT_OK, intent)
+            // 5.4、结束当前的活动页面
+            fi
+```
+
 ## 5、`Activity` 获取一些附加信息
 
-# 十三、`Android` 
+1. 获取资源信息
 
-# 十四`Android` 
+```Kotlin
+// 按钮；点击进行跳转 yuehai_activity01_Result
+findViewById<Button>(R.id.yuehai_activity01_Result).setOnClickListener {
+	// 获取资源信息
+	val string = getString(R.string.yuehai_text)
+	println(string)
 
-# 十五、`Android` 
+}
+```
 
-# 十六、
+# 十三、`Android`  中级控件
 
-# 十七、
+# 十四、`Android` 高级控件
 
-# 十八、
+# 十五、`Android` `Android` 数据存储 `SharedPreferences`
 
-# 十九、
+## 1、共享参数 `SharedPreferences`
+
+1. `SharedPreferences` 是 `Android` 的一个轻量级存储工具，采用的存储结构是 `Key-Value` 的键值对方式。
+2. 共享参数的存储介质是符合 XML 规范的配置文件。
+3. 保存路径是：`/data/data/应用包名/shared_prefs/文件名.xml`
+4. 共享参数主要适用于如下场合：
+	1. 简单且孤立的数据。若是复杂且相互间有关的数据，则要保存在数据库中。
+	2. 文本形式的数据。若是二进制数据，则要保存在文件中。
+	3. 需要持久化存储的数据。在App退出后再次启动时，之前保存的数据仍然有效。
+5. 实际开发中，共享参数经常存储的数据有 App 的个性化配置信息、用户使用 App 的行为信息、临时需要保存的片段信息等
+6. `xml` 布局文件 `shared_preferences_01.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 按钮；共享参数 -->
+	<Button
+		android:id="@+id/yuehai_shared_preferences_01_btn"
+		android:text="共享参数"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:backgroundTint="@color/purple_200"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+6. `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--
+        android:allowBackup，是否允许应用备份。
+            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+            为 true 表示允许，为 false 则表示不允许
+        android:icon，指定 App 在手机屏幕上显示的图标。
+        android:label，指定 App 在手机屏幕上显示的名称。
+        android:roundIcon，指定 App 的圆角图标。
+        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        android:theme，指定 App 的显示风格。
+     -->
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!--
+			android:name=".MainActivity"：当前注册的窗口是哪个
+			android:exported="true"：表示当前 Activity 是否可以被另一个 Application 的组件启动：true 允许被启动；false 不允许被启动
+			android:label="@string/app_name"：标识当前窗口名
+			android:launchMode="standard"：指定启动模式
+		 -->
+		<activity
+			android:name=".SharedPreferences01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+7. 代码文件 `SharedPreferences01.kt`
+
+```Kotlin
+package com.yuehai.sharedpreferences
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class SharedPreferences01: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.shared_preferences_01)
+
+        // 按钮；点击存储、读取 yuehai_activity01_btn
+        findViewById<Button>(R.id.yuehai_shared_preferences_01_btn).setOnClickListener {
+            println("")
+            // sharedPreferences 对数据的存储和读取类似 Map，提供 put 和 set 方法。
+            // 1、获取数据可以通过 SharedPreferences 对象存储和获取获取：第一个参数表示文件名，第二个参数表示私有模式
+            val sharedPreferences = getSharedPreferences("fileName", MODE_PRIVATE)
+
+            // 2、存储数据需要借助 Editor 类
+            val edit = sharedPreferences.edit()
+            // 放入数据
+            edit.putInt("age", 16)
+            edit.putString("name", "月海")
+            // 保存数据
+            edit.commit()
+
+            // 3、读取数据；参数 1：要读取的数据的 key；参数 2：没有指定 key 时的默认值
+            val name = sharedPreferences.getString("name", "name1")
+            val age = sharedPreferences.getInt("age", 10)
+            println("name：${name}；age：${age}")
+
+        }
+
+    }
+}
+```
+
+## 2、数据库 `SQLite`
+
+## 3、存储卡
+
+- SQLite 是安卓的一种小巧的嵌入式数据库，基本使用和思路和 Mysql 无异。
+
+### ①、基本语法
+
+1. 标准的 SQL 语句分为三类：数据定义、数据操纵和数据控制，但不同的数据库往往有自己的实现。
+2. SQLite 是一种小巧的嵌入式数据库，由于它属于轻型数据库，不涉及复杂的数据控制操作，因此 App 开发只用到数据定义和数据操纵两类 SQL。
+3. SQLite 的 SQL 语法与通用的 SQL 语法略有不同。
+
+### ②、SQLite 的数据定义语言
+
+1. 数据定义语言（DDL）描述了怎样变更数据实体的框架结构。
+2. DDL语言主要包括三种操作：创建表、删除表、修改表结构。
+	1. 创建表，格式为：`CREATE TABLE IF NOT EXISTS 表格名称`
+	2. 删除表，格式为：`DROP TABLE IF EXISTS 表格名称`”
+	3. 修改表结构，格式为“`ALTER TABLE 表格名称 修改操作`”
+3. SQLite 只支持增加字段，不支持修改字段，也不支持删除字段
+
+### ③、SQLite 的数据操纵语言
+
+1. 数据操纵语言（DML）它描述了怎样处理数据实体的内部记录。
+2. 表格记录的操作类型包括添加、删除、修改、查询四类：
+	1. 添加记录，格式为：INSERT INTO 表格名称 (以逗号分隔的字段名列表) VALUES (以逗号分隔的字段值列表);”
+	2. 删除记录，格式为：`DELETE FROM 表格名称 WHERE 查询条件`
+	3. 修改记录，格式为：`UPDATE 表格名称 SET 字段名=字段值 WHERE 查询条件`
+	4. 查询记录，格式为：`SELECT 以逗号分隔的字段名列表 FROM 表格名称 WHERE 查询条件`
+
+### ④、数据库管理器 SQLiteDatabase
+
+1.  SQLiteDatabase 是 SQLite 的数据库管理类，它提供了若干操作数据表的 API，常用的方法有 3 类：
+2. 管理类，用于数据库层面的操作。
+	1. `openDatabase`：打开指定路径的数据库。
+	2. `isOpen`：判断数据库是否已打开。
+	3. `close`：关闭数据库。
+	4. `getVersion`：获取数据库的版本号。
+	5. `setVersion`：设置数据库的版本号
+3. 事务类，用于事务层面的操作。
+	1. `beginTransaction`：开始事务。
+	2. `setTransactionSuccessful`：设置事务的成功标志。
+	3. `endTransaction`：结束事务；执行本方法时,系统会判断之前是否调用了 `setTransactionSuccessful` 方法，如果之前已调用该方法就提交事务，如果没有调用该方法就回滚事务。
+4. 数据处理类，用于数据表层面的操作。
+	1. `execSQL`：执行拼接好的SQL控制语句；般用于建表、删表、变更表结构。
+	2. `delete`：删除符合条件的记录。
+	3. `update`：更新符合条件的记录。
+	4. `insert`：插入一条记录。
+	5. `query`：执行查询操作，返回结果集的游标。
+	6. `rawQuery`：执行拼接好的SQL查询语句，返回结果集的游标
+
+### ⑤、数据库帮助器 SQLiteOpenHelper
+
+1. 由于 SQLiteDatabase 存在局限性，一不小心就会重复打开数据库，处理数据库的升级也不方便；因此 Android 提供了数据库帮助器 SQLiteOpenHelper，帮助开发者合理使用 SQLite。
+2. SQLiteOpenHelper 的具体使用步骤如下：
+3. 步骤一，新建一个继承自 `SQLiteOpenHelper` 的数据库操作类，按提示重写 `onCreate` 和 `onUpgrade` 两个方法。
+	1. 其中，`onCreate` 方法只在第一次打开数据库时执行，在此可以创建表结构；
+	2. 而 `onUpgrade` 方法在数据库版本升高时执行，在此可以根据新旧版本号变更表结构。
+4. 步骤二，为保证数据库安全使用，需要封装几个必要方法，包括获取单例对象、打开数据库连接、关闭数据库连接，说明如下：
+	1. 获取单例对象：确保在 App 运行过程中数据库只会打开一次，避免重复打开引起错误。
+	2. 打开数据库连接：SQLite 有锁机制，即读锁和写锁的处理；故而数据库连接也分两种，读连接可调用 `getReadableDatabase` 方法获得，写连接可调用 `getWritableDatabase` 获得。
+	3. 关闭数据库连接：数据库操作完毕，调用数据库实例的 `close` 方法关闭连接。
+5. 步骤三， 提供对表记录增加、删除、修改、查询的操作方法。
+	1. 能被 SQLite 直接使用的数据结构是 `ContentValues` 类，它类似于映射 Map，也提供了 `put` 和 `get` 方法存取键值对。
+	2. 区别之处在于：`ContentValues` 的键只能是字符串，不能是其他类型。`ContentValues` 主要用于增加记录和更新记录，对应数据库的 `insert` 和 `update` 方法。
+	3. 记录的查询操作用到了游标类 `Cursor`，调用 `query` 和 `rawQuery` 方法返回的都是 `Cursor` 对象，若要获取全部的查询结果，则需根据游标的指示一条一条遍历结果集合。
+6. `Cursor` 的常用方法可分为3类，说明如下：
+7. 游标控制类方法，用于指定游标的状态
+	1. `close`：关闭游标。
+	2. `isClosed`：判断游标是否关闭。
+	3. `isFirst`：判断游标是否在开头。
+	4. `isLast`：判断游标是否在末尾。
+8. 游标移动类方法，把游标移动到指定位置
+	1. `moveToFirst`：移动游标到开头。
+	2. `moveToLast`：移动游标到末尾。
+	3. `moveToNext`：移动游标到下一条记录。
+	4. `moveToPrevious`：移动游标到上一条记录。
+	5. `move`：往后移动游标若干条记录。
+	6. `moveToPosition`：移动游标到指定位置的记录。
+9. 获取记录类方法，可获取记录的数量、类型以及取值
+	1. `getCount`：获取结果记录的数量。
+	2. `getInt`：获取指定字段的整型值。
+	3. `getLong`：获取指定字段的长整型值。
+	4. `getFloat`：获取指定字段的浮点数值。
+	5. `getString`：获取指定字段的字符串值。
+	6. `getType`：获取指定字段的字段类型。
+
+### ⑥、例子
+
+## 3、 存储卡
+
+### ①、私有空间和公有空间
+
+1. 为了更规范地管理手机存储空间，Android 从 7.0 开始将存储卡划分为私有存储和公共存储两大部分，也就是分区存储方式，系统给每个 App 都分配了默认的私有存储空间。
+2. App 在私有空间上读写文件无须任何授权，但是若想在公共空间读写文件，则要在 `AndroidManifest.xml` 清单文件里面添加下述的权限配置
+3. 但是即使 App 声明了完整的存储卡操作权限，系统仍然默认禁止该 App 访问公共空间。
+4. 打开手机的系统设置界面，进入到具体应用的管理页面，会发现该应用的存储访问权限被禁止了。
+5. 既然存储卡分为公共空间和私有空间两部分，它们的空间路径获取也就有所不同。
+6. 若想获取公共空间的存储路径，调用的是 `Environment.getExternalStoragePublicDirectory` 方法；
+7. 若想获取应用私有空间的存储路径，调用的是 `getExternalFilesDir` 方法
+
+```xml
+<!-- 按钮；存储卡 -->
+	<Button
+			android:id="@+id/yuehai_shared_preferences_01_SD"
+			android:text="存储卡"
+			android:textSize="30dp"
+			android:textColor="@color/black"
+			android:backgroundTint="@color/purple_200"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="start"/>
+```
+
+```Kotlin
+package com.yuehai.sharedpreferences
+
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class SharedPreferences01: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.shared_preferences_01)
+
+        // 按钮；存储卡
+        findViewById<Button>(R.id.yuehai_shared_preferences_01_SD).setOnClickListener {
+            // 获取系统的公共存储路径
+            val publicPath: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+
+            // 获取系统的私有存储路径
+            val privatePath = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString()
+
+            // Android10 的存储空间默认采用分区方式，这里是判断是使用传统方式还是分区方式
+            // SDK 是否大于 29，即是否大于安卓 9
+            var isLegacy = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                isLegacy = Environment.isExternalStorageLegacy()
+            }
+
+            Log.i("存储方式：", isLegacy.toString())
+            // /storage/emulated/0/Download
+            Log.i("系统的公共存储路径：", publicPath)
+            // /storage/emulated/0/Android/data/com.yuehai.sharedpreferences/files/Download
+            Log.i("系统的私有存储路径：", privatePath)
+
+        }
+
+    }
+}
+```
+
+### ②、在存储卡上读写文件
+
+1. 在 `AndroidManifest.xml` 清单文件中注册权限
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 存储卡读写权限 -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+	<!--在sdcard中创建/删除文件的权限 -->
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" tools:ignore="ProtectedPermissions"/>
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!--
+			android:name=".MainActivity"：当前注册的窗口是哪个
+			android:exported="true"：表示当前 Activity 是否可以被另一个 Application 的组件启动：true 允许被启动；false 不允许被启动
+			android:label="@string/app_name"：标识当前窗口名
+			android:launchMode="standard"：指定启动模式
+		 -->
+		<activity
+			android:name=".SharedPreferences01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+2. xml 窗口布局文件中定义按钮
+
+```xml
+<!-- 按钮；存储卡 -->
+	<Button
+			android:id="@+id/yuehai_shared_preferences_01_SD"
+			android:text="存储卡"
+			android:textSize="30dp"
+			android:textColor="@color/black"
+			android:backgroundTint="@color/purple_200"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="start"/>
+```
+
+3. 窗口布局对应的代码文件
+
+```Kotlin
+// 按钮；存储卡
+        findViewById<Button>(R.id.yuehai_shared_preferences_01_SD).setOnClickListener {
+            // 获取系统的公共存储路径
+            val publicPath: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+
+            // 获取系统的私有存储路径
+            val privatePath = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString()
+
+            // Android10 的存储空间默认采用分区方式，这里是判断是使用传统方式还是分区方式
+            // SDK 是否大于 29，即是否大于安卓 9
+            var isLegacy = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                isLegacy = Environment.isExternalStorageLegacy()
+            }
+
+            Log.i("存储方式：", isLegacy.toString())
+            // /storage/emulated/0/Download
+            Log.i("系统的公共存储路径：", publicPath)
+            // /storage/emulated/0/Android/data/com.yuehai.sharedpreferences/files/Download
+            Log.i("系统的私有存储路径：", privatePath)
+
+
+            // 验证是否许可权限；Manifest 需要自行引入包：import android.Manifest
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                // 不存在权限，进行申请
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 200)
+            }
+
+
+            // 创建文件
+            val file = File("$privatePath/月海.txt")
+            // 判断文件是否存在
+            if (!file.exists()){
+                // 不存在就创建
+                file.createNewFile()
+                Log.i("创建文件：", file.isFile.toString())
+            }
+
+            // 把字符串写入文件输出流
+            file.writeText("月海11111111111111111111")
+            Log.i("把字符串写入文件输出流：", file.isFile.toString())
+
+            // 读取文件的文本内容
+            val content = File("$privatePath/月海.txt").readText()
+            Log.i("读取文件的文本内容：", content)
+
+        }
+```
+
+### ③、在存储卡上读写 图片文件
+
+## 4、应用组件 `Application`
+
+1. Application 是 Android 的一大组件，在 App 运行期间只有一个 Application 对象贯穿整个应用的生命周期。
+2. 因此，Application 适合保存全局变量，主要是以下三类数据：
+	1. 会频繁读取的信息：如用户名，手机号码等
+	2. 不方便通过 intent 传递的数据，如位图对象，非字符串的集合对象等。
+	3. 容易因频繁分配内存而导致内存泄漏的对象，如 Handler 处理器实例等。
+
+![](attachments/Pasted%20image%2020230420104855.png)
+
+3. 通过 Application 实现对全局内存的读写：
+4. 写一个继承自 Application 的类 MyApplication。该类要采用单例模式
+
+```Kotlin
+package com.yuehai.sharedpreferences
+
+import android.app.Application
+
+// 继承 Application
+object MyApplication : Application() {
+
+    // Application 唯一实例
+    private var myApplication: MyApplication = MyApplication
+    //当作全局变量，用来存储数据
+    var map: MutableMap<String, String> = mutableMapOf()
+
+    override fun onCreate() {
+        super.onCreate()
+        myApplication = this
+    }
+}
+
+```
+
+5. 在 `AndroidManifest.xml` 清单文件中注册：`<application android:name=".MyApplication">`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 存储卡读写权限 -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+	<!--在sdcard中创建/删除文件的权限 -->
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" tools:ignore="ProtectedPermissions"/>
+	
+	<!--
+	    android:name=".MyApplication：注册应用组件 Application
+	 -->
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android"
+		android:name=".MyApplication">
+		
+		<!--
+			android:name=".MainActivity"：当前注册的窗口是哪个
+			android:exported="true"：表示当前 Activity 是否可以被另一个 Application 的组件启动：true 允许被启动；false 不允许被启动
+			android:label="@string/app_name"：标识当前窗口名
+			android:launchMode="standard"：指定启动模式
+		 -->
+		<activity
+			android:name=".SharedPreferences01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".SharedPreferences02"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+6. 在 `Activity` 中调用 `MyApplication` 的 `instance()` 方法，获得 `MyApplication` 的一个静态对象，通过该对象访问 `MyApplication` 的公共变量和公共方法
+7. 保存数据
+
+```Kotlin
+// Application 中保存数据
+findViewById<Button>(R.id.yuehai_shared_preferences_01_Application).setOnClickListener {
+	// 获取 MyApplication 实例
+	val application = MyApplication.instance()
+	val applicationData = application.map
+	// 保存数据
+	applicationData["applicationData"] = "111"
+	Log.i("保存数据：", applicationData["applicationData"].toString())
+
+	// 跳转到 SharedPreferences02 窗口，传递 intent 对象
+	startActivity(Intent(this, SharedPreferences02().javaClass))
+}
+```
+
+8. 获取数据
+
+```Kotlin
+package com.yuehai.sharedpreferences
+
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class SharedPreferences02: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.shared_preferences_02)
+
+        // Application 中获取数据
+        findViewById<Button>(R.id.yuehai_shared_preferences_02_Application).setOnClickListener {
+            // 获取 MyApplication 实例
+            val application = MyApplication.instance()
+            val applicationData = application.map
+            // 获取数据
+            Log.i("applicationData：", applicationData["applicationData"].toString())
+        }
+    }
+}
+```
+
+# 十六、`Android` 内容共享 `ContentProvider`
+
+## 1、在应用之间共享数据
+
+1. `ContentProvider` 是 Android 的四大组件之一，通过 ContentProvider 封装内部数据的外部访问接口，实现不同应用能够互相传输数据。
+2. 和 `ContentProvider` 搭配使用的还有：`ContentResolver`（内容解析器），`ContentObserver`（内容观察器）
+3. 上面提到的 SQLite 可以操作自身的数据库，而 `ContentProvider` 则是作为中间接口，通过 `SQLiteOpenHelper` 和 `SQLiteDatabase` 间接操控数据库，实现为其他应用提供数据的功能。
+4. 场景：比如微信读取手机通讯录
+
+![](attachments/Pasted%20image%2020230420132956.png)
+
+## 2、使用举例
+
+1. 创建一个 `UserInfoProvider`，用来提供用户信息给外界应用
+2. 在弹出的右键菜单中依次选择 New→Other→Content Provider，此时会自动修改两处地方：
+	1. 一是在 `AndroidManifest.xml` 中添加该 `Provider` 的配置信息
+	2. 二是创建的这个 `Provider` 会继承 `ContentProvider`，并重写了一些方法
+
+### ①、创建服务端模块 `05_contentproviderserver`
+
+1. 新建 `xml` 窗口布局文件  `content_provider_server_01.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<!-- 按钮；共享参数 -->
+	<Button
+		android:id="@+id/yuehai_content_provider_server_01_btn"
+		android:text="内容共享 - 服务端"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:backgroundTint="@color/purple_200"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+2. 新建 `activity` 窗口布局对应的代码文件
+
+```Kotlin
+package com.yuehai.contentproviderserver
+
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class ContentProviderServer01: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.content_provider_server_01)
+
+        // 点击按钮
+        findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListener {
+            Log.i("点击服务端按钮：", "yuehai_content_provider_server_01_btn")
+        }
+    }
+}
+```
+
+3. 在 `AndroidManifest.xml` 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".ContentProviderServer01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ②、创建客户端模块 `05_contentproviderclient`
+
+1. 新建 `xml` 窗口布局文件  `activity`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<!-- 按钮；共享参数 -->
+	<Button
+		android:id="@+id/yuehai_content_provider_client_01_btn"
+		android:text="内容共享 - 客户端"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:backgroundTint="@color/purple_200"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+2. 新建 `activity` 窗口布局对应的代码文件
+
+```Kotlin
+package com.yuehai.contentproviderclinet
+
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class ContentProviderClinet01: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.content_provider_clinet_01)
+
+        // 点击按钮
+        findViewById<Button>(R.id.yuehai_content_provider_client_01_btn).setOnClickListener {
+            Log.i("点击客户端按钮：", "yuehai_content_provider_client_01_btn")
+        }
+    }
+}
+```
+
+3. 在 `AndroidManifest.xml` 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".ContentProviderClient01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ③、服务端模块使用 `ContentProvider`
+
+1. 创建 `UserInfoProvider` 继承 `ContentProvider`
+
+![](attachments/Pasted%20image%2020230420142041.png)
+
+![](attachments/Pasted%20image%2020230420142150.png)
+
+2. 此时的 `AndroidManifest.xml` 清单文件，修改 `android:authorities` 属性
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android">
+		
+		<!--
+			内容共享 ContentProvider
+			android:name：Provider 全类路径
+			android:authorities：指定授权者(自定义字符串)
+			android:enabled：是否可以被系统实例化，默认为 true 因为父标签 也有 enable 属性，所以必须两个都为默认值 true 的情况下服务才会被激活，否则不会激活
+			android:exported：跨应用共享数据 设置为 true 默认为 false；表示该 provider 能够被其他应用程序组件调用
+		 -->
+		<provider
+			android:name="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"
+			android:authorities="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"
+			android:enabled="true"
+			android:exported="true" />
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".ContentProviderServer01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
+
+</manifest>
+```
+
+3. 1
+4. 1
+5. 1
+
+### ④、
+
+### ⑤、
+
+## 3、使用内容组件获取通讯信息
+
+## 4、
+
+## 5、
+
+## 6、
+
+# 十七、`Android` 
+
+# 十八、`Android` 
+
+# 十九、问题
+
+## 1、module java.base does not "opens java.io"
+
+```cmd
+Unable to make field private final java.lang.String java.io.File.path accessible: module java.base does not "opens java.io" to unnamed module @28904302
+```
+
+1. 打开项目根目录下的 `gradle.properties` 文件
+2. 加入以下代码：
+
+```properties
+org.gradle.jvmargs=-Xmx1536M \
+--add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
+--add-opens=java.base/java.lang=ALL-UNNAMED \
+--add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
+--add-opens=java.base/java.io=ALL-UNNAMED \
+--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+```
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
 
 # 二十、
+
+1. 新建 `xml` 窗口布局文件  `activity`
+
+```xml
+
+```
+
+2. 新建 `activity` 窗口布局对应的代码文件
+
+```Kotlin
+
+```
+
+3. 在 `AndroidManifest.xml` 清单文件中注册
+
+```xml
+
+```
+
 
 ## 1、
 
