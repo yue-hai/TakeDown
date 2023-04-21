@@ -6465,6 +6465,37 @@ findViewById<Button>(R.id.yuehai_activity01_Result).setOnClickListener {
 # 十三、`Android`  中级控件
 
 # 十四、`Android` 高级控件
+### ①、
+
+### ②、
+
+### ③、
+
+# 1、下拉列表
+
+### ①、下拉框
+
+### ②、SimpleAdaper
+
+### ③、BaseAdapter
+
+# 2、列表类视图
+
+### ①、列表视图 ListView
+
+### ②、网格视图 GridView
+
+# 3、翻页类视图
+
+### ①、翻页视图 ViewPager
+
+### ②、翻页标签栏 PagerTabStrip
+
+# 4、Fragment
+
+### ①、静态注册
+
+### ②、动态注册：
 
 # 十五、`Android` `Android` 数据存储 `SharedPreferences`
 
@@ -6590,8 +6621,6 @@ class SharedPreferences01: AppCompatActivity() {
 ```
 
 ## 2、数据库 `SQLite`
-
-## 3、存储卡
 
 - SQLite 是安卓的一种小巧的嵌入式数据库，基本使用和思路和 Mysql 无异。
 
@@ -6999,7 +7028,7 @@ class SharedPreferences02: AppCompatActivity() {
 
 ## 1、在应用之间共享数据
 
-1. `ContentProvider` 是 Android 的四大组件之一，通过 ContentProvider 封装内部数据的外部访问接口，实现不同应用能够互相传输数据。
+1. `ContentProvider` 是 Android 的四大组件之二，通过 ContentProvider 封装内部数据的外部访问接口，实现不同应用能够互相传输数据。
 2. 和 `ContentProvider` 搭配使用的还有：`ContentResolver`（内容解析器），`ContentObserver`（内容观察器）
 3. 上面提到的 SQLite 可以操作自身的数据库，而 `ContentProvider` 则是作为中间接口，通过 `SQLiteOpenHelper` 和 `SQLiteDatabase` 间接操控数据库，实现为其他应用提供数据的功能。
 4. 场景：比如微信读取手机通讯录
@@ -7239,11 +7268,1176 @@ class ContentProviderClinet01: AppCompatActivity() {
 
 ## 6、
 
-# 十七、`Android` 
+# 十七、`Android` 广播组件 `Broadcast`
 
-# 十八、`Android` 
+## 1、简介
 
-# 十九、问题
+1. 广播组件 Broadcast 是Android 四大组件之三。
+2. 广播有以下特点：
+	1. 活动只能一对一通信；而广播可以一对多，一人发送广播，多人接收处理。
+	2. 对于发送方来说，广播不需要考虑接收方有没有在工作，接收方在工作就接收广播，不在工作就丢弃广播。
+	3. 对于接收方来说，因为可能会收到各式各样的广播，所以接收方要自行过滤符合条件的广播，之后再解包处理
+3. 与广播有关的方法主要有以下3个。
+	1. `sendBroadcast`：发送广播。
+	2. `registerReceiver`：注册广播的接收器，可在 `onStart` 或 `onResume` 方法中注册接收器。
+	3. `unregisterReceiver`：注销广播的接收器，可在 `onStop` 或 `onPause` 方法中注销接收器。
+
+## 2、收发应用广播
+
+### ①、标准（无序）广播 `sendBroadcast`
+
+1. 广播的收发过程分为三个步骤：
+	1. 定义广播接收器
+	2. 发送标准广播
+	3. 开关广播接收器
+2. 定义广播接收器，继承 `BroadcastReceiver`，实现 `onReceive` 方法
+
+```Kotlin
+package com.yuehai.broadcast.receiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.util.Log
+
+// 定义一个标准广播的接收器，继承 BroadcastReceiver，实现 onReceive 方法
+class StandardReceiver: BroadcastReceiver() {
+
+    // 定义常量，广播名，用以接收指定广播名的广播
+    val STANDARD_ACTION:String = "com.yuehai.broadcast.standard"
+
+    // 一旦接收到标准广播，马上触发接收器的 onReceive 方法
+    override fun onReceive(context: Context?, intent: Intent?) {
+        // 判断收到的 intent 不为空，且为指定广播名的广播
+        if(intent != null && intent.action.equals(STANDARD_ACTION)){
+            Log.d("月海", "收到一个标准广播");
+        }
+    }
+}
+```
+
+3. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<!-- 发送标准广播 -->
+	<Button
+		android:id="@+id/yuehai_broadcast_01_btn"
+		android:text="发送标准广播"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:backgroundTint="@color/purple_200"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+3. 创建布局文件对应的代码文件，发送广播，开关广播接收器
+
+```Kotlin
+package com.yuehai.broadcast
+
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.broadcast.receiver.StandardReceiver
+
+
+class Broadcast01: AppCompatActivity() {
+
+    // 实例化 StandardReceiver 类；接收 com.yuehai.broadcast.standard 广播
+    private var standardReceiver = StandardReceiver()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.broadcast_01)
+
+        // 点击按钮，发送标准广播
+        findViewById<Button>(R.id.yuehai_broadcast_01_btn).setOnClickListener {
+            // 定义发送的广播名
+            val intent = Intent(standardReceiver.STANDARD_ACTION)
+            // 发送标准广播
+            sendBroadcast(intent)
+        }
+
+    }
+
+    // 注册广播接收器
+    override fun onStart() {
+        super.onStart()
+
+        // 创建一个意图过滤器，只处理 STANDARD_ACTION 的广播
+        val filter = IntentFilter(standardReceiver.STANDARD_ACTION)
+        // 注册接收器，注册之后才能正常接收广播
+        registerReceiver(standardReceiver, filter)
+    }
+
+    // 注销广播接收器
+    override fun onStop() {
+        super.onStop()
+
+        // 注销接收器，注销之后就不再接收广播
+        unregisterReceiver(standardReceiver)
+    }
+}
+```
+
+4. 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".Broadcast01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ②、有序广播 `sendOrderedBroadcast`
+
+1. 由于广播没指定唯一的接收者，因此可能存在多个接收器，每个接收器都拥有自己的处理逻辑。
+2. 这些接收器默认是都能够接受到指定广播并且是之间的顺序按照注册的先后顺序，也可以通过指定优先级来指定顺序。
+3. 先收到广播的接收器 A，既可以让其他接收器继续收听广播，也可以中断广播不让其他接收器收听。
+
+![](attachments/Pasted%20image%2020230421094256.png)
+
+4. 定义广播接收器，继承 `BroadcastReceiver`，实现 `onReceive` 方法；定义 `OrderAReceiver` 和 `OrderBReceiver` 两个
+
+```Kotlin
+package com.yuehai.broadcast.receiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.util.Log
+
+// 定义一个有序广播的接收器，继承 BroadcastReceiver，实现 onReceive 方法
+class OrderAReceiver: BroadcastReceiver() {
+
+    // 定义常量，广播名，用以接收指定广播名的广播
+    val ORDER_ACTION:String = "com.yuehai.broadcast.order"
+
+    // 一旦接收到广播，马上触发接收器的 onReceive 方法
+    override fun onReceive(context: Context?, intent: Intent?) {
+        // 判断收到的 intent 不为空，且为指定广播名的广播
+        if(intent != null && intent.action.equals(ORDER_ACTION)){
+            Log.d("月海 OrderAReceiver", "收到一个有序广播");
+        }
+    }
+}
+```
+
+```Kotlin
+package com.yuehai.broadcast.receiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.util.Log
+
+// 定义一个有序广播的接收器，继承 BroadcastReceiver，实现 onReceive 方法
+class OrderBReceiver: BroadcastReceiver() {
+
+    // 定义常量，广播名，用以接收指定广播名的广播
+    val ORDER_ACTION:String = "com.yuehai.broadcast.order"
+
+    // 一旦接收到广播，马上触发接收器的 onReceive 方法
+    override fun onReceive(context: Context?, intent: Intent?) {
+        // 判断收到的 intent 不为空，且为指定广播名的广播
+        if(intent != null && intent.action.equals(ORDER_ACTION)){
+            Log.d("月海 OrderBReceiver", "收到一个有序广播");
+
+            // 中断广播
+            abortBroadcast()
+        }
+    }
+}
+```
+
+5. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<!-- 发送有序广播 -->
+	<Button
+		android:id="@+id/yuehai_broadcast_02_btn"
+		android:text="发送有序广播"
+		android:textSize="30dp"
+		android:textColor="@color/black"
+		android:backgroundTint="@color/purple_200"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+6. 创建布局文件对应的代码文件，发送广播，开关广播接收器
+
+```Kotlin
+package com.yuehai.broadcast
+
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.broadcast.receiver.OrderAReceiver
+import com.yuehai.broadcast.receiver.OrderBReceiver
+
+
+class Broadcast02: AppCompatActivity() {
+
+    // 实例化 orderAReceiver 类；接收 com.yuehai.broadcast.order 广播
+    private var orderAReceiver = OrderAReceiver()
+    private var orderBReceiver = OrderBReceiver()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.broadcast_02)
+
+        // 点击按钮，发送有序广播
+        findViewById<Button>(R.id.yuehai_broadcast_02_btn).setOnClickListener {
+            // 定义发送的广播名
+            val intent = Intent(orderAReceiver.ORDER_ACTION)
+            // 发送有序广播
+            sendOrderedBroadcast(intent, null)
+        }
+
+    }
+
+    // 注册广播接收器
+    override fun onStart() {
+        super.onStart()
+
+        // 多个接收器处理有序广播的顺序规则为：
+        // 1、优先级越大的接收器，越早收到有序广播；
+        // 2、优先级相同的时候，越早注册的接收器越早收到有序广播
+
+        // 创建一个意图过滤器 A，只处理 orderAReceiver 的广播，优先级为 8
+        val filterA = IntentFilter(orderAReceiver.ORDER_ACTION)
+        filterA.priority = 4
+        // 注册接收器，注册之后才能正常接收广播
+        registerReceiver(orderAReceiver, filterA)
+
+        // 创建一个意图过滤器 B，只处理 orderBReceiver 的广播，优先级为 20
+        val filterB = IntentFilter(orderBReceiver.ORDER_ACTION)
+        filterB.priority = 8
+        // 注册接收器，注册之后才能正常接收广播
+        registerReceiver(orderBReceiver, filterB)
+    }
+
+    // 注销广播接收器
+    override fun onStop() {
+        super.onStop()
+
+        // 注销接收器，注销之后就不再接收广播
+        unregisterReceiver(orderAReceiver)
+        unregisterReceiver(orderBReceiver)
+    }
+}
+```
+
+7. 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".Broadcast01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<!-- <intent-filter> -->
+			<!-- 	&lt;!&ndash; 配置为主窗口， &ndash;&gt; -->
+			<!-- 	<action android:name="android.intent.action.MAIN" /> -->
+			<!-- 	<category android:name="android.intent.category.LAUNCHER" /> -->
+			<!-- </intent-filter> -->
+		</activity>
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".Broadcast02"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ③、静态广播
+
+1. 广播也可以通过静态代码的方式来进行注册。
+2. 广播接收器也能在 `AndroidManifest.xml` 注册，并且注册时候的节点名为 receiver，一旦接收器在 `AndroidManifest.xml` 注册，就无须在代码中注册了。
+3. 之所以罕见静态注册，是因为静态注册容易导致安全问题，故而 Android 8.0 之后废弃了大多数静态注册。
+4. 静态广播的实现方式这里暂不介绍，可自行查阅资料。
+
+## 3、监听系统广播
+
+### ①、简介
+
+1. 除了应用自身的广播，系统也会发出各式各样的广播
+2. 通过监听这些系统广播，App 能够得知周围环境发生了什么变化，从而按照最新环境调整运行逻辑。‘
+3. 接下来举几个系统广播的例子。
+
+| 广播名           | 描述                    |
+| ---------------- | ----------------------- |
+| 接收分钟到达广播 | Intent.ACTION_TIME_TICK |
+| 接收网络变更广播 | android.net.conn.CONNECTIVITY_CHANGE                        |
+
+### ②、监听分钟到达广播（分钟变更）
+
+1. 定义一个分钟广播的接收器，并重写接收器的 `onReceive` 方法，补充收到广播之后的处理逻辑。
+
+```Kotlin
+package com.yuehai.broadcast.receiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
+import android.util.Log
+import android.widget.TextView
+import com.yuehai.broadcast.SystemMinuteActivity
+
+// 定义一个分钟广播的接收器，继承 BroadcastReceiver，实现 onReceive 方法
+class SystemMinuteReceiver: BroadcastReceiver() {
+
+    // 定义常量，广播名，用以接收指定广播名的广播；每分钟变化
+    val systemMinuteReceiverName:String = Intent.ACTION_TIME_TICK
+
+    // 声明一个文本视图对象，等待 activity 传递
+    var text:TextView? = null
+
+    // 一旦接收到分钟变更的广播，马上触发接收器的 onReceive 方法
+    override fun onReceive(context: Context?, intent: Intent?) {
+        // 判断收到的 intent 不为空，且为指定广播名的广播
+        if((intent != null) && intent.action.equals(systemMinuteReceiverName)){
+            // 获取格式化后的系统时间
+            val formatDate = SimpleDateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+
+            // 给文本框赋值
+            text?.text = "监听分钟到达广播：$formatDate"
+
+            Log.i("分钟变化：", formatDate)
+        }
+    }
+}
+```
+
+2. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 监听分钟到达广播 -->
+	<TextView
+		android:id="@+id/yuehai_system_minute_activity_text"
+		android:text="监听分钟到达广播"
+		android:textSize="30dp"
+		android:textColor="#F44336"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+
+</LinearLayout>
+```
+
+3. 创建布局文件对应的代码文件，
+	1. 重写广播接收器的注册代码，注意要让接收器过滤分钟到达广播 `Intent.ACTION_TIME_TICK`
+	2. 重写活动页面的 `onStop` 方法，添加广播接收器的注销代码。
+
+```Kotlin
+package com.yuehai.broadcast
+
+import android.content.IntentFilter
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.broadcast.receiver.SystemMinuteReceiver
+
+class SystemMinuteActivity: AppCompatActivity() {
+
+    // 实例化 SystemMinuteReceiver 类；接收 Intent.ACTION_TIME_TICK 广播
+    private val systemMinuteReceiver = SystemMinuteReceiver()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.system_minute_activity)
+
+        // 给对象 systemMinuteReceiver 赋值，使其调用方法更改文本框显示
+        systemMinuteReceiver.text = findViewById<TextView>(R.id.yuehai_system_minute_activity_text)
+    }
+
+    // 注册广播接收器
+    override fun onStart() {
+        super.onStart()
+
+        // 创建一个意图过滤器，只处理 STANDARD_ACTION 的广播
+        val filter = IntentFilter(systemMinuteReceiver.systemMinuteReceiverName)
+        // 注册接收器，注册之后才能正常接收广播
+        registerReceiver(systemMinuteReceiver, filter)
+    }
+
+    // 注销广播接收器
+    override fun onStop() {
+        super.onStop()
+
+        // 注销接收器，注销之后就不再接收广播
+        unregisterReceiver(systemMinuteReceiver)
+    }
+}
+```
+
+4. 清单文件中注册
+
+```xml
+<!-- 注册 -->
+		<activity
+			android:name=".SystemMinuteActivity"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+```
+
+### ③、监听网络变更广播
+
+
+1. 定义一个分钟广播的接收器，并重写接收器的 `onReceive` 方法，补充收到广播之后的处理逻辑。
+
+```Kotlin
+package com.yuehai.broadcast.receiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.net.NetworkInfo
+import android.util.Log
+import android.widget.TextView
+
+
+// 定义一个网络变更广播的接收器，继承 BroadcastReceiver，实现 onReceive 方法
+class NetworkReceiver: BroadcastReceiver() {
+
+    // 定义常量，广播名，用以接收指定广播名的广播；每分钟变化
+    val networkReceiverName:String = "android.net.conn.CONNECTIVITY_CHANGE"
+
+    // 声明一个文本视图对象，等待 activity 传递
+    var text: TextView? = null
+
+    // 一旦接收到分钟变更的广播，马上触发接收器的 onReceive 方法
+    override fun onReceive(context: Context?, intent: Intent?) {
+        // 判断收到的 intent 不为空，且为指定广播名的广播
+        if((intent != null) && intent.action.equals(networkReceiverName)){
+            // networkInfo 在 android 10 后已被废弃
+            val networkInfo: NetworkInfo? = intent.getParcelableExtra("networkInfo")
+            // 网络大类为：
+            val typeName = networkInfo!!.typeName
+            // 网络小类为：
+            val subtypeName = networkInfo.subtypeName
+            // 网络状态为：
+            val state = networkInfo.state
+
+            // 给文本框赋值
+            text?.text ="""
+            网络大类为：$typeName
+            网络小类为：$subtypeName
+            网络状态为：$state
+            """".trimIndent()
+
+            Log.i("网络大类为：", typeName)
+            Log.i("网络小类为：", subtypeName)
+            Log.i("网络状态为：", state.toString())
+        }
+    }
+}
+```
+
+2. 修改 xml 布局文件
+
+```xml
+<!-- 监听网络变更广播 -->
+	<TextView
+		android:id="@+id/yuehai_system_minute_activity_network_text"
+		android:text="监听网络变更广播"
+		android:textSize="30dp"
+		android:textColor="#F44336"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="start"/>
+```
+
+3. 修改布局文件对应的代码文件，
+	1. 重写广播接收器的注册代码，注意要让接收器过滤分钟到达广播 `Intent.ACTION_TIME_TICK`
+	2. 重写活动页面的 `onStop` 方法，添加广播接收器的注销代码。
+
+```Kotlin
+package com.yuehai.broadcast
+
+import android.content.IntentFilter
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.broadcast.receiver.NetworkReceiver
+import com.yuehai.broadcast.receiver.SystemMinuteReceiver
+
+class SystemMinuteActivity: AppCompatActivity() {
+
+    // 监听分钟到达广播；实例化 SystemMinuteReceiver 类；接收 Intent.ACTION_TIME_TICK 广播
+    private val systemMinuteReceiver = SystemMinuteReceiver()
+    // 监听网络变更广播；实例化 NetworkReceiver 类；接收 android.net.conn.CONNECTIVITY_CHANGE 广播
+    private val networkReceiver = NetworkReceiver()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.system_minute_activity)
+
+        // 监听分钟到达广播；给对象 systemMinuteReceiver 赋值，使其调用方法更改文本框显示
+        systemMinuteReceiver.text = findViewById<TextView>(R.id.yuehai_system_minute_activity_text)
+
+        // 监听网络变更广播；给对象 systemMinuteReceiver 赋值，使其调用方法更改文本框显示
+        networkReceiver.text = findViewById<TextView>(R.id.yuehai_system_minute_activity_network_text)
+    }
+
+    // 注册广播接收器
+    override fun onStart() {
+        super.onStart()
+
+        // 创建一个意图过滤器，只处理分钟到达的广播
+        val filter = IntentFilter(systemMinuteReceiver.systemMinuteReceiverName)
+        // 注册接收器，注册之后才能正常接收广播
+        registerReceiver(systemMinuteReceiver, filter)
+
+        // 创建一个意图过滤器，只处理网络变更的广播
+        val filter2 = IntentFilter(networkReceiver.networkReceiverName)
+        // 注册接收器，注册之后才能正常接收广播
+        registerReceiver(networkReceiver, filter2)
+    }
+
+    // 注销广播接收器
+    override fun onStop() {
+        super.onStop()
+
+        // 注销接收器，注销之后就不再接收广播
+        unregisterReceiver(systemMinuteReceiver)
+        unregisterReceiver(networkReceiver)
+    }
+}
+```
+
+4. 清单文件中注册，上面注册完了
+
+# 十八、`Android` 服务组件 `Service`
+
+## 1、介绍
+
+1. 广播组件 Broadcast 是Android 四大组件之四。
+2. 可在后台执行长时间运行操作而不提供界面的应用组件。如下载文件、播放音乐
+3. Service 有两种方式：
+	1. `startService` ：简单地启动，之后不能进行交互
+	2. `bindService`：启动并绑定 Service 之后，可以进行交互
+4. 下面通过一个音乐播放器实例来介绍这两种方式
+
+## 2、`startService` 不能进行交互
+
+1. 首先创建 `MusicHelper` 用来播放音频
+
+```Kotlin
+package com.yuehai.service.utils
+
+import android.content.Context
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.net.Uri
+import android.util.Log
+import com.yuehai.service.R
+import java.io.IOException
+
+
+class MusicHelper(private val context: Context) {
+
+    private var mediaPlayer: MediaPlayer? = null
+    // 获取音乐文件
+    private val musics = intArrayOf(R.raw.li_zhi_chun, R.raw.bu_jian_chang_an)
+    // 音乐文件的索引
+    private var musicIndex = 0
+    //
+    private var prepared = false
+
+    // 主构造器
+    init {
+        // 创建 MediaPlayer 对象
+        createMediaPlayer()
+    }
+
+    // 创建 MediaPlayer 对象
+    private fun createMediaPlayer() {
+        mediaPlayer = MediaPlayer()
+        mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+    }
+
+    // 播放
+    fun play() {
+        // 判断是否正在播放，是则退出方法
+        if (mediaPlayer!!.isPlaying) {
+            return
+        }
+
+        if (prepared) {
+            mediaPlayer!!.start()
+            Log.d("月海", "播放音频 play")
+            return
+        }
+
+        // 这里路径要注意：android.resource:// + 包名 + R.raw.XXXX
+        mediaPlayer!!.setDataSource(context, Uri.parse("android.resource://" + context.packageName + "/" + musics[musicIndex]))
+        mediaPlayer!!.prepareAsync()
+        mediaPlayer!!.setOnPreparedListener { mp ->
+            mp.start()
+            Log.d("月海", "播放音频 play")
+            prepared = true
+        }
+
+    }
+
+    // 暂停
+    fun pause() {
+        if (!mediaPlayer!!.isPlaying) {
+            return
+        }
+        mediaPlayer!!.pause()
+    }
+
+    // 上一首
+    fun prev() {
+        musicIndex = musicIndex - 1
+        musicIndex = musicIndex % musics.size
+        destroy()
+        createMediaPlayer()
+        play()
+    }
+
+
+    // 下一首
+    operator fun next() {
+        musicIndex = musicIndex + 1
+        musicIndex = musicIndex % musics.size
+        destroy()
+        createMediaPlayer()
+        play()
+    }
+
+    // 销毁
+    fun destroy() {
+        if (mediaPlayer == null) {
+            return
+        }
+        mediaPlayer!!.stop()
+        mediaPlayer!!.release()
+        mediaPlayer = null
+        prepared = false
+    }
+}
+```
+
+2. 创建 `Service` 的实现类 `MusicService`
+
+```Kotlin
+package com.yuehai.service.service
+
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+import android.util.Log
+import com.yuehai.service.utils.MusicHelper
+
+
+class MusicService: Service() {
+
+    private var musicHelper: MusicHelper? = null
+
+    /**
+     * 首次创建服务时，系统将调用此方法来执行一次性设置程序（在调用 onStartCommand() 或 onBind() 之前）。
+     * 如果服务已在运行，则不会调用此方法，该方法只调用一次
+     *
+     * 在 onCreate 中创建 MusicHelper
+     */
+    override fun onCreate() {
+        super.onCreate()
+
+        musicHelper = MusicHelper(this)
+    }
+
+    /**
+     * 当另一个组件（如 Activity）通过调用 startService() 请求启动服务时，系统将调用此方法。
+     * 一旦执行此方法，服务即会启动并可在后台无限期运行。
+     * 如果自己实现此方法，则需要在服务工作完成后，通过调用 stopSelf() 或 stopService() 来停止服务。
+     * 在绑定状态下，无需实现此方法。
+     *
+     * 播放音频
+     */
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        musicHelper?.play()
+        Log.d("月海", "播放音频 onStartCommand");
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    /**
+     * 当服务不再使用且将被销毁时，系统将调用此方法。
+     * 服务应该实现此方法来清理所有资源，如线程、注册的侦听器、接收器等，这是服务接收的最后一个调用。
+     *
+     * 在 onDestroy 中销毁 MusicHelper
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+
+        musicHelper?.destroy()
+        musicHelper = null
+    }
+
+    /**
+     * 当另一个组件想通过调用 bindService() 与服务绑定（例如执行 RPC）时，系统将调用此方法。
+     * 在此方法的实现中，必须返回 一个 IBinder 接口的实现类，供客户端用来与服务进行通信。
+     * 无论是启动状态还是绑定状态，此方法必须重写，但在启动状态的情况下直接返回 null
+     */
+    override fun onBind(p0: Intent?): IBinder? {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+3. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 播放 -->
+	<Button
+		android:id="@+id/yuehai_start_service_activity_play"
+		android:text="播放"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 停止 -->
+	<Button
+		android:id="@+id/yuehai_start_service_activity_stop"
+		android:text="停止"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 暂停 -->
+	<Button
+		android:id="@+id/yuehai_start_service_activity_pause"
+		android:text="暂停"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 上一首 -->
+	<Button
+		android:id="@+id/yuehai_start_service_activity_prev"
+		android:text="上一首"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 下一首 -->
+	<Button
+		android:id="@+id/yuehai_start_service_activity_next"
+		android:text="下一首"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+4. 创建布局文件对应的代码文件
+
+```Kotlin
+package com.yuehai.service
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.service.service.MusicService
+
+class StartServiceActivity: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.start_service_activity)
+
+        // 点击按钮，播放
+        findViewById<Button>(R.id.yuehai_start_service_activity_play).setOnClickListener {
+            Log.i("月海", "点击按钮，播放")
+
+            // 创建 intent 对象
+            val intent = Intent(this, MusicService().javaClass)
+            // 这里会自动调用 Service 的 onStartCommand 方法
+            startService(intent)
+        }
+
+        // 点击按钮，停止
+        findViewById<Button>(R.id.yuehai_start_service_activity_stop).setOnClickListener {
+            Log.i("月海", "点击按钮，停止")
+
+            // 创建 intent 对象
+            val intent = Intent(this, MusicService().javaClass)
+            // 这里会直接调用 Service 的 onDestroy 方法，销毁 Service
+            stopService(intent)
+        }
+    }
+}
+```
+
+5. 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 service -->
+		<service
+			android:name=".service.MusicService"
+			android:enabled="true"
+			android:exported="true"/>
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".StartServiceActivity"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+		
+	</application>
+
+</manifest>
+```
+
+6. `startService` 只能简单启动和销毁 `Service`，没办法进行交互，也就没办法进行暂停，下一首等功能
+
+## 3、`bindService` 可以进行交互
+
+1.  `MusicHelper` 不用变
+2. 编辑 `Service` 的实现类 `MusicService` 
+	1. 在其中创建内部类 `MyBinder` 并继承 `Binder()`
+	2. <font color="#ff0000">重写 `onBind` 方法</font>
+
+```Kotlin
+package com.yuehai.service.service
+
+import android.app.Service
+import android.content.Intent
+import android.os.Binder
+import android.os.IBinder
+import android.util.Log
+import com.yuehai.service.utils.MusicHelper
+
+
+class MusicService: Service() {
+
+    private var musicHelper: MusicHelper? = null
+
+    /**
+     * 首次创建服务时，系统将调用此方法来执行一次性设置程序（在调用 onStartCommand() 或 onBind() 之前）。
+     * 如果服务已在运行，则不会调用此方法，该方法只调用一次
+     *
+     * 在 onCreate 中创建 MusicHelper
+     */
+    override fun onCreate() {
+        super.onCreate()
+
+        musicHelper = MusicHelper(this)
+    }
+
+    /**
+     * 当另一个组件（如 Activity）通过调用 startService() 请求启动服务时，系统将调用此方法。
+     * 一旦执行此方法，服务即会启动并可在后台无限期运行。
+     * 如果自己实现此方法，则需要在服务工作完成后，通过调用 stopSelf() 或 stopService() 来停止服务。
+     * 在绑定状态下，无需实现此方法。
+     *
+     * 播放音频
+     */
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    /**
+     * 当服务不再使用且将被销毁时，系统将调用此方法。
+     * 服务应该实现此方法来清理所有资源，如线程、注册的侦听器、接收器等，这是服务接收的最后一个调用。
+     *
+     * 在 onDestroy 中销毁 MusicHelper
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // 销毁 service 的同时销毁 musicHelper
+        musicHelper?.destroy()
+    }
+
+    /**
+     * 新建内部类 MyBinder，继承自 Binder(Binder实现IBinder接口)
+     * 在内部创建所需方法，以供外部调用
+     * 需传入 MusicService 的实例，即本内部类的外部类
+     */
+    class MyBinder(private val musicService: MusicService): Binder() {
+
+        // 播放
+        fun play(){
+            musicService.musicHelper?.play()
+        }
+
+        // 销毁
+        fun destroy(){
+            musicService.musicHelper?.destroy()
+        }
+
+        // 暂停
+        fun pause(){
+            musicService.musicHelper?.pause()
+        }
+
+        // 上一首
+        fun prev(){
+            musicService.musicHelper?.prev()
+        }
+
+        // 下一首
+        fun next(){
+            musicService.musicHelper?.next()
+        }
+
+    }
+
+    /**
+     * 当另一个组件想通过调用 bindService() 与服务绑定（例如执行 RPC）时，系统将调用此方法。
+     * 在此方法的实现中，必须返回 一个 IBinder 接口的实现类，供客户端用来与服务进行通信。
+     * 无论是启动状态还是绑定状态，此方法必须重写，但在启动状态的情况下直接返回 null
+     *
+     * bindService 需重写此方法，返回内部类 MyBinder 的实例
+     */
+    override fun onBind(p0: Intent?): IBinder? {
+        return MyBinder(this)
+    }
+}
+```
+
+3. 创建 `MyConn` 类实现 `ServiceConnection` 接口，重写 `onServiceConnected` 方法，使其返回上面  `Service` 的实现类 `MusicService` 的内部类 `MyBinder`
+
+```Kotlin
+package com.yuehai.service.service
+
+import android.content.ComponentName
+import android.content.ServiceConnection
+import android.os.IBinder
+
+class MyConn: ServiceConnection {
+
+    // 创建变量，保存 MusicService 的内部类 MyBinder 的实例
+    var myBinder : MusicService.MyBinder? = null
+
+    /**
+     * 外部调用 bindService 方法时，会自动调用此方法
+
+     */
+    override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+        // 将传入的 IBinder 对象强转为 MusicService 的内部类 MyBinder 的类型，并赋值
+        myBinder  = service as MusicService.MyBinder?
+    }
+
+    override fun onServiceDisconnected(name: ComponentName?) {
+
+    }
+}
+```
+
+4.  xml 布局文件和清单文件中注册不变
+5. 修改布局文件对应的代码文件
+	1. 调用 `bindService` 之后，客户端端连上 `Service`
+	2. 触发 `MyConn` 类的 `onServiceConnected` 方法，获取 `Binder` 对象
+	3. 之后可以 `Binder` 对象和 `Service` 交互（播放、暂停、下一首）
+
+```Kotlin
+package com.yuehai.service
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.service.service.MusicService
+import com.yuehai.service.service.MyConn
+
+class StartServiceActivity: AppCompatActivity() {
+
+    // 创建变量，保存 MyConn 的实例
+    private var myConn:MyConn? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.start_service_activity)
+
+        // 调用初始化服务
+        initService();
+
+        // 点击按钮，播放
+        findViewById<Button>(R.id.yuehai_start_service_activity_play).setOnClickListener {
+            Log.i("月海", "点击按钮，播放")
+
+            myConn?.myBinder?.play()
+        }
+
+        // 点击按钮，停止
+        findViewById<Button>(R.id.yuehai_start_service_activity_stop).setOnClickListener {
+            Log.i("月海", "点击按钮，停止")
+
+            myConn?.myBinder?.destroy()
+        }
+
+        // 点击按钮，暂停
+        findViewById<Button>(R.id.yuehai_start_service_activity_pause).setOnClickListener {
+            Log.i("月海", "点击按钮，暂停")
+            myConn?.myBinder?.pause()
+        }
+
+        // 点击按钮，上一首
+        findViewById<Button>(R.id.yuehai_start_service_activity_prev).setOnClickListener {
+            Log.i("月海", "点击按钮，上一首")
+            myConn?.myBinder?.prev()
+        }
+
+        // 点击按钮，下一首
+        findViewById<Button>(R.id.yuehai_start_service_activity_next).setOnClickListener {
+            Log.i("月海", "点击按钮，下一首")
+            myConn?.myBinder?.next()
+        }
+    }
+
+    // 初始化服务
+    private fun initService(){
+        // 开启服务
+        val intent = Intent(this, MusicService().javaClass)
+        // 这里会自动调用 Service 的 onStartCommand 方法
+        startService(intent);
+
+        // 绑定服务
+        if(myConn == null){
+            myConn = MyConn();
+            // 这里会自动调用 MyConn 的 onServiceConnected 方法
+            bindService(intent, myConn!!, 0);
+        }
+    }
+}
+```
+
+# 十九、`Android` 网络通信
+
+## 1、
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
+
+# 二十、问题
 
 ## 1、module java.base does not "opens java.io"
 
@@ -7263,44 +8457,6 @@ org.gradle.jvmargs=-Xmx1536M \
 --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
 ```
 
-## 2、
-
-## 3、
-
-## 4、
-
-## 5、
-
-## 6、
-
-## 7、
-
-## 8、
-
-## 9、
-
-# 二十、
-
-1. 新建 `xml` 窗口布局文件  `activity`
-
-```xml
-
-```
-
-2. 新建 `activity` 窗口布局对应的代码文件
-
-```Kotlin
-
-```
-
-3. 在 `AndroidManifest.xml` 清单文件中注册
-
-```xml
-
-```
-
-
-## 1、
 
 ## 2、
 
