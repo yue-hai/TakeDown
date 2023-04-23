@@ -6414,38 +6414,45 @@ class Activity02:AppCompatActivity() {
 
 ### ⑤、向上一个 `Activity` 返回消息
 
-- 有问题这个代码
+1. 在需要返回数据的页面定义数据，关闭页面
 
 ```Kotlin
-// 5、回调函数，返回到这个页面时所执行的程序
-        val someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // 5.4、获取到返回的数据
-                val data = result.data
-                println("stringResultKey：${data}")
-            }
-        }
+// 5、返回按钮；点击关闭当前页面，返回上个页面
+findViewById<Button>(R.id.yuehai_activity02_back).setOnClickListener {
 
-        // 按钮；点击进行跳转 yuehai_activity01_Result
-        findViewById<Button>(R.id.yuehai_activity01_Result).setOnClickListener {
-            // someActivityResultLauncher
-            someActivityResultLauncher.launch(Intent(this, Activity02().javaClass))
-        }
+	// 5.1、通过 bundle 包装数据
+	val bundle = Bundle()
+	bundle.putString("stringResultKey", "stringResultValue")
+	// 5.2、将 bundle 放入 intent 对象中
+	intent.putExtras(bundle)
+	// 5.3、返回数据给上一个页面
+	setResult(Activity.RESULT_OK, intent)
+	// 5.4、结束当前的活动页面
+	finish()
+}
 ```
 
-```Kotlin
-// 返回按钮；点击关闭当前页面，返回上个页面
-        findViewById<Button>(R.id.yuehai_activity02_back).setOnClickListener {
+2. 回调函数，重写 `onActivityResult()` 方法，接收上一个 Activity 中返回的消息
 
-            // 5.1、通过 bundle 包装数据
-            val bundle = Bundle()
-            bundle.putString("stringResultKey", "stringResultValue")
-            // 5.2、将 bundle 放入 intent 对象中
-            intent.putExtras(bundle)
-            // 5.3、返回数据给上一个页面
-            setResult(Activity.RESULT_OK, intent)
-            // 5.4、结束当前的活动页面
-            fi
+```Kotlin
+// 5.5、回调函数，重写 onActivityResult() 方法，接收上一个 Activity 中返回的消息
+private val someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // 5.6、获取到返回的数据
+            val data = result.data
+            Log.i("stringResultKey：", data.toString())
+        }
+    }
+```
+
+3. 调用回调函数 `someActivityResultLauncher` 启动另一个Activity
+
+```Kotlin
+// 5.7、按钮；点击进行跳转 activity01 -> 02 并获取其返回数据
+findViewById<Button>(R.id.yuehai_activity01_Result).setOnClickListener {
+	// 5.8、调用回调函数 someActivityResultLauncher 启动另一个Activity
+	someActivityResultLauncher.launch(Intent(this, Activity02().javaClass))
+}
 ```
 
 ## 5、`Activity` 获取一些附加信息
@@ -6453,13 +6460,77 @@ class Activity02:AppCompatActivity() {
 1. 获取资源信息
 
 ```Kotlin
-// 按钮；点击进行跳转 yuehai_activity01_Result
-findViewById<Button>(R.id.yuehai_activity01_Result).setOnClickListener {
-	// 获取资源信息
-	val string = getString(R.string.yuehai_text)
-	println(string)
+package com.yuehai.simplecontrol
 
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+/**
+@author 月海
+@create 2023/4/23 16:12
+ */
+class Activity03: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.activity_03)
+
+        // 按钮；点击进行跳转 yuehai_activity01_Result
+        findViewById<Button>(R.id.yuehai_activity01_resources).setOnClickListener {
+            // 获取资源信息
+            Log.i("获取资源信息：", getString(R.string.yuehai_text))
+            // 获取 color.xml 中的颜色资源
+            Log.i("获取资源信息：", getColor(R.color.black).toString())
+
+            // 获取包管理器
+            val packageManager = packageManager
+            // 获取当前的 Activity 信息
+            val activityInfo = packageManager.getActivityInfo(componentName, PackageManager.GET_META_DATA)
+
+            // 获取当前的 Activity 信息
+            Log.i("获取当前 Activity 的 name：", activityInfo.name)
+            Log.i("获取当前 Activity 的 name：", activityInfo.exported.toString())
+            Log.i("获取当前 Activity 的 name：", activityInfo.labelRes.toString())
+            Log.i("获取当前 Activity 的 name：", activityInfo.launchMode.toString())
+
+            // 获取元数据
+            val bundle = activityInfo.metaData
+            Log.i("获取当前 Activity 的获取元数据 data1：", bundle.getString("data1")!!)
+            Log.i("获取当前 Activity 的获取元数据 data2：", bundle.getInt("data2").toString())
+            Log.i("获取当前 Activity 的获取元数据 data3：", bundle.getString("data3")!!)
+
+        }
+    }
 }
+```
+
+2. 在 `AndroidManifest.xml` 清单文件中注册，并添加元数据
+
+```xml
+<!-- 注册窗口 -->
+<activity
+	android:name=".Activity03"
+	android:exported="true"
+	android:label="@string/app_name"
+	android:launchMode="standard">
+	<!-- 是主窗口，要配置 intent-filter -->
+	<intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+		<category android:name="android.intent.category.LAUNCHER" />
+	</intent-filter>
+	
+	<!--
+		<meta-data>：直译为“元数据”，
+		该标签可为 <activity>、<activity-alias>、<application>、<provider>、<receiver>、<service> 等组件提供附加数据项。
+		组件元素可以包含任意数量的 <meta-data> 子元素。系统将 meta-data 配置的数据存储于一个 Bundle 对象中，可以通过 PackageItemInfo.metaData 字段获取
+	 -->
+	<meta-data android:name="data1" android:value="appVersion" />
+	<meta-data android:name="data2" android:value="10001" />
+	<meta-data android:name="data3" android:value="@string/app_name" />
+</activity>
 ```
 
 # 十三、`Android`  中级控件
@@ -6706,6 +6777,158 @@ class SharedPreferences01: AppCompatActivity() {
 	6. `getType`：获取指定字段的字段类型。
 
 ### ⑥、例子
+
+```Kotlin
+package com.yuehai.contentproviderserver.contentProvider
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import com.yuehai.contentproviderserver.bean.UserInfo
+
+
+/**
+ * UserDBHelper 的参数 context：
+ *      Context 是一个抽象类，它是 Android 应用程序的环境信息的接口。
+ *      Context 提供了访问应用程序资源和类、调用 Activity、广播和接收 Intent 等功能。
+ *      在 Android 中，Activity、Service、Application 等都是 Context 的子类，因此它们都可以使用 Context 提供的功能
+ *      在 Kotlin 中，您可以使用 this 键字来引用当前上下文。例如，在 Activity 中，您可以使用 this 关键字来引用 Activity 的上下文
+ * UserDBHelper 的参数：
+ *      1. 上下文环境；第一个参数是必须的
+ *      2. 数据库名字；第二个参数如果传入 null，则表示创建临时数据库，在应用退出之后，数据就会丢失
+ *      3. 可选的游标工厂；第三个参数如果使用系统默认的游标工厂就传入 null，一般都填 null
+ *      4. 代表你正在使用的数据库模型版本的整数；第四个参数用版本号来控制数据库的升级和降级，版本号从 1 开始
+ */
+class UserDBHelper(
+    val context: Context,
+    val tableName:String,
+    val version:Int
+): SQLiteOpenHelper(context, tableName, null, version) {
+
+    // 数据库实例
+    private var sdb: SQLiteDatabase? = null
+
+    // 打开读连接
+    fun openReadLink(): SQLiteDatabase? {
+        if (sdb == null || !sdb!!.isOpen) {
+            sdb = this.readableDatabase
+        }
+        return sdb
+    }
+
+    // 打开写连接
+    fun openWriteLink(): SQLiteDatabase? {
+        if (sdb == null || !sdb!!.isOpen) {
+            sdb = this.writableDatabase
+        }
+        return sdb
+    }
+
+    //关闭数据库连接
+    fun closeLink() {
+        if (sdb != null && sdb!!.isOpen) {
+            sdb!!.close()
+            sdb = null
+        }
+    }
+
+    // onCreate() 方法在数据库第一次创建时执行，一般将创建表等初始化操作在该方法中执行
+    override fun onCreate(db: SQLiteDatabase?) {
+        // 先删除已存在表
+        val dropSql = "drop table if exists $tableName;"
+        db!!.execSQL(dropSql)
+
+        // 创建表
+        val createSql = (
+                "CREATE TABLE IF NOT EXISTS $tableName" + " ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                + "name VARCHAR NOT NULL,"
+                + "age INTEGER NOT NULL);"
+                )
+
+        db.execSQL(createSql)
+    }
+
+    // onUpgrade() 方法在打开数据库时传入的版本号与当前的版本号不同时会调用该方法，一般将升级数据库等操作在该方法中执行
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        // Android 的 ALTER 命令不支持一次添加多列，只能分多次添加
+        var alterSql = "ALTER TABLE $tableName ADD COLUMN phone VARCHAR;"
+        db!!.execSQL(alterSql)
+
+        alterSql = "ALTER TABLE $tableName ADD COLUMN password VARCHAR;"
+        db.execSQL(alterSql)
+
+    }
+
+    // 往表里添加一条记录
+    fun insert(userinfo: UserInfo){
+        // 获取 ContentValues 对象
+        val contentValues = ContentValues()
+        // 向 ContentValues 对象中添加数据
+        contentValues.put("name", userinfo.name)
+        contentValues.put("age", userinfo.age)
+
+        // 保存数据
+        sdb?.insert(tableName, "", contentValues)
+    }
+
+    // 往表里添加多条记录
+
+    // 根据条件查询记录
+    fun query(name:String): MutableList<UserInfo> {
+        // 拼接语句
+        val sql = "select id,name,age from $tableName where name=$name;"
+        // 执行查询语句，该语句返回结果集的游标
+        val rawQuery = sdb?.rawQuery(sql, null);
+
+        // 定义可变集合；
+        val userList:MutableList<UserInfo> = mutableListOf()
+        // 遍历游标，取出数据
+        if (rawQuery != null) {
+            while (rawQuery.moveToNext()){
+                userList.add(UserInfo(rawQuery.getString(1), rawQuery.getInt(2)))
+            }
+
+            rawQuery.close()
+        }
+
+        return userList
+    }
+
+
+}
+```
+
+```Kotlin
+// 点击按钮
+findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListener {
+
+	val userDBHelper = UserDBHelper(this, "yuehai", 1)
+
+	// 创建表
+	userDBHelper.onCreate(userDBHelper.writableDatabase)
+	// 关闭数据库连接
+	userDBHelper.close()
+
+	// 插入数据
+	userDBHelper.insert(userDBHelper.writableDatabase, UserInfo("name", 16))
+	Log.i("插入数据", "")
+	// 关闭数据库连接
+	userDBHelper.close()
+
+	// 读取数据
+	val userInfos: MutableList<UserInfo> = userDBHelper.query(userDBHelper.readableDatabase, "name")
+	userInfos.forEach {
+		Log.i("读取数据 name", it.name)
+		Log.i("读取数据 age", it.age.toString())
+	}
+	// 关闭数据库连接
+	userDBHelper.close()
+
+}
+```
+
 
 ## 3、 存储卡
 
@@ -7069,8 +7292,10 @@ class SharedPreferences02: AppCompatActivity() {
 2. 新建 `activity` 窗口布局对应的代码文件
 
 ```Kotlin
-package com.yuehai.contentproviderserver
+package com.yuehai.contentProviderServer
 
+import android.content.ContentValues
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -7085,6 +7310,7 @@ class ContentProviderServer01: AppCompatActivity() {
         // 点击按钮
         findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListener {
             Log.i("点击服务端按钮：", "yuehai_content_provider_server_01_btn")
+
         }
     }
 }
@@ -7102,11 +7328,11 @@ class ContentProviderServer01: AppCompatActivity() {
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.02_Android" >
-		
+		android:theme="@style/Theme.02_Android">
+
 		<!-- 注册窗口 -->
 		<activity
-			android:name=".ContentProviderServer01"
+			android:name="com.yuehai.contentProviderServer.ContentProviderServer01"
 			android:exported="true"
 			android:label="@string/app_name">
 			<intent-filter>
@@ -7115,7 +7341,6 @@ class ContentProviderServer01: AppCompatActivity() {
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		
 	</application>
 
 </manifest>
@@ -7150,6 +7375,7 @@ class ContentProviderServer01: AppCompatActivity() {
 ```Kotlin
 package com.yuehai.contentproviderclinet
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -7164,6 +7390,7 @@ class ContentProviderClinet01: AppCompatActivity() {
         // 点击按钮
         findViewById<Button>(R.id.yuehai_content_provider_client_01_btn).setOnClickListener {
             Log.i("点击客户端按钮：", "yuehai_content_provider_client_01_btn")
+
         }
     }
 }
@@ -7174,7 +7401,7 @@ class ContentProviderClinet01: AppCompatActivity() {
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-	
+
 	<application
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
@@ -7185,7 +7412,7 @@ class ContentProviderClinet01: AppCompatActivity() {
 		
 		<!-- 注册窗口 -->
 		<activity
-			android:name=".ContentProviderClient01"
+			android:name=".ContentProviderClinet01"
 			android:exported="true"
 			android:label="@string/app_name">
 			<intent-filter>
@@ -7202,13 +7429,193 @@ class ContentProviderClinet01: AppCompatActivity() {
 
 ### ③、服务端模块使用 `ContentProvider`
 
-1. 创建 `UserInfoProvider` 继承 `ContentProvider`
+1. 创建实体类 `UserInfo`
+
+```Kotlin
+package com.yuehai.contentProviderServer.bean
+
+class UserInfo(
+    var name: String,
+    var age: Int
+) {
+}
+```
+
+2. 使用上面的 `SQLiteOpenHelper` 实现类 `UserDBHelper`
+
+```Kotlin
+package com.yuehai.contentProviderServer.contentProvider
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import com.yuehai.contentProviderServer.bean.UserInfo
+
+
+/**
+ * UserDBHelper 的参数 context：
+ *      Context 是一个抽象类，它是 Android 应用程序的环境信息的接口。
+ *      Context 提供了访问应用程序资源和类、调用 Activity、广播和接收 Intent 等功能。
+ *      在 Android 中，Activity、Service、Application 等都是 Context 的子类，因此它们都可以使用 Context 提供的功能
+ *      在 Kotlin 中，您可以使用 this 键字来引用当前上下文。例如，在 Activity 中，您可以使用 this 关键字来引用 Activity 的上下文
+ * UserDBHelper 的参数：
+ *      1. 上下文环境；第一个参数是必须的
+ *      2. 数据库名字；第二个参数如果传入 null，则表示创建临时数据库，在应用退出之后，数据就会丢失
+ *      3. 可选的游标工厂；第三个参数如果使用系统默认的游标工厂就传入 null，一般都填 null
+ *      4. 代表你正在使用的数据库模型版本的整数；第四个参数用版本号来控制数据库的升级和降级，版本号从 1 开始
+ */
+class UserDBHelper(
+    context: Context,
+    val tableName:String,
+    version:Int
+): SQLiteOpenHelper(context, tableName, null, version) {
+
+    // onCreate() 方法在数据库第一次创建时执行，一般将创建表等初始化操作在该方法中执行
+    override fun onCreate(db: SQLiteDatabase?) {
+        // 判断表是否存在；如果返回的数组计数等于1，则表示该表存在。否则，该表不存在
+        val cursor = db?.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='$tableName'", null)
+
+        if(cursor?.count!! != 1){
+            // 创建表
+            val createSql = (
+                    "CREATE TABLE IF NOT EXISTS $tableName" + " ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                            + "name VARCHAR NOT NULL,"
+                            + "age INTEGER NOT NULL);"
+                    )
+
+            db.execSQL(createSql)
+        }
+
+        cursor.close()
+    }
+
+    // onUpgrade() 方法在打开数据库时传入的版本号与当前的版本号不同时会调用该方法，一般将升级数据库等操作在该方法中执行
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        // Android 的 ALTER 命令不支持一次添加多列，只能分多次添加
+        var alterSql = "ALTER TABLE $tableName ADD COLUMN phone VARCHAR;"
+        db!!.execSQL(alterSql)
+
+        alterSql = "ALTER TABLE $tableName ADD COLUMN password VARCHAR;"
+        db.execSQL(alterSql)
+
+    }
+
+    // 往表里添加一条记录
+    fun insert(db: SQLiteDatabase?, userinfo: UserInfo){
+        // 获取 ContentValues 对象
+        val contentValues = ContentValues()
+        // 向 ContentValues 对象中添加数据
+        contentValues.put("name", userinfo.name)
+        contentValues.put("age", userinfo.age)
+
+        // 保存数据
+        db?.insert(tableName, "", contentValues)
+    }
+
+    // 根据条件查询记录
+    fun query(db: SQLiteDatabase?, name:String): MutableList<UserInfo> {
+        // 拼接语句
+        val sql = "select id,name,age from $tableName where name=$name;"
+        // 执行查询语句，该语句返回结果集的游标
+        val rawQuery = db?.rawQuery(sql, null);
+
+        // 定义可变集合；
+        val userList:MutableList<UserInfo> = mutableListOf()
+        // 遍历游标，取出数据
+        if (rawQuery != null) {
+            while (rawQuery.moveToNext()){
+                userList.add(UserInfo(rawQuery.getString(1), rawQuery.getInt(2)))
+            }
+
+            rawQuery.close()
+        }
+
+        return userList
+    }
+
+
+}
+```
+
+3. 创建 `UserInfoProvider` 继承 `ContentProvider`
 
 ![](attachments/Pasted%20image%2020230420142041.png)
 
 ![](attachments/Pasted%20image%2020230420142150.png)
 
-2. 此时的 `AndroidManifest.xml` 清单文件，修改 `android:authorities` 属性
+```Kotlin
+package com.yuehai.contentProviderServer.contentProvider
+
+import android.content.ContentProvider
+import android.content.ContentValues
+import android.database.Cursor
+import android.net.Uri
+
+class UserInfoProvider : ContentProvider() {
+
+    private var userDBHelper: UserDBHelper? = null
+
+    /**
+     * ContentProvider 只是服务端 App 存取数据的抽象类，我们需要在其基础上实现一个完整的内容提供器，并重写下列方法。
+     *      onCreate：创建数据库并获得数据库连接
+     *      insert：插入数据
+     *      delete：删除数据
+     *      update：更新数据
+     *      query：查询数据，并返回结果集的游标
+     *      getType：获取内容提供器支持的数据类型
+     */
+
+    // 创建数据库并获得数据库连接
+    override fun onCreate(): Boolean {
+        userDBHelper = UserDBHelper(context!!, "yuehai", 1)
+
+        return true
+    }
+
+    // 插入数据
+    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        val database = userDBHelper?.writableDatabase
+        database?.insert(userDBHelper?.tableName, null, values)
+
+        return uri
+    }
+
+    // 删除数据
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
+        TODO("Implement this to handle requests to delete one or more rows")
+    }
+
+    // 更新数据
+    override fun update(
+        uri: Uri, values: ContentValues?, selection: String?,
+        selectionArgs: Array<String>?
+    ): Int {
+        TODO("Implement this to handle requests to update one or more rows.")
+    }
+
+    // 查询数据，并返回结果集的游标
+    override fun query(
+        uri: Uri, projection: Array<String>?, selection: String?,
+        selectionArgs: Array<String>?, sortOrder: String?
+    ): Cursor? {
+        val database = userDBHelper?.readableDatabase
+        return database?.query(userDBHelper?.tableName, projection, selection, selectionArgs, null, null, null)
+    }
+
+    // 获取内容提供器支持的数据类型
+    override fun getType(uri: Uri): String? {
+        TODO(
+            "Implement this to handle requests for the MIME type of the data" +
+                    "at the given URI"
+        )
+    }
+
+}
+```
+
+4. 此时的 `AndroidManifest.xml` 清单文件，修改 `android:authorities` 属性
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -7230,20 +7637,19 @@ class ContentProviderClinet01: AppCompatActivity() {
 			android:exported：跨应用共享数据 设置为 true 默认为 false；表示该 provider 能够被其他应用程序组件调用
 		 -->
 		<provider
-			android:name="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"
-			android:authorities="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"
+			android:name=".contentProvider.UserInfoProvider"
+			android:authorities="com.yuehai.contentProviderServer.contentProvider.UserInfoProvider"
 			android:enabled="true"
 			android:exported="true" />
+		
 		<!-- 注册窗口 -->
 		<activity
-			android:name=".ContentProviderServer01"
+			android:name="com.yuehai.contentProviderServer.ContentProviderServer01"
 			android:exported="true"
 			android:label="@string/app_name">
 			<intent-filter>
-				
 				<!-- 配置为主窗口， -->
 				<action android:name="android.intent.action.MAIN" />
-				
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
@@ -7252,21 +7658,150 @@ class ContentProviderClinet01: AppCompatActivity() {
 </manifest>
 ```
 
-3. 1
-4. 1
-5. 1
+5. 编写 `ContentProviderServer01.kt` 代码文件，保存数据
 
-### ④、
+```Kotlin
+package com.yuehai.contentProviderServer
 
-### ⑤、
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.contentproviderserver.R
+import com.yuehai.contentproviderserver.bean.UserInfo
+import com.yuehai.contentproviderserver.contentProvider.UserDBHelper
+
+class ContentProviderServer01: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.content_provider_server_01)
+
+        // 点击按钮
+        findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListener {
+            Log.i("点击服务端按钮：", "yuehai_content_provider_server_01_btn")
+
+            val userDBHelper = UserDBHelper(this, "yuehai", 1)
+
+            // 创建表
+            userDBHelper.onCreate(userDBHelper.writableDatabase)
+            // 关闭数据库连接
+            userDBHelper.close()
+
+            // 插入数据
+            userDBHelper.insert(userDBHelper.writableDatabase, UserInfo("name", 16))
+            Log.i("插入数据", "")
+            // 关闭数据库连接
+            userDBHelper.close()
+
+            // 读取数据
+            val userInfos: MutableList<UserInfo> = userDBHelper.query(userDBHelper.readableDatabase, "name")
+            userInfos.forEach {
+                Log.i("读取数据 name", it.name)
+                Log.i("读取数据 age", it.age.toString())
+            }
+            // 关闭数据库连接
+            userDBHelper.close()
+
+        }
+    }
+}
+```
+
+### ④、客户端模块使用 `ContentProvider`
+
+1. 出于安全考虑，Android11 需要事先声明需要访问的其他应用，在客户端 `AndroidManifest.xml` 清单文件中添加如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<queries>
+		<!--服务端应用包名 -->
+		<package android:name="com.yuehai.contentProviderServer"/>
+		
+		<!-- 或者直接指定 authorities -->
+		<!-- <provider android:authorities="com.yuehai.contentProviderServer.contentProvider.UserInfoProvider"/> -->
+	</queries>
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".ContentProviderClinet01"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+2. 编写 `ContentProviderClinet01.kt` 代码文件，读取数据
+
+```Kotlin
+package com.yuehai.contentproviderclinet
+
+import android.content.ContentValues
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class ContentProviderClinet01: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.content_provider_clinet_01)
+
+        // 定义 uri
+        val contentUri: Uri = Uri.parse("content://com.yuehai.contentProviderServer.contentProvider.UserInfoProvider/yuehai")
+
+        // 点击按钮
+        findViewById<Button>(R.id.yuehai_content_provider_client_01_btn).setOnClickListener {
+            Log.i("点击客户端按钮：", "yuehai_content_provider_client_01_btn")
+
+            // 创建 ContentValues 对象
+            val contentValues = ContentValues()
+            contentValues.put("name", "言")
+            contentValues.put("age", 14)
+
+            // 获取到 ContentResolver 之后调用插入方法进行插入
+            contentResolver.insert(contentUri, contentValues)
+
+            // 查询
+            val query = contentResolver.query(contentUri, null, null, null, null)
+            // 遍历游标，取出数据
+            if (query != null) {
+                while (query.moveToNext()){
+                    Log.i("id", query.getInt(0).toString())
+                    Log.i("name", query.getString(1))
+                    Log.i("age", query.getInt(2).toString())
+                }
+
+            }
+
+        }
+    }
+}
+```
 
 ## 3、使用内容组件获取通讯信息
 
-## 4、
-
-## 5、
-
-## 6、
+## 4、在应用之间共享文件
 
 # 十七、`Android` 广播组件 `Broadcast`
 
@@ -8419,23 +8954,768 @@ class StartServiceActivity: AppCompatActivity() {
 
 # 十九、`Android` 网络通信
 
-## 1、
+## 1、`Handler` 消息机制
 
-## 2、
+1. `Handler` 是一种异步回调机制，主要负责与子线程进行通信。
+2. HTTP 请求需要一定时间才能完成，所以不能在主线程中执行； 一般采用创建一个新线程的方式来执行 HTTP，然后再将返回结果发送给主线程。
+3. Android 提供了 Handler 来实现这一过程。
+4. Handler 机制主要包括四个关键对象：
+	1. `Message`：消息。
+	2. `Handler`：处理者，主要负责 Message 的发送以及处理。
+	3. `MessageQueue`：消息队列，主要用来存放 Handler 发送过来的消息。
+	4. `Looper`：消息循环，不断的从 MessageQueue 中抽取 Message 并执行。
 
-## 3、
+![](attachments/Pasted%20image%2020230421192055.png)
 
-## 4、
+5. 创建获取天气的线程 `WeatherThread`，继承 `: Thread` 类
 
-## 5、
+```Kotlin
+package com.example.http.thread
 
-## 6、
+import android.os.Handler
+import android.os.Message
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.URL
+import javax.net.ssl.HttpsURLConnection
 
-## 7、
+/**
+@author 月海
+@create 2023/4/21 19:40
 
-## 8、
+获取天气的线程 WeatherThread
+ */
+class WeatherThread(private var handler: Handler): Thread() {
 
-## 9、
+    // 天气接口
+    private val path = "https://restapi.amap.com/v3/weather/weatherInfo?city=440300&key=f15437fa96e40903e41bcb0c0adc8d38";
+
+    // 重写线程的 run 方法，调用 getWeather 方法
+    override fun run() {
+        // 调用 getWeather 方法获取天气信息
+        val weather = getWeather()
+
+        // Message 发送消息
+        val message = Message()
+        message.what = 0
+        message.obj = weather
+
+        // 调用 Handler 处理者，主要负责 Message 的发送以及处理。
+        handler.sendMessage(message)
+    }
+
+    // 获取天气信息
+    private fun getWeather(): String{
+
+        // 获取 url 连接
+        val connection = URL(path).openConnection() as HttpsURLConnection
+        // 设置请求方式
+        connection.requestMethod = "GET"
+        // 设置超时时间
+        connection.connectTimeout = 5000
+
+        // 创建链接进行请求
+        val reader = BufferedReader(InputStreamReader(connection.inputStream))
+        // 得到请求结果并返回
+        return reader.readLine()
+    }
+
+}
+```
+
+6. 异步消息接收者 `WeatherHandler`，继承 `: Handler` 类
+
+```Kotlin
+package com.example.http.handler
+
+import android.os.Handler
+import android.os.Message
+import android.widget.TextView
+import com.example.http.R
+import com.example.http.YuehaiHandler
+
+/**
+@author 月海
+@create 2023/4/21 20:20
+ */
+class WeatherHandler(private val yuehaiHandler: YuehaiHandler): Handler() {
+    // 重写 handleMessage 方法
+    override fun handleMessage(msg: Message) {
+        super.handleMessage(msg)
+
+        // 接受到消息则把天气结果设置到文本框
+        if(msg.what == 0){
+            yuehaiHandler.findViewById<TextView>(R.id.yuehai_bandler_text).text = msg.obj.toString()
+        }
+    }
+}
+```
+
+7. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 获取天气信息 -->
+	<Button
+		android:id="@+id/yuehai_bandler_btn"
+		android:text="获取天气信息"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 显示文本框 -->
+	<TextView
+		android:id="@+id/yuehai_bandler_text"
+		android:text="显示天气信息"
+		android:textSize="25dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+8. 创建布局文件对应的代码文件
+
+```Kotlin
+package com.example.http
+
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.http.handler.WeatherHandler
+import com.example.http.thread.WeatherThread
+
+/**
+@author 月海
+@create 2023/4/21 19:34
+ */
+class YuehaiHandler: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.yuehai_handler)
+
+        // 点击按钮，开启新线程，发送 http 异步请求
+        findViewById<Button>(R.id.yuehai_bandler_btn).setOnClickListener {
+            // 实例化自定义的 WeatherHandler Handler 线程实现类
+            val handler = WeatherHandler(this)
+            // 实例化自定义的 WeatherThread Thread 线程实现类，调用 start() 方法，启动新线程
+            WeatherThread(handler).start()
+        }
+    }
+}
+```
+
+9. 清单文件中注册，需要申请网络联网权限：`<uses-permission android:name="android.permission.INTERNET" />`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 网络（联网）权限 -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+	<application
+		android:allowBackup="true"
+		android:label="@string/app_name"
+		android:icon="@mipmap/ic_launcher"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android">
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".YuehaiHandler"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+## 2、`okhttp`
+
+1. 上面用的 Java 中的 `HttpURLConnection` 是比较底层的接口，编写代码工作量大，容易出错。 
+2. `okhttp` 是 android 平台使用最广泛的第三方网络框架，`okhttp` 做了很多网络优化，功能也很强大。
+3. `okhttp` 有同步、异步两种接口
+	1. 同步接口：阻塞方式
+	2. 异步接口：自动创建线程进行网络请求
+4. 引入依赖：`implementation 'com.squareup.okhttp3:okhttp:3.14.+'`
+
+### ①、同步方式
+
+1. 创建获取天气的线程 `WeatherThreadOkHttpSynchronous`，继承 `: Thread` 类
+
+```Kotlin
+package com.example.http.thread
+
+import android.os.Handler
+import android.os.Message
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.URL
+import javax.net.ssl.HttpsURLConnection
+
+/**
+@author 月海
+@create 2023/4/21 19:40
+
+获取天气的线程 WeatherThread
+ */
+class WeatherThreadOkHttpSynchronous(private var handler: Handler): Thread() {
+
+    // 天气接口
+    private val path = "https://restapi.amap.com/v3/weather/weatherInfo?city=440300&key=f15437fa96e40903e41bcb0c0adc8d38";
+
+    // 重写线程的 run 方法，调用 getWeather 方法
+    override fun run() {
+        // 调用 getWeather 方法获取天气信息
+        val weather = getWeather()
+
+        // Message 发送消息
+        val message = Message()
+        message.what = 0
+        message.obj = weather
+
+        // 调用 Handler 处理者，主要负责 Message 的发送以及处理。
+        handler.sendMessage(message)
+    }
+
+    // 获取天气信息
+    private fun getWeather(): String{
+
+        // 创建 OkHttpClient
+        val okHttpClient = OkHttpClient()
+        // 构建请求
+        val request = Request.Builder().url(path).build()
+        // 同步的方式发送请求
+        val execute = okHttpClient.newCall(request).execute()
+
+        // 返回响应体
+        return execute.body()!!.string()
+    }
+
+}
+```
+
+2. 异步消息接收者 `WeatherHandlerOkHttpSynchronous`，继承 `: Handler` 类
+
+```Kotlin
+package com.example.http.handler
+
+import android.os.Handler
+import android.os.Message
+import android.widget.TextView
+import com.example.http.R
+import com.example.http.YuehaiHandler
+import com.example.http.YuehaiOkHttp
+
+/**
+@author 月海
+@create 2023/4/21 20:20
+ */
+class WeatherHandlerOkHttpSynchronous(private val yuehaiOkHttp: YuehaiOkHttp): Handler() {
+    // 重写 handleMessage 方法
+    override fun handleMessage(msg: Message) {
+        super.handleMessage(msg)
+
+        // 接受到消息则把天气结果设置到文本框
+        if(msg.what == 0){
+            yuehaiOkHttp.findViewById<TextView>(R.id.yuehai_bandler_text).text = msg.obj.toString()
+        }
+    }
+}
+```
+
+3. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- okhttp 同步方式 -->
+	<Button
+		android:id="@+id/yuehai_bandler_synchronous"
+		android:text="okhttp 同步方式"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- okhttp 异步方式 -->
+	<Button
+		android:id="@+id/yuehai_bandler_asynchronous"
+		android:text="okhttp 异步方式"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 显示文本框 -->
+	<TextView
+		android:id="@+id/yuehai_bandler_text"
+		android:text="显示天气信息"
+		android:textSize="25dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+4. 创建布局文件对应的代码文件
+
+```Kotlin
+package com.example.http
+
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.http.handler.WeatherHandler
+import com.example.http.handler.WeatherHandlerOkHttpSynchronous
+import com.example.http.thread.WeatherThread
+import com.example.http.thread.WeatherThreadOkHttpSynchronous
+
+/**
+@author 月海
+@create 2023/4/21 19:34
+ */
+class YuehaiOkHttp: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.yuehai_okhttp)
+
+        // okhttp 同步方式
+        findViewById<Button>(R.id.yuehai_bandler_synchronous).setOnClickListener {
+            // 实例化自定义的 WeatherHandlerOkHttpSynchronous Handler 线程实现类
+            val handler = WeatherHandlerOkHttpSynchronous(this)
+            // 实例化自定义的 WeatherThreadOkHttpSynchronous Thread 线程实现类，调用 start() 方法，启动新线程
+            WeatherThreadOkHttpSynchronous(handler).start()
+        }
+        
+    }
+}
+```
+
+5. 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 网络（联网）权限 -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+	<application
+		android:allowBackup="true"
+		android:label="@string/app_name"
+		android:icon="@mipmap/ic_launcher"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android">
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".YuehaiHandler"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".YuehaiOkHttp"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ②、异步方式
+
+
+1. 异步消息接收者 `WeatherHandlerOkHttpSynchronous`，继承 `: Handler` 类
+
+```Kotlin
+package com.example.http.handler
+
+import android.os.Handler
+import android.os.Message
+import android.widget.TextView
+import com.example.http.R
+import com.example.http.YuehaiOkHttp
+
+/**
+@author 月海
+@create 2023/4/21 20:20
+ */
+class WeatherHandlerOkHttpSynchronous(private val yuehaiOkHttp: YuehaiOkHttp): Handler() {
+    // 重写 handleMessage 方法
+    override fun handleMessage(msg: Message) {
+        super.handleMessage(msg)
+
+        // 接受到消息则把天气结果设置到文本框
+        if(msg.what == 0){
+            yuehaiOkHttp.findViewById<TextView>(R.id.yuehai_bandler_text).text = msg.obj.toString()
+        }
+    }
+}
+```
+
+3. 创建 xml 布局文件（和上面一样没改）
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- okhttp 同步方式 -->
+	<Button
+		android:id="@+id/yuehai_bandler_synchronous"
+		android:text="okhttp 同步方式"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- okhttp 异步方式 -->
+	<Button
+		android:id="@+id/yuehai_bandler_asynchronous"
+		android:text="okhttp 异步方式"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 显示文本框 -->
+	<TextView
+		android:id="@+id/yuehai_bandler_text"
+		android:text="显示天气信息"
+		android:textSize="25dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+4. 创建布局文件对应的代码文件，异步方式就不需要人为开启子线程了
+
+```Kotlin
+package com.example.http
+
+import android.os.Bundle
+import android.os.Message
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.http.handler.WeatherHandler
+import com.example.http.handler.WeatherHandlerOkHttpSynchronous
+import com.example.http.thread.WeatherThread
+import com.example.http.thread.WeatherThreadOkHttpSynchronous
+import okhttp3.*
+import java.io.IOException
+
+/**
+@author 月海
+@create 2023/4/21 19:34
+ */
+class YuehaiOkHttp: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.yuehai_okhttp)
+
+        // okhttp 同步方式
+        findViewById<Button>(R.id.yuehai_bandler_synchronous).setOnClickListener {
+            // 实例化自定义的 WeatherHandlerOkHttpSynchronous Handler 线程实现类
+            val handler = WeatherHandlerOkHttpSynchronous(this)
+            // 实例化自定义的 WeatherThread Thread 线程实现类，调用 start() 方法，启动新线程
+            WeatherThreadOkHttpSynchronous(handler).start()
+        }
+
+        // okhttp 异步方式
+        findViewById<Button>(R.id.yuehai_bandler_asynchronous).setOnClickListener {
+            // 天气接口
+            val path = "https://restapi.amap.com/v3/weather/weatherInfo?city=440300&key=f15437fa96e40903e41bcb0c0adc8d38";
+
+            // 实例化自定义的 WeatherHandlerOkHttpSynchronous Handler 线程实现类
+            val handler = WeatherHandlerOkHttpSynchronous(this)
+
+            // 创建 OkHttpClient
+            val okHttpClient = OkHttpClient()
+            // 构建请求
+            val request = Request.Builder().url(path).build()
+
+            // 同步的方式发送请求；实现 Callback 接口中的两个方法 onFailure、onResponse
+            okHttpClient.newCall(request).enqueue(object : Callback {
+                // 请求失败，打印异常
+                override fun onFailure(call: Call, e: IOException) {
+                    println("Failed request api :( " + e.message)
+                }
+
+                // 响应
+                override fun onResponse(call: Call, response: Response) {
+                    val result = response.body()!!.string()
+
+                    // 回调函数运行在子线程，不能直接操控 UI，通过 handler 把天气信息发送到主线程显示
+                    val message = Message()
+                    message.what = 0
+                    message.obj = result
+
+                    // 调用 Handler 处理者，主要负责 Message 的发送以及处理。
+                    handler.sendMessage(message)
+                }
+
+            })
+
+        }
+    }
+}
+```
+
+5. 清单文件中注册（和上面一样没改）
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 网络（联网）权限 -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+	<application
+		android:allowBackup="true"
+		android:label="@string/app_name"
+		android:icon="@mipmap/ic_launcher"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android">
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".YuehaiHandler"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+		<!-- 注册 -->
+		<activity
+			android:name=".YuehaiOkHttp"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+
+## 3、`retrofit`
+
+1. 在 Android 开发中，`Retrofit` 是当下最热的一个网络请求库。
+2. 底层默认使用 `okhttp` 封装的，准确来说，网络请求的工作本质上是 `okhttp` 完成，而 `Retrofit` 仅负责网络请求接口的封装。
+3. 其作用主要是简化代码、提高可维护性。
+4. 另外，最重要的是：`okhttp` 异步请求的回调运行在子线程，而 `retrofit` 的异步请求的回调默认运行在主线程。
+5. 使用 `retrofit` 时，不再需要使用 `handler` 机制手工进行线程间通信。
+6. 仍然使用天气的例子来介绍基本使用：
+7. 引入依赖：
+
+```xml
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+```
+
+8. 创建一个接口，指定 url（不包含域名和参数），GET 请求的参数通过 `@Query` 指定
+
+```Kotlin
+package com.example.http.retrofit
+
+import com.google.gson.JsonObject
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+/**
+@author 月海
+@create 2023/4/23 13:45
+ */
+
+// 创建一个接口
+interface WeatherService {
+
+    // https://restapi.amap.com/v3/weather/weatherInfo?city=440300&key=f15437fa96e40903e41bcb0c0adc8d38
+    /**
+     * 指定 url（不包含域名和参数），GET 请求的参数通过 @Query 指定
+     * @Path 和 @Query 都是 Retrofit 中的注解，用于指定请求参数的值。它们之间的区别在于：
+     *      @Path 注解用于指定 URL 中的占位符
+     *      @Query 注解用于指定查询参数的值
+     */
+    @GET("v3/weather/weatherInfo")
+    // 这里返回值偷懒没有定义实体类，而是使用 JsonObject 代替
+    fun fetchWeatherResult(@Query("city") city:String, @Query("key") key:String): Call<JsonObject?>
+
+}
+```
+
+9. 创建 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- retrofit -->
+	<Button
+		android:id="@+id/yuehai_bandler_retrofit"
+		android:text="retrofit 获取天气信息"
+		android:textSize="30dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<!-- 显示文本框 -->
+	<TextView
+		android:id="@+id/yuehai_bandler_text"
+		android:text="显示天气信息"
+		android:textSize="25dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+10. 创建布局文件对应的代码文件
+
+```Kotlin
+package com.example.http
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.http.retrofit.WeatherService
+import com.google.gson.JsonObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+/**
+@author 月海
+@create 2023/4/23 13:36
+ */
+class YuehaiRetrofit: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.yuehai_retrofit)
+
+        // 点击按钮，retrofit 请求获取天气信息
+        findViewById<Button>(R.id.yuehai_bandler_retrofit).setOnClickListener {
+            // 创建一个 Retrofit 实例
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://restapi.amap.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            // 使用 retrofit API 调用自定义的接口 WeatherService
+            val service = retrofit.create(WeatherService::class.java)
+            // 调用自定义 WeatherService 的方法，传入参数
+            service.fetchWeatherResult("440300", "f15437fa96e40903e41bcb0c0adc8d38").enqueue(object: Callback<JsonObject?> {
+                // 请求失败，打印异常
+                override fun onFailure(call: Call<JsonObject?>, t: Throwable) {
+                    t.printStackTrace()
+                }
+
+                // 响应
+                override fun onResponse(call: Call<JsonObject?>, response: Response<JsonObject?>) {
+                    // 获取天气结果
+                    val body = response.body()
+
+                    // 直接设置到 textView,不再需要使用 handler 手动进行线程间通信
+                    findViewById<TextView>(R.id.yuehai_bandler_text).text = body.toString()
+                }
+
+            })
+        }
+    }
+}
+```
+
+11. 清单文件中注册
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 网络（联网）权限 -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+	<application
+		android:allowBackup="true"
+		android:label="@string/app_name"
+		android:icon="@mipmap/ic_launcher"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android">
+		
+		<!-- 注册 Handler -->
+		<activity
+			android:name=".YuehaiHandler"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+		<!-- 注册 OkHttp -->
+		<activity
+			android:name=".YuehaiOkHttp"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+		<!-- 注册 Retrofit -->
+		<activity
+			android:name=".YuehaiRetrofit"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
 
 # 二十、问题
 
