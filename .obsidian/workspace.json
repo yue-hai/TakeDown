@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "89354a328e78d70b",
+        "id": "82f2a5bbda154aac",
         "type": "tabs",
         "children": [
           {
-            "id": "f07ffcef0c6b3bd3",
+            "id": "bf27c6a601e126fa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/Android 基础.md",
+                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
                 "mode": "source",
                 "source": false
               }
@@ -64,6 +64,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "b62a23545659cd9c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -85,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Android/Android 基础.md"
+                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md"
               }
             }
           },
@@ -103,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android/Android 基础.md",
+                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android/Android 基础.md",
+                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,27 +162,33 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f07ffcef0c6b3bd3",
+  "active": "bf27c6a601e126fa",
   "lastOpenFiles": [
-    "Android/Android 基础 2.md",
+    "其他/Docker.md",
+    "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173424.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173401.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173345.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173321.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502172147.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502172550.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173102.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173030.png",
+    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173014.png",
+    "其他/游戏/饥荒联机版/attachments/5_%6FFM2O_(YHV`K$}Q~35J.png",
+    "attachments/5_oFM2O_(YHV`K$}Q~35J 1.png.md",
+    "attachments",
+    "其他/游戏/饥荒联机版/attachments",
     "Android/Android 基础.md",
-    "Android/attachments/Pasted image 20230421192055.png",
-    "Android/attachments/Pasted image 20230421094256.png",
-    "Android/attachments/Pasted image 20230420142150.png",
-    "Android/attachments/Pasted image 20230420142041.png",
-    "Android/attachments/Pasted image 20230420132956.png",
-    "Android/attachments/Pasted image 20230420104855.png",
+    "其他/游戏/饥荒联机版",
+    "其他/游戏",
+    "Android/Android 基础 2.md",
     "其他/小工具.md",
-    "其他/attachments/Pasted image 20230420084501.png",
-    "其他/attachments/Pasted image 20230420084259.png",
-    "其他/attachments/4A13FF6FFC900441630FD400F9D43B98.jpg",
     "其他/attachments/DroidCam.apk",
     "其他/attachments/DroidCam.Setup.6.5.2.exe",
     "标题.md",
-    "其他/Docker.md",
     "SQL/MySql.md",
     "SQL",
-    "Android/attachments/Pasted image 20230419110428.png",
     "Android/attachments",
     "java/14、SpringCloud.md",
     "Android",
@@ -190,18 +204,11 @@
     "其他/软件使用/Idea.md",
     "其他/软件使用/attachments",
     "其他/Git.md",
-    "其他/attachments",
     "java/16、设计模式.md",
     "其他/文件处理/音频处理.md",
-    "其他/文件处理",
     "java/【其他】.md",
     "java/01、JAVA 基础.md",
     "java/00、其他小笔记.md",
-    "attachments/Pasted image 20230315094705.png.md",
-    "java/JUC 并发编程.md",
-    "Spring Cloud Alibaba.xmind",
-    "java/Spring/10、SSM整合开发.md",
-    "java/attachments",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",

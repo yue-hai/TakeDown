@@ -1,0 +1,340 @@
+# 一、购买服务器
+1. 推荐阿里云学生机，网址：https://developer.aliyun.com/plan/grow-up
+2. 选择轻量型服务器，1 核 2G 就可以，2 核 4G 更好
+    - 地域：随意
+    - 镜像类型：系统镜像
+    - 系统镜像：CentOS 7.3（或 CentOS 的其他版本）
+3. 付款
+
+# 二、设置服务器
+1. 防火墙设置：
+    - 点击<font color="#dd0000">服务器列表</font>，然后点击服务器进入设置
+      - 点击<font color="#dd0000">3服务器安全设置</font>
+        - 点击点击<font color="#dd0000">已设置2条</font>
+          - 点击点击<font color="#dd0000">添加规则</font>
+            - 端口范围设置为点击<font color="#dd0000">10998</font>，点击确定
+          - 点击点击<font color="#dd0000">添加规则</font>
+            - 端口范围设置为点击<font color="#dd0000">10999</font>，点击确定
+2. 打开服务器终端
+
+# 三、安装服务器的基本条件
+
+1. 更新所有安装软件
+
+```bash
+yum update
+```
+
+2. 安装下载工具
+
+```bash
+yum install -y wget
+```
+
+3. 安装解压工具
+
+```bash
+yum install unzip
+```
+
+4. 安装远程管理工具 screen
+
+```bash
+yum install -y screen
+```
+   
+5. ~~使服务器支持 32 位系统~~，现在支持 64 位了，不用下载这个了
+   
+```bash
+sudo apt-get dist-upgrade
+```
+
+# 四、安装 SteamCMD
+
+1. 创建用户 steam，设置密码
+
+```bash
+adduser steam
+```
+   
+2. 进入 steam 用户，创建 `steamcmd` 和 `dstserver` 文件夹，再进入 `steamcmd` 目录
+
+```bash
+su steam && mkdir steamcmd && mkdir dstserver && cd steamcmd
+```
+
+3. 下载 steamcmd
+
+```bash
+wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+```
+
+4. 解压 steamcmd
+
+```bash
+tar -xvzf steamcmd_linux.tar.gz
+```
+
+5. 启动 SteamCMD，以 `Steam>` 开头的就代表进入了 SteamCMD
+
+```bash
+./steamcmd.sh
+```
+   
+```
+Redirecting stderr to '/root/Steam/logs/stderr.txt'
+[  0%] Checking for available updates...
+[----] Verifying installation...
+Steam Console Client (c) Valve Corporation
+  -- type 'quit' to exit --
+Loading Steam API...OK
+
+Steam>
+```
+
+6. 设置饥荒联机版下载目录 `dstserver`
+
+```bash
+force_install_dir /home/steam/dstserver
+```
+
+7. 匿名登录 steam
+
+```bash
+login anonymous
+```
+
+8. 下载饥荒联机版
+ 
+```bash
+app_update 343050 validate
+```
+
+9. 等待下载完后输入 quit 或者 （ctrl + c） 退出 SteamCMD，至此服务器已经下载好了，接下来就是配置服务器
+
+# 五、配置服务器
+
+1. ~~首先解决最重要的问题，linux 下饥荒的服务器似乎需要的组件跟现在的组件产生了名字上的差错，导致启动服务器会显示缺少关键的组件libcurl-gnutls.so.4，因此需要执行下面的命令来解决~~；现在支持 64 位了，不用下载这个了
+  
+```
+ln -s /usr/lib/libcurl.so.4 /home/steam/dstserver/bin/lib32/libcurl-gnutls.so.4
+```
+
+2. 进入饥荒联机版 bin64 目录
+
+```
+cd /home/steam/dstserver/bin64/
+```
+
+3. 创建地表层（主世界）服务器启动脚本
+   
+```
+echo "./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Master" > master_start.sh
+```
+
+4. 创建洞穴层服务器启动脚本
+ 
+```
+echo "./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Caves" > cave_start.sh
+```
+
+5. 给予 master_start.sh 和 cave_start.sh 执行权限
+
+```
+chmod +x master_start.sh cave_start.sh
+```
+
+6. 启动主世界服务器；因为服务器启动但还未配置所以显示未正常启动，之后按下 Ctrl+C 正常关闭服务器
+
+```
+./master_start.sh
+```
+
+7. 启动洞穴服务器；因为服务器启动但还未配置所以显示未正常启动，之后按下 Ctrl+C 正常关闭服务器
+   
+```
+./cave_start.sh
+```
+
+8. 经过上述服务器初次启动，在 ```/home/steam/.klei/DoNotStarveTogether/Cluster_1/``` 文件夹下就会自动生成默认的配置文件，这个配置文件就是我们饥荒服务器的配置文件了
+9. 接下来有两种方式，一种是自己修改配置，这种要求比较高，另一种就是现在自己电脑上创建一个服务器，然后将配置文件复制到 Linux 服务器上，推荐使用第二种，简单，准确，这里也只描述第二种
+
+# 六、导入配置、地图、mod 等文件
+
+## 1、导入配置、地图
+
+1. 使用 windows 电脑的饥荒联机版，创建一个新的服务器，并设置好你的房间名、密码、游戏模式、地上与洞穴的配置、服务器 mod 等
+2. 然后点击创建，等房间创建好到选人界面，就可以退出了
+3. 打开文件资源管理器，进入：文档 -> Klei -> DoNotStarveTogetger -> （一串数字） -> Cluster_1（后面的数字表示是第几个服务器）
+4. 进入 Cluster_1，所有文件复制到服务器的 `/home/steam/.klei/DoNotStarveTogether/Cluster_1/` 目录中
+
+![](attachments/Pasted%20image%2020230502172147.png)
+
+5. 服务器 token：在服务器的 `/home/steam/.klei/DoNotStarveTogether/Cluster_1/` 目录中新建一个文件：`cluster_token.txt`，然后在 windows 电脑的饥荒联机版主界面中
+   1. 点击左下角的账号按钮
+   2. 点击弹窗上方的游戏按钮
+   3. 点击《饥荒：联机版》的游戏服务器按钮
+   4. 点击添加新服务器按钮
+   5. 复制出现的令牌码 ```pds-g^KU_......```，粘贴入 `cluster_token.txt` 文件中
+
+![](attachments/Pasted%20image%2020230502173321.png)
+
+![](attachments/Pasted%20image%2020230502173401.png)
+
+6. 设置管理员：在服务器的 `/home/steam/.klei/DoNotStarveTogether/Cluster_1/` 目录中新建一个文件：`adminlist.txt`，然后在 windows 电脑的饥荒联机版主界面中
+   1. 点击左下角的账号
+   2. 复制 KLEI 用户 ID 到此文件中，可添加多个管理员，每个一行
+
+![](attachments/Pasted%20image%2020230502173424.png)
+
+![](attachments/Pasted%20image%2020230502173345.png)
+
+## 2、mod
+
+1. 进入 Master 或者 Caves 文件夹，打开 `modoverrides.lua` 文件
+2. 然后进入 `/home/steam/dstserver/mods` 文件夹，打开 `dedicated_server_mods_setup.lua` 文件
+3. 将 `modoverrides.lua` 文件中方括号内 ```workshop-``` 后的数字填入 `dedicated_server_mods_setup.lua` 文件中，格式为：
+
+```
+ServerModSetup("序号1")
+ServerModSetup("序号2")
+
+ServerModCollectionSetup("序号1")
+ServerModCollectionSetup("序号2")
+```
+
+4. 再次启动服务器就会自动下载 mod
+
+# 七、启动及关闭服务器
+
+1. 进入服务器脚本目录
+
+```
+cd /home/steam/dstserver/bin64/
+```
+
+2. 启动地表层服务器；按 `Ctrl+a+d` 可退出终端
+
+```
+screen -S master
+
+./master_start.sh
+```
+
+3. 启动洞穴层服务器；按 `Ctrl+a+d` 可退出终端
+ 
+```
+screen -S caves
+
+./cave_start.sh
+```
+
+4. 获取 screen 列表，会有一个 `XXX.master` 和 `XXX.caves` 的进程
+ 
+```
+screen -ls
+```
+
+5. 输入进程名字即可进入终端
+
+```
+screen -r XXX
+```
+
+6. 结束进程
+ 
+```
+screen -S XXX -X quit
+```
+
+# 八、配置文件详细
+1. cluster.ini
+
+```
+  [GAMEPLAY]
+  game_mode = endless                 # 游戏模式：无尽
+  max_players = 6                     # 最大游戏人数：6
+  pvp = false                         # 是否开启pvp
+  pause_when_empty = true             # 没人时服务器是否暂停
+  vote_kick_enabled = false           # 投票踢人
+
+  [NETWORK]
+  lan_only_cluster = false            # 是否是局域网游戏
+  cluster_intention = cooperative     # 游戏偏好，随便设置
+  cluster_password = 000123           # 游戏密码，不设置表示无密码
+  cluster_description = 月海的服务器   # 游戏房间描述
+  cluster_name = 月海                 # 游戏房间名称
+  offline_cluster = false             # 是否是离线服务器
+  cluster_language = zh               # 游戏语言
+
+  [MISC]
+  max_snapshots = 6                   # 最大快照数，决定了可回滚的天数
+  console_enabled = true              # 是否开启控制台
+
+  [SHARD]
+  shard_enabled = true                # 服务器共享，要开启洞穴服务器的必须启用
+  bind_ip = 127.0.0.1                 # 服务器监听的地址
+  master_ip = 127.0.0.1               # master 服务器的 IP
+  master_port = 10888                 # 监听 master 服务器的 UDP 端口，所有连接至 master 服务器的非 master 服务器必须相同
+  cluster_key = defaultPass           # 连接密码，每台服务器必须相同，会被 server.ini 覆盖
+
+  [STEAM]
+  steam_group_only = false            # 只允许某 Steam 组的成员加入
+  steam_group_id = 0                  # 指定某个 Steam 组，填写组 ID
+  steam_group_admins = false          # 开启后，Steam 组的管理员拥有服务器的管理权限
+
+```
+
+# 九、问题、报错
+
+## 1、`Shard server mode disabled: missing is_master setting`
+
+1. 洞穴服务器无法启动，报错
+
+```
+[00:00:10]: [Shard] Shard server mode disabled: missing is_master setting.
+[00:00:10]: [Shard] Missing 'is_master' config field.
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-2287303119
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-374550642
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-2119742489
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-2505341606
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-2283028733
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-378160973
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-569043634
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-1878212389
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-1207269058
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-1185229307
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-623749604
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-362175979
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-856487758
+[00:00:10]: Could not load mod_config_data/modconfiguration_workshop-375859599
+Unknown bind__() error -1.
+Unknown bind__() error -1.
+[00:00:11]: [Error] Server failed to start!
+[00:00:11]: Unhandled exception during server startup: RakNet UDP startup failed: SOCKET_PORT_ALREADY_IN_USE (5)
+[00:00:11]: PushNetworkDisconnectEvent With Reason: "ID_DST_INITIALIZATION_FAILED", reset: false
+[00:00:11]: Details: SOCKET_PORT_ALREADY_IN_USE
+      
+```
+
+2. 原因：应该是没有说明是否是主服务器
+3. 解决：在 `Cluster_1/Caves/` 目录下的 `server.ini` 文件中添加配置：`is_master = false`
+
+```
+[ACCOUNT]
+server_port = 11000
+is_master = false
+encode_user_path = true
+```
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
