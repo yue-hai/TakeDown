@@ -4,22 +4,47 @@
     "type": "split",
     "children": [
       {
-        "id": "82f2a5bbda154aac",
+        "id": "fb233767a23f9729",
         "type": "tabs",
         "children": [
           {
-            "id": "bf27c6a601e126fa",
+            "id": "fdec2e008e23be4d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
+                "file": "Android/SSC 购物车.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c6034771efdd99d8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android/Android 基础.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fef53c729cbb3428",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "标题.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -64,14 +89,6 @@
               "type": "starred",
               "state": {}
             }
-          },
-          {
-            "id": "b62a23545659cd9c",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {}
-            }
           }
         ]
       }
@@ -93,7 +110,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md"
+                "file": "Android/Android 基础.md"
               }
             }
           },
@@ -111,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
+                "file": "Android/Android 基础.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +145,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
+                "file": "Android/Android 基础.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,31 +179,32 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "bf27c6a601e126fa",
+  "active": "c6034771efdd99d8",
   "lastOpenFiles": [
-    "其他/Docker.md",
+    "Android/attachments/Pasted image 20230504165416.png",
+    "Android/attachments/Pasted image 20230504164732.png",
+    "Android/attachments/Pasted image 20230504164626.png",
+    "标题.md",
+    "Android/Android 基础.md",
+    "Android/SSC 购物车.md",
+    "Android/attachments/Pasted image 20230504150017.png",
     "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
+    "Android/Android 基础.md~",
     "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173424.png",
     "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173401.png",
     "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173345.png",
     "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173321.png",
     "其他/游戏/饥荒联机版/attachments/Pasted image 20230502172147.png",
-    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502172550.png",
-    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173102.png",
-    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173030.png",
-    "其他/游戏/饥荒联机版/attachments/Pasted image 20230502173014.png",
-    "其他/游戏/饥荒联机版/attachments/5_%6FFM2O_(YHV`K$}Q~35J.png",
-    "attachments/5_oFM2O_(YHV`K$}Q~35J 1.png.md",
-    "attachments",
     "其他/游戏/饥荒联机版/attachments",
-    "Android/Android 基础.md",
     "其他/游戏/饥荒联机版",
     "其他/游戏",
-    "Android/Android 基础 2.md",
+    "Android/attachments/Pasted image 20230428133506.png",
+    "Android/attachments/Pasted image 20230427171241.png",
+    "java开发规约.pdf",
     "其他/小工具.md",
     "其他/attachments/DroidCam.apk",
     "其他/attachments/DroidCam.Setup.6.5.2.exe",
-    "标题.md",
+    "其他/Docker.md",
     "SQL/MySql.md",
     "SQL",
     "Android/attachments",
@@ -202,13 +220,13 @@
     "linux/Smart/Smart 基础.md",
     "linux/Smart/Smart 编程.md",
     "其他/软件使用/Idea.md",
-    "其他/软件使用/attachments",
     "其他/Git.md",
     "java/16、设计模式.md",
     "其他/文件处理/音频处理.md",
     "java/【其他】.md",
     "java/01、JAVA 基础.md",
     "java/00、其他小笔记.md",
+    "attachments/Pasted image 20230315094705.png.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",

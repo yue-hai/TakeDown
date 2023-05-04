@@ -6536,37 +6536,208 @@ class Activity03: AppCompatActivity() {
 # 十三、`Android`  中级控件
 
 # 十四、`Android` 高级控件
-### ①、
 
-### ②、
+## 1、下拉列表
 
-### ③、
+### ①、下拉框 Spinner
 
-# 1、下拉列表
+1. Spinner 是下拉框控件，它用于从一串列表中选择某项。
+2. 下拉列表的展示方式有两种，
+	1. `dropdown`：在当前下拉框的正下方弹出列表框，下拉菜单风格（默认）
+	2. `dialog`：在页面中部弹出列表对话框，对话框风格
+3. 分别对应 `SpinnerMode` 属性设置为 `dropdown` 或者 `dialog`
+4. Spinner 组件一共有两个，一个是本身的 `Spinner`，一个是 `android.support.v7.widget.AppCompatSpinner`
+	1. 两者的区别在于 v7 内的 Spinner 是兼容低版本的
+	2. Spinner 在高版本中才能使用的方法，换了 v7 下的 Spinner 后可以一直兼容到2.1 (v7 兼容到 api7)
+	3. 除此之外两者的使用没有其他差别
+5. 这里有用到适配器，下面会讲
+6. 创建布局文件 `spinner_dropdown.xml`
 
-### ①、下拉框
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="下拉模式的列表框"
+		android:textSize="20sp"/>
 
-### ②、SimpleAdaper
+	<!--
+		下拉列表
+		android:spinnerMode：列表框的模式，有两个可选值
+			dropdown 在当前下拉框的正下方弹出列表框，下拉菜单风格（默认）
+			dialog 在页面中部弹出列表对话框，对话框风格
+	 -->
+	<Spinner
+		android:id="@+id/spinner_dropdown"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:spinnerMode="dropdown"/>
 
-### ③、BaseAdapter
+</LinearLayout>
+```
 
-# 2、列表类视图
+7. 创建条目布局文件 `spinner_item.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="200dp"
+	android:layout_height="40dp"
+	android:gravity="center"
+	android:textSize="30sp"
+	android:background="@color/purple_200"
+	android:textColor="@color/teal_700"
+	android:text="月海">
+	
+</TextView>
+```
+
+8. 创建布局文件对应的代码文件 Activity `SpinnerDropdownActivity`
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+
+class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
+
+    // 定义下拉列表需要显示的文本数组
+    private val starArray = arrayOf("水星", "金星", "地球", "火星", "木星", "土星")
+    // 定义下拉列表对象，等待赋值
+    private var spinnerDropdown: Spinner? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.spinner_dropdown)
+
+        // 获取下拉列表对象，并赋值
+        spinnerDropdown = findViewById<Spinner>(R.id.spinner_dropdown)
+        // 声明一个数组适配器
+        val starAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(this, R.layout.spinner_item, starArray)
+        spinnerDropdown!!.adapter = starAdapter
+
+        // 设置默认为第一项
+        spinnerDropdown!!.setSelection(0)
+        // 设置监听器，一旦用户选择了某一项，则触发 onItemSelected 方法
+        spinnerDropdown!!.onItemSelectedListener = this
+    }
+
+    // 选择后触发
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i("下拉列表", "选择后触发")
+        // 用户界面的文字弹窗提示
+        Toast.makeText(this, "你选择的是" + starArray[position], Toast.LENGTH_SHORT).show();
+    }
+
+    // 当下拉列表中的选项被取消选择时，该方法将被调用。例如，当触摸被激活或适配器变为空时，选择可能会消失
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Log.i("下拉列表", "当下拉列表中的选项被取消选择时触发")
+    }
+}
+```
+
+9. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ②、适配器 Adapte
+
+1. `Adapter` 是用于连接后端数据和前端显示的适配器接口，是数据 data 和 UI（View）之间一个重要的纽带
+2. 在常见的 View(ListView、GridView) 等地方都需要用到 Adapter
+3. 适配器负责从数据集合中取出对应的数据显示到条目布局上
+4. 如下图直观的表达了 Data、Adapter、View 三者的关系
+
+![](attachments/Pasted%20image%2020230504164626.png)
+
+### ③、适配器 Adapte 继承结构
+
+1. Adapter接口的组成中最常用的有以下几个：
+2. `BaseAdapter` 是所有 Adapter 类的父类，所有的 Adapter 类的实现都是基于 BaseAdapter 的基础上的
+3. `ArrayAdapter` 支持泛型操作，最为简单，但是只能展示一行字。
+4. `SimpleAdapter` 虽然名称为 simple，但是用法功能还是很强大的，基本上我们在敲代码时都要与这个打交道
+
+![](attachments/Pasted%20image%2020230504164732.png)
+
+### ③、复用 convertVie
+
+1. 试想一个场景：若把所有数据集合的信息都加载到 ListView 上显示，ListView 要为每个数据都创建一个视图，那么会占用非常多的内存
+2. 为了节省空间和时间，ListView 不会为每一个数据创建一个视图，而是采用了 Recycler 组件，用于回收和复用 View
+3. 当屏幕需显示 x 个 Item 时，那么 ListView 会创建 x+1个视图；当第1个 Item 离开屏幕时，此 Item 的 View 被回收至缓存，入屏的 Item 的 View 会优先从该缓存中获取
+4. 注：只有 Item 完全离开屏幕后才可复用，这也是为什么 ListView 要创建比屏幕需显示视图多 1 个的原因：缓冲显示视图
+5. 即：第 1 个 Item 离开屏幕是有过程的，会有 1 个第 1 个 Item 的下半部分和第 8 个 Item 上半部分同时在屏幕中显示的状态，此时仍无法使用缓存的 View，只能继续用新创建的视图 View
+6. 实例演示，设：屏幕只能显示 5 个 Item，那么 ListView 只会创建（5+1）个 Item 的视图；当第 1 个 Item 完全离开屏幕后才会回收至缓存从而复用（用于显示第 7 个 Item）
+
+![](attachments/Pasted%20image%2020230504165416.png)
+
+### ④、数组适配器 ArrayAdapte
+
+
+
+### ⑤、简单适配器 SimpleAdaper
+
+### ⑥、基本适配器 BaseAdapter
+
+### ⑦、
+
+### ⑧、
+
+## 2、列表类视图
 
 ### ①、列表视图 ListView
 
 ### ②、网格视图 GridView
 
-# 3、翻页类视图
+## 3、翻页类视图
 
 ### ①、翻页视图 ViewPager
 
 ### ②、翻页标签栏 PagerTabStrip
 
-# 4、Fragment
+## 4、Fragment
 
 ### ①、静态注册
 
-### ②、动态注册：
+### ②、动态注册
 
 # 十五、`Android` `Android` 数据存储 `SharedPreferences`
 
@@ -9737,8 +9908,51 @@ org.gradle.jvmargs=-Xmx1536M \
 --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
 ```
 
+## 2、开源投屏工具：`scrcpy`
 
-## 2、
+1. 下载解压：https://github.com/Genymobile/scrcpy/releases
+2. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
+
+![](attachments/Pasted%20image%2020230425162439.png)
+
+3. 手机记得开启 usb 调试
+4. 断开所有 wifi 连接设备：`adb disconnect`
+5. 断开指定的 wifi 设备连接：`adb disconnect xxx.xxx.xxx.xxx`
+
+### ①、USB 连接
+
+1. usb 连接手机
+2. 打开 cmd，进入解压目录
+3. 输入 `adb devices`，查看已连接设备
+4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
+
+### ②、网络连接设备
+
+1. 打开 cmd，进入解压目录
+2. 输入 `adb connect IP:端口号` 连接设备
+3. 输入 `adb devices`，查看已连接设备
+4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
+
+### ③、连接多个设备
+
+1. 输入 `adb devices`，查看已连接设备
+2. 若是已连接设备不只有一个，则输入 `scrcpy -s [ip或者设备号]` 进行连接
+
+### ④、播放手机的声音
+
+1. scrcpy 是无法实现该功能的，但可以通过 sndcpy 播放手机的声音
+2. 首先，下载 sndcpy：https://github.com/rom1v/sndcpy#get-the-app
+3. 和 scrcpy 相同，手机端需要开启开发者模式和 USB 调试，并且开启 USB 安装
+4. PC 端安装 VLC播放器：https://get.videolan.org/vlc/3.0.18/win64/vlc-3.0.18-win64.exe
+5. 在 sndcpy 的文件夹下输入 cmd 进入命令行，然后输入 `sndcpy`
+6. 此时手机端会提醒安装一个 app，同意就是了
+7. 安装完成后命令行应该会显示这样：
+
+![](attachments/Pasted%20image%2020230425164606.png)
+
+8. 不要关闭此命令行窗口，再开启一个 scrcpy 的命令行窗口
+9. 以上面的方式连接 scrcpy 即可
+10. 该程序的原理是通过在手机端安装 sndcpyapp，拦截手机端的声音，再通过 adb 转发到 PC 端，再通过 VLC 播放器播放声音
 
 ## 3、
 
