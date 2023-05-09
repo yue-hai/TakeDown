@@ -6546,6 +6546,9 @@ class Activity03: AppCompatActivity() {
 	1. `dropdown`：在当前下拉框的正下方弹出列表框，下拉菜单风格（默认）
 	2. `dialog`：在页面中部弹出列表对话框，对话框风格
 3. 分别对应 `SpinnerMode` 属性设置为 `dropdown` 或者 `dialog`
+
+![](attachments/Pasted%20image%2020230506084743.png)
+
 4. Spinner 组件一共有两个，一个是本身的 `Spinner`，一个是 `android.support.v7.widget.AppCompatSpinner`
 	1. 两者的区别在于 v7 内的 Spinner 是兼容低版本的
 	2. Spinner 在高版本中才能使用的方法，换了 v7 下的 Spinner 后可以一直兼容到2.1 (v7 兼容到 api7)
@@ -6581,7 +6584,7 @@ class Activity03: AppCompatActivity() {
 </LinearLayout>
 ```
 
-7. 创建条目布局文件 `spinner_item.xml`
+7. 创建条目布局文件 `spinner_dropdown_item.xml`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -6626,8 +6629,14 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 
         // 获取下拉列表对象，并赋值
         spinnerDropdown = findViewById<Spinner>(R.id.spinner_dropdown)
-        // 声明一个数组适配器
-        val starAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(this, R.layout.spinner_item, starArray)
+        /**
+         * 声明一个数组适配器
+         * 第一个参数：上下文环境
+         * 第二个参数：当前列表项加载的布局文件
+         * 第三个参数：数据源
+         */
+        val starAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(this, R.layout.spinner_dropdown_item, starArray)
+        // 传入适配器实例
         spinnerDropdown!!.adapter = starAdapter
 
         // 设置默认为第一项
@@ -6680,6 +6689,10 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 </manifest>
 ```
 
+10. 结果显示
+
+![](attachments/Pasted%20image%2020230508111847.png)
+
 ### ②、适配器 Adapte
 
 1. `Adapter` 是用于连接后端数据和前端显示的适配器接口，是数据 data 和 UI（View）之间一个重要的纽带
@@ -6711,33 +6724,1463 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 
 ### ④、数组适配器 ArrayAdapte
 
+1. 最简单的适配器，用于绑定格式单一的数据，数据源可以是集合或者数组
+2. 运用数组适配器分成下列步骤：
+	1. 编写列表项的 XML 文件，内部布局只有一个 `TextView`、`ListView` 等标签
+	2. 调用 `ArrayAdapter` 的构造方法
+		1. 第一个参数：上下文环境
+		2. 第二个参数：当前列表项加载的布局文件
+		3. 第三个参数：数据源
+	3. 调用下拉框控件的 setAdapter 方法，传入第二步得到的适配器实例
+
+### ⑤、简单适配器 SimpleAdapter
+
+#### Ⅰ、说明
+
+1. 数组适配器简单但是只能用于文本列表，如果想要加上图标之类的，则需要用到简单适配器 `SimpleAdapter` 了
+2. `SimpleAdapter` 类是用来处理 `ListView` 显示数据的，这个类可以将任何自定义的 xml 布局文件作为列表项来使用
+3. SimpleAdapter构造方法的原型为：`public SimpleAdapter ( Context context,List<?extends Map<String,?>> data,int resource,String[] form,int[] to)`
+	1. `context`：SimpleAdapter 关联的 View 的运行环境；上下文环境
+	2. `data`：一个 Map 组成的 List。列表种的每个条目对应列表中的一行，每个 Map 中应该包含 from 参数中指定的键
+	3. `resource`：定义列表项的布局文件的资源 id
+	4. `from`：被添加到 Map 映射上的键名
+	5. `to`：将绑定数据的视图的 Id 和 from 参数对应；from 与 to 一一对应，适配器绑定数据
+
+#### Ⅱ、代码例子
+
+1. 创建布局文件 `spinner_dropdown_simple_adapter.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="简单适配器 - 下拉模式的列表框"
+		android:textSize="20sp"/>
+	
+	<!--
+		下拉列表
+		android:spinnerMode：列表框的模式，有两个可选值
+			dropdown 在当前下拉框的正下方弹出列表框，下拉菜单风格（默认）
+			dialog 在页面中部弹出列表对话框，对话框风格
+	 -->
+	<Spinner
+		android:id="@+id/spinner_dropdown_simple_adapter"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:spinnerMode="dropdown"/>
+
+</LinearLayout>
+```
+
+2. 创建条目布局文件 `spinner_dropdown_simple_adapter_item.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:gravity="center">
+	
+	<ImageView
+		android:id="@+id/iv_icon"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:src="@drawable/qq"/>
+	
+	<TextView
+		android:id="@+id/tv_name"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:gravity="center"
+		android:textColor="@color/white"
+		android:background="@color/purple_700"
+		android:textSize="20sp"
+		android:text="地球" />
+
+</LinearLayout>
+```
+
+3. 创建布局文件对应的代码文件 Activity `SpinnerDropdownSimpleAdapterActivity`
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.SimpleAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 
-### ⑤、简单适配器 SimpleAdaper
+class SpinnerDropdownSimpleAdapterActivity: AppCompatActivity(), AdapterView.OnItemSelectedListener {
+
+    // 定义下拉列表需要显示的行星名称数组
+    private val starArray = arrayOf("水星", "金星", "地球", "火星", "木星", "土星")
+    // 定义下拉列表需要显示的行星图标数组
+    private val iconArray = arrayOf(
+        R.drawable.qq, R.drawable.qq, R.drawable.qq, R.drawable.qq,
+        R.drawable.wcat, R.drawable.wcat
+    )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.spinner_dropdown_simple_adapter)
+5
+        // 声明一个映射对象的列表，用于保存行星的图标与名称配对信息
+        val list: MutableList<Map<String, Any?>> = ArrayList()
+        // iconArray 是行星的图标数组，starArray 是行星的名称数组
+        // 遍历名称，取出对应索引的名称和图标，配对以放入映射对象的列表
+        for (index in starArray.indices){
+            val item: MutableMap<String, Any?> = HashMap()
+            item["icon"] = iconArray[index]
+            item["name"] = starArray[index]
+            list.add(item)
+        }
+
+        /**
+         * 声明一个下拉列表的简单适配器，其中指定了图标与文本两组数据
+         * SimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to)
+         * 第一个参数 context：SimpleAdapter 关联的 View 的运行环境；上下文环境
+         * 第二个参数 data：  一个 Map 组成的 List。列表种的每个条目对应列表中的一行，每个 Map 中应该包含 from 参数中指定的键
+         * 第三个参数 resource：定义列表项的布局文件的资源 id
+         * 第四个参数 from：  被添加到 Map 映射上的键名
+         * 第五个参数 to：    将绑定数据的视图的 Id 和 from 参数对应；from 与 to 一一对应，适配器绑定数据
+         */
+        val startAdapter = SimpleAdapter(
+            this,
+            list,
+            R.layout.spinner_dropdown_simple_adapter_item,
+            arrayOf<String>("icon", "name"),
+            intArrayOf(R.id.iv_icon, R.id.tv_name)
+        )
+        // 获取下拉列表对象
+        val spIcon = findViewById<Spinner>(R.id.spinner_dropdown_simple_adapter)
+        // 传入适配器实例
+        spIcon.adapter = startAdapter
+        // 设置默认为第一项
+        spIcon.setSelection(0)
+        // 设置监听器，一旦用户选择了某一项，则触发 onItemSelected 方法
+        spIcon.onItemSelectedListener = this
+    }
+
+    // 选择后触发
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i("下拉列表", "选择后触发")
+        // 用户界面的文字弹窗提示
+        Toast.makeText(this, "你选择的是" + starArray[position], Toast.LENGTH_SHORT).show();
+    }
+
+    // 当下拉列表中的选项被取消选择时，该方法将被调用。例如，当触摸被激活或适配器变为空时，选择可能会消失
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Log.i("下拉列表", "当下拉列表中的选项被取消选择时触发")
+    }
+}
+```
+
+4. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownSimpleAdapterActivity -->
+		<activity
+			android:name=".SpinnerDropdownSimpleAdapterActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+5. 结果显示
+
+![](attachments/Pasted%20image%2020230508111742.png)
 
 ### ⑥、基本适配器 BaseAdapter
 
-### ⑦、
+#### Ⅰ、说明
 
-### ⑧、
+1. BaseAdapter 是一种适应性更强的基本适配器
+2. 上面的 ArrayAdapter 和 SimpleAdapter 都是比较具体的实现类，想要有更多的扩展，必然是需要自定义适配器的
+3. 我们可以通过继承 BaseAdapter，根据业务自定义数据适配器。
+
+#### Ⅱ、代码例子
+
+1. 创建布局文件 `spinner_dropdown_base_adapter.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="基本适配器 - 对话框风格的列表框"
+		android:textSize="20sp"/>
+	
+	<!--
+		下拉列表
+		android:spinnerMode：列表框的模式，有两个可选值
+			dropdown 在当前下拉框的正下方弹出列表框，下拉菜单风格（默认）
+			dialog 在页面中部弹出列表对话框，对话框风格
+	 -->
+	<Spinner
+		android:id="@+id/spinner_dialog_base_adapter"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:spinnerMode="dialog"/>
+
+</LinearLayout>
+```
+
+2. 创建条目布局文件 `spinner_dropdown_base_adapter_itme.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal">
+	
+	<!-- 这是显示行星图片的图像视图 -->
+	<ImageView
+		android:id="@+id/iv_icon"
+		android:layout_width="0dp"
+		android:layout_height="80dp"
+		android:layout_weight="1"
+		android:src="@drawable/qq" />
+	
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="3"
+		android:orientation="vertical">
+		
+		<!-- 这是显示行星名称的文本视图 -->
+		<TextView
+			android:id="@+id/tv_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="start|center"
+			android:textColor="@color/white"
+			android:background="@color/purple_700"
+			android:textSize="20sp"
+			android:text="地球" />
+		
+		<!-- 这是显示行星描述的文本视图 -->
+		<TextView
+			android:id="@+id/tv_desc"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="start|center"
+			android:textColor="@color/white"
+			android:background="@color/purple_200"
+			android:textSize="13sp"
+			android:text="地球是太阳系八大行星之一，排行第三，也是太阳系中直径、质量和密度最大的类地行星，距离太阳1.5亿公里" />
+	</LinearLayout>
+
+</LinearLayout>
+```
+
+3. 创建行星实体数据类 `Planet`
+
+```Kotlin
+package com.yuehai.advancedcontrols.ui.adapter.bean
+
+/**
+ * 行星实体数据类
+ */
+data class Planet(
+    // 行星名称
+    var name: String,
+    // 行星图标
+    var image: Int,
+    // 行星描述
+    var desc: String
+)
+```
+
+4. 定义一个 ViewHolder，用来标记控件 `PlanetViewHolder`
+
+```Kotlin
+package com.yuehai.advancedcontrols.ui.adapter.bean.viewHolder
+
+import android.widget.ImageView
+import android.widget.TextView
+
+/**
+ * 定义一个 ViewHolder，用来标记控件
+ */
+class PlanetViewHolder {
+
+    // 行星名称
+    var name: TextView? = null
+    // 行星图标
+    var image: ImageView? = null
+    // 行星描述
+    var desc: TextView? = null
+
+}
+```
+
+5. <font color="#ff0000">创建自定义适配器</font> `PlanetBaseAdapter`，<font color="#ff0000">实现基本适配器</font> `BaseAdapter`
+
+```Kotlin
+package com.yuehai.advancedcontrols.ui.adapter
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import com.yuehai.advancedcontrols.R
+import com.yuehai.advancedcontrols.bean.Planet
+import com.yuehai.advancedcontrols.bean.viewHolder.PlanetViewHolder
+
+/**
+ * 行星的自定义适配器
+ */
+class PlanetBaseAdapter(
+    // 上下文环境
+    private var context: Context,
+    // 所需数据
+    private var data: MutableList<Planet>
+): BaseAdapter() {
+
+    /**
+     * getCount : 要绑定的条目的数目，比如格子的数量
+     * 该方法如果返回 0 的话就不调会下面 getView(.....)方法，如果大于 0 就会调用
+     *
+     * 可以简单的理解为，adapter 先从 getCount 里确定数量，然后循环执行 getView 方法将条目一个一个绘制出来
+     * 所以必须重写的是 getCount 和 getView 方法
+     * 而 getItem 和 getItemId 是调用某些函数才会触发的方法，如果不需要使用可以暂时不修改
+     */
+    override fun getCount(): Int {
+        // 将 getCount 的返回值修改为数据源的长度，要显示几个条目，就传入多长的数据源就可以了
+        return data.size
+    }
+
+    /**
+     * getView : 获取该条目要显示的界面
+     *
+     * 参数 1：表示当前索引
+     * 参数 2：缓存区
+     *      这个 convertView 就是最关键的部分
+     *      原理上讲，当 ListView 滑动的过程中，会有 item 被滑出屏幕，而不再被使用，
+     *      这时候 Android 会回收这个条目的 view，这个 view 也就是这里的 convertView
+     *      也就是为了不浪费内存重新调用第一个地址，就是被划上去的那个 View
+     *      如果不使用 convertView，当 item1 被移除屏幕的时候，会重新 new 一个 View 给新显示的 item_new
+     *      而如果使用了 convertView，我们可以复用它 这样就省去了 new View 的大量开销
+     * 参数 3：每个 ItemView 里面的容器  返回的 View 直接添加到容器中来
+     *
+     * 返回值：就是每个 ItemView 要显示的内容
+     */
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+
+        // 定义视图对象，等待赋值
+        val inflater = LayoutInflater.from(context)
+        // convertView 不能重新赋值，创建一个局部变量来保存返回的 View
+        val view: View
+        // 实例化类 PlanetViewHolder，用来标记控件
+        var holder = PlanetViewHolder()
+
+        /**
+         * 在 getView 方法中，Adapter 先从 xml 中用 inflate 方法创建 view 对象，然后在这个 view 找到每一个控件
+         * 这里的 findViewById 操作是一个树查找过程，也是一个耗时的操作，所以这里也需要优化
+         * 使用 viewHolder，把每一个控件都放在 Holder 中，当第一次创建 convertView 对象时，把这些控件找出来
+         * 然后用 convertView 的 setTag 将 viewHolder 设置到 Tag 中，以便系统第二次绘制 ListView 时从 Tag 中取出
+         * 当第二次重用 convertView 时，只需从 convertView 中 getTag 取出来就可以
+         */
+        if (convertView == null){
+            // 根据布局文件 spinner_dialog_base_adapter_item.xml 生成转换视图对象
+            view = inflater.inflate(R.layout.spinner_dialog_base_adapter_item, null)
+
+            // 给对象 PlanetViewHolder 的属性赋值
+            holder.name = view.findViewById(R.id.tv_name)
+            holder.image = view.findViewById(R.id.iv_icon)
+            holder.desc = view.findViewById(R.id.tv_desc)
+
+            // 将视图持有者保存到转换视图当中，以便复用
+            view.tag = holder
+        } else {
+            // convertView 不为空，进行复用
+            holder = convertView.tag as PlanetViewHolder
+            view = convertView
+        }
+
+        // 给视图设置数据
+        holder.name?.text = data[position].name
+        holder.image?.setImageResource(data[position].image)
+        holder.desc?.text = data[position].desc
+
+        // 返回 view 对象
+        return view
+    }
+
+    /**
+     * getItem : 根据一个索引（位置）获得该位置的对象
+     */
+    override fun getItem(position: Int): Any {
+        return data[position]
+    }
+
+    /**
+     * getItemId : 获取条目的id
+     */
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+}
+```
+
+6. 创建布局文件对应的代码文件 Activity `SpinnerDropdownSimpleAdapterActivity
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.advancedcontrols.bean.Planet
+import com.yuehai.advancedcontrols.ui.adapter.PlanetBaseAdapter
+
+class SpinnerDropdownBaseAdapter: AppCompatActivity(), AdapterView.OnItemSelectedListener {
+
+    // 定义下拉列表需要显示的行星数据集合
+    private val planetList: MutableList<Planet> = mutableListOf(
+        Planet("水星", R.drawable.qq, "水星是太阳系八大行星最内侧也是最小的一颗行星，也是离太阳最近的行星"),
+        Planet("金星", R.drawable.wcat, "金星是太阳系八大行星之一，排行第二，距离太阳0.725天文单位"),
+        Planet("地球", R.drawable.qq, "地球是太阳系八大行星之一，排行第三，也是太阳系中直径、质量和密度最大的类地行星，距离太阳1.5亿公里"),
+        Planet("火星", R.drawable.wcat, "火星是太阳系八大行星之一，排行第四，属于类地行星，直径约为地球的53%"),
+        Planet("木星", R.drawable.qq, "木星是太阳系八大行星中体积最大、自转最快的行星，排行第五。它的质量为太阳的千分之一，但为太阳系中其它七大行星质量总和的2.5倍"),
+        Planet("土星", R.drawable.wcat, "土星为太阳系八大行星之一，排行第六，体积仅次于木星"),
+    )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.spinner_dialog_base_adapter)
+
+        // 获取下拉列表对象
+        val spAdapter = findViewById<Spinner>(R.id.spinner_dialog_base_adapter)
+        // 构建一个行星列表的适配器
+        val planetBaseAdapter = PlanetBaseAdapter(this, planetList)
+        // 传入适配器实例
+        spAdapter.adapter = planetBaseAdapter
+        // 设置默认为第一项
+        spAdapter.setSelection(0)
+        // 设置监听器，一旦用户选择了某一项，则触发 onItemSelected 方法
+        spAdapter.onItemSelectedListener = this
+    }
+
+    // 选择后触发
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i("下拉列表", "选择后触发")
+        // 用户界面的文字弹窗提示
+        Toast.makeText(this, "你选择的是" + planetList[position].name, Toast.LENGTH_SHORT).show();
+    }
+
+    // 当下拉列表中的选项被取消选择时，该方法将被调用。例如，当触摸被激活或适配器变为空时，选择可能会消失
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Log.i("下拉列表", "当下拉列表中的选项被取消选择时触发")
+    }
+}
+```
+
+7. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownSimpleAdapterActivity -->
+		<activity
+			android:name=".SpinnerDropdownSimpleAdapterActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownBaseAdapter -->
+		<activity
+			android:name=".SpinnerDropdownBaseAdapter"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+8. 结果显示
+
+![](attachments/Pasted%20image%2020230508111651.png)
 
 ## 2、列表类视图
 
 ### ①、列表视图 ListView
 
+#### Ⅰ、说明
+
+1. ListView 允许在页面上分行展示相似的数据列表，例如新闻列表、商品列表、图书列表等，方便用户浏览与操作。
+2. 上面下拉列表都是点击选中之后就会消失，而如果想要实现像购物商城那样排列显示商品的效果，则可以用 ListView。
+3. 对于上面的代码，数据适配器 `PlanetBaseAdapter`，条目布局 `item_list.xml`，都不需要修改。只需要创建新布局文件和修改主 `Activity` 即可
+
+#### Ⅱ、代码例子
+
+1. 创建布局文件 `list_view.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		
+		<CheckBox
+			android:id="@+id/ck_divider"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:gravity="start|center"
+			android:text="显示分隔线"
+			android:textSize="17sp"/>
+		
+		<CheckBox
+			android:id="@+id/ck_selector"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:gravity="start|center"
+			android:text="显示按压背景"
+			android:textSize="17sp"/>
+	
+	</LinearLayout>
+	
+	<!--只需要添加 ListView 即可-->
+	<ListView
+		android:id="@+id/list_view_planetList"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:divider="@null"
+		android:dividerHeight="0dp"
+		android:listSelector="#00FFFFFF"/>
+
+</LinearLayout>
+```
+
+2. 条目布局文件 `spinner_dropdown_base_adapter_itme.xml` 不用改动
+3. 行星实体数据类 `Planet` 不用改动
+4. ViewHolder，用来标记控件的 `PlanetViewHolder` 不用改动
+5. 自定义适配器 `PlanetBaseAdapter` 不用改动
+6. 创建 selector 文件 `drawable/list_selector.xml`，定义列表的状态效果
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 默认时的背景图片-->
+	<!-- <item android:drawable="@drawable/qq" /> -->
+	<!-- 没有焦点时的背景图片 -->
+	<!-- <item android:state_window_focused="false" android:drawable="@drawable/wcat" /> -->
+	<!-- 非触摸模式下获得焦点并单击时的背景图片 -->
+	<!-- <item android:state_focused="true" android:state_pressed="true"   android:drawable= "@drawable/pic2" /> -->
+	<!-- 触摸模式下单击时的背景图片-->
+	<item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/qq" />
+	<!-- 选中时的图片背景 -->
+	<!-- <item android:state_selected="true"   android:drawable="@drawable/pic4" /> -->
+	<!-- 获得焦点时的图片背景 -->
+	<!-- <item android:state_focused="true"   android:drawable="@drawable/pic5" /> -->
+</selector>
+```
+
+7. 创建布局文件对应的代码文件 Activity `ListViewActivity
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.CheckBox
+import android.widget.CompoundButton
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import com.yuehai.advancedcontrols.ui.adapter.PlanetBaseAdapter
+import com.yuehai.advancedcontrols.ui.adapter.bean.Planet
+
+
+class ListViewActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeListener, AdapterView.OnItemClickListener {
+
+    // 定义下拉列表需要显示的行星数据集合
+    private val planetList: MutableList<Planet> = mutableListOf(
+        Planet("水星", R.drawable.qq, "水星是太阳系八大行星最内侧也是最小的一颗行星，也是离太阳最近的行星"),
+        Planet("金星", R.drawable.wcat, "金星是太阳系八大行星之一，排行第二，距离太阳0.725天文单位"),
+        Planet("地球", R.drawable.qq, "地球是太阳系八大行星之一，排行第三，也是太阳系中直径、质量和密度最大的类地行星，距离太阳1.5亿公里"),
+        Planet("火星", R.drawable.wcat, "火星是太阳系八大行星之一，排行第四，属于类地行星，直径约为地球的53%"),
+        Planet("木星", R.drawable.qq, "木星是太阳系八大行星中体积最大、自转最快的行星，排行第五。它的质量为太阳的千分之一，但为太阳系中其它七大行星质量总和的2.5倍"),
+        Planet("土星", R.drawable.wcat, "土星为太阳系八大行星之一，排行第六，体积仅次于木星"),
+    )
+    // 获取下拉列表对象，等待赋值
+    var listView: ListView? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.list_view)
+
+        // 获取下拉列表对象
+        listView = findViewById<ListView>(R.id.list_view_planetList)
+        // 构建一个行星列表的适配器
+        val planetBaseAdapter = PlanetBaseAdapter(this, planetList)
+        // 传入适配器实例
+        listView?.adapter = planetBaseAdapter
+
+        // 设置监听器，一旦用户点击了某一项，则触发 onItemClick 方法
+        listView?.onItemClickListener = this
+
+        // 给 显示分隔线、显示按压背景 单选框绑定选中事件；onCheckedChanged 方法中以 id 区分
+        findViewById<CheckBox>(R.id.ck_divider).setOnCheckedChangeListener(this)
+        findViewById<CheckBox>(R.id.ck_selector).setOnCheckedChangeListener(this)
+    }
+
+    // 点击后触发
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i("列表视图", "点击列表项后触发")
+        // 用户界面的文字弹窗提示
+        Toast.makeText(this, "你选择的是" + planetList[position].name, Toast.LENGTH_SHORT).show();
+    }
+
+    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+        Log.i("单选框", "单选框")
+
+        // 判断当前选中的组件
+        when(buttonView?.id){
+
+            // 显示分隔线
+            R.id.ck_divider -> {
+                // 判断是否选中
+                if (findViewById<CheckBox>(R.id.ck_divider).isChecked){
+                    // 从资源文件获得图形对象
+                    val drawable = ResourcesCompat.getDrawable(resources, R.color.black, null)
+                    // 设置列表视图的分隔线颜色
+                    listView?.divider = drawable
+                    // 设置列表视图的分隔线高度
+                    listView?.dividerHeight = 10
+                }else{
+                    listView?.divider = null
+                    listView?.dividerHeight = 0
+                }
+            }
+
+            // 显示按压背景
+            R.id.ck_selector -> {
+                if (findViewById<CheckBox>(R.id.ck_selector).isChecked){
+                    // 从资源文件获得图形对象
+                    val drawable = ResourcesCompat.getDrawable(resources, R.drawable.list_selector, null)
+                    // 设置列表项的按压状态图形
+                    listView?.selector = drawable
+                }else{
+                    listView?.selector = null
+                }
+            }
+
+        }
+    }
+
+
+}
+```
+
+8. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownSimpleAdapterActivity -->
+		<activity
+			android:name=".SpinnerDropdownSimpleAdapterActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownBaseAdapter -->
+		<activity
+			android:name=".SpinnerDropdownBaseAdapter"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ListViewActivity；列表视图 ListView -->
+		<activity
+			android:name=".ListViewActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+9. 结果显示
+
+![](attachments/Pasted%20image%2020230508111558.png)
+
 ### ②、网格视图 GridView
+
+#### Ⅰ、说明
+
+1. 除了列表视图，网格视图 `GridView` 也是常见的列表类视图，它用于分行分列显示表格信息，比列表视图更适合展示物品清单。
+2. 在 XML 文件中添加 GridView 需要指定列的数目，以及空隙的拉伸模式
+
+| XML中的属性       | GridView类的设置方法 | 说明                                                                        |
+| ----------------- | -------------------- | --------------------------------------------------------------------------- |
+| horizontalSpacing | setHorizontalSpacing | 指定网格项在水平方向的间距                                                  |
+| verticalSpacing   | setVerticalSpacing   | 指定网格项在垂直方向的间距                                                  |
+| <font color="#ff0000">numColumns</font>        | setNumColumns        | 指定列的数目                                                                |
+| <font color="#ff0000">stretchMode</font>       | setStretchMode       | 指定剩余空间的拉伸模式                                                      |
+| columnWidth       | setColumnWidth       | 指定每列的宽度。拉伸模式为spacingWidth、spacingWidthUniform时，必须指定列宽 |
+
+3. GridView 拉伸模式取值
+
+| XML中的拉伸模式     | GridView类的拉伸模式    | 说明                                                 |
+| ------------------- | ----------------------- | ---------------------------------------------------- |
+| none                | NO_STRETCH              | 不拉伸                                               |
+| columnWidth         | STRETCH_COLUMN_WIDTH    | 若有剩余空间，则拉伸列宽挤掉空隙                     |
+| spacingWidth        | STRETCH_SPACING         | 若有剩余空间，则列宽不变，把空间分配到每列间的空隙   |
+| spacingWidthUniform | STRETCH_SPACING_UNIFORM | 若有剩余空间，则列宽不变，把空间分配到每列左右的空隙 |
+
+4. GridView 拉伸模式效果
+
+![](attachments/Pasted%20image%2020230508103548.png)
+
+#### Ⅱ、代码例子
+
+1. 创建布局文件 `grid_view.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<!--
+		网格视图 GridView
+		numColumns="2"：列数
+		stretchMode="columnWidth"：拉伸模式，若有剩余空间，则拉伸列宽挤掉空隙
+		listSelector="@drawable/list_selector：定义列表的状态效果
+	 -->
+	<GridView
+		android:id="@+id/grid_view_planetList"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:numColumns="2"
+		android:stretchMode="columnWidth"
+		android:listSelector="@drawable/list_selector"/>
+
+</LinearLayout>
+```
+
+2. 条目布局文件 `spinner_dropdown_base_adapter_itme.xml` 不用改动
+3. 行星实体数据类 `Planet` 不用改动
+4. ViewHolder，用来标记控件的 `PlanetViewHolder` 不用改动
+5. 自定义适配器 `PlanetBaseAdapter` 不用改动
+6. 定义列表的状态效果 selector 文件 `drawable/list_selector.xml` 不用改动
+7. 创建布局文件对应的代码文件 Activity `GridViewActivity
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.GridView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.advancedcontrols.ui.adapter.PlanetBaseAdapter
+import com.yuehai.advancedcontrols.ui.adapter.bean.Planet
+
+class GridViewActivity: AppCompatActivity(), AdapterView.OnItemClickListener {
+
+    // 定义下拉列表需要显示的行星数据集合
+    private val planetList: MutableList<Planet> = mutableListOf(
+        Planet("水星", R.drawable.qq, "水星是太阳系八大行星最内侧也是最小的一颗行星，也是离太阳最近的行星"),
+        Planet("金星", R.drawable.wcat, "金星是太阳系八大行星之一，排行第二，距离太阳0.725天文单位"),
+        Planet("地球", R.drawable.qq, "地球是太阳系八大行星之一，排行第三，也是太阳系中直径、质量和密度最大的类地行星，距离太阳1.5亿公里"),
+        Planet("火星", R.drawable.wcat, "火星是太阳系八大行星之一，排行第四，属于类地行星，直径约为地球的53%"),
+        Planet("木星", R.drawable.qq, "木星是太阳系八大行星中体积最大、自转最快的行星，排行第五。它的质量为太阳的千分之一，但为太阳系中其它七大行星质量总和的2.5倍"),
+        Planet("土星", R.drawable.wcat, "土星为太阳系八大行星之一，排行第六，体积仅次于木星"),
+    )
+    // 获取下拉列表对象，等待赋值
+    var gridView: GridView? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.grid_view)
+
+        // 获取网格视图对象
+        gridView = findViewById<GridView>(R.id.grid_view_planetList)
+        // 构建一个行星列表的适配器
+        val planetBaseAdapter = PlanetBaseAdapter(this, planetList)
+        // 传入适配器实例
+        gridView?.adapter = planetBaseAdapter
+
+        // 设置监听器，一旦用户点击了某一项，则触发 onItemClick 方法
+        gridView?.onItemClickListener = this
+    }
+
+    // 点击后触发
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i("网格视图", "点击网格项后触发")
+        // 用户界面的文字弹窗提示
+        Toast.makeText(this, "你选择的是" + planetList[position].name, Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
+8. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownSimpleAdapterActivity -->
+		<activity
+			android:name=".SpinnerDropdownSimpleAdapterActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownBaseAdapter -->
+		<activity
+			android:name=".SpinnerDropdownBaseAdapter"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ListViewActivity；列表视图 ListView -->
+		<activity
+			android:name=".ListViewActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 GridViewActivity；网格视图 GridView -->
+		<activity
+			android:name=".GridViewActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+9. 结果显示
+
+![](attachments/Pasted%20image%2020230508111453.png)
 
 ## 3、翻页类视图
 
 ### ①、翻页视图 ViewPager
 
+#### Ⅰ、说明
+
+1. 翻页视图允许页面在水平方向左右滑动
+2. 翻页视图的原理类似列表视图和网格视图，它们的用法也很类似。
+3. 例如，列表视图和网格视图使用基本适配器 `BaseAdapter`，翻页视图则使用翻页适配器 `PagerAdapter`
+4. 列表视图和网格视图使用列表项的点击监听器 `OnItemClickListener`，翻页视图则使用页面变更监听器 `OnPageChangeListener` 监听页面切换事件。
+5. `viewpager2` 内部实现原理是使用 `recycleview` 加 `LinearLayoutManager` 实现竖直滚动，其实可以理解为对 `recyclerview` 的二次封装
+6. `ViewPager` 与 `ViewPager2` 部分对比
+
+| ViewPager                 | ViewPager 2                                                                  |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| PagerAdapter              | RecyclerView.Adapter                                                         |
+| FragmentStatePagerAdapter | FragmentStateAdapter                                                         |
+| addPageChangeListener     | registerOnPageChangeCallback                                                 |
+| 无                        | 从右到左(RTL)的布局支持                                                      |
+| 无                        | 垂直方向支持                                                                 |
+| 无                        | 停用用户输入的功能( setUserInputEnabled、isUserInputEnabled ）n.net/JMlW1407 |
+
+#### Ⅱ、代码例子
+
+1. 创建布局文件 `view_pager.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal">
+
+	<!-- 翻页视图 ViewPage -->
+	<androidx.viewpager.widget.ViewPager
+		android:id="@+id/view_pager_planetList"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+</LinearLayout>
+```
+
+2. 条目布局文件 `spinner_dropdown_base_adapter_itme.xml` 不用改动
+3. 行星实体数据类 `Planet` 不用改动
+4. ViewHolder，用来标记控件的 `PlanetViewHolder` 不用改动
+5. <font color="#ff0000">创建自定义适配器</font> `PlanetViewPagerAdapter`，<font color="#ff0000">实现基本适配器</font> `PagerAdapter`
+
+```Kotlin
+package com.yuehai.advancedcontrols.ui.adapter
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.viewpager.widget.PagerAdapter
+import com.yuehai.advancedcontrols.R
+import com.yuehai.advancedcontrols.ui.adapter.bean.Planet
+
+/**
+ * 行星的自定义适配器，翻页类视图
+ */
+class PlanetViewPagerAdapter(
+    // 上下文环境
+    private var context: Context,
+    // 所需数据
+    private var data: MutableList<Planet>
+): PagerAdapter() {
+
+    // 返回可以滑动的 VIew 的个数
+    override fun getCount(): Int {
+        return data.size
+    }
+
+    // 该函数用来判断 instantiateItem(ViewGroup, int) 函数所返回来的 Object 与当前页面视图是否是代表的同一个视图，官方建议直接返回 arg0 == arg1 即可。
+    override fun isViewFromObject(view: View, arg1: Any): Boolean {
+        return view == arg1
+    }
+
+    // 实例化指定位置的页面，将其添加到容器中，并返回当前 View 视图
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        // 获取视图，根据传入的数据对其赋值
+        val planetView = LayoutInflater.from(context).inflate(R.layout.spinner_dialog_base_adapter_item, null)
+        planetView.findViewById<ImageView>(R.id.iv_icon).setImageResource(data[position].image)
+        planetView.findViewById<TextView>(R.id.tv_name).text = data[position].name
+        planetView.findViewById<TextView>(R.id.tv_desc).text = data[position].desc
+
+        /**
+         * 添加一个view到 container 中，而后返回一个跟这个 view 可以关联起来的对象，
+         * 这个对象能够是 view 自身，也能够是其余对象，
+         * 关键是在 isViewFromObject 可以将 view 和这个 object 关联起来
+         */
+        container.addView(planetView)
+        return planetView
+    }
+
+    // 滑动切换的时候销毁当前的组件；从当前 container 中删除指定位置的 View
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        // 我尝试把创建视图提上去，会报错
+        container.removeView(LayoutInflater.from(context).inflate(R.layout.spinner_dialog_base_adapter_item, null))
+    }
+
+}
+```
+
+6. 创建布局文件对应的代码文件 Activity `ViewPagerActivity
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.yuehai.advancedcontrols.ui.adapter.PlanetViewPagerAdapter
+import com.yuehai.advancedcontrols.ui.adapter.bean.Planet
+
+class ViewPagerActivity: AppCompatActivity() {
+
+    // 定义翻页视图需要显示的行星数据集合
+    private val planetList: MutableList<Planet> = mutableListOf(
+        Planet("水星", R.drawable.qq, "水星是太阳系八大行星最内侧也是最小的一颗行星，也是离太阳最近的行星"),
+        Planet("金星", R.drawable.wcat, "金星是太阳系八大行星之一，排行第二，距离太阳0.725天文单位"),
+        Planet("地球", R.drawable.qq, "地球是太阳系八大行星之一，排行第三，也是太阳系中直径、质量和密度最大的类地行星，距离太阳1.5亿公里"),
+        Planet("火星", R.drawable.wcat, "火星是太阳系八大行星之一，排行第四，属于类地行星，直径约为地球的53%"),
+        Planet("木星", R.drawable.qq, "木星是太阳系八大行星中体积最大、自转最快的行星，排行第五。它的质量为太阳的千分之一，但为太阳系中其它七大行星质量总和的2.5倍"),
+        Planet("土星", R.drawable.wcat, "土星为太阳系八大行星之一，排行第六，体积仅次于木星"),
+    )
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.view_pager)
+
+        // 获取翻页视图对象
+        val viewPager = findViewById<ViewPager>(R.id.view_pager_planetList)
+        // 构建一个行星列表的适配器
+        val planetViewPagerAdapter = PlanetViewPagerAdapter(this, planetList)
+        // 传入适配器实例
+        viewPager?.adapter = planetViewPagerAdapter
+    }
+}
+```
+
+7. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownSimpleAdapterActivity -->
+		<activity
+			android:name=".SpinnerDropdownSimpleAdapterActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownBaseAdapter -->
+		<activity
+			android:name=".SpinnerDropdownBaseAdapter"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ListViewActivity；列表视图 ListView -->
+		<activity
+			android:name=".ListViewActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 GridViewActivity；网格视图 GridView -->
+		<activity
+			android:name=".GridViewActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ViewPagerActivity；翻页视图 ViewPager -->
+		<activity
+			android:name=".ViewPagerActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+8. 结果显示
+
+![](attachments/Pasted%20image%2020230508163515.png)
+
+9. 翻页过程
+
+![](attachments/Pasted%20image%2020230508163544.png)
+
 ### ②、翻页标签栏 PagerTabStrip
+
+#### Ⅰ、说明
+
+1. 翻页标签栏能够在翻页视图上方显示页面标题，点击页面标题即可切换到对应页面
+
+#### Ⅱ、代码例子
+
+1. 创建布局文件 `view_pager_tab_strip.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 
+		翻页视图 ViewPager
+		viewpager2 中不可以有子标签，所有写法会与此处不同
+	 -->
+	<androidx.viewpager.widget.ViewPager
+		android:id="@+id/view_Pager_tab_planetList"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		
+		<!-- 翻页标签栏 PagerTabStrip 的节点名称 -->
+		<androidx.viewpager.widget.PagerTabStrip
+			android:id="@+id/view_Pager_tab_strip"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</androidx.viewpager.widget.ViewPager>
+	
+</LinearLayout>
+```
+
+2. 条目布局文件 `spinner_dropdown_base_adapter_itme.xml` 不用改动
+3. 行星实体数据类 `Planet` 不用改动
+4. ViewHolder，用来标记控件的 `PlanetViewHolder` 不用改动
+5. <font color="#ff0000">创建自定义适配器</font> `PlanetViewTapStripPagerAdapter`，<font color="#ff0000">实现基本适配器</font> `PagerAdapter`，<font color="#ff0000">新增了方法</font> `getPageTitle`
+
+```Kotlin
+package com.yuehai.advancedcontrols.ui.adapter
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.viewpager.widget.PagerAdapter
+import com.yuehai.advancedcontrols.R
+import com.yuehai.advancedcontrols.ui.adapter.bean.Planet
+
+/**
+ * 行星的自定义适配器，翻页类视图
+ */
+class PlanetViewTapStripPagerAdapter(
+    // 上下文环境
+    private var context: Context,
+    // 所需数据
+    private var data: MutableList<Planet>
+): PagerAdapter() {
+
+    // 返回可以滑动的 VIew 的个数
+    override fun getCount(): Int {
+        return data.size
+    }
+
+    // 该函数用来判断 instantiateItem(ViewGroup, int) 函数所返回来的 Object 与当前页面视图是否是代表的同一个视图，官方建议直接返回 arg0 == arg1 即可。
+    override fun isViewFromObject(view: View, arg1: Any): Boolean {
+        return view == arg1
+    }
+
+    // 实例化指定位置的页面，将其添加到容器中，并返回当前 View 视图
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        // 获取视图，根据传入的数据对其赋值
+        val planetView = LayoutInflater.from(context).inflate(R.layout.spinner_dialog_base_adapter_item, null)
+        planetView.findViewById<ImageView>(R.id.iv_icon).setImageResource(data[position].image)
+        planetView.findViewById<TextView>(R.id.tv_name).text = data[position].name
+        planetView.findViewById<TextView>(R.id.tv_desc).text = data[position].desc
+
+        /**
+         * 添加一个view到 container 中，而后返回一个跟这个 view 可以关联起来的对象，
+         * 这个对象能够是 view 自身，也能够是其余对象，
+         * 关键是在 isViewFromObject 可以将 view 和这个 object 关联起来
+         */
+        container.addView(planetView)
+        return planetView
+    }
+
+    // 滑动切换的时候销毁当前的组件；从当前 container 中删除指定位置的 View
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        // 我尝试把创建视图提上去，会报错
+        container.removeView(LayoutInflater.from(context).inflate(R.layout.spinner_dialog_base_adapter_item, null))
+    }
+
+    // 该方法的返回值会作为翻页视图的标签栏的显示文字
+    override fun getPageTitle(position: Int): CharSequence? {
+        return data[position].name
+    }
+}
+```
+
+6. 创建布局文件对应的代码文件 Activity `ViewPagerTapStripActivity`
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.graphics.Color
+import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.PagerTabStrip
+import androidx.viewpager.widget.ViewPager
+import com.yuehai.advancedcontrols.ui.adapter.PlanetViewTapStripPagerAdapter
+import com.yuehai.advancedcontrols.ui.adapter.bean.Planet
+
+
+class ViewPagerTapStripActivity: AppCompatActivity(), ViewPager.OnPageChangeListener {
+
+    // 定义翻页视图需要显示的行星数据集合
+    private val planetList: MutableList<Planet> = mutableListOf(
+        Planet("水星", R.drawable.qq, "水星是太阳系八大行星最内侧也是最小的一颗行星，也是离太阳最近的行星"),
+        Planet("金星", R.drawable.wcat, "金星是太阳系八大行星之一，排行第二，距离太阳0.725天文单位"),
+        Planet("地球", R.drawable.qq, "地球是太阳系八大行星之一，排行第三，也是太阳系中直径、质量和密度最大的类地行星，距离太阳1.5亿公里"),
+        Planet("火星", R.drawable.wcat, "火星是太阳系八大行星之一，排行第四，属于类地行星，直径约为地球的53%"),
+        Planet("木星", R.drawable.qq, "木星是太阳系八大行星中体积最大、自转最快的行星，排行第五。它的质量为太阳的千分之一，但为太阳系中其它七大行星质量总和的2.5倍"),
+        Planet("土星", R.drawable.wcat, "土星为太阳系八大行星之一，排行第六，体积仅次于木星"),
+    )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+        setContentView(R.layout.view_pager_tab_strip)
+
+        // 获取翻页视图的标签栏对象
+        val tabStrip = findViewById<PagerTabStrip>(R.id.view_Pager_tab_strip)
+        // 设置翻页标签栏的文本大小
+        tabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f);
+        // 设置翻页标签栏的标题颜色，这里需要带透明度的颜色值
+        tabStrip.setTextColor(Color.BLACK);
+        // 设置翻页标签栏的背景颜色
+        tabStrip.setBackgroundColor(Color.RED);
+        // 设置导航条下方指示器是否有完整下划线颜色；
+        tabStrip.drawFullUnderline = true
+        // 设置导航条下方指示器颜色，这里需要带透明度的颜色值
+        tabStrip.tabIndicatorColor = Color.YELLOW;
+        // 设置导航条文字的间隔。
+        tabStrip.textSpacing = 1
+
+        // 获取翻页视图对象
+        val viewPager = findViewById<ViewPager>(R.id.view_Pager_tab_planetList)
+        // 构建一个行星列表的适配器
+        val planetViewTapStripPagerAdapter = PlanetViewTapStripPagerAdapter(this, planetList)
+        // 传入适配器实例
+        viewPager?.adapter = planetViewTapStripPagerAdapter
+        // 给翻页视图添加页面变更监听器
+        viewPager.addOnPageChangeListener(this)
+        // 默认开始选中第几个视图
+        viewPager.currentItem = 3
+
+    }
+
+    /**
+     * 当页面在滑动的时候会调用此方法，在滑动被停止之前，此方法回一直得到调用。其中三个参数的含义分别为：
+     * position :当前页面，即你点击滑动的页面（从A滑B，则是A页面的position。官方说明：Position index of the first page currently being displayed. Page position+1 will be visible if positionOffset is nonzero.）
+     * positionOffset：当前页面偏移的百分比
+     * positionOffsetPixels：当前页面偏移的像素位置
+     */
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        Log.i("月海 翻页标签栏", "从【" + planetList[position].name + "】页离开")
+    }
+
+    /**
+     * 此方法是页面跳转完后得到调用，position 是你当前选中的页面的 Position（位置编号）(从A滑动到B，就是B的position)
+     */
+    override fun onPageSelected(position: Int) {
+        // 用户界面的文字弹窗提示
+        Toast.makeText(this, "当前标签页是" + planetList[position].name, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 此方法是在状态改变的时候调用，其中 state 这个参数有三种状态：
+     * SCROLL_STATE_DRAGGING（1）表示用户手指“按在屏幕上并且开始拖动”的状态（手指按下但是还没有拖动的时候还不是这个状态，只有按下并且手指开始拖动后log才打出。）
+     * SCROLL_STATE_IDLE（0）滑动动画做完的状态。
+     * SCROLL_STATE_SETTLING（2）在“手指离开屏幕”的状态。
+     * 一个完整的滑动动作，三种状态的出发顺序为（1，2，0）
+     */
+    override fun onPageScrollStateChanged(state: Int) {
+        when(state){
+            1 -> { Toast.makeText(this, "手指按在屏幕上并且开始拖动", Toast.LENGTH_SHORT).show(); }
+            2 -> { Toast.makeText(this, "手指离开屏幕", Toast.LENGTH_SHORT).show(); }
+            0 -> { Toast.makeText(this, "滑动动画做完", Toast.LENGTH_SHORT).show(); }
+        }
+    }
+}
+```
+
+7. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册 SpinnerDropdownActivity -->
+		<activity
+			android:name=".SpinnerDropdownActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownSimpleAdapterActivity -->
+		<activity
+			android:name=".SpinnerDropdownSimpleAdapterActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 SpinnerDropdownBaseAdapter -->
+		<activity
+			android:name=".SpinnerDropdownBaseAdapter"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ListViewActivity；列表视图 ListView -->
+		<activity
+			android:name=".ListViewActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 GridViewActivity；网格视图 GridView -->
+		<activity
+			android:name=".GridViewActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ViewPagerActivity；翻页视图 ViewPager -->
+		<activity
+			android:name=".ViewPagerActivity"
+			android:exported="true">
+		</activity>
+		
+		<!-- 注册 ViewPagerTapStripActivity；翻页标签栏 PagerTabStrip -->
+		<activity
+			android:name=".ViewPagerTapStripActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口， -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+8. 结果显示
+
+![](attachments/Pasted%20image%2020230509100825.png)
+
+9. 翻页过程
+
+![](attachments/Pasted%20image%2020230509100928.png)
 
 ## 4、Fragment
 
 ### ①、静态注册
 
+#### Ⅰ、说明
+
+#### Ⅱ、代码例子
+
+
 ### ②、动态注册
+
+#### Ⅰ、说明
+
+#### Ⅱ、代码例子
+
 
 # 十五、`Android` `Android` 数据存储 `SharedPreferences`
 
@@ -9954,7 +11397,16 @@ org.gradle.jvmargs=-Xmx1536M \
 9. 以上面的方式连接 scrcpy 即可
 10. 该程序的原理是通过在手机端安装 sndcpyapp，拦截手机端的声音，再通过 adb 转发到 PC 端，再通过 VLC 播放器播放声音
 
-## 3、
+## 3、隐藏软件标题栏
+
+1. 修改文件 `res/values/themes.xml`
+2. 标签 `style` 的属性 `parent` 一开始可能为： `Theme.MaterialComponents.DayNight.DarkActionBar`，即深色标题栏
+
+![](attachments/Pasted%20image%2020230508083412.png)
+
+4. 要使其隐藏可修改为：`Theme.MaterialComponents.DayNight.NoActionBar`
+
+![](attachments/Pasted%20image%2020230508083306.png)
 
 ## 4、
 

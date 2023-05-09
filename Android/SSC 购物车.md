@@ -157,6 +157,12 @@ private var itemAddCartDialog: AddItemAnimationDialog? = null
 ### ⑦、流程
 
 > 关掉 adb 进程：taskkill /F /IM adb.exe
+> 
+> 强制结束程序：adb shell am force-stop jp.retailai.raicart
+> 
+> 在日本的购物车：10.105.12.193
+> 
+> 在烟台的购物车：172.18.7.22
 
 1. 连接：`adb connect 10.105.12.193:5555`
 2. 查看已连接设备： `adb devices`
@@ -247,7 +253,7 @@ private fun writePoCLog(){
 }
 ```
 
-### ②、配置导入
+### ②、melopan 配置导入
 
 1. 配置项在 melopan 上进行配置
 2. 配置导入代码文件：`java/jp/retailai/raicart/MainViewModel.kt`
@@ -277,13 +283,206 @@ private fun writePoCLog(){
 2. 修改数量弹窗时间记录
 3. 配置导入，导入远程配置的弹窗默认关闭时间
 
-## 3、
+## 3、2023/05/08
+
+
 
 ## 4、
 
-# 二、
+# 二、项目整理
 
-# 三、
+## 1、项目结构
+
+```
+java/jp/retailai/raicart
+├── base
+├── bean
+│	└── operationLog
+│	└── scale
+├── deployer
+│	└── battery
+│	└── camera
+│	└── installation
+│	└── logger
+├── event
+├── guide
+├── network
+├── room
+├── ui
+│	└── bag
+│	└── base
+│	└── cancel
+│	└── common
+│	└── couponlist
+│	└── employee
+│	└── end
+│	└── login
+│	└── management
+│	└── nobarcode
+│	└── payment
+│	└── pin
+│	└── pop
+│	└── register
+│	└── scanreminder
+│	└── shopping
+│	└── standby
+├── utils
+├── view
+	
+res
+├── anim
+├── drawable
+├── drawable-v24
+├── layout
+├── mipmap-anydpi-v26
+├── mipmap-hdpi
+├── mipmap-mdpi
+├── mipmap-xhdpi
+├── mipmap-xxhdpi
+├── mipmap-xxxhdpi
+├── navigation
+├── raw
+├── values
+├── values-en-rUS
+```
+
+## 2、流程
+
+> 关掉 adb 进程：taskkill /F /IM adb.exe
+> 
+> 强制结束程序：adb shell am force-stop jp.retailai.raicart
+> 
+> 在日本的购物车：10.105.12.193
+> 
+> 在烟台的购物车：172.18.7.22
+
+1. 连接：`adb connect 10.105.12.193:5555`
+2. 查看已连接设备： `adb devices`
+3. 远程显示：`scrcpy`
+4. gitbash：
+5. 唤醒，输入从业员号，模拟扫描从业员：`i-emp`
+6. 设定购物车静音模式：`silent`
+7. 模拟用户登录：`i-user`，登录密码为 id 的倒数第二位，四个数都是
+8. 模拟扫描商品：`i-jan`
+9. 结账，输入从业员号，模拟扫描从业员：`i-emp`
+10. 卸载应用：`adb uninstall jp.retailai.raicart`
+11. 安装应用：
+	1. `adb install -r -d --user 0 /d/Idea/save/android/2_SSC_raicart/raicart/app/build/outputs/apk/debug/app-debug.apk`
+	2. `install-app`
+
+## 3、adb 常用命令
+
+1. 多设备时要在adb后加-s 指定设备
+2. 官网：
+	1. https://android-doc.github.io/tools/help/adb.html
+	2. https://android-doc.github.io/tools/help/shell.html#shellcommands
+3. 关于ADB更多的用法可以参考：https://github.com/mzlogin/awesome-adb
+
+| 命令 | 描述 |
+| ---- | ---- |
+|adb shell svc wifi disable/enable|关闭wifi/开启wifi|
+|adb devices|查看当前连接的设备|
+|adb shell media volume --show --stream 3 --get|获取当前多媒体音量大小|
+|adb disconnect xxx.xxx.xxx.xxx|断开指定的wifi设备连接|
+|adb shell media volume --show --stream 3 --set 1|设定当前多媒体音量大小|
+|adb disconnect|断开所有wifi连接设备|
+|adb shell setprop service.adb.tcp.port 5555|设置adb服务端口为5555， 打开adb网络调试功能|
+|adb connect device_ip_address[:5555]|利用ip连接新的android设备，需要在同一网络环境下|
+|adb get-state|获取连接状态，有3种：device，offline，unknown|
+|adb start-server|启动adb服务|
+|adb kill-server|关闭adb服务|
+|adb uninstall package|卸载程序，package是包名|
+|adb install xxx.apk|安装程序|
+|adb shell am start -n package/package.MainActivity|启动程序，package是包名|
+|adb shell am force-stop package|强制结束程序，package是包名|
+|adb pull /sdcard/DebugLog/20220805.log C:\Users\10153702\Desktop|将设备里的文件拉取到本地|
+|adb push C:\Users\10153702\Desktop\20220805.log /sdcard/DebugLog/20220805.log|将本地文件上传到设备里|
+|adb shell dumpsys package jp.retailai.raicart|查看应用相关信息|
+|adb shell dumpsys meminfo jp.retailai.raicart|查看应用占用内存情况|
+|adb shell dumpsys cpuinfo | findstr jp.retailai.raicart|查看应用cpu占用情况|
+|adb shell input keyevent 66|模拟按回车键|
+|adb shell input keyevent 3|模拟按HOME键|
+|adb shell input text 2960000000012|输入字符串|
+|adb shell input keyevent 26|灭/亮屏|
+|adb shell input keyevent 82|解锁屏幕|
+|adb shell input tap x y|按照(x,y)位置模拟点击|
+|adb shell input swipe x1 y1 x2 y2|从(x1,y1)位置到(x2,y2)位置模拟滑动|
+|adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt|执行 monkey100 次随意点击测试，并记录日志到本地|
+
+## 4、
+
+# 三、一些问题
+
+## 1、如何找到指定页面
+
+1. 先看看项目结构
+2. 进入 `res/navigation/nav_graph.xml` 导航碎片页面
+3. 根据相应碎片名称可知其场景，各场景中有其使用的 `action`
+4. `action` 的 `app:destination` 属性对应 `fragment` 的 `id`
+5.  `fragment` 的 `android:name` 对应其本身的代码逻辑页面
+6. 代码逻辑页面的 `layoutId` 方法对应了 `xml` 布局文件
+
+```Kotlin
+override fun layoutId(): Int {
+	return R.layout.fragment_end
+}
+```
+
+7. 若是 `res/navigation/nav_graph.xml` 导航碎片页面中没有，可根据页面出现的时机，和代码逻辑、项目结构，去指定的代码文件中查找
+8. 比如新增商品弹窗应该是在 `java/jp/retailai/raicart/ui/shopping/ShoppingFragment.kt` 中定义的，根据代码逻辑可知是这个属性
+
+```Kotlin
+/**
+ * 新增商品弹窗
+ */
+private var itemAddCartDialog: AddItemAnimationDialog? = null
+```
+
+9. 这样就从这里进入 `AddItemAnimationDialog` 类，然后根据 `getLayout` 方法进入 `fragment_dialog_success` 布局文件
+
+
+## 2、关于构建和 gradle 版本
+
+1. 截至 3.10，该项目使用的 gradle 版本为 6.7.1
+2. 设置 -> 构建工具 -> gradle
+
+![](attachments/Pasted%20image%2020230427110736.png)
+
+3. 项目结构 -> Project
+
+![](attachments/Pasted%20image%2020230427110805.png)
+
+
+## 3、melopan 配置导入
+
+1. 配置项在 melopan 上进行配置
+2. 配置导入代码文件：`java/jp/retailai/raicart/MainViewModel.kt`
+3. 其中方法：`getCartConfig`
+4. 通过属性名，如 `add_item_popup_time` 进行属性的赋值
+
+```Kotlin
+/**
+ * 通过远程获取数据，此处获取的的是新增物品的弹窗关闭时间
+ * 这些时间是在别处配置的，启动时会通过网络获取这些时间并赋值给相应变量
+ */
+"add_item_popup_time" -> {
+	Constant.add_item_popup_time = element.value
+}
+```
+
+
+## 4、日志的查看
+
+1. staging 或者 release 那种 signed 的包，必须得第二天在服务器上取 log，本地的没有权限取到
+	1. 凌晨 1点~5点 之间随机时间点进行上传。关机则不会进行上传；
+	2. 访问 [ダッシュボード | Retail AI, inc (raicart.io)](https://sandbox-console.raicart.io/ja/admin/dashboard) 进行下载
+2. 连接设备后在本地查看 debug 日志，路径：`/sdcard/DebugLog/xxx.log`
+
+![](attachments/Pasted%20image%2020230504150017.png)
+
+## 5、
+
+## 6、
 
 # 四、
 
