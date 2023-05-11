@@ -8886,7 +8886,7 @@ class UserDBHelper(
         return sdb
     }
 
-    //关闭数据库连接
+    // 关闭数据库连接
     fun closeLink() {
         if (sdb != null && sdb!!.isOpen) {
             sdb!!.close()
@@ -8990,7 +8990,6 @@ findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListe
 }
 ```
 
-
 ## 3、 存储卡
 
 ### ①、私有空间和公有空间
@@ -9002,6 +9001,7 @@ findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListe
 5. 既然存储卡分为公共空间和私有空间两部分，它们的空间路径获取也就有所不同。
 6. 若想获取公共空间的存储路径，调用的是 `Environment.getExternalStoragePublicDirectory` 方法；
 7. 若想获取应用私有空间的存储路径，调用的是 `getExternalFilesDir` 方法
+8. 在安卓6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加上上述权限，还需要在代码中动态申请权限
 
 ```xml
 <!-- 按钮；存储卡 -->
@@ -9172,6 +9172,194 @@ class SharedPreferences01: AppCompatActivity() {
 ```
 
 ### ③、在存储卡上读写 图片文件
+
+#### Ⅰ、介绍
+
+1. 文本文件可以转化为对字符串的读写，而图像的读写就需要借助专门的位图工具 Bitmap 处理。不同图像来源获取 Bitmap 的方式不同，有三种：
+2. 方式一：从指定资源文件中获取：decodeResource，例如从资源文件 img.png 获取位图对象
+
+```Kotlin
+Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img);
+```
+
+3. 方式二：从指定路径下获取：decodeFile，但是要注意从 Android10 开始，该方法只能获取私有空间下的图片，公共空间下获取不了
+
+```Kotlin
+Bitmap bitmap = BitmapFactory.decodeFile("C:\\Users\\OYMN\\Pictures\\onepunch.jpg");
+```
+
+4. 方式三：从指定的输入流中获取，比如使用 IO 流打开图片文件，然后作为参数传入 decodeStream
+
+```Kotlin
+public static Bitmap openImage(String path) {
+    Bitmap bitmap = null; // 声明一个位图对象
+    // 根据指定的文件路径构建文件输入流对象
+    try (FileInputStream fis = new FileInputStream(path)) {
+    	bitmap = BitmapFactory.decodeStream(fis); // 从文件输入流中解码位图数据
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
+    return bitmap; // 返回图片文件中的位图数据
+}
+```
+
+5. 获取到图片之后就可以通过 ImageView 的 setImageBitmap 进行设置了
+6. 有多种读取图片的方式，但是写图片只有一种方式。通过 Bitmap 的 compress 方法将位图数据压缩到文件输出流
+
+```Kotlin
+public static void saveImage(String path, Bitmap bitmap){
+    //根据文件路径构建文件输出流
+    try(FileOutputStream fos = new FileOutputStream()){
+        //将位图数据压缩到文件输出流
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+}
+```
+
+#### Ⅱ、代码
+
+1. 创建布局文件 `picture.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<Button
+		android:id="@+id/picture_btn_save"
+		android:text="保存图片"
+		android:textSize="30sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<Button
+		android:id="@+id/picture_btn_get"
+		android:text="获取图片"
+		android:textSize="30sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+		
+	<ImageView
+		android:id="@+id/picture_imageView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+2. 创建布局文件对应的代码文件 `PictureActivity`
+
+```Kotlin
+package com.yuehai.sharedpreferences
+
+import android.Manifest
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import java.io.File
+import java.io.FileOutputStream
+
+
+class PictureActivity: AppCompatActivity() {
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.picture)
+		
+		// 给获取图片按钮绑定事件
+		findViewById<Button>(R.id.picture_btn_get).setOnClickListener {
+			
+			// 在安卓 6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加权限，还需要在代码中动态申请权限
+			// 判断是否有读取存储卡的权限
+			if ( ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ){
+				// 没有权限，进行申请
+				ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 200)
+			}
+			
+			// 有权限，进行操作
+			val bitmap = BitmapFactory.decodeFile("/sdcard/内存/图片/-10971e86458a4bdd.gif")
+			findViewById<ImageView>(R.id.picture_imageView).setImageBitmap(bitmap)
+		}
+		
+		// 给保存图片按钮绑定事件
+		findViewById<Button>(R.id.picture_btn_save).setOnClickListener {
+			
+			// 在安卓 6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加权限，还需要在代码中动态申请权限
+			// 判断是否有读取存储卡的权限
+			if ( ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ){
+				// 没有权限，进行申请
+				ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 200)
+			}
+			
+			// 有权限，进行操作
+			val bitmap = BitmapFactory.decodeFile("/sdcard/内存/图片/-10971e86458a4bdd.gif")
+			
+			// 创建输出流
+			val fileOutputStream = FileOutputStream(File("/sdcard/内存/test.gif"))
+			// 将图片数据压缩到文件输出流
+			bitmap.compress(Bitmap.CompressFormat.PNG, 85, fileOutputStream)
+			fileOutputStream.flush()
+			fileOutputStream.close()
+		}
+		
+		
+	}
+}
+```
+
+3. 修改清单文件 `AndroidManifest.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- 存储卡读写权限 -->
+	<!-- 在安卓 6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加权限，还需要在代码中动态申请权限 -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+	<!--在sdcard中创建/删除文件的权限 -->
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" tools:ignore="ProtectedPermissions"/>
+	
+	<!--
+	    android:name=".MyApplication：注册应用组件 Application
+	 -->
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android"
+		android:name=".MyApplication"
+		android:requestLegacyExternalStorage="true">
+		
+		<!-- 注册 PictureActivity -->
+		<activity
+			android:name=".PictureActivity"
+			android:exported="true"
+			android:label="@string/app_name">
+			<intent-filter>
+				<!-- 配置为主窗口 -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
 
 ## 4、应用组件 `Application`
 
