@@ -12,5 +12,12 @@
   "userIgnoreFilters": null,
   "alwaysUpdateLinks": true,
   "autoConvertHtml": false,
-  "showLineNumber": true
+  "showLineNumber": true,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A3",
+    "landscape": false,
+    "margin": "1",
+    "downscalePercent": 100
+  }
 }

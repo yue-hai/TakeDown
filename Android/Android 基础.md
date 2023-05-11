@@ -29,6 +29,18 @@
 
 ![](attachments/Pasted%20image%2020230412081639.png)
 
+6. 上面的版本不重要，重要的是项目中使用的版本：`gradle/wrapper/gradle-wrapper.properties`
+
+```properties
+#Wed May 10 09:51:26 CST 2023
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+# 后面的 gradle-8.1-bin.zip ，表示项目使用的 gradle 版本号
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.1-bin.zip
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+```
+
 ## 3、创建工程，下载配置 Android SDK
 
 > <font color="#ff0000">注意此处下载的是 Android 9.0</font>
@@ -8168,21 +8180,456 @@ class ViewPagerTapStripActivity: AppCompatActivity(), ViewPager.OnPageChangeList
 
 ## 4、Fragment
 
-### ①、静态注册
+### ①、介绍
 
-#### Ⅰ、说明
+1. Fragment（碎片）是一种可以嵌入在 Activity 中的 UI 片段，与 Activity 非常相似，不仅包含布局，同时也具有自己的生命周期。
+2. Fragment 表示应用界面中可重复使用的一部分。
+3. Fragment 允许您将界面划分为离散的区块，从而将模块化和可重用性引入 Activity 的界面。
+4. Fragment 的布局文件和代码使用起来和 Activity 基本无异。除了继承自 Fragment 与入口方法 onCreateView 两点，其他地方类似活动页面代码。
+5. 传统的 Activity 并不能很好的处理大屏问题，所以急需一个碎片化的东西能够划区域的展示内容，且有属于自己的独立可操作空间，所以就出现了 Fragment
 
-#### Ⅱ、代码例子
+![](attachments/Pasted%20image%2020230510101016.png)
 
+6. Fragment 的注册方式有两种：
+	1. 静态注册：在 xml 中引入
+	2. 动态注册：通过 java 代码的方式引入
+7. Fragment 的生命周期
 
-### ②、动态注册
+![](attachments/Pasted%20image%2020230510105618.png)
 
-#### Ⅰ、说明
+8. Fragment 与 Activity 生命周期的对比
 
-#### Ⅱ、代码例子
+![](attachments/Pasted%20image%2020230510105736.png)
 
+### ②、静态注册
 
-# 十五、`Android` `Android` 数据存储 `SharedPreferences`
+> 静态注册：在 xml 中引入
+
+1. 创建 Frament 布局文件 `fragment_test_static.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<Button
+		android:id="@+id/fragment_test_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Fragment"
+		android:textSize="40dp" />
+	
+</LinearLayout>
+```
+
+2. 创建 Frament 代码文件 `FragmentTestStatic`
+
+```Kotlin
+package com.yuehai.advancedcontrols.fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.yuehai.advancedcontrols.R
+
+// 继承 Fragment
+class FragmentTestStatic: Fragment() {
+	
+	/**
+	 * onCreateView 是 Fragment 碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 * 使用：View view = inflater.inflate(R.layout.right_fragment, container, false);
+	 *
+	 * 三个参数的含义及作用：
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById() 用来寻找 xml 布局下的具体的控件（Button、TextView 等）
+	 *      LayoutInflater inflater（）用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		/**
+		 * LayoutInflater.inflate(resource: Int, root: ViewGroup?, attachToRoot: Boolean)：把 xml 布局转换为对应的 View 对象
+		 * 参数 1 resource：指定要转换的 XML 布局文件的 ID
+		 * 参数 2 root：指定要将该 View 对象添加到哪个 ViewGroup 中
+		 * 参数 3 attachToRoot：指定是否将该 View 对象添加到 root ViewGroup 中；将该 View 对象添加到 root ViewGroup 中
+		 *      可以使得该 View 对象的布局参数（LayoutParams）生效，即该 View 对象的大小、位置等属性可以被 root ViewGroup 所控制
+		 *
+		 * 当 root 传空时，会直接返回要加载的 layoutId，返回的 View 没有父布局且没有 LayoutParams；
+		 * 当 root 不传空时，又分为 attachToRoot 为真或者为假：
+		 *      attachToRoot = true 会为传入的 layoutId 直接设置参数，并将其添加到 root 中，然后将传入的 root返回
+		 *      attachToRoot = false 会为传入的 layoutId 设置参数，但是不会添加到 root ，然后返回 layoutId对应的 View；
+		 */
+		return inflater.inflate(R.layout.fragment_test_static, container, false)
+	}
+}
+```
+
+3. 创建主 activity 布局文件 `fragment_activity_static.xml` ，在其中引入 Frament
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity，可引入 fragment -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical">
+	
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="本页面自己的内容"
+		android:textSize="40dp" />
+	
+	<!--
+		引入 fragment
+		name：指定 fragment 的代码文件，其需要继承 Fragment
+		tools:layout 仅仅是告诉编辑器，Fragment在程序预览的时候该显示成什么样，并不会对apk产生实际作用，是为开发者设计的
+	 -->
+	<fragment
+		android:id="@+id/fragment_test"
+		android:name="com.yuehai.advancedcontrols.fragment.FragmentTestStatic"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/fragment_test_static" />
+	
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="本页面自己的内容"
+		android:textSize="40dp" />
+	
+</LinearLayout>
+```
+
+4. 创建主 activity 代码文件 `FragmentStaticActivity`
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class FragmentStaticActivity: AppCompatActivity() {
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.fragment_activity_static)
+	}
+}
+```
+
+5. 修改清单文件 `AndroidManifest.xml`
+
+```xml
+<!-- 注册 FragmentActivity -->
+<activity
+	android:name=".FragmentStaticActivity"
+	android:exported="true">
+	<intent-filter>
+		<!-- 配置为主窗口 -->
+		<action android:name="android.intent.action.MAIN" />
+		<category android:name="android.intent.category.LAUNCHER" />
+	</intent-filter>
+</activity>
+```
+
+6. 效果
+
+![](attachments/Pasted%20image%2020230510124044.png)
+
+### ③、动态注册
+
+> 动态注册：通过 java 代码的方式引入
+
+#### Ⅰ、Fragment 与 Activity 之间数据交互
+
+1. Fragment 向 Activity 传递数据：Fragment 中定义一个内部回调接口，再让包含这个 Fragment 的 Activity 实现这个接口
+2. Activity 向 Fragment 传递数据：使用Java语言描述的话，最关键的两个函数是 `setArguments` 和 `getArguments`；向fragment 中传递数据使用 Bundle，同时需要动态添加 fragment
+3. 相比较于上面的传递数据的方式，<font color="#ff0000">EventBus</font> 就好用多了
+
+![](attachments/Pasted%20image%2020230510132520.png)
+
+4. 在想<font color="#245bdb">接收数据</font>的类中注册为 `Subscriber(订阅者)`
+5. <font color="#6425d0">发送数据</font>的类就不用注册了，直接只是用 `post()` 方法发送数据即可。
+6. 然后在订阅者的类(<font color="#245bdb">接受数据</font>的类)中使用 `onEvent()` 接受数据即可
+7. 需要先导入依赖：`implementation 'org.greenrobot:eventbus:3.2.0'`
+8. ~~下面使用的就是 `EventBus`~~ 哪个都没用，若想在 `Fragment` 中使用 `EventBus`，记得要在 `Fragment` 暂停或销毁时执行 `EventBus` 注销方法，不然重复注册会报错
+
+#### Ⅱ、代码
+
+1. 创建 `Fragment` 布局文件 `fragment_test_dynamic.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<Button
+		android:id="@+id/fragment_test_dynamic_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Fragment 1"
+		android:textSize="40dp" />
+	
+</LinearLayout>
+```
+
+2. 创建 `Fragment` 布局文件对应的代码文件 `FragmentTestDynamic`
+
+```Kotlin
+package com.yuehai.advancedcontrols.fragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import com.yuehai.advancedcontrols.R
+
+// 继承 Fragment；参数是我自定义要接收的数据
+class FragmentTestDynamic(
+	private val data: Map<String, Any>
+): Fragment() {
+	
+	/**
+	 * onCreateView 是 Fragment 碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 * 使用：View view = inflater.inflate(R.layout.right_fragment, container, false);
+	 *
+	 * 三个参数的含义及作用：
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById() 用来寻找 xml 布局下的具体的控件（Button、TextView 等）
+	 *      LayoutInflater inflater（）用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		
+		/**
+		 * LayoutInflater.inflate(resource: Int, root: ViewGroup?, attachToRoot: Boolean)：把 xml 布局转换为对应的 View 对象
+		 * 参数 1 resource：指定要转换的 XML 布局文件的 ID
+		 * 参数 2 root：指定要将该 View 对象添加到哪个 ViewGroup 中
+		 * 参数 3 attachToRoot：指定是否将该 View 对象添加到 root ViewGroup 中；将该 View 对象添加到 root ViewGroup 中
+		 *      可以使得该 View 对象的布局参数（LayoutParams）生效，即该 View 对象的大小、位置等属性可以被 root ViewGroup 所控制
+		 *
+		 * 当 root 传空时，会直接返回要加载的 layoutId，返回的 View 没有父布局且没有 LayoutParams；
+		 * 当 root 不传空时，又分为 attachToRoot 为真或者为假：
+		 *      attachToRoot = true 会为传入的 layoutId 直接设置参数，并将其添加到 root 中，然后将传入的 root返回
+		 *      attachToRoot = false 会为传入的 layoutId 设置参数，但是不会添加到 root ，然后返回 layoutId对应的 View；
+		 */
+		val view = inflater.inflate(R.layout.fragment_test_dynamic, container, false)
+		
+		// 获取按钮组件对象，并赋值
+		view.findViewById<Button>(R.id.fragment_test_dynamic_btn).text = data["btnText"].toString()
+		
+		return view
+	}
+	
+}
+```
+
+3. <font color="#ff0000">创建自定义适配器</font> `FragmentTestDynamicAdapter`，<font color="#ff0000">实现适配器</font> `FragmentPagerAdapter`
+
+```Kotlin
+package com.yuehai.advancedcontrols.ui.adapter
+
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.yuehai.advancedcontrols.fragment.FragmentTestDynamic
+
+/**
+ * 自定义适配器，翻页类视图，使用 Fragment，翻页类视图需继承 FragmentPagerAdapter(fa: FragmentManager)
+ *
+ * FragmentPagerAdapter(fa: FragmentManager) 已被废弃，代替为：FragmentStateAdapter(fa FragmentManager, lifecycle Lifecycle)
+ */
+class FragmentTestDynamicAdapter(
+	// FragmentManager 允许我们管理 Fragment；负责将 Fragment 添加到 Activity 中，并在需要时将其删除
+	private var fa: FragmentManager,
+	// 所需数据
+	private var data: List<String>
+): FragmentPagerAdapter(fa) {
+	
+	// 返回可以滑动的 VIew 的个数
+	override fun getCount(): Int {
+		return data.size
+	}
+	
+	/**
+	 * getItem() 方法主要是给 instantiateItem() 起到了辅助作用
+	 * 在 instantiateItem() 方法中，首先会去容器中寻找是否已经添加了指定的 Fragment
+	 * 如果为空，就会去调用 getItem() 去创建一个，所以在 getItem() 方法中，只要返回一个新的 Fragment 就可以了
+	 * 这也是为什么 FragmentPagerAdapter 默认只让我们实现 getItem() 和 getCount() 这两个方法。
+	 */
+	override fun getItem(position: Int): Fragment {
+		return FragmentTestDynamic(mutableMapOf("btnText" to data[position]))
+	}
+	
+	// 该方法的返回值会作为翻页视图的标签栏的显示文字
+	override fun getPageTitle(position: Int): CharSequence? {
+		return data[position]
+	}
+	
+}
+```
+
+4. 创建主布局文件 `fragment_activity_dynamic.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical">
+	
+	<!--
+		翻页视图 ViewPager
+	 -->
+	<androidx.viewpager.widget.ViewPager
+		android:id="@+id/fragment_test_dynamic_view_Pager_tab_planetList"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		
+		<!-- 翻页标签栏 PagerTabStrip 的节点名称 -->
+		<androidx.viewpager.widget.PagerTabStrip
+			android:id="@+id/fragment_test_dynamic_view_Pager_tab_strip"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+		
+	</androidx.viewpager.widget.ViewPager>
+
+</LinearLayout>
+```
+
+5. 创建主布局文件对应的代码文件 `FragmentDynamicActivity`
+
+```Kotlin
+package com.yuehai.advancedcontrols
+
+import android.graphics.Color
+import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.PagerTabStrip
+import androidx.viewpager.widget.ViewPager
+import com.yuehai.advancedcontrols.ui.adapter.FragmentTestDynamicAdapter
+
+class FragmentDynamicActivity: AppCompatActivity(), ViewPager.OnPageChangeListener {
+	
+	// 定义 Fragment 需要显示的数据
+	private val fragmentData = listOf(
+		"Fragment 1",
+		"Fragment 2",
+		"Fragment 3",
+		"Fragment 4",
+		"Fragment 5",
+	)
+	
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.fragment_activity_dynamic)
+		
+		// 获取翻页视图的标签栏对象
+		val tabStrip = findViewById<PagerTabStrip>(R.id.fragment_test_dynamic_view_Pager_tab_strip)
+		// 设置翻页标签栏的文本大小
+		tabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f);
+		// 设置翻页标签栏的标题颜色，这里需要带透明度的颜色值
+		tabStrip.setTextColor(Color.BLACK);
+		// 设置翻页标签栏的背景颜色
+		tabStrip.setBackgroundColor(Color.RED);
+		// 设置导航条下方指示器是否有完整下划线颜色；
+		tabStrip.drawFullUnderline = true
+		// 设置导航条下方指示器颜色，这里需要带透明度的颜色值
+		tabStrip.tabIndicatorColor = Color.YELLOW;
+		// 设置导航条文字的间隔。
+		tabStrip.textSpacing = 1
+		
+		// 获取翻页视图对象
+		val viewPager = findViewById<ViewPager>(R.id.fragment_test_dynamic_view_Pager_tab_planetList)
+		// 构建适配器
+		val fragmentTestDynamicAdapter = FragmentTestDynamicAdapter(supportFragmentManager, fragmentData)
+		// 传入适配器实例
+		viewPager?.adapter = fragmentTestDynamicAdapter
+		// 给翻页视图添加页面变更监听器
+		viewPager.addOnPageChangeListener(this)
+		// 默认开始选中第几个视图
+		viewPager.currentItem = 0
+	}
+	
+	/**
+	 * 当页面在滑动的时候会调用此方法，在滑动被停止之前，此方法回一直得到调用。其中三个参数的含义分别为：
+	 * position :当前页面，即你点击滑动的页面（从A滑B，则是A页面的position。官方说明：Position index of the first page currently being displayed. Page position+1 will be visible if positionOffset is nonzero.）
+	 * positionOffset：当前页面偏移的百分比
+	 * positionOffsetPixels：当前页面偏移的像素位置
+	 */
+	override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+		Log.i("月海 翻页标签栏", "从【" + fragmentData[position] + "】页离开")
+	}
+	
+	/**
+	 * 此方法是页面跳转完后得到调用，position 是你当前选中的页面的 Position（位置编号）(从A滑动到B，就是B的position)
+	 */
+	override fun onPageSelected(position: Int) {
+		// 用户界面的文字弹窗提示
+		Toast.makeText(this, "当前标签页是" + fragmentData[position], Toast.LENGTH_SHORT).show();
+	}
+	
+	/**
+	 * 此方法是在状态改变的时候调用，其中 state 这个参数有三种状态：
+	 * SCROLL_STATE_DRAGGING（1）表示用户手指“按在屏幕上并且开始拖动”的状态（手指按下但是还没有拖动的时候还不是这个状态，只有按下并且手指开始拖动后log才打出。）
+	 * SCROLL_STATE_IDLE（0）滑动动画做完的状态。
+	 * SCROLL_STATE_SETTLING（2）在“手指离开屏幕”的状态。
+	 * 一个完整的滑动动作，三种状态的出发顺序为（1，2，0）
+	 */
+	override fun onPageScrollStateChanged(state: Int) {
+		when(state){
+			1 -> { Toast.makeText(this, "手指按在屏幕上并且开始拖动", Toast.LENGTH_SHORT).show(); }
+			2 -> { Toast.makeText(this, "手指离开屏幕", Toast.LENGTH_SHORT).show(); }
+			0 -> { Toast.makeText(this, "滑动动画做完", Toast.LENGTH_SHORT).show(); }
+		}
+	}
+}
+```
+
+6. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<!-- 注册 FragmentDynamicActivity -->
+<activity
+	android:name=".FragmentDynamicActivity"
+	android:exported="true">
+	<intent-filter>
+		<!-- 配置为主窗口 -->
+		<action android:name="android.intent.action.MAIN" />
+		<category android:name="android.intent.category.LAUNCHER" />
+	</intent-filter>
+</activity>
+```
+
+7. 结果显示
+
+![](attachments/Pasted%20image%2020230511085838.png)
+
+8. 翻页过程
+
+![](attachments/Pasted%20image%2020230511085935.png)
+
+# 十五、`Android` 数据存储 `SharedPreferences`
 
 ## 1、共享参数 `SharedPreferences`
 
