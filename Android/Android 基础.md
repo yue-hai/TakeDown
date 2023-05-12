@@ -6547,6 +6547,16 @@ class Activity03: AppCompatActivity() {
 
 # 十三、`Android`  中级控件
 
+## 1、
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
 # 十四、`Android` 高级控件
 
 ## 1、下拉列表
@@ -9522,7 +9532,8 @@ class SharedPreferences02: AppCompatActivity() {
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 	
 	<!-- 按钮；共享参数 -->
 	<Button
@@ -9534,6 +9545,13 @@ class SharedPreferences02: AppCompatActivity() {
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="start"/>
+	
+	<TextView
+		android:id="@+id/yuehai_content_provider_server_01_text"
+		android:text="0"
+		android:textSize="100sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
 
 </LinearLayout>
 ```
@@ -9603,7 +9621,9 @@ class ContentProviderServer01: AppCompatActivity() {
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical">
 	
 	<!-- 按钮；共享参数 -->
 	<Button
@@ -9616,10 +9636,34 @@ class ContentProviderServer01: AppCompatActivity() {
 		android:layout_height="wrap_content"
 		android:layout_gravity="start"/>
 
+	<!-- 列表视图 -->
+	<ListView
+		android:id="@+id/yuehai_content_provider_client_01_list"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/list_item"/>
+
 </LinearLayout>
 ```
 
-2. 新建 `activity` 窗口布局对应的代码文件
+2. 新建条目布局文件 `list_item.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<TextView
+		android:id="@+id/list_item_text"
+		android:textSize="30sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+3. 新建 `activity` 窗口布局对应的代码文件
 
 ```Kotlin
 package com.yuehai.contentproviderclinet
@@ -9887,13 +9931,13 @@ class UserInfoProvider : ContentProvider() {
 		 -->
 		<provider
 			android:name=".contentProvider.UserInfoProvider"
-			android:authorities="com.yuehai.contentProviderServer.contentProvider.UserInfoProvider"
+			android:authorities="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"
 			android:enabled="true"
 			android:exported="true" />
 		
 		<!-- 注册窗口 -->
 		<activity
-			android:name="com.yuehai.contentProviderServer.ContentProviderServer01"
+			android:name=".ContentProviderServer01"
 			android:exported="true"
 			android:label="@string/app_name">
 			<intent-filter>
@@ -9910,15 +9954,15 @@ class UserInfoProvider : ContentProvider() {
 5. 编写 `ContentProviderServer01.kt` 代码文件，保存数据
 
 ```Kotlin
-package com.yuehai.contentProviderServer
+package com.yuehai.contentproviderserver
 
+import android.content.ContentValues
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.yuehai.contentproviderserver.R
-import com.yuehai.contentproviderserver.bean.UserInfo
-import com.yuehai.contentproviderserver.contentProvider.UserDBHelper
 
 class ContentProviderServer01: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9926,32 +9970,27 @@ class ContentProviderServer01: AppCompatActivity() {
         // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
         setContentView(R.layout.content_provider_server_01)
 
+        // 定义 uri
+        val contentUri: Uri = Uri.parse("content://com.yuehai.contentproviderserver.contentProvider.UserInfoProvider/yuehai")
+
         // 点击按钮
         findViewById<Button>(R.id.yuehai_content_provider_server_01_btn).setOnClickListener {
             Log.i("点击服务端按钮：", "yuehai_content_provider_server_01_btn")
+            
+            // 获取文本框对象
+            val textView = findViewById<TextView>(R.id.yuehai_content_provider_server_01_text)
+            // 文本框内容 + 1，赋值给 age
+            val age = textView.text.toString().toInt() + 1
+            // 使文本框内容 + 1
+            textView.text = age.toString()
+            
+            // 创建 ContentValues 对象
+            val contentValues = ContentValues()
+            contentValues.put("name", "言")
+            contentValues.put("age", age)
 
-            val userDBHelper = UserDBHelper(this, "yuehai", 1)
-
-            // 创建表
-            userDBHelper.onCreate(userDBHelper.writableDatabase)
-            // 关闭数据库连接
-            userDBHelper.close()
-
-            // 插入数据
-            userDBHelper.insert(userDBHelper.writableDatabase, UserInfo("name", 16))
-            Log.i("插入数据", "")
-            // 关闭数据库连接
-            userDBHelper.close()
-
-            // 读取数据
-            val userInfos: MutableList<UserInfo> = userDBHelper.query(userDBHelper.readableDatabase, "name")
-            userInfos.forEach {
-                Log.i("读取数据 name", it.name)
-                Log.i("读取数据 age", it.age.toString())
-            }
-            // 关闭数据库连接
-            userDBHelper.close()
-
+            // 获取到 ContentResolver 之后调用插入方法进行插入
+            contentResolver.insert(contentUri, contentValues)
         }
     }
 }
@@ -9967,10 +10006,10 @@ class ContentProviderServer01: AppCompatActivity() {
 	
 	<queries>
 		<!--服务端应用包名 -->
-		<package android:name="com.yuehai.contentProviderServer"/>
+		<package android:name="com.yuehai.contentproviderserver"/>
 		
 		<!-- 或者直接指定 authorities -->
-		<!-- <provider android:authorities="com.yuehai.contentProviderServer.contentProvider.UserInfoProvider"/> -->
+		<!-- <provider android:authorities="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"/> -->
 	</queries>
 	
 	<application
@@ -10003,11 +10042,16 @@ class ContentProviderServer01: AppCompatActivity() {
 ```Kotlin
 package com.yuehai.contentproviderclinet
 
-import android.content.ContentValues
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ListView
+import android.widget.SimpleAdapter
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class ContentProviderClinet01: AppCompatActivity() {
@@ -10017,40 +10061,502 @@ class ContentProviderClinet01: AppCompatActivity() {
         setContentView(R.layout.content_provider_clinet_01)
 
         // 定义 uri
-        val contentUri: Uri = Uri.parse("content://com.yuehai.contentProviderServer.contentProvider.UserInfoProvider/yuehai")
+        val contentUri: Uri = Uri.parse("content://com.yuehai.contentproviderserver.contentProvider.UserInfoProvider/yuehai")
 
         // 点击按钮
         findViewById<Button>(R.id.yuehai_content_provider_client_01_btn).setOnClickListener {
             Log.i("点击客户端按钮：", "yuehai_content_provider_client_01_btn")
-
-            // 创建 ContentValues 对象
-            val contentValues = ContentValues()
-            contentValues.put("name", "言")
-            contentValues.put("age", 14)
-
-            // 获取到 ContentResolver 之后调用插入方法进行插入
-            contentResolver.insert(contentUri, contentValues)
-
+    
+            // 声明一个集合，用于保存信息
+            val list: MutableList<Map<String, Any?>> = ArrayList()
             // 查询
             val query = contentResolver.query(contentUri, null, null, null, null)
             // 遍历游标，取出数据
             if (query != null) {
                 while (query.moveToNext()){
-                    Log.i("id", query.getInt(0).toString())
-                    Log.i("name", query.getString(1))
-                    Log.i("age", query.getInt(2).toString())
+                    // 给集合赋值
+                    val item: MutableMap<String, Any?> = HashMap()
+                    item["data"] = "id：${query.getInt(0)}，name：${query.getString(1)}，age：${query.getInt(2)}"
+                    list.add(item)
                 }
-
             }
-
+    
+            /**
+             * 声明一个下拉列表的简单适配器，其中指定了图标与文本两组数据
+             * SimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to)
+             * 第一个参数 context：SimpleAdapter 关联的 View 的运行环境；上下文环境
+             * 第二个参数 data：  一个 Map 组成的 List。列表种的每个条目对应列表中的一行，每个 Map 中应该包含 from 参数中指定的键
+             * 第三个参数 resource：定义列表项的布局文件的资源 id
+             * 第四个参数 from：  被添加到 Map 映射上的键名
+             * 第五个参数 to：    将绑定数据的视图的 Id 和 from 参数对应；from 与 to 一一对应，适配器绑定数据
+             */
+            val startAdapter = SimpleAdapter(
+                this,
+                list,
+                R.layout.list_item,
+                arrayOf<String>("data"),
+                intArrayOf(R.id.list_item_text)
+            )
+    
+            // 获取列表对象
+            val clientList = findViewById<ListView>(R.id.yuehai_content_provider_client_01_list)
+            // 传入适配器实例
+            clientList.adapter = startAdapter
         }
+
     }
+    
 }
 ```
 
-## 3、使用内容组件获取通讯信息
+### ⑤、结果
 
-## 4、在应用之间共享文件
+1. 服务端
+
+![](attachments/Pasted%20image%2020230512123201.png)
+
+2. 客户端
+
+![](attachments/Pasted%20image%2020230512123308.png)
+
+## 3、运行时动态申请权限
+
+1. 在上面讲公共存储空间与私有存储空间提到，App 若想访问存储卡的公共空间，就要在 `AndroidManifest.xml` 清单文件里面添加下述的权限配置
+
+```xml
+<!-- 存储卡读写权限 -->
+<!-- 在安卓 6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加权限，还需要在代码中动态申请权限 -->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+```
+
+2. 然而即使 App 声明了完整的存储卡操作权限，从 Android 7.0 开始，系统仍然默认禁止该 App 访问公共空间，必须到设置界面手动开启应用的存储卡权限才行。尽管此举是为用户隐私着想，可是人家咋知道要手工开权限呢？就算用户知道，去设置界面找到权限开关也颇费周折。为此 Android 支持在 Java 代码中处理权限，处理过程分为 3 个步骤：
+	1. 检查 App 是否开启了指定权限：调用 `ContextCompat` 的 `checkSelfPermission` 方法
+	2. 请求系统弹窗，以便用户选择是否开启权限：调用 `ActivityCompat` 的 `requestPermissions` 方法，即可命令系统自动弹出权限申请窗口。
+	3. 判断用户的权限选择结果，是开启还是拒绝：重写活动页面的权限请求回调方法 `onRequestPermissionsResult`，在该方法内部处理用户的权限选择结果
+3. 动态申请权限有两种方式：<font color="#ff0000">饿汉式</font>和<font color="#ff0000">懒汉式</font>。接下来通过获取通讯权限和短信权限来进行举例说明
+
+### ①、懒汉式
+
+> 懒汉式：当需要某种权限的时候再去申请
+
+1. 创建工具类 `PermissionUtil`
+
+```Kotlin
+package com.yuehai.contentproviderclinet.util
+
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.provider.Settings
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+
+
+class PermissionUtil {
+	
+	/**
+	 * 检查权限
+	 * @param activity 当前 activity
+	 * @param permissions 权限数组
+	 * @param requestCode 权限申请识别码
+	 * @return 返回 true 表示完全启用权限，返回 false 则表示未完全启用所有权限
+	 */
+	fun checkPermission(activity: Activity, permissions: Array<String>, requestCode: Int): Boolean{
+		
+		// 获取权限检查值
+		var check = PackageManager.PERMISSION_GRANTED
+		
+		// 循环判断权限是否存在
+		for (permission in permissions) {
+			// 获取权限检查结果，给权限检查值赋值
+			check = ContextCompat.checkSelfPermission(activity, permission)
+			// 判断权限是否存在
+			if (check != PackageManager.PERMISSION_GRANTED){
+				// 数组中有一个权限不存在，就结束循环
+				break
+			}
+		}
+		
+		/**
+		 * 判断权限检查值，若有权限不存在，则请求系统弹窗，好让用户选择是否开启权限
+		 *
+		 * 为什么不在循环里请求权限的原因是：
+		 *      判断权限是一个一个判断的
+		 *      请求权限是可以一组一起获取的
+		 */
+		if (check != PackageManager.PERMISSION_GRANTED){
+			// 请求权限
+			ActivityCompat.requestPermissions(activity, permissions, requestCode)
+			return false
+		}
+		
+		// 所有权限都存在
+		return true
+	}
+	
+	/**
+	 * 根据权限申请回调函数返回的权限申请结果数组，判断申请是否成功
+	 *
+	 * @param grantResults 权限申请结果数组
+	 * @return 返回 true 表示都已经授权
+	 */
+	fun checkGrant(grantResults: IntArray): Boolean {
+		// 遍历数组
+		grantResults.forEach {
+			// 判断结果，权限是否申请成功
+			if (it != PackageManager.PERMISSION_GRANTED){
+				// 权限申请失败
+				return false
+			}
+		}
+		
+		// 权限申请成功
+		return true
+	}
+	
+	/**
+	 * 跳转到设置界面
+	 */
+	fun jumpToSettings(activity: Activity, packageName: String){
+		val intent = Intent()
+		intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+		intent.data = Uri.fromParts("package", packageName, null)
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+		activity.startActivity(intent)
+	}
+	
+}
+```
+
+2. 创建布局文件 `permission_lazy.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<Button
+		android:id="@+id/permission_lazy_contact"
+		android:text="获取通讯录权限"
+		android:textSize="30dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<Button
+		android:id="@+id/permission_lazy_sms"
+		android:text="获取短信权限"
+		android:textSize="30dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+3. 创建布局文件对应的代码文件 `PermissionLazyActivity`
+
+```Kotlin
+package com.yuehai.contentproviderclinet
+
+import android.Manifest
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.contentproviderclinet.util.PermissionUtil
+
+class PermissionLazyActivity: AppCompatActivity() {
+	
+	// 通讯录的读写权限
+	private val PERMISSION_CONTACT = arrayOf<String>(
+		Manifest.permission.READ_CONTACTS,
+		Manifest.permission.WRITE_CONTACTS
+	)
+	// 通讯录的读写权限申请识别码，作为回调识别参数
+	private val PERMISSION_CONTACT_CODE = 1
+	
+	// 短信的读写权限
+	private val PERMISSION_SMS = arrayOf<String>(
+		Manifest.permission.SEND_SMS,
+		Manifest.permission.RECEIVE_SMS
+	)
+	// 通讯录的读写权限申请识别码，作为回调识别参数
+	private val PERMISSION_SMS_CODE = 2
+	
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.permission_lazy)
+		
+		// 获取通讯录的读写权限
+		findViewById<Button>(R.id.permission_lazy_contact).setOnClickListener {
+			// 调用封装的方法，检查并获取权限
+			PermissionUtil().checkPermission(this, PERMISSION_CONTACT, PERMISSION_CONTACT_CODE)
+		}
+		
+		// 获取短信的读写权限
+		findViewById<Button>(R.id.permission_lazy_sms).setOnClickListener {
+			// 调用封装的方法，检查并获取权限
+			PermissionUtil().checkPermission(this, PERMISSION_SMS, PERMISSION_SMS_CODE)
+		}
+	}
+	
+	/**
+	 * 用户选择权限结果后会调用该回调方法
+	 *
+	 * 参数 1：权限申请识别码
+	 * 参数 2：权限列表
+	 * 参数 3：权限申请结果数组
+	 */
+	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray ) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+		
+		// 根据权限申请识别码判断是申请什么判断的回调
+		when(requestCode){
+			// 通讯录的读写权限回调
+			PERMISSION_CONTACT_CODE -> {
+				// 调用封装的方法，判断权限申请是否成功
+				if (PermissionUtil().checkGrant(grantResults)){
+					Log.d("月海", "通讯录获取成功")
+				}else{
+					Log.d("月海", "通讯录获取失败")
+					// 跳转到设置界面
+					PermissionUtil().jumpToSettings(this, packageName)
+				}
+			}
+			// 短信的读写权限回调
+			PERMISSION_SMS_CODE -> {
+				// 调用封装的方法，判断权限申请是否成功
+				if (PermissionUtil().checkGrant(grantResults)){
+					Log.d("月海", "短信获取成功")
+				}else{
+					Log.d("月海", "短信获取失败")
+					// 跳转到设置界面
+					PermissionUtil().jumpToSettings(this, packageName)
+				}
+			}
+		}
+	}
+
+}
+```
+
+4. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- uses-feature 用来声明应用中需要用的硬件和软件的功能 -->
+	<!-- 该应用程序使用电话功能的移动设备，例如，电话与数据通信业务的无线电 -->
+	<uses-feature android:name="android.hardware.telephony" android:required="false" />
+	
+	<!-- 开启通讯录权限-->
+	<uses-permission android:name="android.permission.READ_CONTACTS"/>
+	<uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+	
+	<!-- 开启短信收发权限-->
+	<uses-permission android:name="android.permission.SEND_SMS"/>
+	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
+	
+	<queries>
+		<!--服务端应用包名 -->
+		<package android:name="com.yuehai.contentproviderserver"/>
+		
+		<!-- 或者直接指定 authorities -->
+		<!-- <provider android:authorities="com.yuehai.contentproviderserver.contentProvider.UserInfoProvider"/> -->
+	</queries>
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.02_Android" >
+		
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".ContentProviderClinet01"
+			android:exported="true"
+			android:label="@string/app_name">
+		</activity>
+		
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".PermissionLazyActivity"
+			android:exported="true">
+			<intent-filter>
+				<!-- 配置为主窗口 -->
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>
+```
+
+### ②、饿汉式
+
+> 懒汉式：在页面打开之后就一次性需要用户获取所有权限
+
+1. 创建布局文件 `permission_lazy.xml`，和上面一样，就是改了个名
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<Button
+		android:id="@+id/permission_lazy_contact"
+		android:text="获取通讯录权限"
+		android:textSize="30dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<Button
+		android:id="@+id/permission_lazy_sms"
+		android:text="获取短信权限"
+		android:textSize="30dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+2. 创建布局文件对应的代码文件 `PermissionLazyActivity`
+
+```Kotlin
+package com.yuehai.contentproviderclinet
+
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.yuehai.contentproviderclinet.util.PermissionUtil
+
+class PermissionHungryActivity: AppCompatActivity() {
+	
+	// 所需全部读写权限
+	private val PERMISSIONS = arrayOf(
+		Manifest.permission.READ_CONTACTS,
+		Manifest.permission.WRITE_CONTACTS,
+		Manifest.permission.SEND_SMS,
+		Manifest.permission.RECEIVE_SMS
+	)
+	// 权限申请识别码，作为回调识别参数
+	private val REQUEST_CODE_ALL = 0
+	
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.permission_hungry)
+		
+		// 检查是否拥有所有所需权限
+		PermissionUtil().checkPermission(this, PERMISSIONS, REQUEST_CODE_ALL)
+	}
+	
+	/**
+	 * 用户选择权限结果后会调用该回调方法
+	 *
+	 * 参数 1：权限申请识别码
+	 * 参数 2：权限列表
+	 * 参数 3：权限申请结果数组
+	 */
+	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray ) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+		
+		// 根据权限申请识别码判断是申请什么判断的回调
+		when(requestCode){
+			// 通讯录的读写权限回调
+			REQUEST_CODE_ALL -> {
+				// 调用封装的方法，判断权限申请是否成功
+				if (PermissionUtil().checkGrant(grantResults)){
+					Log.d("月海", "所有权限获取成功")
+				}else{
+					
+					// 部分权限获取失败，
+					for ( (index, grantResult) in grantResults.withIndex() ) {
+						
+						// 判断本次循环返回的结果是申请失败
+						if (grantResult != PackageManager.PERMISSION_GRANTED){
+							// 判断是什么权限获取失败
+							when(permissions[index]){
+								// 通讯录权限
+								Manifest.permission.READ_CONTACTS,
+								Manifest.permission.WRITE_CONTACTS -> {
+									Log.d("月海", "通讯录获取失败")
+									// 跳转到设置界面
+									PermissionUtil().jumpToSettings(this, packageName)
+								}
+								// 短信权限
+								Manifest.permission.SEND_SMS,
+								Manifest.permission.RECEIVE_SMS -> {
+									Log.d("月海", "短信获取失败")
+									// 跳转到设置界面
+									PermissionUtil().jumpToSettings(this, packageName)
+								}
+							}
+						}
+						
+					}
+					
+				}
+			}
+
+		}
+	}
+}
+```
+
+3. 修改 `AndroidManifest.xml` 清单文件
+
+```xml
+<!-- 注册窗口 -->
+<activity
+	android:name=".PermissionHungryActivity"
+	android:exported="true">
+	<intent-filter>
+		<!-- 配置为主窗口 -->
+		<action android:name="android.intent.action.MAIN" />
+		<category android:name="android.intent.category.LAUNCHER" />
+	</intent-filter>
+</activity>
+```
+
+## 4、使用内容组件获取通讯信息
+
+### ①、说明
+
+1. 手机中通讯录的主要表结构有：
+2. `raw_contacts` 表：
+
+![](attachments/Pasted%20image%2020230512155543.png)
+
+3. `data` 表：记录了用户的通讯录所有数据，包括手机号，显示名称等
+	1. 里面的 `mimetype_id` 表示不同的数据类型，这与表 `mimetypes` 表中的 `id` 相对应
+	2. `raw_contact_id` 与上面的 `raw_contacts` 表中的 id 相对应。
+
+![](attachments/Pasted%20image%2020230512155551.png)
+
+4. `mimetypes` 表：
+
+![](attachments/Pasted%20image%2020230512155605.png)
+
+### ②、代码例子
+
+## 5、使用内容组件获取通讯信息
+
+
 
 # 十七、`Android` 广播组件 `Broadcast`
 
@@ -11989,13 +12495,14 @@ org.gradle.jvmargs=-Xmx1536M \
 ## 2、开源投屏工具：`scrcpy`
 
 1. 下载解压：https://github.com/Genymobile/scrcpy/releases
-2. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
+2. 鼠标键盘操作：``https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md
+3. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
 
 ![](attachments/Pasted%20image%2020230425162439.png)
 
-3. 手机记得开启 usb 调试
-4. 断开所有 wifi 连接设备：`adb disconnect`
-5. 断开指定的 wifi 设备连接：`adb disconnect xxx.xxx.xxx.xxx`
+4. 手机记得开启 usb 调试
+5. 断开所有 wifi 连接设备：`adb disconnect`
+6. 断开指定的 wifi 设备连接：`adb disconnect xxx.xxx.xxx.xxx`
 
 ### ①、USB 连接
 
