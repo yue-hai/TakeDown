@@ -327,7 +327,45 @@ is_master = false
 encode_user_path = true
 ```
 
-## 2、
+## 2、更新
+
+1. 启动 SteamCMD，以 `Steam>` 开头的就代表进入了 SteamCMD
+
+```bash
+./steamcmd.sh
+```
+   
+```
+Redirecting stderr to '/root/Steam/logs/stderr.txt'
+[  0%] Checking for available updates...
+[----] Verifying installation...
+Steam Console Client (c) Valve Corporation
+  -- type 'quit' to exit --
+Loading Steam API...OK
+
+Steam>
+```
+
+2. 设置饥荒联机版下载目录 `dstserver`
+
+```bash
+force_install_dir /home/steam/dstserver
+```
+
+3. 匿名登录 steam
+
+```bash
+login anonymous
+```
+
+4. 下载饥荒联机版
+ 
+```bash
+app_update 343050 validate
+```
+
+5. 等待下载完后输入 quit 或者 （ctrl + c） 退出 SteamCMD，更新完毕
+
 
 ## 3、
 

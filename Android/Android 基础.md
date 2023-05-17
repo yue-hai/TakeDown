@@ -2001,6 +2001,11 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 </manifest>
 ```
 
+4. 效果
+
+![](attachments/Pasted%20image%2020230517101102.png)
+![](attachments/Pasted%20image%2020230517101121.png)
+
 ### ③、开关按钮 Switch
 
 1. `Switch` 是开关按钮，它在选中与取消选中时可展现的界面元素比复选框丰富。
@@ -2112,6 +2117,11 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 	}
 }
 ```
+
+6. 效果
+
+![](attachments/Pasted%20image%2020230517101230.png)
+![](attachments/Pasted%20image%2020230517101243.png)
 
 ### ④、单选按钮 RadioButton
 
@@ -2278,6 +2288,11 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 }
 ```
 
+7. 效果
+
+![](attachments/Pasted%20image%2020230517101402.png)
+![](attachments/Pasted%20image%2020230517101414.png)
+
 ## 3、文本输入
 
 ### ①、编辑框 EditText
@@ -2387,6 +2402,10 @@ class EdiTextActivity: AppCompatActivity() {
 	</intent-filter>
 </activity>
 ```
+
+8. 效果
+
+![](attachments/Pasted%20image%2020230517100722.png)
 
 ### ②、焦点变更监听器
 
@@ -2501,6 +2520,10 @@ class EdiTextActivity: AppCompatActivity(), View.OnFocusChangeListener, View.OnC
 	}
 }
 ```
+
+6. 效果
+
+![](attachments/Pasted%20image%2020230517100752.png)
 
 ### ③、文本变化监听器
 
@@ -2695,6 +2718,11 @@ class EdiTextActivity: AppCompatActivity(), View.OnFocusChangeListener, View.OnC
 }
 ```
 
+5. 效果
+
+![](attachments/Pasted%20image%2020230517100408.png)
+![](attachments/Pasted%20image%2020230517100434.png)
+
 ## 4、对话框
 
 ### ①、提醒对话框 AlertDialog
@@ -2835,10 +2863,366 @@ class DialogBoxAlertDialogActivity: AppCompatActivity() {
 </manifest>
 ```
 
+7. 效果
+
+![](attachments/Pasted%20image%2020230517095848.png)
+![](attachments/Pasted%20image%2020230517095926.png)
 
 ### ②、日期对话框 DatePickerDialog
 
+1. 日期选择器 DatePicker 可以让用户选择具体的年月日。
+2. 但 DatePicker 并非弹窗模式，而是在当前页面占据一块区域，并且不会自动关闭。
+3. DatePickerDialog 相当于在 AlertDialog 上装载了 DatePicker，日期选择事件则由监听器 `OnDateSetListener` 负责响应，在该监听器的 `onDateSet` 方法中，开发者获取用户选择的具体日期，再做后续处理。
+4. 需要注意的是 `onDateSet` 的月份参数，他的起始值不是 1 而是 0；也就是说一月份对应的参数值为 0，十二月份对应的参数值为 11
+5. 修改布局文件 `dialog_box.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 提醒对话框弹出按钮 -->
+	<Button
+		android:id="@+id/dialog_box_btn"
+		android:text="点击弹出对话框"
+		android:textSize="30dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<TextView
+		android:id="@+id/dialog_box_text"
+		android:text="提醒对话框提示文字"
+		android:textSize="40dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<!-- 日期对话框弹出按钮 -->
+	<Button
+		android:id="@+id/dialog_box_btn_DatePickerDialog"
+		android:text="点击弹出对话框"
+		android:textSize="30dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<TextView
+		android:id="@+id/dialog_box_text_DatePickerDialog"
+		android:text="日期对话框提示文字"
+		android:textSize="40dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+6. 修改布局文件对应的代码文件 `DialogBoxAlertDialogActivity`
+
+```Kotlin
+package com.yuehai.intermediatecontrols
+
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.icu.util.Calendar
+import android.os.Bundle
+import android.widget.Button
+import android.widget.DatePicker
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.dialog_box)
+		
+		// 给提醒对话框弹出按钮设置点击事件
+		findViewById<Button>(R.id.dialog_box_btn).setOnClickListener {
+			// 创建提醒对话框的建造器
+			val builder = AlertDialog.Builder(this)
+			
+			// 设置对话框的标题文本
+			builder.setTitle("提醒对话框")
+			// 设置对话框的内容文本
+			builder.setMessage("提醒对话框的内容")
+			
+			/**
+			 * 设置对话框的肯定按钮文本及其点击监听器
+			 *
+			 * dialog 是一个 AlertDialog.Builder 对象，它用于创建一个提醒对话框。
+			 * which 是一个整数值，表示用户点击的按钮的索引。
+			 *
+			 * 在这里，我们设置了两个按钮：确定和取消。
+			 * 当用户点击确定按钮时，which 的值为 DialogInterface.BUTTON_POSITIVE（-1），当
+			 * 用户点击取消按钮时，which 的值为 DialogInterface.BUTTON_NEGATIVE（-2）
+			 */
+			builder.setPositiveButton("确定"){ dialog, which ->
+				findViewById<TextView>(R.id.dialog_box_text).text = "点击了确定"
+			}
+			
+			// 设置对话框的否定按钮文本及其点击监听器
+			builder.setNegativeButton("取消"){dialog, which ->
+				findViewById<TextView>(R.id.dialog_box_text).text = "点击了取消"
+			}
+			
+			// 根据建造器构建提醒对话框对象
+			val alertDialog = builder.create()
+			
+			// 显示提醒对话框
+			alertDialog.show()
+		}
+		
+		// 给日期对话框弹出按钮设置点击事件
+		findViewById<Button>(R.id.dialog_box_btn_DatePickerDialog).setOnClickListener {
+			// 获取日历的一个实例，里面包含了当前的年月日
+			val calendar = Calendar.getInstance()
+			/**
+			 * 构建一个日期对话框，该对话框已经集成了日期选择器。
+			 *
+			 * 参数 1：context，上下文对象，Activity
+			 * 参数 2：日期监听器，需 Activity 实现 DatePickerDialog.OnDateSetListener 接口 的 onDateSet 方法
+			 * 参数 3：年
+			 * 参数 4：月
+			 * 参数 5：日
+			 */
+			val dialog = DatePickerDialog(
+				this, this,
+				calendar[Calendar.YEAR],
+				calendar[Calendar.MONTH],
+				calendar[Calendar.DAY_OF_MONTH]
+			)
+			
+			// 显示日期对话框
+			dialog.show()
+		}
+		
+	}
+	
+	/**
+	 * 一旦点击日期对话框上的确定按钮，就会触发监听器的onDateSet方法
+	 *
+	 * view：由哪个日期对话框 DatePickerDialog 触发
+	 * year：年
+	 * month：月
+	 * dayOfMonth：日
+	 */
+	override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+		val tip = "选择的日期是：$year 年 ${month + 1} 月 $dayOfMonth 日"
+		findViewById<TextView>(R.id.dialog_box_text_DatePickerDialog).text = tip
+	}
+	
+}
+```
+
+7. 效果
+
+![](attachments/Pasted%20image%2020230517105509.png)
+![](attachments/Pasted%20image%2020230517105517.png)
+
 ### ③、时间对话框 TimePickerDialog
+
+1. 时间选择器 TimePicker 可以让用户选择具体的小时和分钟
+2. TimePickerDialog 的用法类似 DatePickerDialog，不同之处有两个：
+	1. 构造方法传的是当前的小时与分钟，最后一个参数表示是否采取二十四小时制，一般传 true，表示小时的数值范围为 0～23；若为 false 则表示采取十二小时制。
+	2. 时间选择监听器为 `OnTimeSetListener`，对应需要实现 `onTimeSet` 方法，在该方法中可获得用户选择的小时和分钟。
+3. 修改布局文件 `dialog_box.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<!-- 提醒对话框弹出按钮 -->
+	<Button
+		android:id="@+id/dialog_box_btn"
+		android:text="点击弹出提醒对话框"
+		android:textSize="28dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<TextView
+		android:id="@+id/dialog_box_text"
+		android:text="提醒对话框提示文字"
+		android:textSize="40dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<!-- 日期对话框弹出按钮 -->
+	<Button
+		android:id="@+id/dialog_box_btn_DatePickerDialog"
+		android:text="点击弹出日期对话框"
+		android:textSize="28dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<TextView
+		android:id="@+id/dialog_box_text_DatePickerDialog"
+		android:text="日期对话框提示文字"
+		android:textSize="40dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<!-- 时间对话框弹出按钮 -->
+	<Button
+		android:id="@+id/dialog_box_btn_TimePickerDialog"
+		android:text="点击弹出时间对话框"
+		android:textSize="28dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	
+	<TextView
+		android:id="@+id/dialog_box_text_TimePickerDialog"
+		android:text="时间对话框提示文字"
+		android:textSize="40dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+
+4. 修改布局文件对应的代码文件 `DialogBoxAlertDialogActivity`
+
+```Kotlin
+package com.yuehai.intermediatecontrols
+
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.icu.util.Calendar
+import android.os.Bundle
+import android.widget.Button
+import android.widget.DatePicker
+import android.widget.TextView
+import android.widget.TimePicker
+import androidx.appcompat.app.AppCompatActivity
+
+class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDateSetListener,
+	TimePickerDialog.OnTimeSetListener {
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.dialog_box)
+		
+		// 给提醒对话框弹出按钮设置点击事件
+		findViewById<Button>(R.id.dialog_box_btn).setOnClickListener {
+			// 创建提醒对话框的建造器
+			val builder = AlertDialog.Builder(this)
+			
+			// 设置对话框的标题文本
+			builder.setTitle("提醒对话框")
+			// 设置对话框的内容文本
+			builder.setMessage("提醒对话框的内容")
+			
+			/**
+			 * 设置对话框的肯定按钮文本及其点击监听器
+			 *
+			 * dialog 是一个 AlertDialog.Builder 对象，它用于创建一个提醒对话框。
+			 * which 是一个整数值，表示用户点击的按钮的索引。
+			 *
+			 * 在这里，我们设置了两个按钮：确定和取消。
+			 * 当用户点击确定按钮时，which 的值为 DialogInterface.BUTTON_POSITIVE（-1），当
+			 * 用户点击取消按钮时，which 的值为 DialogInterface.BUTTON_NEGATIVE（-2）
+			 */
+			builder.setPositiveButton("确定"){ dialog, which ->
+				findViewById<TextView>(R.id.dialog_box_text).text = "点击了确定"
+			}
+			
+			// 设置对话框的否定按钮文本及其点击监听器
+			builder.setNegativeButton("取消"){dialog, which ->
+				findViewById<TextView>(R.id.dialog_box_text).text = "点击了取消"
+			}
+			
+			// 根据建造器构建提醒对话框对象
+			val alertDialog = builder.create()
+			
+			// 显示提醒对话框
+			alertDialog.show()
+		}
+		
+		// 给日期对话框弹出按钮设置点击事件
+		findViewById<Button>(R.id.dialog_box_btn_DatePickerDialog).setOnClickListener {
+			// 获取日历的一个实例，里面包含了当前的年月日
+			val calendar = Calendar.getInstance()
+			/**
+			 * 构建一个日期对话框，该对话框已经集成了日期选择器。
+			 *
+			 * 参数 1：context，上下文对象，Activity
+			 * 参数 2：日期监听器，需 Activity 实现 DatePickerDialog.OnDateSetListener 接口 的 onDateSet 方法
+			 * 参数 3：年
+			 * 参数 4：月
+			 * 参数 5：日
+			 */
+			val dialog = DatePickerDialog(
+				this, this,
+				calendar[Calendar.YEAR],
+				calendar[Calendar.MONTH],
+				calendar[Calendar.DAY_OF_MONTH]
+			)
+			
+			// 显示日期对话框
+			dialog.show()
+		}
+		
+		// 给时间对话框弹出按钮设置点击事件
+		findViewById<Button>(R.id.dialog_box_btn_TimePickerDialog).setOnClickListener {
+			// 获取日历的一个实例，里面包含了当前的时分秒
+			val calendar = Calendar.getInstance()
+			/**
+			 * 构建一个时间对话框，该对话框已经集成了时间选择器。
+			 *
+			 * 参数 1：context，上下文对象，Activity
+			 * 参数 2：时间监听器，需 Activity 实现 TimePickerDialog.OnTimeSetListener 接口 的 onTimeSet 方法
+			 * 参数 3：时
+			 * 参数 4：分
+			 * 参数 5：true，表示 24 小时制；false 表示采取 12 小时制
+			 */
+			val dialog = TimePickerDialog(
+				this, this,
+				calendar[Calendar.HOUR_OF_DAY],
+				calendar[Calendar.MINUTE],
+				true
+			)
+			
+			// 显示时间对话框
+			dialog.show()
+		}
+		
+	}
+	
+	/**
+	 * 一旦点击日期对话框上的确定按钮，就会触发监听器的 onDateSet 方法
+	 *
+	 * view：由哪个日期对话框 DatePickerDialog 触发
+	 * year：年
+	 * month：月
+	 * dayOfMonth：日
+	 */
+	override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+		val tip = "选择的日期是：$year 年 ${month + 1} 月 $dayOfMonth 日"
+		findViewById<TextView>(R.id.dialog_box_text_DatePickerDialog).text = tip
+	}
+	
+	/**
+	 * 一旦点击时间对话框上的确定按钮，就会触发监听器的 onTimeSet 方法
+	 *
+	 * view：由哪个时间对话框 TimePickerDialog 触发
+	 * hourOfDay：时
+	 * minute：分
+	 */
+	override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+		val tip = "选择的时间是：$hourOfDay 时 $minute 分"
+		findViewById<TextView>(R.id.dialog_box_text_TimePickerDialog).text = tip
+	}
+	
+}
+```
+
+5. 效果
+
+![](attachments/Pasted%20image%2020230517111627.png)
+![](attachments/Pasted%20image%2020230517111634.png)
 
 # 五、`Android` 高级控件
 
