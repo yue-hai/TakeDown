@@ -9367,7 +9367,7 @@ class YuehaiRetrofit: AppCompatActivity() {
 </manifest>
 ```
 
-# 十一、问题
+# 十一、其他问题
 
 ## 1、module java.base does not "opens java.io"
 
@@ -9445,9 +9445,95 @@ org.gradle.jvmargs=-Xmx1536M \
 
 ![](attachments/Pasted%20image%2020230508083306.png)
 
-## 4、
+## 4、`res/values/themes.xml` 内容介绍
 
-## 5、
+- res/values-night/themes.xml 是深色模式的配置文件，与此基本相同
+
+```xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Base application theme. -->
+	<style name="Theme.Y_pic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+		
+		<!-- 主题颜色设置 -->
+		<!-- 应用的主要色调，actionBar 默认使用该颜色，Toolbar 导航栏的底色 -->
+		<item name="colorPrimary">@color/yuehai_light_blue</item>
+		<!-- 应用的主要暗色调，statusBarColor 默认使用该颜色 -->
+		<item name="colorPrimaryDark">@color/black</item>
+		<!-- 一般控件的选中效果默认采用该颜色，如 CheckBox，RadioButton，SwitchCompat，ProcessBar等 -->
+		<item name="colorAccent">@color/purple_700</item>
+		<item name="colorPrimaryVariant">@color/purple_700</item>
+		<item name="colorOnPrimary">@color/white</item>
+		<!-- 图片标题或者字幕、Medium、action bar subtitle等 -->
+		<item name="colorSecondary">@color/teal_200</item>
+		<item name="colorSecondaryVariant">@color/teal_700</item>
+		<item name="colorOnSecondary">@color/black</item>
+		
+		<!-- 状态栏、顶部导航栏 相关 -->
+		<!-- 状态栏颜色 -->
+		<item name="android:statusBarColor">@color/yuehai_light_blue</item>
+		<!-- activity 是否能在 status bar 底部绘制 -->
+		<item name="android:windowOverscan">true</item>
+		<!-- 让 status bar 透明，相当于 statusBarColor=transparent + windowOverscan=true -->
+		<item name="android:windowTranslucentStatus">true</item>
+		<!-- 改变status bar 文字颜色， true黑色， false白色，API23可用-->
+		<!-- <item name="android:windowLightStatusBar">true</item> -->
+		<!-- 全屏显示，隐藏状态栏、导航栏、底部导航栏 -->
+		<item name="android:windowFullscreen">true</item>
+		
+		<!-- 隐藏标题栏 -->
+		<item name="windowNoTitle">true</item>
+		<!-- 底部虚拟导航栏颜色 -->
+		<item name="android:navigationBarColor">#E91E63</item>
+		<!-- 让底部导航栏变半透明灰色，覆盖在Activity之上（默认false，activity会居于底部导航栏顶部），如果设为true，navigationBarColor 失效 -->
+		<item name="android:windowTranslucentNavigation">true</item>
+		
+		<!-- WindowBackground，可以设置@drawable，颜色引用（@color），不能设置颜色值（#fffffff），
+		Window区域说明：Window涵盖整个屏幕显示区域，包括StatusBar的区域。当windowOverscan=false时，window的区域比Activity多出StatusBar，当windowOverscan=true时，window区域与Activity相同-->
+		<item name="android:windowBackground">@drawable/ic_launcher_background</item>
+		<!--<item name="android:windowBackground">@color/light_purple</item>-->
+		
+		<!-- 控件相关 -->
+		<!-- button 文字是否全部大写（系统默认开）-->
+		<item name="android:textAllCaps">false</item>
+		
+		<!-- 默认 Button,TextView的文字颜色 -->
+		<item name="android:textColor">#B0C4DE</item>
+		<!-- 默认 EditView 输入框字体的颜色 -->
+		<item name="android:editTextColor">#E6E6FA</item>
+		<!-- RadioButton checkbox等控件的文字 -->
+		<item name="android:textColorPrimaryDisableOnly">#1C71A9</item>
+		<!-- 应用的主要文字颜色,actionBar的标题文字默认使用该颜色 -->
+		<item name="android:textColorPrimary">#FFFFFF</item>
+		<!-- 辅助的文字颜色，一般比textColorPrimary的颜色弱一点，用于一些弱化的表示 -->
+		<item name="android:textColorSecondary">#C1C1C1</item>
+		<!-- 控件选中时的颜色,默认使用colorAccent -->
+		<item name="android:colorControlActivated">#FF7F50</item>
+		<!-- 控件按压时的色调-->
+		<item name="android:colorControlHighlight">#FF00FF</item>
+		<!-- CheckBox,RadioButton,SwitchCompat等默认状态的颜色 -->
+		<item name="android:colorControlNormal">#FFD700</item>
+		<!-- 默认按钮的背景颜色 -->
+		<item name="android:colorButtonNormal">#1C71A9</item>
+		
+	</style>
+</resources>
+```
+
+## 5、drawable 下快速生成 icon 图片 vector
+
+1. drawable 右击 new -> vector asset
+
+![](attachments/Pasted%20image%2020230518092027.png)
+
+2. 选择 icon AS 中没有时需要导入 svg 或者 psd
+
+![](attachments/Pasted%20image%2020230518092055.png)
+
+3. drawable 会生成对应 name 的图标文件 （可以点击左侧 line 7 颜色后选择颜色）
+
+![](attachments/Pasted%20image%2020230518092125.png)
+
+4. 在对应的控件中引入就可以了：`android:src="@drawable/ic_up"`
 
 ## 6、
 

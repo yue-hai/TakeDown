@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ed8ebc3d9da3aae8",
+            "id": "b0fea01a14c6c1c0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,7 +20,19 @@
             }
           },
           {
-            "id": "8de954a81bdd953c",
+            "id": "22397d1164bef39e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android/Kotlin 基础.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "38aea5fc87ea731f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -174,25 +186,34 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "ed8ebc3d9da3aae8",
+  "active": "b0fea01a14c6c1c0",
   "lastOpenFiles": [
-    "Android/SSC 购物车.md",
+    "未命名.canvas",
     "Android/Android 基础.md",
+    "Android/SSC 购物车.md",
+    "Android/Kotlin 基础.md",
+    "其他/游戏/饥荒联机版服务器搭建.md",
+    "其他/游戏/七日杀服务器.md",
+    "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
+    "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
+    "标题.md",
+    "其他/软件使用/VS Code.md",
+    "其他/软件使用/attachments/Pasted image 20230525092221.png",
+    "其他/软件使用/attachments/Pasted image 20230525092032.png",
+    "其他/软件使用/attachments/Pasted image 20230525091942.png",
+    "其他/软件使用/attachments/Pasted image 20230525091913.png",
+    "其他/软件使用/attachments/Pasted image 20230525091210.png",
+    "其他/软件使用/attachments/Pasted image 20230525085909.png",
+    "其他/软件使用/attachments/Pasted image 20230525091135.png",
+    "其他/软件使用/attachments/Pasted image 20230525085537.png",
+    "其他/软件使用/attachments/Pasted image 20230525091005.png",
+    "其他/软件使用/attachments/Pasted image 20230525085150.png",
+    "linux/Smart/Smart 编程.md",
+    "其他/游戏/attachments",
+    "其他/游戏/七日杀",
     "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
     "其他/游戏/泰拉瑞亚/泰拉瑞亚TShock服务器在Liunx下的部署.md",
-    "Android/attachments/Pasted image 20230517111634.png",
-    "Android/attachments/Pasted image 20230517111627.png",
-    "Android/attachments/Pasted image 20230517105517.png",
-    "Android/attachments/Pasted image 20230517105509.png",
-    "Android/attachments/Pasted image 20230517101414.png",
-    "Android/attachments/Pasted image 20230517101402.png",
-    "Android/attachments/Pasted image 20230517101243.png",
-    "Android/attachments/Pasted image 20230517101230.png",
-    "Android/attachments/Pasted image 20230517101121.png",
-    "Android/attachments/Pasted image 20230517101102.png",
     "其他/游戏/泰拉瑞亚/泰拉瑞亚 tModLoader 的 CentOS 服务器搭建.md",
-    "Android/Kotlin 基础.md",
-    "标题.md",
     "其他/游戏/泰拉瑞亚/attachments",
     "其他/游戏/泰拉瑞亚",
     "SQL/MySql.md",
@@ -209,19 +230,10 @@
     "java开发规约.pdf",
     "其他/小工具.md",
     "其他/attachments/DroidCam.apk",
-    "其他/attachments/DroidCam.Setup.6.5.2.exe",
     "其他/Docker.md",
-    "SQL",
     "java/14、SpringCloud.md",
     "java/15、SpringCloudAlibaba.md",
     "前端/JS 框架/Vue2.md",
-    "前端/JS 框架/Vue3.md",
-    "前端/UI 组件库/Bootstrap 快速入门.md",
-    "前端/UI 组件库/Ant Design Vue.md",
-    "linux/linux/Liunx 基础.md",
-    "linux/Smart/Smart 基础.md",
-    "linux/Smart/Smart 编程.md",
-    "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
     "java/未命名.canvas"
