@@ -8,36 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b0fea01a14c6c1c0",
+            "id": "acade2b2974d62d5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/Android 基础.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "22397d1164bef39e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/Kotlin 基础.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "38aea5fc87ea731f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "其他/软件使用/VS Code.md",
                 "mode": "source",
                 "source": false
               }
@@ -117,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Android/Android 基础.md"
+                "file": "其他/软件使用/VS Code.md"
               }
             }
           },
@@ -135,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android/Android 基础.md",
+                "file": "其他/软件使用/VS Code.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -152,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android/Android 基础.md",
+                "file": "其他/软件使用/VS Code.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,29 +162,35 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b0fea01a14c6c1c0",
+  "active": "acade2b2974d62d5",
   "lastOpenFiles": [
-    "未命名.canvas",
-    "Android/Android 基础.md",
+    "其他/软件使用/attachments/Pasted image 20230616151933.png",
+    "其他/软件使用/attachments/Pasted image 20230616151714.png",
+    "其他/软件使用/VS Code.md",
+    "其他/软件使用/attachments/Pasted image 20230616151249.png",
+    "其他/软件使用/attachments/Pasted image 20230616150616.png",
+    "其他/软件使用/attachments/Pasted image 20230525091135.png",
+    "其他/软件使用/attachments/Pasted image 20230525084827.png",
+    "其他/软件使用/attachments/Pasted image 20230525090842.png",
+    "其他/软件使用/attachments/Pasted image 20230616150322.png",
+    "其他/软件使用/attachments/Pasted image 20230525084403.png",
     "Android/SSC 购物车.md",
+    "Android/Android 基础.md",
+    "linux/Smart/Smart 编程.md",
     "Android/Kotlin 基础.md",
-    "其他/游戏/饥荒联机版服务器搭建.md",
+    "linux/Smart/Smart 基础.md",
+    "java/13、Redis.md",
+    "其他/Docker.md",
+    "前端/【其他】.md",
+    "Android/attachments/Pasted image 20230605150109.png",
+    "Android/attachments/Pasted image 20230605094926.png",
     "其他/游戏/七日杀服务器.md",
+    "java/15、SpringCloudAlibaba.md",
+    "未命名.canvas",
+    "其他/游戏/饥荒联机版服务器搭建.md",
     "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
     "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
     "标题.md",
-    "其他/软件使用/VS Code.md",
-    "其他/软件使用/attachments/Pasted image 20230525092221.png",
-    "其他/软件使用/attachments/Pasted image 20230525092032.png",
-    "其他/软件使用/attachments/Pasted image 20230525091942.png",
-    "其他/软件使用/attachments/Pasted image 20230525091913.png",
-    "其他/软件使用/attachments/Pasted image 20230525091210.png",
-    "其他/软件使用/attachments/Pasted image 20230525085909.png",
-    "其他/软件使用/attachments/Pasted image 20230525091135.png",
-    "其他/软件使用/attachments/Pasted image 20230525085537.png",
-    "其他/软件使用/attachments/Pasted image 20230525091005.png",
-    "其他/软件使用/attachments/Pasted image 20230525085150.png",
-    "linux/Smart/Smart 编程.md",
     "其他/游戏/attachments",
     "其他/游戏/七日杀",
     "其他/游戏/饥荒联机版/饥荒联机版的CentOS服务器搭建.md",
@@ -228,12 +210,7 @@
     "其他/游戏/饥荒联机版",
     "其他/游戏",
     "java开发规约.pdf",
-    "其他/小工具.md",
     "其他/attachments/DroidCam.apk",
-    "其他/Docker.md",
-    "java/14、SpringCloud.md",
-    "java/15、SpringCloudAlibaba.md",
-    "前端/JS 框架/Vue2.md",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
     "java/未命名.canvas"
