@@ -4,7 +4,7 @@
 2. 选择轻量型服务器，1 核 2G 就可以，2 核 2G 更好
     - 地域：随意
     - 镜像类型：系统镜像
-    - 系统镜像：CentOS 7.3（或 CentOS 的其他版本）
+    - 系统镜像：Ubuntu 22.04（或 Ubuntu 的其他版本）
 3. 付款
 
 # 二、设置服务器
@@ -84,31 +84,34 @@ free -m
 
 # 四、下载软件
 
-1. 安装下载工具
+1. 安装远程管理工具 screen
 
 ```bash
-yum install -y wget
+apt install -y screen
 ```
 
-2. 安装解压工具；安装 zip 的过程中会出现 `IS this ok` 询问的一句话，这里输入一个 `y` 代表同意并继续即可。
+2. 安装 SteamCmd 运行所需环境
 
 ```bash
-yum install unzip
+# 这些操作要在 root 中进行，根据你的系统选择不同指令。
+
+# Ubuntu/Debian 64 位
+apt -y install lib32gcc1
+
+# RedHat/CentOS 32 位
+yum -y install glibc libstdc++
+
+# RedHat/CentOS 64 位
+yum -y install glibc.i686 libstdc++.i686
 ```
 
-3. 安装远程管理工具screen 
-
-```bash
-yum install -y screen
-```
-
-4. ~~安装 mono：mono 的蓝奏云链接：https://wwa.lanzous.com/iNJuto3bbla~~，1.4 的联机不再依赖 mono，而是要使用 dotnet
+3. ~~安装 mono：mono 的蓝奏云链接：https://wwa.lanzous.com/iNJuto3bbla~~，1.4 的联机不再依赖 mono，而是要使用 dotnet
 
 ```bash
 yum install mono-complete
 ```
 
-5. 下载 dotnet 6.0.0：https://dotnet.microsoft.com/en-us/download/dotnet/6.0；建议 Windows 下载后上传到 linux，因为 linux 下载太慢了
+4. 下载 dotnet 6.0.0：https://dotnet.microsoft.com/en-us/download/dotnet/6.0；建议 Windows 下载后上传到 linux，因为 linux 下载太慢了
 
 ![](attachments/Pasted%20image%2020230517084849.png)
 
