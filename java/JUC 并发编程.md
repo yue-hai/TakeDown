@@ -1,5 +1,7 @@
 ## 零、思维导图
-![yuque_diagram.jpg](https://cdn.nlark.com/yuque/0/2023/jpeg/29280567/1675998166126-c9ad9664-33f1-4491-b1a8-7232a6a6702f.jpeg#averageHue=%23fbfbfb&clientId=u920b212f-ea91-4&from=ui&id=u9f4cc2dd&name=yuque_diagram.jpg&originHeight=14274&originWidth=3130&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4134599&status=done&style=none&taskId=u2e85b252-4bc8-42c4-9fe4-2a70e28686a&title=)
+
+![](attachments/diagram.jpg)
+
 ## 一、
 # 二、
 # 三、

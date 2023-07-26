@@ -1,21 +1,26 @@
 # 零、进入练习服务器
+
 ## 1、服务器 IP
 
 1. 打开 ttermpro
 2. 输入 Ip：172.20.2.55
 3. 端口号：22
+
 ## 2、服务器用户名密码
 
 1. 账号：creat
 2. 密码：creat1234
+
 ## 3、进入容器
 
 1. 进入 smartedu-batch_pj 文件夹
+
 ```shell
 cd workspace/smartedu-batch_pj
 ```
 
 2. 使用 `make` 命令进入容器
+
 ```shell
 [creat@BigData01 smartedu-batch_pj]$ make
 docker-compose exec  -e COLUMNS="`tput cols`" -e LINES="`tput lines`" myservice bash; 
@@ -23,12 +28,14 @@ docker-compose exec  -e COLUMNS="`tput cols`" -e LINES="`tput lines`" myservice 
 ```
 
 3. 查看容器内是否有新的 smart 指令
+
 ```shell
 [trial@smartedu ~]$ which lstd
 /home/SMART/lstd
 ```
 
 4. 退出容器
+
 ```shell
 [trial@smartedu ~]$ exit
 exit
@@ -36,31 +43,44 @@ exit
 ```
 
 5. 查看容器外是否有新的 smart 指令
+
 ```shell
 [creat@BigData01 smartedu-batch_pj]$ which latd
 /usr/bin/which: no latd in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/root/command:/opt/jdk1.8/bin:/opt/hadoop-2.8.5/bin:/opt/hadoop-2.8.5/sbin:/opt/zookeeper-3.4.6/bin:/opt/apache-hive-1.2.1-bin/bin::/home/creat/.local/bin:/home/creat/bin)
 [creat@BigData01 smartedu-batch_pj]$ 
 ```
+
 # 一、脚本命名
+
 ## 1、売上（销售）数据：`CHUPDATE_*`
+
 `CHUPDATE_HIBETU_CHOKUEI.DAYDWH.URE`
 `CHUPDATE_这个脚本是做什么处理的.做日别的DWH的数据.数据类型`
 
 1. `URE`：卖上（销售）数据
+
 ## 2、予算（预算）数据：
+
 `CHUPDATE_HIBETU_URE.DAYDM.YOSAN`
+
 ## 3、自动执行脚本：`DATAMASTER_KYAKUSU_CHOKUEI.DAYDWH.URE`
 
 1. 称为：job
 2. 最外层的执行脚本，用来调用其他脚本
+
 # 二、学习课题 1：卖上、予算数据做成
+
 ## 1、卖上数据做成
+
 ### ①、脚本说明
 
 1. `CHUPDATE_HIBETU_CHOKUEI.DAYDWH.URE`：卖上数据做成的处理脚本
 2. `DATAMASTER_KYAKUSU_CHOKUEI.DAYDWH.URE`：用来调用其他脚本的总脚本
+
 ### ②、需求
-[课题1（DWH数据清洗）.xlsx](https://www.yuque.com/attachments/yuque/0/2022/xlsx/29280567/1662452259160-4c7a9a51-42d5-4ab2-bacf-7694a86b3ceb.xlsx?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fxlsx%2F29280567%2F1662452259160-4c7a9a51-42d5-4ab2-bacf-7694a86b3ceb.xlsx%22%2C%22name%22%3A%22%E8%AF%BE%E9%A2%981%EF%BC%88DWH%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%EF%BC%89.xlsx%22%2C%22size%22%3A42654%2C%22type%22%3A%22application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet%22%2C%22ext%22%3A%22xlsx%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u5b85c79f-60b0-472a-a034-8e9febabf37%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22ub429e469%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+
+<a href="attachments/课题1（DWH数据清洗）.xlsx" alt="文档">课题1（DWH数据清洗）.xlsx</a>
+
 ### ③、步骤
 
 1. 根据传入的参数在 対象日リスト 中查找以这个参数命名的文件，查看这个文件中有哪些日期，根据文件中的日期遍历 販売明細 文件，做成目标数据
@@ -73,8 +93,11 @@ exit
 8. 压缩保存
 9. --------------------------------
 10. 同样方法得到 LINECD 和 DIVCD
+
 ### ④、脚本：`CHUPDATE_HIBETU_CHOKUEI.DAYDWH.URE`
-[课题1（DWH数据清洗）.jpg](https://www.yuque.com/attachments/yuque/0/2022/jpeg/29280567/1662452286195-96234878-4feb-49bc-906b-bf8abc04f652.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fjpeg%2F29280567%2F1662452286195-96234878-4feb-49bc-906b-bf8abc04f652.jpeg%22%2C%22name%22%3A%22%E8%AF%BE%E9%A2%981%EF%BC%88DWH%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%EF%BC%89.jpg%22%2C%22size%22%3A124331%2C%22type%22%3A%22image%2Fjpeg%22%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u680d9c32-23a8-4417-9417-fca1d388ae4%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u81c5972c%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+
+<a href="attachments/课题1（DWH数据清洗）.zip" alt="文档">课题1（DWH数据清洗）.zip</a>
+
 ```shell
 #!/bin/bash -xv
 #
@@ -305,12 +328,17 @@ rm -rf ${tmp}-* 2>/dev/null
 exit 0
 
 ```
+
 ## 2、予算数据做成
+
 ### ①、脚本说明
 
 1. `CHUPDATE_HIBETU_URE.DAYDM.YOSAN`：卖上数据做成的处理脚本
+
 ### ②、需求
-[课题2_(DWH_LV4)数据做成.xlsx](https://www.yuque.com/attachments/yuque/0/2022/xlsx/29280567/1662452324379-9b65fdbe-e716-4ead-a212-5859a925f3d5.xlsx?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fxlsx%2F29280567%2F1662452324379-9b65fdbe-e716-4ead-a212-5859a925f3d5.xlsx%22%2C%22name%22%3A%22%E8%AF%BE%E9%A2%982_(DWH_LV4)%E6%95%B0%E6%8D%AE%E5%81%9A%E6%88%90.xlsx%22%2C%22size%22%3A90021%2C%22type%22%3A%22application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet%22%2C%22ext%22%3A%22xlsx%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u595c4c8e-e9da-4bed-ba77-e32d29b90f3%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u8ead6986%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+
+<a href="attachments/课题2_(DWH_LV4)数据做成.xlsx" alt="文档">课题2_(DWH_LV4)数据做成.xlsx</a>
+
 ### ③、步骤
 
 1. 根据传入的日期（年月）在查找 `"${lv3d}"/URE_YOSAN_EIGYO_MONTHLIST/` 目录下以这个日期（年月）命名的文件，查看这个文件中有哪些日期，根据文件中的日期遍历 `"${lv3d}"/URE_YOSAN_EIGYO/` 下的文件，做成目标数据
@@ -328,8 +356,11 @@ exit 0
 11. 压缩保存
 12. --------------------------------
 13. 同样方法得到 LINECD 和 DIVCD
+
 ### ④、脚本：`CHUPDATE_HIBETU_URE.DAYDM.YOSAN`
-[课题2_(DWH_LV4 数据做成).jpg](https://www.yuque.com/attachments/yuque/0/2022/jpeg/29280567/1662452339171-c339d105-b0ee-4ce6-99ab-08e84ca05f51.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fjpeg%2F29280567%2F1662452339171-c339d105-b0ee-4ce6-99ab-08e84ca05f51.jpeg%22%2C%22name%22%3A%22%E8%AF%BE%E9%A2%982_(DWH_LV4%20%E6%95%B0%E6%8D%AE%E5%81%9A%E6%88%90).jpg%22%2C%22size%22%3A132506%2C%22type%22%3A%22image%2Fjpeg%22%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22ucb9221e9-1499-4289-97a8-eb9ec594c47%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u71f31ba0%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+
+<a href="attachments/课题2_(DWH_LV4%20数据做成).zip" alt="文档">课题2_(DWH_LV4%20数据做成).zip</a>
+
 ```shell
 #!/bin/bash -xv
 #
@@ -554,14 +585,20 @@ rm -rf ${tmp}-* 2>/dev/null
 exit 0
 
 ```
+
 # 三、学习课题 2：DWH_LV4 数据做成
-[课题2_(DWH_LV4)数据做成.xlsx](https://www.yuque.com/attachments/yuque/0/2022/xlsx/29280567/1662453770917-b679c9ad-306e-49e9-8bb4-3eb02d9ad1e0.xlsx?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fxlsx%2F29280567%2F1662453770917-b679c9ad-306e-49e9-8bb4-3eb02d9ad1e0.xlsx%22%2C%22name%22%3A%22%E8%AF%BE%E9%A2%982_(DWH_LV4)%E6%95%B0%E6%8D%AE%E5%81%9A%E6%88%90.xlsx%22%2C%22size%22%3A90021%2C%22type%22%3A%22application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet%22%2C%22ext%22%3A%22xlsx%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u7956fd6e-4fbe-4fed-bd8a-3f5dae63322%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u92389d44%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
-[课题2_(DWH_LV4 数据做成).jpg](https://www.yuque.com/attachments/yuque/0/2022/jpeg/29280567/1662454411621-129a86f7-2c63-4cba-a647-ad29df10be58.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fjpeg%2F29280567%2F1662454411621-129a86f7-2c63-4cba-a647-ad29df10be58.jpeg%22%2C%22name%22%3A%22%E8%AF%BE%E9%A2%982_(DWH_LV4%20%E6%95%B0%E6%8D%AE%E5%81%9A%E6%88%90).jpg%22%2C%22size%22%3A132506%2C%22type%22%3A%22image%2Fjpeg%22%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u86cc519e-1cb7-4f4f-84d1-7135c3c1736%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22ubd955098%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+
+<a href="attachments/课题2_(DWH_LV4)数据做成.xlsx" alt="文档">课题2_(DWH_LV4)数据做成.xlsx</a>
+
+<a href="attachments/课题2_(DWH_LV4%20数据做成).zip" alt="文档">课题2_(DWH_LV4%20数据做成).zip</a>
+
 ## 1、日别
+
 ### ①、脚本说明
 
 1. 根据拠点CD和部門CD（LINECD、DIVCD）求出每天的営業予算：当日営業予算
 2. 分别需要：部門CD、LINECD、DIVCD
+
 ### ②、步骤
 
 1. 根据传入的日期求出是哪个月，然后输出这个月的全部天数，以这些天数进行遍历
@@ -573,6 +610,7 @@ exit 0
 7. 调整列顺序
 8. --------------------------------
 9. 同样方法得到 LINECD 和 DIVCD
+
 ### ③、脚本
 `POMPAMAKE_HIBETU_DIV_LINE_BUMON_CHOKUEI.DAYDWH.UREYOSAN`
 ```shell
@@ -1220,24 +1258,10 @@ rm -rf ${tmp}-* 2>/dev/null
 exit 0
 
 ```
-# 四、
-# 五、
-# 六、
-# 七、
-# 八、
-# 九、
-# 十、
-# 十一、
-# 十二、
-# 十三、
-# 十四、
-# 十五、
-# 十六、
-# 十七、
-# 十八、
-# 十九、
-# 二十、
 
+# 四、
+
+# 五、
 ---
 
 ## 1、

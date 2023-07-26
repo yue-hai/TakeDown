@@ -18,6 +18,7 @@
 # 十八、
 # 十九、
 # 二十一、JDK 8 新特性
+
 ## 0、Java 8 新特性简介
 
 1. Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。
@@ -34,32 +35,39 @@
    2. 相比较串行的流，并行的流可以很大程度上提高程序的执行效率。
    3. Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。Stream API 可以声明性地通过 parallel() 与 sequential() 在并行流与顺序流之间进行切换
 
-![Java 8新特性 尚硅谷-宋红康.bmp](https://cdn.nlark.com/yuque/0/2023/bmp/29280567/1676004927147-c8c7bb34-f14b-48e4-bad5-34bbd0fb5172.bmp#averageHue=%23fafafa&clientId=ua3e32a5b-2c1a-4&from=paste&height=869&id=u42381d10&name=Java%208%E6%96%B0%E7%89%B9%E6%80%A7%20%E5%B0%9A%E7%A1%85%E8%B0%B7-%E5%AE%8B%E7%BA%A2%E5%BA%B7.bmp&originHeight=869&originWidth=690&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2398494&status=done&style=stroke&taskId=ue47a4da8-fe70-43da-889f-18ac766f684&title=&width=690)
+![](attachments/Pasted%20image%2020230726092210.png)
+
 ## 1、Lambda 表达式
+
 ### ①、为什么使用 Lambda 表达式
 
 1. Lambda 是一个匿名函数，我们可以把 Lambda 表达式理解为是一段可以传递的代码（将代码像数据一样进行传递）。使用它可以写出更简洁、更灵活的代码。
 2. 作为一种更紧凑的代码风格，使 Java 的语言表达能力得到了提升
+
 ### ②、语法
 
 1. Lambda 表达式：在 Java 8 语言中引入的一种新的语法元素和操作符。这个操作符为 `->`，该操作符被称为 Lambda 操作符或箭头操作符。它将 Lambda 分为两个部分：
 2. 左侧：指定了 Lambda 表达式需要的参数列表
 3. 右侧：指定了 Lambda 体，是抽象方法的实现逻辑，也即Lambda 表达式要执行的功能。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009074671-8b45d4fc-ffaf-4cd6-99d0-d9b13d5dd487.png#averageHue=%23fbf8f7&clientId=ude69d801-5c0d-4&from=paste&height=307&id=u27641af1&name=image.png&originHeight=307&originWidth=628&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58120&status=done&style=stroke&taskId=u6b1408d8-d534-4dcf-89fe-9ab514e0a8d&title=&width=628)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009087397-baea6a23-a031-4824-a6bb-bf25c628f29e.png#averageHue=%23faf6f5&clientId=ude69d801-5c0d-4&from=paste&height=317&id=u751a855c&name=image.png&originHeight=317&originWidth=648&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74494&status=done&style=stroke&taskId=u16f343f0-24bc-46b0-8af2-c9a8563aea3&title=&width=648)
+![](attachments/Pasted%20image%2020230726092303.png)
+
+![](attachments/Pasted%20image%2020230726092326.png)
+
 ### ③、类型推断
 
 1. 上述 Lambda 表达式中的参数类型都是由编译器推断得出的。
 2. Lambda 表达式中无需指定类型，程序依然可以编译，这是因为 javac 根据程序的上下文，在后台推断出了参数的类型。
 3. Lambda 表达式的类型依赖于上下文环境，是由编译器推断出来的。这就是所谓的“类型推断”。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009210125-d99fd405-597a-422d-953e-5833d7320592.png#averageHue=%23f8f6f5&clientId=ude69d801-5c0d-4&from=paste&height=152&id=u82ebd635&name=image.png&originHeight=152&originWidth=379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22771&status=done&style=stroke&taskId=u3cc5bfcf-4b42-488e-997a-9726bf81a14&title=&width=379)
+![](attachments/Pasted%20image%2020230726092355.png)
+
 ### ④、例子
 
 1. 语法格式一：无参，无返回值
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009367255-e22816cb-5c13-4a61-bb72-f2fcfb523892.png#averageHue=%23f9f5f3&clientId=ude69d801-5c0d-4&from=paste&height=85&id=u72df9132&name=image.png&originHeight=85&originWidth=495&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16966&status=done&style=stroke&taskId=u1b20ed60-9e41-4e11-adbe-1067e85cb9d&title=&width=495)
+![](attachments/Pasted%20image%2020230726092408.png)
+
 ```java
 /**
  * 语法格式一：无参，无返回值
@@ -87,11 +95,12 @@ public void test01(){
 
 2. 语法格式二：Lambda 需要一个参数，但是没有返回值。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009385004-494647b8-f563-49b8-a157-aa0bb80170aa.png#averageHue=%23f8f6f5&clientId=ude69d801-5c0d-4&from=paste&height=68&id=uea8165ba&name=image.png&originHeight=68&originWidth=504&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18246&status=done&style=stroke&taskId=ua3c15b56-ed17-4008-a3ab-3d484797499&title=&width=504)
+![](attachments/Pasted%20image%2020230726092422.png)
 
 3. 语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”（由 2 更加简化而来）
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009390981-e0c18cf0-5e07-4c44-8e8f-d60f19ab26f5.png#averageHue=%23f9f0ef&clientId=ude69d801-5c0d-4&from=paste&height=76&id=u1249bb1f&name=image.png&originHeight=76&originWidth=507&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20949&status=done&style=stroke&taskId=u73dacb54-2f29-49bd-88cf-25b8652b443&title=&width=507)
+![](attachments/Pasted%20image%2020230726092436.png)
+
 ```java
 /**
  * 语法格式二：Lambda 需要一个参数，但是没有返回值。
@@ -126,7 +135,8 @@ public void test02(){
 
 4. 语法格式四：Lambda 若只需要一个参数时，参数的小括号可以省略
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009398531-3165a575-8128-44e2-8807-b82a124395e3.png#averageHue=%23f7ecea&clientId=ude69d801-5c0d-4&from=paste&height=64&id=ufb82263f&name=image.png&originHeight=64&originWidth=504&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20177&status=done&style=stroke&taskId=u3f5458cb-6831-450b-a094-303ca362f30&title=&width=504)
+![](attachments/Pasted%20image%2020230726092455.png)
+
 ```java
 /**
  * 语法格式四：Lambda 若只需要一个参数时，参数的小括号可以省略
@@ -160,7 +170,8 @@ public void test04(){
 
 5. 语法格式五：Lambda 需要两个或以上的参数，多条执行语句，并且可以有返回值
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009406338-29efd72a-c1ba-418f-8013-13b7897fa831.png#averageHue=%23f7f5f4&clientId=ude69d801-5c0d-4&from=paste&height=129&id=u9d3b5566&name=image.png&originHeight=129&originWidth=536&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29138&status=done&style=stroke&taskId=u86a85395-e042-4265-a3c0-33712a8b6e5&title=&width=536)
+![](attachments/Pasted%20image%2020230726092509.png)
+
 ```java
 /**
  * 语法格式五：Lambda 需要两个或以上的参数，多条执行语句，并且可以有返回值
@@ -192,7 +203,8 @@ public void test05(){
 
 6. 语法格式六：当Lambda 体只有一条语句时，return 与大括号若有，都可以省略（可由 3 更加简化而来）
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676009413802-e942153c-8f3f-46eb-b74a-613d79f9a948.png#averageHue=%23f7f0ee&clientId=ude69d801-5c0d-4&from=paste&height=65&id=u63421a41&name=image.png&originHeight=65&originWidth=526&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21535&status=done&style=stroke&taskId=u9e27b079-eb46-4a15-b690-01535aba7c7&title=&width=526)
+![](attachments/Pasted%20image%2020230726092523.png)
+
 ```java
 /**
      * 语法格式六：当 Lambda 体只有一条语句时，return 与大括号若有，都可以省略
@@ -223,20 +235,25 @@ public void test05(){
         System.out.println(c3.compare(1, 1));
     }
 ```
+
 ## 2、函数式(Functional)接口
+
 ### ①、什么是函数式接口
 
 1. 只包含一个抽象方法的接口，称为函数式接口。
 2. 你可以通过 Lambda 表达式来创建该接口的对象。（若 Lambda 表达式抛出一个受检异常（即：非运行时异常），那么该异常需要在目标接口的抽象方法上进行声明）。
 3. 我们可以在一个接口上使用 `@FunctionalInterface` 注解，这样做可以检查它是否是一个函数式接口。同时 javadoc 也会包含一条声明，说明这个接口是一个函数式接口。
 4. 在 `java.util.function` 包下定义了 Java 8 的丰富的函数式接口
+
 ### ②、如何理解函数式接口
 
 1. Java 从诞生日起就是一直倡导“一切皆对象”，在 Java 里面面向对象(OOP)编程是一切。但是随着 python、scala 等语言的兴起和新技术的挑战，Java 不得不做出调整以便支持更加广泛的技术要求，也即 java 不但可以支持 OOP 还可以支持 OOF（面向函数编程）
 2. 在函数式编程语言当中，函数被当做一等公民对待。在将函数作为一等公民的编程语言中，Lambda 表达式的类型是函数。但是在 Java8 中，有所不同。在 Java8 中，Lambda 表达式是对象，而不是函数，它们必须依附于一类特别的对象类型——函数式接口。
 3. 简单的说，在 Java8 中，Lambda 表达式就是一个函数式接口的实例。这就是 Lambda 表达式和函数式接口的关系。也就是说，只要一个对象是函数式接口的实例，那么该对象就可以用 Lambda 表达式来表示。
 4. 所以以前用匿名实现类表示的现在都可以用 Lambda 表达式来写。
+
 ### ③、函数式接口举例
+
 ```java
 package java.lang;
 
@@ -258,9 +275,13 @@ public interface Runnable {
     void run();
 }
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676017682056-ed149f41-cbc2-4798-a9a0-1af34a6cd85e.png#averageHue=%232d2c2b&clientId=ude69d801-5c0d-4&from=paste&height=362&id=u2881ebb7&name=image.png&originHeight=362&originWidth=436&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23094&status=done&style=stroke&taskId=uad69d8cf-1987-4462-8965-c0c1501f2ae&title=&width=436)
+
+![](attachments/Pasted%20image%2020230726092549.png)
+
 ### ④、自定义函数式接口
+
 #### Ⅰ、`Consumer<T>`  消费型接口
+
 ```java
 /**
  * 定义一个函数式接口
@@ -289,8 +310,11 @@ public void test01(){
     happyTime(500, aDouble -> System.out.println("月海 = " + aDouble));
 }
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676017406317-6d2facb7-3cc5-4b09-a6d2-c03927bc72db.png#averageHue=%23527254&clientId=ude69d801-5c0d-4&from=paste&height=209&id=u58c7e716&name=image.png&originHeight=209&originWidth=709&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21200&status=done&style=stroke&taskId=u016ace91-2afc-4285-94ca-4dfb9de275e&title=&width=709)
+
+![](attachments/Pasted%20image%2020230726092606.png)
+
 #### Ⅱ、`Predicate<T>` 断定型接口
+
 ```java
 /**
  * 定义一个函数式接口
@@ -335,11 +359,17 @@ public void test02(){
     System.out.println(filterString2);
 }
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676017509906-fb103518-4798-45a9-810f-2d9ed49b4431.png#averageHue=%23537254&clientId=ude69d801-5c0d-4&from=paste&height=210&id=ua67a8b21&name=image.png&originHeight=210&originWidth=708&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21499&status=done&style=stroke&taskId=ua296d67e-2af6-4fd0-9f36-e26743f76b0&title=&width=708)
+
+![](attachments/Pasted%20image%2020230726092641.png)
+
 ### ⑤、作为参数传递 Lambda 表达式
+
 作为参数传递 Lambda 表达式：为了将 Lambda 表达式作为参数传递，接收Lambda 表达式的参数类型必须是与该 Lambda 表达式兼容的函数式接口的类型
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676017920372-4fe17554-aed1-439f-b605-297bf2219582.png#averageHue=%23f3f0f0&clientId=ude69d801-5c0d-4&from=paste&height=223&id=ue34864de&name=image.png&originHeight=223&originWidth=552&originalType=binary&ratio=1&rotation=0&showTitle=false&size=49842&status=done&style=stroke&taskId=u78115f67-f330-4c34-b1af-0928510eee9&title=&width=552)
+
+![](attachments/Pasted%20image%2020230726092720.png)
+
 ### ⑥、Java 内置四大核心函数式接口
+
 | 函数式接口 | 参数类型 | 返回类型 | 用途 |
 | --- | --- | --- | --- |
 | `Consumer<T>` 消费型接口 | `T` | `void` | 对类型为 `T` 的对象应用操作，包含方法：`void accept(T t)` |
@@ -348,6 +378,7 @@ public void test02(){
 | `Predicate<T>` 断定型接口 | `T` | `boolean` | 确定类型为 `T` 的对象是否满足某约束，并返回boolean 值。包含方法：`boolean test(T t)` |
 
 ### ⑦、其他接口
+
 | 函数式接口 | 参数类型 | 返回类型 | 用途 |
 | --- | --- | --- | --- |
 | `BiFunction<T, U, R>` | `T, U` | `R` | 对类型为 T, U 参数应用操作，返回 R 类型的结果。包含方法为：`R apply(T t, U u);` |
@@ -355,18 +386,11 @@ public void test02(){
 | `BinaryOperator<T>` BiFunction 子接口 | `T, T` | `T` | 对类型为T的对象进行二元运算，并返回T类型的结果。包含方法为：`T apply(T t1, T t2);` |
 | `BiConsumer<T, U>` | `T, U` | `void` | 对类型为T, U 参数应用操作。包含方法为： `void accept(T t, U u)` |
 | `BiPredicate<T, U>`  | `T,U ` | `boolean ` | 包含方法为： `boolean test(T t,U u)` |
-| `ToIntFunction`、
-`ToLongFunction`、
-`ToDoubleFunction` | `T` | `int`、
-`long`、
-`double` | 分别计算int、long、double值的函数 |
-| `IntFunction`、
-`LongFunction`、
-`DoubleFunction` | `int`、
-`long`、
-`double` | `R` | 参数分别为int、long、double 类型的函数 |
+| `ToIntFunction`、`ToLongFunction`、`ToDoubleFunction` | `T` | `int`、`long`、`double` | 分别计算int、long、double值的函数 |
+| `IntFunction`、`LongFunction`、`DoubleFunction` | `int`、`long`、`double` | `R` | 参数分别为int、long、double 类型的函数 |
 
 ## 3、方法引用与构造器引用
+
 ### ①、方法引用是什么
 
 1. 当要传递给 Lambda 体的操作，已经有实现的方法了，可以使用方法引用！
@@ -377,9 +401,11 @@ public void test02(){
       1. `对象::实例方法名（非静态方法）`
       2. `类::静态方法名`
       3. `类::实例方法名（非静态方法）`
+
 ### ②、方法引用案例
 
 1. 当要传递给 Lambda 体的操作，已经有实现的方法了，可以使用方法引用
+
 ```java
 /**
  * 当要传递给 Lambda 体的操作，已经有实现的方法了，可以使用方法引用！
@@ -408,6 +434,7 @@ public void test01(){
 ```
 
 2. 先定义一个函数式接口
+
 ```java
 /**
  * 定义一个函数式接口
@@ -420,6 +447,7 @@ public void happyTime(double money, Consumer<Double> com){
 ```
 
 3. 对象::实例方法名（非静态方法）
+
 ```java
 /**
  * 方法引用可以看做是 Lambda 表达式深层次的表达。
@@ -488,6 +516,7 @@ public void test02(){
 ```
 
 4. 类::静态方法名
+
 ```java
 /**
  * 2. 类::静态方法名
@@ -554,6 +583,7 @@ public void test03(){
 ```
 
 5. 类::实例方法名（非静态方法）
+
 ```java
 /**
  * 3. 类::实例方法名（非静态方法）
@@ -649,6 +679,7 @@ public void test04() {
     System.out.println(f3.apply(user));
 }
 ```
+
 ### ③、构造器引用
 
 1. 和方法引用类似，函数式接口的抽象方法的形参列表和构造器的形参列表一致
@@ -657,6 +688,7 @@ public void test04() {
 4. 与函数式接口相结合，自动与函数式接口中方法兼容。
 5. 可以把构造器引用赋值给定义的方法，要求构造器参数列表要与接口中抽象方法的参数列表一致！且方法的返回值即为构造器对应类的对象。
 6. 案例：
+
 ```java
 package org.yuehai._03_MethodReferences;
 
@@ -762,11 +794,13 @@ public class ConstructorReferences_01 {
 
 }
 ```
+
 ### ④、数组引用
 
 1. 可以把数组看做是一个特殊的类，则写法与构造器引用一致
 2. 格式： `ClassName::new`
 3. 案例：
+
 ```java
 package org.yuehai._03_MethodReferences;
 
@@ -810,18 +844,22 @@ public class ArrayReference_01 {
 }
 
 ```
+
 ## 4、强大的 Stream API
+
 ### ①、Stream API 说明
 
 1. Java8 中有两大最为重要的改变。第一个是 Lambda 表达式；另外一个则是 Stream API。
 2. Stream API ( java.util.stream) 把真正的函数式编程风格引入到 Java 中。这是目前为止对 Java 类库最好的补充，因为 Stream API 可以极大提供 Java 程序员的生产力，让程序员写出高效率、干净、简洁的代码。
 3. Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。 使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。
 4. 也可以使用 Stream API 来并行执行操作。简言之，Stream API 提供了一种高效且易于使用的处理数据的方式
+
 ### ②、为什么要使用 Stream API
 
 1. 实际开发中，项目中多数数据源都来自于 Mysql，Oracle 等。但现在数据源可以更多了，有 MongDB，Redis 等，而这些 NoSQL 的数据就需要 Java 层面去处理。
 2. Stream 和 Collection 集合的区别：Collection 是一种静态的内存数据结构，而 Stream 是有关计算的。
 3. 前者是主要面向内存，存储在内存中，后者主要是面向 CPU，通过 CPU 实现计算
+
 ### ③、什么是 Stream
 
 1. Stream到底是什么呢？是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
@@ -830,19 +868,23 @@ public class ArrayReference_01 {
    1. Stream 自己不会存储元素。
    2. Stream 不会改变源对象。相反，他们会返回一个持有结果的新Stream。
    3. Stream 操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。
+
 ### ④、Stream 的操作三个步骤
 
 1. 创建 Stream：一个数据源（如：集合、数组），获取一个流
 2. 中间操作：一个中间操作链，对数据源的数据进行处理
 3. 终止操作(终端操作)：一旦执行终止操作，就执行中间操作链，并产生结果。之后，不会再被使用
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676599118607-44c6f6cb-b8ed-4976-b422-a7cc057824dc.png#averageHue=%23e6e6e6&clientId=u180e50f7-c73a-4&from=paste&height=187&id=u9c549824&name=image.png&originHeight=187&originWidth=965&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31254&status=done&style=stroke&taskId=u95653331-4d73-4cd4-9547-2e5889e129a&title=&width=965)
+![](attachments/Pasted%20image%2020230726093332.png)
+
 ### ⑤、创建 Stream
+
 #### Ⅰ、 通过集合  
 
 1. Java8 中的 Collection 接口被扩展，提供了两个获取流的方法：
 2. `default Stream<E> stream()` : 返回一个顺序流
 3. `default Stream<E> parallelStream()` : 返回一个并行流
+
 ```java
 /**
  * 创建 Stream 1 ：通过集合
@@ -859,6 +901,7 @@ public void test01(){
     Stream<User> parallelStream = list.parallelStream();
 }
 ```
+
 #### Ⅱ、通过数组
 
 1. Java8 中的 Arrays 的静态方法 stream() 可以获取数组流：`static <T> Stream<T> stream(T[] array)`：返回一个流
@@ -866,6 +909,7 @@ public void test01(){
    1. `public static IntStream stream(int[] array)`
    2. `public static LongStream stream(long[] array)`
    3. `public static DoubleStream stream(double[] array)`
+
 ```java
 /**
  * 创建 Stream 2 ：通过数组
@@ -879,10 +923,12 @@ public void test02(){
     IntStream stream = Arrays.stream(arr);
 }
 ```
+
 #### Ⅲ、通过Stream的of()
 
 1. 可以调用 Stream 类静态方法 of()，通过显示值创建一个流。它可以接收任意数量的参数。
 2. `public static<T> Stream<T> of(T... values)`：返回一个流
+
 ```java
 /**
  * 创建 Stream 3 ：通过 Stream 的 of()
@@ -893,12 +939,14 @@ public void test03(){
     Stream<Integer> stream = Stream.of(1, 2, 4, 7);
 }
 ```
+
 #### Ⅳ、创建无限流
 
 1. 自己创建一些数据
 2. 可以使用静态方法 `Stream.iterate()` 和 `Stream.generate(`)，创建无限流。
 3. 迭代：`public static<T> Stream<T> iterate(final T seed, final UnaryOperator<T> f)`
 4. 生成：`public static<T> Stream<T> generate(Supplier<T> s)`
+
 ```java
 /**
  * 创建 Stream 4 ：创建无限流
@@ -924,11 +972,14 @@ public void test04(){
     Stream.generate(Math::random).limit(10).forEach(System.out::println);
 }
 ```
+
 ### ⑥、Stream 中间操作
 
 1. 多个中间操作可以连接起来形成一个流水线，除非流水线上触发终止操作，否则中间操作不会执行任何的处理！
 2. 而在终止操作时一次性全部处理，称为“惰性求值”。
+
 #### Ⅰ、筛选与切片
+
 | 方 法 | 描 述 |
 | --- | --- |
 | `filter(Predicate p)` | 接收 Lambda ， 从流中排除某些元素 |
@@ -1009,7 +1060,9 @@ public class _02_OperationStream_01 {
     }
 }
 ```
+
 #### Ⅱ、映射
+
 | 方 法 | 描 述 |
 | --- | --- |
 | `map(Function f)` | 接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。 |
@@ -1136,9 +1189,10 @@ public class _02_OperationStream_02 {
         characterStream.forEach(System.out::println);
     }
 }
-
 ```
+
 #### Ⅲ、排序
+
 | 方 法 | 描 述 |
 | --- | --- |
 | `sorted()` | 产生一个新流，其中按自然顺序排序 |
@@ -1203,13 +1257,15 @@ public class _02_OperationStream_03 {
     }
 
 }
-
 ```
+
 ### ⑦、Stream 的终止操作
+
 #### Ⅰ、匹配与查找
 
 - 终端操作会从流的流水线生成结果。其结果可以是任何不是流的值，例如：List、Integer，甚至是 void 。
 - 流进行了终止操作后，不能再次使用。
+
 | 方 法 | 描 述 |
 | --- | --- |
 | `allMatch(Predicate p)` | 检查是否匹配所有元素 |
@@ -1322,7 +1378,9 @@ public class  _03_EndStream {
 }
 
 ```
+
 #### Ⅱ、归约
+
 | 方 法 | 描 述 |
 | --- | --- |
 | `reduce(T iden, BinaryOperator b)` | 可以将流中元素反复结合起来，得到一个值。返回 T |
@@ -1350,13 +1408,16 @@ public void test02(){
     System.out.println(reduceOptionalInt);
 }
 ```
+
 #### Ⅲ、收集
+
 | 方 法 | 描 述 |
 | --- | --- |
 | `collect(Collector c)` | 将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法 |
 
 1. Collector 接口中方法的实现决定了如何对流执行收集的操作(如收集到 List、Set、Map)。
 2. 另外， Collectors 实用类提供了很多静态方法，可以方便地创建常见收集器实例，具体方法与实例如下表：
+
 | 方法 | 返回类型 | 作用 | 举例 |
 | --- | --- | --- | --- |
 | `toList` | List | 把流中元素收集到List | List emps= list.stream().collect(Collectors.toList()); |
@@ -1369,9 +1430,7 @@ public void test02(){
 | `joining` | String | 连接流中每个字符串 | String str= list.stream().map(Employee::getName).collect(Collectors.joining()); |
 | `maxBy` | Optional | 根据比较器选择最大值 | Optionalmax= list.stream().collect(Collectors.maxBy(comparingInt(Employee::getSalary))); |
 | `minBy` | Optional | 根据比较器选择最小值 | Optional min = list.stream().collect(Collectors.minBy(comparingInt(Employee::getSalary))); |
-| `reducing` | 归约产生的类型 | 从一个作为累加器的初始值开始，
-利用BinaryOperator与流中元素逐个结合，
-从而归约成单个值 | int total=list.stream().collect(Collectors.reducing(0, Employee::getSalar, Integer::sum)); |
+| `reducing` | 归约产生的类型 | 从一个作为累加器的初始值开始，利用BinaryOperator与流中元素逐个结合，从而归约成单个值 | int total=list.stream().collect(Collectors.reducing(0, Employee::getSalar, Integer::sum)); |
 | `collectingAndThen` | 转换函数返回的类型 | 包裹另一个收集器，对其结果转换函数 | int how= list.stream().collect(Collectors.collectingAndThen(Collectors.toList(), List::size)); |
 | `groupingBy` | Map<K, List> | 根据某属性值对流分组，属性为K，结果为V | Map<Emp.Status, List> map= list.stream().collect(Collectors.groupingBy(Employee::getStatus)); |
 | `partitioningBy` | Map<Boolean, List> | 根据true或false进行分区 | Map<Boolean,List> vd = list.stream().collect(Collectors.partitioningBy(Employee::getManage)); |
@@ -1400,13 +1459,16 @@ public void test03(){
     System.out.println(collect1);
 }
 ```
+
 ## 5、Optional 类
+
 ### ①、介绍
 
 1. 到目前为止，臭名昭著的空指针异常是导致 Java 应用程序失败的最常见原因。
 2. 以前，为了解决空指针异常，Google 公司著名的 Guava 项目引入了 Optional 类，Guava 通过使用检查空值的方式来防止代码污染，它鼓励程序员写更干净的代码。受到 Google Guava 的启发，Optional 类已经成为 Java 8 类库的一部分。
 3. `Optional<T>` 类(java.util.Optional) 是一个容器类，它可以保存类型 T 的值，代表这个值存在。或者仅仅保存 null，表示这个值不存在。原来用 null 表示一个值不存在，现在 Optional 可以更好的表达这个概念。并且可以避免空指针异常。
 4. Optional 类的 Javadoc 描述如下：这是一个可以为 null 的容器对象。如果值存在则 `isPresent()` 方法会返回 true，调用 get() 方法会返回该对象
+
 ### ②、方法案例
 
 - Optional提供很多有用的方法，这样我们就不用显式进行空值检测：
@@ -1414,6 +1476,7 @@ public void test03(){
    1. `Optional.of(T t)` : 创建一个 Optional 实例，t必须非空；
    2. `Optional.empty()`: 创建一个空的 Optional 实例
    3. `Optional.ofNullable(T t)`：t 可以为 null
+
 ```java
 /**
  * 创建 Optional 类对象的方法：
@@ -1447,8 +1510,10 @@ public void test01(){
 ```
 
 2. 判断 Optional 容器中是否包含对象：
+
    1. `boolean isPresent()` : 判断是否包含对象
    2. `void ifPresent(Consumer<? super T> consumer)`：如果有值，就执行 Consumer 接口的实现代码，并且该值会作为参数传给它。
+
 ```java
 /**
  * 判断 Optional 容器中是否包含对象：
@@ -1478,10 +1543,12 @@ public void test02(){
 ```
 
 3. 获取 Optional 容器的对象：
+
    1. `T get()`: 如果调用对象包含值，返回该值，否则抛异常
    2. `T orElse(T other)`：如果有值则将其返回，否则返回指定的 other 对象。
    3. `T orElseGet(Supplier<? extends T> other)` ：如果有值则将其返回，否则返回由 Supplier 接口实现提供的对象。
    4. `T orElseThrow(Supplier<? extends X> exceptionSupplier)`：如果有值则将其返回，否则抛出由 Supplier 接口实现提供的异常。
+
 ```java
 /**
  * 获取 Optional 容器的对象：
@@ -1521,7 +1588,9 @@ public void test03() throws Exception {
     System.out.println(optional2.orElseThrow(Exception::new));
 }
 ```
+
 ## 6、新的日期时间 API
+
 ### ①、出现背景
 
 1. 如果我们可以跟别人说：“我们在1502643933071见面，别晚了！”那么就再简单不过了。但是我们希望时间与昼夜和四季有关，于是事情就变复杂了。
@@ -1532,6 +1601,7 @@ public void test03() throws Exception {
    3. 格式化：格式化只对 Date 有用，Calendar 则不行。
    4. 此外，它们也不是线程安全的；不能处理闰秒等。
 4. 总结：对日期和时间的操作一直是Java程序员最痛苦的地方之一。
+
 ### ②、新时间日期 API
 
 1. 第三次引入的 API 是成功的，并且 Java 8 中引入的 java.time API 已经纠正了过去的缺陷，将来很长一段时间内它都会为我们服务。
@@ -1545,6 +1615,7 @@ public void test03() throws Exception {
    4. `java.time.temporal` – 包括底层框架和扩展特性
    5. `java.time.zone` – 包含时区支持的类
 6. 说明：大多数开发者只会用到基础包和 format 包，也可能会用到 temporal 包。因此，尽管有 68 个新的公开类型，大多数开发者，大概将只会用到其中的三分之一。
+
 ### ③、`LocalDate`、`LocalTime`、`LocalDateTime`
 
 1.  LocalDate、LocalTime、LocalDateTime 类是其中较重要的几个类，它们的实例是不可变的对象，分别表示使用 ISO-8601日历系统的日期、时间、日期和时间。
@@ -1553,6 +1624,7 @@ public void test03() throws Exception {
 4. LocalTime 表示一个时间，而不是日期。
 5. LocalDateTime 是用来表示日期和时间的，这是一个最常用的类之一。
 6. 注：ISO-8601日历系统是国际标准化组织制定的现代公民的日期和时间的表示法，也就是公历。
+
 | 方法 | 描述 |
 | --- | --- |
 | `now()` / `* now(ZoneId zone)` | 实例化方式 1：静态方法，根据当前时间创建对象/指定时区的对象 |
@@ -1629,8 +1701,8 @@ public class _01_DateTime {
     }
     
 }
-
 ```
+
 ### ④、瞬时 `Instant`
 
 1. Instant：时间线上的一个瞬时点。 这可能被用来记录应用程序中的事件时间戳。
@@ -1639,6 +1711,7 @@ public class _01_DateTime {
 4. java.time 包通过值类型 Instant 提供机器视图，不提供处理人类意义上的时间单位。Instant 表示时间线上的一点，而不需要任何上下文信息，例如，时区。
 5. 概念上讲，它只是简单的表示自 1970 年 1 月 1 日 0 时 0 分 0 秒（UTC）开始的秒数。因为 java.time 包是基于纳秒计算的，所以 Instant 的精度可以达到纳秒级。
 6. (1 ns = 10-9 s) 1秒 = 1000毫秒 =10^6微秒=10^9纳秒
+
 | 方法 | 描述 |
 | --- | --- |
 | `now()` | 实例化方式 1：静态方法，返回默认 UTC 时区的 Instant 类的对象 |
@@ -1680,12 +1753,12 @@ public class _02_Instant {
     }
 
 }
-
 ```
 
 - 时间戳是指格林威治时间 1970 年 01 月 01 日 00 时 00 分 00 秒(北京时间 1970 年 01 月 01 日 08 时 00 分 00 秒)起至现在的总秒数。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1676854134302-e25bf509-7e3f-438b-8fe6-6257dee7a0f6.png#averageHue=%23e4dfbc&clientId=udfea8373-db69-4&from=paste&height=409&id=u23679b04&name=image.png&originHeight=409&originWidth=561&originalType=binary&ratio=1&rotation=0&showTitle=false&size=299803&status=done&style=stroke&taskId=u6b18cd37-f970-479d-9fee-f41483b6f96&title=&width=561)
+![](attachments/Pasted%20image%2020230726093207.png)
+
 ### ⑤、格式化与解析日期或时间 `DateTimeFormatter`
 
 1. java.time.format.DateTimeFormatter 类提供了三种格式化方法：
@@ -1695,6 +1768,7 @@ public class _02_Instant {
    3. `ISO_LOCAL_TIME`
 3. 本地化相关的格式。如：`ofLocalizedDateTime(FormatStyle.LONG)`
 4. 自定义的格式。如：`ofPattern("yyyy-MM-dd hh:mm:ss")`
+
 | 方法 | 描述 |
 | --- | --- |
 | `ofPattern(String pattern)` | 静态方法，返回一个指定字符串格式的 DateTimeFormatter |
@@ -1802,12 +1876,13 @@ public class _03_DateTimeFormatter {
 
 }
 ```
+
 ### ⑥、其它 API
+
 | 方法 | 描述 |
 | --- | --- |
 | `ZoneId` | 该类中包含了所有的时区信息，一个时区的 ID，如 Europe/Paris；systemDefault() 为系统默认时区 |
-| `ZonedDateTime` | 一个在 ISO-8601 日历系统时区的日期时间，如 2007-12-03T10:15:30+01:00 Europe/Paris
-其中每个时区都对应着 ID，地区 ID 都为“{区域}/{城市}”的格式，例如：Asia/Shanghai 等 |
+| `ZonedDateTime` | 一个在 ISO-8601 日历系统时区的日期时间，如 2007-12-03T10:15:30+01:00 Europe/Paris<br/>其中每个时区都对应着 ID，地区 ID 都为“{区域}/{城市}”的格式，例如：Asia/Shanghai 等 |
 | `Clock` | 使用时区提供对当前即时、日期和时间的访问的时钟。 |
 | 持续时间 `Duration` | 用于计算两个“时间”间隔 |
 | 日期间隔 `Period` | 用于计算两个“日期:间隔 |
@@ -1877,7 +1952,9 @@ LocalDate localDate = LocalDate.now().with(new TemporalAdjuster() {
 });
 System.out.println("下一个工作日是：" + localDate);
 ```
+
 ### ⑦、与传统日期处理的转换
+
 | 类 | To 遗留类 | To 遗留类 |
 | --- | --- | --- |
 | `java.time.Instant`与`java.util.Date` | Date.from(instant) | date.toInstant() |
@@ -1890,12 +1967,19 @@ System.out.println("下一个工作日是：" + localDate);
 | `java.time.format.DateTimeFormatter`与`java.text.DateFormat` | formatter.toFormat() | 无 |
 
 ## 7、接口的默认方法和静态方法
+
 ## 8、Nashorn、JavaScript 引擎
+
 ## 9、Base64
+
 # 二十二、
+
 # 二十三、
+
 # 二十四、
+
 # 二十五、
+
 ## 1、
 ## 2、
 ## 3、

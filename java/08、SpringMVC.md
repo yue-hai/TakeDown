@@ -1,7 +1,9 @@
 # 一、SpringMVC简介
 
 ## 1、什么是MVC
+
 - MVC是一种软件架构的思想，将软件按照<font color="red">模型、视图、控制器</font>来划分
+
 1. <font color="red">M：Model</font>，<font color="blue">模型层</font>，指工程中的JavaBean，作用是处理数据，JavaBean分为两类：
    1. 一类称为实体类Bean：专门存储业务数据的，如 Student、User 等
    2. 一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。
@@ -9,12 +11,11 @@
 3. <font color="red">C：Controller</font>，<font color="blue">控制层</font>，指工程中的servlet，作用是接收请求和响应浏览器
 4. <font color="red">MVC的工作流程</font>： 用户通过视图层发送请求到服务器，在服务器中请求被Controller接收，Controller调用相应的Model层处理请求，处理完毕将结果返回到Controller，Controller再根据请求处理的结果找到相应的View视图，渲染数据后最终响应给浏览器
 
-
 ## 2、什么是SpringMVC
+
 1. SpringMVC是Spring的一个后续产品，是Spring的一个子项目
 2. SpringMVC 是 Spring 为表述层开发提供的一整套完备的解决方案。在表述层框架历经 Strust、WebWork、Strust2 等诸多产品的历代更迭之后，目前业界普遍选择了 SpringMVC 作为 Java EE 项目表述层开发的<font color="red">首选方案</font>。
 3. 注：三层架构分为表述层（或表示层）、业务逻辑层、数据访问层，表述层表示前台页面和后台 servlet
-
 
 ## 3、SpringMVC的特点
 1. <font color="red">Spring 家族原生产品</font>，与 IOC 容器等基础设施无缝对接
@@ -24,11 +25,10 @@
 5. 内部组件化程度高，可插拔式组件<font color="red">即插即用</font>，想要什么功能配置相应组件即可
 6. <font color="red">性能卓著</font>，尤其适合现代大型、超大型互联网项目要求
 
-
-
 # 二、HelloWorld
 
 ## 1、开发环境
+
 - IDE：idea 2020.1.2
 - 构建工具：maven3.6.3
 - 服务器：tomcat8
@@ -36,17 +36,19 @@
 
 
 ## 2、创建maven工程
+
 1. 创建maven工程
 
-<img src="./attachments/01、创建maven工程.png" />
+![](attachments/01、创建maven工程.png)
 
-<img src="./attachments/02、创建maven工程2.png" />
+![](attachments/02、创建maven工程2.png)
 
-2. 添加web模块
+2. 添加 web 模块
 
-<img src="./attachments/03、添加web模块.png" />
+![](attachments/03、添加web模块.png)
 
 3. 打包方式：war
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -62,7 +64,9 @@
         
     </project>
 ```
+
 4. 引入依赖，在 pom.xml 文件中
+
 ```xml
     <dependencies>
         <!-- SpringMVC -->
@@ -95,15 +99,19 @@
             </dependency>
     </dependencies>
 ```
+
 - 注：由于 Maven 的传递性，我们不必将所有需要的包全部配置依赖，而是配置最顶端的依赖，其他靠传递性导入。
 
-<img src="./attachments/04、添加依赖.png" />
-
+![](attachments/04、添加依赖.png)
 
 ## 3、配置web.xml
-- 注册SpringMVC的前端控制器DispatcherServlet
+
+- 注册SpringMVC的前端控制器 DispatcherServlet
+
 1. 默认配置方式
+
    - 此配置作用下，SpringMVC的配置文件默认位于WEB-INF下，默认名称为< servlet-name >-servlet.xml，例如，以下配置所对应SpringMVC的配置文件位于WEB-INF下，文件名为springMVC-servlet.xml
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -128,8 +136,11 @@
         
     </web-app>
 ```
+
 2. 扩展配置方式（<font color="red">一般使用</font>）
+
    - 可通过init-param标签设置SpringMVC配置文件的位置和名称，通过load-on-startup标签设置SpringMVC前端控制器DispatcherServlet的初始化时间
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -163,19 +174,22 @@
         
     </web-app>
 ```
+
 3. 创建 sprngmvc 配置文件
 
-<img src="./attachments/05、创建springmvc配置文件.png" />
+![](attachments/05、创建springmvc配置文件.png)
 
 4. 注：< url-pattern >标签中使用/和/*的区别：
+
    1. /所匹配的请求可以是/login或.html或.js或.css方式的请求路径，但是/不能匹配.jsp请求路径的请求，因此就可以避免在访问jsp页面时，该请求被DispatcherServlet处理，从而找不到相应的页面
    2. /*则能够匹配所有请求，例如在使用过滤器时，若需要对所有请求进行过滤，就需要使用/*的写法
 
-
 ## 4、创建请求控制器
+
 1. 由于前端控制器对浏览器发送的请求进行了统一的处理，但是具体的请求有不同的处理过程，因此需要创建处理具体请求的类，即请求控制器
 2. 请求控制器中每一个处理请求的方法成为控制器方法
 3. 因为SpringMVC的控制器由一个POJO（普通的Java类）担任，因此需要通过@Controller注解将其标识为一个控制层组件，交给Spring的IoC容器管理，此时SpringMVC才能够识别控制器的存在
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -184,8 +198,8 @@
     }
 ```
 
+## 5、创建 springMVC 的配置文件
 
-## 5、创建springMVC的配置文件
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -249,13 +263,14 @@
     </beans>
 ```
 
-
 ## 6、测试HelloWorld
+
 - 当前项目结构
 
-<img src="./attachments/06、项目结构.png" />
+![](attachments/06、项目结构.png)
 
 1. 实现对首页的访问
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -275,8 +290,10 @@
 
     }
 ```
+
 2. 通过超链接跳转到指定页面
    1. 在主页index.html中设置超链接
+
    ```html
         <!DOCTYPE html>
         <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -292,7 +309,9 @@
         </body>
         </html>
    ```
+
    2. 在请求控制器中创建处理请求的方法
+
    ```java
         @RequestMapping("/target")
         public String totarget(){
@@ -301,22 +320,22 @@
         }
    ```
 
-
 ## 7、总结
 - 浏览器发送请求，若请求地址符合前端控制器的url-pattern，该请求就会被前端控制器DispatcherServlet处理。前端控制器会读取SpringMVC的核心配置文件，通过扫描组件找到控制器，将请求地址和控制器中@RequestMapping注解的value属性值进行匹配，若匹配成功，该注解所标识的控制器方法就是处理请求的方法。处理请求的方法需要返回一个字符串类型的视图名称，该视图名称会被视图解析器解析，加上前缀和后缀组成视图的路径，通过Thymeleaf对视图进行渲染，最终转发到视图所对应页面
-
-
 
 # 三、@RequestMapping注解
 
 ## 1、@RequestMapping注解的功能
+
 1. 从注解名称上我们可以看到，@RequestMapping注解的作用就是将请求和处理请求的控制器方法关联起来，建立映射关系。
 2. SpringMVC 接收到指定的请求，就会来找到在映射关系中对应的控制器方法来处理这个请求。
 
 
 ## 2、@RequestMapping注解的位置
+
 1. @RequestMapping标识一个类：设置映射请求的请求路径的初始（全局初始）信息
 2. @RequestMapping标识一个方法：设置映射请求请求路径的具体信息
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -345,12 +364,13 @@
     }
 ```
 
-
 ## 3、@RequestMapping注解的value属性
+
 1. @RequestMapping注解的value属性通过请求的请求地址匹配请求映射
 2. @RequestMapping注解的value属性是一个字符串类型的数组，表示该请求映射能够匹配多个请求地址所对应的请求
 3. @RequestMapping注解的value属性必须设置，至少通过请求地址匹配请求映射
 4. TestController 控制器
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -381,7 +401,9 @@
         }
     }
 ```
+
 5. index.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -400,13 +422,14 @@
     </html>
 ```
 
-
 ## 4、@RequestMapping注解的method属性
+
 1. @RequestMapping注解的method属性通过请求的请求方式（get或post）匹配请求映射
 2. @RequestMapping注解的method属性是一个RequestMethod类型的数组，表示该请求映射能够匹配多种请求方式的请求
 3. 若当前请求的请求地址满足请求映射的value属性，但是请求方式不满足method属性，则浏览器报错405：Request method 'POST' not supported
 4. 不设置 method 属性则默认为 任何的请求都可以匹配
 5. TestController 控制器
+
 ```java
     // @Controller注解，标识该类为控制器
 @Controller
@@ -438,7 +461,9 @@ public class TestController {
     }
 }
 ```
+
 6. index.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -459,8 +484,11 @@ public class TestController {
     </body>
     </html>
 ```
+
 ---
+
 注：
+
 1. 对于处理指定请求方式的控制器方法，SpringMVC中提供了@RequestMapping的派生注解
    1. 处理get请求的映射-->@GetMapping
    2. 处理post请求的映射-->@PostMapping
@@ -469,14 +497,15 @@ public class TestController {
 2. 常用的请求方式有get，post，put，delete
    1. 但是目前浏览器只支持get和post，若在form表单提交时，为method设置了其他请求方式的字符串（put或delete），则按照<font color="red">默认的请求方式get处理</font>
    2. 若要发送put和delete请求，则需要通过spring提供的过滤器HiddenHttpMethodFilter，在RESTful部分会讲到
+
 ```html
     <form th:action="@{/testRequestMapping}" method="put">
         <input type="submit" value="测试form表单是否能够发送put或delete请求">
     </form>
 ```
 
-
 ## 5、@RequestMapping注解的params属性（了解）
+
 1. @RequestMapping注解的params属性通过请求的请求参数匹配请求映射
 2. @RequestMapping注解的params属性是一个字符串类型的数组，可以通过四种表达式设置请求参数和请求映射的匹配关系
    1. "param"：要求请求映射所匹配的请求必须携带param请求参数
@@ -485,6 +514,7 @@ public class TestController {
    4. "param!=value"：要求请求映射所匹配的请求必须携带param请求参数但是param!=value
 3. 若当前请求满足@RequestMapping注解的value和method属性，但是不满足headers属性，此时页面显示404错误，即资源未找到
 4. TestController 控制器
+
 ```java
     /**
      * @RequestMapping注解的属性：
@@ -508,7 +538,9 @@ public class TestController {
         return "testRequestMapping";
     }
 ```
+
 4. index.html
+
 ```html
     <form th:action="@{/testRequestMapping}" method="get">
         <input type="text" name="username">
@@ -516,8 +548,8 @@ public class TestController {
     </form>
 ```
 
-
 ## 6、@RequestMapping注解的headers属性（了解）
+
 1. @RequestMapping注解的headers属性通过请求的请求头信息匹配请求映射
 2. @RequestMapping注解的headers属性是一个字符串类型的数组，可以通过四种表达式设置请求头信息和请求映射的匹配关系
    1. "header"：要求请求映射所匹配的请求必须携带header请求头信息
@@ -526,6 +558,7 @@ public class TestController {
    4. "header!=value"：要求请求映射所匹配的请求必须携带header请求头信息且header!=value
 3. 若当前请求满足@RequestMapping注解的value和method属性，但是不满足headers属性，此时页面显示404错误，即资源未找到
 4. 一般情况下的请求头：
+
 ```html
     Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
     Accept-Encoding: gzip, deflate, br
@@ -544,7 +577,9 @@ public class TestController {
     Upgrade-Insecure-Requests: 1
     User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62
 ```
+
 5. TestController 控制器
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -599,7 +634,9 @@ public class TestController {
         }
     }
 ```
+
 6. index.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -631,13 +668,14 @@ public class TestController {
     </html>
 ```
 
-
 ## 7、SpringMVC支持ant风格的路径
+
 1. ？：表示任意的单个字符
 2. *：表示任意的0个或多个字符
 3. **：表示任意的一层或多层目录
 4. 注意：在使用 ** 时，只能使用/**/xxx的方式
 5. TestController 控制器
+
 ```java
     // @RequestMapping("/target")
     @RequestMapping(value = {"/t?*","/**/t*"})
@@ -646,20 +684,23 @@ public class TestController {
         return "target";
     }
 ```
+
 4. index.html
+
 ```html
     <a th:href="@{/ttrget}">访问目标页面：target.html，请求地址为：/t?rget</a>
     <a th:href="@{/t+-(!)x:xxx}">访问目标页面：target.html，请求地址为：/t?*</a>
     <a th:href="@{/a/s/d/f/g/h/j/t1b2n3n4m5}">访问目标页面：target.html，请求地址为：/**/t*</a>
 ```
 
-
 ## 8、SpringMVC支持路径中的占位符（<font color="red">重点</font>）
+
 1. 原始方式：/deleteUser?id=1
 2. rest方式：/deleteUser/1
 3. SpringMVC路径中的占位符常用于RESTful风格中，当请求路径中将某些数据通过路径的方式传输到服务器中，就可以在相应的@RequestMapping注解的value属性中通过占位符{xxx}表示传输的数据，在通过@PathVariable注解，将占位符所表示的数据赋值给控制器方法的形参
 4. 若是不在请求中给占位符，则此时页面显示404错误，即资源未找到
 5. TestController 控制器
+
 ```java
     // SpringMVC支持路径中的占位符
     @RequestMapping("target2/{id}/{username}")
@@ -670,18 +711,20 @@ public class TestController {
         return "target";
     }
 ```
+
 6. index.html
+
 ```html
     <a th:href="@{/target2/1/yuehai}">访问目标页面：target.html，测试路径中的占位符-->/totarget2</a>
 ```
 
-
-
 # 四、SpringMVC获取请求参数
 
 ## 1、通过ServletAPI获取请求参数（不建议）
+
 - 将HttpServletRequest作为控制器方法的形参，此时HttpServletRequest类型的参数表示封装了当前请求的请求报文的对象
 1. TestController 控制器
+
 ```java
     // 通过ServletAPI获取请求参数
     @RequestMapping("/testServletAPI")
@@ -693,16 +736,20 @@ public class TestController {
         return "target";
     }
 ```
+
 2. index.html
+
 ```html
     <!-- @{/testServletAPI(username='yuehai')}：thymeleaf中的url，()中的内容代表请求的参数 -->
     <a th:href="@{/target2/1/yuehai}">访问目标页面：target.html，测试路径中的占位符-->/totarget2</a>
 ```
 
-
 ## 2、通过控制器方法的形参获取请求参数
+
 - 在控制器方法的形参位置，设置和请求参数同名的形参，当浏览器发送请求，匹配到请求映射时，在DispatcherServlet中就会将请求参数赋值给相应的形参
+
 1. TestController 控制器
+
 ```java
     // 通过控制器方法的形参获取请求参数
     @RequestMapping("/testParam")
@@ -720,7 +767,9 @@ public class TestController {
         return "target";
     }
 ```
+
 2. index.html
+
 ```html
     <form th:action="@{/testParam}" method="get">
         用户名：<input type="text" name="username"><br/>
@@ -732,8 +781,8 @@ public class TestController {
     </form>
 ```
 
-
 ## 3、@RequestParam获取请求参数
+
 1. @RequestParam是将请求参数和控制器方法的形参创建映射关系
 2. @RequestParam注解一共有三个属性：
    1. value：指定为形参赋值的请求参数的参数名
@@ -742,6 +791,7 @@ public class TestController {
       2. 若设置为false，则当前请求不是必须传输value所指定的请求参数，若没有传输，则注解所标识的形参的值为null
    3. defaultValue：不管required属性值为true或false，当value所指定的请求参数没有传输或传输的值为""时，则使用默认值为形参赋值
 3. TestController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testRequestParam")
@@ -762,16 +812,19 @@ public class TestController {
         return "target";
     }
 ```
+
 4. index.html
+
 ```html
     <a th:href="@{/testRequestParam(user_name='yuehai',password='000123')}">测试通过@RequestParam获取请求参数</a>
 ```
 
-
 ## 4、@RequestHeader获取请求参数
+
 1. @RequestHeader是将请求头信息和控制器方法的形参创建映射关系
 2. @RequestHeader注解一共有三个属性：value、required、defaultValue，用法同@RequestParam
 3. TestController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testRequestHeader")
@@ -787,16 +840,19 @@ public class TestController {
         return "target";
     }
 ```
+
 4. index.html
+
 ```html
     <a th:href="@{/testRequestHeader}">测试通过@RequestHeader获取请求参数</a>
 ```
 
+## 5、@CookieValue 获取请求参数
 
-## 5、@CookieValue获取请求参数
 1. @CookieValue是将cookie数据和控制器方法的形参创建映射关系
 2. @CookieValue注解一共有三个属性：value、required、defaultValue，用法同@RequestParam
 3. TestController 控制器
+
 ```java
     // 创建 session
     @RequestMapping("/addSession")
@@ -821,16 +877,20 @@ public class TestController {
         return "target";
     }
 ```
+
 4. index.html
+
 ```html
     <a th:href="@{/addSession}">创建session</a><br/>
 <a th:href="@{/testCookieValue}">测试通过@CookieValue获取请求参数</a>
 ```
 
-
 ## 6、通过POJO获取请求参数
+
 - 可以在控制器方法的形参位置设置一个实体类类型的形参，此时若浏览器传输的请求参数的参数名和实体类中的属性名一致，那么请求参数就会为此属性赋值
+
 1. User 类
+
 ```java
     public class User {
         private Integer id;
@@ -876,7 +936,9 @@ public class TestController {
         }
     }
 ```
+
 2. TestController 控制器
+
 ```java
     // 通过POJO获取请求参数
     // 配置请求地址
@@ -886,7 +948,9 @@ public class TestController {
         return "target";
     }
 ```
+
 2. index.html
+
 ```html
     <form th:action="@{/testPojo}" method="post">
         用户名：<input type="text" name="username"><br>
@@ -899,11 +963,11 @@ public class TestController {
     </form>
 ```
 
-
 ## 7、解决获取请求参数的乱码问题
+
 - 解决获取请求参数的乱码问题，可以使用SpringMVC提供的编码过滤器CharacterEncodingFilter，但是必须在web.xml中进行注册
 
-<img src="./attachments/07、解决get获取请求参数的乱码问题.png" />
+![](attachments/07、解决get获取请求参数的乱码问题.png)
 
 ```xml
     <!--配置springMVC的编码过滤器-->
@@ -928,11 +992,12 @@ public class TestController {
     </filter-mapping>
 ```
 
-
 # 五、域对象共享数据
 
 ## 1、使用ServletAPI向request域对象共享数据
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testRequestByServletAPI")
@@ -944,11 +1009,15 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testRequestByServletAPI}">通过servletAPI向request域对象共享数据</a>
 ```
+
 3. success.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -964,10 +1033,12 @@ public class TestController {
     </html>
 ```
 
-
 ## 2、使用ModelAndView向request域对象共享数据
+
 - ModelAndView：模型和视图
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testModelAndView")
@@ -988,20 +1059,26 @@ public class TestController {
         return mav;
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testModelAndView}">通过ModelAndView向request域对象共享数据</a>
 ```
+
 3. success.html
+
 ```html
     <!-- 获取 request 域中的名称为 testScope 的内容 -->
     <p th:text="${testScope}"></p>
 ```
 
-
 ## 3、使用Model向request域对象共享数据
+
 - Model：与上面相比只有模型
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testModel")
@@ -1013,20 +1090,26 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testModel}">通过Model向request域对象共享数据</a>
 ```
+
 3. success.html
+
 ```html
     <!-- 获取 request 域中的名称为 testScope 的内容 -->
     <p th:text="${testScope}"></p>
 ```
 
-
 ## 4、使用map向request域对象共享数据
+
 - 可直接向 map 中存入数据
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testMap")
@@ -1038,20 +1121,26 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testMap}">通过Map向request域对象共享数据</a>
 ```
+
 3. success.html
+
 ```html
     <!-- 获取 request 域中的名称为 testScope 的内容 -->
     <p th:text="${testScope}"></p>
 ```
 
-
 ## 5、使用ModelMap向request域对象共享数据
+
 - 与 Model 相似
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testModelMap")
@@ -1063,33 +1152,43 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testModelMap}">通过ModelMap向request域对象共享数据</a>
 ```
+
 3. success.html
+
 ```html
     <!-- 获取 request 域中的名称为 testScope 的内容 -->
     <p th:text="${testScope}"></p>
 ```
 
-
 ## 6、Model、ModelMap、Map的关系
+
 - Model、ModelMap、Map类型的参数其实本质上都是 BindingAwareModelMap 类型的
+
 - 不管使用的什么方法，最后都要把数据封装到 ModelAndView 中
+
 ```java
     public interface Model{}
     public class ModelMap extends LinkedHashMap<String, Object> {}
     public class ExtendedModelMap extends ModelMap implements Model {}
     public class BindingAwareModelMap extends ExtendedModelMap {}
 ```
-- ModelMap的接口与实现类
-<img src="./attachments/08、ModelMap的接口与实现类.png" />
 
+- ModelMap的接口与实现类
+
+![](attachments/08、ModelMap的接口与实现类.png)
 
 ## 7、向session域共享数据
+
 - 使用的 servletAPI 创建与获取
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testSession")
@@ -1101,11 +1200,14 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testSession}">通过servletAPI向Session域对象共享数据</a>
 ```
 3. success.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1121,9 +1223,10 @@ public class TestController {
     </html>
 ```
 
-
 ## 8、向application域共享数据
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testApplication")
@@ -1138,26 +1241,33 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testApplication}">通过servletAPI向application域对象共享数据</a>
 ```
+
 3. success.html
+
 ```html
     <!-- 获取 application 域中的名称为 testApplicationScope 的内容 -->
     <p th:text="${application.testApplicationScope}"></p>
 ```
 
+# 六、SpringMVC 的视图
 
-# 六、SpringMVC的视图
 1. SpringMVC中的视图是View接口，视图的作用渲染数据，将模型Model中的数据展示给用户
 2. SpringMVC视图的种类很多，默认有转发视图和重定向视图
 3. 当工程引入jstl的依赖，转发视图会自动转换为JstlView
 4. <font color="red">若使用的视图技术为Thymeleaf，在SpringMVC的配置文件中配置了Thymeleaf的视图解析器，由此视图解析器解析之后所得到的是ThymeleafView</font>
 
 ## 1、ThymeleafView
+
 - 当控制器方法中所设置的视图名称<font color="red">没有任何前缀（可以包含目录，目录不算前缀）</font>时，此时的视图名称会被SpringMVC配置文件中所配置的视图解析器解析，视图名称拼接视图前缀和视图后缀所得到的最终路径，会通过<font color="red">转发</font>的方式实现跳转
+
 1. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testThymeleafView")
@@ -1171,11 +1281,15 @@ public class TestController {
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testThymeleafView}">测试ThymeleafView</a>
 ```
+
 3. success.html
+
 ```html
     <!DOCTYPE html>
 <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1189,16 +1303,19 @@ success.html<br/>
 </html>
 ```
 
-<img src="./attachments/09、ThymeleafView.png" />
+![](attachments/09、ThymeleafView.png)
 
 
 ## 2、转发视图
+
 - 地址栏不会发生变化
+
 1. SpringMVC中默认的转发视图是InternalResourceView
 2. SpringMVC中创建转发视图的情况：
 3. 当控制器方法中所设置的<font color="red">视图名称以"forward:"为前缀</font>时，创建InternalResourceView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀"forward:"去掉，剩余部分作为最终路径通过<font color="red">转发</font>的方式实现跳转
 4. 例如"forward:/"，"forward:/employee"
 5. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testForward")
@@ -1214,22 +1331,26 @@ success.html<br/>
         return "forward:/testThymeleafView";
     }
 ```
+
 6. index.html
+
 ```html
     <a th:href="@{/testForward}">测试转发视图Forward</a>
 ```
 
-<img src="./attachments/10、转发视图.png" />
-
+![](attachments/10、转发视图.png)
 
 ## 3、重定向视图
+
 - - 地址栏会发生变化
+
 1. SpringMVC中默认的重定向视图是RedirectView
 2. 当控制器方法中所设置的<font color="red">视图名称以"redirect:"为前缀</font>时，创建RedirectView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀"redirect:"去掉，剩余部分作为最终路径通过<font color="red">重定向</font>的方式实现跳转
 3. 重定向可以解决表单的重复提交的问题
 4. 重定向可以跨域，转发不可以跨域；因为重定向是浏览器发送了两次请求，而转发是服务器内部的跳转
 5. 例如"redirect:/"，"redirect:/employee"
 6. ScopeController 控制器
+
 ```java
     // 配置请求地址
     @RequestMapping("/testRedirect")
@@ -1245,16 +1366,19 @@ success.html<br/>
         return "redirect:/testThymeleafView";
     }
 ```
+
 5. index.html
+
 ```html
     <a th:href="@{/testRedirect}">测试重定向视图testRedirect</a>
 ```
 
-<img src="./attachments/11、重定向视图.png" />
-
+![](attachments/11、重定向视图.png)
 
 ## 4、视图控制器view-controller
+
 - 当控制器方法中，仅仅用来实现页面跳转，即只需要设置视图名称时，可以将处理器方法使用view-controller签进行表示
+
 ```xml
     <!--
         配置视图控制器 view-controller：单纯只进行跳转的请求最好使用视图控制器
@@ -1269,11 +1393,12 @@ success.html<br/>
     <mvc:annotation-driven />
 ```
 
-
 # 七、RESTful
 
 ## 1、RESTful简介
+
 - REST：<font color="red">Re</font>presentational <font color="red">S</font>tate <font color="red">T</font>ransfer，表现层资源状态转移
+
 1. 资源
    - 资源是一种看待服务器的方式，即，将服务器看作是由很多离散的资源组成。每个资源是服务器上一个可命名的抽象概念。因为资源是一个抽象的概念，所以它不仅仅能代表服务器文件系统中的一个文件、数据库中的一张表等等具体的东西，可以将资源设计的要多抽象有多抽象，只要想象力允许而且客户端应用开发者能够理解。与面向对象设计类似，资源是以名词为核心来组织的，首先关注的是名词。一个资源可以由一个或多个URI来标识。URI既是资源的名称，也是资源在Web上的地址。对某个资源感兴趣的客户端应用，可以通过资源的URI与其进行交互。
 2. 资源的表述
@@ -1281,8 +1406,8 @@ success.html<br/>
 3. 状态转移
    - 状态转移说的是：在客户端和服务器端之间转移（transfer）代表资源状态的表述。通过转移和操作资源的表述，来间接实现操作资源的目的。
 
-
 ## 2、RESTful的实现
+
 1. 具体说，就是 HTTP 协议里面，四个表示操作方式的动词：<font color="red">GET、POST、PUT、DELETE。</font>
 2. 它们分别对应四种基本操作：GET 用来获取资源，POST 用来新建资源，PUT 用来更新资源，DELETE用来删除资源。
 3. REST 风格提倡 URL 地址使用统一的风格设计，<font color="blue">从前到后各个单词使用斜杠分开，不使用问号键值对方式携带请求参数，而是将要发送给服务器的数据作为 URL 地址的一部分，以保证整体风格的一致性。</font>
@@ -1294,8 +1419,8 @@ success.html<br/>
 |删除操作|deleteUser?id=1|user/1-->delete请求方式|
 |更新操作|updateUser|user-->put请求方式|
 
-
 ## 3、HiddenHttpMethodFilter
+
 1. 由于浏览器只支持发送get和post方式的请求，那么该如何发送put和delete请求呢？
 2. SpringMVC 提供了 <font color="blue">HiddenHttpMethodFilter</font> 帮助我们<font color="red">将 POST 请求转换为 DELETE 或 PUT 请求</font>
 3. <font color="blue">HiddenHttpMethodFilter</font> 处理put和delete请求的条件：
@@ -1303,8 +1428,11 @@ success.html<br/>
    2. 当前请求必须传输请求参数_method
 4. 满足以上条件，<font color="blue">HiddenHttpMethodFilter</font> 过滤器就会将当前请求的请求方式转换为请求参数_method的值，因此请求参数_method的值才是最终的请求方式
 5. 在web.xml中注册<font color="blue">HiddenHttpMethodFilter</font>
+
 ---
+
 1. web.xml 配置文件
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -1371,7 +1499,9 @@ success.html<br/>
 
     </web-app>
 ```
+
 2. UserController 控制器
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -1428,7 +1558,9 @@ success.html<br/>
 
     }
 ```
+
 2. index.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1460,7 +1592,9 @@ success.html<br/>
     </body>
     </html>
 ```
+
 3. success.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1474,14 +1608,14 @@ success.html<br/>
     </html>
 ```
 
-
-
 # 八、RESTful案例
 
 ## 1、准备工作
+
 - 和传统 CRUD 一样，实现对员工信息的增删改查。
 1. 创建 Maven 项目（模块）
 2. 在 pom.xml 中添加依赖
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -1531,11 +1665,13 @@ success.html<br/>
 
     </project>
 ```
+
 3. 配置 web 模块
 
-<img src="./attachments/12、配置web模块.png" />
+![](attachments/12、配置web模块.png)
 
 4. 配置 web.xml 文件
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -1602,7 +1738,9 @@ success.html<br/>
 
     </web-app>
 ```
+
 5. 配置 springMVC 的配置文件
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -1675,7 +1813,9 @@ success.html<br/>
 
     </beans>
 ```
+
 6. 准备实体类
+
 ```java
     // 实体类
     public class Employee {
@@ -1705,7 +1845,9 @@ success.html<br/>
 
     }
 ```
+
 7. 准备dao模拟数据
+
 ```java
     // 创建bean实例，Dao层
     @Repository
@@ -1748,7 +1890,9 @@ success.html<br/>
 
     }
 ```
+
 8. 控制器 EmployeeController
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -1760,7 +1904,6 @@ success.html<br/>
 
     }
 ```
-
 
 ## 2、功能清单
 
@@ -1774,9 +1917,10 @@ success.html<br/>
 |跳转到更新数据页面|/employee/2|GET|
 |执行更新|/employee|PUT|
 
-
 ## 3、具体功能：访问首页
+
 1. springMVC 配置文件中配置 view-controller
+
 ```xml
     <!--
         配置视图控制器 view-controller：单纯只进行跳转的请求最好使用视图控制器
@@ -1788,7 +1932,9 @@ success.html<br/>
     <!-- 开启mvc注解驱动的标签 -->
     <mvc:annotation-driven />
 ```
+
 2. 创建 index.html 页面
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1803,9 +1949,10 @@ success.html<br/>
     </html>
 ```
 
-
 ## 4、具体功能：查询所有员工数据
+
 1. 控制器方法
+
 ```java
     // 查询全部数据|/employee|GET|
     @RequestMapping(value = "/employee",method = RequestMethod.GET)
@@ -1819,7 +1966,9 @@ success.html<br/>
         return "employee_list";
     }
 ```
+
 2. 创建 employee_list.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1857,13 +2006,14 @@ success.html<br/>
     </html>
 ```
 
-
 ## 5、具体功能：删除
+
 1. 引入的 vue.js 的位置
 
-<img src="./attachments/13、引入的vue.js的位置.png" />
+![](attachments/13、引入的vue.js的位置.png)
 
 2. 在 springMVC 配置文件中开放对静态资源的访问
+
 ```xml
     <!--
         开放对静态资源的访问
@@ -1873,7 +2023,9 @@ success.html<br/>
     -->
     <mvc:default-servlet-handler />
 ```
+
 3. employee_list.html 的修改
+
    1. 创建处理delete请求方式的表单
    2. 修改超链接
    3. 引入vue.js
@@ -1947,7 +2099,9 @@ success.html<br/>
     </body>
     </html>
 ```
+
 4. EmployeeController 控制器中的方法
+
 ```java
     // 删除|/employee/2|DELETE|
     @RequestMapping(value = "/employee/{id}",method = RequestMethod.DELETE)
@@ -1961,13 +2115,16 @@ success.html<br/>
     }
 ```
 
-
 ## 6、具体功能：跳转到添加数据页面
+
 1. 配置视图控制器 view-controller：单纯只进行跳转的请求最好使用视图控制器
+
 ```xml
     <mvc:view-controller path="/toAdd" view-name="employee_add" />
 ```
+
 2. 创建employee_add.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -1991,9 +2148,10 @@ success.html<br/>
     </html>
 ```
 
-
 ## 7、具体功能：执行保存
+
 - EmployeeController 控制器中的方法
+
 ```java
     // 执行保存|/employee|POST|
     @RequestMapping(value = "/employee",method = RequestMethod.POST)
@@ -2008,13 +2166,16 @@ success.html<br/>
     }
 ```
 
-
 ## 8、具体功能：跳转到更新数据页面
+
 1. 修改 employee_list.html 页面的 update 超链接
+
 ```html
     <a th:href="@{'/employee/'+${employee.id}}">update</a>
 ```
+
 2. EmployeeController 控制器中的方法
+
 ```java
     // 跳转到更新数据页面（根据id查询）|/employee/1|GET|
     @RequestMapping(value = "/employee/{id}",method = RequestMethod.GET)
@@ -2029,7 +2190,9 @@ success.html<br/>
         return "employee_update";
     }
 ```
+
 3. 创建employee_update.html，数据的回显
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -2060,9 +2223,10 @@ success.html<br/>
     </html>
 ```
 
-
 ## 9、具体功能：执行更新
+
 - EmployeeController 控制器中的方法
+
 ```java
     // 执行更新（修改）|/employee|PUT|
     @RequestMapping(value = "/employee",method = RequestMethod.PUT)
@@ -2077,19 +2241,21 @@ success.html<br/>
     }
 ```
 
-
 ## 10、全部的代码
+
 - 在项目 08_SpringMVC 的模块 04_RESTful 中
 
-
-
 # 九、HttpMessageConverter
+
 1. HttpMessageConverter，报文信息转换器，将<font color="red">请求</font>报文转换为Java对象，或将Java对象转换为<font color="red">响应</font>报文
 2. HttpMessageConverter提供了两个注解和两个类型：@RequestBody，<font color="red">@ResponseBody</font>，RequestEntity，<font color="red">ResponseEntity</font>
 
 ## 1、@RequestBody
+
 - @RequestBody可以获取请求体，需要在控制器方法设置一个形参，使用@RequestBody进行标识，当前请求的请求体就会为当前注解所标识的形参赋值
+
 1. HttpController 控制器
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -2106,7 +2272,9 @@ success.html<br/>
 
     }
 ```
+
 2. index.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -2125,15 +2293,19 @@ success.html<br/>
     </body>
     </html>
 ```
+
 3. 输出结果：
+
 ```java
     requestBody：username=1&password=1
 ```
 
-
 ## 2、RequestEntity
+
 - RequestEntity封装请求报文的一种类型，需要在控制器方法的形参中设置该类型的形参，当前请求的请求报文就会赋值给该形参，可以通过getHeaders()获取请求头信息，通过getBody()获取请求体信息
+
 1. HttpController 控制器中的方法
+
 ```java
     // 配置请求地址
     @RequestMapping("/testRequestEntity")
@@ -2147,7 +2319,9 @@ success.html<br/>
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <form th:action="@{/testRequestEntity}" method="post">
         用户名：<input type="text" name="username"><br>
@@ -2155,16 +2329,20 @@ success.html<br/>
         <input type="submit" value="测试RequestEntity类型参数">
     </form>
 ```
+
 3. 输出结果
+
 ```java
     requestHeader请求头：[host:"localhost:8080", connection:"keep-alive", content-length:"30", cache-control:"max-age=0", sec-ch-ua:"" Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"", sec-ch-ua-mobile:"?0", sec-ch-ua-platform:""Windows"", upgrade-insecure-requests:"1", origin:"http://localhost:8080", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62", accept:"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", sec-fetch-site:"same-origin", sec-fetch-mode:"navigate", sec-fetch-user:"?1", sec-fetch-dest:"document", referer:"http://localhost:8080/05_HttpMessageConverter/", accept-encoding:"gzip, deflate, br", accept-language:"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6", cookie:"Idea-184fc5d2=59f0c5fd-3b4e-417f-82cc-0daaabb2d12c", Content-Type:"application/x-www-form-urlencoded;charset=UTF-8"]
     requestBody请求体：username=2004241194&password=1
 ```
 
-
 ## 3、@ResponseBody
+
 - 通过 HttpServletResponse 响应浏览器数据（原始方法）
+
 1. HttpController 控制器中的方法
+
 ```java
     // 配置请求地址
     @RequestMapping("/testHttpServletResponse")
@@ -2173,13 +2351,19 @@ success.html<br/>
         response.getWriter().print("hello,HttpServletResponse");
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testHttpServletResponse}">测试通过 HttpServletResponse 响应浏览器数据</a>
 ```
+
 ---
+
 - @ResponseBody用于标识一个控制器方法，可以将该方法的返回值直接作为响应报文的响应体响应到浏览器
+
 1. HttpController 控制器中的方法
+
 ```java
     // 配置请求地址
     @RequestMapping("/testResponseBody")
@@ -2190,18 +2374,25 @@ success.html<br/>
         return "success";
     }
 ```
+
 2. index.html
+
 ```html
     <a th:href="@{/testResponseBody}">测试通过 @ResponseBody 注解响应浏览器数据</a>
 ```
+
 3. 输出结果
+
 ```java
     success
 ```
 
-## 4、SpringMVC处理json
+## 4、SpringMVC 处理 json
+
 - @ResponseBody处理json的步骤：
+
 1. 在 Maven 配置文件 pom.xml 中导入jackson的依赖
+
 ```xml
     <!-- 导入jackson的依赖，阿里的包 -->
     <dependency>
@@ -2210,12 +2401,16 @@ success.html<br/>
         <version>2.12.1</version>
     </dependency>
 ```
+
 2. 在SpringMVC的核心配置文件中开启mvc的注解驱动，此时在HandlerAdaptor中会自动装配一个消息转换器：MappingJackson2HttpMessageConverter，可以将响应到浏览器的Java对象转换为Json格式的字符串
+
 ```xml
     <!-- 开启mvc注解驱动的标签 -->
     <mvc:annotation-driven />
 ```
+
 3. 在处理器方法上使用@ResponseBody注解进行标识，将Java对象直接作为控制器方法的返回值返回，就会自动转换为Json格式的字符串
+
 ```java
     // 配置请求地址
     @RequestMapping("/testResponseBodyUser")
@@ -2226,22 +2421,27 @@ success.html<br/>
         return new User(0,"yan","000123",14,"2");
     }
 ```
+
 4. 浏览器的页面中展示的结果：
+
 ```java
     {"id":0,"username":"yan","password":"000123","age":14,"sex":"2"}
 ```
+
 5. Java 类型到 json 的转换
+
    1. java 实体类转换为 json ：json 对象
    2. java map 类转换为 json ：json 对象
    3. java list 类转换为 json ：json 数组
 
-
 ## 5、SpringMVC处理ajax
+
 1. 导入 vue.js 与 axios.js 文件
 
-<img src="./attachments/14、导入vue.js与axios.js文件.png" />
+![](attachments/14、导入vue.js与axios.js文件.png)
 
 2. HttpController 控制器中的方法
+
 ```java
     // 配置请求地址
     @RequestMapping("/testAjax")
@@ -2254,7 +2454,9 @@ success.html<br/>
         return "hello,ajax";
     }
 ```
+
 2. index.html 中的请求超链接
+
 ```html
     <!-- 测试 SpringMVC 通过 @ResponseBody 处理 ajax 请求 -->
     <div id="app">
@@ -2262,14 +2464,18 @@ success.html<br/>
         <a th:href="@{/testAjax}" @click="testAjax">测试通过 @ResponseBody 处理 ajax 请求</a><br>
     </div>
 ```
+
 3. 引入 vue.js 和 axios.js
+
 ```html
     <!-- 引入 vue.js -->
     <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
     <!-- 引入 axios.js -->
     <script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
 ```
+
 4. 通过 vue 和 axios 处理点击事件
+
 ```html
     <script type="text/javascript">
         var vue = new Vue({
@@ -2302,30 +2508,36 @@ success.html<br/>
         });
     </script>
 ```
+
 5. 输出结果
 
-<img src="./attachments/15、测试通过@ResponseBody处理ajax请求.png" />
+![](attachments/15、测试通过@ResponseBody处理ajax请求.png)
 
 
 ## 6、@RestController注解（常用）
+
 - @RestController注解是springMVC提供的一个复合注解，<font color="red">标识在控制器的类上</font>，<font color="blue">就相当于为类添加了@Controller注解，并且为其中的每个方法添加了@ResponseBody注解</font>
 
 
 ## 7、ResponseEntity（响应实体）
+
 - ResponseEntity用于控制器方法的返回值类型，该控制器方法的返回值就是响应到浏览器的响应报文
 - <font color="red">可实现文件的上传和下载</font>
-
-
 
 # 十、文件上传和下载
 
 ## 1、文件下载
+
 - 使用ResponseEntity实现下载文件的功能
+
 1. springMVC 配置文件中的视图控制器配置
+
 ```xml
     <mvc:view-controller path="/file" view-name="file" />
 ```
+
 2. HttpController 控制器中的方法
+
 ```java
     // @Controller注解，标识该类为控制器
     @Controller
@@ -2371,11 +2583,15 @@ success.html<br/>
         }
     }
 ```
+
 3. index.html
+
 ```html
     <a th:href="@{/file}">进入下载和上传文件页面</a><br/>
 ```
+
 4. file.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -2389,15 +2605,19 @@ success.html<br/>
     </body>
     </html>
 ```
+
 5. 输出结果
 
-<img src="./attachments/16、下载.png" />
+![](attachments/16、下载.png)
 
 
 ## 2、文件上传
+
 - 文件上传要求form表单的请求方式<font color="red">必须为post</font>，并且添加属性<font color="blue">enctype="multipart/form-data"</font>
 - SpringMVC中将上传的文件封装到MultipartFile对象中，通过此对象可以获取文件相关信息
+
 1. 在 在 pom.xml 中添加依赖
+
 ```xml
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
     <!-- 用来接收浏览器上传的组件，apache出品 -->
@@ -2407,13 +2627,17 @@ success.html<br/>
         <version>1.3.1</version>
     </dependency>
 ```
+
 2. 在 SpringMVC 的配置文件中添加文件上传解析器的配置：
+
 ```xml
     <!-- 配置文件上传解析器，将上传的文件封装为 MultipartFile 对象 -->
     <!-- id 必须为：multipartResolver，因为这个是根据 id 获取的 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 ```
+
 3. HttpController 控制器中的方法
+
 ```java
     // 配置请求地址
     @RequestMapping("/testUp")
@@ -2455,11 +2679,15 @@ success.html<br/>
         return "success";
     }
 ```
+
 4. index.html
+
 ```html
     <a th:href="@{/file}">进入下载和上传文件页面</a>
 ```
+
 5. file.html
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -2482,13 +2710,14 @@ success.html<br/>
     </html>
 ```
 
-
-
 # 十一、拦截器
 
 ## 1、拦截器的配置
+
 - SpringMVC中的拦截器用于拦截控制器方法的执行
+
 1. SpringMVC中的拦截器需要实现 HandlerInterceptor 接口
+
 ```java
     // 创建 bean 实例
     @Component
@@ -2513,7 +2742,9 @@ success.html<br/>
         }
     }
 ```
+
 2. SpringMVC的拦截器必须在SpringMVC的配置文件中进行配置：
+
 ```xml
     <!-- 配置拦截器 -->
     <mvc:interceptors>
@@ -2537,37 +2768,42 @@ success.html<br/>
     </mvc:interceptors>
 ```
 
-
-
 ## 2、拦截器的三个抽象方法
+
 - SpringMVC中的拦截器有三个抽象方法：
+
 1. preHandle：<font color="red">控制器方法执行之前执行preHandle()</font>，其boolean类型的返回值表示是否拦截或放行，<font color="blue">返回true为放行</font>，即调用控制器方法；<font color="blue">返回false表示拦截</font>，即不调用控制器方法
 2. postHandle：<font color="red">控制器方法执行之后执行postHandle()</font>
 3. afterComplation：<font color="red">处理完视图和模型数据，渲染视图完毕之后执行afterComplation()
 </font>
 
-
 ## 3、多个拦截器的执行顺序
 
 ### (1)、若每个拦截器的preHandle()都返回true
+
 1. 此时多个拦截器的执行顺序和拦截器在 SpringMVC 的配置文件的<font color="red">配置顺序</font>有关
 2. preHandle() 会按照配置的<font color="red">顺序</font>执行，而 postHandle() 和 afterComplation() 会按照配置的<font color="red">反序</font>执行
 
 
 ### (2)、若某个拦截器的preHandle()返回了false
+
 - preHandle() 返回 false 和它之前的拦截器的 preHandle() 都会执行，postHandle() 都不执行，返回 false 的拦截器之前的拦截器的 afterComplation() 会执行
 
-
-
 # 十二、异常处理器
+
 - 若是出现了配置中指定的异常，就跳转到指定的页面
 
 ## 1、基于配置的异常处理
+
 - SpringMVC提供了一个处理控制器方法执行过程中所出现的异常的接口：HandlerExceptionResolver
+
 1. HandlerExceptionResolver 接口的实现类有：DefaultHandlerExceptionResolver 和 SimpleMappingExceptionResolver
 2. SpringMVC提供了自定义的异常处理器 SimpleMappingExceptionResolver
+
 ---
+
 1. springMVC 配置文件 springMVC.xml 中的异常处理器
+
 ```xml
     <!-- 基于配置的异常处理 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
@@ -2582,11 +2818,15 @@ success.html<br/>
         <property name="exceptionAttribute" value="ex"></property>
     </bean>
 ```
+
 2. springMVC 配置文件 springMVC.xml 中的视图控制器，配置 error.html 页面
+
 ```xml
     <mvc:view-controller path="/error" view-name="error" />
 ```
+
 3. 新建错误页面 error.html ，显示错误信息，并显示保存到请求域中的错误信息
+
 ```html
     <!DOCTYPE html>
     <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
@@ -2601,7 +2841,9 @@ success.html<br/>
     </body>
     </html>
 ```
+
 4. TestController 控制器中的方法
+
 ```java
     // 配置请求地址
     @RequestMapping("/testExceptionHandler")
@@ -2612,18 +2854,23 @@ success.html<br/>
         return "success";
     }
 ```
+
 5. index.html 中的超链接
+
 ```html
     <a th:href="@{/testExceptionHandler}">测试异常处理</a>
 ```
+
 6. 结果
 
-<img src="./attachments/17、错误结果.png" />
+![](attachments/17、错误结果.png)
 
 
 ## 2、基于注解的异常处理
+
 1. 注释掉 springMVC 配置文件 springMVC.xml 中的异常处理器
 2. 创建 ExceptionController 类，编写异常处理方法
+
 ```java
     // @ControllerAdvice 将当前类标识为异常处理的组件
     @ControllerAdvice
@@ -2641,18 +2888,21 @@ success.html<br/>
         }
     }
 ```
+
 3. 其他不变
 
+# 十三、注解配置 SpringMVC
 
-
-# 十三、注解配置SpringMVC
 - 使用配置类和注解代替 web.xml 和 SpringMVC 配置文件的功能
 
 ## 1、创建初始化类，代替web.xml
+
 1. 在 Servlet3.0 环境中，容器会在类路径中查找实现 javax.servlet.ServletContainerInitializer 接口的类，如果找到的话就用它来配置 Servlet 容器。
 2. Spring 提供了这个接口的实现，名为 SpringServletContainerInitializer ，这个类反过来又会查找实现 WebApplicationInitializer 的类并将配置的任务交给它们来完成。
 3. Spring3.2 引入了一个便利的 WebApplicationInitializer 基础实现，名为 AbstractAnnotationConfigDispatcherServletInitializer ，当我们的类扩展了 AbstractAnnotationConfigDispatcherServletInitializer 并将其部署到 Servlet3.0 容器的时候，容器会自动发现它，并用它来配置 Servlet 上下文。
+
 - WebInit 配置类
+
 ```java
     // web 工程的初始化类，代替 web.xml 文件
     public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -2701,9 +2951,10 @@ success.html<br/>
     }
 ```
 
-
 ## 2、创建SpringConfig配置类，代替spring的配置文件
+
 - SpringConfig 配置类
+
 ```java
     // 定义配置类，可替换 XML 配置文件
     @Configuration
@@ -2712,9 +2963,10 @@ success.html<br/>
     }
 ```
 
-
 ## 3、创建WebConfig配置类，代替SpringMVC的配置文件
+
 - WebConfig 配置类
+
 ```java
     import com.yuehai.mvc.interceptor.FirstInterceptor;
     import org.springframework.context.annotation.Bean;
@@ -2837,7 +3089,9 @@ success.html<br/>
         }
     }
 ```
+
 - FirstInterceptor 拦截器类，WebConfig 配置类中有使用到
+
 ```java
     // 创建 bean 实例
     @Component
@@ -2863,11 +3117,10 @@ success.html<br/>
     }
 ```
 
-
-
-# 十四、SpringMVC执行流程（？听不懂
+# 十四、SpringMVC 执行流程（？听不懂
 
 ## 1、SpringMVC 常用组件
+
 1. DispatcherServlet：<font color="red">前端控制器</font>，不需要工程师开发，由框架提供
     - 作用：统一处理请求和响应，整个流程控制的中心，由它调用其它组件处理用户的请求
 2. HandlerMapping：<font color="red">处理器映射器</font>，不需要工程师开发，由框架提供
@@ -2881,13 +3134,14 @@ success.html<br/>
 6. View：<font color="red">视图</font>，不需要工程师开发，由框架或视图技术提供
     - 作用：将模型数据通过页面展示给用户
 
-
 ## 2、DispatcherServlet （前端控制器）初始化过程
+
 - DispatcherServlet 本质上是一个 Servlet，所以天然的遵循 Servlet 的生命周期。所以宏观上是 Servlet 生命周期来进行调度。
 
-<img src="./attachments/18、DispatcherServlet（前端控制器）初始化过程.png" />
+![](attachments/18、DispatcherServlet（前端控制器）初始化过程.png)
 
 1. 初始化 WebApplicationContext，所在类：org.springframework.web.servlet.FrameworkServlet
+
 ```java
     /**
 	 * Initialize and publish the WebApplicationContext for this servlet.
@@ -2949,7 +3203,9 @@ success.html<br/>
 		return wac;
 	}
 ```
+
 2. 创建 WebApplicationContext，所在类：org.springframework.web.servlet.FrameworkServlet
+
 ```java
     /**
 	 * Instantiate the WebApplicationContext for this servlet, either a default
@@ -2988,6 +3244,7 @@ success.html<br/>
 		return wac;
 	}
 ```
+
 3. DispatcherServlet 初始化策略，所在类：org.springframework.web.servlet.DispatcherServlet
     - FrameworkServlet创建WebApplicationContext后，刷新容器，调用onRefresh(wac)，此方法在DispatcherServlet中进行了重写，调用了initStrategies(context)方法，初始化策略，即初始化DispatcherServlet的各个组件
 
@@ -3009,8 +3266,8 @@ success.html<br/>
 	}
 ```
 
-
 ## 3、DispatcherServlet 调用组件处理请求
+
 1. processRequest()，所在类：org.springframework.web.servlet.FrameworkServlet
    - FrameworkServlet重写HttpServlet中的service()和doXxx()，这些方法中调用了processRequest(request, response)
 
@@ -3059,7 +3316,9 @@ success.html<br/>
 		}
 	}
 ```
+
 2. doService()，所在类：org.springframework.web.servlet.DispatcherServlet
+
 ```java
     /**
 	 * Exposes the DispatcherServlet-specific request attributes and delegates to {@link #doDispatch}
@@ -3119,7 +3378,9 @@ success.html<br/>
 		}
 	}
 ```
+
 3. doDispatch()，所在类：org.springframework.web.servlet.DispatcherServlet
+
 ```java
     /**
 	 * Process the actual dispatching to the handler.
@@ -3214,7 +3475,9 @@ success.html<br/>
 		}
 	}
 ```
+
 4. processDispatchResult()，所在类：org.springframework.web.servlet.DispatcherServlet
+
 ```java
     /**
 	 * Handle the result of handler selection and handler invocation, which is
@@ -3263,27 +3526,29 @@ success.html<br/>
 	}
 ```
 
-
 ## 4、SpringMVC的执行流程
+
 1. 用户向服务器发送请求，请求被SpringMVC 前端控制器 DispatcherServlet捕获。
 2. DispatcherServlet对请求URL进行解析，得到请求资源标识符（URI），判断请求URI对应的映射：
 
 ### (1)、不存在
+
 - 再判断是否配置了mvc:default-servlet-handler
+
 1. 如果没配置，则控制台报映射查找不到，客户端展示404错误
 
-<img src="./attachments/19、控制台报映射查找不到，客户端展示404错误.png" />
+![](attachments/19、控制台报映射查找不到，客户端展示404错误.png)
 
-<img src="./attachments/20、控制台报映射查找不到，客户端展示404错误2.png" />
+![](attachments/20、控制台报映射查找不到，客户端展示404错误2.png)
 
 2.  如果有配置，则访问目标资源（一般为静态资源，如：JS,CSS,HTML），找不到客户端也会展示404错误
 
-<img src="./attachments/21、访问目标资源，找不到客户端也会展示404错误.png" />
+![](attachments/21、访问目标资源，找不到客户端也会展示404错误.png)
 
-<img src="./attachments/22、访问目标资源，找不到客户端也会展示404错误2.png" />
-
+![](attachments/22、访问目标资源，找不到客户端也会展示404错误2.png)
 
 ### (2)、存在则执行下面的流程
+
 1. 根据该URI，调用HandlerMapping获得该Handler配置的所有相关的对象（包括Handler对象以及Handler对象对应的拦截器），最后以HandlerExecutionChain执行链对象的形式返回。
 2. DispatcherServlet 根据获得的Handler，选择一个合适的HandlerAdapter。
 3. 如果成功获得HandlerAdapter，此时将开始执行拦截器的preHandler(…)方法【正向】

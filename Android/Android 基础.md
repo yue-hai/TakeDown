@@ -9390,7 +9390,7 @@ org.gradle.jvmargs=-Xmx1536M \
 ## 2、开源投屏工具：`scrcpy`
 
 1. 下载解压：https://github.com/Genymobile/scrcpy/releases
-2. 鼠标键盘操作：``https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md
+2. 鼠标键盘操作：`https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md`
 3. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
 
 ![](attachments/Pasted%20image%2020230425162439.png)

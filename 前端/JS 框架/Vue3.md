@@ -1,7 +1,8 @@
 > github上的tags地址：[https://github.com/vuejs/vue-next/releases/tag/v3.0.0](https://github.com/vuejs/vue-next/releases/tag/v3.0.0)
-> [https://www.bilibili.com/video/BV1Zy4y1K7SH](https://www.bilibili.com/video/BV1Zy4y1K7SH)
-> [vue3快速上手.md](https://www.yuque.com/attachments/yuque/0/2023/md/29280567/1673932738273-017def99-1552-47f8-a656-0456c248b628.md?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fmd%2F29280567%2F1673932738273-017def99-1552-47f8-a656-0456c248b628.md%22%2C%22name%22%3A%22vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.md%22%2C%22size%22%3A21820%2C%22ext%22%3A%22md%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Afalse%2C%22type%22%3A%22%22%2C%22mode%22%3A%22title%22%2C%22taskId%22%3A%22uec35f390-de93-42d3-9fe1-56e236be94f%22%2C%22taskType%22%3A%22transfer%22%2C%22id%22%3A%22u40fc280f%22%2C%22card%22%3A%22file%22%7D)
-> [vue3.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1674895998765-73325236-a16c-44ca-a13d-93018e8f61e6.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1674895998765-73325236-a16c-44ca-a13d-93018e8f61e6.jpeg%22%2C%22name%22%3A%22vue3.jpg%22%2C%22size%22%3A482636%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22type%22%3A%22image%2Fjpeg%22%2C%22taskId%22%3A%22u49fdcf8b-79f6-4f24-9d58-c71a6a1edf7%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u9f6ab211%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+> 
+> [B 站尚硅谷 vue3 视频](https://www.bilibili.com/video/BV1Zy4y1K7SH)
+> 
+> <a href="attachments/vue3快速上手.md" alt="文档">vue3快速上手</a>
 
 # 一、Vue3 简介
 
@@ -10,6 +11,7 @@
 - 2020年9月18日，Vue.js发布3.0版本，代号：One Piece（海贼王）
 - 耗时2年多、2600+次提交、30+个RFC、600+次PR、99位贡献者
 - github上的tags地址：[https://github.com/vuejs/vue-next/releases/tag/v3.0.0](https://github.com/vuejs/vue-next/releases/tag/v3.0.0)
+
 ## 2、Vue3 带来了什么
 
 1. 性能的提升
@@ -36,10 +38,15 @@
    2. data 选项应始终被声明为一个函数
    3. 移除keyCode支持作为 v-on 的修饰符
    4. ......
+
 # 二、创建 Vue3.0 工程
+
 ## 1、使用 vue-cli 创建
+
 ### ①、创建工程
+
 官方文档：[https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create](https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create)
+
 ```bash
 ## 查看@vue/cli版本，确保@vue/cli版本在4.5.0以上
 vue --version
@@ -51,9 +58,11 @@ vue create vue_test
 cd vue_test
 npm run serve
 ```
+
 ### ②、分析工程结构
 
 1. `main.js` 简化
+
 ```javascript
 // 引入的不再是 Vue 构造函数了，而是一个名为 createApp 的工厂函数
 import { createApp } from 'vue'
@@ -68,6 +77,7 @@ app.mount('#app')
 ```
 
 2. 组件中可以没有根标签
+
 ```javascript
 <template>
     <img alt="Vue logo" src="./assets/logo.png">
@@ -88,7 +98,8 @@ export default {
 
 3. 工程结构
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670311518690-aac78d81-abd5-4f19-800e-88c448d9f972.png#from=url&id=b4pHY&originHeight=433&originWidth=619&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&title=)
+![](attachments/Pasted%20image%2020230725125500.png)
+
 ## 2、使用 vite 创建
 
 1. 官方文档：[https://v3.cn.vuejs.org/guide/installation.html#vite](https://v3.cn.vuejs.org/guide/installation.html#vite)
@@ -100,7 +111,10 @@ export default {
    3. 真正的按需编译，不再等待整个应用编译完成。
 5. 传统构建 与 vite构建对比图
 
-![](https://cn.vitejs.dev/assets/bundler.37740380.png#clientId=ubde698ed-3713-4&id=NqTNJ&originHeight=1068&originWidth=1918&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=u484e5332-ead2-49ac-88b5-f9d68ec32ac&title=)![](https://cn.vitejs.dev/assets/esm.3070012d.png#clientId=ubde698ed-3713-4&id=pZJc1&originHeight=1030&originWidth=1646&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=ue2dd715a-b7ed-4042-ab67-739ef085a71&title=)
+![](attachments/Pasted%20image%2020230725124852.png)
+
+![](attachments/Pasted%20image%2020230725124900.png)
+
 ```bash
 ## 创建工程
 npm create vite@latest vue3-vite --template vue
@@ -135,8 +149,11 @@ npm install
 ## 运行
 npm run dev
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673932299538-7dea4824-ec2a-44f4-92a7-87b55ca648d0.png#averageHue=%23fefefe&clientId=u7f4646f6-1a3b-4&from=paste&height=917&id=ub198db3c&name=image.png&originHeight=917&originWidth=783&originalType=binary&ratio=1&rotation=0&showTitle=false&size=30068&status=done&style=stroke&taskId=uc56749ec-98e0-45aa-9732-ddcfb15e488&title=&width=783)
+
+![image.png](attachments/2023-07-25-12--51-14-149--QzNcMeyS2cO3Ig.png)
+
 # 三、常用组合式 Composition API
+
 ## 1、拉开序幕的 setup
 
 1. 理解：Vue3.0 中一个新的配置项，值为一个函数。
@@ -165,9 +182,8 @@ import App from './App.vue'
 const app = createApp(App)
 // 挂载
 app.mount('#app')
-
-
 ```
+
 ```vue
 <template>
     <HelloWorld />
@@ -181,8 +197,8 @@ export default {
     components: { HelloWorld }
 }
 </script>
-
 ```
+
 ```vue
 <template>
     <h1>姓名：{{name}}</h1>
@@ -213,8 +229,8 @@ export default {
     }
 }
 </script>
-
 ```
+
 ## 2、ref 函数
 
 1. 作用：定义一个响应式的数据
@@ -226,6 +242,7 @@ export default {
    1. 接收的数据可以是：基本类型、也可以是对象类型。
    2. 基本类型的数据：响应式依然是靠 `Object.defineProperty()` 的 `get` 与 `set` 完成的。
    3. 对象类型的数据：内部 “ 求助 ” 了 Vue3.0 中的一个新函数：`reactive` 函数。
+
 ```vue
 <template>
     <h1>姓名：{{name}}</h1>
@@ -268,12 +285,14 @@ export default {
 </script>
 
 ```
+
 ## 3、reactive 函数
 
 1. 作用：定义一个对象类型的响应式数据（基本类型不要用它，要用 `ref` 函数）
 2. 语法：`const 代理对象 = reactive(源对象)` 接收一个对象（或数组），返回一个代理对象（Proxy 的实例对象，简称 proxy 对象）
 3. reactive 定义的响应式数据是“深层次的”。
 4. 内部基于 ES6 的 Proxy 实现，通过代理对象操作源对象内部数据进行操作。
+
 ```vue
 <template>
     <h1>姓名：{{person.name}}</h1>
@@ -331,12 +350,15 @@ export default {
 </script>
 
 ```
+
 ## 4、Vue3.0 中的响应式原理
+
 ### ①、vue2.x 的响应式
 
 1. 实现原理：
    1. 对象类型：通过 `Object.defineProperty()` 对属性的读取、修改进行拦截（数据劫持）。
    2. 数组类型：通过重写更新数组的一系列方法来实现拦截。（对数组的变更方法进行了包裹）。
+
 ```vue
 Object.defineProperty(data, 'count', {
     get () {}, 
@@ -347,7 +369,9 @@ Object.defineProperty(data, 'count', {
 2. 存在问题：
    1. 新增属性、删除属性，界面不会更新。
    2. 直接通过下标修改数组，界面不会自动更新
+
 ### ②、Vue3.0 的响应式
+
 > [https://www.bilibili.com/video/BV1Zy4y1K7SH/?p=146](https://www.bilibili.com/video/BV1Zy4y1K7SH/?p=146)
 
 - 实现原理：
@@ -356,6 +380,7 @@ Object.defineProperty(data, 'count', {
 3. MDN 文档中描述的 `Proxy` 与 `Reflect`：
    - Proxy：[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
    - Reflect：[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
+
 ```vue
 new Proxy(data, {
     /** 
@@ -383,6 +408,7 @@ new Proxy(data, {
 
 proxy.name = 'tom'   
 ```
+
 ## 5、reactive 对比 ref
 
 1. 从定义数据角度对比：
@@ -395,6 +421,7 @@ proxy.name = 'tom'
 3. 从使用角度对比：
    1. `ref` 定义的数据：操作数据需要 `.value`，读取数据时模板中直接读取`不需要` `.value`。
    2. `reactive` 定义的数据：操作数据与读取数据：均不需要 `.value`。
+
 ## 6、setup 的两个注意点
 
 1. `setup` 执行的时机
@@ -404,15 +431,15 @@ proxy.name = 'tom'
    2. `context`：上下文对象
       1. `attrs`：值为对象，包含：组件外部传递过来，但没有在 props 配置中声明的属性，相当于 `this.$attrs`。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674029780247-16910350-4cba-400b-985b-de36284627f5.png#clientId=ufa897da0-5a3d-4&from=paste&height=112&id=u59da254f&name=image.png&originHeight=112&originWidth=410&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8537&status=done&style=stroke&taskId=u0b12fdd9-15bb-4f70-8c22-160a83b0f44&title=&width=410)
+![image.png](attachments/2023-07-25-12--51-14-617--mV2cK_8I0AedBQ.png)
 
       2. `emit`：分发自定义事件的函数，相当于 `this.$emit`。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674029850619-a5ccae99-2661-42d2-86ae-f528bd63925f.png#clientId=ufa897da0-5a3d-4&from=paste&height=65&id=u01205921&name=image.png&originHeight=65&originWidth=416&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3426&status=done&style=stroke&taskId=u0b9bc130-f66d-4dff-baa4-099206cf940&title=&width=416)
+![image.png](attachments/2023-07-25-12--51-14-631--2f2t6MlpcZtoUg.png)
 
       3. `slots`：收到的插槽内容，相当于 `this.$slots`。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674029724457-958edd4a-a23a-4bea-abfd-f24850413f26.png#clientId=ufa897da0-5a3d-4&from=paste&height=304&id=u4ef46e89&name=image.png&originHeight=304&originWidth=399&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17906&status=done&style=stroke&taskId=ue4c94725-69b8-45b4-af2f-f26bae382f4&title=&width=399)
+![image.png](attachments/2023-07-25-12--51-14-642--_5dIAMrOsRKu3A.png)
 
 ---
 
@@ -454,6 +481,7 @@ export default {
 </script>
 
 ```
+
 ```vue
 <template>
     <h1>{{person.name}}</h1>
@@ -500,13 +528,15 @@ export default {
     }
 }
 </script>
-
 ```
+
 ## 7、计算属性与监视属性
+
 ### ①、计算属性 `computed` 函数
 
 1. 与 Vue2.x 中 `computed` 配置功能一致
 2. 写法
+
 ```vue
 <template>
     姓：<input type="text" v-model="person.firstName"><br>
@@ -553,6 +583,7 @@ export default {
 </script>
 
 ```
+
 ### ②、监视属性`watch` 函数
 
 - 与 Vue2.x 中 `watch` 配置功能一致
@@ -560,6 +591,7 @@ export default {
 - 两个小“坑”：
    - 监视 `reactive` 定义的响应式数据时：`oldValue` 无法正确获取、强制开启了深度监视（deep 配置失效）。
    - 监视 `reactive` 定义的响应式数据中某个属性时：deep 配置有效。
+
 ```vue
 <template>
     <h2>当前求和为：{{sum}}</h2>
@@ -639,6 +671,7 @@ export default {
 </script>
 
 ```
+
 ### ③、监视属性`watchEffect` 函数
 
 1. `watch` 的套路是：既要指明监视的属性，也要指明监视的回调。
@@ -646,6 +679,7 @@ export default {
 3. `watchEffect` 有点像 `computed`：
    1. 但 `computed` 注重的计算出来的值（回调函数的返回值），所以必须要写返回值。
    2. 而 `watchEffect` 更注重的是过程（回调函数的函数体），所以不用写返回值。
+
 ```vue
 <template>
     <h2>当前求和为：{{sum}}</h2>
@@ -690,14 +724,19 @@ export default {
 
 </style>
 ```
+
 ## 8、生命周期
+
 ### ①、vue2.x 的生命周期
-![](https://cn.vuejs.org/images/lifecycle.png#clientId=ubb1f20ec-8483-4&height=2082&id=txPSU&originHeight=3039&originWidth=1200&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=uc23e025b-33a5-4990-9cb4-304e4011dcc&title=&width=822)
+
+![](attachments/Pasted%20image%2020230726143217.png)
+
 ### ②、vue3.0 的生命周期
 
 1. vue3.0 中可以继续使用 Vue2.x 中的生命周期钩子，但有有两个被更名：
    1. `beforeDestroy` 改名为 `beforeUnmount`
    2. `destroyed` 改名为 `unmounted`
+
 ```vue
 <template>
     <button @click="isShow = !isShow">切换隐藏/显示</button>
@@ -724,6 +763,7 @@ export default {
 </script>
 
 ```
+
 ```vue
 <template>
     <h2>当前求和为：{{sum}}</h2>
@@ -782,6 +822,7 @@ export default {
    6. 更新完成：`updated`=======>`onUpdated`
    7. 卸载之前：`beforeUnmount`==>`onBeforeUnmount`
    8. 卸载完成：`unmounted`=====>`onUnmounted`
+
 ```vue
 <template>
     <h2>当前求和为：{{sum}}</h2>
@@ -828,12 +869,15 @@ export default {
 </script>
 
 ```
-![](https://v3.cn.vuejs.org/images/lifecycle.svg#clientId=ubb1f20ec-8483-4&id=pziMW&originHeight=1388&originWidth=840&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=u2559b978-667b-4f81-a308-f528ca4f183&title=)
+
+![](attachments/Pasted%20image%2020230726143534.png)
+
 ## 9、自定义 `hook` 函数
 
 1. 什么是 `hook`：本质是一个函数，把 `setup` 函数中使用的 Composition API 进行了封装。 
 2. 类似于 vue2.x 中的 `mixin`。 
 3. 自定义 `hook` 的优势：复用代码，让 `setup` 中的逻辑更清楚易懂。 
+
 ```javascript
 // 引入的不再是 Vue 构造函数了，而是一个名为 createApp 的工厂函数
 import { createApp } from 'vue'
@@ -845,6 +889,7 @@ createApp(App).mount('#app')
 ```
 
 - 在 src 目录下创建 hooks 目录，在其中创建 usePoint.js 文件
+
 ```javascript
 import {onBeforeUnmount, onMounted, reactive} from 'vue'
 
@@ -904,6 +949,7 @@ export default { savePoint }
 </script>
 
 ```
+
 ```vue
 <template>
     <button @click="isShow = !isShow">切换隐藏/显示</button>
@@ -928,11 +974,13 @@ export default { savePoint }
 </script>
 
 ```
+
 ## 10、`toRef`
 
 1. 作用：创建一个 `ref` 对象，其 `value` 值指向另一个对象中的某个属性。
 2. 语法：`const name = toRef(person,'name')`
 3. 应用：要将响应式对象中的某个属性单独提供给外部使用时。
+
 ```vue
 <template>
     <h2>姓名：{{name}}</h2>
@@ -976,6 +1024,7 @@ export default { savePoint }
 ```
 
 4. 扩展：`toRefs` 与 `toRef` 功能一致，但可以批量创建多个 `ref` 对象，语法：`toRefs(person)`
+
 ```vue
 <template>
     <h2>姓名：{{name}}</h2>
@@ -1012,7 +1061,9 @@ export default {
 </script>
 
 ```
+
 # 四、其它组合式 Composition API
+
 ## 1、`shallowReactive` 与 `shallowRef`
 
 1. `shallowReactive`：只处理对象最外层属性的响应式（浅响应式）。
@@ -1020,11 +1071,13 @@ export default {
 3. 什么时候使用?
    1. 如果有一个对象数据，结构比较深，但变化时只是外层属性变化：`shallowReactive`。
    2. 如果有一个对象数据，后续功能不会修改该对象中的属性，而是生新的对象来替换：`shallowRef`。
+
 ## 2、`readonly` 与 `shallowReadonly`
 
 1. `readonly`：让一个响应式数据变为只读的（深只读），所有数据都不可更改
 2. `shallowReadonly`：让一个响应式数据变为只读的（浅只读），只有第一层不可修改，嵌套的对象可以修改
 3. 应用场景：不希望数据被修改时。
+
 ```vue
 <template>
     <h2>姓名：{{name}}</h2>
@@ -1064,6 +1117,7 @@ export default {
 </script>
 
 ```
+
 ## 3、`toRaw` 与 `markRaw`
 
 1. `toRaw`：
@@ -1074,6 +1128,7 @@ export default {
    2. 应用场景:
       1. 有些值不应被设置为响应式的，例如复杂的第三方类库等。
       2. 当渲染具有不可变数据源的大列表时，跳过响应式转换可以提高性能。
+
 ```vue
 <template>
     <h2>姓名：{{name}}</h2>
@@ -1125,11 +1180,13 @@ export default {
 </script>
 
 ```
+
 ## 4、`customRef`
 
 1. 作用：创建一个自定义的 `ref`，并对其依赖项跟踪和更新触发进行显式控制。
 2. 本质就是一个函数
 3. 实现防抖效果：
+
 ```vue
 <template>
     <input type="text" v-model="keyword">
@@ -1188,13 +1245,16 @@ export default {
     }
 </script>
 ```
+
 ## 5、`provide` 与 `inject`
-![](https://v3.cn.vuejs.org/images/components_provide.png#clientId=ubb1f20ec-8483-4&id=bbwQu&originHeight=454&originWidth=578&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=u8ac99a65-4b4e-47c7-bfbe-34b765002cb&title=)
+
+![](attachments/Pasted%20image%2020230726143721.png)
 
 1. 作用：实现祖与后代组件间通信
 2. 套路：父组件有一个 `provide` 选项来提供数据，后代组件有一个 `inject` 选项来开始使用这些数据
 3. 具体写法：
    1. 祖组件中：
+
 ```vue
 setup(){
     ......
@@ -1205,6 +1265,7 @@ setup(){
 ```
 
    2. 后代组件中：
+
 ```vue
 setup(props,context){
     ......
@@ -1226,6 +1287,7 @@ import App from './App.vue'
 createApp(App).mount('#app')
 
 ```
+
 ```vue
 <template>
     <div class="app">
@@ -1279,6 +1341,7 @@ createApp(App).mount('#app')
 </style>
 
 ```
+
 ```vue
 <template>
     <div class="child">
@@ -1306,6 +1369,7 @@ createApp(App).mount('#app')
     }
 </script>
 ```
+
 ```vue
 <template>
     <div class="son">
@@ -1330,12 +1394,14 @@ export default {
 }
 </script>
 ```
+
 ## 6、响应式数据的判断
 
 1. `isRef`：检查一个值是否为一个 `ref` 对象
 2. `isReactive`：检查一个对象是否是由 `reactive` 创建的响应式代理
 3. `isReadonly`：检查一个对象是否是由 `readonly` 创建的只读代理
 4. `isProxy`：检查一个对象是否是由 `reactive` 或者 `readonly` 方法创建的代理
+
 ```vue
 <template>
     <h2>姓名：{{name}}</h2>
@@ -1381,24 +1447,38 @@ export default {
 </script>
 
 ```
+
 # 五、组合式 Composition API 的优势
+
 ## 1、Options API 存在的问题
+
 使用传统 OptionsAPI 中，新增或者修改一个需求，就需要分别在 `data`、`methods`、`computed` 里修改 。
-![](https://cdn.nlark.com/yuque/0/2023/gif/29280567/1673945415609-8b13e01e-ed5a-4af8-b08a-6c65be974bdc.gif#clientId=ubb1f20ec-8483-4&from=paste&height=256&id=uea866329&originHeight=657&originWidth=960&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=u6dd81c78-3249-4da7-8a9a-c2d2dd98292&title=&width=374)![](https://cdn.nlark.com/yuque/0/2023/gif/29280567/1673945423179-02ed564e-7b96-4f15-ad3d-5a04cfe7c326.gif#clientId=ubb1f20ec-8483-4&from=paste&height=657&id=uaab44102&originHeight=720&originWidth=523&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=ufe4c0a79-412f-42ba-a065-34c1a43a69d&title=&width=477)
+
+![](attachments/f84e4e2c02424d9a99862ade0a2e4114~tplv-k3u1fbpfcp-watermark.gif)
+
+![](attachments/e5ac7e20d1784887a826f6360768a368~tplv-k3u1fbpfcp-watermark.gif)
+
 ## 2、Composition API 的优势
+
 我们可以更加优雅的组织我们的代码，函数。让相关功能的代码更加有序的组织在一起。
-![](https://cdn.nlark.com/yuque/0/2023/gif/29280567/1673945430130-cb283c45-81be-447b-a356-7268a5078561.gif#clientId=ubb1f20ec-8483-4&from=paste&id=u56572562&originHeight=540&originWidth=785&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=u6fca6567-5c10-4cb2-8a99-b66f7a4fdad&title=)
-![](https://cdn.nlark.com/yuque/0/2023/gif/29280567/1673945435997-e53650e1-08ed-46e2-a4e5-822986ef3aa1.gif#clientId=ubb1f20ec-8483-4&from=paste&id=u79fd65ab&originHeight=600&originWidth=735&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=stroke&taskId=u3d98000f-85af-4717-a66b-4aa03d1b35f&title=)
+
+![](attachments/bc0be8211fc54b6c941c036791ba4efe~tplv-k3u1fbpfcp-watermark.gif)
+
+![](attachments/6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.gif)
+
 # 六、新的组件
+
 ## 1、Fragment
 
 1. 在 Vue2 中：组件必须有一个根标签
 2. 在 Vue3 中：组件可以没有根标签，内部会将多个标签包含在一个 Fragment 虚拟元素中
 3. 好处：减少标签层级，减小内存占用
+
 ## 2、Teleport
 
 1. 什么是 `Teleport`：`Teleport` 是一种能够将我们的组件 `html` 结构移动到指定位置的技术。 
 2. 可以使元素的定位更加方便
+
 ```javascript
 // 引入的不再是 Vue 构造函数了，而是一个名为 createApp 的工厂函数
 import { createApp } from 'vue'
@@ -1443,6 +1523,7 @@ createApp(App).mount('#app')
 </style>
 
 ```
+
 ```vue
 <template>
     <div class="child">
@@ -1462,6 +1543,7 @@ createApp(App).mount('#app')
     }
 </script>
 ```
+
 ```vue
 <template>
     <div class="son">
@@ -1481,6 +1563,7 @@ createApp(App).mount('#app')
     }
 </script>
 ```
+
 ```vue
 <template>
     <div>
@@ -1535,17 +1618,20 @@ createApp(App).mount('#app')
     }
 </style>
 ```
+
 ## 3、Suspense
 
 1. 等待异步组件时渲染一些额外内容，让应用有更好的用户体验
 2. 使用步骤：
    1. 异步引入组件
+
 ```vue
 import {defineAsyncComponent} from 'vue'
 const Child = defineAsyncComponent(()=>import('./components/Child.vue'))
 ```
 
    2. 使用 `Suspense` 包裹组件，并配置好 `default` 与 `fallback`
+
 ```vue
 <template>
     <div class="app">
@@ -1574,6 +1660,7 @@ import App from './App.vue'
 createApp(App).mount('#app')
 
 ```
+
 ```vue
 <template>
     <div class="app">
@@ -1617,6 +1704,7 @@ createApp(App).mount('#app')
 </style>
 
 ```
+
 ```vue
 <template>
     <div class="child">
@@ -1631,12 +1719,14 @@ createApp(App).mount('#app')
     }
 </script>
 ```
-## 4、
+
 # 七、其他改变
+
 ## 1、全局 API 的转移
 
 1. Vue 2.x 有许多全局 API 和配置。
 - 例如：注册全局组件、注册全局指令等。
+
 ```vue
 // 注册全局组件
 Vue.component('MyButton', {
@@ -1653,7 +1743,9 @@ Vue.directive('focus', {
 ```
 
 2. Vue3.0 中对这些 API 做出了调整
+
 - 将全局的 API，即：`Vue.xxx` 调整到应用实例（`app`）上
+
 | 2.x 全局 API（Vue） | 3.x 实例 API (app) |
 | --- | --- |
 | Vue.config.xxxx | app.config.xxxx |
@@ -1669,6 +1761,7 @@ Vue.directive('focus', {
 1. `data` 选项应始终被声明为一个函数。
 2. 过度类名的更改：
    1. Vue2.x 写法
+
 ```vue
 .v-enter,
 .v-leave-to {
@@ -1681,6 +1774,7 @@ Vue.directive('focus', {
 ```
 
    2. Vue3x 写法
+
 ```vue
 .v-enter,
 .v-leave-to {
@@ -1695,6 +1789,7 @@ Vue.directive('focus', {
 3. 移除 `keyCode` 作为 `v-on` 的修饰符，同时也不再支持 `config.keyCodes`
 4. 移除 `v-on.native` 修饰符
    1. 父组件中绑定事件
+
 ```vue
 <my-component
   v-on:close="handleComponentEvent"
@@ -1703,6 +1798,7 @@ Vue.directive('focus', {
 ```
 
    2. 子组件中声明自定义事件
+
 ```vue
 <script>
   export default {
@@ -1712,6 +1808,7 @@ Vue.directive('focus', {
 ```
 
 5. 移除过滤器（`filter`）
+
 > 过滤器虽然这看起来很方便，但它需要一个自定义语法，打破大括号内表达式是 “只是 JavaScript” 的假设，这不仅有学习成本，而且有实现成本！建议用方法调用或计算属性去替换过滤器。
 
 6. ......
@@ -1725,13 +1822,15 @@ Vue.directive('focus', {
 1. 进入网站，选择矢量图
 2. 点击下载，可下载 SVG 文件或者 SVG 代码
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674002319160-88fbca1a-8609-4215-a00b-b61e2d2f283f.png#averageHue=%23c6e5e8&clientId=ub8c2b9ce-4d15-4&from=paste&height=614&id=ue85d168a&name=image.png&originHeight=614&originWidth=802&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58773&status=done&style=stroke&taskId=ub319d5a5-2646-4255-82df-345c068fefe&title=&width=802)
+![image.png](attachments/2023-07-25-12--51-14-657--91ZQUe9R8oEEzg.png)
+
 ### ①、直接使用
 
 1. 复制 SVG 代码
 2. 粘贴到 vue 组件中
 3. 将 `<style></style>` 标签中的样式移动到 vue 的 `<style></style>` 标签中
 4. 删除 `<defs></defs>` 标签，即可使用
+
 ```vue
 <template>
     <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" id="b52015b4-2459-46df-970a-a6cd264bdde9">
@@ -1918,6 +2017,7 @@ Vue.directive('focus', {
 ```
 
 5. 在 App 组件中引入 svg1.vue 组件
+
 ```vue
 <template>
     <!-- 引入 svg1 组件 -->
@@ -1934,11 +2034,13 @@ Vue.directive('focus', {
 </script>
 
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674008130808-74a39a70-5cdb-4de5-ac9c-f68bfc3ea6ad.png#averageHue=%23eae8e7&clientId=ub8c2b9ce-4d15-4&from=paste&height=345&id=u225f081c&name=image.png&originHeight=345&originWidth=338&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27020&status=done&style=stroke&taskId=u630ee248-9058-4fe0-a4d8-b9af5107f84&title=&width=338)
+
+![image.png](attachments/2023-07-25-12--51-14-684--OVWnWW2tEZ3agg.png)
 
 ---
 
 1. 可在 `<svg></svg>` 内使用 `width、height` 属性修改矢量图尺寸
+
 ```vue
 <template>
     <svg width="200px" height="200px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" id="b52015b4-2459-46df-970a-a6cd264bdde9">
@@ -2124,7 +2226,6 @@ Vue.directive('focus', {
 
 ```
 
-2. 1
 ### ②、使用 SVG 文件
 
 > <font color="#ff0000">现在可以直接使用 `img` 标签引入 `svg` 文件</font>
@@ -2132,6 +2233,7 @@ Vue.directive('focus', {
 1. 安装依赖：`npm install svg-sprite-loader -D`
 2. 创建目录：src/icons/svg ，将下载的 svg 文件放入其中
 3. 修改文件 vue.config.js 
+
 ```javascript
 const {defineConfig} = require('@vue/cli-service')
 const path = require('path')
@@ -2162,9 +2264,11 @@ module.exports = defineConfig({
 })
 
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674007426434-9d761be4-1ab1-424e-9761-0e35c342c6aa.png#averageHue=%2360513c&clientId=ub8c2b9ce-4d15-4&from=paste&height=822&id=u5056ce78&name=image.png&originHeight=822&originWidth=749&originalType=binary&ratio=1&rotation=0&showTitle=false&size=104245&status=done&style=stroke&taskId=ua86f155f-d1a8-46d3-b693-7b282e10df9&title=&width=749)
+
+![image.png](attachments/2023-07-25-12--51-14-702--2oHxwv9uw-5Mtg.png)
 
 4. 修改文件 main.js
+
 ```javascript
 // 引入的不再是 Vue 构造函数了，而是一个名为 createApp 的工厂函数
 import { createApp } from 'vue'
@@ -2181,9 +2285,11 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 
 
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674007667395-2d71d9ac-79b4-4bb2-9325-91598e43a948.png#averageHue=%232e2d2c&clientId=ub8c2b9ce-4d15-4&from=paste&height=418&id=u10c6a153&name=image.png&originHeight=418&originWidth=890&originalType=binary&ratio=1&rotation=0&showTitle=false&size=55745&status=done&style=stroke&taskId=u7a405d90-4828-4992-9099-621809b16fc&title=&width=890)
+
+![image.png](attachments/2023-07-25-12--51-14-742--vsgChq3cI8Qqiw.png)
 
 5. 在目录 components 中创建目录 SvgIcon ，在其中创建组件 baseSvgIcon.vue
+
 ```vue
 <template>
     <!-- 只需要给一个 dom 存放 svg 即可 -->
@@ -2229,6 +2335,7 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 ```
 
 6. 在 App 组件中引入 SvgIcon 组件，传入适当的参数即可使用
+
 ```vue
 <template>
     <!-- 引入 svg1 组件 -->
@@ -2254,11 +2361,14 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 </script>
 
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1674008698440-81ddc4f3-a577-4558-a37e-f97483f68d28.png#averageHue=%23efebeb&clientId=ub8c2b9ce-4d15-4&from=paste&height=1020&id=u8c338a57&name=image.png&originHeight=1020&originWidth=793&originalType=binary&ratio=1&rotation=0&showTitle=false&size=114265&status=done&style=stroke&taskId=u74dbf292-02b8-46a3-a2ae-c5e9cb22d6e&title=&width=793)
+
+![image.png](attachments/2023-07-25-12--51-14-776--Ui2g4H5cufv-EA.png)
+
 ## 2、使用 axios
 
 1. 安装 axios ：`npm i axios`
 2. 修改 `main.js` 文件，引入并使用 `provide` 派发 axios
+
 ```javascript
 // 引入的不再是 Vue 构造函数了，而是一个名为 createApp 的工厂函数
 import { createApp } from 'vue'
@@ -2273,6 +2383,7 @@ createApp(App).provide("$axios", axios).mount('#app')
 ```
 
 3. 修改（或创建） `vue.config.js` 文件，配置代理服务器
+
 ```javascript
 const {defineConfig} = require('@vue/cli-service')
 const path = require('path')
@@ -2303,6 +2414,7 @@ module.exports = defineConfig({
 ```
 
 4. 在组件中使用 `inject` 接受 `provide` 派发的 axios，然后即可使用 `axios` 发送请求
+
 ```javascript
 <template>
     <button @click="getData">请求</button>
@@ -2346,13 +2458,17 @@ module.exports = defineConfig({
 
 5. 结果
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1675301787976-289c6879-223d-433c-b205-4049eadf86d0.png#averageHue=%23fbfafa&clientId=ubee5f6bf-aa1c-4&from=paste&height=500&id=u22f78136&name=image.png&originHeight=500&originWidth=1110&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64917&status=done&style=stroke&taskId=ua087a9dc-3cae-420c-bd28-d65dcca7a30&title=&width=1110)
+![image.png](attachments/2023-07-25-12--51-14-811--tCvWd6v948M0Jg.png)
+
 ## 3、vue3 vite 使用 pinia
+
 > [https://pinia.vuejs.org/zh/introduction.html](https://pinia.vuejs.org/zh/introduction.html)
+> 
 > Vuex 最新版 = Vuex 5
 
 1. 安装：`npm install pinia`
 2. 在 main.js 中引入并挂载
+
 ```java
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -2364,6 +2480,7 @@ createApp(App).use(createPinia()).mount('#app');
 ```
 
 3. 在 src 文件下创建一个 store 文件夹，并添加 index.js
+
 ```java
 // 引入 Pinia
 import { defineStore } from 'pinia'
@@ -2396,6 +2513,7 @@ export const useCounterStore = defineStore('counter', {
 ```
 
 4. 在组件中使用
+
 ```java
 <template>
     111
@@ -2409,11 +2527,14 @@ export const useCounterStore = defineStore('counter', {
     console.log(pinia.count)
 </script>
 ```
+
 ## 4、vue3 vite 使用 路由
+
 ### ①、使用
 
 1. 安装路由：`npm install vue-router@4`
 2. 在 src 目录下新建目录叫 router，新建一个 js 文件叫 index.js，文件内容如下：
+
 ```javascript
 // 引入 路由 vue-router
 import {createRouter, createWebHistory} from 'vue-router'
@@ -2430,6 +2551,7 @@ export default createRouter({
 ```
 
 3. 接着新建一个 js 文件叫 routes.js，内容如下(可以自己继续添加其他页面)：
+
 ```javascript
 // 路径配置
 export default [
@@ -2442,6 +2564,7 @@ export default [
 ```
 
 4. 在 main.js 中使用路由
+
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -2454,9 +2577,11 @@ createApp(App).use(router)
 ```
 
 5. 使用
+
 ### ②、路由嵌套
 
 - routes.js 中，添加`children` 属性，在其中添加子路由
+
 ```javascript
 // 路径配置
 export default [
@@ -2553,21 +2678,26 @@ export default [
     }
 ]
 ```
+
 ### ③、路由传参
+
 #### Ⅰ、发送
 
 1. 首先在需要跳转的页面引入API：`useRouter`
+
 ```javascript
 import { useRouter } from 'vue-router'
 ```
 
 2. 在跳转页面定义 `router` 变量
+
 ```javascript
 // 首先在 setup 中定义
  const router = useRouter()
 ```
 
 3. 用 `router.push` 跳转页面
+
 ```javascript
 // 字符串
 router.push('home')
@@ -2591,14 +2721,17 @@ router.push({ path: 'register', query: { userId: '123' }}
     </div>
 </router-link>
 ```
+
 #### Ⅱ、接收
 
 1. 在接收页面引入API：`useRoute`
+
 ```vue
 import { useRoute } from 'vue-router'
 ```
 
 2. 在接收页面定义变量 route，获取传过来的变量
+
 ```javascript
 //首先在setup中定义
 const route = useRoute()
@@ -2672,7 +2805,6 @@ export default [
 
 - 在 `vite.config.js` 中配置
 
-
 ```js
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -2740,7 +2872,6 @@ export default defineConfig({
 ```
 
 ## 7、
-docker run -d --name yuehai-java -p 9901:9901 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 bash /usr/src/myapp/start_cloud.sh
 
 ## 8、
 

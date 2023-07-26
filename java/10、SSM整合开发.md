@@ -1,22 +1,21 @@
 # 一、SSM-CRUD
+
 - ssm：SpringMVC+Spring+MyBatis
 - CRUD：Create（创建）
 - Retrieve（查询）
 - Update（更新）
 - Delete（删除）
 
-
-
 # 二、功能点
+
 1. 分页
 2. 数据校验
 3. jquery前端校验 + JSR303后端校验
 4. ajax
 5. Rest风格的URI；使用HTTP协议请求方式的动词，来表示对资源的操作（GET（查询），POST（新增），PUT（修改），DELETE（删除））
 
-
-
 # 三、技术点
+
 1. 基础框架：ssm（SpringMVC + Spring + MyBatis）
 2. 数据库：MySQL
 3. 前端框架：bootstrap 快速搭建简洁美观的界面
@@ -24,28 +23,24 @@
 5. 分页：agehelper 插件
 6. 逆向工程：MyBatis Generator
 
-
-
 # 四、基础环境搭建
 
 ## 1、创建一个maven工程
 
-<img src="./attachments/01、创建一个maven工程.png" />
+![](attachments/01、创建一个maven工程.png)
 
-<img src="./attachments/02、创建一个maven工程2.png" />
-
+![](attachments/02、创建一个maven工程2.png)
 
 ## 2、修改 Maven 设置
 
-<img src="./attachments/04、修改Maven设置.png" />
-
+![](attachments/04、修改Maven设置.png)
 
 ## 3、添加 web 构件
 
-<img src="./attachments/03、添加web构件.png" />
-
+![](attachments/03、添加web构件.png)
 
 ## 4、引入项目依赖的jar包，pom.xml 文件：
+
    - spring
    - springmvc
    - mybatis
@@ -191,8 +186,8 @@
     </project>
 ```
 
-
 ## 5、引入 bootstrap 前端框架
+
 ```html
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <html>
@@ -231,19 +226,20 @@
     </html>
 ```
 
-
 ## 6、创建数据库及数据库表
 
-<img src="./attachments/07、创建数据库及数据库表.png" />
-
+![](attachments/07、创建数据库及数据库表.png)
 
 ## 7、编写 ssm 整合的关键配置文件
+
 - web.xml，spring、springmvc、mybatis 的配置文件
+
 1. 项目结构：
 
-<img src="./attachments/08、项目结构.png" />
+![](attachments/08、项目结构.png)
 
 2. web.xml
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -336,7 +332,9 @@
 
     </web-app>
 ```
+
 3. 数据库配置文件 druid.properties
+
 ```properties
     # 配置文件中的注释以#号开头
 
@@ -357,7 +355,9 @@
     # Druid（德鲁伊）连接池还可以在配置文件中配置常用基本配置属性
     # initialSize、maxActive等
 ```
+
 4. spring 配置文件 applicationContext.xml
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -448,7 +448,9 @@
 
     </beans>
 ```
+
 5. springmvc 配置文件 springMVC.xml
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -486,7 +488,9 @@
 
     </beans>
 ```
+
 6. mybatis 配置文件 mybatis-config.xml
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE configuration
@@ -528,9 +532,10 @@
     </configuration>
 ```
 
-
 ## 8、使用 mybatis 的逆向工程生成对应的 bean 以及 mapper
+
 1. mybatis 的逆向工程配置文件
+
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE generatorConfiguration
@@ -592,7 +597,9 @@
 
     </generatorConfiguration>
 ```
+
 2. 代码生成文件
+
 ```java
     public class MBGTest {
 
@@ -610,9 +617,10 @@
     }
 ```
 
-
 ## 9、在 mapper 接口文件和 sql 映射文件中添加方法，修改 bean 类
+
 1. 实体类 Employee
+
 ```java
     public class Employee {
         private Integer empId;
@@ -709,7 +717,9 @@
         }
     }
 ```
+
 2. 实体类 Department
+
 ```java
     public class Department {
         private Integer deptId;
@@ -748,7 +758,9 @@
         }
     }
 ```
+
 3. mapper 接口文件 EmployeeMapper
+
 ```java
     public interface EmployeeMapper {
         // 按照条件进行统计
@@ -782,7 +794,9 @@
         Employee selectByPrimaryKeyWithDept(Integer empId);
     }
 ```
+
 4. sql 映射文件 EmployeeMapper.xml 中新加的一些语句
+
 ```xml
     <!-- 自己定义的查询语句，联合查询部门表 -->
 
@@ -835,8 +849,8 @@
     </select>
 ```
 
-
 ## 10、测试mapper
+
 ```java
     /**
     * 测试dao层的工作
@@ -891,21 +905,23 @@
     }
 ```
 
-
-
 # 五、查询
 
-<img src="./attachments/09、查询.png" />
+![](attachments/09、查询.png)
 
 ## 1、查询逻辑
+
 1. 访问 index.jsp 页面
 2. index.jsp 页面发送出查询员工列表请求
 3. EmployeeController 来接受请求，查出员工数据
 4. 来到 list.jsp 页面进行展示
 5. pageHelper 分页插件完成分页查询功能
 6. URI：/getEmps，请求方式：get
+
 ---
+
 1. 引入一个新的依赖，jsp 的依赖
+
 ```xml
     <!-- jsp 依赖 -->
     <dependency>
@@ -914,7 +930,9 @@
         <version>2.2</version>
     </dependency>
 ```
+
 2. EmployeeService
+
 ```java
     public interface EmployeeService {
 
@@ -942,7 +960,9 @@
         }
     }
 ```
+
 4. EmployeeController
+
 ```java
     /**
     * 使用 Spring 测试模块提供的测试请求功能，测试 curd 请求的正确性
@@ -997,7 +1017,9 @@
         }
     }
 ```
+
 5. MvcTest：测试业务，模拟请求与结果
+
 ```java
     /**
     * 使用 Spring 测试模块提供的测试请求功能，测试 curd 请求的正确性
@@ -1052,14 +1074,18 @@
         }
     }
 ```
+
 6. index.jsp
+
 ```js
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
     <%-- 使工程进入 indx.jsp 时跳转到员工列表页面 --%>
     <jsp:forward page="/getEmps"></jsp:forward>
 ```
+
 7. list.jsp 员工列表
+
 ```html
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -1218,14 +1244,17 @@
     </html>
 ```
 
-
 ## 2、查询-ajax
+
 1. index.jsp 页面直接发送 ajax 请求进行员工分页数据的查询
 2. 服务器将查出的数据，以 json 字符串的形式返回给浏览器
 3. 浏览器收到 js 字符串。可以使用 js 对 json 进行解析，使用 js 通过 dom 增删改改变页面。
 4. 返回 json。实现客户端的无关性
+
 ---
+
 - 第一页的具体的 json 字符串
+
 ```java
     {"code":100,"msg":"处理成功！","extend":
         {"pageInfo":
@@ -1261,7 +1290,9 @@
         }
     }
 ```
+
 1. 创建状态码 Msg 的实体类
+
 ```java
     // 状态码
     public class Msg {
@@ -1302,7 +1333,9 @@
 
     }
 ```
+
 2. EmployeeController 中 注释掉原先的 getEmps 方法，编写新的 getEmps2 方法，使用 json 和 Ajax
+
 ```java
     // 需导入 jackson 依赖，用于处理 json
     // 查询所有员工数据（分页查询，使用 json 和 Ajax）
@@ -1332,7 +1365,9 @@
         return Msg.success().add("pageInfo",page);
     }
 ```
+
 2. 创建 list2.jsp 页面，修改为使用 json 和 Ajax 实时更新页面，使其响应更迅速，前后端比较分离，适应更多的平台，原先的 list.jsp 不再使用
+
 ```html
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <html>
@@ -1586,17 +1621,17 @@
 
     </html>
 ```
+
 - 此处有个 bug，查出来的数据顺序不对，说是乱序倒也不是乱序，不知道咋回事，以后再看看吧
 
-<img src="./attachments/11、查询的bug.png" />
-
-
+![](attachments/11、查询的bug.png)
 
 # 六、新增
 
-<img src="./attachments/10、新增.png" />
+![](attachments/10、新增.png)
 
 - 新增-逻辑
+
 1. 在 list2.jsp 页面点击"新增"
 2. 弹出新增对话框
 3. 去数据库查询部门列表，显示在对话框中
@@ -1608,8 +1643,11 @@
    2. /emp，请求方式：POST，保存员工
    3. /emp/{id}，请求方式：PUT，修改员工
    4. /emp/{id}，DELETE，删除员工
+
 ---
+
 1. 实体类 Employee 中添加注解校验
+
 ```java
     public class Employee {
         private Integer empId;
@@ -1712,7 +1750,9 @@
         }
     }
 ```
+
 2. EmployeeService
+
 ```java
         /**
         * 添加用户信息
@@ -1726,7 +1766,9 @@
         */
         boolean getEmpByName(String empName);
 ```
+
 3. EmployeeServiceImpl
+
 ```java
     @Override
     public void addEmp(Employee employee) {
@@ -1749,7 +1791,9 @@
         return count == 0;
     }
 ```
+
 4. DepartmentService
+
 ```java
     // 与部门有关的业务组件
     public interface DepartmentService {
@@ -1761,7 +1805,9 @@
         public List<Department> getAll();
     }
 ```
+
 5. DepartmentServiceImpl
+
 ```java
     // 表明此为 Service 层
     @Service
@@ -1778,7 +1824,9 @@
         }
     }
 ```
+
 6. EmployeeController
+
 ```java
     // 处理和部门有关的请求
     // 表明此为控制层
@@ -1805,7 +1853,9 @@
         
     }
 ```
+
 7. DepartmentController
+
 ```java
     /**
      * 使用 Ajax 检验用户名是否可用
@@ -1877,7 +1927,9 @@
         }
     }
 ```
+
 8. list2.jsp
+
 ```html
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <html>
@@ -2399,20 +2451,23 @@
 
     </html>
 ```
+
 - 最后还有一个小 bug：离开焦点事件的 Ajax 服务器端员工姓名校验返回校验失败后（正则表达式合法，但是数据库中已有同名员工），若是再点击保存，则会变为校验通过的样子，虽然并不能添加成功
-
-
 
 # 七、修改
 
-<img src="./attachments/12、修改.png" />
+![](attachments/12、修改.png)
 
 - 修改-逻辑
+
 1. 点击编辑
 2. 弹出用户修改的模态框（显示用户信息）
 3. 点击更新，完成用户修改
+
 ---
+
 1. 记得在 web.xml 中配置过滤器
+
 ```xml
     <!-- 4、使用Rest风格的URI，将页面普通的post请求转为指定的delete或者put请求 -->
     <filter>
@@ -2432,7 +2487,9 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 ```
+
 2. EmployeeService
+
 ```java
     /**
      * 根据 id 查询员工
@@ -2446,7 +2503,9 @@
      */
     void updateEmp(Employee employee);
 ```
+
 3. EmployeeServiceImpl
+
 ```java
     @Override
     public Employee getEmp(Integer id) {
@@ -2460,7 +2519,9 @@
         employeeMapper.updateByPrimaryKeySelective(employee);
     }
 ```
+
 4. EmployeeController
+
 ```java
     // RESTful 风格的 URI，请求方式为：GET，查询
     @RequestMapping(value = "emp/{id}",method = RequestMethod.GET)
@@ -2525,7 +2586,9 @@
         return Msg.success();
     }
 ```
+
 5. list2.jsp
+
 ```html
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <html>
@@ -3190,18 +3253,20 @@
     </html>
 ```
 
-
-
 # 八、删除
 
-<img src="./attachments/13、删除.png" />
+![](attachments/13、删除.png)
 
 - 删除-逻辑
+
 1. 单个删除
    - URI:/emp/{id} DELETE
 2. 批量删除
+
 ---
+
 1. EmployeeService
+
 ```java
     /**
      * 根据 id 删除单个员工
@@ -3235,7 +3300,9 @@
         employeeMapper.deleteByExample(employeeExample);
     }
 ```
+
 3. EmployeeController
+
 ```java
     /**
      * 单个批量删除二合一
@@ -3275,7 +3342,9 @@
         return Msg.success();
     }
 ```
+
 4. list2.jsp
+
 ```java
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <html>
@@ -4041,8 +4110,6 @@
     </html>
 ```
 
-
-
 # 九、总结
 
-<img src="./attachments/14、总结.png" />
+![](attachments/14、总结.png)

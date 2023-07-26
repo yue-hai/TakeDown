@@ -1,27 +1,31 @@
 > [https://www.bilibili.com/video/BV1Zy4y1K7SH](https://www.bilibili.com/video/BV1Zy4y1K7SH)
-> [尚硅谷_前端技术_Vue全家桶.pdf](https://www.yuque.com/attachments/yuque/0/2023/pdf/29280567/1673925035487-e44d65e8-d304-42b9-8640-7a9bbd1f47d4.pdf?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fpdf%2F29280567%2F1673925035487-e44d65e8-d304-42b9-8640-7a9bbd1f47d4.pdf%22%2C%22name%22%3A%22%E5%B0%9A%E7%A1%85%E8%B0%B7_%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF_Vue%E5%85%A8%E5%AE%B6%E6%A1%B6.pdf%22%2C%22size%22%3A2266901%2C%22ext%22%3A%22pdf%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22type%22%3A%22application%2Fpdf%22%2C%22mode%22%3A%22title%22%2C%22taskId%22%3A%22u9f6e5dab-80c2-4c75-8f98-c7aadb778d0%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u218e3233%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
-> 1、Vue 初识：[1、Vue 初识.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1673924918376-fe53d486-83e9-45c8-a838-6d1d540c75cd.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1673924918376-fe53d486-83e9-45c8-a838-6d1d540c75cd.jpeg%22%2C%22name%22%3A%221%E3%80%81Vue%20%E5%88%9D%E8%AF%86.jpg%22%2C%22size%22%3A226390%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22type%22%3A%22image%2Fjpeg%22%2C%22mode%22%3A%22title%22%2C%22taskId%22%3A%22u104ba677-0ebd-4dd0-bde4-83680f96e4d%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22ue25f6a29%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
-> 2、Vue 脚手架：[2、Vue 脚手架.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1673924927507-7184a1a8-08f1-493b-8b4e-24242ece4985.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1673924927507-7184a1a8-08f1-493b-8b4e-24242ece4985.jpeg%22%2C%22name%22%3A%222%E3%80%81Vue%20%E8%84%9A%E6%89%8B%E6%9E%B6.jpg%22%2C%22size%22%3A6676619%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22type%22%3A%22image%2Fjpeg%22%2C%22mode%22%3A%22title%22%2C%22taskId%22%3A%22u7494d30b-dca5-4447-9ef0-66333ea5e3a%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u56e0cfdd%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+> 
+> <a href="attachments/尚硅谷_前端技术_Vue全家桶.pdf" alt="文档">尚硅谷_前端技术_Vue全家桶.pdf</a>
 
 # 一、Vue 简介
+
 ## 1、官网
 
 1. 英文官网: [https://vuejs.org/](https://vuejs.org/)
 2. vue 2.x 中文官网：[https://v2.cn.vuejs.org/v2/guide/index.html](https://v2.cn.vuejs.org/v2/guide/index.html)
 3. vue 3.x 中文官网：[https://cn.vuejs.org/guide/introduction.html](https://cn.vuejs.org/guide/introduction.html)
+
 ## 2、介绍与描述
 
 1.  动态构建用户界面的渐进式 JavaScript 框架
 2. 作者: 尤雨溪  
+
 ## 3、Vue 的特点
 
 1. 遵循 MVVM 模式
 2. 编码简洁, 体积小, 运行效率高, 适合移动/PC 端开发
 3. 它本身只关注 UI, 也可以引入其它第三方库开发项目
+
 ## 4、与其它 JS 框架的关联
 
 1. 借鉴 Angular 的模板和数据绑定技术
 2. 借鉴 React 的组件化和虚拟 DOM 技术
+
 ## 5、Vue 周边库
 
 1. vue-cli：vue 脚手架
@@ -31,15 +35,19 @@
 5. vuex：状态管理
 6. element-ui：基于 vue 的 UI 组件库(PC 端)
 7. ...
+
 # 二、Vue 初识
+
 ## 1、搭建 vue 开发工具
+
 > [https://v2.cn.vuejs.org/v2/guide/installation.html](https://v2.cn.vuejs.org/v2/guide/installation.html)
 
 1. 在上面的链接中下载开发版本
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669257749577-cd4a5930-82b5-4436-acce-85fd66406818.png#clientId=u38e66e09-8e0d-4&from=paste&height=429&id=u81860e18&name=image.png&originHeight=429&originWidth=747&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28712&status=done&style=stroke&taskId=ucc7377bc-f5cf-4593-91de-b9a47ca1ac7&title=&width=747)
+![image.png](attachments/2023-07-25-12--50-53-889--OLjDsIjjhoYC5w.png)
 
 2. 在 html 文件中引入
+
 ```bash
 <!DOCTYPE html>
 <html lang="en">
@@ -59,21 +67,22 @@
 
 3. 浏览器打开，会有两个提示，正常的；下面添加开发者工具
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1662540604714-7f5e3227-9daf-4803-bc6e-363e97982615.png#clientId=u5c1f3127-5c45-4&from=paste&height=835&id=tHuET&name=image.png&originHeight=835&originWidth=921&originalType=binary&ratio=1&rotation=0&showTitle=false&size=83292&status=done&style=stroke&taskId=u787a4d4e-1e7b-4b2c-bb31-de77812cc58&title=&width=921)
+![image.png](attachments/2023-07-25-12--50-54-491--qleHOu3jo9jJrg.png)
 
 4. 如果是 edge 或 谷歌浏览器，github 打不开的话， 可以安装插件：`Vue.js devtools`
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1662541003888-83502124-107f-4779-98f5-46bbb9700a5c.png#clientId=u5c1f3127-5c45-4&from=paste&height=1014&id=sEcW9&name=image.png&originHeight=1014&originWidth=991&originalType=binary&ratio=1&rotation=0&showTitle=false&size=137819&status=done&style=stroke&taskId=u0222cbeb-eefd-40d7-87ee-727be04013e&title=&width=991)
+![image.png](attachments/2023-07-25-12--50-54-507--oQstZfW-unUa-A.png)
 
 5. 点击插件 --> 详细信息，允许访问文件 URL
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1662541227277-49146f8d-b943-42a3-bfb6-c1a0f42ae47d.png#clientId=u5c1f3127-5c45-4&from=paste&height=927&id=ykJWa&name=image.png&originHeight=927&originWidth=921&originalType=binary&ratio=1&rotation=0&showTitle=false&size=76180&status=done&style=stroke&taskId=ud5cc7bfc-270a-45a0-beb5-5b096732f9c&title=&width=921)
+![image.png](attachments/2023-07-25-12--50-54-527--k_dZ5afdwF5vnw.png)
 
 6. 开发者工具提示消失
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669258382445-e7470780-b302-4944-9189-71a47907c4b3.png#clientId=u38e66e09-8e0d-4&from=paste&height=278&id=u5f57b6c8&name=image.png&originHeight=278&originWidth=823&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40690&status=done&style=stroke&taskId=u3d164db2-3a18-4b40-a6b3-3b642fab652&title=&width=823)
+![image.png](attachments/2023-07-25-12--50-54-687--D2DUD3Wd8WHONQ.png)
 
 7. 修改 `productionTip` 属性
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +109,8 @@
 
 8. 开发版提示消失
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669258475512-2cc9b854-9301-4eb1-8427-9cbef42e7221.png#clientId=u38e66e09-8e0d-4&from=paste&height=157&id=u3c9c6bd5&name=image.png&originHeight=157&originWidth=824&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19559&status=done&style=stroke&taskId=ue96dac0b-3ea7-4a90-8643-db100eab0f4&title=&width=824)
+![image.png](attachments/2023-07-25-12--50-54-782--qsQrpkLVtwex3w.png)
+
 ## 2、Hello World 小案例
 
 1. 想让 Vue 工作，就必须创建一个 Vue 实例，且要传入一个配置对象
@@ -110,6 +120,7 @@
 5. 真实开发中只有一个 Vue 实例，并且会配合着组件一起使用
 6. vue 容器内 `{{name}}` 称为插值表达式，其中要写要写 js 表达式，且可以自动读取到 data 中的所有属性；
 7. 一旦 data 中的数据发生改变，那么页面中用到该数据的地方也会自动更新；
+
 - 注意区分：js表达式 和 js 代码(语句)
    - 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方：
       - `a`
@@ -119,6 +130,7 @@
    - js代码(语句)
       - `if(){}`
       - `for(){}`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -157,7 +169,9 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669260184589-365a21ed-5d49-4697-bff3-b4d7a261faba.png#clientId=u38e66e09-8e0d-4&from=paste&height=149&id=u5766f170&name=image.png&originHeight=149&originWidth=823&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17262&status=done&style=stroke&taskId=ucbd01dc6-b6da-4b0b-bbdf-b7510ad0bb4&title=&width=823)
+
+![image.png](attachments/2023-07-25-12--50-54-926--vNV2Rv35LCHWKg.png)
+
 ## 3、模板语法 `{{}}`
 
 - Vue 模板语法有2大类：
@@ -168,6 +182,7 @@
    1. 功能：用于解析标签（包括：标签属性、标签体内容、绑定事件.....）。
    2. 举例：`v-bind:href="xxx"` 或  简写为 `:href="xxx"`，`xxx` 同样要写 js 表达式，且可以直接读取到 data 中的所有属性。
    3. 备注：Vue 中有很多的指令，且形式都是：`v-????`，此处我们只是拿 `v-bind` 举个例子。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -212,8 +227,11 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669361324826-587762d4-6745-415e-86bb-e755e1d91bac.png#clientId=u6a6299f3-4df1-4&from=paste&height=435&id=ucc125632&name=image.png&originHeight=435&originWidth=827&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38655&status=done&style=stroke&taskId=u425569f9-1269-4317-9945-af42a67578b&title=&width=827)
+
+![image.png](attachments/2023-07-25-12--50-55-015--6U3yFk7X4qAm-A.png)
+
 ## 4、数据绑定 `data、v-bind、v-model`
+
 ### ①、一般使用
 
 - Vue 中有 2 种数据绑定的方式：
@@ -222,6 +240,7 @@
 3. 备注：
    1. 双向绑定一般都应用在表单类元素上（如：input、select 等）
    2. `v-model:value` 可以简写为 `v-model`，因为 `v-model` 默认收集的就是 `value` 值
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -264,7 +283,9 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669362780857-a8a14a0b-d2bd-40ad-9195-c58f18a43fd6.png#clientId=u6a6299f3-4df1-4&from=paste&height=599&id=ua2a24591&name=image.png&originHeight=599&originWidth=826&originalType=binary&ratio=1&rotation=0&showTitle=false&size=34106&status=done&style=stroke&taskId=uc9594b5e-ec2a-4ca4-b537-806d303a97a&title=&width=826)
+
+![image.png](attachments/2023-07-25-12--50-55-123--X6vOSQsCYMFDhQ.png)
+
 ### ②、收集表单数据
 
 1. 若：`<input type="text"/>`，则 `v-model` 收集的是 `value` 值，用户输入的就是 `value` 值。
@@ -278,6 +299,7 @@
    1. `lazy`：失去焦点再收集数据
    2. `number`：输入字符串转为有效的数字
    3. `trim`：输入首尾空格过滤
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -373,10 +395,10 @@
 
 </html>
 ```
+
 ## 5、MVVM 模型
-:::info
+
 虽然 vue 没有完全遵循 [MVVM 模型](https://zh.wikipedia.org/wiki/MVVM)，但是 Vue 的设计也受到了它的启发。因此在文档中经常会使用 vm (ViewModel 的缩写) 这个变量名表示 Vue 实例
-:::
 
 1. M：模型(Model) ：对应 data 中的数据
 2. V：视图(View) ：模板
@@ -387,10 +409,14 @@
 1. data 中所有的属性，最后都出现在了 vm 身上
 2. vm 身上所有的属性 及 Vue 原型上所有属性，在 Vue 模板中都可以直接使用.
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669709211602-465f01db-cba1-4b0c-a6a0-c062a80b824f.png#clientId=ub11d9df9-f89a-4&from=paste&height=293&id=uf4ac00ba&name=image.png&originHeight=293&originWidth=568&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42102&status=done&style=stroke&taskId=u340e101a-097c-429d-bfb4-5a34b8494f9&title=&width=568)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669709525101-312da4d6-faaf-43e2-aa7b-c1565bb077d7.png#clientId=ub11d9df9-f89a-4&from=paste&height=588&id=u99c445f7&name=image.png&originHeight=588&originWidth=629&originalType=binary&ratio=1&rotation=0&showTitle=false&size=234482&status=done&style=stroke&taskId=uc8a05b6a-de17-404f-b529-6bacb095349&title=&width=629)
+![image.png](attachments/2023-07-25-12--50-55-229--GZv28vJRTMnhNA.png)
+
+![image.png](attachments/2023-07-25-12--50-55-419--JhZEIu3HWzzIrA.png)
+
 ## 6、数据代理 `defineProperty()`
+
 ### ①、`Object.defineProperty()` 方法
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -460,9 +486,13 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669768809894-e6e1e3cd-c86e-477d-b7ea-b7f27771591a.png#clientId=uae438773-a405-4&from=paste&height=626&id=u8cb7df2e&name=image.png&originHeight=626&originWidth=801&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74614&status=done&style=stroke&taskId=ub5300bd5-2565-4613-a04c-3501c9cc279&title=&width=801)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669768883718-d375b603-3610-4d91-bbf1-5464eba81fb6.png#clientId=uae438773-a405-4&from=paste&height=389&id=u9b29dd84&name=image.png&originHeight=389&originWidth=779&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29943&status=done&style=stroke&taskId=u51dfac47-2834-42a2-bf76-6ca76438f81&title=&width=779)
+
+![image.png](attachments/2023-07-25-12--50-55-555--YoLSMmv-1ZsS6A.png)
+
+![image.png](attachments/2023-07-25-12--50-55-694--ZsbGW889uAeZuQ.png)
+
 ### ②、理解数据代理
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -512,7 +542,9 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669770283591-9993b549-2e40-41f8-9f6a-99ab5b585421.png#clientId=uae438773-a405-4&from=paste&height=611&id=ue7e412e5&name=image.png&originHeight=611&originWidth=800&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42688&status=done&style=stroke&taskId=uc47683c6-90b9-490a-9a4e-1ec2f23ec05&title=&width=800)
+
+![image.png](attachments/2023-07-25-12--50-55-831--ZOY1kIxpjJ2njA.png)
+
 ### ③、vue 的数据代理
 
 1. Vue 中的数据代理：通过 vm 对象来代理 data 对象中属性的操作（读/写）
@@ -521,6 +553,7 @@
    1. 通过 `Object.defineProperty()` 把 data 对象中所有属性添加到 vm 上。
    2. 为每一个添加到 vm 上的属性，都指定一个 getter/setter。
    3. 在 getter/setter 内部去操作（读/写）data 中对应的属性。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -562,11 +595,17 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669770615509-d8a802f4-46c1-4dd4-b07d-6e4541948125.png#clientId=uae438773-a405-4&from=paste&height=916&id=u8a3fa8d1&name=image.png&originHeight=916&originWidth=802&originalType=binary&ratio=1&rotation=0&showTitle=false&size=115494&status=done&style=stroke&taskId=ue61149b2-1c04-4916-9e72-f1be913c5b2&title=&width=802)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669770718753-396b93e9-bb36-4399-b95b-355e99ba5cb5.png#clientId=uae438773-a405-4&from=paste&height=476&id=u30c72c8a&name=image.png&originHeight=476&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=203507&status=done&style=stroke&taskId=u987d0163-b536-4f9c-9e34-a187bf951fa&title=&width=700)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669771635302-1b7b688e-73da-42c2-b8c1-8bda1a5e16b3.png#clientId=uae438773-a405-4&from=paste&height=500&id=ubef4c60b&name=image.png&originHeight=500&originWidth=797&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38820&status=done&style=stroke&taskId=u5ed73f09-7647-4bb0-a677-f8c2bfae98e&title=&width=797)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669772044509-dfeb9bef-5de1-42e3-bcf7-8cce18410b0a.png#clientId=uae438773-a405-4&from=paste&height=596&id=ub10ad505&name=image.png&originHeight=596&originWidth=1092&originalType=binary&ratio=1&rotation=0&showTitle=false&size=217513&status=done&style=stroke&taskId=u462f332b-3fd5-4f7d-907c-a7ab853201a&title=&width=1092)
+
+![image.png](attachments/2023-07-25-12--50-55-968--O74sjnQWEG5tYQ.png)
+
+![image.png](attachments/2023-07-25-12--50-56-183--r60SJXx3QjNQPw.png)
+
+![image.png](attachments/2023-07-25-12--50-56-328--XK2rb290hs4EfA.png)
+
+![image.png](attachments/2023-07-25-12--50-56-415--VqCL9_gyQTWhEQ.png)
+
 ## 7、事件处理 `methods、v-on、@`
+
 ### ①、事件的基本使用
 
 1. 使用 `v-on:xxx` 或 `@xxx `绑定事件，其中 `xxx` 是事件名
@@ -576,6 +615,7 @@
 5. `@click="demo"` 和 `@click="demo($event)"` 效果一致，但后者可以传参
 6. 函数不传递参数，则可以接收事件对象；一旦传递参数就不能接收事件对象：解决办法：传递参数时同时传递 `$event`
 7. 若参数 `$event` 是最后一个传递的参数，则函数形参不用定义；若不是最后一个，则需要定义
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -643,7 +683,9 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669774950201-946bb1b6-17d9-438c-88e3-441724fc255d.png#clientId=uc80ed406-f957-4&from=paste&height=306&id=ue3dd7981&name=image.png&originHeight=306&originWidth=794&originalType=binary&ratio=1&rotation=0&showTitle=false&size=34183&status=done&style=stroke&taskId=uf5058b20-28f8-46cb-8c9d-464b85e6828&title=&width=794)
+
+![image.png](attachments/2023-07-25-12--50-56-616--t0rXtPGCu6iscA.png)
+
 ### ②、事件修饰符
 
 1. `prevent`：阻止默认事件（常用)
@@ -653,6 +695,7 @@
 5. `self`：只有 event.target 是当前操作的元素时才触发事件
 6. `passive`：事件的默认行为立即执行，无需等待事件回调执行完毕
 7. 事件修饰符可以连续调用：`xxx.prevent.stop`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -742,6 +785,7 @@
 
 </html>
 ```
+
 ### ③、键盘事件
 
 1. 1.Vue中常用的按键别名：
@@ -761,6 +805,7 @@
 4. 也可以使用keyCode去指定具体的按键（不推荐）
 5. Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名
 6. 可指定多个按键：`xxx.ctrl.y`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -842,8 +887,11 @@
 
 </html>
 ```
+
 ## 8、计算属性 `computed`
+
 ### ①、插值语法实现
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -886,7 +934,9 @@
 
 </html>
 ```
+
 ### ②、`methods` 函数实现
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -935,7 +985,9 @@
 
 </html>
 ```
+
 ### ③、计算属性
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -998,11 +1050,13 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669860459626-96e01eb6-0c2a-4222-8665-e79388593678.png#clientId=u66880d15-900d-4&from=paste&height=245&id=bJERg&name=image.png&originHeight=245&originWidth=826&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26706&status=done&style=stroke&taskId=ua649d13e-a874-4b7b-84d3-b17d61f28ee&title=&width=826)
+
+![image.png](attachments/2023-07-25-12--50-56-774--QPpVvMvn1dRbBA.png)
+
 ### ④、计算属性简写
-:::info
+
 确定了该计算属性只用作读取，不会对其修改，才可以使用简写
-:::
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1054,6 +1108,7 @@
 
 </html>
 ```
+
 ## 9、监视（侦听）属性 `watch`
 
 1. 当被监视的属性变化时，回调函数自动调用， 进行相关操作
@@ -1061,7 +1116,9 @@
 3. 监视的两种写法：
    1. `new Vue` 时传入 `watch` 配置
    2. 通过 `vm.$watch` 监视
+
 ### ①、天气案例（准备工作）
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1121,7 +1178,9 @@
 
 </html>
 ```
+
 ### ②、监视属性
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1208,13 +1267,16 @@
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669864985703-df23a101-c5d8-4d6c-9c3f-d880feaa84d2.png#clientId=u66880d15-900d-4&from=paste&height=292&id=u5fac5a3a&name=image.png&originHeight=292&originWidth=822&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38135&status=done&style=stroke&taskId=u4ea2e6eb-0855-46be-8c6b-57b3fcd6cf9&title=&width=822)
+
+![image.png](attachments/2023-07-25-12--50-56-925--1ga0Lox9lpq7Og.png)
+
 ### ③、深度监视
 
 1. Vue 中的 `watch` 默认不监测对象内部值的改变（一层）。
 2. 配置 `deep:true` 可以监测对象内部值改变（多层）。
 3. Vue 自身可以监测对象内部值的改变，但 Vue 提供的 watch 默认不可以！
 4. 使用 watch 时根据数据的具体结构，决定是否采用深度监视。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1285,9 +1347,11 @@
 
 </html>
 ```
+
 ### ④、监视的简写形式
 
 - 不需要 `immediate` 配置，也不需要 `deep` 配置，才可以简写
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1354,6 +1418,7 @@
 
 </html>
 ```
+
 ### ⑤、`computed` 和 `watch`
 
 - `computed` 和 `watch` 之间的区别：
@@ -1362,16 +1427,18 @@
 - 两个重要的小原则：
 1. 所有被 Vue 管理的函数，最好写成普通函数，这样 `this` 的指向才是 vm 或 组件实例对象。
 2. 所有不被 Vue 所管理的函数（定时器的回调函数、ajax 的回调函数等、Promise 的回调函数），最好写成箭头函数，这样 `this` 的指向才是 vm 或 组件实例对象。
+
 ## 10、绑定样式
-:::info
+
 在应用界面中, 某个(些)元素的样式是变化的
 class/style 绑定就是专门用来实现动态样式效果的技术
-:::
+
 ### ①、class 的绑定
 
 1. 字符串写法；适用于：样式的 class 名不确定，需要动态指定
 2. 数组写法；适用于：样式的 class 名不确定、且个数也不确定
 3. 对象写法；适用于：样式的 class 名确定、且个数确定，但要动态确定要不要使用
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1465,9 +1532,11 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
+
 ### ②、style 的绑定
 
 - 尽量不要使用内联式的 css 样式
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1520,11 +1589,13 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
+
 ## 11、条件渲染（`v-if`）
 
 1. `v-show`：隐藏，本质是添加了 class 属性 `display: none`，DOM 元素不会被移除；需要传入布尔值，适用于变动频率高的场景
 2. `v-if`、`v-else-if`、`v-else`：判断语句，条件不成立则不会渲染此元素，DOM 元素会被移除；需要传入布尔值，适用于变动频率低的场景
 3. template：页面渲染时，会舍弃 template 标签，只保留此标签中的元素；不能和 `v-show` 配合使用
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1574,10 +1645,13 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
+
 ## 12、列表渲染（`v-for`）
+
 ### ①、`v-for`
 
 - `for-of` 循环
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1650,7 +1724,9 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669878979221-91233e0f-e3e8-4300-9552-e525c505879c.png#clientId=u66880d15-900d-4&from=paste&height=927&id=u4de1f297&name=image.png&originHeight=927&originWidth=821&originalType=binary&ratio=1&rotation=0&showTitle=false&size=75278&status=done&style=stroke&taskId=u715b6c13-a9fa-4964-8001-55221bd3e70&title=&width=821)
+
+![image.png](attachments/2023-07-25-12--50-57-104--oT4BvSN1FKH50A.png)
+
 ### ②、key 的作用与原理
 
 1. 虚拟 DOM 中 key 的作用：key 是虚拟 DOM 对象的标识，当数据发生变化时，Vue 会根据新数据生成新的虚拟 DOM，随后 Vue 进行新虚拟 DOM 与旧虚拟 DOM 的差异比较，比较规则如下：
@@ -1666,11 +1742,14 @@ class/style 绑定就是专门用来实现动态样式效果的技术
    1. 最好使用每条数据的唯一标识作为 key，比如 id、手机号、身份证号、学号等唯一值。
    2. 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用 index 作为 key 是没有问题的。
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669880721021-87d0ca32-08ca-41d0-9f7f-7d0f8dcb9991.png#clientId=u66880d15-900d-4&from=paste&height=600&id=u046aa107&name=image.png&originHeight=600&originWidth=1059&originalType=binary&ratio=1&rotation=0&showTitle=false&size=367015&status=done&style=stroke&taskId=u3b59ec0d-0cff-410a-9194-5ba8d7e4187&title=&width=1059)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669880928693-fe175c54-c603-4ec5-9a8c-5b3c34651b60.png#clientId=u66880d15-900d-4&from=paste&height=573&id=u0cabd00b&name=image.png&originHeight=573&originWidth=1062&originalType=binary&ratio=1&rotation=0&showTitle=false&size=368494&status=done&style=stroke&taskId=ufa7a0e8b-82ed-4c68-937b-3396863fc95&title=&width=1062)
+![image.png](attachments/2023-07-25-12--50-57-243--5cZZGzmunVontw.png)
+
+![image.png](attachments/2023-07-25-12--50-57-446--j6J_6NiKdVKBkQ.png)
+
 ### ③、列表过滤-使用监视属性
 
 - 根据输入框内输入的值，对数据进行筛选
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1733,9 +1812,11 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
+
 ### ④、列表过滤-使用计算属性
 
 - 根据输入框内输入的值，对数据进行筛选（建议使用此方式）
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1790,9 +1871,11 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
+
 ### ⑤、列表排序
 
 - 根据年龄排序
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1869,6 +1952,7 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
+
 ## 13、常用内置指令
 
 1. `v-bind` 单向绑定，可以省略 `v-bind`
@@ -1897,6 +1981,7 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 11. `v-pre` 跳过其所在节点的编译过程
    1. 跳过其所在节点的编译过程。
    2. 可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1979,11 +2064,14 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670222543974-b0987c98-f364-40f9-8cad-40e9a2da3d90.png#clientId=u0bce88cc-43c6-4&from=paste&height=603&id=uf87b0345&name=image.png&originHeight=603&originWidth=755&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43473&status=done&style=stroke&taskId=u0a4d5caa-3644-4079-8d52-8b8b3bd9fb8&title=&width=755)
+
+![image.png](attachments/2023-07-25-12--50-57-673--fm-SDyg4b9tBVw.png)
+
 ## 14、自定义指令
 
 1. 定义语法：
    1. 局部指令：
+
 ```vue
 new Vue({new Vue({
       directives:{指令名:配置对象},
@@ -1994,6 +2082,7 @@ new Vue({new Vue({
 ```
 
    2. 全局指令：
+
 ```vue
 Vue.directive(指令名,配置对象);
 // 或
@@ -2009,6 +2098,7 @@ Vue.directive(指令名,回调函数)
    2. 指令名如果是多个单词，要使用 kebab-case 命名方式，不要用 camelCase 命名
 4. `directive` 里的 `this` 是 `Window`
 5. 一个自定义指令只能给一个 vue 实例使用
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2101,13 +2191,16 @@ Vue.directive(指令名,回调函数)
 
 </html>
 ```
+
 ## 15、声命周期
+
 ### ①、生命周期简介
 
 1. 生命周期又名：生命周期回调函数、生命周期函数、生命周期钩子
 2. 生命周期是什么：Vue 在关键时刻帮我们调用的一些特殊名称的函数
 3. 生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写
 4. 生命周期函数中的 this 指向是 vm 或 组件实例对象
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2184,7 +2277,9 @@ Vue.directive(指令名,回调函数)
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670228943688-09f60e48-faec-48bc-a3b4-3db1b7f6f59b.png#clientId=u0bce88cc-43c6-4&from=paste&height=327&id=ue45cfaf4&name=image.png&originHeight=327&originWidth=446&originalType=binary&ratio=1&rotation=0&showTitle=false&size=120276&status=done&style=stroke&taskId=u9ed17d6f-1ae7-4905-9d04-d771e8a5583&title=&width=446)
+
+![image.png](attachments/2023-07-25-12--50-57-803--kkoGSpV4f95CRQ.png)
+
 ### ②、vue 生命周期分析
 
 1. 初始化显示
@@ -2209,29 +2304,36 @@ Vue.directive(指令名,回调函数)
    2. 销毁后自定义事件会失效，但原生 DOM 事件依然有效。
    3. 一般不会在 `beforeDestroy` 操作数据，因为即便操作数据，也不会再触发更新流程了。
 
-![生命周期.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670229485220-7cb882a2-eb2e-402a-897e-7aed3b13fe3c.png#clientId=u0bce88cc-43c6-4&from=paste&height=1892&id=e05qc&name=%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png&originHeight=1892&originWidth=1469&originalType=binary&ratio=1&rotation=0&showTitle=false&size=373744&status=done&style=stroke&taskId=u5c32e631-410c-4ede-b3f8-bc21da69a87&title=&width=1469)
+![](attachments/Pasted%20image%2020230725125417.png)
+
 # 三、Vue 组件化编程
+
 ## 1、模块化和组件化
+
 ### ①、模块
 
 - 复用 js
 1. 理解：向外提供特定功能的 js 程序，一般就是一个 js 文件
 2. 为什么：js 文件很多很复杂
 3. 作用：复用 js，简化 js 的编写，提高 js 运行效率
+
 ### ②、组件
 
 - 复用 html
 1. 理解：用来实现局部(特定)功能效果的代码集合(html/css/js/image…..)
 2. 为什么：一个界面的功能很复杂
 3. 作用：复用编码, 简化项目编码, 提高运行效率
+
 ### ③、模块化
 
 - 当应用中的 js 都以模块来编写的, 那这个应用就是一个模块化的应用
+
 ### ④、组件化
 
 - 当应用中的功能都是多组件的方式来编写的, 那这个应用就是一个组件化的应用
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670290818212-f6e54686-e712-4008-814a-c834515be6af.png#clientId=u7466b0bf-1402-4&from=paste&height=739&id=S0Uaf&name=image.png&originHeight=739&originWidth=731&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59882&status=done&style=stroke&taskId=ueb5ea8e3-dc82-4826-8cac-7c96024ebde&title=&width=731)
+![image.png](attachments/2023-07-25-12--50-57-975--WRhFIyxbFXotFw.png)
+
 ## 2、非单文件组件
 
 - 一个文件中包含有 n 个组件
@@ -2254,6 +2356,7 @@ Vue.directive(指令名,回调函数)
    1. 局部注册：靠 new Vue 的时候传入 `components` 选项
    2. 全局注册：靠 `Vue.component('组件名',组件)`
 4. 编写组件标签：`<school></school>`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2373,7 +2476,9 @@ Vue.directive(指令名,回调函数)
 
 </html>
 ```
+
 ## 3、组件的几个注意点
+
 ### ①、组件名
 
 1. 一个单词组成：
@@ -2385,16 +2490,20 @@ Vue.directive(指令名,回调函数)
 3. 备注：
    1. 组件名尽可能回避 HTML 中已有的元素名称，例如：h2、H2都不行。
    2. 可以使用name配置项指定组件在开发者工具中呈现的名字。
+
 ### ②、组件标签
 
 1. 第一种写法：`<school></school>`
 2. 第二种写法：`<school/>`
 3. 备注：不用使用脚手架时，`<school/>`会导致后续组件不能渲染。
+
 ### ③、创建组件简写方式
 
 - `const school = Vue.extend(options)` 可简写为：`const school = options`
 - 组件注册时会进行判断，若传入的是对象 会自动创建 `Vue.extend`
+
 ## 4、组件的嵌套
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2500,6 +2609,7 @@ Vue.directive(指令名,回调函数)
 
 </html>
 ```
+
 ## 5、VueComponent
 
 1. school 组件本质是一个名为 `VueComponent` 的构造函数，且不是程序员定义的，是 `Vue.extend` 生成的。
@@ -2510,6 +2620,7 @@ Vue.directive(指令名,回调函数)
    2. new Vue(options)配置中：data函数、methods中的函数、watch中的函数、computed中的函数 它们的this均是：Vue实例对象
 5. `VueComponent` 的实例对象，以后简称vc（也可称之为：组件实例对象）
 6. `Vue` 的实例对象，以后简称 vm
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2602,6 +2713,7 @@ Vue.directive(指令名,回调函数)
 
 1. 一个重要的内置关系：`VueComponent.prototype.__proto__ === Vue.prototype`
 2. 为什么要有这个关系：让组件实例对象（vc）可以访问到 Vue原型上的属性、方法。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2712,13 +2824,15 @@ Vue.directive(指令名,回调函数)
 
 </html>
 ```
+
 ## 6、单文件组件
 
 - 一个文件中只包含一个组件
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670307497022-fd8ee22a-4c7a-4016-9601-6106dc8aff5a.png#clientId=u7466b0bf-1402-4&from=paste&height=176&id=u47c65435&name=image.png&originHeight=176&originWidth=133&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6570&status=done&style=stroke&taskId=u9efc76ab-98da-48e9-86cd-78087344044&title=&width=133)
+![image.png](attachments/2023-07-25-12--50-58-107--B3HwH0u9H18MUw.png)
 
 1. 创建 School 组件
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -2753,6 +2867,7 @@ Vue.directive(指令名,回调函数)
 ```
 
 2. 创建 Student 组件
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -2787,6 +2902,7 @@ Vue.directive(指令名,回调函数)
 ```
 
 3. 创建 App 组件
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -2819,6 +2935,7 @@ Vue.directive(指令名,回调函数)
 ```
 
 4. 创建 main.js 入口文件
+
 ```javascript
 // js 引入 App 组件
 import App from './App.vue'
@@ -2835,6 +2952,7 @@ new Vue({
 ```
 
 5. 创建 index.html 容器
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2859,43 +2977,49 @@ new Vue({
 ```
 
 6. 此时还不能访问项目，因为浏览器无法解析 `ES6` 的语法，继续向下进行需要安装 `vue` 脚手架
+
 # 四、Vue 脚手架
+
 ## 1、使用 `vue` 脚手架创建项目
-:::info
+
 **Vue CLI 现已处于维护模式!**
 现在官方推荐使用 [create-vue](https://github.com/vuejs/create-vue) 来创建基于 [Vite](https://vitejs.dev/) 的新项目。另外请参考 [Vue 3 工具链指南](https://cn.vuejs.org/guide/scaling-up/tooling.html) 以了解最新的工具推荐
-:::
+
 > [https://cli.vuejs.org/zh/#%E8%B5%B7%E6%AD%A5](https://cli.vuejs.org/zh/#%E8%B5%B7%E6%AD%A5)
 
 1. 仅第一次执行，全局安装 @vue/cli：`yarn global add @vue/cli` 或 `npm install -g @vue/cli`
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670308884167-bc4ea8a4-f919-45ce-8372-2d61cdeb73ec.png#clientId=u7466b0bf-1402-4&from=paste&height=566&id=u61f1410d&name=image.png&originHeight=566&originWidth=840&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42928&status=done&style=stroke&taskId=u2e78589d-1625-407d-b406-50bdc70601a&title=&width=840)
+![image.png](attachments/2023-07-25-12--50-58-240--p_qT73wD6II-5Q.png)
 
 2. 切换到你要创建项目的目录，然后使用命令创建项目
    1. 进入目录：`cd D:\Idea\save\html\0_study\vue2\'2、Vue 脚手架'`
    2. 创建项目：`vue create test01`
    3. 选择预设（使用上下键）：
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670309834265-bd3b0657-819c-43d8-b0e5-6a9f9b48dfaa.png#clientId=u7466b0bf-1402-4&from=paste&height=99&id=ucd4349db&name=image.png&originHeight=99&originWidth=241&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2030&status=done&style=stroke&taskId=ud1f43e3a-bd72-4e4c-a726-94d4c123e7e&title=&width=241)
+![image.png](attachments/2023-07-25-12--50-58-379--gBpDw9mVpAg7bQ.png)
 
    4. 选择安装依赖项时要使用的包管理器：（使用上下键）：
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670309899610-2632e7cd-1a90-4bfa-abd8-8075de1b6831.png#clientId=u7466b0bf-1402-4&from=paste&height=85&id=u95391516&name=image.png&originHeight=85&originWidth=575&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2795&status=done&style=stroke&taskId=ub473c0f8-85fa-4909-ab91-7948249af77&title=&width=575)
+![image.png](attachments/2023-07-25-12--50-58-498--cZCkTnx_1yRrzw.png)
 
    5. 开始安装
    6. 进入项目：`cd test01`
 3. 启动项目：`yarn serve` 或 `npm run serve`
 4. 访问项目：[http://172.20.2.88:8080/](http://172.20.2.88:8080/)
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670310163286-4e4b930f-31a8-4032-87f7-44a38a8df958.png#clientId=u7466b0bf-1402-4&from=paste&height=1026&id=u5cc03d9f&name=image.png&originHeight=1026&originWidth=775&originalType=binary&ratio=1&rotation=0&showTitle=false&size=60101&status=done&style=stroke&taskId=u068b1bfd-a737-4b36-9414-e9b63ade14f&title=&width=775)
+![image.png](attachments/2023-07-25-12--50-58-611--u8SeF09ZhN5QYA.png)
 
 5. 如出现下载缓慢请配置 npm 淘宝镜像：`npm config set registry https://registry.npm.taobao.org`
 6. Vue 脚手架隐藏了所有 webpack 相关的配置，若想查看具体的 webpakc 配置，请执行：`vue inspect > output.js`
+
 ## 2、项目结构
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670311518690-aac78d81-abd5-4f19-800e-88c448d9f972.png#clientId=u7466b0bf-1402-4&from=paste&height=433&id=u343a9437&name=image.png&originHeight=433&originWidth=619&originalType=binary&ratio=1&rotation=0&showTitle=false&size=70981&status=done&style=stroke&taskId=uc5fa5dc1-3855-4963-b105-7cba8030ed3&title=&width=619)
+
+![image.png](attachments/2023-07-25-12--50-58-775--IjFIdWATWwTbrQ.png)
 
 - 将之前的代码复制过来
+
 1. `School.vue`
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -2930,6 +3054,7 @@ new Vue({
 ```
 
 2. `Student.vue`
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -2964,6 +3089,7 @@ new Vue({
 ```
 
 3. `App.vue`
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -2996,6 +3122,7 @@ new Vue({
 ```
 
 4. `main.js`
+
 ```javascript
 /**
  * 该文件是整个 vue 项目的入口文件
@@ -3023,6 +3150,7 @@ new Vue({
 ```
 
 5. 在 `vue.config.js` 中关闭语法检查
+
 ```javascript
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -3034,6 +3162,7 @@ module.exports = defineConfig({
 ```
 
 6. `index.html`
+
 ```html
 <!DOCTYPE html>
 <html lang="">
@@ -3068,13 +3197,15 @@ module.exports = defineConfig({
 
 7. 启动项目：`yarn serve`
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670312551961-19f53100-5021-4328-8822-c03c554a1bd5.png#clientId=u7466b0bf-1402-4&from=paste&height=400&id=u0a99eead&name=image.png&originHeight=400&originWidth=182&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13992&status=done&style=stroke&taskId=u7d509b71-04c1-46b8-b5eb-f416ab10011&title=&width=182)
+![image.png](attachments/2023-07-25-12--50-58-786--aZ79Qb9QdzvL2g.png)
+
 ## 3、`render` 函数
 
 1. 脚手架默认引入的是没有模板解析器的 `vue.runtime.xxx.js`，`vue.js` 与 `vue.runtime.xxx.js` 的区别：
    1. `vue.js` 是完整版的 Vue，包含：核心功能+模板解析器
    2. `vue.runtime.xxx.js` 是运行版的 Vue，只包含：核心功能；没有模板解析器
 2. 因为 `vue.runtime.xxx.js` 没有模板解析器，所以不能使用 `template` 配置项，需要使用 `render` 函数接收到的 `createElement` 函数去指定具体内容
+
 ```javascript
 /**
  * 该文件是整个 vue 项目的入口文件
@@ -3100,15 +3231,21 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ## 4、`vue inspect > output.js` 查看和修改具体的 webpakc 配置
+
 ### ①、查看
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1670315789104-a9e37f49-7d6a-4590-bd8c-422f0a6ab972.png#clientId=u7466b0bf-1402-4&from=paste&height=959&id=ud28860c3&name=image.png&originHeight=959&originWidth=1181&originalType=binary&ratio=1&rotation=0&showTitle=false&size=107257&status=done&style=stroke&taskId=uf7f03c00-0b9f-4683-bbf3-5a743f537b9&title=&width=1181)
+
+![image.png](attachments/2023-07-25-12--50-58-896--VMxmtLLoBtFfSA.png)
+
 ### ②、修改 `vue.config.js`
+
 > 全局 CLI 配置：[https://cli.vuejs.org/zh/config/](https://cli.vuejs.org/zh/config/)
 
 1. `vue.config.js` 是一个可选的配置文件，如果项目的 (和 `package.json` 同级的) 根目录中存在这个文件，那么它会被 `@vue/cli-service` 自动加载
 2. 也可以使用 `package.json` 中的 `vue` 字段，但是注意这种写法需要你严格遵照 JSON 的格式来写。
 3. 若是修改了这个文件，则一定要重新启动文件
+
 ```javascript
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -3117,6 +3254,7 @@ module.exports = defineConfig({
     lintOnSave: false
 })
 ```
+
 ## 5、`ref` 属性
 
 1. 被用来给元素或子组件注册引用信息（id的替代者）
@@ -3124,6 +3262,7 @@ module.exports = defineConfig({
 3. 使用方式：
    1. 打标识：`<h1 ref="xxx">.....</h1>` 或`<School ref="xxx"></School>`
    2. 获取：`this.$refs.xxx`
+
 ```vue
 <template>
   <!-- 网页结构 -->
@@ -3162,6 +3301,7 @@ module.exports = defineConfig({
 <style>
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -3215,7 +3355,9 @@ new Vue({
 }).$mount('#app')
 
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673225195741-35ffd28d-9349-4d7f-9200-0cbbdbc6aeb8.png#clientId=u8553f2a4-5e90-4&from=paste&height=1033&id=uc291e9b7&name=image.png&originHeight=1033&originWidth=803&originalType=binary&ratio=1&rotation=0&showTitle=false&size=141962&status=done&style=stroke&taskId=u48981a15-73af-4723-847f-cce6eb291c6&title=&width=803)
+
+![image.png](attachments/2023-07-25-12--50-59-145--dz7K6kRA1PsdfQ.png)
+
 ## 6、`props` 属性
 
 1. 功能：让组件接收外部传过来的数据
@@ -3224,6 +3366,7 @@ new Vue({
    1. 第一种方式（只接收）：`props:['name']`
    2. 第二种方式（限制类型）：`props:{name:String}`
    3. 第三种方式（限制类型、限制必要性、指定默认值）
+
 ```javascript
 props:{
   name:{
@@ -3289,6 +3432,7 @@ props:{
 <style>
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -3322,6 +3466,7 @@ props:{
     /* css 样式 */
 </style>
 ```
+
 ## 7、`mixin` 混入
 
 1. 功能：可以把多个组件共用的配置提取成一个混入对象；
@@ -3329,6 +3474,7 @@ props:{
    2. 生命周期钩子不以任何为主，都要
 2. 使用方式：
    1. 第一步定义混合：
+
 ```vue
 {
     data(){....},
@@ -3344,6 +3490,7 @@ props:{
 ---
 
 之前：methods 中的 showName 重复
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3378,6 +3525,7 @@ props:{
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3414,6 +3562,7 @@ props:{
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -3451,6 +3600,7 @@ props:{
 之后：提取出来
 
 - 在 src 目录下创建 util 目录，在其中创建 mixin.js 文件
+
 ```javascript
 // 定义 mixin 函数
 export const mixin = {
@@ -3461,6 +3611,7 @@ export const mixin = {
     }
 }
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3496,6 +3647,7 @@ export const mixin = {
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3531,11 +3683,13 @@ export const mixin = {
     /* css 样式 */
 </style>
 ```
+
 ## 8、插件
 
 1. 功能：用于增强 Vue （全局）
 2. 本质：包含 install 方法的一个对象，install 的第一个参数是Vue，第二个以后的参数是插件使用者传递的数据。
 3. 定义插件：
+
 ```javascript
 对象.install = function (Vue, options) {
     // 1. 添加全局过滤器
@@ -3560,6 +3714,7 @@ export const mixin = {
 ---
 
 - 在 src 目录下创建 plugins 目录，在其中创建 plugins.js 文件
+
 ```javascript
 // 创建插件
 export default {
@@ -3637,6 +3792,7 @@ new Vue({
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3669,6 +3825,7 @@ new Vue({
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -3709,7 +3866,9 @@ new Vue({
 ---
 
 之前：会按照引入顺序，后来者居上
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673242928698-6bb6d946-590a-4c85-812f-f604208a47b9.png#clientId=u8553f2a4-5e90-4&from=paste&height=305&id=u02f66c96&name=image.png&originHeight=305&originWidth=245&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15478&status=done&style=stroke&taskId=uffbc8287-61e5-46b6-91ec-54c82d2bef3&title=&width=245)
+
+![image.png](attachments/2023-07-25-12--50-59-250--g8B9bDllMccb8Q.png)
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3744,6 +3903,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3776,6 +3936,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -3811,7 +3972,9 @@ new Vue({
 ---
 
 使用 `scoped` 属性
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673243021219-863fa3bc-181e-4944-9dc0-1d60141d0564.png#clientId=u8553f2a4-5e90-4&from=paste&height=297&id=u518c63b3&name=image.png&originHeight=297&originWidth=245&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12047&status=done&style=stroke&taskId=u5f219299-4e6d-498d-bb05-a2e6122ea08&title=&width=245)
+
+![image.png](attachments/2023-07-25-12--50-59-366--WK1encHKriMbsw.png)
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3846,6 +4009,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3878,6 +4042,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -3909,7 +4074,9 @@ new Vue({
     /* css 样式 */
 </style>
 ```
+
 ### ②、css 预处理器 `less`
+
 > CSS 预处理器定义了一种新的语言，其基本思想是：用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。
 > 
 > 通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。
@@ -3923,7 +4090,8 @@ new Vue({
 1. 安装：`npm i less-loader`，注意 webpack 与 less 的版本
 2. 使用：`<style lang="less">`
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673244711822-980ea258-c02a-4c8d-93b2-a98b13655054.png#clientId=u8553f2a4-5e90-4&from=paste&height=292&id=u1e91ede0&name=image.png&originHeight=292&originWidth=413&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16490&status=done&style=stroke&taskId=u15596092-c233-4823-880f-1585a29c9fe&title=&width=413)
+![image.png](attachments/2023-07-25-12--50-59-470--qI4Kcd0Jg02EEA.png)
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3964,6 +4132,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -3998,6 +4167,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -4029,6 +4199,7 @@ new Vue({
     /* css 样式 */
 </style>
 ```
+
 ## 10、TodoList 案例
 
 1. 组件化编码流程：
@@ -4045,7 +4216,8 @@ new Vue({
 
 ---
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673321293836-6b6bc7a4-a2f0-4c77-b4f5-942b28c796e6.png#clientId=u564b7d6d-27dd-4&from=paste&height=271&id=u08d1800d&name=image.png&originHeight=271&originWidth=402&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10388&status=done&style=stroke&taskId=u316db2db-2b9d-445f-8086-43441bd713a&title=&width=402)
+![image.png](attachments/2023-07-25-12--50-59-619--iQdF8d9yYO1hHQ.png)
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -4160,6 +4332,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4221,6 +4394,7 @@ export default {
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4337,6 +4511,7 @@ export default {
 
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4442,6 +4617,7 @@ export default {
 
 </style>
 ```
+
 ## 11、组件的自定义事件
 
 1.  一种组件间通信的方式，适用于：**子组件 ===> 父组件** 
@@ -4449,6 +4625,7 @@ export default {
 3.  绑定自定义事件： 
    1.  第一种方式，在父组件中：`<Demo @atguigu="test"/>`  或 `<Demo v-on:atguigu="test"/>` 
    2.  第二种方式，在父组件中： 
+
 ```javascript
 <Demo ref="demo"/>
 ......
@@ -4482,6 +4659,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4542,6 +4720,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4583,6 +4762,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -4630,6 +4810,7 @@ new Vue({
 ---
 
 TodoList 案例
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -4647,6 +4828,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 在网页中引入组件 -->
@@ -4744,6 +4926,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4809,6 +4992,7 @@ export default {
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -4925,6 +5109,7 @@ export default {
 
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5033,16 +5218,16 @@ export default {
         }
     }
 
-
 </style>
 ```
+
 ## 12、全局事件总线
-:::info
+
 Vue3 中 $on 和 $off 已被移除，若是使用事件总线可以使用 mitt
-:::
 
 1.  一种组件间通信的方式，适用于任意组件间通信。 
 2.  安装全局事件总线： 
+
 ```javascript
 new Vue({
 	......
@@ -5055,6 +5240,7 @@ new Vue({
 
 3.  使用事件总线： 
    1.  接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的回调留在A组件自身。 `this.$bus.$on("xxx", 函数);`
+
 ```javascript
 methods(){
   demo(data){......}
@@ -5092,6 +5278,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -5122,6 +5309,7 @@ new Vue({
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5166,6 +5354,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5212,6 +5401,7 @@ new Vue({
 ---
 
 TodoList 案例
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -5233,6 +5423,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 在网页中引入组件 -->
@@ -5346,6 +5537,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5411,6 +5603,7 @@ export default {
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5527,6 +5720,7 @@ export default {
 
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5638,6 +5832,7 @@ export default {
 
 </style>
 ```
+
 ## 13、消息订阅与发布 pubsub
 
 - **全局事件总线的实现库**
@@ -5646,6 +5841,7 @@ export default {
    1.  安装pubsub：`npm i pubsub-js` 
    2.  引入: `import pubsub from 'pubsub-js'` 
    3.  接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的回调留在A组件自身。 
+
 ```javascript
 methods(){
   demo(data){......}
@@ -5661,7 +5857,8 @@ mounted() {
 
 ---
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673398992615-1246b594-d19f-4f1a-aef5-37b2971188e0.png#clientId=u8c60795f-83f4-4&from=paste&height=330&id=u1f698b3f&name=image.png&originHeight=330&originWidth=794&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28204&status=done&style=stroke&taskId=u4f1e5e6f-2100-4bf9-bc94-ec6af8387d5&title=&width=794)
+![image.png](attachments/2023-07-25-12--50-59-775--pwFMkhQI1NiJCw.png)
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -5683,6 +5880,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -5713,6 +5911,7 @@ new Vue({
     /* css 样式 */
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5765,6 +5964,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -5814,6 +6014,7 @@ new Vue({
 ---
 
 TodoList 案例，并添加编辑
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -5831,6 +6032,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 在网页中引入组件 -->
@@ -5991,6 +6193,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6063,6 +6266,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6181,6 +6385,7 @@ new Vue({
 
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6263,6 +6468,7 @@ new Vue({
 
 </style>
 ```
+
 ## 14、`nextTick` DOM 渲染完成之后再执行回调函数
 
 1. 语法：`this.$nextTick(回调函数)`
@@ -6272,6 +6478,7 @@ new Vue({
 ---
 
 TodoList 案例
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -6289,6 +6496,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```vue
 <template>
     <!-- 在网页中引入组件 -->
@@ -6449,6 +6657,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6521,6 +6730,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6645,6 +6855,7 @@ new Vue({
 
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6727,7 +6938,9 @@ new Vue({
 
 </style>
 ```
+
 ## 15、过度与动画
+
 ### ①、动画与过度
 
 1.  作用：在插入、更新或移除 DOM元素时，在合适的时候给元素添加样式类名。 
@@ -6742,6 +6955,7 @@ new Vue({
          2. v-leave-active：离开过程中
          3. v-leave-to：离开的终点
    2. 使用`<transition>`包裹要过度的元素，并配置name属性： 
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6807,6 +7021,7 @@ new Vue({
     }
 </style>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6890,6 +7105,7 @@ new Vue({
 ```
 
    3. 备注：若有多个元素需要过度，则需要使用：`<transition-group>`，且每个元素都要指定`key`值。 
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -6951,7 +7167,9 @@ new Vue({
 
 </style>
 ```
+
 ### ②、集成第三方动画
+
 > 以 animate 为例：[https://github.com/animate-css/animate.css](https://github.com/animate-css/animate.css)
 
 1. 安装库：`npm install animate.css`
@@ -6960,6 +7178,7 @@ new Vue({
    1. 指定 animate 类名：`name="animate__animated animate__bounce"`
    2. 指定进入动画名：`enter-active-class="animate__swing"`
    3. 指定离开动画名：`leave-active-class="animate__backOutUp"`
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -7009,12 +7228,15 @@ new Vue({
 
 </style>
 ```
+
 # 五、Vue 中的 ajax
+
 ## 1、axios
 
 1. 安装 axios ：`npm i axios`
 2. `main.js` 中引入 axios：`import axios from 'axios'`
 3. 使用：
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -7060,13 +7282,17 @@ new Vue({
     }
 </style>
 ```
+
 ## 2、解决开发环境 Ajax 跨域问题
 
 - 使用代理服务器
+
 ### ①、方式一
 
 - 此方式只能配置一个代理服务器
+
 1. 在根目录下的 vue.config.js 文件中配置代理服务器
+
 ```javascript
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -7083,6 +7309,7 @@ module.exports = defineConfig({
 ```
 
 2. 使用 ajax 调用前端自身端口（8080）
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -7129,11 +7356,15 @@ module.exports = defineConfig({
     }
 </style>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673483416189-5d4d7fcd-ed30-4cc6-97a3-9da654463b59.png#averageHue=%23fcfbfb&clientId=ue0244aab-90ca-4&from=paste&height=437&id=uc59ae956&name=image.png&originHeight=437&originWidth=797&originalType=binary&ratio=1&rotation=0&showTitle=false&size=46602&status=done&style=stroke&taskId=ue42b8b8e-8cba-46bf-ad7a-5b47f15db69&title=&width=797)
+
+![image.png](attachments/2023-07-25-12--50-59-884--T4RTUE5nFJgnsg.png)
+
 ### ②、方式二（推荐）
 
 - 此方式可以配置多个代理服务器
+
 1. 在根目录下的 vue.config.js 文件中配置代理服务器
+
 ```javascript
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -7167,6 +7398,7 @@ module.exports = defineConfig({
 ```
 
 2. 使用 ajax 调用前端自身端口（8080）
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -7227,10 +7459,13 @@ module.exports = defineConfig({
     }
 </style>
 ```
- ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673485294201-10b4352c-c68e-4e92-bfcd-5563eb68c0e7.png#averageHue=%23fcfcfb&clientId=ue0244aab-90ca-4&from=paste&height=780&id=ue5256925&name=image.png&originHeight=780&originWidth=793&originalType=binary&ratio=1&rotation=0&showTitle=false&size=84614&status=done&style=stroke&taskId=ue626491c-29c9-4fdf-a152-a918d437b77&title=&width=793)
+
+![image.png](attachments/2023-07-25-12--51-00-032--thXSOH8AmL3BzA.png)
+
 ## 3、users 用户搜索案例
 
 1. 在根目录下的 vue.config.js 文件中配置代理服务器
+
 ```javascript
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
@@ -7254,6 +7489,7 @@ module.exports = defineConfig({
 ```
 
 2. app
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -7286,6 +7522,7 @@ module.exports = defineConfig({
 ```
 
 3. Search 组件
+
 ```vue
 <template>
     <section class="jumbotron">
@@ -7337,6 +7574,7 @@ module.exports = defineConfig({
 ```
 
 4. List 组件
+
 ```vue
 <template>
     <div class="row">
@@ -7417,14 +7655,18 @@ module.exports = defineConfig({
     }
 </style>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673498932931-96210bad-5e2a-4be1-8a02-7475cbb15731.png#averageHue=%23f6f6f5&clientId=ue0244aab-90ca-4&from=paste&height=348&id=u5832ad17&name=image.png&originHeight=348&originWidth=416&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13255&status=done&style=stroke&taskId=u35076d5d-2a5b-4b11-95b4-3875be4cc32&title=&width=416)
+
+![image.png](attachments/2023-07-25-12--51-00-177--UckkZZ3EXBKGmw.png)
+
 ## 4、插槽
 
 1.  作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 **父组件 ===> 子组件** 。 
 2.  分类：默认插槽、具名插槽、作用域插槽 
+
 ### ①、默认插槽
 
 - 使用方式
+
 ```vue
 父组件中：
         <Category>
@@ -7485,6 +7727,7 @@ module.exports = defineConfig({
     }
 </style>
 ```
+
 ```vue
 <template>
     <div class="category">
@@ -7527,9 +7770,11 @@ export default {
     }
 </style>
 ```
+
 ### ②、具名插槽
 
 - 使用方式
+
 ```vue
 父组件中：
         <Category>
@@ -7617,6 +7862,7 @@ export default {
     }
 </style>
 ```
+
 ```vue
 <template>
     <div class="category">
@@ -7652,10 +7898,12 @@ export default {
     }
 </style>
 ```
+
 ### ③、作用域插槽
 
 - 使用方式
 - 理解：数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
+
 ```vue
 父组件中：
 		<Category>
@@ -7756,6 +8004,7 @@ export default {
     }
 </style>
 ```
+
 ```vue
 <template>
     <div class="category">
@@ -7793,17 +8042,20 @@ export default {
     }
 </style>
 ```
+
 # 六、集中式数据管理 vuex
+
 ## 1、vuex 是什么
 
 1. 在Vue中实现集中式状态（数据）管理的一个Vue插件，对vue应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
 2. Github 地址：[https://github.com/vuejs/vuex](https://github.com/vuejs/vuex)
 
-![vuex.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673510030410-87fe27e7-07d8-49e9-9d1a-69294584b167.png#averageHue=%23fdfcfa&clientId=ue0244aab-90ca-4&from=paste&height=1412&id=uba6e954e&name=vuex.png&originHeight=1412&originWidth=1800&originalType=binary&ratio=1&rotation=0&showTitle=false&size=356381&status=done&style=stroke&taskId=u1d951658-9d1a-4719-97fb-78e06978f67&title=&width=1800)
+![](attachments/Pasted%20image%2020230725125437.png)
 
 ---
 
 求和案例：纯 vue 版
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -7901,16 +8153,19 @@ new Vue({
     }
 </style>
 ```
+
 ## 2、什么时候使用 Vuex
 
 1. 多个组件依赖于同一状态
 2. 来自不同组件的行为需要变更同一状态
+
 ## 3、搭建 vuex 环境
 
 1. 添加依赖：
    1. vue2：`npm i vuex@3`
    2. vue3：`npm i vuex@4`
 2. 在 src 目录下创建 store 文件夹，在其中创建 index.js 文件；因为ES6 中 import 提升的原因，所以需要在此文件中引入 vue、vuex，以及应用 vuex 插件
+
 ```javascript
 // 该文件用于创建 vuex 中最核心的 store
 
@@ -7937,6 +8192,7 @@ export default new Vuex.Store({
 ```
 
 3. 编辑 sce 目录下的 main.js 文件，引入 vuex
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -7959,6 +8215,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ## 4、使用 Vuex
 
 1. 调用流程：
@@ -7968,6 +8225,7 @@ new Vue({
    4. 组件 -> `state`，`{{$store.state.sum}}`，查看数据
 2. 若是 `actions`中没有业务逻辑，也可直接在组件中调用 `mutation`，`this.$store.commit("函数名", 数据)`
 3. actions 与 mutations 中都可以调用其他方法：
+
 ```javascript
 // 准备 actions：用于响应组件中的动作
 const actions = {
@@ -7999,6 +8257,7 @@ const actions = {
 求和案例：vuex 版
 
 1. main.js 中引入 store
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -8023,6 +8282,7 @@ new Vue({
 ```
 
 2. 在 src 目录下创建 store 文件夹，在其中创建 index.js 文件；编写 `state` 数据、`actions` 业务函数、`mutations` 逻辑函数
+
 ```javascript
 // 该文件用于创建 vuex 中最核心的 store
 
@@ -8070,6 +8330,7 @@ export default new Vuex.Store({
 ```
 
 3. APP 组件
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -8097,6 +8358,7 @@ export default new Vuex.Store({
 ```
 
 4. Count 组件
+
 ```vue
 <template>
     <div>
@@ -8146,10 +8408,12 @@ export default new Vuex.Store({
     }
 </style>
 ```
+
 ## 5、`state` 中的 `getters` 配置项
 
 1.  概念：当 `state` 中的数据需要经过加工后再使用时，可以使用 `getters` 加工。 
 2.  在`store.js`中追加`getters`配置 
+
 ```javascript
 ......
 
@@ -8173,6 +8437,7 @@ export default new Vuex.Store({
 求和案例：vuex 版；增加`getters` 配置项
 
 1. main.js 中引入 store
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -8197,6 +8462,7 @@ new Vue({
 ```
 
 2. 在 src 目录下创建 store 文件夹，在其中创建 index.js 文件；编写 `state` 数据、`actions` 业务函数、`mutations` 逻辑函数；增加`getters` 配置项
+
 ```javascript
 // 该文件用于创建 vuex 中最核心的 store
 
@@ -8262,6 +8528,7 @@ export default new Vuex.Store({
 ```
 
 3. APP 组件
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -8289,6 +8556,7 @@ export default new Vuex.Store({
 ```
 
 4. Count 组件
+
 ```vue
 <template>
     <div>
@@ -8345,6 +8613,7 @@ export default new Vuex.Store({
 ```
 
 5. BigSUM 组件
+
 ```vue
 <template>
     <h3>数据增大十倍后为：{{$store.getters.BigSUM}}</h3>
@@ -8357,9 +8626,11 @@ export default {
 </script>
 
 ```
+
 ## 6、四个 map 方法的使用
 
 1.  `**mapState**`** 方法：**用于帮助我们映射`state`中的数据为计算属性 
+
 ```javascript
 computed: {
     //借助mapState生成计算属性：sum、school、subject（对象写法）
@@ -8371,6 +8642,7 @@ computed: {
 ```
 
 2.  `**mapGetters **`**方法：**用于帮助我们映射`getters`中的数据为计算属性 
+
 ```javascript
 computed: {
     //借助mapGetters生成计算属性：bigSum（对象写法）
@@ -8382,6 +8654,7 @@ computed: {
 ```
 
 3. ` **mapActions**`** 方法：**用于帮助我们生成与`actions`对话的方法，即：包含`$store.dispatch(xxx)`的函数 
+
 ```javascript
 methods:{
     //靠mapActions生成：incrementOdd、incrementWait（对象形式）
@@ -8393,6 +8666,7 @@ methods:{
 ```
 
 4.  `**mapMutations**`** 方法：**用于帮助我们生成与`mutations`对话的方法，即：包含`$store.commit(xxx)`的函数 
+
 ```javascript
 methods:{
     //靠mapActions生成：increment、decrement（对象形式）
@@ -8402,12 +8676,13 @@ methods:{
     ...mapMutations(['JIA','JIAN']),
 }
 ```
-> 备注：`mapActions` 与 `mapMutations` 使用时，若需要传递参数需要：在模板中绑定事件时传递好参数，否则参数是事件对象。
 
+> 备注：`mapActions` 与 `mapMutations` 使用时，若需要传递参数需要：在模板中绑定事件时传递好参数，否则参数是事件对象。
 
 ---
 
 求和案例：vuex 版；四个 map 方法的使用
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -8430,6 +8705,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```javascript
 // 该文件用于创建 vuex 中最核心的 store
 
@@ -8495,6 +8771,7 @@ export default new Vuex.Store({
     getters
 })
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -8585,6 +8862,7 @@ export default new Vuex.Store({
     }
 </style>
 ```
+
 ```vue
 <template>
     <div>
@@ -8619,9 +8897,11 @@ export default new Vuex.Store({
 </script>
 
 ```
+
 ## 7、模块化 + 命名空间
 
 - 目的：让代码更好维护，让多种数据分类更加明确。
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -8644,6 +8924,7 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ```javascript
 // 该文件用于创建 vuex 中最核心的 store
 
@@ -8665,6 +8946,7 @@ export default new Vuex.Store({
     }
 })
 ```
+
 ```javascript
 // 求和相关配置
 export default {
@@ -8714,6 +8996,7 @@ export default {
     }
 }
 ```
+
 ```javascript
 // 人员管理相关配置
 export default {
@@ -8753,6 +9036,7 @@ export default {
     getters: {}
 }
 ```
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -8837,6 +9121,7 @@ export default {
     }
 </style>
 ```
+
 ```vue
 <template>
     <div>
@@ -8897,14 +9182,18 @@ export default {
     }
 </script>
 ```
+
 # 七、路由 route
+
 ## 1、路由的理解
+
 ### ①、什么是路由
 
 1. 理解： 一个路由（route）就是一组映射关系（key - value），key 为路径, value 可能是 function 或 component，多个路由需要路由器（router）进行管理。
 2. 前端路由：key是路径，value是组件。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673595916283-0ba55bdd-ca2e-4971-9f4c-856dfc5ad517.png#averageHue=%23786c41&clientId=ue19e7ab6-0307-4&from=paste&height=600&id=uc85d7beb&name=image.png&originHeight=600&originWidth=990&originalType=binary&ratio=1&rotation=0&showTitle=false&size=275455&status=done&style=stroke&taskId=uaec24c2a-f59b-41e5-98c6-3ecd2ea290c&title=&width=990)
+![image.png](attachments/2023-07-25-12--51-00-302--QTbYKKxMUGHZMA.png)
+
 ### ②、路由分类
 
 1. 后端路由：
@@ -8913,21 +9202,25 @@ export default {
 2. 前端路由：
    1. 理解：value 是 component，用于展示页面内容。
    2. 工作过程：当浏览器的路径改变时，对应的组件就会显示。
+
 ### ③、vue-router 的理解
 
 - vue 的一个插件库，专门用来实现 SPA 应用
+
 ### ④、对 SPA 应用的理解
 
 1. 单页 Web 应用（single page web application，SPA）。
 2. 整个应用只有一个完整的页面。
 3. 点击页面中的导航链接不会刷新页面，只会做页面的局部更新。
 4. 数据需要通过 ajax 请求获取
+
 ## 2、搭建路由环境
 
 1. 添加依赖
    1. vue2：`npm i vue-router@3`	
    2. vue3：`npm i vue-router@4`
 2. 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件；因为ES6 中 import 提升的原因，所以需要在此文件中引入 vue、vue-router、组件，以及应用 vuex 插件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -8957,6 +9250,7 @@ export default new VueRouter({
 ```
 
 3. 编辑 sce 目录下的 main.js 文件，引入 vuex
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -8979,14 +9273,17 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ## 3、路由的使用
 
 1. 实现切换（`active-class`可配置高亮样式） 
+
 ```vue
 <router-link active-class="active" to="/about">About</router-link>
 ```
 
 2. 指定展示位置 
+
 ```vue
 <router-view></router-view>
 ```
@@ -9017,6 +9314,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -9046,6 +9344,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -9091,6 +9390,7 @@ export default new VueRouter({
     }
 </script>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -9129,6 +9429,7 @@ export default new VueRouter({
 2. 通过切换，“隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载。
 3. 每个组件都有自己的`$route`属性，里面存储着自己的路由信息。
 4. 整个应用只有一个router，可以通过组件的`$router`属性获取到。
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -9152,10 +9453,13 @@ export default new VueRouter({
     }
 </script>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673833959105-32205fe3-6ad6-42ad-8f73-11c04ded3a22.png#averageHue=%23fbfbfb&clientId=u9a45f2a6-025a-4&from=paste&height=906&id=W3IoU&name=image.png&originHeight=906&originWidth=781&originalType=binary&ratio=1&rotation=0&showTitle=false&size=96764&status=done&style=stroke&taskId=u22a2f2bf-cd6d-42f5-83f3-daed6e79905&title=&width=781)
+
+![image.png](attachments/2023-07-25-12--51-00-517--uy6-XpTzrfcZtQ.png)
+
 ## 4、多级（嵌套）路由
 
 1.  配置路由规则，使用 `children` 配置项： 
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -9193,6 +9497,7 @@ export default new VueRouter({
 ```
 
 2.  跳转（要写完整路径）： 
+
 ```vue
 <router-link to="/home/yuehai">News</router-link>
 ```
@@ -9223,6 +9528,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -9260,6 +9566,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -9307,6 +9614,7 @@ export default new VueRouter({
 ```
 
 - pages 目录下
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -9339,6 +9647,7 @@ export default new VueRouter({
 ```
 
 - pages/yuehai 目录下
+
 ```vue
 <template>
     <h3>月海</h3>
@@ -9363,12 +9672,15 @@ export default {
 }
 </script>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673835614039-6656e18e-e353-4225-8626-64b5c9d17014.png#averageHue=%23fdfdfd&clientId=u9a45f2a6-025a-4&from=paste&height=284&id=ue82c9a6e&name=image.png&originHeight=284&originWidth=783&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12165&status=done&style=stroke&taskId=u402990bc-b4eb-4c58-8c60-48a347432d6&title=&width=783)
+
+![image.png](attachments/2023-07-25-12--51-00-626--j-ub-2zDADsvRA.png)
+
 ## 5、命名路由
 
 1.  作用：可以简化路由的跳转。 
 2.  如何使用 
    1.  给路由命名： 
+
 ```javascript
 {
 	path:'/demo',
@@ -9390,6 +9702,7 @@ export default {
 ```
 
    2.  简化跳转： 
+
 ```vue
 <!--简化前，需要写完整的路径 -->
 <router-link to="/demo/test/welcome">跳转</router-link>
@@ -9408,10 +9721,13 @@ export default {
 	}"
 >跳转</router-link>
 ```
+
 ## 6、路由传参
+
 ### ①、query
 
 1. 传递参数 
+
 ```vue
 <!-- 跳转并携带query参数，to的字符串写法 -->
 <router-link :to="/home/message/detail?id=666&title=你好">跳转</router-link>
@@ -9429,6 +9745,7 @@ export default {
 ```
 
 2.  接收参数： 
+
 ```javascript
 $route.query.id
 $route.query.title
@@ -9460,6 +9777,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -9501,6 +9819,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -9548,6 +9867,7 @@ export default new VueRouter({
 ```
 
 - pages 目录下
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -9595,6 +9915,7 @@ export default new VueRouter({
 
 - pages/yuehai 目录下
    - yuehai.vue 中传递参数
+
 ```vue
 <template>
     <div>
@@ -9631,6 +9952,7 @@ export default {
 }
 </script>
 ```
+
 ```vue
 <template>
     <h3>言</h3>
@@ -9645,6 +9967,7 @@ export default {
 ```
 
 - pages/yuehai/detail/Detail.vue 中接收参数
+
 ```vue
 <template>
     <div>
@@ -9667,10 +9990,13 @@ export default {
 
 </style>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673838982189-1878ca18-7cd4-40d4-9161-140a3413576f.png#averageHue=%23fdfcfc&clientId=u9a45f2a6-025a-4&from=paste&height=431&id=Dgavn&name=image.png&originHeight=431&originWidth=586&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16246&status=done&style=stroke&taskId=u4eed1fb8-68a0-4769-86c1-c33441b25f8&title=&width=586)
+
+![image.png](attachments/2023-07-25-12--51-00-705--neDc_4DVhM2YBQ.png)
+
 ### ②、params
 
 1.  配置路由，声明接收params参数 
+
 ```javascript
 {
 	path:'/home',
@@ -9695,6 +10021,7 @@ export default {
 ```
 
 2.  传递参数 
+
 ```vue
 <!-- 跳转并携带params参数，to的字符串写法 -->
 <router-link :to="/home/message/detail/666/你好">跳转</router-link>
@@ -9712,6 +10039,7 @@ export default {
 ```
 
 3.  接收参数： 
+
 ```javascript
 $route.params.id
 $route.params.title
@@ -9743,6 +10071,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -9785,6 +10114,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -9832,6 +10162,7 @@ export default new VueRouter({
 ```
 
 - pages 目录下
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -9879,6 +10210,7 @@ export default new VueRouter({
 
 - pages/yuehai 目录下
    - yuehai.vue 中传递参数
+
 ```vue
 <template>
     <div>
@@ -9929,6 +10261,7 @@ export default {
 ```
 
 - pages/yuehai/detail/Detail.vue 中接收参数
+
 ```vue
 <template>
     <div>
@@ -9951,11 +10284,15 @@ export default {
 
 </style>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673838982189-1878ca18-7cd4-40d4-9161-140a3413576f.png#averageHue=%23fdfcfc&clientId=u9a45f2a6-025a-4&from=paste&height=431&id=gTHy7&name=image.png&originHeight=431&originWidth=586&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16246&status=done&style=stroke&taskId=u4eed1fb8-68a0-4769-86c1-c33441b25f8&title=&width=586)
+
+![image.png](attachments/2023-07-25-12--51-00-863--lO3rvbLDsnH6TQ.png)
+
 ## 7、路由的 props 配置
 
 - 作用：让路由组件更方便的收到参数
+
 ### ①、params
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -9980,6 +10317,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -10027,6 +10365,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -10074,6 +10413,7 @@ export default new VueRouter({
 ```
 
 - pages 目录下
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -10121,6 +10461,7 @@ export default new VueRouter({
 
 - pages/yuehai 目录下
    - yuehai.vue 中传递参数
+
 ```vue
 <template>
     <div>
@@ -10171,6 +10512,7 @@ export default {
 ```
 
 - pages/yuehai/detail/Detail.vue 中接收参数
+
 ```vue
 <template>
     <div>
@@ -10194,7 +10536,9 @@ export default {
 
 </style>
 ```
+
 ### ②、query
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -10219,6 +10563,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -10274,6 +10619,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -10321,6 +10667,7 @@ export default new VueRouter({
 ```
 
 - pages 目录下
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -10336,6 +10683,7 @@ export default new VueRouter({
     }
 </script>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -10368,6 +10716,7 @@ export default new VueRouter({
 
 - pages/yuehai 目录下
    - yuehai.vue 中传递参数
+
 ```vue
 <template>
     <div>
@@ -10404,6 +10753,7 @@ export default {
 }
 </script>
 ```
+
 ```vue
 <template>
     <h3>言</h3>
@@ -10418,6 +10768,7 @@ export default {
 ```
 
 - pages/yuehai/detail/Detail.vue 中接收参数
+
 ```vue
 <template>
     <div>
@@ -10441,6 +10792,7 @@ export default {
 
 </style>
 ```
+
 ## 8、`<router-link>`的replace属性
 
 1. 作用：控制路由跳转时操作浏览器历史记录的模式
@@ -10449,6 +10801,7 @@ export default {
    2. `replace`：不可前进后退
 3. 如何开启`replace`模式：`<router-link replace .......>News</router-link>`
 4. 重复点击某个导航时，可能会报错：`NavigationDuplicated: Avoided redundant navigation to current location: "/home/yuehai/detail?id=001&title=%E6%9C%88%E6%B5%B7"`，此时可以在 `router /index` 的页面里面加入如下代码：
+
 ```javascript
 const originalPush = VueRouter.prototype.push
 
@@ -10456,10 +10809,12 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 ```
+
 ## 9、编程式路由导航
 
 1.  作用：不借助`<router-link>`实现路由跳转，让路由跳转更加灵活 
 2.  具体编码： 
+
 ```javascript
 //$router的两个API
 this.$router.push({
@@ -10508,6 +10863,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -10563,6 +10919,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -10616,6 +10973,7 @@ export default new VueRouter({
 ```
 
 - pages 目录下
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -10663,6 +11021,7 @@ export default new VueRouter({
 
 - pages/yuehai 目录下
    - yuehai.vue 中传递参数
+
 ```vue
 <template>
     <div>
@@ -10725,6 +11084,7 @@ export default {
 ```
 
 - pages/yuehai/detail/Detail.vue 中接收参数
+
 ```vue
 <template>
     <div>
@@ -10750,6 +11110,7 @@ export default {
 ```
 
 - components/Banner.vue
+
 ```vue
 <template>
     <div>
@@ -10781,10 +11142,12 @@ export default {
 }
 </script>
 ```
+
 ## 10、缓存路由组件
 
 1.  作用：让不展示的路由组件保持挂载，不被销毁。（比如说不会让输入框中已经输入的内容消失）
 2.  具体编码： 
+
 ```vue
 <!-- 配置缓存路由组件，include 中配置的为组件名，配置上即为不销毁 -->
 <keep-alive include="News"> 
@@ -10818,6 +11181,7 @@ new Vue({
 ```
 
 - 在 src 目录下创建 router 文件夹，在其中创建 index.js 文件
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -10873,6 +11237,7 @@ export default new VueRouter({
 ```
 
 - 作为路由的组件不用在 App.vue 中引入
+
 ```vue
 <template>
     <!-- 网页结构；组件里必须要有一个根元素，即此处的 div -->
@@ -10926,6 +11291,7 @@ export default new VueRouter({
 ```
 
 - pages/Home.vue，中使用 `<keep-alive></keep-alive>` 标签
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -10960,6 +11326,7 @@ export default new VueRouter({
     }
 </script>
 ```
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -10978,6 +11345,7 @@ export default new VueRouter({
 
 - pages/yuehai 目录下
    - yan.vue 中传递参数，编写 `input` 标签
+
 ```vue
 <template>
     <div>
@@ -11008,6 +11376,7 @@ export default {
 }
 </script>
 ```
+
 ```vue
 <template>
     <div>
@@ -11058,6 +11427,7 @@ export default {
 ```
 
 - pages/yuehai/detail/Detail.vue 中接收参数
+
 ```vue
 <template>
     <div>
@@ -11083,6 +11453,7 @@ export default {
 ```
 
 - components/Banner.vue
+
 ```vue
 <template>
     <div>
@@ -11114,12 +11485,14 @@ export default {
 }
 </script>
 ```
+
 ## 11、两个新的生命周期钩子
 
 1. 作用：路由组件所独有的两个钩子，用于捕获路由组件的激活状态。
 2. 具体名字： 
    1. `activated`路由组件被激活时触发。
    2. `deactivated`路由组件失活时触发。
+
 ```vue
 <template>
     <div>
@@ -11167,12 +11540,15 @@ export default {
 }
 </script>
 ```
+
 ## 12、路由守卫
+
 ### ①、说明
 
 1.  作用：对路由进行权限控制 
 2.  分类：全局守卫、独享守卫、组件内守卫 
 3.  全局守卫：
+
 ```javascript
 //全局前置守卫：初始化时执行、每次路由切换前执行
 router.beforeEach((to,from,next)=>{
@@ -11201,6 +11577,7 @@ router.afterEach((to,from)=>{
 ```
 
 4.  独享守卫：
+
 ```javascript
 beforeEnter(to,from,next){
 	console.log('beforeEnter',to,from)
@@ -11218,6 +11595,7 @@ beforeEnter(to,from,next){
 ```
 
 5.  组件内守卫： 
+
 ```javascript
 //进入守卫：通过路由规则，进入该组件时被调用
 beforeRouteEnter (to, from, next) {
@@ -11229,14 +11607,17 @@ beforeRouteLeave (to, from, next) {
 
 6. 在本地存储中加入`{name: 'yuehai'}`，只有 name 为 yuehai 才能访问
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673853968115-9ce16fc2-7d19-4abe-8a82-56649cc68254.png#clientId=u9a45f2a6-025a-4&from=paste&height=766&id=u7f2af18c&name=image.png&originHeight=766&originWidth=779&originalType=binary&ratio=1&rotation=0&showTitle=false&size=68311&status=done&style=stroke&taskId=u8081e889-c42d-4664-a975-543ed1fbead&title=&width=779)
+![image.png](attachments/2023-07-25-12--51-00-876--fYm7mMlJDCZPEQ.png)
+
 ### ②、全局守卫
 
 - 参数 `to, from`
 - 路由配置中可添加 `meta` 对象，其中可放入自定义配置属性
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673855999493-1f36522b-59f6-40c8-9af7-876e5248b7d6.png#clientId=u9a45f2a6-025a-4&from=paste&height=412&id=uda07a05a&name=image.png&originHeight=412&originWidth=493&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27656&status=done&style=stroke&taskId=ue3e7f9ac-f6d0-45dc-bc65-c6f3d8e7c77&title=&width=493)
+![image.png](attachments/2023-07-25-12--51-01-006--5_KfqdwRn_bO2g.png)
+
 #### Ⅰ、前置全局守卫：自己根据路径判断
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11318,7 +11699,9 @@ router.beforeEach((to, from, next)=>{
 // 暴露
 export default router
 ```
+
 #### Ⅱ、前置全局守卫：配置是否拦截
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11401,7 +11784,9 @@ router.beforeEach((to, from, next)=>{
 // 暴露
 export default router
 ```
+
 #### Ⅲ、全局后置路由守卫
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11495,10 +11880,12 @@ router.afterEach((to, from)=>{
 // 暴露
 export default router
 ```
+
 ### ③、独享守卫
 
 - 对单个路由进行守卫，配置在路由配置中
 - 可配合全局路由守卫一起使用
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11586,10 +11973,12 @@ router.afterEach((to, from)=>{
 // 暴露
 export default router
 ```
+
 ### ④、组件内守卫
 
 - 在组件内对组件进行独有的配置
 - 可配合全局路由守卫一起使用
+
 ```vue
 <template>
     <!-- 网页结构 -->
@@ -11624,6 +12013,7 @@ export default router
     }
 </script>
 ```
+
 ## 13、路由器的两种工作模式 hash 和 history0
 
 1. 对于一个url来说，什么是hash值？—— #及其后面的内容就是hash值。
@@ -11637,7 +12027,8 @@ export default router
    2. 兼容性和hash模式相比略差。
    3. 应用部署上线时需要后端人员支持，解决刷新页面服务端404的问题。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673919635413-eb173651-1f27-4646-a55f-c3dd35c74996.png#clientId=u84611a79-a386-4&from=paste&height=383&id=u89716ad5&name=image.png&originHeight=383&originWidth=523&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28143&status=done&style=stroke&taskId=u35bfb147-2722-4681-b13a-697571070d0&title=&width=523)
+![image.png](attachments/2023-07-25-12--51-01-238--a6bwN8HjbREfsg.png)
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11712,14 +12103,13 @@ router.afterEach((to, from)=>{
 // 暴露
 export default router
 ```
+
 # 八、打包部署
 
 1. 打包：`npm run build`，会生成 dist 目录
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673919012654-24394ce7-9ce5-40a9-a6fe-a890febd14d2.png#clientId=u877d2039-78fc-4&from=paste&height=507&id=udc8cef3d&name=image.png&originHeight=507&originWidth=316&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23640&status=done&style=stroke&taskId=ue73d8858-3440-4c33-be52-e44ec74e1ab&title=&width=316)
+![image.png](attachments/2023-07-25-12--51-01-399--v2vJdi0_5PwSyA.png)
 
-2. 1
-3. 1
 # 九、UI 组件库的基本使用
 
 - 移动端常用U组件库
@@ -11729,11 +12119,14 @@ export default router
 - PC端常用U组件库
 1. Element-Ul：[https://element.eleme.cn](https://element.eleme.cn)
 2. IView Ul：[https://www.iviewui.com](https://www.iviewui.com)
+
 ## 1、element-ui
+
 ### ①、完整引入
 
 1. 安装：`npm i element-ui -S`
 2. 在 main.js 中引入；完整引入
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11763,16 +12156,18 @@ new Vue({
 
 3. 使用：
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673921542154-eba98fa1-0988-42eb-bbc9-63b33059732f.png#averageHue=%23d1cdcb&clientId=u84611a79-a386-4&from=paste&height=736&id=ucafdb666&name=image.png&originHeight=736&originWidth=1058&originalType=binary&ratio=1&rotation=0&showTitle=false&size=122789&status=done&style=stroke&taskId=uc46f5dbb-040a-4386-b262-ae53743c28e&title=&width=1058)
+![image.png](attachments/2023-07-25-12--51-01-488--VMSeauzS4bFUow.png)
 
 4. 效果
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673921562482-d13521fb-a773-49f1-8f54-e6904f0fc5bc.png#averageHue=%23b0d7ff&clientId=u84611a79-a386-4&from=paste&height=71&id=u98683336&name=image.png&originHeight=71&originWidth=294&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1805&status=done&style=stroke&taskId=u8760f6f9-f5e8-4ce8-825c-0078b806ab3&title=&width=294)
+![image.png](attachments/2023-07-25-12--51-01-782--sBrSQ1CyF1fXkw.png)
+
 ### ②、按需引入
 
 1. 安装：`npm i element-ui -S`
 2. 安装 babel-plugin-component：`npm install babel-plugin-component -D`
 3. 修改  `.babelrc（babel.config.js）` 文件
+
 ```javascript
 module.exports = {
     presets: [
@@ -11793,6 +12188,7 @@ module.exports = {
 ```
 
 4. 在 main.js 中引入；按需引入
+
 ```javascript
 // 引入 vue
 import Vue from 'vue'
@@ -11820,21 +12216,23 @@ new Vue({
 
 5. 使用：
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673921542154-eba98fa1-0988-42eb-bbc9-63b33059732f.png#clientId=u84611a79-a386-4&from=paste&height=736&id=J6deh&name=image.png&originHeight=736&originWidth=1058&originalType=binary&ratio=1&rotation=0&showTitle=false&size=122789&status=done&style=stroke&taskId=uc46f5dbb-040a-4386-b262-ae53743c28e&title=&width=1058)
+![image.png](attachments/2023-07-25-12--51-01-970--Bg3cpqmqF-ca2A.png)
 
 6. 效果
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29280567/1673921562482-d13521fb-a773-49f1-8f54-e6904f0fc5bc.png#clientId=u84611a79-a386-4&from=paste&height=71&id=yLdYg&name=image.png&originHeight=71&originWidth=294&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1805&status=done&style=stroke&taskId=u8760f6f9-f5e8-4ce8-825c-0078b806ab3&title=&width=294)
-## 2、
+![image.png](attachments/2023-07-25-12--51-01-984--hWAfTVNXPie78w.png)
+
 # 十、其他问题
+
 ## 1、`el` 与 `data` 的两种写法
-:::info
+
 由Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例了。
-:::
+
 ### ①、`el`的两种写法
 
 1. new Vue 时候配置 el 属性。
 2. 先创建 Vue 实例，随后再通过 `vm.$mount('#root')` 指定 el 的值。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -11883,13 +12281,17 @@ new Vue({
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669364088933-41d34c5d-ec7d-492f-bea8-49d93075066e.png#clientId=u6a6299f3-4df1-4&from=paste&height=258&id=uc9e37925&name=image.png&originHeight=258&originWidth=824&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16161&status=done&style=stroke&taskId=u0c04ca43-764e-4f86-9707-2db4bc70fec&title=&width=824)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669364099543-fc00adde-b8a5-46d9-889f-859911010d27.png#clientId=u6a6299f3-4df1-4&from=paste&height=240&id=u65c24586&name=image.png&originHeight=240&originWidth=823&originalType=binary&ratio=1&rotation=0&showTitle=false&size=18103&status=done&style=stroke&taskId=uec60e19e-98ed-4021-8610-32f5052e4fc&title=&width=823)
+
+![image.png](attachments/2023-07-25-12--51-01-990--Pxmre1X24TDN8A.png)
+
+![image.png](attachments/2023-07-25-12--51-02-146---WOyqfs_AtCUbA.png)
+
 ### ②、`data` 的两种写法
 
 1. 对象式
 2. 函数式
 3. 如何选择：目前哪种写法都可以，以后学习到组件时，data 必须使用函数式，否则会报错。		
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -11940,7 +12342,9 @@ new Vue({
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669708872740-6ad23e2d-17f3-4a4b-8dfa-2394ffd13500.png#clientId=ub11d9df9-f89a-4&from=paste&height=758&id=u9d3b72a7&name=image.png&originHeight=758&originWidth=797&originalType=binary&ratio=1&rotation=0&showTitle=false&size=94248&status=done&style=stroke&taskId=u8e0c8059-4042-4ca0-9a0b-309d07de972&title=&width=797)
+
+![image.png](attachments/2023-07-25-12--51-02-237--4HKZkktsa6ariw.png)
+
 ## 2、vue 监测数据的原理
 
 1. vue会监视 data 中所有层次的数据
@@ -11958,6 +12362,7 @@ new Vue({
 ---
 
 ### ①、简单模拟对象数据监测
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -12005,9 +12410,11 @@ new Vue({
 	</body>
 </html>
 ```
+
 ### ②、给后添加的属性做响应式 `Vue.set(target，propertyName/index，value)`
 
 - `Vue.set` 只能给 `data` 中某个对象里添加属性，不允许直接向 `data（根数据对象）` 中添加属性
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -12054,11 +12461,17 @@ new Vue({
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669956318730-1404b38c-b400-4351-87f5-0a2b44db4805.png#clientId=uf1630784-598d-4&from=paste&height=153&id=ub0ca9803&name=image.png&originHeight=153&originWidth=834&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16443&status=done&style=stroke&taskId=u94c974dd-023c-4710-a9f3-e3e22eeb710&title=&width=834)
+
+![image.png](attachments/2023-07-25-12--51-02-400--K2c7oObV3pX74A.png)
+
 ### ③、如何监测数组中的数据
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669957860779-4c6e7823-f31f-4adf-9795-334652d8cd8f.png#clientId=uf1630784-598d-4&from=paste&height=614&id=u209829a4&name=image.png&originHeight=614&originWidth=1065&originalType=binary&ratio=1&rotation=0&showTitle=false&size=212369&status=done&style=stroke&taskId=u0f857ff3-0bfa-4157-bfab-cc69362ae62&title=&width=1065)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669958199443-a3daa53f-141d-4434-ba68-b90bfb14bfa0.png#clientId=uf1630784-598d-4&from=paste&height=554&id=u0ae82909&name=image.png&originHeight=554&originWidth=842&originalType=binary&ratio=1&rotation=0&showTitle=false&size=131697&status=done&style=stroke&taskId=u0f61d47a-fa3f-4d0a-a180-9cd934949d1&title=&width=842)
+
+![image.png](attachments/2023-07-25-12--51-02-518---EhkkpBjgdpHZw.png)
+
+![image.png](attachments/2023-07-25-12--51-02-686--3Hn6Pn6Ie0D6hw.png)
+
 ### ④、总结
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -12170,6 +12583,7 @@ new Vue({
 	</script>
 </html>
 ```
+
 ## 3、本地存储 `localStorage`
 
 1. 存储内容大小一般支持5MB左右（不同浏览器可能还不一样）
@@ -12184,5 +12598,6 @@ new Vue({
    2. LocalStorage 存储的内容，需要手动清除才会消失。
    3. `xxxxxStorage.getItem(xxx)`如果 xxx 对应的 value 获取不到，那么 getItem 的返回值是 null。
    4. `JSON.parse(null)`的结果依然是 null。
+
 ## 4、
 ## 5、

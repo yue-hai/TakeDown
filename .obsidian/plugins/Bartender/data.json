@@ -73,6 +73,38 @@
       "其他/游戏/泰拉瑞亚/attachments",
       "其他/游戏/泰拉瑞亚/泰拉瑞亚 tModLoader 的 CentOS 服务器搭建.md",
       "其他/游戏/泰拉瑞亚/泰拉瑞亚TShock服务器在Liunx下的部署.md"
+    ],
+    "前端/JS 框架": [
+      "前端/JS 框架/attachments",
+      "前端/JS 框架/jQuery.md",
+      "前端/JS 框架/Ajax.md",
+      "前端/JS 框架/Axios.md",
+      "前端/JS 框架/Vue2.md",
+      "前端/JS 框架/Vue3.md"
+    ],
+    "前端/UI 组件库": [
+      "前端/UI 组件库/attachments",
+      "前端/UI 组件库/Ant Design Vue.md",
+      "前端/UI 组件库/Bootstrap 快速入门.md"
+    ],
+    "linux/linux": [
+      "linux/linux/attachments",
+      "linux/linux/正则表达式.md",
+      "linux/linux/Liunx 基础.md",
+      "linux/linux/Shell 编程.md"
+    ],
+    "linux/Smart": [
+      "linux/Smart/attachments",
+      "linux/Smart/Smart 基础.md",
+      "linux/Smart/Smart 编程.md"
+    ],
+    "前端/三件套": [
+      "前端/三件套/attachments",
+      "前端/三件套/HTML5 新特性.md",
+      "前端/三件套/CSS.md",
+      "前端/三件套/JavaScript.md",
+      "前端/三件套/ES6-11 - JavaScript 新特性.md",
+      "前端/三件套/Promise 从入门到自定义.md"
     ]
   },
   "actionBarOrder": {},

@@ -1,32 +1,42 @@
-> [https://www.bilibili.com/video/BV1GA411x7z1?p=5&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01](https://www.bilibili.com/video/BV1GA411x7z1?p=5&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
-> [尚硅谷_Promise从入门到自定义.pdf](https://www.yuque.com/attachments/yuque/0/2022/pdf/29280567/1662603783098-4f78419c-ce43-4ee2-961e-a8e4a85c61cb.pdf?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fpdf%2F29280567%2F1662603783098-4f78419c-ce43-4ee2-961e-a8e4a85c61cb.pdf%22%2C%22name%22%3A%22%E5%B0%9A%E7%A1%85%E8%B0%B7_Promise%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89.pdf%22%2C%22size%22%3A507712%2C%22type%22%3A%22application%2Fpdf%22%2C%22ext%22%3A%22pdf%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u8baec5e9-1c00-4e43-b48b-adfa60fed62%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22udd0b90a2%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
-> [promise.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1673925398185-ed7a92e3-e02b-454b-a701-c32cdff2f0fe.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1673925398185-ed7a92e3-e02b-454b-a701-c32cdff2f0fe.jpeg%22%2C%22name%22%3A%22promise.jpg%22%2C%22size%22%3A96020%2C%22type%22%3A%22image%2Fjpeg%22%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22ud2c1e2d9-e9cc-4db4-852c-5a7122f3ef6%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22ue7b976d1%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+> [B 站尚硅谷 Promise 视频](https://www.bilibili.com/video/BV1GA411x7z1?p=5&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
+> 
+> <a href="attachments/尚硅谷_Promise从入门到自定义.pdf" alt="文档">尚硅谷_Promise从入门到自定义.pdf</a>
 
 # 一、Promise 的理解和使用
+
 ## 1、Promise 是什么？
+
 ### ①、理解
+
 #### Ⅰ、抽象表达：
 
 1. Promise 是一门新的技术(ES6 规范)
 2. Promise 是 JS 中进行异步编程的新解决方案
 3. 备注：旧方案是单纯使用回调函数
+
 #### Ⅱ、具体表达：
 
 1. 从语法上来说: Promise 是一个构造函数
 2. 从功能上来说: promise 对象用来封装一个异步操作并可以获取其成功/失败的结果值
+
 ### ②、promise 的状态改变
 
 1. pending 变为 resolved
 2. pending 变为 rejected
 3. 说明: 只有这 2 种, 且一个 promise 对象只能改变一次。无论变为成功还是失败, 都会有一个结果数据
 4. 成功的结果数据一般称为 value, 失败的结果数据一般称为 reason
+
 ### ③、promise 的基本流程
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1662598974814-c1e6e0be-b185-4311-a92d-ecf395bb9239.png#clientId=u3779ca98-45d9-4&from=paste&height=277&id=u3d036309&name=image.png&originHeight=277&originWidth=1128&originalType=binary&ratio=1&rotation=0&showTitle=false&size=59357&status=done&style=none&taskId=u5077fd10-e4cb-4690-b8fa-c7d2047be7c&title=&width=1128)
+
+![image.png](attachments/2023-07-25-13--10-31-593--Qn8ns5qQxU-AGQ.png)
+
 ## 2、为什么要用 Promise
+
 ### ①、指定回调函数的方式更加灵活
 
 1. 旧的: 必须在启动异步任务前指定
 2. promise: 启动异步任务 => 返回promie对象 => 给promise对象绑定回调函数(甚至可以在异步任务结束后指定/多个)
+
 ### ②、支持链式调用, 可以解决回调地狱问题
 
 1. 什么是回调地狱？
@@ -39,45 +49,52 @@
 4. 终极解决方案
    1. async/await
 
-### ③、
-### ④、
 ## 3、如何使用 Promise？
+
 ### ①、API
+
 #### Ⅰ、`Promise 构造函数: Promise (excutor) {}`
 
 1. executor 函数: 执行器 (resolve, reject) => {} 
 2. resolve 函数: 内部定义成功时我们调用的函数 value => {}
 3. reject 函数: 内部定义失败时我们调用的函数 reason => {}
 4. 说明: executor 会在 Promise 内部立即同步调用,异步操作在执行器中执行
+
 #### Ⅱ、`Promise.prototype.then 方法: (onResolved, onRejected) => {}`
 
 1. onResolved 函数: 成功的回调函数 (value) => {}
 2. onRejected 函数: 失败的回调函数 (reason) => {}
 3. 说明: 指定用于得到成功 value 的成功回调和用于得到失败 reason 的失败回调，返回一个新的 promise 对象
+
 #### Ⅲ、`Promise.prototype.catch 方法: (onRejected) => {}`
 
 1. onRejected 函数: 失败的回调函数 (reason) => {}
 2. 说明: then()的语法糖, 相当于: then(undefined, onRejected)
+
 #### Ⅳ、`Promise.resolve 方法: (value) => {}`
 
 1. value: 成功的数据或 promise 对象
 2. 说明: 返回一个成功/失败的 promise 对象
+
 #### Ⅴ、`Promise.reject 方法: (reason) => {}`
 
 1. reason: 失败的原因
 2. 说明: 返回一个失败的 promise 对象
+
 #### Ⅵ、`Promise.all 方法: (promises) => {}`
 
 1. promises: 包含 n 个 promise 的数组
 2. 说明: 返回一个新的 promise, 只有所有的 promise 都成功才成功, 只要有一个失败了就直接失败
+
 #### Ⅶ、`Promise.race 方法: (promises) => {}`
 
 1. promises: 包含 n 个 promise 的数组
 2. 说明: 返回一个新的 promise, 第一个完成的 promise 的结果状态就是最终的结果状态
-### ②、
+
 ## 4、promise 的基本使用
 
 1. 使用以前的方式
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -128,6 +145,7 @@
 ```
 
 2. 使用 promise
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -194,6 +212,7 @@
 ```
 
 3. 使用 promise 传递结果（参数）
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -258,16 +277,22 @@
 
 </html>
 ```
+
 # 二、实践练习
+
 ## 1、fs 读取文件
+
 ### ①、创建 resource 文件夹，其中创建 content.txt
+
 ```html
         观书有感
                 作者：朱熹
 半亩方塘一鉴开，天光云影共徘徊。
 问渠那得清如许？为有源头活水来
 ```
+
 ### ②、回调函数 形式
+
 ```javascript
 //
 const fs = require('fs');
@@ -283,8 +308,10 @@ fs.readFile('./resource/content.txt', (err, data) => {
 
 - 在控制台运行
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1662604951828-bba4373f-d879-4182-9ceb-9a1faf1dc243.png#clientId=u3779ca98-45d9-4&from=paste&height=1025&id=udc630a18&name=image.png&originHeight=1025&originWidth=917&originalType=binary&ratio=1&rotation=0&showTitle=false&size=81430&status=done&style=none&taskId=ub49af769-076a-4d15-931e-37d16846157&title=&width=917)
+![image.png](attachments/2023-07-25-13--10-32-017--M9hGwymO8DYDQw.png)
+
 ### ③、Promise 形式
+
 ```javascript
 //
 const fs = require('fs');
@@ -310,13 +337,20 @@ p.then(value=>{
 
 - 在控制台运行
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1662605008041-99df285f-e061-4a42-8c15-975a2dd64d68.png#clientId=u3779ca98-45d9-4&from=paste&height=1025&id=ub79ec13f&name=image.png&originHeight=1025&originWidth=917&originalType=binary&ratio=1&rotation=0&showTitle=false&size=109257&status=done&style=none&taskId=uffe8d648-3e90-4552-ab28-95e7a99989a&title=&width=917)
+![image.png](attachments/2023-07-25-13--10-32-121--ciGGij1P4NcIEA.png)
+
 ## 2、
+
 ## 3、
+
 ## 4、
+
 # 三、
+
 # 四、
+
 # 五、
+
 
 ---
 

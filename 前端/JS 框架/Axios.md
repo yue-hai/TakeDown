@@ -1,12 +1,13 @@
-> [https://www.bilibili.com/video/BV1wr4y1K7tq/?p=11&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01](https://www.bilibili.com/video/BV1wr4y1K7tq/?p=11&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
-> [尚硅谷_axios从入门到源码分析.pdf](https://www.yuque.com/attachments/yuque/0/2022/pdf/29280567/1669193861873-cf89c0fe-c597-4706-913f-dc6f2555fa60.pdf?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fpdf%2F29280567%2F1669193861873-cf89c0fe-c597-4706-913f-dc6f2555fa60.pdf%22%2C%22name%22%3A%22%E5%B0%9A%E7%A1%85%E8%B0%B7_axios%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.pdf%22%2C%22size%22%3A535576%2C%22type%22%3A%22application%2Fpdf%22%2C%22ext%22%3A%22pdf%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22uf1f38f6e-8501-4dff-b4d5-a13548d77d5%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22ue66c265f%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
-> 代码：[3.jpg](https://www.yuque.com/attachments/yuque/0/2022/jpeg/29280567/1669193921222-24e70916-2fec-4f02-81e2-eb93dcb883db.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fjpeg%2F29280567%2F1669193921222-24e70916-2fec-4f02-81e2-eb93dcb883db.jpeg%22%2C%22name%22%3A%223.jpg%22%2C%22size%22%3A98547%2C%22type%22%3A%22image%2Fjpeg%22%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u9627771e-417f-4828-875f-f383564cd88%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u2dadc9b1%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+> [B 站尚硅谷 Axios 视频](https://www.bilibili.com/video/BV1wr4y1K7tq/?p=11&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
+> 
+> <a href="attachments/尚硅谷_axios从入门到源码分析.pdf" alt="文档">尚硅谷_axios从入门到源码分析.pdf</a>
 
 # 一、axios 是什么
 
 1. 前端最流行的 ajax 请求库
 2. react/vue 官方都推荐使用 axios 发 ajax 请求
 3. 文档：[https://github.com/axios/axios](https://github.com/axios/axios)
+
 # 二、axios 特点
 
 1. 基于 xhr + promise 的异步 ajax 请求库
@@ -15,7 +16,9 @@
 4. 支持请求取消
 5. 请求/响应数据转换
 6. 批量发送多个请求
+
 # 三、axios 常用语法
+
 | 语法（方括号内为可选参数） | 描述 |
 | --- | --- |
 | `axios(config)` | 通用/最本质的发任意类型请求的方式 |
@@ -35,8 +38,10 @@
 | `axios.all(promises)` | 用于批量执行多个异步请求 |
 | `axios.spread()` | 用来指定接收所有成功数据的回调函数的方法 |
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669179007124-8776a39b-5e7e-4b05-9798-4df69fdb72e4.png#clientId=u0e56fbf9-01e5-4&from=paste&height=567&id=u30775f79&name=image.png&originHeight=567&originWidth=664&originalType=binary&ratio=1&rotation=0&showTitle=false&size=123705&status=done&style=none&taskId=u87acd802-53ca-4f0c-b65c-2108d627df8&title=&width=664)
+![image.png](attachments/2023-07-25-12--50-24-333--Glh19rd1KkQD4w.png)
+
 # 四、axios 使用
+
 ## 0、使用方法
 
 1. npm：`npm install axios`
@@ -44,12 +49,13 @@
 3. bower：`bower install axios`
 4. Using jsDelivr CDN：`<script src="https: //cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>`
 5. Using unpkg CDN：`<script src="https: //unpkg.com/axios/dist/axios.min.js"></script>`
-> Boot CDN：[https://www.bootcdn.cn/](https://www.bootcdn.cn/)
 
+> Boot CDN：[https://www.bootcdn.cn/](https://www.bootcdn.cn/)
 
 ---
 
 - Spring Boot 项目设置允许跨域：在 Controller 类或者方法上添加注解：`@CrossOrigin`
+
 ```java
 package com.yuehai.controller;
 
@@ -88,10 +94,12 @@ public class AxiosController {
 }
 
 ```
+
 ## 1、axios的基本使用：`axios(config)`
 
 1. `axios(config)`：通用/最本质的发任意类型请求的方式
 2. `axios.request(config)`：等同于 `axios(config)`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -183,7 +191,9 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669183382125-34a95a0b-e60e-4fcf-974d-9b1668a91cd0.png#clientId=u0e56fbf9-01e5-4&from=paste&height=186&id=ub5624e3b&name=image.png&originHeight=186&originWidth=851&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27103&status=done&style=none&taskId=u3e995607-629f-4b31-b0c4-2de3c419af6&title=&width=851)
+
+![image.png](attachments/2023-07-25-12--50-24-779--cTYyktwzJliSug.png)
+
 ## 2、axiosCRUD方法：`get、post、delete、put`
 
 1. `axios(url[, config])`：可以只指定 url 发 get 请求
@@ -191,6 +201,7 @@ public class AxiosController {
 3. `axios.delete(url[, config])`：发 delete 请求
 4. `axios.post(url[, data, config])`：发 post 请求
 5. `axios.put(url[, data, config])`：发 put 请求
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -258,10 +269,15 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669184390438-4da72509-7f9c-4f89-8f8b-314ad8a603dc.png#clientId=u0e56fbf9-01e5-4&from=paste&height=189&id=ue4aad849&name=image.png&originHeight=189&originWidth=854&originalType=binary&ratio=1&rotation=0&showTitle=false&size=30000&status=done&style=none&taskId=u5f96e672-12f0-4ae0-a017-e89fc21eb34&title=&width=854)
+
+![image.png](attachments/2023-07-25-12--50-24-910--upuOqhQ-dyqdFw.png)
+
 ## 3、响应结果介绍
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669184876150-0fd94813-9315-48b3-a82f-e97f825d5508.png#clientId=u0e56fbf9-01e5-4&from=paste&height=258&id=u8aa9b463&name=image.png&originHeight=258&originWidth=1677&originalType=binary&ratio=1&rotation=0&showTitle=false&size=112272&status=done&style=none&taskId=uac48d8e7-58eb-4478-8244-7401616a6b0&title=&width=1677)
+
+![image.png](attachments/2023-07-25-12--50-25-024--oz-pKgvU1EhFTg.png)
+
 ## 4、axios 配置对象 `config`
+
 | 参数 | 描述 |
 | --- | --- |
 | `url` | 请求地址 |
@@ -305,6 +321,7 @@ public class AxiosController {
 | `maxRate` |  |
 
 ## 5、默认配置：`axios.defaults.xxx`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -360,8 +377,11 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669188652745-18572238-3fa5-458d-9d4e-db27d655692b.png#clientId=u0e56fbf9-01e5-4&from=paste&height=132&id=u96f95825&name=image.png&originHeight=132&originWidth=852&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21067&status=done&style=none&taskId=u5247d6d8-28e7-4c20-956b-a6628fc6ac3&title=&width=852)
+
+![image.png](attachments/2023-07-25-12--50-25-237--YG4chGY2yShOqw.png)
+
 ## 6、axios 创建实例对象发送请求：`axios.create([config])`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -408,12 +428,15 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669189812423-ab810802-fe56-4eb3-84b4-1be5b89b3a16.png#clientId=u0e56fbf9-01e5-4&from=paste&height=170&id=u1d3938e0&name=image.png&originHeight=170&originWidth=855&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29553&status=done&style=none&taskId=u6725d179-54e7-4b20-bc42-a2dbb4bc31c&title=&width=855)
+
+![image.png](attachments/2023-07-25-12--50-25-396--D6MopAtSXL1DFA.png)
+
 ## 7、拦截器：`axios.interceptors`
 
 1. 说明：调用 axios() 并不是立即发送 ajax 请求，而是需要经历一个较长的流程
 2. 流程：请求拦截器2 => 请求拦截器1 => 发 ajax 请求 => 响应拦截器1 => 响应拦截器 2 => 请求的回调
 3. 注意：此流程是通过 promise 串连起来的, 请求拦截器传递的是 config，响应拦截器传递的是 response
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -504,8 +527,11 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669191646538-518b5cb8-f24f-494c-aa39-8c697419044e.png#clientId=u78dd89c5-b98e-4&from=paste&height=780&id=u85420b7c&name=image.png&originHeight=780&originWidth=855&originalType=binary&ratio=1&rotation=0&showTitle=false&size=92193&status=done&style=none&taskId=u53d52f8a-3cba-4da4-8fa2-f1dd8a98290&title=&width=855)
+
+![image.png](attachments/2023-07-25-12--50-25-527--cS72XtK8mCLGCw.png)
+
 ## 8、取消请求：`axios.CancelToken()`
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -573,14 +599,17 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669193807430-1cc6210b-0e31-4279-8ba8-1c2e37450951.png#clientId=u78dd89c5-b98e-4&from=paste&height=177&id=udba03eb6&name=image.png&originHeight=177&originWidth=853&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35369&status=done&style=none&taskId=u9a5c7405-522d-42bb-ae22-fd4f2a966f4&title=&width=853)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669193818288-5d554e68-c0a0-4a33-b8b3-d444a613a15a.png#clientId=u78dd89c5-b98e-4&from=paste&height=342&id=u79eba4e4&name=image.png&originHeight=342&originWidth=855&originalType=binary&ratio=1&rotation=0&showTitle=false&size=44257&status=done&style=none&taskId=u434826ce-b6df-4e4d-bd07-3303530d002&title=&width=855)
+
+![image.png](attachments/2023-07-25-12--50-25-649---D7LAAe6z-83lw.png)
+
+![image.png](attachments/2023-07-25-12--50-25-771--WYMz_yxVjsonyg.png)
 
 ---
 
 - 一个按钮实现 `发送/取消` 
    - 当有请求进行时，点击按钮取消请求
    - 没有请求进行时，点击按钮发送请求
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -647,8 +676,11 @@ public class AxiosController {
 
 </html>
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669193769943-def0b3aa-44a9-4236-a093-90fbe26dabd3.png#clientId=u78dd89c5-b98e-4&from=paste&height=194&id=ube3dd9aa&name=image.png&originHeight=194&originWidth=855&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36421&status=done&style=none&taskId=ud5d3ef13-3b14-4ce6-a71f-5b9cbe73bd9&title=&width=855)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1669193779668-6b10b2ac-196a-415b-8af2-fd553ef23763.png#clientId=u78dd89c5-b98e-4&from=paste&height=345&id=ua201f09b&name=image.png&originHeight=345&originWidth=851&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42368&status=done&style=none&taskId=ua83265b2-459d-4fa7-8a82-2a21d287ccf&title=&width=851)
+
+![image.png](attachments/2023-07-25-12--50-25-912--cuQ3mZ1qOcc5LQ.png)
+
+![image.png](attachments/2023-07-25-12--50-26-009--IsNLqt21PgVXmA.png)
+
 # 五、
 # 六、
 # 七、

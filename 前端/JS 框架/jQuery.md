@@ -1,32 +1,37 @@
 > [https://developer.aliyun.com/course/25](https://developer.aliyun.com/course/25) ，这个视频讲的很差
-> [JQuery.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1673925352282-1cea97c4-f1e0-4d18-8970-9669d422df68.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1673925352282-1cea97c4-f1e0-4d18-8970-9669d422df68.jpeg%22%2C%22name%22%3A%22JQuery.jpg%22%2C%22size%22%3A106500%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22type%22%3A%22image%2Fjpeg%22%2C%22taskId%22%3A%22uf163a103-c7ff-4cf0-9904-1587d41c357%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u78daff44%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
 
 ## 一、JQuery 简介
- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1655967887951-0c78cce8-b3ce-4052-8965-d1d71b997764.png#averageHue=%23ececeb&clientId=ue9716e9c-5b01-4&from=paste&height=313&id=u9f143833&name=image.png&originHeight=313&originWidth=952&originalType=binary&ratio=1&rotation=0&showTitle=false&size=193560&status=done&style=stroke&taskId=ub5f40746-911d-4e3b-8003-f2477458177&title=&width=952)
+
+![image.png](attachments/2023-07-25-12--50-39-680--BdNMHxNrq_LlKw.png)
+
 ## 二、下载引入
+
 ### 1、本地文件
 
 1. 官网：[https://jquery.com/](https://jquery.com/)
 2. 下载相应的版本引入即可
+
 ### 2、网络库引入
 
 1. 选择 JQuery 官方或其他网络库
 2. 使用标签引入即可
+
 ```javascript
 <!-- 以链接的方式引入 JQuery 库 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 ```
+
 ## 三、基础语法
-:::info
+
 jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操作
 基础语法： $(selector).action()
 
 1. 美元符号定义 jQuery
 2. 选择符（selector）"查询"和"查找" HTML 元素
 3. jQuery 的 action() 执行对元素的操作
-:::
 
 - 实例
+
 ```javascript
 $(this).hide() - 隐藏当前元素
 
@@ -62,18 +67,21 @@ $("#test").hide() - 隐藏 id="test" 的元素
 
 </html>
 ```
+
 ## 四、选择器
-:::info
+
 jQuery 选择器允许对 HTML 元素组或单个元素进行操作
-:::
+
 > 菜鸟教程：[jQuery 选择器](https://www.runoob.com/jquery/jquery-ref-selectors.html)
 
 ### 1、基础选择器
+
 #### ①、选择所有元素 - (*)
 
 - 描述：选择所有元素
 - 语法：`$("*")`
 - 注意，由于是选择所有元素，有些浏览器将会比较缓慢，这个选择器要谨慎使用
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -107,10 +115,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ②、类选择器 - (".class")
 
 - 描述：选择给定的类名的所有元素
 - 语法：`$(".class")`
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -142,10 +152,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ③、id 选择器 - ("#id")
 
 - 描述：选择一个具有给定 id 属性的元素
 - 语法：`$("#id")`
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -177,10 +189,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ④、标签（元素）选择器 - ("标签名")
 
 - 描述：选择给定标签名的所有元素
 - 语法：`$("标签名")`
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -212,10 +226,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑤、组合选择器 - ("#a,.b,c,...")
 
 - 描述：选择多种元素，可将上面的选择器组合使用；只要满足其中一个就会被选择
 - 语法：`$("选择器1,选择器2,选择器3,...")`
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -253,13 +269,15 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 ### 2、属性选择器
-:::info
+
 属性值的引号是可选的
 若是一个单词则可以不带引号
 若是中间带空格则需要带引号
-:::
+
 #### ①、指定值
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -291,7 +309,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ②、包含某字符串的值
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -323,7 +343,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ③、用空格分隔的值中的某个值
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -353,7 +375,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ④、指定值或以指定值为前缀（用 - 分隔）
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -383,9 +407,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑤、不存在给定值的值
 
 - 描述：整个网页的所有标签元素中，只要没有这个属性和值都会被选择
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -415,9 +441,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑥、以给定值结尾的值
 
 - 描述：区分大小写
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -447,9 +475,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑦、以给定值开头的值
 
 - 描述：区分大小写
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -479,9 +509,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑧、选择属性
 
 - 描述：只要有该属性就选择，不管值是什么
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -511,9 +543,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑨、组合属性选择器
 
 - 描述：选择多种元素，可将上面的选择器组合使用；要满足全部的条件才行
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -548,8 +582,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 ### 3、基础过滤
+
 #### ①、选择所有正在执行动画效果的元素（:animated）
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -611,9 +648,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ②、选择给定索引值的元素（:eq(index)）
 
 - 可以是负值，这样的话就是从后往前数，但是 -0 还是整数第一个， -1 才是倒数第一个
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -652,9 +691,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ③、选择大于给定索引值的元素（:gt(index)）
 
 - 可以是负值，这样的话就是从后往前数，但是 -0 还是整数第一个， -1 才是倒数第一个
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -696,9 +737,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ④、选择小于给定索引值的元素（:lt(-index)）
 
 - 可以是负值，这样的话就是从后往前数，但是 -0 还是整数第一个， -1 才是倒数第一个
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -740,9 +783,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑤、选择索引值为偶数的元素（:even）
 
 - 因为索引值是从 0 开始，索引选择的元素是第 1、3、5、7 ... 个
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -779,9 +824,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑥、选择索引值为奇数的元素（:odd）
 
 - 因为索引值是从 0 开始，索引选择的元素是第 2、4、6、8 ... 个
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -818,7 +865,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑦、选择第一个匹配的元素（:first）
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -855,7 +904,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑧、选择最后一个匹配的元素（:last）
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -894,7 +945,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑨、选择当前获取焦点的元素（:focus）
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -930,9 +983,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑩、选择所有标题元素（:header）
 
 - 像 h1、h2 等
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -971,11 +1026,13 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 ### 4、子元素过滤
 #### ①、选择所有属于其父元素的第 n 个子元素
 
 - `:nth-child(index)`
 - 选择同级元素中的第 n 个是给定标签的元素，不是给定标签的元素不会选择
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1026,10 +1083,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ②、选择所有属于其父元素的第一个子元素
 
 - `:first-child`
 - 选择同级元素中的第一个是给定标签的元素，不是给定标签的元素不会选择
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1080,10 +1139,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ③、选择所有属于其父元素的最后一个子元素
 
 - `:last-child`
 - 选择同级元素中的最后一个是给定标签的元素，不是给定标签的元素不会选择
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1134,10 +1195,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ④、选择所有相同的元素名称的第一个兄弟元素
 
 - `:first-of-type`
 - 选择同级元素中的第一个是给定标签的元素
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1188,10 +1251,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ⑤、选择所有相同的元素名称的最后一个兄弟元素
 
 - `:last-of-type`
 - 选择同级元素中的最后一个是给定标签的元素
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1242,12 +1307,14 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 ### 5、内容过滤
 #### ①、选择所有包含指定文本的元素
 
 - `:contains(text)`
 - text：用来查找的一个字符串，区分大小写
 - 匹配的文本可以直接出现在所选元素中，或在该元素的任何后代中，或两者兼有
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1282,10 +1349,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 </script>
 </html>
 ```
+
 #### ②、根据指定的选择器选取包含一个或多个元素的元素
 
 - `:has(selector)`
 - 只要包含其指定的元素就可，即使被子元素包含
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1322,10 +1391,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 </script>
 </html>
 ```
+
 #### ③、选择所有不包含子元素或文本的元素
 
 - `:empty`
 - 只会选择指定的标签，不会选择更下一层的标签（除非不指定，*选择所有）
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1365,10 +1436,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 </script>
 </html>
 ```
+
 #### ④、选择所有包含子元素或文本的元素
 
 - `:parent`
 - 与 `:empty` 相反
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1408,10 +1481,12 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 </script>
 </html>
 ```
+
 ### 6、表单
 #### ①、选择所有类型为按钮的元素
 
 - `:button`
+
 ```javascript
 <!DOCTYPE html>
 <html lang="en">
@@ -1443,36 +1518,47 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 </html>
 ```
+
 #### ②、选择所有类型为复选框的元素
 
 - `:checkbox`
+
 #### ③、选择所有类型为密码的元素
 
 - `:password`
+
 #### ④、选择所有类型为图像的元素
 
 - `:image`
+
 #### ⑤、选择所有类型为文件的元素
 
 - `:file`
+
 #### ⑥、选择所有类型为 input 的元素
 
 - `:input`
 - 同样会选择 textarea、select、button 元素
+
 #### ⑦、选择所有勾选的元素
 
 - `:checked`
+
 #### ⑧、选择所有被禁用的元素
 
 - `:disabled`
+
 #### ⑨、选择所有可用（未被禁用）的元素
 
 - `:enabled`
+
 #### ⑩、选择所有当前获取焦点的元素
 
 - `:focus`
 - 和之前的一样
+
 ### 7、层级
+
 #### ①、子元素选择器
 
 - `parent > child`
@@ -1480,21 +1566,26 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 - child：用来筛选子元素的选择器
 - 选择所有指定 parent 元素中的直接子元素 child 
 - 只能选择直接子元素
+
 #### ②、后代元素选择器
 
 - `parent descendant`
 - parent：任何有效的选择器
 - child：用来筛选后代元素的选择器
 - 选择所有指定 parent 元素中的后代元素 child 
+
 #### ③、紧邻下一个元素选择器
 
 - `element + next`
 - 紧邻 element 元素的下一个 next 元素
+
 #### ④、兄弟元素选择器
 
 - `element ~ siblings`
 - 和 element 元素同级的所有 siblings 元素
+
 ### 8、可见性过滤
+
 #### ①、选择所有隐藏的元素
 
 - `:hidden`
@@ -1503,6 +1594,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
    - 他们是 type="hidden" 的表单元素
    - 他们的宽度和高度都设置为 0
    - 一个祖先元素是隐藏的，因此该元素是不会在页面上显示的
+
 #### ②、选择所有可见的元素
 
 - `:visible`
@@ -1510,12 +1602,19 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 - 所以:元素的 visibility:hidden 或 opacity:0 被认为是可见的，因为他们仍然占用空间布局。
 - 不在文档中的元素是被认为隐藏的，jQuery 没有办法知道他们是否是可见的，因为元素可见性依赖于适用的样式。
 - 隐藏元素上做动画，元素被认为是可见的，直到动画结束。显示元素上做动画，在动画的开始处该元素被认为是可见的。
+
 ### 9、JQuery 扩展
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1656051317190-4ac013f5-bca7-45c3-be1c-26988570780a.png#clientId=uf36266d5-400a-4&from=paste&height=529&id=uce208b00&name=image.png&originHeight=529&originWidth=1037&originalType=binary&ratio=1&rotation=0&showTitle=false&size=449798&status=done&style=stroke&taskId=u8dc10b10-472b-4b58-a8ba-98864b4f928&title=&width=1037)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1656051351319-71f0e9fd-5ba1-49ca-abcb-f703bc071238.png#clientId=uf36266d5-400a-4&from=paste&height=451&id=ufaff3c11&name=image.png&originHeight=451&originWidth=1031&originalType=binary&ratio=1&rotation=0&showTitle=false&size=391002&status=done&style=stroke&taskId=ub76f1acc-115c-4711-a5fd-b5239ce9826&title=&width=1031)
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1656051366113-8ca7ddbb-5843-4ad0-abca-206bf4dbf25e.png#clientId=uf36266d5-400a-4&from=paste&height=281&id=ud5f9bb60&name=image.png&originHeight=281&originWidth=1036&originalType=binary&ratio=1&rotation=0&showTitle=false&size=234328&status=done&style=stroke&taskId=u1f9bbc09-46ed-4f0a-9873-949e9955e71&title=&width=1036)
+
+![image.png](attachments/2023-07-25-12--50-40-150--uO-tuvVVwCJvZA.png)
+
+![image.png](attachments/2023-07-25-12--50-40-382--ILpGUH_sz1ErbQ.png)
+
+![image.png](attachments/2023-07-25-12--50-40-576--VuVW3URDnXRoxA.png)
+
 ### 10、【总结】
+
 #### ①、基本选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("#id")  | ID选择器 |
@@ -1524,6 +1623,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $(".classname,.classname1,#id1") | 组合选择器 |
 
 #### ②、层次选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("#id>.classname ") | 子元素选择器 |
@@ -1532,6 +1632,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $("#id ~ .classname ") | 兄弟元素选择器 |
 
 #### ③、过滤选择器(重点)
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("li:first") | 第一个li |
@@ -1544,6 +1645,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $("li:not(#runoob)") | 挑选除 id="runoob" 以外的所有li |
 
 #### ④、内容过滤选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("div:contains('Runob')") | 包含 Runob文本的元素 |
@@ -1552,12 +1654,14 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $("td:parent") | 含有子元素或者文本的元素 |
 
 #### ⑤、可见性过滤选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("li:hidden") | 匹配所有不可见元素，或type为hidden的元素 |
 | $("li:visible") | 匹配所有可见元素 |
 
 #### ⑥、属性过滤选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("div[id]") | 所有含有 id 属性的 div 元素  |
@@ -1569,6 +1673,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $("input[id][name$='man']") | 多属性选过滤，同时满足两个属性的条件的元素 |
 
 #### ⑦、状态过滤选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $("input:enabled") | 匹配可用的 input  |
@@ -1577,10 +1682,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $("option:selected") | 匹配选中的 option |
 
 #### ⑧、表单选择器
+
 | 选择器 | 介绍 |
 | --- | --- |
 | $(":input") | 匹配所有 input, textarea, select 和 button 元素  |
-| $(":text") | 所有的单行文本框，$(":text") 等价于$("[type=text]")，推荐使用$("input:text")效率更高，下同 |
+| `$(":text")` | 所有的单行文本框，`$(":text")` 等价于`$("[type=text]")`，推荐使用`$("input:text")`效率更高，下同 |
 | $(":password") | 所有密码框  |
 | $(":radio") | 所有单选按钮  |
 | $(":checkbox") | 所有复选框  |
@@ -1590,9 +1696,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | $(":file") | 所有文件域 |
 
 ## 五、事件
+
 > 菜鸟教程：[jQuery 事件方法](https://www.runoob.com/jquery/jquery-ref-events.html)
 
 ### 1、鼠标事件
+
 | 鼠标事件 | 说明 |
 | --- | --- |
 | [click](https://www.runoob.com/jquery/event-click.html) | 点击事件 |
@@ -1607,7 +1715,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 | mouseout() | 鼠标离开元素（支持事件冒泡） |
 
 - 事件冒泡：当子元素（事件源）事件触发，事件会沿着包含关系，依次往上级传递，每一级都可以感知到事件，直到触发根元素（根源)
+
 ### 2、键盘事件
+
 | 键盘事件 | 说明 |
 | --- | --- |
 | [keydown](https://www.runoob.com/jquery/event-keydown.html) | 键按下的过程 |
@@ -1616,14 +1726,17 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 - 常用键盘按键对应的代码：
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1656053838329-3b6a689c-505f-4917-8215-fd6419b6f898.png#clientId=uf36266d5-400a-4&from=paste&height=395&id=u2a6fefc9&name=image.png&originHeight=395&originWidth=306&originalType=binary&ratio=1&rotation=0&showTitle=false&size=84540&status=done&style=stroke&taskId=u3655e510-7903-4517-b044-460bbd76967&title=&width=306)
+![image.png](attachments/2023-07-25-12--50-40-791--TnnohSPX9R9O4Q.png)
+
 ### 3、浏览器事件
+
 | 窗口事件 | 说明 |
 | --- | --- |
 | [scroll](https://www.runoob.com/jquery/event-scroll.html) | 当用户滚动指定的元素时，会发生 scroll 事件 |
 | [resize](https://www.runoob.com/jquery/event-resize.html) | 当调整浏览器窗口大小时，发生 resize 事件 |
 
 ### 4、文档加载事件
+
 | 文档加载事件 | 说明 |
 | --- | --- |
 | ready | 当 DOM（document object model 文档对象模型）加载完毕且页面完全加载（包括图像）时发生 ready 事件 |
@@ -1646,6 +1759,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
         
     })
 ```
+
 **文档加载过程：**
 
 1. 解析 HTML 结构
@@ -1654,7 +1768,9 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 4. 构造 HTML DOM 模型
 5. 加载图片等外部文件
 6. 页面加载完成
+
 ### 5、绑定事件处理器
+
 | 方法 | 描述 |
 | --- | --- |
 | [bind()](https://www.runoob.com/jquery/event-bind.html) | 向元素添加事件处理程序 |
@@ -1667,6 +1783,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 - 对于由 jQuery 动态生成的元素，如用 jQuery 给元素添加 class，或者直接添加一对 p 标签，不能直接绑定常用的事件，如 click。因为这些元素属于动态生成，除非采用 noclick 内联的形式。那么解决办法是使用 live 和 on 事件方法。注意，jquery 1.7.2 之后的版本不建议使用 live
 - 例如：
+
 ```javascript
 $(".box ").click(function(){});
 
@@ -1678,7 +1795,9 @@ $(".box ").on('click', function(){});
 
 // 另外 click, blur, keyup, change等方法，都可以这样解决。
 ```
+
 ### 6、事件对象
+
 | 方法 | 描述 |
 | --- | --- |
 | [event.currentTarget](https://www.runoob.com/jquery/jq-event-currenttarget.html) | 在事件冒泡阶段内的当前 DOM 元素 |
@@ -1731,7 +1850,9 @@ $(".box ").on('click', function(){});
 
 </html>
 ```
+
 ### 7、表单事件
+
 | 方法 | 描述 |
 | --- | --- |
 | [focus()](https://www.runoob.com/jquery/event-focus.html) | 添加/触发获得焦点事件；当元素获得焦点时，发生 focus 事件 |
@@ -1774,9 +1895,11 @@ $(".box ").on('click', function(){});
 
 </html>
 ```
+
 ### 8、DOM 属性
 
 - HTML / CSS 方法
+
 | 方法 | 描述 |
 | --- | --- |
 | [attr()](https://www.runoob.com/jquery/html-attr.html) | 设置或返回被选元素的属性/值 |
@@ -1820,7 +1943,9 @@ $(".box ").on('click', function(){});
 
 </html>
 ```
+
 ### 9、DOM 操作 - 插入并包裹现有内容
+
 | 方法 | 描述 |
 | --- | --- |
 | [wrap()](https://www.runoob.com/jquery/html-wrap.html) | 在每个被选元素的周围用 HTML 元素包裹起来 |
@@ -1828,6 +1953,7 @@ $(".box ").on('click', function(){});
 | [wrapInner()](https://www.runoob.com/jquery/html-wrapinner.html) | 在每个被选元素的内容周围用 HTML 元素包裹起来 |
 
 ### 10、DOM 属性 - 插入到现有元素内
+
 | 方法 | 描述 |
 | --- | --- |
 | [append()](https://www.runoob.com/jquery/html-append.html) | 在被选元素的结尾插入内容 |
@@ -1869,7 +1995,9 @@ $(".box ").on('click', function(){});
 
 </html>
 ```
+
 ### 11、DOM 属性 - 插入到现有元素外
+
 | 方法 | 描述 |
 | --- | --- |
 | [after()](https://www.runoob.com/jquery/html-after.html) | 在被选元素后插入内容 |
@@ -1878,6 +2006,7 @@ $(".box ").on('click', function(){});
 | [insertBefore()](https://www.runoob.com/jquery/html-insertbefore.html) | 在被选元素前插入 HTML 元素 |
 
 ### 12、DOM 移除、替换
+
 | 方法 | 描述 |
 | --- | --- |
 | [detach()](https://www.runoob.com/jquery/html-detach.html) | 移除被选元素（保留数据和事件） |
@@ -1888,11 +2017,13 @@ $(".box ").on('click', function(){});
 | [replaceWith()](https://www.runoob.com/jquery/html-replacewith.html) | 把被选元素替换为新的内容 |
 
 ### 13、DOM 复制元素
+
 | 方法 | 描述 |
 | --- | --- |
 | [clone()](https://www.runoob.com/jquery/html-clone.html) | 生成被选元素的副本 |
 
 ### 14、CSS 属性
+
 | 方法 | 描述 |
 | --- | --- |
 | [css()](https://www.runoob.com/jquery/css-css.html) | 为被选元素设置或返回一个或多个样式属性 |
@@ -1911,22 +2042,25 @@ $(".box ").on('click', function(){});
 | [$.cssHooks](https://www.runoob.com/jquery/html-csshooks.html) | 提供了一种方法通过定义函数来获取和设置特定的CSS值 |
 
 ## 六、遍历
+
 > 菜鸟教程：[JQuery 遍历](https://www.runoob.com/jquery/jquery-traversing.html)
 > 菜鸟教程：[JQuery 遍历方法](https://www.runoob.com/jquery/jquery-ref-traversing.html)
 
 1. jQuery 遍历，意为"移动"，用于根据其相对于其他元素的关系来"查找"（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。
 2. 下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/29280567/1657161294956-42100ba4-1cf7-41bc-a701-bec337dd4992.png#clientId=u27fa92f6-36d0-4&from=paste&id=ue437c17c&name=image.png&originHeight=165&originWidth=350&originalType=url&ratio=1&rotation=0&showTitle=false&size=9750&status=done&style=stroke&taskId=u7dcc749c-b8a5-46ef-a203-2290f3e4ba7&title=)
-> - <div> 元素是 <ul> 的父元素，同时是其中所有内容的祖先。
-> - <ul> 元素是 <li> 元素的父元素，同时是 <div> 的子元素
-> - 左边的 <li> 元素是 <span> 的父元素，<ul> 的子元素，同时是 <div> 的后代。
-> - <span> 元素是 <li> 的子元素，同时是 <ul> 和 <div> 的后代。
-> - 两个 <li> 元素是同胞（拥有相同的父元素）。
-> - 右边的 <li> 元素是 <b> 的父元素，<ul> 的子元素，同时是 <div> 的后代。
-> - <b> 元素是右边的 <li> 的子元素，同时是 <ul> 和 <div> 的后代。
+![image.png](attachments/2023-07-25-12--50-40-921--i8xU8-faarwjwQ.png)
+
+> - `<div>` 元素是 `<ul>` 的父元素，同时是其中所有内容的祖先。
+> - `<ul>` 元素是 `<li>` 元素的父元素，同时是 `<div>` 的子元素
+> - 左边的 `<li>` 元素是 `<span>` 的父元素，`<ul>` 的子元素，同时是 `<div>` 的后代。
+> - `<span>` 元素是 `<li>` 的子元素，同时是 `<ul>` 和 `<div>` 的后代。
+> - 两个 `<li>` 元素是同胞（拥有相同的父元素）。
+> - 右边的 `<li>` 元素是 `<b>` 的父元素，`<ul>` 的子元素，同时是 `<div>` 的后代。
+> - `<b>` 元素是右边的 `<li>` 的子元素，同时是 `<ul>` 和 `<div>` 的后代。
 
 ### 1、过滤
+
 | 方法 | 描述 |
 | --- | --- |
 | [eq()](https://www.runoob.com/jquery/traversing-eq.html) | 返回带有被选元素的指定索引号的元素 |
@@ -1942,6 +2076,7 @@ $(".box ").on('click', function(){});
 ### 2、树遍历
 
 - 祖先、兄弟、后代等
+  
 | 方法 | 描述 |
 | --- | --- |
 | addBack() | 把之前的元素集添加到当前集合中 |
@@ -1962,6 +2097,7 @@ $(".box ").on('click', function(){});
 | [each()](https://www.runoob.com/jquery/traversing-each.html) | 为每个匹配元素执行函数 |
 
 ### 3、其他遍历
+
 | 方法 | 描述 |
 | --- | --- |
 | [add()](https://www.runoob.com/jquery/traversing-add.html) | 把元素添加到匹配元素的集合中 |
@@ -1969,9 +2105,11 @@ $(".box ").on('click', function(){});
 | end() | 结束当前链中最近的一次筛选操作，并把匹配元素集合返回到前一次的状态 |
 
 ## 七、特效（效果）
+
 > 菜鸟教程：[jQuery 效果方法](https://www.runoob.com/jquery/jquery-ref-effects.html)
 
 ### 1、隐藏与显示
+
 | 方法 | 描述 |
 | --- | --- |
 | [hide()](https://www.runoob.com/jquery/eff-hide.html) | 隐藏被选元素 |
@@ -1979,6 +2117,7 @@ $(".box ").on('click', function(){});
 | [toggle()](https://www.runoob.com/jquery/eff-toggle.html) | hide() 和 show() 方法之间的切换 |
 
 ### 2、淡入与淡出
+
 | 方法 | 描述 |
 | --- | --- |
 | [fadeIn()](https://www.runoob.com/jquery/eff-fadein.html) | 逐渐改变被选元素的不透明度，从隐藏到可见 |
@@ -1987,6 +2126,7 @@ $(".box ").on('click', function(){});
 | [fadeTo()](https://www.runoob.com/jquery/eff-fadeto.html) | 把被选元素逐渐改变至给定的不透明度 |
 
 ### 3、滑动
+
 | 方法 | 描述 |
 | --- | --- |
 | [slideUp()](https://www.runoob.com/jquery/eff-slideup.html) | 通过调整高度来滑动隐藏被选元素 |
@@ -1994,14 +2134,18 @@ $(".box ").on('click', function(){});
 | [slideToggle()](https://www.runoob.com/jquery/eff-slidetoggle.html) | slideUp() 和 slideDown() 方法之间的切换 |
 
 ### 4、回调（链）
+
 > 通过 jQuery，可以把动作/方法链接在一起。
 > Chaining 允许我们在一条语句中运行多个 jQuery 方法（在相同的元素上）
 
 - 下面的例子把 css()、slideUp() 和 slideDown() 链接在一起。"p1" 元素首先会变为红色，然后向上滑动，再然后向下滑动
+
 ```javascript
 $("#p1").css("color","red").slideUp(2000).slideDown(2000);
 ```
+
 ### 5、自定义效果
+
 | 方法 | 描述 |
 | --- | --- |
 | [animate()](https://www.runoob.com/jquery/eff-animate.html) | 对被选元素应用"自定义"的动画 |
