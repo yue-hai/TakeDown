@@ -56,7 +56,9 @@
     ],
     "Android": [
       "Android/attachments",
-      "Android/Android 基础.md"
+      "Android/Android 基础.md",
+      "Android/Kotlin 基础.md",
+      "Android/SSC 购物车.md"
     ],
     "其他/游戏/饥荒联机版": [
       "其他/游戏/饥荒联机版/attachments",

@@ -13,7 +13,7 @@
 4. `jp/retailai/raicart/ui/shopping/ShoppingFragment.kt` 中方法：`showCartAddDialog`
 5. 现在：在购物页面，当用户扫描商品时弹出；然后 3 秒后缩小消失
 
-![](attachments/Pasted%20image%2020230426112411.png)
+![700](attachments/Pasted%20image%2020230426112411.png)
 
 6. 修改：修改时间
 
@@ -433,14 +433,17 @@ res
 3. 远程显示：`scrcpy`
 4. gitbash：
 5. 唤醒，输入从业员号，模拟扫描从业员：`i-emp`
-6. 设定购物车静音模式：`silent`
+6. 设定购物车静音模式：
+	1. `silent`
+	2. `adb shell media volume --show --stream 3 --set 0`
 7. 模拟用户登录：`i-user`，登录密码为 id 的倒数第二位，四个数都是
 8. 模拟扫描商品：`i-jan`
 9. 结账，输入从业员号，模拟扫描从业员：`i-emp`
 10. 卸载应用：`adb uninstall jp.retailai.raicart`
 11. 安装应用：
 	1. `adb install -r -d --user 0 /d/Idea/save/android/2_SSC_raicart/'raicart - note'/app/build/outputs/apk/debug/app-debug.apk`
-	2. `install-app`
+	2. `adb install -r -d --user 0 /d/新建文件夹/工作/05-智能购物车/软件各种版本/raicartapk_staging_raicart-staging-signed-3.8.10.7.apk`
+	3. `install-app`
 
 ## 3、adb 常用命令
 

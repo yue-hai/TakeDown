@@ -4,9 +4,7 @@
   "readableLineLength": false,
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,
-  "spellcheckLanguages": [
-    "zh-CN"
-  ],
+  "spellcheckLanguages": null,
   "spellcheck": true,
   "newFileLocation": "root",
   "userIgnoreFilters": null,
