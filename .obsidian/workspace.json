@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b6da688621600129",
+        "id": "d29cfef1b06743ff",
         "type": "tabs",
         "children": [
           {
-            "id": "2d587729718d24a6",
+            "id": "cf8cecb680998532",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "java/16、设计模式.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -92,9 +88,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "java/16、设计模式.md"
-              }
+              "state": {}
             }
           },
           {
@@ -111,7 +105,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "java/16、设计模式.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +121,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "java/16、设计模式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -153,62 +145,63 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "canvas:新建白板": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "2d587729718d24a6",
+  "active": "cf8cecb680998532",
   "lastOpenFiles": [
-    "java/JUC 并发编程.md",
-    "Android/Android 基础.md",
+    "Android/attachments/Pasted image 20230509100928.png",
+    "Android/attachments/Pasted image 20230509100825.png",
+    "Android/attachments/Pasted image 20230508163544.png",
+    "Android/attachments/Pasted image 20230508163515.png",
+    "Android/attachments/Pasted image 20230508111847.png",
+    "Android/attachments/Pasted image 20230508111742.png",
+    "Android/attachments/Pasted image 20230508111651.png",
+    "Android/attachments/Pasted image 20230508111558.png",
+    "Android/attachments/Pasted image 20230508111453.png",
+    "Android/attachments/Pasted image 20230508103548.png",
+    "Android/attachments/Pasted image 20230508083412.png",
+    "Android/attachments/Genymotion-ARM-Translation_for_9.0.zip",
+    "Android/attachments/Genymotion-ARM-Translation_for_8.0.zip",
+    "Android/attachments/Genymotion-ARM-Translation_for_7.X.zip",
+    "Android/attachments/Genymotion-ARM-Translation_for_6.0.zip",
+    "Android/attachments/Genymotion-ARM-Translation_for_5.1.zip",
+    "Android/attachments/Genymotion-ARM-Translation_for_4.4.zip",
+    "Android/attachments/Genymotion-ARM-Translation_for_4.3.zip",
+    "Android/attachments",
     "Android/SSC 购物车.md",
-    "java/16、设计模式.md",
-    "java/attachments/Pasted image 20230822145414.png",
-    "java/attachments/Pasted image 20230821130422.png",
-    "java/attachments/Pasted image 20230821101718.png",
-    "attachments/Pasted image 20230818165839.png.md",
-    "java/attachments/Pasted image 20230818165839.png",
-    "java/attachments/Pasted image 20230821101226.png",
-    "java/attachments/Pasted image 20230821100754.png",
-    "attachments/Pasted image 20230818170011.png.md",
-    "attachments",
-    "java/attachments/Pasted image 20230818170011.png",
-    "java/attachments/Pasted image 20230818165920.png",
-    "java/attachments/Pasted image 20230818161634.png",
-    "java/attachments/Pasted image 20230818143634.png",
-    "日志.txt",
-    "a.html",
-    "前端/【其他】.md",
     "Android/Kotlin 基础.md",
-    "linux/Smart/Smart 编程.md",
-    "其他/Git.md",
-    "java/07、IDEA中Maven和Git快速配置及使用.md",
-    "前端/JS 框架/Vue2.md",
-    "前端/JS 框架/Vue3.md",
-    "前端/三件套/CSS.md",
-    "java/15、SpringCloudAlibaba.md",
+    "Android/Android 基础.md",
+    "Android",
+    "标题.md",
     "前端/三件套/attachments/尚硅谷前端_ES6.pdf",
-    "前端/三件套/attachments/尚硅谷_Promise从入门到自定义.pdf",
-    "前端/三件套/attachments",
-    "前端/UI 组件库/attachments",
-    "前端/JS 框架/attachments/尚硅谷_axios从入门到源码分析.pdf",
     "前端/JS 框架/attachments/vue3快速上手.md",
-    "前端/JS 框架/attachments/尚硅谷_前端技术_Vue全家桶.pdf",
-    "前端/JS 框架/attachments/art-template-web.js",
-    "前端/三件套/HTML.md",
-    "其他/文件处理/音频处理.md",
+    "前端/三件套/Promise 从入门到自定义.md",
+    "前端/三件套/JavaScript.md",
+    "前端/三件套/ES6-11 - JavaScript 新特性.md",
+    "前端/三件套/HTML5 新特性.md",
+    "前端/三件套/CSS.md",
+    "前端/UI 组件库/Bootstrap 快速入门.md",
+    "前端/UI 组件库/Ant Design Vue.md",
+    "前端/JS 框架/Vue3.md",
+    "前端/JS 框架/Vue2.md",
+    "前端/JS 框架/jQuery.md",
+    "前端/JS 框架/Axios.md",
+    "前端/JS 框架/Ajax.md",
+    "前端/【其他】.md",
+    "其他/软件使用/WindTerm.md",
+    "其他/软件使用/VS Code.md",
+    "其他/软件使用/Idea.md",
+    "其他/软件使用/Execl.md",
+    "其他/游戏/饥荒联机版服务器搭建.md",
     "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
-    "其他/Docker.md",
-    "其他/小工具.md",
-    "linux/linux/Shell 编程.md",
-    "linux/linux/Liunx 基础.md",
-    "linux/linux/正则表达式.md",
-    "python/Python 基础.md",
+    "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
