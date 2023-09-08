@@ -1,364 +1,8 @@
-# 一、问题整理
-
-## 1、2023/04/26
-
-1. 购物车屏幕大小：1280 * 800
-2. 构建：`D:/Idea/save/android/2_SSC_raicart/raicart/gradlew.bat clean assembleStaging`
-
-### ①、入力弹窗弹出时间
-
-1. 代码位置：`jp/retailai/raicart/ui/common/AddItemAnimationDialog.kt`
-2. xml 位置：`layout/fragment_dialog_success.xml`
-3. `jp/retailai/raicart/ui/shopping/ShoppingFragment.kt` 中变量：`itemAddCartDialog`
-4. `jp/retailai/raicart/ui/shopping/ShoppingFragment.kt` 中方法：`showCartAddDialog`
-5. 现在：在购物页面，当用户扫描商品时弹出；然后 3 秒后缩小消失
-
-![700](attachments/Pasted%20image%2020230426112411.png)
-
-6. 修改：修改时间
-
-```Kotlin
-// 添加商品后，3000 毫秒后关闭该弹窗
-TimerUtil().delayExecute(3000, {}, {
-	if (!haveClick && dialog.isShowing) {
-		dismissDialog(true)
-	}
-})
-```
-
-### ②、结帐后投放广告的页面
-
-1. 代码位置：`java/jp/retailai/raicart/ui/end/OutsideLimitedFragment.kt`
-2. xml 位置：`res/layout/fragment_score_screen.xml`
-3. `java/jp/retailai/raicart/ui/end/EndFragment.kt` 中更改跳转到的页面
-
-```Kotlin
-/**
- * `TimerUtil().delayExecute()`是一个自定义的函数，它的作用是延迟执行一个函数。
- * 第一个参数是延迟的时间，第二个参数是每秒要执行的函数，第三个参数是计时结束时要执行的函数
- */
-TimerUtil().delayExecute(config_thanks_page_delay.toInt(), {}, {
-	// 点数获得画面 -> 评分画面
-	findNavController().navigate(R.id.action_endFragment_to_ScoreScreenFragment)
-})
-```
-
-4. 用户付款后，软件自动跳转到广告的页面：カートのご利用はいかがですか？
-5. 要关注的关键指标：
-	1. 平均关闭模式的时间
-	2. 总体平均关闭时间
-	3. 优惠券使用情况
-	4. 建议使用情况
-6. 感谢
-
-![](attachments/Pasted%20image%2020230427134656.png)
-
-7. 评价
-
-![](attachments/Pasted%20image%2020230428133506.png)
-
-8. 推车
-
-![](attachments/Pasted%20image%2020230427134708.png)
-
-9. 首页
-
-### ③、修改基于的版本
-
-1. 3.8.10
-2. 开发新的PoC功能的时候，都是选择从指定版本的 release 的 tag 创建新的分支，比如这次的版本是 3.8.10，就使用 release-3.8.10-xxxxxx 名字的标签进行创建
-
-![](attachments/lALPM4OsmimmD-fM_c0Drg_942_253.png)
-
-### ④、项目结构
-
-```
-java/jp/retailai/raicart
-├── base
-├── bean
-│	└── operationLog
-│	└── scale
-├── deployer
-│	└── battery
-│	└── camera
-│	└── installation
-│	└── logger
-├── event
-├── guide
-├── network
-├── room
-├── ui
-│	└── bag
-│	└── base
-│	└── cancel
-│	└── common
-│	└── couponlist
-│	└── employee
-│	└── end
-│	└── login
-│	└── management
-│	└── nobarcode
-│	└── payment
-│	└── pin
-│	└── pop
-│	└── register
-│	└── scanreminder
-│	└── shopping
-│	└── standby
-├── utils
-├── view
-	
-res
-├── anim
-├── drawable
-├── drawable-v24
-├── layout
-├── mipmap-anydpi-v26
-├── mipmap-hdpi
-├── mipmap-mdpi
-├── mipmap-xhdpi
-├── mipmap-xxhdpi
-├── mipmap-xxxhdpi
-├── navigation
-├── raw
-├── values
-├── values-en-rUS
-```
-
-### ⑤、如何找到指定页面
-
-1. 先看看项目结构
-2. 进入 `res/navigation/nav_graph.xml` 导航碎片页面
-3. 根据相应碎片名称可知其场景，各场景中有其使用的 `action`
-4. `action` 的 `app:destination` 属性对应 `fragment` 的 `id`
-5.  `fragment` 的 `android:name` 对应其本身的代码逻辑页面
-6. 代码逻辑页面的 `layoutId` 方法对应了 `xml` 布局文件
-
-```Kotlin
-override fun layoutId(): Int {
-	return R.layout.fragment_end
-}
-```
-
-7. 若是 `res/navigation/nav_graph.xml` 导航碎片页面中没有，可根据页面出现的时机，和代码逻辑、项目结构，去指定的代码文件中查找
-8. 比如新增商品弹窗应该是在 `java/jp/retailai/raicart/ui/shopping/ShoppingFragment.kt` 中定义的，根据代码逻辑可知是这个属性
-
-```Kotlin
-/**
- * 新增商品弹窗
- */
-private var itemAddCartDialog: AddItemAnimationDialog? = null
-```
-
-9. 这样就从这里进入 `AddItemAnimationDialog` 类，然后根据 `getLayout` 方法进入 `fragment_dialog_success` 布局文件
-
-### ⑥、代码注释
-
-### ⑦、流程
-
-> 关掉 adb 进程：taskkill /F /IM adb.exe
-> 
-> 强制结束程序：adb shell am force-stop jp.retailai.raicart
-> 
-> 在日本的购物车：10.105.12.193
-> 
-> 在烟台的购物车：172.18.7.22
-
-1. 连接：`adb connect 10.105.12.193:5555`
-2. 查看已连接设备： `adb devices`
-3. 远程显示：`scrcpy`
-4. gitbash：
-5. 唤醒，输入从业员号，模拟扫描从业员：`i-emp`
-6. 设定购物车静音模式：`silent`
-7. 模拟用户登录：`i-user`，登录密码为 id 的倒数第二位，四个数都是
-8. 模拟扫描商品：`i-jan`
-9. 结账，输入从业员号，模拟扫描从业员：`i-emp`
-10. 卸载应用：`adb uninstall jp.retailai.raicart`
-11. 安装应用：
-	1. `adb install -r -d --user 0 /d/Idea/save/android/2_SSC_raicart/raicart/app/build/outputs/apk/debug/app-debug.apk`
-	2. `install-app`
-
-### ⑧、关于构建和 gradle 版本
-
-1. 截至 3.10，该项目使用的 gradle 版本为 6.7.1
-2. 设置 -> 构建工具 -> gradle
-
-![](attachments/Pasted%20image%2020230427110736.png)
-
-3. 项目结构 -> Project
-
-![](attachments/Pasted%20image%2020230427110805.png)
-
-### ⑨、昨天做的事、问题
-
-1. 连接购物车、软件安装调试；安装时间太长：16：28 -> 45，as 无法安装调试
-2. 项目方法结构研究：
-3. 评价页面逻辑编写、测试；
-	1. 页面画完了，我在写逻辑，我让这个页面再倒数第二个页面显示出来
-	2. 但是会报错，有问题
-	3. 但是因为不能调试，这几个方法我还不太清楚具体
-4. 
-
-![](attachments/Pasted%20image%2020230427171241.png)
-
-5. 1
-6. 1
-
-## 2、2023/05/04
-
-### ①、弹窗时间记录
-
-1. 添加物品弹窗：`java/jp/retailai/raicart/ui/common/AddItemAnimationDialog.kt`
-2. 修改数量弹窗：`java/jp/retailai/raicart/ui/common/ItemQuantityDialog.kt`
-3. 新增属性：
-
-```Kotlin
-// 该弹窗页面的显示时间
-private var showTime : Long = 0
-```
-
-4. 添加修改商品时：
-
-```Kotlin
-// 添加商品
-fun setData(
-	data: ItemInformation?,
-): AddItemAnimationDialog {
-	this.data = data
-	// 每次添加新商品，给显示时间赋值当前时间戳
-	this.showTime = System.currentTimeMillis()
-	return this
-}
-```
-
-5. 弹窗关闭时，调用方法：
-
-```Kotlin
-// 记录页面关闭时间
-private fun writePoCLog(){
-	// 使用当前时间戳减去保存在页面的显示时间中的时间戳，再 / 1000，得到当前页面显示的秒数
-	val durationTime = kotlin.math.ceil((System.currentTimeMillis() - this.showTime) / 1000.0).toInt()
-	/**
-	 * 记录用户操作日志
-	 */
-	OperationLogWriter.writeOperationLog(
-		"PoCChangeTime",
-		"PoCChangeTime",
-		itemInfo = OperationLog.ItemInfo("","",durationTime,false)
-	)
-	/**
-	 * Debug 日志
-	 */
-	LogWriter.writeDebugLog("AddItemAnimationDialog", "writePoCLog()", "popup time set $add_item_popup_time and durationTime is $durationTime")
-}
-```
-
-### ②、melopan 配置导入
-
-1. 配置项在 melopan 上进行配置
-2. 配置导入代码文件：`java/jp/retailai/raicart/MainViewModel.kt`
-3. 其中方法：`getCartConfig`
-4. 通过属性名，如 `add_item_popup_time` 进行属性的赋值
-
-```Kotlin
-/**
- * 通过远程获取数据，此处获取的的是新增物品的弹窗关闭时间
- * 这些时间是在别处配置的，启动时会通过网络获取这些时间并赋值给相应变量
- */
-"add_item_popup_time" -> {
-	Constant.add_item_popup_time = element.value
-}
-```
-
-### ③、日志的查看
-
-1. 凌晨 1点~5点 之间随机时间点进行上传。关机则不会进行上传；访问 [ダッシュボード | Retail AI, inc (raicart.io)](https://sandbox-console.raicart.io/ja/admin/dashboard) 进行下载
-2. 连接设备后在本地查看，路径：`/sdcard/DebugLog/xxx.log`
-
-![](attachments/Pasted%20image%2020230504150017.png)
-
-### ④、昨天做的事、问题
-
-1. 添加物品弹窗时间记录
-2. 修改数量弹窗时间记录
-3. 配置导入，导入远程配置的弹窗默认关闭时间
-
-## 3、2023/06/05
-
-1.  poc 1653：https://retailai.atlassian.net/browse/SSCPOC-1653
-2. 添加日志 2：从购物者在购物页面按下会计按钮，到购物车收到结账已完成
-
-![](attachments/Pasted%20image%2020230605150109.png)
-
-![](attachments/Pasted%20image%2020230605094942.png)
-
-3. 添加日志 1：
-	1. 反馈（笑脸）界面，用户按下反馈按钮或者计时器到 0 时（已存在代码）
-		1. 按下反馈按钮：记录按下的按钮的标识
-		2. 如果计时器到 0 ，记录 amount = -1
-	2. 记录：Number of Checked ltems / Total ltems incart；检查件数/货物总件数
-	3. if visual check. Number of Checked ltems is 0；如果目视检查。检查件数为 0
-
-## 4、2023/06/26
-
-1. 购物车平板、扫码口、称是三个相互独立的设备吗，他们的交互方式是怎么样的
-2. 称：是只能由称给平板发送信息，还是平板可以定向的向称获取信息：
-3. 收到的称的信息是什么样子的，比如：用户将商品放到称上，称称出来了重量，直接将本次的结果发送给平板吗？
-
-## 5、2023/07/09
-
-1. ViewModel，意为 视图模型，即 为界面准备数据的模型。简单理解就是，ViewModel为UI层提供数据
-2. 在 MVVM 模式中，ViewModel 类负责处理视图（View）和数据模型（Model）之间的交互。它通常包含用于管理视图所需数据和响应用户操作的逻辑
-3. ViewModel 类的作用是为视图提供数据和行为，并将视图与数据模型解耦。它可以包含从数据模型获取数据的方法、处理用户输入的逻辑以及准备数据供视图显示的操作
-4. CouponListViewModel：优惠券列表视图模型，为优惠券列表视图提供数据和行为
-	1. fetchCouponList 方法，获取优惠券列表；CouponListFragment 中调用，判断优惠券列表若是为空，则调用方法获取列表
-	2. 
-5. ShoppingViewModel：购物视图模型，为购物视图提供数据和行为
-	1. fetchCouponList 方法，判断优惠券列表若是为空，则获取优惠券列表；ShoppingFragment 中调用
-6. 优惠券一览：全部
-
-![](attachments/Pasted%20image%2020230707085754.png)
-
-5. 优惠券一览：分类
-
-![](attachments/Pasted%20image%2020230707085746.png)
-
-6. CouponListViewModel 中的 fetchCouponList 方法中：
-	1. 调用 fetchCouponList() 方法进行 HTTP 请求，若是请求成功则对请求结果进行排序
-	2. 请求结果集合中是 CouponData 对象，每个 CouponData 对象是一个分类，饮料、食品之类的
-	3. CouponData 对象里面有一个数组 coupons，里面是该分类下的优惠券列表，对 coupons 这个数组进行排序
-	4. 先按照 pointType 类型排序，2 是固定点数，1 是倍率，按照从小到大的顺序排序
-	5. 然后再按照 pointNumber 点数大小进行排序，获得点数或者倍率高的在前面
-7. ShoppingViewModel 中的 fetchCouponList 方法中：和上面一样
-8. CouponListViewModel 中的 getCategoryType 方法中：
-	1. 遍历 storeCouponList 优惠券集合，categoryType 和 categoryType1 中保存的是分类id和分类名
-	2. allCoupon.addAll(it.coupons) 是将这个分类中所有的优惠券添加到全部优惠券 allCoupon 这个集合中
-	3. 然后我对全部优惠券 allCoupon 这个集合进行排序，先按照类型排序，再按照点数大小排序
-	4. 这样排序完之后，优惠券一览中全部优惠券这个分类，就是固定点数在前倍率在后，按点数从大到小排序了
-	5. allCouponList 是全部优惠券列表，之后该集合会被优惠券一览中的全部优惠券分类使用
-9. categoryType
-
-全てのクーポン、全てのクーポン
-利用中のクーポン、利用中のクーポン
-a9dd4f8a19484e248260f9c3cca6db82、飲料
-2a18e715af044b5bac94ffc13cfee712、犬フード
-10f4aaa284084af984807bb5914e1952、米・即席・加工食品
-c328001c76544f1b928ec37d7d7c78d7、インスタント
-abd6b952b2824e19b6caf50a60b8f44d、キッチン
-5de64430de9a47f4a760e54a2a56b1d1、野菜
-e679694af0e846ca8b2aab0a39cdfbeb、未登録
-025c15b4b2864ea8be1e253a0a4f3f6d、タバコ
-a2738b453dfb49e0aeec8f7f4ccd9a40、レトルト・カップ麺
-
-11. 1
-12. 1
-
-## 6、
-## 7、
-## 8、
-## 9、
-
-# 二、项目整理
+# 一、项目整理
+
+1. 鼓励用户购买特定的产品。会议里提到了一种策略，用户购买一种产品，然后可以获得额外的商品，例如购买一个捆绑的啤酒，然后可以获得额外的一罐啤酒
+2. 分析收集到的用户在购物过程中扫描的条形码、购买数量以及购物车的重量变化等数据
+3. 还有改进弹出窗口策略、优化捆绑销售流程等措施来提高用户购物体验
 
 ## 1、项目结构
 
@@ -422,7 +66,7 @@ res
 > 强制结束程序：adb shell am force-stop jp.retailai.raicart
 > 
 > 在日本的购物车 1：~~~10.105.12.193~~~
-> 在日本的购物车 2：10.105.12.225，no. 1380
+> 在日本的购物车 2：10.105.12.229，no. 1243
 > 
 > 在烟台的购物车：172.18.7.22
 > 
@@ -441,7 +85,7 @@ res
 9. 结账，输入从业员号，模拟扫描从业员：`i-emp`
 10. 卸载应用：`adb uninstall jp.retailai.raicart`
 11. 安装应用：
-	1. `adb install -r -d --user 0 /d/Idea/save/android/2_SSC_raicart/'raicart - note'/app/build/outputs/apk/debug/app-debug.apk`
+	1. `adb install -r -d --user 0 /d/Idea/save/android/2_SSC_raicart/raicart-note/app/build/outputs/apk/debug/app-debug.apk`
 	2. `adb install -r -d --user 0 /d/新建文件夹/工作/05-智能购物车/软件各种版本/raicartapk_staging_raicart-staging-signed-3.8.10.7.apk`
 	3. `install-app`
 
@@ -499,7 +143,34 @@ res
 
 7. Code128 割引 00190146170051000508
 
-# 三、一些问题
+## 5、github review 模板
+
+```
+
+SSCPOC-1927 Build:thanks page
+
+# Overview
+https://retailai.atlassian.net/browse/SSCPOC-1927
+
+# Feature & Changes
+- Increase points earned from activities
+
+# Notes
+Now only write the page layout, wait for the interface to complete and then improve the value
+
+# Screenshots
+
+
+分支已推送：poc/category-point-campaign-thanksPage
+review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
+
+```
+
+## 6、购物车硬件相关
+
+1. 购物车屏幕大小：1280 * 800
+
+# 二、一些问题
 
 ## 1、如何找到指定页面
 
@@ -544,6 +215,9 @@ private var itemAddCartDialog: AddItemAnimationDialog? = null
 ## 3、melopan 配置导入
 
 1. 配置项在 melopan 上进行配置
+
+![|700](attachments/Pasted%20image%2020230905132049.png)
+
 2. 配置导入代码文件：`java/jp/retailai/raicart/MainViewModel.kt`
 3. 其中方法：`getCartConfig`
 4. 通过属性名，如 `add_item_popup_time` 进行属性的赋值

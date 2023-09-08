@@ -24,11 +24,11 @@
 3. 由于 SQLite 嵌入到应用程序，省去了配置数据库服务器的开销，因此它又被归类为嵌入式数据库。
 4. 客户端与服务端分别操作的数据库
 
-![](attachments/Pasted%20image%2020230515133844.png)
+![|700](attachments/Pasted%20image%2020230515133844.png)
 
 5. 客户端与服务端的多对一架构关系
 
-![](attachments/Pasted%20image%2020230515133857.png)
+![|700](attachments/Pasted%20image%2020230515133857.png)
 
 ## 2、App 的工程结构
 
@@ -49,7 +49,7 @@
 	4. settings.gradle，该文件配置了需要编译哪些模块，以及依赖库的仓库地址。
 	5. local.properties，它是项目的本地配置文件。
 
-![](attachments/Pasted%20image%2020230515134558.png)
+![|486](attachments/Pasted%20image%2020230515134558.png)
 
 ### ②、编译配置文件 build.gradle
 
@@ -58,7 +58,7 @@
 3. 模块级别的 build.gradle 对应于具体模块，每个模块都有自己的 build.gradle，它指定了当前模块的详细编译规则。
 4. gradle 文件采用了 Gradle 工具完成编译构建操作，每个版本的 Android Studio 都有对应的 Gradle 版本。中有二者的版本正确对应，工程才能被争取让编译
 
-![](attachments/Pasted%20image%2020230515135631.png)
+![|227](attachments/Pasted%20image%2020230515135631.png)
 
 5. app 模块的 build.gradle
 
@@ -180,7 +180,7 @@ include ':03_advancedcontrols'
 	5. android:theme，指定 App 的显示风格。
 3. `application` 节点下面还有个 `activity` 节点，他是活动页面的注册声明，只有在其中正确配置了 `activity` 节点，才能在运行时访问对应的活动页面。
 
-![](attachments/Pasted%20image%2020230417125817.png)
+![|296](attachments/Pasted%20image%2020230417125817.png)
 
 ```Kotlin
 <?xml version="1.0" encoding="utf-8"?>
@@ -243,7 +243,7 @@ include ':03_advancedcontrols'
 
 1. 页面布局与逻辑代码分离
 
-![](attachments/Pasted%20image%2020230515141621.png)
+![|684](attachments/Pasted%20image%2020230515141621.png)
 
 2. 把 App 的界面设计与代码逻辑分开，不仅参考了网站的 WEB 前后端分离，还有下列几点好处。
 	1. 使用 XML 文件描述 APP 界面，可以很方便地在 Android Studio 上预览界面效果。
@@ -253,14 +253,14 @@ include ':03_advancedcontrols'
 4. 若想增加横屏时的布局样式，需创建 `res/layout-land` 目录，在其中创建和 `res/layout` 中心相通文件名的文件
 5. 利用 `XML` 标记描绘应用界面，使用 `JAVA（Kotlin）` 代码书写程序逻辑
 
-![](attachments/Pasted%20image%2020230417130212.png)
+![|386](attachments/Pasted%20image%2020230417130212.png)
 
 ### ②、利用 XML 标记描绘应用界面
 
 1. 凡是 XML 标签都由标签头与标签尾组成，标签头以左右尖括号包括标签名称，形如 `<TextView>`；标签尾在左尖括号后面插入斜杆，以此同标签头区分开，形如 `</TextView>`。
 2. 标签头允许在标签名称后面添加各种属性取值，而标签尾不允许添加任何属性
 
-![](attachments/Pasted%20image%2020230417140616.png)
+![|407](attachments/Pasted%20image%2020230417140616.png)
 
 
 ```Kotlin
@@ -296,7 +296,7 @@ include ':03_advancedcontrols'
 </LinearLayout>
 ```
 
-![](attachments/Pasted%20image%2020230417140651.png)
+![|700](attachments/Pasted%20image%2020230417140651.png)
 
 ### ③、使用Java代码书写程序逻辑
 
@@ -332,7 +332,7 @@ class MainActivity : AppCompatActivity() {
 
 1. 在 `layout` 下创建一个窗口文件 `yuehai.xml`
 
-![](attachments/Pasted%20image%2020230417143741.png)
+![|700](attachments/Pasted%20image%2020230417143741.png)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -370,7 +370,7 @@ class MainActivity : AppCompatActivity() {
 
 2. 在 `res/values/strings.xml` 处定义的数据可在别处进行引用
 
-![](attachments/Pasted%20image%2020230417164008.png)
+![|331](attachments/Pasted%20image%2020230417164008.png)
 
 ```xml
 <resources>
@@ -590,7 +590,7 @@ class MainActivity : AppCompatActivity() {
 3. 设置文本颜色：`android:textColor="#F44336"`
 4. 在 `layout` 下创建窗口文件 `layout.xml`
 
-![](attachments/Pasted%20image%2020230417160550.png)
+![|700](attachments/Pasted%20image%2020230417160550.png)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1324,14 +1324,14 @@ class Activity02:AppCompatActivity() {
 7. `onRestart`：重启活动。重新加载内存中的页面数据。
 8. `onNewIntent`：重用已有的活动实例
 
-![](attachments/Pasted%20image%2020230419105744.png)
+![|631](attachments/Pasted%20image%2020230419105744.png)
 
 ### ②、各状态之间的切换过程
 
 1. 打开新页面的方法调用顺序为：`onCreate → onStart → onResume`
 2. 关闭旧页面的方法调用顺序为：`onPause → onStop → onDestroy`
 
-![](attachments/Pasted%20image%2020230419105858.png)
+![|700](attachments/Pasted%20image%2020230419105858.png)
 
 ## 3、`Activity` 的启动模式
 
@@ -1341,11 +1341,11 @@ class Activity02:AppCompatActivity() {
 
 1. 某 App 先后打开两个活动，此时活动栈的变动情况如下图所示。
 
-![](attachments/Pasted%20image%2020230419110418.png)
+![|648](attachments/Pasted%20image%2020230419110418.png)
 
 2. 依次结束已打开的两个活动，此时活动栈的变动情况如下图所示
 
-![](attachments/Pasted%20image%2020230419110428.png)
+![|615](attachments/Pasted%20image%2020230419110428.png)
 
 ### ②、静态设置
 
@@ -1839,7 +1839,23 @@ class Activity03: AppCompatActivity() {
 </shape>
 ```
 
-![](attachments/Pasted%20image%2020230515165103.png)
+![|292](attachments/Pasted%20image%2020230515165103.png)
+
+6. 指定某几个角为圆角
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/dark_blue" />
+    <!-- 指定右上角和右下角为圆角 -->
+    <corners
+		android:radius="0dp"
+		android:topLeftRadius="0dp"
+		android:topRightRadius="@dimen/dp_23"
+		android:bottomLeftRadius="0dp"
+		android:bottomRightRadius="@dimen/dp_23" />
+</shape>
+```
 
 ### ③、九宫格图片
 
@@ -1852,7 +1868,7 @@ class Activity03: AppCompatActivity() {
 	1. 当图片被横向拉伸时，只会拉伸纵向选中的区域，没有选中的区域不会被拉伸
 	2. 当图片被纵向拉伸时，只会拉伸横向选中的区域，没有选中的区域不会被拉伸
 
-![](attachments/Pasted%20image%2020230516091542.png)
+![|330](attachments/Pasted%20image%2020230516091542.png)
 
 ### ④、状态列表图形
 
@@ -1888,7 +1904,7 @@ class Activity03: AppCompatActivity() {
 2. 又因为 `CompoundButton` 类本身继承了 `Button` 类，故以上几种按钮同时具备 `Button` 的属性和方法
 3. 下图描述了复合按钮的继承关系：
 
-![](attachments/Pasted%20image%2020230516094727.png)
+![|700](attachments/Pasted%20image%2020230516094727.png)
 
 4. `CompoundButton` 在 XML 文件中主要使用下面两个属性。
 	1. `checked`：指定按钮的勾选状态，true 表示勾选，false 表示未勾选。默认未勾选。
@@ -2003,8 +2019,9 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
 4. 效果
 
-![](attachments/Pasted%20image%2020230517101102.png)
-![](attachments/Pasted%20image%2020230517101121.png)
+![|435](attachments/Pasted%20image%2020230517101102.png)
+
+![|435](attachments/Pasted%20image%2020230517101121.png)
 
 ### ③、开关按钮 Switch
 
@@ -2120,8 +2137,9 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
 6. 效果
 
-![](attachments/Pasted%20image%2020230517101230.png)
-![](attachments/Pasted%20image%2020230517101243.png)
+![|435](attachments/Pasted%20image%2020230517101230.png)
+
+![|435](attachments/Pasted%20image%2020230517101243.png)
 
 ### ④、单选按钮 RadioButton
 
@@ -2290,8 +2308,9 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
 7. 效果
 
-![](attachments/Pasted%20image%2020230517101402.png)
-![](attachments/Pasted%20image%2020230517101414.png)
+![|435](attachments/Pasted%20image%2020230517101402.png)
+
+![|435](attachments/Pasted%20image%2020230517101414.png)
 
 ## 3、文本输入
 
@@ -2405,7 +2424,7 @@ class EdiTextActivity: AppCompatActivity() {
 
 8. 效果
 
-![](attachments/Pasted%20image%2020230517100722.png)
+![|435](attachments/Pasted%20image%2020230517100722.png)
 
 ### ②、焦点变更监听器
 
@@ -2523,7 +2542,7 @@ class EdiTextActivity: AppCompatActivity(), View.OnFocusChangeListener, View.OnC
 
 6. 效果
 
-![](attachments/Pasted%20image%2020230517100752.png)
+![|435](attachments/Pasted%20image%2020230517100752.png)
 
 ### ③、文本变化监听器
 
@@ -2720,8 +2739,8 @@ class EdiTextActivity: AppCompatActivity(), View.OnFocusChangeListener, View.OnC
 
 5. 效果
 
-![](attachments/Pasted%20image%2020230517100408.png)
-![](attachments/Pasted%20image%2020230517100434.png)
+![|700](attachments/Pasted%20image%2020230517100408.png)
+![|700](attachments/Pasted%20image%2020230517100434.png)
 
 ## 4、对话框
 
@@ -2865,8 +2884,9 @@ class DialogBoxAlertDialogActivity: AppCompatActivity() {
 
 7. 效果
 
-![](attachments/Pasted%20image%2020230517095848.png)
-![](attachments/Pasted%20image%2020230517095926.png)
+![|435](attachments/Pasted%20image%2020230517095848.png)
+
+![|435](attachments/Pasted%20image%2020230517095926.png)
 
 ### ②、日期对话框 DatePickerDialog
 
@@ -3016,8 +3036,9 @@ class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDate
 
 7. 效果
 
-![](attachments/Pasted%20image%2020230517105509.png)
-![](attachments/Pasted%20image%2020230517105517.png)
+![|435](attachments/Pasted%20image%2020230517105509.png)
+
+![|435](attachments/Pasted%20image%2020230517105517.png)
 
 ### ③、时间对话框 TimePickerDialog
 
@@ -3221,8 +3242,9 @@ class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDate
 
 5. 效果
 
-![](attachments/Pasted%20image%2020230517111627.png)
-![](attachments/Pasted%20image%2020230517111634.png)
+![|435](attachments/Pasted%20image%2020230517111627.png)
+
+![|435](attachments/Pasted%20image%2020230517111634.png)
 
 # 五、`Android` 高级控件
 
@@ -3236,7 +3258,7 @@ class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDate
 	2. `dialog`：在页面中部弹出列表对话框，对话框风格
 3. 分别对应 `SpinnerMode` 属性设置为 `dropdown` 或者 `dialog`
 
-![](attachments/Pasted%20image%2020230506084743.png)
+![|533](attachments/Pasted%20image%2020230506084743.png)
 
 4. Spinner 组件一共有两个，一个是本身的 `Spinner`，一个是 `android.support.v7.widget.AppCompatSpinner`
 	1. 两者的区别在于 v7 内的 Spinner 是兼容低版本的
@@ -3380,7 +3402,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 
 10. 结果显示
 
-![](attachments/Pasted%20image%2020230508111847.png)
+![|435](attachments/Pasted%20image%2020230508111847.png)
 
 ### ②、适配器 Adapte
 
@@ -3389,7 +3411,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 3. 适配器负责从数据集合中取出对应的数据显示到条目布局上
 4. 如下图直观的表达了 Data、Adapter、View 三者的关系
 
-![](attachments/Pasted%20image%2020230504164626.png)
+![|700](attachments/Pasted%20image%2020230504164626.png)
 
 ### ③、适配器 Adapte 继承结构
 
@@ -3398,7 +3420,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 3. `ArrayAdapter` 支持泛型操作，最为简单，但是只能展示一行字。
 4. `SimpleAdapter` 虽然名称为 simple，但是用法功能还是很强大的，基本上我们在敲代码时都要与这个打交道
 
-![](attachments/Pasted%20image%2020230504164732.png)
+![|700](attachments/Pasted%20image%2020230504164732.png)
 
 ### ③、复用 convertVie
 
@@ -3409,7 +3431,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 5. 即：第 1 个 Item 离开屏幕是有过程的，会有 1 个第 1 个 Item 的下半部分和第 8 个 Item 上半部分同时在屏幕中显示的状态，此时仍无法使用缓存的 View，只能继续用新创建的视图 View
 6. 实例演示，设：屏幕只能显示 5 个 Item，那么 ListView 只会创建（5+1）个 Item 的视图；当第 1 个 Item 完全离开屏幕后才会回收至缓存从而复用（用于显示第 7 个 Item）
 
-![](attachments/Pasted%20image%2020230504165416.png)
+![|685](attachments/Pasted%20image%2020230504165416.png)
 
 ### ④、数组适配器 ArrayAdapte
 
@@ -3615,7 +3637,7 @@ class SpinnerDropdownSimpleAdapterActivity: AppCompatActivity(), AdapterView.OnI
 
 5. 结果显示
 
-![](attachments/Pasted%20image%2020230508111742.png)
+![|435](attachments/Pasted%20image%2020230508111742.png)
 
 ### ⑥、基本适配器 BaseAdapter
 
@@ -3960,7 +3982,7 @@ class SpinnerDropdownBaseAdapter: AppCompatActivity(), AdapterView.OnItemSelecte
 
 8. 结果显示
 
-![](attachments/Pasted%20image%2020230508111651.png)
+![|435](attachments/Pasted%20image%2020230508111651.png)
 
 ## 2、列表类视图
 
@@ -4194,7 +4216,7 @@ class ListViewActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeListe
 
 9. 结果显示
 
-![](attachments/Pasted%20image%2020230508111558.png)
+![|435](attachments/Pasted%20image%2020230508111558.png)
 
 ### ②、网格视图 GridView
 
@@ -4222,7 +4244,7 @@ class ListViewActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeListe
 
 4. GridView 拉伸模式效果
 
-![](attachments/Pasted%20image%2020230508103548.png)
+![|700](attachments/Pasted%20image%2020230508103548.png)
 
 #### Ⅱ、代码例子
 
@@ -4366,7 +4388,7 @@ class GridViewActivity: AppCompatActivity(), AdapterView.OnItemClickListener {
 
 9. 结果显示
 
-![](attachments/Pasted%20image%2020230508111453.png)
+![|435](attachments/Pasted%20image%2020230508111453.png)
 
 ## 3、翻页类视图
 
@@ -4574,11 +4596,11 @@ class ViewPagerActivity: AppCompatActivity() {
 
 8. 结果显示
 
-![](attachments/Pasted%20image%2020230508163515.png)
+![|435](attachments/Pasted%20image%2020230508163515.png)
 
 9. 翻页过程
 
-![](attachments/Pasted%20image%2020230508163544.png)
+![|435](attachments/Pasted%20image%2020230508163544.png)
 
 ### ②、翻页标签栏 PagerTabStrip
 
@@ -4849,11 +4871,11 @@ class ViewPagerTapStripActivity: AppCompatActivity(), ViewPager.OnPageChangeList
 
 8. 结果显示
 
-![](attachments/Pasted%20image%2020230509100825.png)
+![|435](attachments/Pasted%20image%2020230509100825.png)
 
 9. 翻页过程
 
-![](attachments/Pasted%20image%2020230509100928.png)
+![|435](attachments/Pasted%20image%2020230509100928.png)
 
 ## 4、Fragment
 
@@ -4865,18 +4887,18 @@ class ViewPagerTapStripActivity: AppCompatActivity(), ViewPager.OnPageChangeList
 4. Fragment 的布局文件和代码使用起来和 Activity 基本无异。除了继承自 Fragment 与入口方法 onCreateView 两点，其他地方类似活动页面代码。
 5. 传统的 Activity 并不能很好的处理大屏问题，所以急需一个碎片化的东西能够划区域的展示内容，且有属于自己的独立可操作空间，所以就出现了 Fragment
 
-![](attachments/Pasted%20image%2020230510101016.png)
+![|583](attachments/Pasted%20image%2020230510101016.png)
 
 6. Fragment 的注册方式有两种：
 	1. 静态注册：在 xml 中引入
 	2. 动态注册：通过 java 代码的方式引入
 7. Fragment 的生命周期
 
-![](attachments/Pasted%20image%2020230510105618.png)
+![|700](attachments/Pasted%20image%2020230510105618.png)
 
 8. Fragment 与 Activity 生命周期的对比
 
-![](attachments/Pasted%20image%2020230510105736.png)
+![|340](attachments/Pasted%20image%2020230510105736.png)
 
 ### ②、静态注册
 
@@ -5018,7 +5040,7 @@ class FragmentStaticActivity: AppCompatActivity() {
 
 6. 效果
 
-![](attachments/Pasted%20image%2020230510124044.png)
+![|435](attachments/Pasted%20image%2020230510124044.png)
 
 ### ③、动态注册
 
@@ -5030,7 +5052,7 @@ class FragmentStaticActivity: AppCompatActivity() {
 2. Activity 向 Fragment 传递数据：使用Java语言描述的话，最关键的两个函数是 `setArguments` 和 `getArguments`；向fragment 中传递数据使用 Bundle，同时需要动态添加 fragment
 3. 相比较于上面的传递数据的方式，<font color="#ff0000">EventBus</font> 就好用多了
 
-![](attachments/Pasted%20image%2020230510132520.png)
+![|700](attachments/Pasted%20image%2020230510132520.png)
 
 4. 在想<font color="#245bdb">接收数据</font>的类中注册为 `Subscriber(订阅者)`
 5. <font color="#6425d0">发送数据</font>的类就不用注册了，直接只是用 `post()` 方法发送数据即可。
@@ -5300,11 +5322,11 @@ class FragmentDynamicActivity: AppCompatActivity(), ViewPager.OnPageChangeListen
 
 7. 结果显示
 
-![](attachments/Pasted%20image%2020230511085838.png)
+![|435](attachments/Pasted%20image%2020230511085838.png)
 
 8. 翻页过程
 
-![](attachments/Pasted%20image%2020230511085935.png)
+![|435](attachments/Pasted%20image%2020230511085935.png)
 
 # 六、`Android` 数据存储 `SharedPreferences`
 
@@ -6046,7 +6068,7 @@ class PictureActivity: AppCompatActivity() {
 	2. 不方便通过 intent 传递的数据，如位图对象，非字符串的集合对象等。
 	3. 容易因频繁分配内存而导致内存泄漏的对象，如 Handler 处理器实例等。
 
-![](attachments/Pasted%20image%2020230420104855.png)
+![|700](attachments/Pasted%20image%2020230420104855.png)
 
 3. 通过 Application 实现对全局内存的读写：
 4. 写一个继承自 Application 的类 MyApplication。该类要采用单例模式
@@ -6182,7 +6204,7 @@ class SharedPreferences02: AppCompatActivity() {
 3. 上面提到的 SQLite 可以操作自身的数据库，而 `ContentProvider` 则是作为中间接口，通过 `SQLiteOpenHelper` 和 `SQLiteDatabase` 间接操控数据库，实现为其他应用提供数据的功能。
 4. 场景：比如微信读取手机通讯录
 
-![](attachments/Pasted%20image%2020230420132956.png)
+![|700](attachments/Pasted%20image%2020230420132956.png)
 
 ## 2、使用举例
 
@@ -6501,9 +6523,9 @@ class UserDBHelper(
 
 3. 创建 `UserInfoProvider` 继承 `ContentProvider`
 
-![](attachments/Pasted%20image%2020230420142041.png)
+![|700](attachments/Pasted%20image%2020230420142041.png)
 
-![](attachments/Pasted%20image%2020230420142150.png)
+![|700](attachments/Pasted%20image%2020230420142150.png)
 
 ```Kotlin
 package com.yuehai.contentProviderServer.contentProvider
@@ -6780,11 +6802,11 @@ class ContentProviderClinet01: AppCompatActivity() {
 
 1. 服务端
 
-![](attachments/Pasted%20image%2020230512123201.png)
+![|700](attachments/Pasted%20image%2020230512123201.png)
 
 2. 客户端
 
-![](attachments/Pasted%20image%2020230512123308.png)
+![|700](attachments/Pasted%20image%2020230512123308.png)
 
 ## 3、运行时动态申请权限
 
@@ -7207,17 +7229,17 @@ class PermissionHungryActivity: AppCompatActivity() {
 1. 手机中通讯录的主要表结构有：
 2. `raw_contacts` 表：
 
-![](attachments/Pasted%20image%2020230512155543.png)
+![|700](attachments/Pasted%20image%2020230512155543.png)
 
 3. `data` 表：记录了用户的通讯录所有数据，包括手机号，显示名称等
 	1. 里面的 `mimetype_id` 表示不同的数据类型，这与表 `mimetypes` 表中的 `id` 相对应
 	2. `raw_contact_id` 与上面的 `raw_contacts` 表中的 id 相对应。
 
-![](attachments/Pasted%20image%2020230512155551.png)
+![|700](attachments/Pasted%20image%2020230512155551.png)
 
 4. `mimetypes` 表：
 
-![](attachments/Pasted%20image%2020230512155605.png)
+![|700](attachments/Pasted%20image%2020230512155605.png)
 
 ### ②、代码例子
 
@@ -7601,7 +7623,7 @@ class Broadcast01: AppCompatActivity() {
 2. 这些接收器默认是都能够接受到指定广播并且是之间的顺序按照注册的先后顺序，也可以通过指定优先级来指定顺序。
 3. 先收到广播的接收器 A，既可以让其他接收器继续收听广播，也可以中断广播不让其他接收器收听。
 
-![](attachments/Pasted%20image%2020230421094256.png)
+![|700](attachments/Pasted%20image%2020230421094256.png)
 
 4. 定义广播接收器，继承 `BroadcastReceiver`，实现 `onReceive` 方法；定义 `OrderAReceiver` 和 `OrderBReceiver` 两个广播接收器
 
@@ -8615,7 +8637,7 @@ class StartServiceActivity: AppCompatActivity() {
 	3. `MessageQueue`：消息队列，主要用来存放 Handler 发送过来的消息。
 	4. `Looper`：消息循环，不断的从 MessageQueue 中抽取 Message 并执行。
 
-![](attachments/Pasted%20image%2020230421192055.png)
+![|700](attachments/Pasted%20image%2020230421192055.png)
 
 5. 创建获取天气的线程 `WeatherThread`，继承 `: Thread` 类
 
@@ -9387,65 +9409,18 @@ org.gradle.jvmargs=-Xmx1536M \
 --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
 ```
 
-## 2、开源投屏工具：`scrcpy`
-
-1. 下载解压：https://github.com/Genymobile/scrcpy/releases
-2. 鼠标键盘操作：`https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md`
-3. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
-
-![](attachments/Pasted%20image%2020230425162439.png)
-
-4. 手机记得开启 usb 调试
-5. 断开所有 wifi 连接设备：`adb disconnect`
-6. 断开指定的 wifi 设备连接：`adb disconnect xxx.xxx.xxx.xxx`
-
-### ①、USB 连接
-
-1. usb 连接手机
-2. 打开 cmd，进入解压目录
-3. 输入 `adb devices`，查看已连接设备
-4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
-
-### ②、网络连接设备
-
-1. 打开 cmd，进入解压目录
-2. 输入 `adb connect IP:端口号` 连接设备
-3. 输入 `adb devices`，查看已连接设备
-4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
-
-### ③、连接多个设备
-
-1. 输入 `adb devices`，查看已连接设备
-2. 若是已连接设备不只有一个，则输入 `scrcpy -s [ip或者设备号]` 进行连接
-
-### ④、播放手机的声音
-
-1. scrcpy 是无法实现该功能的，但可以通过 sndcpy 播放手机的声音
-2. 首先，下载 sndcpy：https://github.com/rom1v/sndcpy#get-the-app
-3. 和 scrcpy 相同，手机端需要开启开发者模式和 USB 调试，并且开启 USB 安装
-4. PC 端安装 VLC播放器：https://get.videolan.org/vlc/3.0.18/win64/vlc-3.0.18-win64.exe
-5. 在 sndcpy 的文件夹下输入 cmd 进入命令行，然后输入 `sndcpy`
-6. 此时手机端会提醒安装一个 app，同意就是了
-7. 安装完成后命令行应该会显示这样：
-
-![](attachments/Pasted%20image%2020230425164606.png)
-
-8. 不要关闭此命令行窗口，再开启一个 scrcpy 的命令行窗口
-9. 以上面的方式连接 scrcpy 即可
-10. 该程序的原理是通过在手机端安装 sndcpyapp，拦截手机端的声音，再通过 adb 转发到 PC 端，再通过 VLC 播放器播放声音
-
-## 3、隐藏软件标题栏
+## 2、隐藏软件标题栏
 
 1. 修改文件 `res/values/themes.xml`
 2. 标签 `style` 的属性 `parent` 一开始可能为： `Theme.MaterialComponents.DayNight.DarkActionBar`，即深色标题栏
 
-![](attachments/Pasted%20image%2020230508083412.png)
+![|310](attachments/Pasted%20image%2020230508083412.png)
 
 4. 要使其隐藏可修改为：`Theme.MaterialComponents.DayNight.NoActionBar`
 
-![](attachments/Pasted%20image%2020230508083306.png)
+![|310](attachments/Pasted%20image%2020230508083306.png)
 
-## 4、`res/values/themes.xml` 内容介绍
+## 3、`res/values/themes.xml` 内容介绍
 
 - res/values-night/themes.xml 是深色模式的配置文件，与此基本相同
 
@@ -9519,21 +9494,176 @@ org.gradle.jvmargs=-Xmx1536M \
 </resources>
 ```
 
-## 5、drawable 下快速生成 icon 图片 vector
+## 4、drawable 下快速生成 icon 图片 vector
 
 1. drawable 右击 new -> vector asset
 
-![](attachments/Pasted%20image%2020230518092027.png)
+![|650](attachments/Pasted%20image%2020230518092027.png)
 
 2. 选择 icon AS 中没有时需要导入 svg 或者 psd
 
-![](attachments/Pasted%20image%2020230518092055.png)
+![|700](attachments/Pasted%20image%2020230518092055.png)
 
 3. drawable 会生成对应 name 的图标文件 （可以点击左侧 line 7 颜色后选择颜色）
 
-![](attachments/Pasted%20image%2020230518092125.png)
+![|700](attachments/Pasted%20image%2020230518092125.png)
 
 4. 在对应的控件中引入就可以了：`android:src="@drawable/ic_up"`
+
+## 5、`recyclerView` 滚动到指定位置时的动画
+
+- `LinearLayoutManager` 是用于在 RecyclerView 中管理线性布局的布局管理器。它本身并没有提供滚动动画的功能。但你可以通过结合使用 `RecyclerView` 的 `smoothScrollToPosition()` 方法和 `RecyclerView.ItemAnimator` 来实现滚动时的动画效果。
+
+1. 首先，确保已经为 RecyclerView 设置了自定义的 ItemAnimator。例如：
+
+```java
+val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+/**
+ * RecyclerView.ItemAnimator 是用于处理 RecyclerView 中项目插入、移除、更改等操作时的动画效果的接口。
+ * 它允许定义项目变化时的动画效果，例如淡入淡出、平移、缩放等。
+ *
+ * DefaultItemAnimator 是 Android 提供的默认 RecyclerView.ItemAnimator 实现之一。
+ * DefaultItemAnimator 是 RecyclerView.ItemAnimator 接口的默认实现。它提供了一些默认的动画效果，例如渐变淡入淡出、默认的滑动动画等。
+ * 当将 DefaultItemAnimator 分配给 RecyclerView 的 setItemAnimator() 方法时，它将处理 RecyclerView 中项目变化的动画效果。
+ */
+recyclerView.itemAnimator = DefaultItemAnimator()
+```
+
+2. 然后，可以使用 `smoothScrollToPosition()` 方法滚动到指定位置，并触发 ItemAnimator 中的动画效果。例如：
+
+```java
+var layoutManager = recyclerView.layoutManager as LinearLayoutManager
+/**
+ * 参数 1：RecyclerView：指定要进行滚动操作的 RecyclerView 实例。
+ * 参数 2：RecyclerView.State：提供有关 RecyclerView 的状态信息，如焦点位置等。在大多数情况下，可以传递 null，以使用默认的状态。
+ * 参数 3：int position：指定要滚动到的目标位置。
+ */
+layoutManager.smoothScrollToPosition(recyclerView, null, 0)
+```
+
+3. 这将滚动到列表中的第一个位置，并触发 ItemAnimator 中的动画效果（如果有定义的话）。
+4. 注意，要使上述代码正常工作，确保在调用 `smoothScrollToPosition()` 方法之前已经设置了适当的布局管理器（例如 `LinearLayoutManager`）和适配器（例如 `RecyclerView.Adapter`）。
+5. 另外，请注意，根据你的定制需求，你可能需要自定义 `ItemAnimator` 的实现，或者使用第三方库来实现更复杂的动画效果。
+
+# 十二、工具
+
+## 1、开源投屏工具：`scrcpy`
+
+1. 下载解压：https://github.com/Genymobile/scrcpy/releases
+2. 鼠标键盘操作：`https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md`
+3. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
+
+![|527](attachments/Pasted%20image%2020230425162439.png)
+
+4. 手机记得开启 usb 调试
+5. 断开所有 wifi 连接设备：`adb disconnect`
+6. 断开指定的 wifi 设备连接：`adb disconnect xxx.xxx.xxx.xxx`
+
+### ①、USB 连接
+
+1. usb 连接手机
+2. 打开 cmd，进入解压目录
+3. 输入 `adb devices`，查看已连接设备
+4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
+
+### ②、网络连接设备
+
+1. 打开 cmd，进入解压目录
+2. 输入 `adb connect IP:端口号` 连接设备
+3. 输入 `adb devices`，查看已连接设备
+4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
+
+### ③、连接多个设备
+
+1. 输入 `adb devices`，查看已连接设备
+2. 若是已连接设备不只有一个，则输入 `scrcpy -s [ip或者设备号]` 进行连接
+
+### ④、播放手机的声音
+
+1. scrcpy 是无法实现该功能的，但可以通过 sndcpy 播放手机的声音
+2. 首先，下载 sndcpy：https://github.com/rom1v/sndcpy#get-the-app
+3. 和 scrcpy 相同，手机端需要开启开发者模式和 USB 调试，并且开启 USB 安装
+4. PC 端安装 VLC播放器：https://get.videolan.org/vlc/3.0.18/win64/vlc-3.0.18-win64.exe
+5. 在 sndcpy 的文件夹下输入 cmd 进入命令行，然后输入 `sndcpy`
+6. 此时手机端会提醒安装一个 app，同意就是了
+7. 安装完成后命令行应该会显示这样：
+
+![|700](attachments/Pasted%20image%2020230425164606.png)
+
+8. 不要关闭此命令行窗口，再开启一个 scrcpy 的命令行窗口
+9. 以上面的方式连接 scrcpy 即可
+10. 该程序的原理是通过在手机端安装 sndcpyapp，拦截手机端的声音，再通过 adb 转发到 PC 端，再通过 VLC 播放器播放声音
+
+### ⑤、常用快捷键
+
+- 在 Windows 中，MOD 一般代表 Alt 键
+
+| 动作                                  | 快捷键                              |
+| ------------------------------------- | ----------------------------------- |
+| 将窗口大小调整为 1：1（像素完美）     | MOD + g                             |
+| 调整窗口大小以删除黑色边框            | MOD + w丨双击左键                   |
+| 返回主页                              | MOD + h丨中键点击                   |
+| 返回按钮                              | MOD + b丨MOD + Backspace 丨右键单击 |
+| 打开任务列表                          | MOD + s                             |
+| 音量增加                              | MOD + ↑                             |
+| 音量减少                              | MOD + ↓                             |
+| 点击电源键（锁屏 & 解锁）             | MOD + p                             |
+| 关闭设备屏幕（scrcpt 中依然显示镜像） | MOD + o                                    |
+| 打开设备屏幕 | MOD + Shift + o                                    |
+| 旋转设备屏幕 | MOD + r |
+| 展开通知面板 | MOD + n |
+| 复制到剪贴板 | MOD + c |
+| 同步剪贴板和粘贴 | MOD + v |
+| 注入计算机剪贴板文本 | MOD + Shift + v |
+| 捏合缩放 | Ctrl + 左键点击移动 |
+| 拖放APK文件 | 从计算机安装APK |
+| 拖放非APK文件 | 将文件推送到设备 |
+
+## 2、genymotion 模拟器
+
+> 官网：https://www.genymotion.com/
+
+### ①、安装软件失败
+
+> 官网解释：Genymotion 模拟器使用的是 x86 架构，在第三方市场上的应用有部分不采用 x86 这么一种架构，所以在编译的时候不通过，报 “APP not installed”
+> 
+> 可以下载 Genymotion 提供的 ARM 转换工具包，将应用市场中的 ARM 架构的 apk 转换成 Genymotion 可以编译的 x86 架构：Genymotion_ARM_Translation
+> 
+> https://github.com/m9rco/Genymotion_ARM_Translation
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_4.3.zip" alt="文档">Genymotion-ARM-Translation_for_4.3.zip</a>
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_4.3.zip" alt="文档">Genymotion-ARM-Translation_for_4.3.zip</a>
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_5.1.zip" alt="文档">Genymotion-ARM-Translation_for_5.1.zip</a>
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_6.0.zip" alt="文档">Genymotion-ARM-Translation_for_6.0.zip</a>
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_7.X.zip" alt="文档">Genymotion-ARM-Translation_for_7.X.zip</a>
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_8.0.zip" alt="文档">Genymotion-ARM-Translation_for_8.0.zip</a>
+> 
+> <a href="attachments/Genymotion-ARM-Translation_for_9.0.zip" alt="文档">Genymotion-ARM-Translation_for_9.0.zip</a>
+
+1. 下载 Genymotion_ARM_Translation
+2. 解压 `Genymotion_ARM_Translation-master`，进入 `package` 目录，将对应安卓版本的压缩包拖到模拟器中（注意电脑中 Genymotion_ARM_Translation 保存的目录不可以是中文）
+3. 若是直接安装了，则直接重启模拟器即可；若是被复制到了 `Download` 目录，则继续下一步
+4. 打开电脑 cmd ，执行：
+
+```cmd
+ adb shell
+ cd /sdcard/Download/
+ sh /system/bin/flash-archive.sh /sdcard/Download/Genymotion-ARM-Translation.zip
+ adb reboot
+```
+
+5. 出现 `result ok` 代表成功，重启模拟器即可
+
+## 3、
+
+## 4、
+
+## 5、
 
 ## 6、
 
