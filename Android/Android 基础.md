@@ -9646,7 +9646,7 @@ layoutManager.smoothScrollToPosition(recyclerView, null, 0)
 > <a href="attachments/Genymotion-ARM-Translation_for_9.0.zip" alt="文档">Genymotion-ARM-Translation_for_9.0.zip</a>
 
 1. 下载 Genymotion_ARM_Translation
-2. 解压 `Genymotion_ARM_Translation-master`，进入 `package` 目录，将对应安卓版本的压缩包拖到模拟器中（注意电脑中 Genymotion_ARM_Translation 保存的目录不可以是中文）
+2. 解压 `Genymotion_ARM_Translation-master`，进入 `package` 目录，将对应安卓版本的压缩包拖到模拟器中（<font color="#ff0000">注意电脑中 Genymotion_ARM_Translation 保存的目录不可以是中文</font>）
 3. 若是直接安装了，则直接重启模拟器即可；若是被复制到了 `Download` 目录，则继续下一步
 4. 打开电脑 cmd ，执行：
 
@@ -9658,6 +9658,27 @@ layoutManager.smoothScrollToPosition(recyclerView, null, 0)
 ```
 
 5. 出现 `result ok` 代表成功，重启模拟器即可
+
+```cmd
+......
+[install_file] Installing system/lib/arm/nb/libtcb.so
+[install_arm_lib] Skipping system/lib/arm/nb/libui.so lib (x86 version exists)
+[install_arm_lib] Skipping system/lib/arm/nb/libutils.so lib (x86 version exists)
+[install_arm_lib] Skipping system/lib/arm/nb/libvulkan.so lib (x86 version exists)
+[install_arm_lib] Skipping system/lib/arm/nb/libz.so lib (x86 version exists)
+[install_file] Installing system/lib/arm/xstdata
+[install_file] Installing system/lib/libhoudini.so
+[flash_archive] Remount /system in ro
+mount: '/dev/block/sda6'->'/system': Device or resource busy
+[WARNING][remount_system_ro] cannot remount system in ro
+[flash_archive] Delete tmp directory
+rm: /data/local/tmp/sanitized.zip: No such file or directory
+[flash_archive] Done successfully !
+{Result:OK};
+genymotion:/sdcard/Download #
+```
+
+6. 但是我试了安卓 8 和安卓 9 ，都不行，不知道为啥
 
 ## 3、
 

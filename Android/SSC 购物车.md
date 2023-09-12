@@ -59,18 +59,22 @@ res
 ├── values-en-rUS
 ```
 
-## 2、流程
+## 2、可用的购物车
+
+| 所在地 | 车号 | ip                  |
+| ------ | ---- | ------------------- |
+| 青岛   | 1041 | 不固定              |
+| 烟台   |      | 172.18.7.22         |
+|        |      | 172.20.5.155        |
+| 日本   |      | ~~~10.105.12.193~~~ |
+|        | 1243 | 10.105.12.229       |
+|        | 1250 | 10.105.12.172                    |
+
+## 3、流程
 
 > 关掉 adb 进程：taskkill /F /IM adb.exe
 > 
 > 强制结束程序：adb shell am force-stop jp.retailai.raicart
-> 
-> 在日本的购物车 1：~~~10.105.12.193~~~
-> 在日本的购物车 2：10.105.12.229，no. 1243
-> 
-> 在烟台的购物车：172.18.7.22
-> 
-> 在烟台的购物车：172.20.5.155
 
 1. 连接：`adb connect 172.20.5.192`
 2. 查看已连接设备： `adb devices`
@@ -89,7 +93,7 @@ res
 	2. `adb install -r -d --user 0 /d/新建文件夹/工作/05-智能购物车/软件各种版本/raicartapk_staging_raicart-staging-signed-3.8.10.7.apk`
 	3. `install-app`
 
-## 3、adb 常用命令
+## 4、adb 常用命令
 
 1. 多设备时要在adb后加-s 指定设备
 2. 官网：
@@ -128,22 +132,26 @@ res
 |adb shell input swipe x1 y1 x2 y2|从(x1,y1)位置到(x2,y2)位置模拟滑动|
 |adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt|执行 monkey100 次随意点击测试，并记录日志到本地|
 
-## 4、一些商品整理
+## 5、一些商品整理
 
 1. 输入商品：`adb shell input text xxx`
 2. 回车确认：`adb shell input keyevent 66`
-3. 2 倍：4902410140962
-4. 10 倍：02721523
-5. 5 P：
-	1. 19014617005
-	2. 4560282120019
-6. 无条码商品中可使用优惠券的商品：5 倍
+
+| 商品类型 | id            | 名称 |
+| -------- | ------------- | ---- |
+| 2 倍      | 4902410140962 |      |
+| 10 倍     | 02721523      |      |
+| 5 P       | 19014617005   |      |
+|        | 4560282120019   |      |
+| 防范     | 4901422152208 |      |
+
+- 无条码商品中可使用优惠券的商品：5 倍
 
 ![](attachments/Pasted%20image%2020230530123646.png)
 
 7. Code128 割引 00190146170051000508
 
-## 5、github review 模板
+## 6、github review 模板
 
 ```
 
@@ -166,7 +174,7 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ```
 
-## 6、购物车硬件相关
+## 7、购物车硬件相关
 
 1. 购物车屏幕大小：1280 * 800
 
@@ -242,9 +250,36 @@ private var itemAddCartDialog: AddItemAnimationDialog? = null
 
 ![](attachments/Pasted%20image%2020230504150017.png)
 
-## 5、
+## 5、adb 链接经常断开
 
-## 6、
+> https://sandbox-console.raicart.io/
+
+1. 进入 melopan 的 SSC 中
+
+![|800](attachments/Pasted%20image%2020230911160354.png)
+
+2. 点击对应购物车的 `Enable ADB` 按钮
+
+![|675](attachments/Pasted%20image%2020230911160507.png)
+
+3. 修改弹窗中的 `Duration`，值为开启 `ADB` 功能的时间
+
+![|700](attachments/Pasted%20image%2020230911162443.png)
+
+4. 点击弹出的弹窗中的 `Enable` 按钮
+
+![|700](attachments/Pasted%20image%2020230911160548.png)
+
+5. 等待完成，变为 `disable ADB` 即为完成
+
+![|725](attachments/Pasted%20image%2020230911160658.png)
+
+## 6、3.9 之后的版本 debug 日志乱码
+
+> https://sandbox-console.raicart.io/
+
+1. 当软件进入 standby 页面之后会自动上传  debug 日志
+2. 所以稍等几分钟，从 melopan 上下载  debug 日志即可
 
 # 四、
 
