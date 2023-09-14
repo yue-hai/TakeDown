@@ -13,18 +13,6 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/Android 基础.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9b095a0d46fe79be",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "Android/SSC 购物车.md",
                 "mode": "source",
                 "source": false
@@ -32,17 +20,18 @@
             }
           },
           {
-            "id": "18d43595ffcd16c3",
+            "id": "a8200142c2e8921a",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.4.11"
+                "file": "Android/Android 基础.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -100,7 +89,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 209.5
   },
   "right": {
     "id": "e39dcbf669ddf36e",
@@ -195,22 +184,32 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "18d43595ffcd16c3",
+  "active": "d9cd52e03ce70df1",
   "lastOpenFiles": [
     "Android/Android 基础.md",
-    "linux/Smart/Smart 基础.md",
     "Android/SSC 购物车.md",
+    "Android/Kotlin 基础.md",
+    "java/15、SpringCloudAlibaba.md",
+    "标题.md",
+    "其他/设备/阿米诺键盘.md",
+    "其他/Docker.md",
+    "其他/设备",
+    "其他/文件处理/音频处理.md",
+    "其他/软件使用/WindTerm.md",
+    "其他/软件使用/VS Code.md",
+    "其他/软件使用/Idea.md",
+    "其他/软件使用/Execl.md",
+    "其他/attachments/4A13FF6FFC900441630FD400F9D43B98.jpg",
+    "linux/Smart/Smart 基础.md",
     "Android/attachments/Pasted image 20230911162443.png",
     "Android/attachments/Pasted image 20230911160658.png",
     "Android/attachments/Pasted image 20230911160548.png",
     "Android/attachments/Pasted image 20230911160507.png",
     "Android/attachments/Pasted image 20230911160354.png",
-    "Android/Kotlin 基础.md",
     "Android/attachments/Pasted image 20230509100928.png",
     "Android/attachments/Pasted image 20230509100825.png",
     "Android/attachments/Pasted image 20230508163544.png",
     "Android/attachments/Pasted image 20230508163515.png",
-    "Android/attachments/Pasted image 20230508111847.png",
     "Android/attachments/Genymotion-ARM-Translation_for_9.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_8.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_7.X.zip",
@@ -220,8 +219,6 @@
     "Android/attachments/Genymotion-ARM-Translation_for_4.3.zip",
     "Android/attachments",
     "Android",
-    "标题.md",
-    "前端/三件套/attachments/尚硅谷前端_ES6.pdf",
     "前端/JS 框架/attachments/vue3快速上手.md",
     "前端/三件套/Promise 从入门到自定义.md",
     "前端/三件套/JavaScript.md",
@@ -235,14 +232,6 @@
     "前端/JS 框架/jQuery.md",
     "前端/JS 框架/Axios.md",
     "前端/JS 框架/Ajax.md",
-    "前端/【其他】.md",
-    "其他/软件使用/WindTerm.md",
-    "其他/软件使用/VS Code.md",
-    "其他/软件使用/Idea.md",
-    "其他/软件使用/Execl.md",
-    "其他/游戏/饥荒联机版服务器搭建.md",
-    "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
-    "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",

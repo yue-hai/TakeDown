@@ -89,9 +89,8 @@ res
 9. 结账，输入从业员号，模拟扫描从业员：`i-emp`
 10. 卸载应用：`adb uninstall jp.retailai.raicart`
 11. 安装应用：
-	1. `adb install -r -d --user 0 /d/Idea/save/android/2_SSC_raicart/raicart-note/app/build/outputs/apk/debug/app-debug.apk`
-	2. `adb install -r -d --user 0 /d/新建文件夹/工作/05-智能购物车/软件各种版本/raicartapk_staging_raicart-staging-signed-3.8.10.7.apk`
-	3. `install-app`
+	1. `i-app`
+	2. `adb install -r -d --user 0 /d/app-debug.apk`
 
 ## 4、adb 常用命令
 
@@ -206,7 +205,6 @@ private var itemAddCartDialog: AddItemAnimationDialog? = null
 ```
 
 9. 这样就从这里进入 `AddItemAnimationDialog` 类，然后根据 `getLayout` 方法进入 `fragment_dialog_success` 布局文件
-
 
 ## 2、关于构建和 gradle 版本
 
