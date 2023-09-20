@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "d29cfef1b06743ff",
+        "id": "5e4c2cb776251a18",
         "type": "tabs",
         "children": [
           {
-            "id": "d9cd52e03ce70df1",
+            "id": "d3b7c7a683d829b6",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,7 +20,19 @@
             }
           },
           {
-            "id": "a8200142c2e8921a",
+            "id": "cabbe18ba3c631c1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "java/16、设计模式.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c29050349996ddd5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -31,7 +43,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -105,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Android/SSC 购物车.md"
+                "file": "java/16、设计模式.md"
               }
             }
           },
@@ -123,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "java/16、设计模式.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "java/16、设计模式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -184,20 +197,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d9cd52e03ce70df1",
+  "active": "cabbe18ba3c631c1",
   "lastOpenFiles": [
     "Android/Android 基础.md",
+    "其他/软件使用/Idea.md",
+    "java/16、设计模式.md",
+    "java/attachments/Pasted image 20230920112731.png",
     "Android/SSC 购物车.md",
+    "Android/attachments/Pasted image 20230919170115.png",
+    "Android/attachments/Pasted image 20230919170056.png",
     "Android/Kotlin 基础.md",
-    "java/15、SpringCloudAlibaba.md",
     "标题.md",
+    "java/15、SpringCloudAlibaba.md",
     "其他/设备/阿米诺键盘.md",
     "其他/Docker.md",
     "其他/设备",
     "其他/文件处理/音频处理.md",
     "其他/软件使用/WindTerm.md",
     "其他/软件使用/VS Code.md",
-    "其他/软件使用/Idea.md",
     "其他/软件使用/Execl.md",
     "其他/attachments/4A13FF6FFC900441630FD400F9D43B98.jpg",
     "linux/Smart/Smart 基础.md",
@@ -207,9 +224,6 @@
     "Android/attachments/Pasted image 20230911160507.png",
     "Android/attachments/Pasted image 20230911160354.png",
     "Android/attachments/Pasted image 20230509100928.png",
-    "Android/attachments/Pasted image 20230509100825.png",
-    "Android/attachments/Pasted image 20230508163544.png",
-    "Android/attachments/Pasted image 20230508163515.png",
     "Android/attachments/Genymotion-ARM-Translation_for_9.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_8.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_7.X.zip",
@@ -230,8 +244,6 @@
     "前端/JS 框架/Vue3.md",
     "前端/JS 框架/Vue2.md",
     "前端/JS 框架/jQuery.md",
-    "前端/JS 框架/Axios.md",
-    "前端/JS 框架/Ajax.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
