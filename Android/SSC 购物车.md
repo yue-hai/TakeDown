@@ -132,7 +132,46 @@ res
 |adb shell input swipe x1 y1 x2 y2|从(x1,y1)位置到(x2,y2)位置模拟滑动|
 |adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt|执行 monkey100 次随意点击测试，并记录日志到本地|
 
-## 5、一些商品整理
+## 5、一些登录卡整理
+
+### ①、用户卡
+
+| 卡号          | 密码 | 描述                              |
+| ------------- | ---- | --------------------------------- |
+| 2960000000012 | 1111 |                                   |
+| 2960000000029 | 2222 |                                   |
+| 2960000000036 | 3333 |                                   |
+| 2960000000043 | 4444 |                                   |
+| 2960000000050 | 5555 | point 可以用                      |
+| 2960000000067 | 6666 |                                   |
+| 2960000000074 | 7777 |                                   |
+| 2960000000081 | 8888 |                                   |
+| 2960000000098 | 9999 |                                   |
+| 2999000000081 | 0081 | 为非会员卡 （仅限于【研修模式】） |
+| 2960000001771 | 8001 | 为非会员卡                        |
+| 2960000001770 | 9522 | 为非会员卡                        |
+
+### ②、从业员卡
+
+| 卡号 | 描述 |
+| ---- | ---- |
+| 2000100764206     |      |
+
+### ③、supay 账号
+
+| 卡号 | 描述 |
+| ---- | ---- |
+| 2979000006146     |      |
+
+![|389](attachments/Pasted%20image%2020230928105710.png)
+
+### ④、SCT 账号
+
+| 卡号 | 描述 |
+| ---- | ---- |
+| 2000100764206     |      |
+
+## 6、一些商品整理
 
 1. 输入商品：`adb shell input text xxx`
 2. 回车确认：`adb shell input keyevent 66`
@@ -145,13 +184,7 @@ res
 |        | 4560282120019   |      |
 | 防范     | 4901422152208 |      |
 
-- 无条码商品中可使用优惠券的商品：5 倍
-
-![](attachments/Pasted%20image%2020230530123646.png)
-
-7. Code128 割引 00190146170051000508
-
-## 6、github review 模板
+## 7、github review 模板
 
 ```
 
@@ -174,9 +207,31 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ```
 
-## 7、购物车硬件相关
+- review 时选择 Approve
+
+![](attachments/Pasted%20image%2020231008123601.png)
+
+## 8、购物车硬件相关
 
 1. 购物车屏幕大小：1280 * 800
+
+## 9、签名打 staging 包
+
+1. 进入项目根目录
+2. 执行命令打包：`gradlew.bat clean assembleStaging`
+
+![|725](attachments/Pasted%20image%2020230926165200.png)
+
+3. 成功后 `..\app\build\outputs\apk\staging` 目录下有 app-staging.apk
+
+![|683](attachments/Pasted%20image%2020230926165255.png)
+
+4. 然后将以下文件解压后拷贝到 `..\app\build\outputs\apk\staging` 目录下：<a href="attachments/签名.zip" alt="文档">签名.zip</a>
+
+![|700](attachments/Pasted%20image%2020230926165606.png)
+
+5. 再执行：`Java -jar signapk.jar platform.x509.pem platform.pk8 app-staging.apk app-staging-signed.apk`
+6. 完成后会有 staging 包：app-staging-signed.apk
 
 # 二、一些问题
 

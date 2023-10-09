@@ -72,7 +72,29 @@
 
 ![](attachments/Pasted%20image%2020230724124119.png)
 
-# 六、
+# 六、开了 vpn，idea 推送到 github 还是失败
+
+- 问题：浏览器可以访问 `github.com`，但是 idea 或者 gitbash 推送失败
+- 原因：并不是所有软件或工具的网络请求都会走系统代理，有些应用的网络请求可能绕过代理，直接与网络通信。
+- 解决：
+1. 根据原因，我们可以分别给 idea 等工具和 git 分别设置代理即可
+2. 如我使用的软件 Clash 的端口为 7890
+
+![|700](attachments/Pasted%20image%2020231009092901.png)
+
+3. 那么我 idea 中设置代理，使其走本机的 7890 端口，这样 idea 就可以访问外网了
+
+![|700](attachments/Pasted%20image%2020231009093028.png)
+
+4. 但是这样操作之后，idea 提交 git 还是失败，是因为 idea 也还是调用 gitbash 进行提交，所以我们还要设置 gitbash 的代理：
+
+```bash
+git config --global http.proxy http://127.0.0.1:7890 
+git config --global https.proxy http://127.0.0.1:7890
+```
+
+5. 这样设置完就可以使用 gitbash 提交了
+
 # 七、
 # 八、
 # 九、

@@ -9389,27 +9389,9 @@ class YuehaiRetrofit: AppCompatActivity() {
 </manifest>
 ```
 
-# 十一、其他问题
+# 十一、补充
 
-## 1、module java.base does not "opens java.io"
-
-```cmd
-Unable to make field private final java.lang.String java.io.File.path accessible: module java.base does not "opens java.io" to unnamed module @28904302
-```
-
-1. 打开项目根目录下的 `gradle.properties` 文件
-2. 加入以下代码：
-
-```properties
-org.gradle.jvmargs=-Xmx1536M \
---add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
---add-opens=java.base/java.lang=ALL-UNNAMED \
---add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
---add-opens=java.base/java.io=ALL-UNNAMED \
---add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
-```
-
-## 2、隐藏软件标题栏
+## 1、隐藏软件标题栏
 
 1. 修改文件 `res/values/themes.xml`
 2. 标签 `style` 的属性 `parent` 一开始可能为： `Theme.MaterialComponents.DayNight.DarkActionBar`，即深色标题栏
@@ -9420,7 +9402,7 @@ org.gradle.jvmargs=-Xmx1536M \
 
 ![|310](attachments/Pasted%20image%2020230508083306.png)
 
-## 3、`res/values/themes.xml` 内容介绍
+## 2、`res/values/themes.xml` 内容介绍
 
 - res/values-night/themes.xml 是深色模式的配置文件，与此基本相同
 
@@ -9494,7 +9476,7 @@ org.gradle.jvmargs=-Xmx1536M \
 </resources>
 ```
 
-## 4、drawable 下快速生成 icon 图片 vector
+## 3、drawable 下快速生成 icon 图片 vector
 
 1. drawable 右击 new -> vector asset
 
@@ -9510,9 +9492,9 @@ org.gradle.jvmargs=-Xmx1536M \
 
 4. 在对应的控件中引入就可以了：`android:src="@drawable/ic_up"`
 
-## 5、`recyclerView` 滚动到指定位置时的动画
+## 4、`recyclerView` 滚动到指定位置时的动画
 
-- `LinearLayoutManager` 是用于在 RecyclerView 中管理线性布局的布局管理器。它本身并没有提供滚动动画的功能。但你可以通过结合使用 `RecyclerView` 的 `smoothScrollToPosition()` 方法和 `RecyclerView.ItemAnimator` 来实现滚动时的动画效果。
+- `LinearLayoutManager` 是用于在 RecyclerView 中管理线性布局的布局管理器。它本身并没有提供滚动动画的功能。但可以通过结合使用 `RecyclerView` 的 `smoothScrollToPosition()` 方法和 `RecyclerView.ItemAnimator` 来实现滚动时的动画效果。
 
 1. 首先，确保已经为 RecyclerView 设置了自定义的 ItemAnimator。例如：
 
@@ -9545,7 +9527,709 @@ layoutManager.smoothScrollToPosition(recyclerView, null, 0)
 4. 注意，要使上述代码正常工作，确保在调用 `smoothScrollToPosition()` 方法之前已经设置了适当的布局管理器（例如 `LinearLayoutManager`）和适配器（例如 `RecyclerView.Adapter`）。
 5. 另外，请注意，根据你的定制需求，你可能需要自定义 `ItemAnimator` 的实现，或者使用第三方库来实现更复杂的动画效果。
 
-# 十二、工具
+## 5、anim 动画
+
+1. 在 `res` 目录下新建 `anim` 目录，然后右键 `anim` 目录，点击新建，选择 `Animation` 资源文件，名称随意，本次为 `enter_left_slide`
+
+![|725](attachments/Pasted%20image%2020230922112559.png)
+
+2. 打开 `enter_left_slide.xml` 文件，编写动画代码
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 从左侧划入的动画 -->
+<!--
+	<set> 是一个动画集合，用于同时播放多个动画。在这里，我们将两种动画效果放在一起，使它们同时播放。
+ -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--
+		从左侧划入
+		android:fromXDelta：开始时 X 轴上的偏移量，这里设置为 -100%p 表示完全在屏幕左侧以外
+		android:toXDelta：结束时 X 轴上的偏移量，这里设置为 0，表示在屏幕中心
+		android:duration：动画持续时间，这里设置为 300 毫秒。
+	 -->
+	<translate
+			android:fromXDelta="-100%p"
+			android:toXDelta="0"
+			android:duration="300" />
+	
+	<!--
+		淡入
+		android:fromAlpha：开始时的透明度，0.0 表示完全透明。
+		android:toAlpha：结束时的透明度，1.0 表示完全不透明。
+		android:duration：动画持续时间，这里设置为 300 毫秒。
+	 -->
+	<alpha
+			android:fromAlpha="0.0"
+			android:toAlpha="1.0"
+			android:duration="300" />
+	
+</set>
+```
+
+3. 再次新建一个文件 `exit_shrinks_centre.xml` ，编写动画代码
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--
+		fromXScale 和 fromYScale 设置动画的初始缩放比例，这里将视图缩小到 0
+		toXScale 和 toYScale 设置动画的最终缩放比例，这里将视图恢复到原始大小
+		pivotX 和 pivotY 设置缩放动画的中心点位置，这里将中心点设置为视图的中心。
+		duration 设置动画的持续时间，以毫秒为单位
+	 -->
+	<scale
+			android:fromXScale="1.0"
+			android:fromYScale="1.0"
+			android:toXScale="0.9"
+			android:toYScale="0.9"
+			android:pivotX="50%"
+			android:pivotY="50%"
+			android:duration="300" />
+
+</set>
+```
+
+4. 在使用动画的 `Activity` 中使用动画：
+	1. 设置进入动画：在 `onCreate`方法中，调用完 `setContentView` 方法之后，使用 `overridePendingTransition` 方法使用动画
+	2. 设置退出动画：重写 `finish` 方法，调用完 `super.finish()` 方法之后，使用 `overridePendingTransition` 方法使用动画
+
+```kotlin
+package com.yuehai.pic.ui.activity
+
+import com.yuehai.pic.R
+
+/**
+ * 图片详情页 Activity
+ */
+class ImageViewerActivity: AppCompatActivity() {
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.activity_image_viewer)
+		
+		/**
+		 * 应用 activity 跳转动画
+		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
+		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
+		 */
+		overridePendingTransition(R.anim.image_details_enter, 0)
+		
+	}
+	
+	/**
+	 * 当用户按下 back 键时，默认行为是关闭当前的 Activity，调用此方法
+	 */
+	override fun finish() {
+		super.finish()
+		/**
+		 * 应用 activity 跳转动画
+		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
+		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
+		 */
+		overridePendingTransition(0, R.anim.image_details_exit)
+	}
+	
+}
+```
+
+## 6、Navigation 导航框架的使用
+
+> Navigation 是一套完整的导航框架，内置支持普通 Fragment、Activity 和 DialogFragment 组件的跳转，也就是所有 Dialog 或 PopupWindow 都建议使用 DialogFragment 实现，这样可以涵盖所有常用的跳转场景，统一返回栈的管理。另外，基于 Fragment 实现可以做到状态存储和恢复
+
+### ①、使用
+
+1. 引入依赖：目前最新的稳定版本为 2.4.0，其他历史版本可查看 [Android Navigation Releate Note](https://developer.android.com/jetpack/androidx/releases/navigation)
+
+```kotlin
+// Android Navigation是一个用于管理应用程序导航的组件，它可以帮助你轻松地实现应用程序中的导航逻辑。
+implementation "androidx.navigation:navigation-fragment-ktx:2.4.0"
+implementation "androidx.navigation:navigation-ui-ktx:2.4.0"
+```
+
+2. 创建导航图：在 `res` 目录下新建 `navigation` 目录，然后右键 `navigation` 目录，点击新建，选择 `navigation` 资源文件，名称随意，一般为 `nav_graph.xml`
+
+![|725](attachments/Pasted%20image%2020230922101151.png)
+
+3. 创建主 `Activity` 的布局文件 `main_activity.xml` 与代码文件 `MainActivity`，这是本项目唯一一个 `Activity`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" >
+
+	<!--
+		 defaultNavHost：true 表示此导航图将优先代理 系统返回键，
+			用户通过手势或虚拟返回键返回时会优先弹出 Fragment 返回栈；
+			若设置为 false，将会直接退出 Activity。
+		navGraph：指定导航图
+	 -->
+	<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/nav_host_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:name="androidx.navigation.fragment.NavHostFragment"
+			app:defaultNavHost="true"
+			app:navGraph="@navigation/nav_graph"/>
+	
+</LinearLayout>
+```
+
+```kotlin
+package com.yuehai.y_chat
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity: AppCompatActivity() {
+	
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.main_activity)
+		
+	}
+}
+```
+
+4. 创建首页 `home` 的布局文件 `fragment_home.xml` 与代码文件 `HomeFragment`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent">
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="home"
+			android:textSize="50sp"/>
+	
+	<Button
+			android:id="@+id/button_home_to_settings"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="去设置"
+			android:textSize="50sp" />
+	
+</LinearLayout>
+```
+
+```kotlin
+package com.yuehai.y_chat.ui.home
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.yuehai.y_chat.R
+
+/**
+ * @author 月海
+ * @create 2023/9/22 8:59
+ * 首页
+ */
+class HomeFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+		return view
+	}
+	
+}
+```
+
+5. 创建设置 `settings` 的布局文件 `fragment_settings.xml` 与代码文件 `SettingsFragment`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent">
+	
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="settings"
+			android:textSize="50sp"/>
+	
+	<Button
+			android:id="@+id/button_settings_to_home"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="去首页"
+			android:textSize="50sp" />
+
+</LinearLayout>
+```
+
+```kotlin
+package com.yuehai.y_chat.ui.settings
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.yuehai.y_chat.R
+
+/**
+ * @author 月海
+ * @create 2023/9/22 9:13
+ */
+class settingsFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_settings, container, false)
+
+		return view
+	}
+	
+}
+```
+
+6. 在导航图 `nav_graph.xml` 中
+	1. 使用 `fragment` 标签引入 fragment
+	2. 在根标签 `navigation` 中使用 `app:startDestination` 属性指定默认显示的 `fragment id`
+	3. 在 `fragment` 标签中使用 `action` 标签，在其中使用 `destination` 属性指定要跳转到的 `fragment id`，可指定多个
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 导航图 -->
+<!--
+ startDestination：指定默认显示的 fragment id
+ -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:app="http://schemas.android.com/apk/res-auto"
+			xmlns:tools="http://schemas.android.com/tools"
+			android:id="@+id/nav_graph"
+			app:startDestination="@id/fragment_home">
+	
+	<!-- 首页 -->
+	<fragment
+			android:id="@+id/fragment_home"
+			android:name="com.yuehai.y_chat.ui.home.HomeFragment"
+			android:label="home"
+			tools:layout="@layout/fragment_home">
+		
+		<!-- 首页 -> 设置 -->
+		<action
+				android:id="@+id/action_home_to_settings"
+				app:destination="@id/fragment_settings"/>
+	</fragment>
+	
+	<!-- 设置 -->
+	<fragment
+			android:id="@+id/fragment_settings"
+			android:name="com.yuehai.y_chat.ui.settings.SettingsFragment"
+			android:label="settings"
+			tools:layout="@layout/fragment_settings">
+		
+		<!-- 设置 -> 首页 -->
+		<action
+				android:id="@+id/action_settings_to_home"
+				app:destination="@id/fragment_home"/>
+	</fragment>
+
+
+</navigation>
+```
+
+7. 在 home Fragment 的代码文件 `HomeFragment` 中编写代码，点击按钮跳转至设置
+
+```kotlin
+package com.yuehai.y_chat.ui.home
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.yuehai.y_chat.R
+
+/**
+ * @author 月海
+ * @create 2023/9/22 8:59
+ * 首页
+ */
+class HomeFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_home, container, false)
+		
+		view.findViewById<Button>(R.id.button_home_to_settings).setOnClickListener {
+			/**
+			 * 使用 Navigation 进行跳转
+			 * 参数 1：导航图中定义的 action id
+			 */
+			findNavController().navigate(R.id.action_home_to_settings)
+		}
+
+		return view
+	}
+	
+}
+```
+
+8. 在 settings Fragment 的代码文件 `SettingsFragment` 中编写代码，点击按钮跳转至首页
+
+```kotlin
+package com.yuehai.y_chat.ui.settings
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.yuehai.y_chat.R
+
+/**
+ * @author 月海
+ * @create 2023/9/22 9:13
+ */
+class SettingsFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_settings, container, false)
+		
+		view.findViewById<Button>(R.id.button_settings_to_home).setOnClickListener {
+			/**
+			 * 使用 Navigation 进行跳转
+			 * 参数 1：导航图中定义的 action id
+			 */
+			findNavController().navigate(R.id.action_settings_to_home)
+		}
+
+		return view
+	}
+	
+}
+```
+
+### ②、传递参数
+
+> 使用 `Bundle` 传递参数
+
+1. 在 home Fragment 的代码文件 `HomeFragment` 中编写代码，点击按钮跳转至设置，并传递代码
+
+```kotlin
+package com.yuehai.y_chat.ui.home
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.yuehai.y_chat.R
+
+/**
+ * @author 月海
+ * @create 2023/9/22 8:59
+ * 首页
+ */
+class HomeFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_home, container, false)
+		
+		view.findViewById<Button>(R.id.button_home_to_settings).setOnClickListener {
+			// 使用 Bundle 设置值
+			val bundle = Bundle()
+			bundle.putString("月海", "button_home_to_settings")
+			/**
+			 * 使用 Navigation 进行跳转
+			 * 参数 1：导航图中定义的 action id
+			 * 参数 2：需要传递的参数，非必须
+			 */
+			findNavController().navigate(R.id.action_home_to_settings, bundle)
+		}
+		
+		// 打印接收的消息
+		Log.i("月海", "${arguments?.getString("月海")}")
+		
+		return view
+	}
+	
+}
+```
+
+2. 在 settings Fragment 的代码文件 `SettingsFragment` 中编写代码，点击按钮跳转至首页，并传递代码
+
+```kotlin
+package com.yuehai.y_chat.ui.settings
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.yuehai.y_chat.R
+
+/**
+ * @author 月海
+ * @create 2023/9/22 9:13
+ */
+class SettingsFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_settings, container, false)
+		
+		view.findViewById<Button>(R.id.button_settings_to_home).setOnClickListener {
+			// 使用 Bundle 设置值
+			val bundle = Bundle()
+			bundle.putString("月海", "button_settings_to_home")
+			/**
+			 * 使用 Navigation 进行跳转
+			 * 参数 1：导航图中定义的 action id
+			 * 参数 2：需要传递的参数，非必须
+			 */
+			findNavController().navigate(R.id.action_settings_to_home, bundle)
+		}
+		
+		// 打印接收的消息
+		Log.i("月海", "${arguments?.getString("月海")}")
+		
+		return view
+	}
+	
+}
+```
+
+### ③、进入退出动画
+
+1. 在 `anim` 中创建动画 `enter_left_slide.xml` 和 `exit_shrinks_centre.xml`，和上面 4 中一样
+2. 再次在 `anim` 中创建动画 `enter_magnify_centre.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 向中心放大进入的动画 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--
+		fromXScale 和 fromYScale 设置动画的初始缩放比例，这里将视图缩小到 90%
+		toXScale 和 toYScale 设置动画的最终缩放比例，这里将视图恢复到原始大小
+		pivotX 和 pivotY 设置缩放动画的中心点位置，这里将中心点设置为视图的中心。
+		duration 设置动画的持续时间，以毫秒为单位
+	 -->
+	<scale
+			android:fromXScale="0.9"
+			android:fromYScale="0.9"
+			android:toXScale="1.0"
+			android:toYScale="1.0"
+			android:pivotX="50%"
+			android:pivotY="50%"
+			android:duration="300" />
+</set>
+```
+
+3. 再次在 `anim` 中创建动画 `exit_left_slide.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 从左侧滑出的动画 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--
+		从左侧滑出
+		android:fromXDelta：开始时 X 轴上的偏移量，这里设置为 0，表示在屏幕中心
+		android:toXDelta：结束时 X 轴上的偏移量，这里设置为 -100%p 表示完全在屏幕左侧以外
+		android:duration：动画持续时间，这里设置为 300 毫秒。
+	 -->
+	<translate
+			android:fromXDelta="0"
+			android:toXDelta="-100%p"
+			android:duration="300" />
+	
+	<!--
+		淡入
+		android:fromAlpha：开始时的透明度，1.0 表示完全不透明。
+		android:toAlpha：结束时的透明度，0.0 表示完全透明。
+		android:duration：动画持续时间，这里设置为 300 毫秒。
+	 -->
+	<alpha
+			android:fromAlpha="1.0"
+			android:toAlpha="0.0"
+			android:duration="300" />
+</set>
+```
+
+4. 在 `nav_graph.xml` 导航图中使用，属性说明：
+	1. android:id：该 action 的唯一标识符，跳转 fragment 时需要使用此 id
+	2. app:destination：指定跳转到的 fragment
+	3. app:enterAnim：进入（入栈）时的动画效果，这些动画会在导航到目标目的地时播放
+	4. app:exitAnim：退出（出栈）时的动画效果，这些动画会在导航到目标目的地时播放
+	5. app:popEnterAnim：返回（后退）时进入（入栈）时的动画效果。这些动画会在返回到前一个目的地时播放
+	6. app:popExitAnim：返回（后退）时退出（出栈）时的动画效果。这些动画会在返回到前一个目的地时播放
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 导航图 -->
+<!--
+	startDestination：指定默认显示的 fragment id
+ -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:app="http://schemas.android.com/apk/res-auto"
+			xmlns:tools="http://schemas.android.com/tools"
+			android:id="@+id/nav_graph"
+			app:startDestination="@id/fragment_home">
+	
+	<!-- 首页 -->
+	<fragment
+			android:id="@+id/fragment_home"
+			android:name="com.yuehai.y_chat.ui.home.homeFragment"
+			android:label="home"
+			tools:layout="@layout/fragment_home">
+
+		<!--
+			首页 -> 设置
+			android:id：该 action 的唯一标识符，跳转 fragment 时需要使用此 id
+			app:destination：指定跳转到的 fragment
+			app:enterAnim：进入（入栈）时的动画效果，这些动画会在导航到目标目的地时播放
+			app:exitAnim：退出（出栈）时的动画效果，这些动画会在导航到目标目的地时播放
+			app:popEnterAnim：返回（后退）时进入（入栈）时的动画效果。这些动画会在返回到前一个目的地时播放
+			app:popExitAnim：返回（后退）时退出（出栈）时的动画效果。这些动画会在返回到前一个目的地时播放
+		 -->
+		<action
+				android:id="@+id/action_home_to_settings"
+				app:destination="@id/fragment_settings"
+				app:enterAnim="@anim/enter_left_slide"
+				app:exitAnim="@anim/exit_shrinks_centre"
+				app:popEnterAnim="@anim/enter_magnify_centre"
+				app:popExitAnim="@anim/exit_left_slide"/>
+	</fragment>
+	
+	<!-- 设置 -->
+	<fragment
+			android:id="@+id/fragment_settings"
+			android:name="com.yuehai.y_chat.ui.settings.settingsFragment"
+			android:label="settings"
+			tools:layout="@layout/fragment_settings">
+
+		<!-- 设置 -> 首页 -->
+		<action
+				android:id="@+id/action_settings_to_home"
+				app:destination="@id/fragment_home"
+				app:enterAnim="@anim/enter_left_slide"
+				app:exitAnim="@anim/exit_shrinks_centre"
+				app:popEnterAnim="@anim/enter_magnify_centre"
+				app:popExitAnim="@anim/exit_left_slide"/>
+	</fragment>
+
+
+</navigation>
+```
+
+## 6、
+
+## 7、
+
+## 8、
+
+# 十二、错误总结
+
+## 1、module java.base does not "opens java.io"
+
+```cmd
+Unable to make field private final java.lang.String java.io.File.path accessible: module java.base does not "opens java.io" to unnamed module @28904302
+```
+
+1. 打开项目根目录下的 `gradle.properties` 文件
+2. 加入以下代码：
+
+```properties
+org.gradle.jvmargs=-Xmx1536M \
+--add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
+--add-opens=java.base/java.lang=ALL-UNNAMED \
+--add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
+--add-opens=java.base/java.io=ALL-UNNAMED \
+--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+```
+
+
+# 十三、工具
 
 ## 1、开源投屏工具：`scrcpy`
 

@@ -4777,6 +4777,459 @@ public class MyDataSourceConfig {
 
 ## 3、ApplicationRunner 与 CommandLineRunner
 
-# 十一、场景整合
+# 十一、其他
 
-# 十二、扩展篇：SpringBoot2-架构师视野
+## 1、SpringBoot 整合 WebSocket 时，自动注入 Service 层报错空指针异常的解决方案
+
+### ①、问题重现
+
+1. maven 依赖
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>love.yuehai</groupId>
+	<artifactId>y_chat</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	
+	<!-- 引入 spring-boot 的父项目 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.14</version>
+	</parent>
+	
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<dependencies>
+		<!-- web 的场景启动器 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- spring boot WebSocket 服务端依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		
+		<!-- 用来序列化和反序列化 json 的 Java 的开源框架 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<!-- SpringBoot 打为 jar 包，部署项目所需 -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+```
+
+2. yml 配置
+
+```yml
+server:
+    port: 8001
+```
+
+3. 主启动类
+
+```java
+package love.yuehai.ws_server;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+
+/**
+ * @ClassDescription 描述：主启动类
+ * @author 月海
+ * @create 2023/10/7 9:39
+ * @ EnableWebSocket 注解用于开启 websocket 服务
+ */
+@EnableWebSocket
+@SpringBootApplication
+public class ChatWebSocketApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(ChatWebSocketApplication.class, args);
+	}
+}
+```
+
+4. Message 实体类
+
+```java
+package love.yuehai.ws_server.bean;
+
+/**
+ * @ClassDescription 描述：消息实体类
+ * @Author 月海
+ * @Create 2023/10/7 15:58
+ */
+public class Message {
+	
+	/**
+	 * 发送者 id
+	 */
+	private String senderId;
+	
+	/**
+	 * 接收者 id
+	 */
+	private String receiverId;
+
+	/**
+	 * 发送时间
+	 */
+	private String sendTime;
+	
+	/**
+	 * 消息内容
+	 */
+	private String messageData;
+	
+	public Message() { }
+
+	public Message(String senderId, String receiverId, String sendTime, String messageData) {
+		this.senderId = senderId;
+		this.receiverId = receiverId;
+		this.sendTime = sendTime;
+		this.messageData = messageData;
+	}
+
+	public String getSenderId() {
+		return senderId;
+	}
+
+	public void setSenderId(String senderId) {
+		this.senderId = senderId;
+	}
+
+	public String getReceiverId() {
+		return receiverId;
+	}
+
+	public void setReceiverId(String receiverId) {
+		this.receiverId = receiverId;
+	}
+
+	public String getSendTime() {
+		return sendTime;
+	}
+
+	public void setSendTime(String sendTime) {
+		this.sendTime = sendTime;
+	}
+
+	public String getMessageData() {
+		return messageData;
+	}
+
+	public void setMessageData(String messageData) {
+		this.messageData = messageData;
+	}
+}
+```
+
+5. websocket 配置类
+
+```java
+package love.yuehai.ws_server.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+/**
+ * @ClassDescription 描述：websocket 配置类
+ * @author 月海
+ * @create 2023/10/7 9:39
+ * 该配置类用于创建 ServerEndpoint 注解，此注解用在类上，使得此类成为服务端 websocket
+ */
+@Configuration
+@EnableWebSocketMessageBroker
+public class ChatWebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+	/**
+	 * 创建并注册一个 ServerEndpointExporter Bean，用于将 WebSocket 端点注册到 Spring 应用中
+	 * @return ServerEndpointExporter
+	 */
+	@Bean
+	public ServerEndpointExporter serverEndpointExporter(){
+		return new ServerEndpointExporter();
+	}
+}
+```
+
+6. websocket Server 类
+
+```java
+package love.yuehai.ws_server.server;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import love.yuehai.ws_server.bean.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import javax.websocket.OnClose;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.PathParam;
+import javax.websocket.server.ServerEndpoint;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+/**
+ * @ClassDescription 描述：websocket Server 类
+ * @author 月海
+ * @create 2023/10/7 9:39
+ * @ ServerEndpoint 该配置类用于创建 ServerEndpoint 注解，此注解用在类上，使得此类成为服务端 websocket
+ */
+@Component
+@ServerEndpoint("/y_chat/{userId}")
+public class ChatWebSocketServer {
+
+	/**
+	 * 创建 Jackson 对象
+	 */
+	@Resource
+	private ObjectMapper objectMapper;
+
+	/**
+	 * 与客户端的连接会话，需要通过他来给客户端发消息
+	 */
+	private Session session;
+	
+	/**
+	 * 当前用户 ID
+	 */
+	private String userId;
+	
+	/**
+	 *  concurrent 包的线程安全 Set，用来存放每个客户端对应的 MyWebSocket 对象。
+	 *  虽然 @Component 默认是单例模式的，但 springboot 还是会为每个 websocket 连接初始化一个 bean，所以可以用一个静态 set 保存起来。
+	 */
+	private static final CopyOnWriteArraySet<ChatWebSocketServer> WEB_SOCKETS =new CopyOnWriteArraySet<>();
+	
+	/**
+	 * 用来存在线连接的用户信息
+	 */
+	private static final ConcurrentHashMap<String,Session> SESSION_POOL = new ConcurrentHashMap<>();
+	
+	/**
+	 * 连接成功方法
+	 * @param session 连接会话
+	 * @param userId 用户编号
+	 * @ OnOpen 是一个用于标记 WebSocket 生命周期方法的注解，其作用是定义一个方法，该方法会在 WebSocket 连接建立成功时自动被调用
+	 */
+	@OnOpen
+	public void onOpen(Session session , @PathParam("userId") String userId){
+		try {
+			// 将传入的 WebSocket 会话对象赋给类的 session 属性
+			this.session = session;
+			// 将传入的用户 ID 赋给类的 userId 属性
+			this.userId = userId;
+			// 将当前 WebSocketServer 对象添加到 WEB_SOCKETS 集合，用于跟踪所有连接的客户端
+			WEB_SOCKETS.add(this);
+			// 将当前用户的会话对象 session 存储到 SESSION_POOL 中，以便后续发送消息时可以根据用户 ID 查找会话对象
+			SESSION_POOL.put(userId, session);
+			System.out.println("【websocket 消息】 用户：" + userId + " 加入连接...");
+		} catch (Exception e) {
+			System.out.println("---------------WebSocket 连接异常---------------");
+		}
+	}
+	
+	/**
+	 * 关闭连接
+	 * @ OnClose 是一个用于标记 WebSocket 生命周期方法的注解，其作用是定义一个方法，该方法会在 WebSocket 连接关闭时自动被调用
+	 */
+	@OnClose
+	public void onClose(){
+		try {
+			// 从 WEB_SOCKETS 集合中移除当前 WebSocketServer 对象，表示该连接已经断开
+			WEB_SOCKETS.remove(this);
+			// 从 SESSION_POOL 中移除当前用户的会话，确保不再跟踪该用户的连接
+			SESSION_POOL.remove(this.userId);
+			System.out.println("【websocket 消息】 用户："+ this.userId + " 断开连接...");
+		} catch (Exception e) {
+			System.out.println("---------------WebSocket 断开异常---------------");
+		}
+	}
+	
+	/**
+	 * onMessage 是一个 WebSocket 的生命周期方法，用于处理客户端发送到服务器的消息。
+	 * 这个方法会在 WebSocket 连接建立之后，当服务器接收到来自客户端的消息时被调用。
+	 * @param userId 表示当前连接的用户 ID，可以从WebSocket连接的URL中获取
+	 * @param body 表示客户端发送的消息内容，通常是一个字符串
+	 */
+	@OnMessage
+	public void onMessage(@PathParam("userId") String userId, String body){
+		try {
+			// 将接收到的消息体解析为 Message 对象
+			Message message = objectMapper.readValue(body, Message.class);
+
+			// 调用方法，给自己或其他人发送消息；给单个人发送消息；单点消息
+			sendOneMessage(message);
+			
+		} catch (Exception e) {
+			System.out.println("---------------WebSocket 消息异常---------------");
+			System.out.println(e);
+		}
+	}
+	
+	/**
+	 * 给自己或其他人发送消息；给单个人发送消息；单点消息
+	 * 单点消息是指在通信系统中，消息由一个发送者发送给一个特定的接收者，而不是广播给所有参与者。
+	 * 这种消息传递方式是点对点通信，其中消息的发送者直接与接收者进行交互，而其他参与者不会接收或处理这个消息
+	 * @param message 消息对象
+	 */
+	public void sendOneMessage(Message message) {
+
+		// 不论是给自己还是给其他人发送消息，都要向自己发送消息，即给发送者发送消息
+		Session senderIdSession = SESSION_POOL.get(message.getSenderId());
+		if (senderIdSession != null && senderIdSession.isOpen()){
+			try {
+				System.out.println("【websocket 消息】 " + message.getSenderId() + " 给自己发送消息：" + objectMapper.writeValueAsString(message));
+				senderIdSession.getAsyncRemote().sendText(objectMapper.writeValueAsString(message));
+			} catch (Exception e) {
+				System.out.println("---------------WebSocket 给自己发送消息异常---------------");
+			}
+		}
+		
+		// 如果消息的 接收者 id 与当前用户的 ID 不同，表示是给别人发送消息
+		if(!userId.equals(message.getReceiverId())){
+			// 向别人发送消息
+			Session receiverIdSession = SESSION_POOL.get(message.getReceiverId());
+			if (receiverIdSession != null && receiverIdSession.isOpen()){
+				try {
+					System.out.println("【websocket 消息】 " + message.getSenderId() + " 给 " + message.getReceiverId() + " 发送消息：" + objectMapper.writeValueAsString(message));
+					receiverIdSession.getAsyncRemote().sendText(objectMapper.writeValueAsString(message));
+				} catch (Exception e) {
+					System.out.println("---------------WebSocket 给别人发送消息异常---------------");
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 此为广播消息
+	 * @param message 广播消息内容
+	 */
+	public void sendAllMessage(Message message) {
+		System.out.println("【websocket 消息】广播消息:" + message);
+		for(ChatWebSocketServer webSocket : WEB_SOCKETS) {
+			try {
+				if(webSocket.session.isOpen()) {
+					webSocket.session.getAsyncRemote().sendText(objectMapper.writeValueAsString(message));
+				}
+			} catch (Exception e) {
+				System.out.println("---------------WebSocket 消息广播异常---------------");
+			}
+		}
+	}
+	
+}
+```
+
+7. 连接测试：http://wstool.jackxiang.com/
+
+![|700](attachments/Pasted%20image%2020231009151843.png)
+
+8. 服务地址：`ws://127.0.0.1:8001/y_chat/1`
+9. 消息内容：
+
+```json
+{
+	"senderId": "1",
+	"receiverId": "1",
+	"sendTime": "发送时间",
+	"messageData": "1 发送给 1"
+}
+```
+
+10. 控制台报错，此时提示 `ObjectMapper` 对象为空，自动注入失败：
+
+```bash
+2023-10-09 15:18:27.215 ERROR 20840 --- [nio-8001-exec-6] o.a.t.websocket.pojo.PojoEndpointBase    : No error handling configured for [love.yuehai.ws_server.server.ChatWebSocketServer] and the following error occurred
+
+java.lang.RuntimeException: java.lang.NullPointerException: Cannot invoke "com.fasterxml.jackson.databind.ObjectMapper.readValue(String, java.lang.Class)" because "this.objectMapper" is null
+	at love.yuehai.ws_server.server.ChatWebSocketServer.onMessage(ChatWebSocketServer.java:116) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.apache.tomcat.websocket.pojo.PojoMessageHandlerWholeBase.onMessage(PojoMessageHandlerWholeBase.java:101) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.WsFrameBase.sendMessageText(WsFrameBase.java:390) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.server.WsFrameServer.sendMessageText(WsFrameServer.java:130) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.WsFrameBase.processDataText(WsFrameBase.java:484) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.WsFrameBase.processData(WsFrameBase.java:284) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.WsFrameBase.processInputBuffer(WsFrameBase.java:130) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:85) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:184) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:164) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:152) ~[tomcat-embed-websocket-9.0.78.jar:9.0.78]
+	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.78.jar:9.0.78]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: java.lang.NullPointerException: Cannot invoke "com.fasterxml.jackson.databind.ObjectMapper.readValue(String, java.lang.Class)" because "this.objectMapper" is null
+	at love.yuehai.ws_server.server.ChatWebSocketServer.onMessage(ChatWebSocketServer.java:109) ~[classes/:na]
+	... 23 common frames omitted
+```
+
+### ②、原因
+
+1. 现象分析：我们在 spring 或 springboot 的 websocket 里面使用 `@Autowired` 注入 service 或 bean 时，会报空指针异常，获取的 service 为 null，并不是 service 不能被注入。
+2. 本质原因：spring 默认管理的都是单例（singleton），和 websocket （多对象）相冲突。
+3. 详细解释：
+	1. 项目启动时初始化，会初始化 websocket （非用户连接的），spring 同时会为其注入 service，该对象的 service 不是 null，被成功注入。
+	2. 但是，由于 spring 默认管理的是单例，所以只会注入一次 service。当新用户进入聊天时，系统又会创建一个新的 websocket 对象，这时矛盾出现了：spring 管理的都是单例，不会给第二个 websocket 对象注入 service，所以导致只要是用户连接创建的 websocket 对象，都不能再注入了。
+	3. 像 controller 里面有 service， service 里面有 dao。因为 controller，service ，dao 都是单例，所以注入时不会报 null。
+	4. 但是 websocket 不是单例，所以使用 spring 注入一次后，后面的对象就不会再注入了，会报 null。
+
+### ③、解决方案
+
+1. 方法注入：在 Spring Boot 中，方法注入是一种依赖注入的方式，它允许将依赖项通过方法参数注入到一个类的方法中。这通常用于将 Spring 管理的 bean 注入到方法中，以便在方法内部使用这些依赖项。
+2. 使用方式：
+	1. 创建一个静态的 `ObjectMapper` 属性，保证每个 `WebSocket` 只有一个 `ObjectMapper` 实例
+	2. 自定义一个方法，在其上方标注注解 `@Autowired`，参数为刚定义的属性 `ObjectMapper`，在改方法中对其进行赋值
+	3. 因为标注了注解 `@Autowired`，spring 会自动对其进行注入
+
+```java
+private static ObjectMapper objectMapper;
+@Autowired
+public void setObjectMapper(ObjectMapper objectMapper){
+	ChatWebSocketServer.objectMapper = objectMapper;
+}
+```
+
+## 2、
+
+## 3、
+
+## 4、

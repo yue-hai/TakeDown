@@ -4,35 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "5e4c2cb776251a18",
+        "id": "083124b1c85aa6d6",
         "type": "tabs",
         "children": [
           {
-            "id": "d3b7c7a683d829b6",
+            "id": "9e9d9f02ecc5bbbb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "Android/Kotlin 基础.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "cabbe18ba3c631c1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "java/16、设计模式.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c29050349996ddd5",
+            "id": "c4a339ec13a75a9a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -42,9 +30,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "eaa77b20693a2ebd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Flutter/Flutter 基础.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "993061c7a23c4407",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "java/11、SpringBoot2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -118,7 +130,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "java/16、设计模式.md"
+                "file": "java/11、SpringBoot2.md"
               }
             }
           },
@@ -136,7 +148,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "java/16、设计模式.md",
+                "file": "java/11、SpringBoot2.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +165,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "java/16、设计模式.md",
+                "file": "java/11、SpringBoot2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -197,18 +209,35 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "cabbe18ba3c631c1",
+  "active": "993061c7a23c4407",
   "lastOpenFiles": [
-    "Android/Android 基础.md",
-    "其他/软件使用/Idea.md",
-    "java/16、设计模式.md",
-    "java/attachments/Pasted image 20230920112731.png",
-    "Android/SSC 购物车.md",
-    "Android/attachments/Pasted image 20230919170115.png",
-    "Android/attachments/Pasted image 20230919170056.png",
-    "Android/Kotlin 基础.md",
+    "java/attachments/Pasted image 20231009151843.png",
     "标题.md",
+    "java/11、SpringBoot2.md",
+    "Android/SSC 购物车.md",
+    "Android/Kotlin 基础.md",
+    "其他/小工具.md",
+    "其他/软件使用/Idea.md",
+    "其他/软件使用/attachments/Pasted image 20231009093028.png",
+    "其他/软件使用/attachments/Pasted image 20231009092901.png",
+    "Android/Android 基础.md",
+    "Android/attachments/Pasted image 20231008123601.png",
+    "Flutter/Dart 基础.md",
+    "Android/attachments/Pasted image 20230928105710.png",
+    "Android/attachments/a10debf5cda56c4031728e5fa961c69e.jpg",
+    "Android/attachments/Pasted image 20230530123646.png",
+    "Flutter/Flutter 基础.md",
+    "Android/attachments/Pasted image 20230926165606.png",
     "java/15、SpringCloudAlibaba.md",
+    "Android/attachments/签名.zip",
+    "Android/attachments/Pasted image 20230926165255.png",
+    "Android/attachments/Pasted image 20230926165200.png",
+    "Flutter/attachments/Pasted image 20230926132634.png",
+    "Flutter/attachments",
+    "java/16、设计模式.md",
+    "Flutter",
+    "java/14、SpringCloud.md",
+    "前端/【其他】.md",
     "其他/设备/阿米诺键盘.md",
     "其他/Docker.md",
     "其他/设备",
@@ -216,34 +245,18 @@
     "其他/软件使用/WindTerm.md",
     "其他/软件使用/VS Code.md",
     "其他/软件使用/Execl.md",
-    "其他/attachments/4A13FF6FFC900441630FD400F9D43B98.jpg",
     "linux/Smart/Smart 基础.md",
-    "Android/attachments/Pasted image 20230911162443.png",
-    "Android/attachments/Pasted image 20230911160658.png",
-    "Android/attachments/Pasted image 20230911160548.png",
-    "Android/attachments/Pasted image 20230911160507.png",
-    "Android/attachments/Pasted image 20230911160354.png",
-    "Android/attachments/Pasted image 20230509100928.png",
     "Android/attachments/Genymotion-ARM-Translation_for_9.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_8.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_7.X.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_6.0.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_5.1.zip",
     "Android/attachments/Genymotion-ARM-Translation_for_4.4.zip",
-    "Android/attachments/Genymotion-ARM-Translation_for_4.3.zip",
-    "Android/attachments",
-    "Android",
     "前端/JS 框架/attachments/vue3快速上手.md",
     "前端/三件套/Promise 从入门到自定义.md",
     "前端/三件套/JavaScript.md",
     "前端/三件套/ES6-11 - JavaScript 新特性.md",
     "前端/三件套/HTML5 新特性.md",
-    "前端/三件套/CSS.md",
-    "前端/UI 组件库/Bootstrap 快速入门.md",
-    "前端/UI 组件库/Ant Design Vue.md",
-    "前端/JS 框架/Vue3.md",
-    "前端/JS 框架/Vue2.md",
-    "前端/JS 框架/jQuery.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
