@@ -10303,6 +10303,13 @@ org.gradle.jvmargs=-Xmx1536M \
 | 拖放APK文件 | 从计算机安装APK |
 | 拖放非APK文件 | 将文件推送到设备 |
 
+### ⑥、几大类模拟器的地址和端口号
+
+1. 网易mumu模拟器：adb connect 127.0.0.1:7555
+2. 夜神模拟器：adb connect 127.0.0.1:62001
+3. 蓝叠模拟器：adb connect 127.0.0.1:5555
+4. 雷电模拟器：adb connect 127.0.0.1:5555
+
 ## 2、genymotion 模拟器
 
 > 官网：https://www.genymotion.com/
@@ -10363,6 +10370,29 @@ genymotion:/sdcard/Download #
 ```
 
 6. 但是我试了安卓 8 和安卓 9 ，都不行，不知道为啥
+
+### ②、genymotion 无法启动虚拟设备
+
+1. 问题：无法启动，报错：
+
+![](attachments/Pasted%20image%2020231019152707.png)
+
+2. 原因：Genymotion 运行虚拟机是依靠 VirtualBox，但是，启动 Genymotion 虚拟机后，VirtualBox 会创建一个网络连接，问题出现在这里：网络连接未启动
+3. 解决方案：
+4. 在 Windows 下打开控制面板，按照路径：控制面板 --> 网络和 Internet --> 网络和共享中心 --> 更改适配器选项
+
+![|725](attachments/Pasted%20image%2020231019152919.png)
+
+5. 将被 `VirtualBox Host-Only Nerwork` 创建的所有连接关闭，然后打开最大的那个即可
+
+![|700](attachments/Pasted%20image%2020231019152956.png)
+
+6. 1
+
+
+### ③、
+
+### ④、
 
 ## 3、
 

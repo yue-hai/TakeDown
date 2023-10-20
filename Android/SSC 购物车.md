@@ -233,6 +233,34 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 5. 再执行：`Java -jar signapk.jar platform.x509.pem platform.pk8 app-staging.apk app-staging-signed.apk`
 6. 完成后会有 staging 包：app-staging-signed.apk
 
+## 10、postman 调用后端接口
+
+1. 首先访问这个接口获取 Token： (POST) `https://sandbox.raicart.io/v1/user/4u/c/signin`
+2. 请求头参数：
+	1. `Client-Id`：项目的 secret.gradle 文件中，`manju` 的 `clientId`
+	2. `Client-Secret`：项目的 secret.gradle 文件中，`manju` 的 `clientSecret`
+	3. `UUID`：购物车的 uuid，在 melopan 和购物车的管理页面上都可以获取到
+3. 请求体参数
+	1. 格式：`application/json`
+	2. 参数：`userId` 为登录的用户卡号，`pincode` 为密码
+
+```json
+{
+    "userId": "2960000000050",
+    "pincode": "5555" 
+}
+```
+
+4. 访问后得到的数据中，第一个参数是 `accessToken`，拿到他的值
+
+![|775](attachments/Pasted%20image%2020231019101441.png)
+
+5. 访问想要访问的接口，如： (GET) `https://sandbox-macaron.raicart.io/v2/user/r/coupon/recommendation/4910026530008`
+6. 请求头参数：`Authorization`：`Bearer 刚刚拿到的accessToken`
+7. 即可得到数据
+
+![|775](attachments/Pasted%20image%2020231019101503.png)
+
 # 二、一些问题
 
 ## 1、如何找到指定页面
@@ -344,24 +372,91 @@ private var itemAddCartDialog: AddItemAnimationDialog? = null
 
 # 三、poc 笔记
 
-## 1、1875 购物车演示视频
+## 1、1979 推荐商品地图
 
-### ①、疑问
+1. ui
+2. log 格式
 
-1. 播放视频页面的 ui 是什么样子的 -> 全屏播放视频吗
-2. 如何退出播放视频 -> 扫员工卡返回员工界面？
-3. 每次重新播放视频时判断电量可不可行
-4. 暂停时，电量掉到 30% 及以下，需要回到待机屏幕吗
-5. 显示视频的方式，以何种方式切换到视频页面（直接弹窗、页面跳转）
-6. 软件上显示的电量和状态栏显示的电量不一样（不过状态栏显示的电量一直不会改变，软件上显示的电量应该才是正确的）
+We can record the IDs, categories, and click counts of the recommended products that customers click on in order to determine which products customers want to buy but don't know where to find.
 
-![|675](attachments/Pasted%20image%2020230919170056.png)
+Current oplog:
+```json
+{
+    "amount": 0,
+    "barcode": "",
+    "cardNo": "2960000000012",
+    "categoryId": "null",
+    "categoryName": "null",
+    "companyID": "1",
+    "coupon": "null",
+    "isNonBarcodeItem": false,
+    "isSuccess": true,
+    "operationName": "Recommender Details",
+    "operationTime": "2023/09/04 14:48:18.21",
+    "otherCartId": "null",
+    "posNo": "1069",
+    "productName": "",
+    "recommend": "[{\"couponId\":\"\",\"displaySessionId\":\"\",\"image\":\"https://cdnstaging.raicart.io/images/retailer/item/867b8fb34b154032870a449e117a849e/ea8301508bc7467fa6b4759e2029ca42/10/P6/Vk/SkpmIivFeyh0OYqQRZRmPPUOeDg0rpfLefVkP610.webp\",\"isCoupon\":false,\"itemId\":\"\",\"itemMasterId\":\"\",\"itemName\":\"ワァン（ちゃんぽんスープ）\",\"price\":\"149\"}]",
+    "storeID": "3",
+    "subsidiaryId": "1",
+    "systemView": "Shopping",
+    "uploadState": 0,
+    "weightValue": "null"
+}
+```
 
-![|675](attachments/Pasted%20image%2020230919170115.png)
+Here is a modified example I wrote:
+```json
+{
+    "amount": 2,
+    "barcode": "5f76aa653e648335380b74f2",
+    "cardNo": "2960000000012",
+    "categoryId": "null",
+    "categoryName": "BUMON_CODE:27, MINI_BUMON_CODE:6",
+    "companyID": "1",
+    "coupon": "null",
+    "isNonBarcodeItem": false,
+    "isSuccess": true,
+    "operationName": "Recommender Details",
+    "operationTime": "2023/09/04 14:48:18.21",
+    "otherCartId": "null",
+    "posNo": "1069",
+    "productName": "",
+    "recommend": "[{\"couponId\":\"\",\"displaySessionId\":\"\",\"image\":\"https://cdnstaging.raicart.io/images/retailer/item/867b8fb34b154032870a449e117a849e/ea8301508bc7467fa6b4759e2029ca42/10/P6/Vk/SkpmIivFeyh0OYqQRZRmPPUOeDg0rpfLefVkP610.webp\",\"isCoupon\":false,\"itemId\":\"\",\"itemMasterId\":\"\",\"itemName\":\"ワァン（ちゃんぽんスープ）\",\"price\":\"149\"}]",
+    "storeID": "3",
+    "subsidiaryId": "1",
+    "systemView": "Shopping",
+    "uploadState": 0,
+    "weightValue": "null"
+}
+```
 
-### ②、
+or:
+```json
+{
+    "amount": 2,
+    "barcode": "5f76aa653e648335380b74f2",
+    "cardNo": "2960000000012",
+    "categoryId": "null",
+    "categoryName": "{\"id\": \"5f76c3d13e6483353832f0d8\",\"level\": 4,\"categoryType\": \"BUMON_CODE\",\"remoteCategoryId\": 27},{\"id\": \"5f76c3d3b16d29f980ab6e59\",\"level\": 5,\"categoryType\": \"MINI_BUMON_CODE\",\"remoteCategoryId\": 6}",
+    "companyID": "1",
+    "coupon": "null",
+    "isNonBarcodeItem": false,
+    "isSuccess": true,
+    "operationName": "Recommender Details",
+    "operationTime": "2023/09/04 14:48:18.21",
+    "otherCartId": "null",
+    "posNo": "1069",
+    "productName": "",
+    "recommend": "[{\"couponId\":\"\",\"displaySessionId\":\"\",\"image\":\"https://cdnstaging.raicart.io/images/retailer/item/867b8fb34b154032870a449e117a849e/ea8301508bc7467fa6b4759e2029ca42/10/P6/Vk/SkpmIivFeyh0OYqQRZRmPPUOeDg0rpfLefVkP610.webp\",\"isCoupon\":false,\"itemId\":\"\",\"itemMasterId\":\"\",\"itemName\":\"ワァン（ちゃんぽんスープ）\",\"price\":\"149\"}]",
+    "storeID": "3",
+    "subsidiaryId": "1",
+    "systemView": "Shopping",
+    "uploadState": 0,
+    "weightValue": "null"
+}
+```
 
-### ③、
 
 ## 2、
 
