@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="311e7462-3261-4a53-a20d-634b27ed1634" name="更改" comment="flutter">
+      <change beforePath="$PROJECT_DIR$/.obsidian/community-plugins.json" beforeDir="false" afterPath="$PROJECT_DIR$/.obsidian/community-plugins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.obsidian/plugins/Bartender/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/.obsidian/plugins/Bartender/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/.obsidian/workspace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Android/Android 基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/Android/Android 基础.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Android/SSC 购物车.md" beforeDir="false" afterPath="$PROJECT_DIR$/Android/SSC 购物车.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Flutter/Flutter 基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter/Flutter 基础.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/【其他】.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/【其他】.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/linux/Liunx 基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/linux/linux/Liunx 基础.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/linux/Shell 编程.md" beforeDir="false" afterPath="$PROJECT_DIR$/linux/linux/Shell 编程.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/其他/设备/阿米诺键盘.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2V5iyhHZRmFqOeREXlooEIs0NlX" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/新建文件夹/笔记/【笔记】&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="311e7462-3261-4a53-a20d-634b27ed1634" name="更改" comment="" />
+      <created>1694132597555</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694132597555</updated>
+      <workItem from="1694132598880" duration="90000" />
+      <workItem from="1694134655712" duration="2356000" />
+      <workItem from="1694508772277" duration="495000" />
+      <workItem from="1694563292107" duration="1539000" />
+      <workItem from="1695185930843" duration="393000" />
+      <workItem from="1696839799443" duration="272000" />
+      <workItem from="1697792044093" duration="40000" />
+      <workItem from="1697792226241" duration="47000" />
+      <workItem from="1698797118658" duration="69000" />
+      <workItem from="1698803029540" duration="815000" />
+      <workItem from="1698803916903" duration="3058000" />
+    </task>
+    <task id="LOCAL-00001" summary="genymotion 模拟器">
+      <created>1694134740388</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1694134740388</updated>
+    </task>
+    <task id="LOCAL-00002" summary="genymotion 模拟器">
+      <created>1694135827942</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1694135827942</updated>
+    </task>
+    <task id="LOCAL-00003" summary="smart">
+      <created>1694136262750</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136262750</updated>
+    </task>
+    <task id="LOCAL-00004" summary="python edgedriver_win64">
+      <created>1694136301005</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136301005</updated>
+    </task>
+    <task id="LOCAL-00005" summary="java 整理">
+      <created>1694136354935</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136354935</updated>
+    </task>
+    <task id="LOCAL-00006" summary="其他 整理">
+      <created>1694136404951</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136404951</updated>
+    </task>
+    <task id="LOCAL-00007" summary="android 整理">
+      <created>1694136438282</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136438282</updated>
+    </task>
+    <task id="LOCAL-00008" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_4.3.zip">
+      <created>1694136486897</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136486897</updated>
+    </task>
+    <task id="LOCAL-00009" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_4.4.zip">
+      <created>1694136497362</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136497362</updated>
+    </task>
+    <task id="LOCAL-00010" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_5.1.zip">
+      <created>1694136515529</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136515529</updated>
+    </task>
+    <task id="LOCAL-00011" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_6.0.zip">
+      <created>1694136549442</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136549442</updated>
+    </task>
+    <task id="LOCAL-00012" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_7.x.zip">
+      <created>1694136588558</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136588558</updated>
+    </task>
+    <task id="LOCAL-00013" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_8.0.zip">
+      <created>1694136641248</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136641248</updated>
+    </task>
+    <task id="LOCAL-00014" summary="genymotion 模拟器 Genymotion-ARM-Translation_for_9.0.zip">
+      <created>1694136675247</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1694136675247</updated>
+    </task>
+    <task id="LOCAL-00015" summary="SSC 整理">
+      <created>1694509232325</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1694509232325</updated>
+    </task>
+    <task id="LOCAL-00016" summary="SSC 整理、享元模式">
+      <created>1695186306794</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1695186306794</updated>
+    </task>
+    <task id="LOCAL-00017" summary="git 整理、WebSocket 整理、dart">
+      <created>1696840055919</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1696840055919</updated>
+    </task>
+    <task id="LOCAL-00018" summary="flutter">
+      <created>1697792067702</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1697792067702</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="genymotion 模拟器" />
+    <MESSAGE value="smart" />
+    <MESSAGE value="python edgedriver_win64" />
+    <MESSAGE value="java 整理" />
+    <MESSAGE value="其他 整理" />
+    <MESSAGE value="android 整理" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_4.3.zip" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_4.4.zip" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_5.1.zip" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_6.0.zip" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_7.x.zip" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_8.0.zip" />
+    <MESSAGE value="genymotion 模拟器 Genymotion-ARM-Translation_for_9.0.zip" />
+    <MESSAGE value="SSC 整理" />
+    <MESSAGE value="SSC 整理、享元模式" />
+    <MESSAGE value="git 整理、WebSocket 整理、dart" />
+    <MESSAGE value="flutter" />
+    <option name="LAST_COMMIT_MESSAGE" value="flutter" />
+  </component>
+</project>

@@ -186,6 +186,19 @@ res
 
 ## 7、github review 模板
 
+1. <font color="#ff0000">新建分支</font>
+2. 提交该分支应该提交的代码
+3. 推送分支到<font color="#ff0000">新分支</font>
+4. 新建拉取请求 Pull requests
+5. 选中本次 poc 的<font color="#ff0000">基础分支</font>与刚才推送的<font color="#ff0000">新分支</font>
+
+![](attachments/Pasted%20image%2020231031133836.png)
+
+6. 1
+7. 1
+8. 1
+9. 1
+
 ```
 
 SSCPOC-1927 Build:thanks page
@@ -206,6 +219,8 @@ Now only write the page layout, wait for the interface to complete and then impr
 review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ```
+
+![|188](attachments/Pasted%20image%2020231031111341.png)
 
 - review 时选择 Approve
 

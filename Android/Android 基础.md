@@ -10228,6 +10228,18 @@ org.gradle.jvmargs=-Xmx1536M \
 --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
 ```
 
+## 2、编译报错：  `javax.annotation.processing.Generated`
+
+1. 原因：`javax.annotation.processing.Generated` 类是 JDK 1.8 引入的注解，用于标识由注解处理器生成的代码。但是 jdk11及其以上移除了该包
+2. 解决方法 1：下载 `javax.annotation-api`，手动引入
+3. 解决方法 2：退回 jdk8
+4. 解决方法 3：`build.gradle` 中添加依赖：`compile 'org.glassfish:javax.annotation:10.0-b28'`
+
+## 3、
+
+## 4、
+
+## 5、
 
 # 十三、工具
 
@@ -10393,6 +10405,42 @@ genymotion:/sdcard/Download #
 ### ③、
 
 ### ④、
+
+# 十四、其他
+
+## 1、布局时使用负数参数
+
+1. 可使用 `translationX` 和 `translationY` 来设置控件的位置
+2. `translationX`：水平偏移
+3. `translationY`：垂直偏移
+4. 例子：
+
+```xml
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/category_position_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red_footer"
+    android:orientation="vertical">
+    
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/closeButton"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:src="@drawable/ic_close_button"
+            android:translationX="@dimen/dp_m_30"
+            android:translationY="@dimen/dp_30"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+![|668](attachments/Pasted%20image%2020231026102417.png)
+
+## 2、
 
 ## 3、
 

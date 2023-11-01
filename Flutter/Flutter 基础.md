@@ -268,6 +268,11 @@ class ContextRoute extends StatelessWidget  {
       appBar: AppBar(
         title: Text("Context测试"),
       ),
+      /**
+	   * body: 用于定义页面的主要内容区域
+	   * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	   * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	   */
       body: Container(
         child: Builder(builder: (context) {
           // 在 widget 树中向上查找最近的父级`Scaffold`  widget 
@@ -352,6 +357,11 @@ class _CounterWidgetState extends State<CounterWidget> {
   Widget build(BuildContext context) {
     print("build");
     return Scaffold(
+      /**
+	   * body: 用于定义页面的主要内容区域
+	   * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	   * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	   */
       body: Center(
         child: TextButton(
           child: Text('$_counter'),
@@ -486,6 +496,11 @@ class _GetStateObjectRouteState extends State<GetStateObjectRoute> {
       appBar: AppBar(
         title: Text("子树中获取State对象"),
       ),
+      /**
+	   * body: 用于定义页面的主要内容区域
+	   * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	   * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	   */
       body: Center(
         child: Column(
           children: [
@@ -706,7 +721,785 @@ class CupertinoTestRoute extends StatelessWidget  {
 
 ## 3、
 
-## 4、
+## 4、路由管理 Route
+
+1. 路由（Route）在移动开发中通常指页面（Page），这跟 Web 开发中单页应用的 Route 概念意义是相同的
+2. Route 在 Android 中 通常指一个 Activity，在 iOS 中指一个 ViewController。
+3. 所谓路由管理，就是管理页面之间如何跳转，通常也可被称为导航管理。
+4. Flutter 中的路由管理和原生开发类似，无论是 Android 还是 iOS，导航管理都会维护一个路由栈，路由入栈（push）操作对应打开一个新页面，路由出栈（pop）操作对应页面关闭操作，而路由管理主要是指如何来管理路由栈
+
+### ①、一个简单示例
+
+1. main 主方法，配置路由
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/01_路由/HomeRoute.dart';
+import '00_基础知识/01_路由/SettingRoute.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      // 设置应用的主页为 HomeRoute 小部件
+      home: const HomeRoute(),
+      // 路由设置
+      routes: {
+        // 定义名为 /setting 的路由，对应着 SettingRoute 小部件
+        '/setting': (context) => const SettingRoute(),
+      },
+    );
+  }
+}
+```
+
+2. HomeRoute 页面
+
+```dart
+import 'package:flutter/material.dart';
+
+class HomeRoute extends StatelessWidget {
+  const HomeRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.amberAccent,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，跳转到 /setting 路由
+            onPressed: (){
+              // 使用 SettingRoute 类作为路由导航
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingRoute()),);
+              // 使用路由名称作为导航，在 main.dart 的 routes 中进行的配置
+              Navigator.pushNamed(context, '/setting');
+            },
+            child: const Text("点击进入设置", textDirection: TextDirection.ltr,),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+3. SettingRoute 页面
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingRoute extends StatelessWidget {
+  const SettingRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.red,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，返回上一个路由
+            onPressed: (){
+              // 返回上一个路由
+              Navigator.pop(context);
+            },
+            child: const Text("点击返回主页", textDirection: TextDirection.ltr,),
+          )
+        ],
+      )
+    );
+  }
+}
+```
+
+4. `Navigator.push()` 和 `Navigator.pushNamed()` 都是用于在导航器中切换页面的方法，但它们有一些区别：
+5. `Navigator.push()` 方法需要传递一个 `Route` 对象，该对象描述了要推送到导航器的新页面。通常使用 `MaterialPageRoute` 作为 `Route` 对象，它接受一个 `builder` 函数来构建新页面的小部件。
+6. `Navigator.pushNamed()` 方法使用路由名称来推送新页面到导航器。在 `MaterialApp` 的 `routes` 属性中定义了一个路由名称与小部件的映射关系后，可以使用 `Navigator.pushNamed()` 方法来推送对应的小部件。
+7.  `MaterialApp` 的 `routes` 属性是可选的。如果不需要使用命名路由，可以省略 `routes` 属性。在这种情况下，可以使用 `Navigator.push()` 方法来推送任何小部件到导航器，而不需要通过路由名称来引用它们。
+8. 下面是使用 `Navigator.push()` 的代码：
+9. main 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/01_路由/HomeRoute.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      // 设置应用的主页为 HomeRoute 小部件
+      home: HomeRoute()
+    );
+  }
+}
+```
+
+10. HomeRoute 页面
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'SettingRoute.dart';
+
+class HomeRoute extends StatelessWidget {
+  const HomeRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.amberAccent,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，跳转到 /setting 路由
+            onPressed: (){
+              // 使用 SettingRoute 类作为路由导航
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingRoute()),);
+            },
+            child: const Text("点击进入设置", textDirection: TextDirection.ltr,),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+11. SettingRoute 页面
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingRoute extends StatelessWidget {
+  const SettingRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.red,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，返回上一个路由
+            onPressed: (){
+              // 返回上一个路由
+              Navigator.pop(context);
+            },
+            child: const Text("点击返回主页", textDirection: TextDirection.ltr,),
+          )
+        ],
+      )
+    );
+  }
+}
+```
+
+12. 效果：
+
+![|362](attachments/Pasted%20image%2020231025105505.png)
+
+![|362](attachments/Pasted%20image%2020231025105511.png)
+
+### ②、MaterialPageRoute
+
+1. `MaterialPageRoute` 继承自 `PageRoute` 类
+2. `PageRoute` 类是一个抽象类，表示占有整个屏幕空间的一个模态路由页面，它还定义了路由构建及切换时过渡动画的相关接口及属性。
+3. `MaterialPageRoute` 是 `Material` 组件库提供的组件，它可以针对不同平台，实现与平台页面切换动画风格一致的路由切换动画：
+	1. 对于 Android，当打开新页面时，新的页面会从屏幕底部滑动到屏幕顶部；当关闭页面时，当前页面会从屏幕顶部滑动到屏幕底部后消失，同时上一个页面会显示到屏幕上。
+	2. 对于 iOS，当打开页面时，新的页面会从屏幕右侧边缘一直滑动到屏幕左边，直到新页面全部显示到屏幕上，而上一个页面则会从当前屏幕滑动到屏幕左侧而消失；当关闭页面时，正好相反，当前页面会从屏幕右侧滑出，同时上一个页面会从屏幕左侧滑入。
+4. 下面我们介绍一下 `MaterialPageRoute` 构造函数的各个参数的意义：
+
+```dart
+MaterialPageRoute({
+  /**
+   * builder 是一个 WidgetBuilder 类型的回调函数，它的作用是构建路由页面的具体内容，
+   * 返回值是一个 widget。我们通常要实现此回调，返回新路由的实例
+   */
+  WidgetBuilder builder,
+  /**
+   * settings 包含路由的配置信息，如路由名称、是否初始路由（首页）
+   */
+  RouteSettings settings,
+  /**
+   * maintainState：默认情况下，当入栈一个新路由时，原来的路由仍然会被保存在内存中，
+   * 如果想在路由没用的时候释放其所占用的所有资源，可以设置 maintainState 为 false
+   */
+  bool maintainState = true,
+  /**
+   * fullscreenDialog 表示新的路由页面是否是一个全屏的模态对话框，
+   * 在 iOS 中，如果 fullscreenDialog 为 true，新页面将会从屏幕底部滑入（而不是水平方向）
+   */
+  bool fullscreenDialog = false,
+})
+```
+
+5. 如果想自定义路由切换动画，可以自己继承 PageRoute 来实现
+
+### ③、Navigator 路由管理
+
+1. `Navigator` 是一个路由管理的组件，它提供了打开和退出路由页方法。
+2. `Navigator` 通过一个栈来管理活动路由集合。通常当前屏幕显示的页面就是栈顶的路由。Navigator 提供了一系列方法来管理路由栈，在此我们只介绍其最常用的两个方法：
+3. `Future push(BuildContext context, Route route)`：将给定的路由入栈（即打开新的页面），返回值是一个 Future 对象，用以接收新路由出栈（即关闭）时的返回数据。
+4. `bool pop(BuildContext context, [ result ])`：将栈顶路由出栈，result 为页面关闭时返回给上一个页面的数据。
+5. Navigator 还有很多其他方法，如 `Navigator.replace`、`Navigator.popUntil` 等，详情请参考API文档或SDK 源码注释，在此不再赘述。
+
+### ④、路由传值
+
+1. 使用路由进入新页面，或返回之前的页面时，都可以传递参数
+2. mian 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/01_路由/HomeRoute.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      // 设置应用的主页为 HomeRoute 小部件
+      home: HomeRoute()
+    );
+  }
+}
+```
+
+3. HomeRoute 页面
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'SettingRoute.dart';
+
+// 创建一个 StatefulWidget 类
+class HomeRoute extends StatefulWidget {
+  const HomeRoute({super.key});
+
+  @override
+  _HomeRouteState createState() => _HomeRouteState();
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _HomeRouteState extends State<HomeRoute> {
+  // 用于接收路由传递的参数
+  String text = "";
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.amberAccent,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            /**
+             * 使用 Navigator 导航到 SettingRoute 页面，并等待返回结果
+             * async：在 Dart 语言中，async 用于标记一个函数是异步函数，即该函数可能会执行耗时操作而不会阻塞其他代码的执行。
+             * 异步函数可以使用 await 关键字来等待其他异步操作的完成
+             */
+            onPressed: () async {
+              /**
+               * await：await 关键字只能在异步函数中使用，用于等待一个异步操作的完成。
+               * 当遇到 await 关键字时，函数会暂停执行，直到等待的异步操作完成并返回结果。
+               * 在等待期间，函数会让出主线程，允许其他代码继续执行
+               */
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingRoute(text: 'HomeRoute 传递的参数',)),
+              );
+              /**
+               * setState：setState 是 Flutter 框架中的一个方法，用于更新小部件的状态并触发重建。
+               * 当小部件的状态发生变化时，调用 setState 方法可以通知框架重新构建小部件，并在新的状态下重新渲染。
+               * 通常，setState 方法会在异步操作完成后被调用，以更新 UI 并显示异步操作的结果
+               */
+              setState((){
+                // 如果返回值为空，则将 text 设置为空字符串
+                text = result ?? "";
+              });
+            },
+            child: const Text("点击进入设置", textDirection: TextDirection.ltr,),
+          ),
+          // 显示从 SettingRoute 页面返回的参数
+          Text("SettingRoute 返回的参数：$text", style: const TextStyle(color: Colors.white),)
+        ],
+      ),
+    );
+  }
+}
+```
+
+4. SettingRoute 页面
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingRoute extends StatelessWidget {
+  const SettingRoute({super.key, required this.text});
+
+  // 用于接收路由传递的参数
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.red,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，返回上一个路由
+            onPressed: (){
+              // 返回上一个路由，并返回消息
+              Navigator.pop(context, "SettingRoute 的返回值");
+            },
+            child: const Text("点击返回主页", textDirection: TextDirection.ltr,),
+          ),
+          // 显示从 HomeRoute 页面传递的参数
+          Text("HomeRoute 传递的参数：$text", style: const TextStyle(color: Colors.white),)
+        ],
+      )
+    );
+  }
+}
+```
+
+5. 效果：刚打开 HomeRoute 主页面
+
+![|362](attachments/Pasted%20image%2020231025133841.png)
+
+6. 进入 SettingRoute 页面
+
+![|362](attachments/Pasted%20image%2020231025133851.png)
+
+7. 点击按钮返回 HomeRoute 页面
+
+![|362](attachments/Pasted%20image%2020231025133900.png)
+
+### ⑤、命名路由
+
+1. 所谓“命名路由”（Named Route）即有名字的路由
+2. 我们可以先给路由起一个名字，然后就可以通过路由名字直接打开新的路由了，这为路由管理带来了一种直观、简单的方式
+
+#### Ⅰ、路由表
+
+1. 要想使用命名路由，我们必须先提供并注册一个路由表（routing table），这样应用程序才知道哪个名字与哪个路由组件相对应。
+2. 其实注册路由表就是给路由起名字，路由表的定义如下：
+
+```dart
+Map<String, WidgetBuilder> routes;
+```
+
+3. 它是一个 Map，`key` 为路由的名字，是个字符串；`value` 是个 `builder` 回调函数，用于生成相应的路由 `widget`。
+4. 我们在通过路由名字打开新路由时，应用会根据路由名字在路由表中查找到对应的 `WidgetBuilder` 回调函数，然后调用该回调函数生成路由 `widget` 并返回
+
+#### Ⅱ、注册路由表
+
+1. 路由表的注册方式很简单，在 `MyApp` 类的 `build` 方法中找到 `MaterialApp`，添加 `routes` 属性，代码如下
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/01_路由/HomeRoute.dart';
+import '00_基础知识/01_路由/SettingRoute.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      // 设置应用的主页为 HomeRoute 小部件
+      home: const HomeRoute(),
+      // 路由设置
+      routes: {
+        // 定义名为 /setting 的路由，对应着 SettingRoute 小部件
+        '/setting': (context) => const SettingRoute(),
+      },
+    );
+  }
+}
+```
+
+2. 然后在页面中通过 `Navigator.pushNamed` 方法传入路由名，进行路由跳转
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'SettingRoute.dart';
+
+// 创建一个 StatefulWidget 类
+class HomeRoute extends StatefulWidget {
+  const HomeRoute({super.key});
+
+  @override
+  _HomeRouteState createState() => _HomeRouteState();
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _HomeRouteState extends State<HomeRoute> {
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.amberAccent,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            onPressed: () { 
+              // 跳转到名为 /setting 的路由
+              Navigator.pushNamed(context, "/setting"); 
+            },
+            child: const Text("点击进入设置", textDirection: TextDirection.ltr,),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+3. 依然是通过 `Navigator.pop` 方法返回到上一个页面
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingRoute extends StatelessWidget {
+  const SettingRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.red,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，返回上一个路由
+            onPressed: (){
+              // 返回上一个路由
+              Navigator.pop(context);
+            },
+            child: const Text("点击返回主页", textDirection: TextDirection.ltr,),
+          ),
+        ],
+      )
+    );
+  }
+}
+```
+
+#### Ⅲ、命名路由参数传递
+
+1. 在 Flutter 最初的版本中，命名路由是不能传递参数的，后来才支持了参数；下面展示命名路由如何传递并获取路由参数：
+2. 我们先注册一个路由：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/01_路由/HomeRoute.dart';
+import '00_基础知识/01_路由/SettingRoute.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      // 设置应用的主页为 HomeRoute 小部件
+      home: const HomeRoute(),
+      // 路由设置
+      routes: {
+        // 定义名为 /setting 的路由，对应着 SettingRoute 小部件
+        '/setting': (context) => const SettingRoute(),
+      },
+    );
+  }
+}
+```
+
+3. 在打开路由时传递参数
+
+```dart
+import 'package:flutter/material.dart';
+
+// 创建一个 StatefulWidget 类
+class HomeRoute extends StatefulWidget {
+  const HomeRoute({super.key});
+
+  @override
+  _HomeRouteState createState() => _HomeRouteState();
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _HomeRouteState extends State<HomeRoute> {
+  // 用于接收路由传递的参数
+  String text = "";
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.amberAccent,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            /**
+             * 使用 Navigator 导航到 SettingRoute 页面，并等待返回结果
+             * async：在 Dart 语言中，async 用于标记一个函数是异步函数，即该函数可能会执行耗时操作而不会阻塞其他代码的执行。
+             * 异步函数可以使用 await 关键字来等待其他异步操作的完成
+             */
+            onPressed: () async {
+              /**
+               * 跳转到名为 /setting 的路由，并传递参数 arguments
+               * await：await 关键字只能在异步函数中使用，用于等待一个异步操作的完成。
+               * 当遇到 await 关键字时，函数会暂停执行，直到等待的异步操作完成并返回结果。
+               * 在等待期间，函数会让出主线程，允许其他代码继续执行
+               */
+              final result = await Navigator.pushNamed(context, "/setting", arguments: "HomeRoute 传递的参数");
+              /**
+               * setState：setState 是 Flutter 框架中的一个方法，用于更新小部件的状态并触发重建。
+               * 当小部件的状态发生变化时，调用 setState 方法可以通知框架重新构建小部件，并在新的状态下重新渲染。
+               * 通常，setState 方法会在异步操作完成后被调用，以更新 UI 并显示异步操作的结果
+               */
+              setState((){
+                // 将返回值赋值被 text
+                text = result.toString();
+              });
+            },
+            child: const Text("点击进入设置", textDirection: TextDirection.ltr,),
+          ),
+          // 显示从 SettingRoute 页面返回的参数
+          Text("SettingRoute 返回的参数：$text", style: const TextStyle(color: Colors.white),)
+        ],
+      ),
+    );
+  }
+}
+```
+
+4. 在 SettingRoute 页面接收并返回参数
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingRoute extends StatelessWidget {
+  const SettingRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 获取传递过来的路由参数
+    var args = ModalRoute.of(context)?.settings.arguments;
+
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.red,
+      // 垂直线性布局
+      child: Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const SizedBox(height: 50),
+          ElevatedButton(
+            // 当按钮被点击时，返回上一个路由
+            onPressed: (){
+              // 返回上一个路由，并返回消息
+              Navigator.pop(context, "SettingRoute 的返回值");
+            },
+            child: const Text("点击返回主页", textDirection: TextDirection.ltr,),
+          ),
+          // 显示从 HomeRoute 页面传递的参数
+          Text("HomeRoute 传递的参数：$args", style: const TextStyle(color: Colors.white),)
+        ],
+      )
+    );
+  }
+}
+```
+
+5. 刚进入主页时
+
+![|362](attachments/Pasted%20image%2020231025141120.png)
+
+6. 进入 SettingRoute 页面
+
+![|362](attachments/Pasted%20image%2020231025141131.png)
+
+7. 返回 HomeRoute 页面
+
+![|362](attachments/Pasted%20image%2020231025141141.png)
+
+#### Ⅳ、路由生成钩子
+
+1. 假设我们要开发一个电商 App，当用户没有登录时可以看店铺、商品等信息，但交易记录、购物车、用户个人信息等页面需要登录后才能看。
+2. 为了实现上述功能，我们需要在打开每一个路由页前判断用户登录状态！如果每次打开路由前我们都需要去判断一下将会非常麻烦，那有什么更好的办法吗？
+3. `MaterialApp` 有一个 `onGenerateRoute` 属性，它在打开命名路由时可能会被调用，之所以说可能，是因为当调用 `Navigator.pushNamed(...)` 打开命名路由时，如果指定的路由名在路由表中已注册，则会调用路由表中的 `builder` 函数来生成路由组件；如果路由表中没有注册，才会调用 `onGenerateRoute` 来生成路由。
+4. `onGenerateRoute` 回调签名如下：
+
+```dart
+Route<dynamic> Function(RouteSettings settings)
+```
+
+5. 有了 `onGenerateRoute` 回调，要实现上面控制页面权限的功能就非常容易：
+6. 我们放弃使用路由表，取而代之的是提供一个 `onGenerateRoute` 回调，然后在该回调中进行统一的权限控制，如：
+
+```dart
+MaterialApp(
+  ... //省略无关代码
+  onGenerateRoute:(RouteSettings settings){
+	  return MaterialPageRoute(builder: (context){
+		   String routeName = settings.name;
+       // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+       // 引导用户登录；其他情况则正常打开路由。
+     }
+   );
+  }
+);
+```
+
+7. 注意，`onGenerateRoute` 只会对命名路由生效
 
 ## 5、
 
@@ -1098,6 +1891,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1106,7 +1905,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1179,6 +1982,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1187,7 +1996,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1263,6 +2076,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1271,7 +2090,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1350,6 +2173,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1358,7 +2187,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1440,6 +2273,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1448,7 +2287,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1575,6 +2418,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1583,7 +2432,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1649,6 +2502,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1657,7 +2516,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1802,6 +2665,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1810,7 +2679,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1888,6 +2761,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1896,7 +2775,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -1978,6 +2861,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -1986,7 +2875,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -2183,6 +3076,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -2191,7 +3090,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -2275,6 +3178,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
 
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -2283,7 +3192,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -2391,6 +3304,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -2399,7 +3318,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -2515,6 +3438,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -2523,7 +3452,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -2644,6 +3577,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -2652,7 +3591,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -2779,6 +3722,12 @@ class WhiteBackgroundComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     // 创建一个 MaterialApp 小部件，这是 Flutter 应用程序的根小部件。
     return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
       home: Scaffold(
         // 设置背景颜色为白色
         backgroundColor: Colors.white,
@@ -2787,7 +3736,11 @@ class WhiteBackgroundComponent extends StatelessWidget {
           // 设置顶部应用栏的标题文本
           title: const Text('White Background'),
         ),
-        // 屏幕内容设置；实例化 Center 类（布局组件），它将其子组件放置在水平和垂直方向上的中心位置
+        /**
+	     * body: 用于定义页面的主要内容区域
+	     * Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+	     * 它将其子小部件居中显示，并根据需要调整大小；此处 Center 小部件用于将 Column 小部件放置在屏幕的中心位置
+	     */
         body: const Center(
           // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
           child: Column(
@@ -3043,7 +3996,8 @@ class _LinearProgressIndicatorComponentState extends State<LinearProgressIndicat
      */
     return MaterialApp(
       /**
-       * home: Scaffold 是一个用于创建基本页面布局的小部件。
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
        * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
        * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
        */
@@ -3174,7 +4128,8 @@ class _CircularProgressIndicatorComponentState extends State<CircularProgressInd
      */
     return MaterialApp(
       /**
-       * home: Scaffold 是一个用于创建基本页面布局的小部件。
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
        * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
        * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
        */
@@ -3281,7 +4236,8 @@ class _ProgressIndicatorSizeComponentState extends State<ProgressIndicatorSizeCo
      */
     return MaterialApp(
       /**
-       * home: Scaffold 是一个用于创建基本页面布局的小部件。
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
        * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
        * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
        */
@@ -3365,6 +4321,3033 @@ class _ProgressIndicatorSizeComponentState extends State<ProgressIndicatorSizeCo
 5. 组件对应的渲染对象都继承自 `RenderBox` 类。在后面如果提到某个组件是 `RenderBox`，则指它是基于盒模型布局的，而不是说组件是 `RenderBox` 类的实例。
 6. 在布局过程中父级传递给子级的约束信息由 BoxConstraints 描述
 
+### ②、BoxConstraints 约束信息
+
+1. `BoxConstraints` 是盒模型布局过程中父渲染对象传递给子渲染对象的约束信息，包含最大宽高信息，子组件大小需要在约束的范围内，`BoxConstraints` 默认的构造函数如下：
+
+```dart
+const BoxConstraints({
+  this.minWidth = 0.0, //最小宽度
+  this.maxWidth = double.infinity, //最大宽度
+  this.minHeight = 0.0, //最小高度
+  this.maxHeight = double.infinity //最大高度
+})
+```
+
+2. 它包含 4 个属性，`BoxConstraints` 还定义了一些便捷的构造函数，`用于快速生成特定限制规则的BoxConstraints`，
+	1. 如 `BoxConstraints.tight(Size size)`，它可以生成固定宽高的限制；
+	2. `BoxConstraints.expand()` 可以生成一个尽可能大的用以填充另一个容器的 `BoxConstraints`。
+	3. 除此之外还有一些其他的便捷函数，可以查看类定义。
+	4. 另外我们会在后面深入介绍布局原理时还会讨论 `Constraints`，在这里，读者只需知道父级组件是通过 `BoxConstraints` 来描述对子组件可用的空间范围即可。
+3. 约定：为了描述方便，如果我们说一个组件不约束其子组件或者取消对子组件约束时是指对子组件约束的最大宽高为无限大，而最小宽高为0，相当于子组件完全可以自己根据需要的空间来确定自己的大小。
+
+### ③、`ConstrainedBox` 额外约束
+
+1. `ConstrainedBox` 用于对子组件添加额外的约束。例如，如果你想让子组件的最小高度是 80 像素，你可以使用`const BoxConstraints(minHeight: 80.0)` 作为子组件的约束
+2. 我们先定义一个 `redBox`，它是一个背景颜色为红色的盒子，不指定它的宽度和高度
+3. 我们实现一个最小高度为 50，宽度尽可能大的红色容器
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_布局类组件/01_布局原理与约束（constraints）/01_ConstrainedBox 额外约束.dart';
+
+// 入口方法
+void main() => runApp(const ConstrainedBoxComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+class ConstrainedBoxComponent extends StatelessWidget {
+  const ConstrainedBoxComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    // 定义一个 DecoratedBox 的对象 redBox
+    Widget redBox = const DecoratedBox(
+      decoration: BoxDecoration(color: Colors.red),
+    );
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body:用于定义页面的主要内容区域
+         * ConstrainedBox：用于对子组件添加额外的约束
+         */
+        body: ConstrainedBox(
+          constraints: const BoxConstraints(
+            // 宽度尽可能大
+            minWidth: double.infinity,
+            // 最小高度为 50 像素
+            minHeight: 50
+          ),
+          /**
+           * Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等。
+           * 它可以根据需要自动调整大小，并且可以根据子部件的大小自动调整自身大小。
+           * 可以使用 Container 来包装其他小部件，并对其进行布局和装饰
+           */
+          child: Container(
+            child: redBox,
+          ),
+        )
+      )
+    );
+  }
+}
+```
+
+![|438](attachments/Pasted%20image%2020231023144103.png)
+
+### ④、SizedBox 给子元素指定固定的宽高
+
+1. `SizedBox` 用于给子元素指定固定的宽高，如：
+
+```dart
+SizedBox(
+  width: 80.0,
+  height: 80.0,
+  child: redBox
+)
+```
+
+2. 实际上 `SizedBox` 只是 `ConstrainedBox` 的一个定制，上面代码等价于：
+
+```dart
+ConstrainedBox(
+  constraints: BoxConstraints.tightFor(width: 80.0,height: 80.0),
+  child: redBox, 
+)
+```
+
+3. 而 `BoxConstraints.tightFor(width: 80.0,height: 80.0)` 等价于：
+
+```dart
+BoxConstraints(minHeight: 80.0,maxHeight: 80.0,minWidth: 80.0,maxWidth: 80.0)
+```
+
+4. 而实际上 `ConstrainedBox` 和 `SizedBox` 都是通过 `RenderConstrainedBox` 来渲染的，我们可以看到 `ConstrainedBox` 和 `SizedBox` 的 `createRenderObject()` 方法都返回的是一个 `RenderConstrainedBox` 对象：
+
+```dart
+@override
+RenderConstrainedBox createRenderObject(BuildContext context) {
+  return RenderConstrainedBox(
+    additionalConstraints: ...,
+  );
+}
+```
+
+### ⑤、多重限制
+
+1. 如果某一个组件有多个父级 `ConstrainedBox` 限制，那么最终会是哪个生效？我们看一个例子：
+
+```dart
+ConstrainedBox(
+  constraints: BoxConstraints(minWidth: 60.0, minHeight: 60.0), //父
+  child: ConstrainedBox(
+    constraints: BoxConstraints(minWidth: 90.0, minHeight: 20.0),//子
+    child: redBox,
+  ),
+)
+```
+
+2. 上面我们有父子两个 `ConstrainedBox`，他们的约束条件不同，运行后效果如图所示：
+
+![|220](attachments/Pasted%20image%2020231023145029.png)
+
+3. 最终显示效果是宽 90，高 60，也就是说是子 `ConstrainedBox` 的 `minWidth` 生效，而 `minHeight` 是父 `ConstrainedBox` 生效。单凭这个例子，我们还总结不出什么规律，我们将上例中父子约束条件换一下：
+
+```dart
+ConstrainedBox(
+  constraints: BoxConstraints(minWidth: 90.0, minHeight: 20.0),
+  child: ConstrainedBox(
+    constraints: BoxConstraints(minWidth: 60.0, minHeight: 60.0),
+    child: redBox,
+  )
+)
+```
+
+4. 运行效果如图所示：
+
+![|220](attachments/Pasted%20image%2020231023145029.png)
+
+5. 最终的显示效果仍然是 90，高 60，效果相同，但意义不同，因为此时 `minWidth` 生效的是父 `ConstrainedBox` ，而 `minHeight` 是子 `ConstrainedBox` 生效。
+6. 通过上面示例，我们发现有多重限制时，对于 `minWidth` 和 `minHeight` 来说，是取父子中相应数值较大的。
+7. 实际上，只有这样才能保证父限制与子限制不冲突
+
+### ⑥、UnconstrainedBox 无约束
+
+1. 虽然任何时候子组件都必须遵守其父组件的约束，但前提条件是它们必须是父子关系，假如有一个组件 A，它的子组件是 B，B 的子组件是 C，则 C 必须遵守 B 的约束，同时 B 必须遵守 A 的约束，但是 A 的约束不会直接约束到 C，除非B将A对它自己的约束透传给了C。 利用这个原理，就可以实现一个这样的 B 组件：
+	1. B 组件中在布局 C 时不约束C（可以为无限大）。
+	2. C 根据自身真实的空间占用来确定自身的大小。
+	3. B 在遵守 A 的约束前提下结合子组件的大小确定自身大小。
+2. 而这个 B 组件就是 `UnconstrainedBox` 组件，也就是说 `UnconstrainedBox` 的子组件将不再受到约束，大小完全取决于自己。一般情况下，我们会很少直接使用此组件，但在"去除"多重限制的时候也许会有帮助，我们看下下面的代码：
+
+```dart
+ConstrainedBox(
+  constraints: BoxConstraints(minWidth: 60.0, minHeight: 100.0),  // 父
+  child: UnconstrainedBox( // “去除”父级限制
+    child: ConstrainedBox(
+      constraints: BoxConstraints(minWidth: 90.0, minHeight: 20.0),// 子
+      child: redBox,
+    ),
+  )
+)
+```
+
+3. 上面代码中，如果没有中间的 `UnconstrainedBox`，那么根据上面所述的多重限制规则，那么最终将显示一个 90×100 的红色框。但是由于 `UnconstrainedBox` 去除了父 `ConstrainedBox` 的限制，则最终会按照子 `ConstrainedBox` 的限制来绘制 `redBox`，即 90×20，如图所示：
+
+![|150](attachments/Pasted%20image%2020231023145917.png)
+
+4. 但是，请注意 `UnconstrainedBox` 对父组件限制的“去除”并非是真正的去除：上面例子中虽然红色区域大小是 90×20，但上方仍然有 80 的空白空间。也就是说父限制的 `minHeight(100.0)` 仍然是生效的，只不过它不影响最终子元素 `redBox` 的大小，但仍然还是占有相应的空间，可以认为此时的父 `ConstrainedBox` 是作用于子 `UnconstrainedBox` 上，而 `redBox` 只受子 `ConstrainedBox` 限制，这一点请务必注意。
+5. 那么有什么方法可以彻底去除父 `ConstrainedBox` 的限制吗？答案是否定的！请牢记，任何时候子组件都必须遵守其父组件的约束，所以在此提示，在定义一个通用的组件时，如果要对子组件指定约束，那么一定要注意，因为一旦指定约束条件，子组件自身就不能违反约束。
+6. 在实际开发中，当我们发现已经使用 `SizedBox` 或 `ConstrainedBox` 给子元素指定了固定宽高，但是仍然没有效果时，几乎可以断定：已经有父组件指定了约束！
+7. 举个例子，如 `Material` 组件库中的 `AppBar`（导航栏）的右侧菜单中，我们使用 `SizedBox` 指定了 `loading` 按钮的大小，代码如下：
+
+```dart
+ AppBar(
+   title: Text(title),
+   actions: <Widget>[
+     SizedBox(
+       width: 20, 
+       height: 20,
+       child: CircularProgressIndicator(
+         strokeWidth: 3,
+         valueColor: AlwaysStoppedAnimation(Colors.white70),
+       ),
+     )
+   ],
+)
+```
+
+8. 上面代码运行后，效果如图所示：
+
+![|522](attachments/Pasted%20image%2020231023150056.png)
+
+9. 我们会发现右侧 `loading` 按钮大小并没有发生变化！这正是因为 `AppBar` 中已经指定了 `actions` 按钮的约束条件，所以我们要自定义 `loading` 按钮大小，就必须通过 `UnconstrainedBox` 来 “去除” 父元素的限制，代码如下：
+
+```dart
+AppBar(
+  title: Text(title),
+  actions: <Widget>[
+    UnconstrainedBox(
+      child: SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          strokeWidth: 3,
+          valueColor: AlwaysStoppedAnimation(Colors.white70),
+        ),
+      ),
+    )
+  ],
+)
+```
+
+10. 运行后效果如图所示：
+
+![|518](attachments/Pasted%20image%2020231023150341.png)
+
+11. 生效了！实际上将 `UnconstrainedBox` 换成 `Center` 或者 `Align` 也是可以的，至于为什么，我们会在后面布局原理相关的章节中解释。
+12. 另外，需要注意，`UnconstrainedBox` 虽然在其子组件布局时可以取消约束（子组件可以为无限大），但是 `UnconstrainedBox` 自身是受其父组件约束的，所以当 `UnconstrainedBox` 随着其子组件变大后，`如果UnconstrainedBox` 的大小超过它父组件约束时，也会导致溢出报错，比如：
+
+```dart
+Column(
+  children: <Widget>[
+    UnconstrainedBox(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(children: [Text('xx' * 30)]),
+      ),
+    ),
+ ]
+```
+
+13. 文本已经超过屏幕宽度，溢出了
+
+![|696](attachments/Pasted%20image%2020231023150430.png)
+
+## 3、线性布局（Row和Column）
+
+1. 所谓线性布局，即指沿水平或垂直方向排列子组件。
+2. `Flutter` 中通过 `Row` 和 `Column` 来实现线性布局，类似于 Android 中的 `LinearLayout` 控件。
+3. `Row` 和 `Column` 都继承自 `Flex`，我们将在弹性布局一节中详细介绍 `Flex`。
+
+### ①、主轴和纵轴
+
+1. 对于线性布局，有主轴和纵轴之分，如果布局是沿水平方向，那么主轴就是指水平方向，而纵轴即垂直方向；如果布局沿垂直方向，那么主轴就是指垂直方向，而纵轴就是水平方向。
+2. 在线性布局中，有两个定义对齐方式的枚举类 `MainAxisAlignment` 和 `CrossAxisAlignment`，分别代表主轴对齐和纵轴对齐。
+
+### ②、Row 水平线性布局
+
+1. `Row` 可以沿水平方向排列其子 `widget`。定义如下
+
+```dart
+Row({
+  ...
+  /**
+   * textDirection：表示水平方向子组件的布局顺序(是从左往右还是从右往左)
+   * 默认为系统当前 Locale 环境的文本方向(如中文、英语都是从左往右，而阿拉伯语是从右往左)。
+   */
+  TextDirection textDirection,
+  /**
+   * mainAxisSize：表示 Row 在主轴(水平)方向占用的空间
+   * 默认是 MainAxisSize.max，表示尽可能多的占用水平方向的空间，此时无论子 widgets 实际占用多少水平空间，Row 的宽度始终等于水平方向的最大宽度；
+   * 而 MainAxisSize.min 表示尽可能少的占用水平空间，当子组件没有占满水平剩余空间，则 Row 的实际宽度等于所有子组件占用的水平空间；
+   */
+  MainAxisSize mainAxisSize = MainAxisSize.max,
+  /**
+   * mainAxisAlignment：表示子组件在 Row 所占用的水平空间内对齐方式，
+   * 如果 mainAxisSize 值为 ainAxisSize.min，则此属性无意义，因为子组件的宽度等于Row的宽度。
+   * 只有当 mainAxisSize 的值为 MainAxisSize.max 时，此属性才有意义，
+   * MainAxisAlignment.start 表示沿 textDirection 的初始方向对齐，
+   *    如 textDirection 取值为 TextDirection.ltr 时，则 MainAxisAlignment.start 表示左对齐，
+   *    textDirection 取值为 TextDirection.rtl 时表示从右对齐。
+   * 而 MainAxisAlignment.end 和 MainAxisAlignment.start 正好相反；
+   * MainAxisAlignment.center 表示居中对齐。读者可以这么理解：textDirection 是 mainAxisAlignment 的参考系。
+   */
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+  /**
+   * verticalDirection：表示 Row 纵轴（垂直）的对齐方向，默认是 VerticalDirection.down，表示从上到下。
+   */
+  VerticalDirection verticalDirection = VerticalDirection.down,
+  /**
+   * crossAxisAlignment：表示子组件在纵轴方向的对齐方式，Row 的高度等于子组件中最高的子元素高度，
+   * 它的取值和 MainAxisAlignment 一样(包含 start、end、 center 三个值)，
+   * 不同的是 crossAxisAlignment 的参考系是 verticalDirection，
+   * 即 verticalDirection 值为 VerticalDirection.dow n时 crossAxisAlignment.start 指顶部对齐，
+   * verticalDirection 值为 VerticalDirection.up 时，crossAxisAlignment.start 指底部对齐；
+   * 而 crossAxisAlignment.end 和 crossAxisAlignment.start 正好相反；
+   */
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  // children ：子组件数组。
+  List<Widget> children = const <Widget>[],
+})
+```
+
+2. 请阅读下面代码，先想象一下运行的结果：
+
+```dart
+Column(
+  //测试Row对齐方式，排除Column默认居中对齐的干扰
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: <Widget>[
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(" hello world "),
+        Text(" I am Jack "),
+      ],
+    ),
+    Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(" hello world "),
+        Text(" I am Jack "),
+      ],
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      textDirection: TextDirection.rtl,
+      children: <Widget>[
+        Text(" hello world "),
+        Text(" I am Jack "),
+      ],
+    ),
+    Row(
+      crossAxisAlignment: CrossAxisAlignment.start,  
+      verticalDirection: VerticalDirection.up,
+      children: <Widget>[
+        Text(" hello world ", style: TextStyle(fontSize: 30.0),),
+        Text(" I am Jack "),
+      ],
+    ),
+  ],
+);
+```
+
+3. 实际运行结果
+
+![|360](attachments/Pasted%20image%2020231023153047.png)
+
+4. 解释：
+	1. 第一个 `Row` 很简单，默认为居中对齐；
+	2. 第二个 `Row`，由于 `mainAxisSize` 值为 `MainAxisSize.min`，`Row` 的宽度等于两个 `Text` 的宽度和，所以对齐是无意义的，所以会从左往右显示；
+	3. 第三个 `Row` 设置 `textDirection` 值为 `TextDirection.rtl`，所以子组件会从右向左的顺序排列，而此时 `MainAxisAlignment.end` 表示左对齐，所以最终显示结果就是图中第三行的样子；
+	4. 第四个 `Row` 测试的是纵轴的对齐方式，由于两个子 `Text` 字体不一样，所以其高度也不同，`我们指定了verticalDirection` 值为 `VerticalDirection.up`，即从低向顶排列，而此时 `crossAxisAlignment` 值为 `CrossAxisAlignment.start` 表示底对齐
+
+### ③、Column 垂直线性布局
+
+1. `Column` 可以在垂直方向排列其子组件。
+2. 参数和 `Row` 一样，不同的是布局方向为垂直，主轴纵轴正好相反，可类比 `Row` 来理解
+3. 实际上，`Row` 和 `Column` 都只会在主轴方向占用尽可能大的空间，而纵轴的长度则取决于他们最大子元素的长度
+
+## 4、弹性布局（Flex）
+
+1. 弹性布局允许子组件按照一定比例来分配父容器空间。
+2. 弹性布局的概念在其他 UI 系统中也都存在，如 H5 中的弹性盒子布局，Android 中 的 `FlexboxLayout` 等。
+3. Flutter 中的弹性布局主要通过 `Flex` 和 `Expanded` 来配合实现
+
+### ①、Flex
+
+1. `Flex` 组件可以沿着水平或垂直方向排列子组件，如果你知道主轴方向，使用 `Row` 或 `Column` 会方便一些，因为 `Row` 和 `Column` 都继承自 `Flex`，参数基本相同，所以能使用 `Flex` 的地方基本上都可以使用 `Row` 或 `Column`。
+2. `Flex` 本身功能是很强大的，它也可以和 `Expanded` 组件配合实现弹性布局。
+3. 接下来我们只讨论 `Flex` 和弹性布局相关的属性(其他属性已经在介绍 `Row` 和 `Column` 时介绍过了)。
+
+```dart
+Flex({
+  ...
+  required this.direction, // 弹性布局的方向, Row 默认为水平方向，Column 默认为垂直方向
+  List<Widget> children = const <Widget>[],
+})
+```
+
+4. `Flex` 继承自 `MultiChildRenderObjectWidget`，对应的 `RenderObject` 为 `RenderFlex`，`RenderFlex` 中实现了其布局算法
+
+### ②、Expanded
+
+1. `Expanded` 只能作为 `Flex` 的孩子（否则会报错），它可以按比例“扩伸” `Flex` 子组件所占用的空间。因为 `Row` 和 `Column` 都继承自 `Flex`，所以 `Expanded` 也可以作为它们的孩子。
+
+```dart
+const Expanded({
+  int flex = 1, 
+  required Widget child,
+})
+```
+
+2. `flex` 参数为弹性系数，如果为 0 或 null，则 child 是没有弹性的，即不会被扩伸占用的空间。如果大于 0，所有的 `Expanded` 按照其 flex 的比例来分割主轴的全部空闲空间。下面我们看一个例子
+
+```dart
+class FlexLayoutTestRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        //Flex的两个子widget按1：2来占据水平空间  
+        Flex(
+          direction: Axis.horizontal,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 30.0,
+                color: Colors.red,
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                height: 30.0,
+                color: Colors.green,
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: SizedBox(
+            height: 100.0,
+            //Flex的三个子widget，在垂直方向按2：1：1来占用100像素的空间  
+            child: Flex(
+              direction: Axis.vertical,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    height: 30.0,
+                    color: Colors.red,
+                  ),
+                ),
+                Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 30.0,
+                    color: Colors.green,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+```
+
+3. 运行效果如图：
+
+![|360](attachments/Pasted%20image%2020231023153900.png)
+
+## 5、流式布局（Wrap、Flow）
+
+1. 在介绍 `Row` 和 `Column` 时，如果子 `widget` 超出屏幕范围，则会报溢出错误，如
+
+```dart
+Row(
+  children: <Widget>[
+    Text("xxx"*100)
+  ],
+);
+```
+
+2. 运行效果如图所示
+
+![|360](attachments/Pasted%20image%2020231023154138.png)
+
+3. 可以看到，右边溢出部分报错。这是因为 `Row` 默认只有一行，如果超出屏幕不会折行。
+4. 我们把超出屏幕显示范围会自动折行的布局称为流式布局。
+5. Flutter 中通过 `Wrap` 和 `Flow` 来支持流式布局，将上例中的 `Row` 换成 `Wrap` 后溢出部分则会自动折行，下面我们分别介绍 `Wrap` 和 `Flow`
+
+### ①、Wrap
+
+1. 下面是Wrap的定义:
+
+```dart
+Wrap({
+  ...
+  this.direction = Axis.horizontal,
+  this.alignment = WrapAlignment.start,
+  // 主轴方向子 widget 的间距
+  this.spacing = 0.0,
+  // 纵轴方向的对齐方式
+  this.runAlignment = WrapAlignment.start,
+  // 纵轴方向的间距
+  this.runSpacing = 0.0,
+  this.crossAxisAlignment = WrapCrossAlignment.start,
+  this.textDirection,
+  this.verticalDirection = VerticalDirection.down,
+  List<Widget> children = const <Widget>[],
+})
+```
+
+2. 可以看到 `Wrap` 的很多属性在 `Row`（包括 `Flex` 和 `Column`）中也有，如 `direction`、`crossAxisAlignment`、`textDirection`、`verticalDirection` 等，这些参数意义是相同的，不再重复介绍
+3. 可以认为 `Wrap` 和 `Flex`（包括 `Row` 和 `Column`）除了超出显示范围后 `Wrap` 会折行外，其他行为基本相同。
+4. 下面看一个示例：
+
+```dart
+Wrap(
+   spacing: 8.0, // 主轴(水平)方向间距
+   runSpacing: 4.0, // 纵轴（垂直）方向间距
+   alignment: WrapAlignment.center, //沿主轴方向居中
+   children: <Widget>[
+     Chip(
+       avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('A')),
+       label: Text('Hamilton'),
+     ),
+     Chip(
+       avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('M')),
+       label: Text('Lafayette'),
+     ),
+     Chip(
+       avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
+       label: Text('Mulligan'),
+     ),
+     Chip(
+       avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('J')),
+       label: Text('Laurens'),
+     ),
+   ],
+)
+```
+
+5. 运行效果如图所示：
+
+![|360](attachments/Pasted%20image%2020231023154846.png)
+
+### ②、Flow
+
+1. 我们一般很少会使用 `Flow`，因为其过于复杂，需要自己实现子 `widget` 的位置转换，在很多场景下首先要考虑的是 `Wrap` 是否满足需求。`Flow` 主要用于一些需要自定义布局策略或性能要求较高(如动画中)的场景。
+2. `Flow` 有如下优点：
+	1. 性能好：`Flow` 是一个对子组件尺寸以及位置调整非常高效的控件，`Flow` 用转换矩阵在对子组件进行位置调整的时候进行了优化：在 `Flow` 定位过后，如果子组件的尺寸或者位置发生了变化，在 `FlowDelegate` 中的`paintChildren()` 方法中调用 `context.paintChild` 进行重绘，而 `context.paintChild` 在重绘时使用了转换矩阵，并没有实际调整组件位置。
+	2. 灵活：由于我们需要自己实现 `FlowDelegate` 的 `paintChildren()` 方法，所以我们需要自己计算每一个组件的位置，因此，可以自定义布局策略。
+3. 缺点：
+	1. 使用复杂。
+	2. `Flow` 不能自适应子组件大小，必须通过指定父容器大小或实现 `TestFlowDelegate` 的 `getSize` 返回固定大小。
+4. 我们对六个色块进行自定义流式布局：
+
+```dart
+Flow(
+  delegate: TestFlowDelegate(margin: EdgeInsets.all(10.0)),
+  children: <Widget>[
+    Container(width: 80.0, height:80.0, color: Colors.red,),
+    Container(width: 80.0, height:80.0, color: Colors.green,),
+    Container(width: 80.0, height:80.0, color: Colors.blue,),
+    Container(width: 80.0, height:80.0,  color: Colors.yellow,),
+    Container(width: 80.0, height:80.0, color: Colors.brown,),
+    Container(width: 80.0, height:80.0,  color: Colors.purple,),
+  ],
+)
+```
+
+5. 实现 `TestFlowDelegate`
+
+```dart
+class TestFlowDelegate extends FlowDelegate {
+  EdgeInsets margin;
+
+  TestFlowDelegate({this.margin = EdgeInsets.zero});
+
+  double width = 0;
+  double height = 0;
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    var x = margin.left;
+    var y = margin.top;
+    //计算每一个子widget的位置
+    for (int i = 0; i < context.childCount; i++) {
+      var w = context.getChildSize(i)!.width + x + margin.right;
+      if (w < context.size.width) {
+        context.paintChild(i, transform: Matrix4.translationValues(x, y, 0.0));
+        x = w + margin.left;
+      } else {
+        x = margin.left;
+        y += context.getChildSize(i)!.height + margin.top + margin.bottom;
+        //绘制子widget(有优化)
+        context.paintChild(i, transform: Matrix4.translationValues(x, y, 0.0));
+        x += context.getChildSize(i)!.width + margin.left + margin.right;
+      }
+    }
+  }
+
+  @override
+  Size getSize(BoxConstraints constraints) {
+    // 指定Flow的大小，简单起见我们让宽度尽可能大，但高度指定为200，
+    // 实际开发中我们需要根据子元素所占用的具体宽高来设置Flow大小
+    return Size(double.infinity, 200.0);
+  }
+
+  @override
+  bool shouldRepaint(FlowDelegate oldDelegate) {
+    return oldDelegate != this;
+  }
+}
+```
+
+6. 运行效果
+
+![](attachments/Pasted%20image%2020231023155408.png)
+
+7. 可以看到我们主要的任务就是实现 `paintChildren`，它的主要任务是确定每个子 `widget` 位置。
+8. 由于 `Flow` 不能自适应子 `widget` 的大小，我们通过在 `getSize` 返回一个固定大小来指定 `Flow` 的大小。
+9. 注意，如果我们需要自定义布局策略，一般首选的方式是通过直接继承 `RenderObject`，然后通过重写 `performLayout` 的方式实现
+
+## 6、层叠布局（Stack、Positioned）
+
+1. 层叠布局和 Web 中的绝对定位、Android 中的 `Frame` 布局是相似的，子组件可以根据距父容器四个角的位置来确定自身的位置。
+2. 层叠布局允许子组件按照代码中声明的顺序堆叠起来。
+3. Flutter 中使用 `Stack` 和 `Positioned` 这两个组件来配合实现绝对定位。
+4. `Stack` 允许子组件堆叠，而 `Positioned` 用于根据 Stack 的四个角来确定子组件的位置。
+
+### ①、Stack
+
+1. `Stack` 是一个用于堆叠子组件的容器。它将子组件按照添加的顺序依次叠放在一起。默认情况下，子组件会居中对齐。可以使用 `alignment` 属性来调整子组件的对齐方式
+2. `Stack` 组件定义如下：
+
+```dart
+Stack({
+  /**
+   * alignment：此参数决定如何去对齐没有定位（没有使用 Positioned）或部分定位的子组件。
+   * 所谓部分定位，在这里特指没有在某一个轴上定位：left、right 为横轴，top、bottom 为纵轴，
+   * 只要包含某个轴上的一个定位属性就算在该轴上有定位。
+   */
+  this.alignment = AlignmentDirectional.topStart,
+  /**
+   * textDirection：和 Row、Wrap 的 textDirection 功能一样，都用于确定 alignment 对齐的参考系，
+   * 即：textDirection 的值为 TextDirection.ltr，则 alignment 的 start 代表左，end 代表右，即从左往右的顺序；
+   * textDirection 的值为 TextDirection.rtl，则 alignment 的 start 代表右，end 代表左，即从右往左的顺序。
+   */
+  this.textDirection,
+  /**
+   * fit：此参数用于确定没有定位的子组件如何去适应 Stack 的大小。
+   * StackFit.loose 表示使用子组件的大小，StackFit.expand 表示扩伸到 Stack 的大小。
+   */
+  this.fit = StackFit.loose,
+  /**
+   * clipBehavior：此属性决定对超出 Stack 显示空间的部分如何剪裁，
+   * Clip 枚举类中定义了剪裁的方式，
+   * Clip.hardEdge 表示直接剪裁，不应用抗锯齿
+   */
+  this.clipBehavior = Clip.hardEdge,
+  List<Widget> children = const <Widget>[],
+})
+```
+
+### ②、Positioned
+
+1. `Positioned` 组件用于指定子组件在 `Stack` 中的位置和尺寸。通过 `top`、`right`、`bottom`、`left` 属性可以设置子组件的边距。`Positioned` 组件需要作为 `Stack` 的子组件使用
+2. `Positioned` 组件定义如下：
+
+```dart
+const Positioned({
+  Key? key,
+  // 离 Stack 左 四边的距离
+  this.left,
+  // 离 Stack 上 边的距离
+  this.top,
+  // 离 Stack 右 边的距离
+  this.right,
+  // 离 Stack 底 四边的距离
+  this.bottom,
+  // 需要定位元素的宽度
+  this.width,
+  // 需要定位元素的高度
+  this.height,
+  required Widget child,
+})
+```
+
+2. 注意，`Positioned` 的 `width`、`height` 和其他地方的意义稍微有点区别，此处用于配合 `left`、`top` 、`right`、 `bottom` 来定位组件
+3. 举个例子，在水平方向时，只能指定 `left`、`right`、`width` 三个属性中的两个，如指定 `left` 和 `width` 后，`right` 会自动算出(`left+width`)，如果同时指定三个属性则会报错，垂直方向同理
+
+### ③、示例
+
+### ④、
+
+1. 示例代码：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_布局类组件/05_层叠布局（Stack、Positioned）/01_层叠布局（Stack、Positioned）.dart';
+
+// 入口方法
+void main() => runApp(const StackPositionedComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+class StackPositionedComponent extends StatelessWidget {
+  const StackPositionedComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body:用于定义页面的主要内容区域
+         * ConstrainedBox：用于对子组件添加额外的约束
+         */
+        body: ConstrainedBox(
+          constraints: const BoxConstraints(
+            // 宽度尽可能大
+            minWidth: double.infinity,
+            // 高度尽可能大
+            minHeight: double.infinity,
+          ),
+          child: Stack(
+            // 指定未定位或部分定位 widget 的对齐方式
+            alignment:Alignment.center,
+            children: [
+              Container(
+                color: Colors.red,
+                child: const Text("Hello world",style: TextStyle(color: Colors.white)),
+              ),
+              const Positioned(
+                left: 18.0,
+                child: Text("左侧"),
+              ),
+              const Positioned(
+                top: 18.0,
+                child: Text("上方"),
+              ),
+              const Positioned(
+                bottom: 18.0,
+                right: 18.0,
+                child: Text("右下"),
+              )
+            ],
+          ),
+        )
+      )
+    );
+  }
+}
+```
+
+2. 结果：
+
+![|387](attachments/Pasted%20image%2020231023165229.png)
+
+## 7、对齐与相对定位（Align）
+
+1. 在上一节中我们讲过通过 `Stack` 和 `Positioned`，我们可以指定一个或多个子元素相对于父元素各个边的精确偏移，并且可以重叠。
+2. 但如果我们只想简单的调整一个子元素在父元素中的位置的话，使用 `Align` 组件会更简单一些
+
+### ①、Align 对齐
+
+1. Align 组件可以调整子组件的位置，定义如下：
+
+```dart
+Align({
+  Key key,
+  /**
+   * alignment: 需要一个 AlignmentGeometry 类型的值，表示子组件在父组件中的起始位置。
+   * AlignmentGeometry 是一个抽象类，它有两个常用的子类：Alignment和 FractionalOffset
+   */
+  this.alignment = Alignment.center,
+  /**
+   * widthFactor 和 heightFactor 是用于确定 Align 组件本身宽高的属性；
+   * 它们是两个缩放因子，会分别乘以子元素的宽、高，最终的结果就是 Align 组件的宽高。
+   * 如果值为 null，则组件的宽高将会占用尽可能多的空间。
+   */
+  this.widthFactor,
+  this.heightFactor,
+  Widget child,
+})
+```
+
+2. 例子：
+
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_布局类组件/06_对齐与相对定位（Align）/01_Align 对齐.dart';
+
+// 入口方法
+void main() => runApp(const AlignComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+class AlignComponent extends StatelessWidget {
+  const AlignComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body:用于定义页面的主要内容区域
+         * ConstrainedBox：用于对子组件添加额外的约束
+         */
+        body: ConstrainedBox(
+          constraints: const BoxConstraints(
+            // 宽度尽可能大
+            minWidth: double.infinity,
+            // 高度尽可能大
+            minHeight: double.infinity,
+          ),
+          child: const Align(
+            // 指定对齐方式，右上角
+            alignment: Alignment.topRight,
+            child: Text("月海", style: TextStyle(fontSize: 50),)
+          ),
+        )
+      )
+    );
+  }
+}
+```
+
+3. 效果：
+
+![|375](attachments/Pasted%20image%2020231024110902.png)
+
+4. 我们通过 `Alignment.topRight` 将控件定位在 `Container` 的右上角。那 `Alignment.topRight` 是什么呢？通过源码我们可以看到其定义如下
+
+```dart
+//右上角
+static const Alignment topRight = Alignment(1.0, -1.0);
+```
+
+5. 可以看到它只是 `Alignment` 的一个实例，下面我们介绍一下 `Alignment`
+
+### ②、Alignment
+
+1. `Alignment` 继承自 `AlignmentGeometry`，表示矩形内的一个点，他有两个属性 `x、y`，分别表示在水平和垂直方向的偏移，`Alignment` 定义如下：
+
+```dart
+Alignment(this.x, this.y)
+```
+
+2. `Alignment Widget` 会以矩形的中心点作为坐标原点，即 `Alignment(0.0, 0.0)` 。`x、y` 的值从 `-1` 到 `1` 分别代表矩形左边到右边的距离和顶部到底边的距离
+3. 因此 2 个水平（或垂直）单位则等于矩形的宽（或高），如 `Alignment(-1.0, -1.0)` 代表矩形的左侧顶点，而 `Alignment(1.0, 1.0)` 代表右侧底部终点，而 `Alignment(1.0, -1.0)` 则正是右侧顶点，即 `Alignment.topRight`。
+4. 为了使用方便，矩形的原点、四个顶点，以及四条边的终点在 `Alignment` 类中都已经定义为了静态常量。
+5. `Alignment` 可以通过其坐标转换公式将其坐标转为子元素的具体偏移坐标：
+
+```dart
+实际偏移 = (Alignment.x * (parentWidth - childWidth) / 2 + (parentWidth - childWidth) / 2,
+        Alignment.y * (parentHeight - childHeight) / 2 + (parentHeight - childHeight) / 2)
+```
+
+6. 其中 `childWidth` 为子元素的宽度，`childHeight` 为子元素高度。
+7. 现在我们再看看上面的示例，我们将 `Alignment(1.0, -1.0)` 带入上面公式，可得 FlutterLogo 的实际偏移坐标正是`（60，0）`。下面再看一个例子：
+
+```dart
+Align(
+  widthFactor: 2,
+  heightFactor: 2,
+  alignment: Alignment(2,0.0),
+  child: FlutterLogo(
+    size: 60,
+  ),
+)
+```
+
+8. 我们可以先想象一下运行效果：将 `Alignment(2,0.0)` 带入上述坐标转换公式，可以得到 FlutterLogo 的实际偏移坐标为`（90，30）`。实际运行如图所示
+
+![|218](attachments/Pasted%20image%2020231024111729.png)
+
+### ③、FractionalOffset
+
+1. `FractionalOffset` 继承自 `Alignment`，它和 `Alignment` 唯一的区别就是坐标原点不同！
+2. `FractionalOffset` 的坐标原点为矩形的左侧顶点，这和布局系统的一致，所以理解起来会比较容易。
+3. `FractionalOffset` 的坐标转换公式为：
+
+```dart
+实际偏移 = (FractionalOffse.x * (parentWidth - childWidth), FractionalOffse.y * (parentHeight - childHeight))
+```
+
+4. 下面看一个例子：
+
+```dart
+Container(
+  height: 120.0,
+  width: 120.0,
+  color: Colors.blue[50],
+  child: Align(
+    alignment: FractionalOffset(0.2, 0.6),
+    child: FlutterLogo(
+      size: 60,
+    ),
+  ),
+)
+```
+
+5. 实际运行效果如图所示：
+
+![|178](attachments/Pasted%20image%2020231024112023.png)
+
+6. 我们将 `FractionalOffset(0.2, 0.6)` 带入坐标转换公式得 FlutterLogo 实际偏移为`（12，36）`，和实际运行效果吻合。
+
+### ④、Align 和 Stack 对比
+
+1. 可以看到，`Align` 和 `Stack/Positioned` 都可以用于指定子元素相对于父元素的偏移，但它们还是有两个主要区别：
+2. 定位参考系统不同；`Stack/Positioned` 定位的参考系可以是父容器矩形的四个顶点；而 `Align` 则需要先通过 `alignment` 参数来确定坐标原点，不同的 `alignment` 会对应不同原点，最终的偏移是需要通过 `alignment` 的转换公式来计算出。
+3. `Stack` 可以有多个子元素，并且子元素可以堆叠，而 `Align` 只能有一个子元素，不存在堆叠
+
+### ⑤、Center 组件
+
+1. 们在前面的例子中已经使用过 `Center` 组件来居中子元素了，现在我们正式来介绍一下它。通过查找 SDK 源码，我们看到 `Center` 组件定义如下：
+
+```dart
+class Center extends Align {
+  const Center({ Key? key, double widthFactor, double heightFactor, Widget? child })
+    : super(key: key, widthFactor: widthFactor, heightFactor: heightFactor, child: child);
+}
+```
+
+2. 可以看到 `Center` 继承自 `Align`，它比 `Align` 只少了一个 `alignment` 参数；由于 `Align` 的构造函数中 `alignment` 值为 `Alignment.center`，所以，我们可以认为 `Center` 组件其实是对齐方式确定 （`Alignment.center`）了的 `Align`。
+3. 上面我们讲过当 `widthFactor` 或 `heightFactor` 为 `null` 时组件的宽高将会占用尽可能多的空间，这一点需要特别注意，我们通过一个示例说明：
+
+```dart
+...//省略无关代码
+DecoratedBox(
+  decoration: BoxDecoration(color: Colors.red),
+  child: Center(
+    child: Text("xxx"),
+  ),
+),
+DecoratedBox(
+  decoration: BoxDecoration(color: Colors.red),
+  child: Center(
+    widthFactor: 1,
+    heightFactor: 1,
+    child: Text("xxx"),
+  ),
+)
+```
+
+4. 运行效果如图所示：
+
+![|516](attachments/Pasted%20image%2020231024123420.png)
+
+## 8、LayoutBuilder
+
+1. 通过 `LayoutBuilder`，我们可以在布局过程中拿到父组件传递的约束信息，然后我们可以根据约束信息动态的构建不同的布局。
+2. 比如我们实现一个响应式的 `Column` 组件 `ResponsiveColumn`，它的功能是当当前可用的宽度小于 200 时，将子组件显示为一列，否则显示为两列。简单来实现一下
+3. 示例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_布局类组件/06_对齐与相对定位（Align）/02_LayoutBuilder.dart';
+
+// 入口方法
+void main() => runApp(const LayoutBuilderRoute());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class LayoutBuilderRoute extends StatelessWidget {
+  const LayoutBuilderRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    var children = List.filled(6, const Text("A", style: TextStyle(fontSize: 50),));
+
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      // Column 在本示例中在水平方向的最大宽度为屏幕的宽度
+      child: Column(
+        children: [
+          // 限制宽度为 190，小于 200
+          SizedBox(width: 190, child: ResponsiveColumn(children: children)),
+          ResponsiveColumn(children: children)
+        ],
+      )
+    );
+  }
+}
+
+class ResponsiveColumn extends StatelessWidget {
+  const ResponsiveColumn({Key? key, required this.children}) : super(key: key);
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * 通过 LayoutBuilder，我们可以在布局过程中拿到父组件传递的约束信息
+     * 然后我们可以根据约束信息动态的构建不同的布局
+     */
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+      // 判断约束信息中的 最大宽度
+      if (constraints.maxWidth < 200) {
+        // 最大宽度小于 200，显示单列
+        return Column(mainAxisSize: MainAxisSize.min, children: children);
+      } else {
+        // 大于 200，显示双列
+        var children = <Widget>[];
+        for (var i = 0; i < children.length; i += 2) {
+          if (i + 1 < children.length) {
+            children.add(Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [children[i], children[i + 1]],
+            ));
+          } else {
+            children.add(children[i]);
+          }
+        }
+        return Column(mainAxisSize: MainAxisSize.min, children: children);
+      }
+    });
+  }
+}
+```
+
+4. 效果：
+
+![|375](attachments/Pasted%20image%2020231024134927.png)
+
+## 9、获取组件大小和坐标
+
+### ①、获取组件大小和相对于屏幕的坐标
+
+1. Flutter 是响应式 UI 框架，和命令式 UI 框架最大的不同就是：大多数情况下开发者只需要关注数据的变化，数据变化后框架会自动重新构建 UI 而不需要开发者手动去操作每一个组件，所以我们会发现 `Widget` 会被定义为不可变的（immutable），并且没有提供任何操作组件的 API，因此如果我们想在 Flutter 中获取某个组件的大小和位置就会很困难，当然大多数情况下不会有这个需求，但总有一些场景会需要，而在命令式 UI 框架中是不会存在这个问题的。
+2. 我们知道，只有当布局完成时，每个组件的大小和位置才能确定，所以获取的时机肯定是布局完成后，那布局完成的时机如何获取呢？至少事件分发肯定是在布局完成之后的，比如
+
+```dart
+Builder(
+  builder: (context) {
+    return GestureDetector(
+      child: Text('flutter@wendux'),
+      onTap: () => print(context.size), //打印 text 的大小
+    );
+  },
+),
+```
+
+3. `context.size` 可以获取当前上下文 `RenderObject` 的大小，对于 `Builder`、`StatelessWidget` 以及 `StatefulWidget` 这样没有对应 `RenderObject` 的组件（这些组件只是用于组合和代理组件，本身并没有布局和绘制逻辑），获取的是子代中第一个拥有 `RenderObject` 组件的 `RenderObject` 对象。
+
+### ②、获取组件相对于某个父组件的坐标
+
+1. `RenderAfterLayout` 类继承自 `RenderBox`，`RenderBox` 有一个 `localToGlobal` 方法，它可以将坐标转化为相对与指定的祖先节点的坐标，比如下面代码可以打印出 `Text('A')` 在 父 `Container` 中的坐标
+
+```dart
+Builder(builder: (context) {
+  return Container(
+    color: Colors.grey.shade200,
+    alignment: Alignment.center,
+    width: 100,
+    height: 100,
+    child: AfterLayout(
+      callback: (RenderAfterLayout ral) {
+        Offset offset = ral.localToGlobal(
+          Offset.zero,
+          // 传一个父级元素
+          ancestor: context.findRenderObject(),
+        );
+        print('A 在 Container 中占用的空间范围为：${offset & ral.size}');
+      },
+      child: Text('A'),
+    ),
+  );
+}),
+```
+
+# 五、容器类组件
+
+1. 容器类 `Widget` 和布局类 `Widget` 都作用于其子 `Widget`，不同的是：
+2. 布局类 `Widget` 一般都需要接收一个 `widget` 数组（`children`），他们直接或间接继承自（或包含） `MultiChildRenderObjectWidget` ；
+3. 而容器类 `Widget` 一般只需要接收一个子 `Widget`（`child`），他们直接或间接继承自（或包含） `SingleChildRenderObjectWidget`。
+4. 布局类 `Widget` 是按照一定的排列方式来对其子 `Widget` 进行排列；
+5. 而容器类 `Widget` 一般只是包装其子 `Widget`，对其添加一些修饰（补白或背景色等）、变换(旋转或剪裁等)、或限制(大小等)。
+
+## 1、填充（Padding）
+
+### ①、Padding
+
+1. `Padding` 可以给其子节点添加填充（留白），和边距效果类似。我们在前面很多示例中都已经使用过它了，现在来看看它的定义：
+
+```dart
+Padding({
+  ...
+  /**
+   * EdgeInsetsGeometry 是一个抽象类，开发中，我们一般都使用 EdgeInsets 类
+   * 它是EdgeInsetsGeometry的一个子类，定义了一些设置填充的便捷方法
+   */
+  EdgeInsetsGeometry padding,
+  Widget child,
+})
+```
+
+### ②、EdgeInsets
+
+1. 我们看看 `EdgeInsets` 提供的便捷方法：
+2. `fromLTRB(double left, double top, double right, double bottom)`：分别指定四个方向的填充。
+3. `all(double value)` : 所有方向均使用相同数值的填充。
+4. `only({left, top, right ,bottom })`：可以设置具体某个方向的填充(可以同时指定多个方向)。
+5. `symmetric({ vertical, horizontal })`：用于设置对称方向的填充，`vertical` 指 `top` 和 `bottom`，`horizontal` 指 `left` 和 `right`
+
+### ③、示例
+
+1. 示例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/01_填充（Padding）/01_填充（Padding）.dart';
+
+// 入口方法
+void main() => runApp(const PaddingComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class PaddingComponent extends StatelessWidget {
+  const PaddingComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body:用于定义页面的主要内容区域
+         * Column：垂直线性布局
+         */
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              constraints: const BoxConstraints.tightFor(width: 200, height: 200),
+              color: Colors.red,
+              child: const Padding(
+                padding: EdgeInsets.only(left: 50),
+                child: Text("月海", style: TextStyle(fontSize: 50),),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            Container(
+              constraints: const BoxConstraints.tightFor(width: 200, height: 200),
+              color: Colors.red,
+              child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 100),
+                  child: Text("月海", style: TextStyle(fontSize: 50), textAlign: TextAlign.end,)),
+            ),
+
+            const SizedBox(height: 10),
+
+            Container(
+              constraints: const BoxConstraints.tightFor(width: 200, height: 200),
+              color: Colors.red,
+              child: const Padding(
+                padding: EdgeInsets.all(50),
+                child: Text("月海", style: TextStyle(fontSize: 50), textAlign: TextAlign.end,)),
+            ),
+          ],
+        )
+      )
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|353](attachments/Pasted%20image%2020231024142938.png)
+
+## 2、装饰容器（DecoratedBox）
+
+### ①、DecoratedBox
+
+1. `DecoratedBox` 可以在其子组件绘制前(或后)绘制一些装饰（`Decoration`），如背景、边框、渐变等。 `DecoratedBox` 定义如下：
+
+```dart
+const DecoratedBox({
+  /**
+   * decoration：代表将要绘制的装饰，它的类型为 Decoration。
+   * Decoration 是一个抽象类，它定义了一个接口 createBoxPainter()，
+   * 子类的主要职责是需要通过实现它来创建一个画笔，该画笔用于绘制装饰
+   */
+  Decoration decoration,
+  /**
+   * position：此属性决定在哪里绘制 Decoration，它接收 DecorationPosition 的枚举类型，该枚举类有两个值：
+   * background：在子组件之后绘制，即背景装饰。
+   * foreground：在子组件之上绘制，即前景
+   */
+  DecorationPosition position = DecorationPosition.background,
+  Widget? child
+})
+```
+
+### ②、BoxDecoration
+
+1. 我们通常会直接使用 BoxDecoration 类，它是一个 Decoration 的子类，实现了常用的装饰元素的绘制
+
+```dart
+BoxDecoration({
+  Color color, //颜色
+  DecorationImage image,//图片
+  BoxBorder border, //边框
+  BorderRadiusGeometry borderRadius, //圆角
+  List<BoxShadow> boxShadow, //阴影,可以指定多个
+  Gradient gradient, //渐变
+  BlendMode backgroundBlendMode, //背景混合模式
+  BoxShape shape = BoxShape.rectangle, //形状
+})
+```
+
+### ③、示例
+
+1. 示例
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/01_填充（Padding）.dart';
+import '03_容器类组件/02_装饰容器（DecoratedBox）.dart';
+
+// 入口方法
+void main() => runApp(const DecoratedBoxComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class DecoratedBoxComponent extends StatelessWidget {
+  const DecoratedBoxComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+       /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  // 背景渐变
+                  gradient: LinearGradient(colors:[Colors.red,Colors.orange.shade700]),
+                  // 3像素圆角
+                  borderRadius: BorderRadius.circular(3.0),
+                  // 阴影
+                  boxShadow: const [
+                    BoxShadow(
+                        color:Colors.black54,
+                        offset: Offset(2.0,2.0),
+                        blurRadius: 4.0
+                    )
+                  ]
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 18.0),
+                  child: Text("Login", style: TextStyle(color: Colors.white),),
+                )
+              ),
+
+              const SizedBox(height: 10),
+
+            ],
+          )
+        )
+    );
+  }
+}
+```
+
+2. 效果
+
+![|378](attachments/Pasted%20image%2020231024143832.png)
+
+## 3、变换（Transform）
+
+### ①、简介
+
+1. `Transform` 可以在其子组件绘制时对其应用一些矩阵变换来实现一些特效。
+2. `Matrix4` 是一个 4D 矩阵，通过它我们可以实现各种矩阵操作，下面是一个例子：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/01_填充（Padding）.dart';
+import '03_容器类组件/02_装饰容器（DecoratedBox）.dart';
+import '03_容器类组件/03_变换（Transform）.dart';
+
+// 入口方法
+void main() => runApp(const TransformComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class TransformComponent extends StatelessWidget {
+  const TransformComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+
+              Container(
+                color: Colors.black,
+                child: Transform(
+                  alignment: Alignment.topRight, //相对于坐标系原点的对齐方式
+                  transform: Matrix4.skewY(0.3), //沿Y轴倾斜0.3弧度
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    color: Colors.deepOrange,
+                    child: const Text('Apartment for rent!'),
+                  ),
+                ),
+              )
+
+            ],
+          )
+        )
+    );
+  }
+}
+```
+
+3. 运行效果如图所示：
+
+![|378](attachments/Pasted%20image%2020231024144245.png)
+
+4. 关于矩阵变换的相关内容属于线性代数范畴，此处不做讨论；由于矩阵变化时发生在绘制时，而无需重新布局和构建等过程，所以性能很好
+
+### ②、平移
+
+1. `Transform.translate` 接收一个 `offset` 参数，可以在绘制时沿 x、y 轴对子组件平移指定的距离
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/01_填充（Padding）.dart';
+import '03_容器类组件/02_装饰容器（DecoratedBox）.dart';
+import '03_容器类组件/03_变换（Transform）.dart';
+
+// 入口方法
+void main() => runApp(const TransformComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class TransformComponent extends StatelessWidget {
+  const TransformComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+
+              Container(
+                color: Colors.black,
+                child: Transform(
+                  alignment: Alignment.topRight, //相对于坐标系原点的对齐方式
+                  transform: Matrix4.skewY(0.3), //沿Y轴倾斜0.3弧度
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    color: Colors.deepOrange,
+                    child: const Text('Apartment for rent!'),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+
+              DecoratedBox(
+                decoration:const BoxDecoration(color: Colors.red),
+                //默认原点为左上角，左移20像素，向上平移5像素
+                child: Transform.translate(
+                  offset: const Offset(-20.0, -5.0),
+                  child: const Text("Hello world"),
+                ),
+              )
+
+            ],
+          )
+        )
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|378](attachments/Pasted%20image%2020231024144728.png)
+
+### ③、旋转
+
+1. `Transform.rotate` 可以对子组件进行旋转变换，
+2. 注意：要使用 `math.pi` 需先进行如下导包：
+
+```dart
+import 'dart:math' as math;
+```
+
+3. ，如：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/01_填充（Padding）.dart';
+import '03_容器类组件/02_装饰容器（DecoratedBox）.dart';
+import '03_容器类组件/03_变换（Transform）.dart';
+
+// 入口方法
+void main() => runApp(const TransformComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+class TransformComponent extends StatelessWidget {
+  const TransformComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+              Container(
+                color: Colors.black,
+                child: Transform(
+                  alignment: Alignment.topRight, //相对于坐标系原点的对齐方式
+                  transform: Matrix4.skewY(0.3), //沿Y轴倾斜0.3弧度
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    color: Colors.deepOrange,
+                    child: const Text('Apartment for rent!'),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+              // 平移
+              DecoratedBox(
+                decoration:const BoxDecoration(color: Colors.red),
+                //默认原点为左上角，左移20像素，向上平移5像素
+                child: Transform.translate(
+                  offset: const Offset(-20.0, -5.0),
+                  child: const Text("Hello world"),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+              // 旋转
+              DecoratedBox(
+                decoration:BoxDecoration(color: Colors.red),
+                child: Transform.rotate(
+                  //旋转90度
+                  angle:math.pi/2 ,
+                  child: Text("Hello world"),
+                ),
+              ),
+
+            ],
+          )
+        )
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|378](attachments/Pasted%20image%2020231024145256.png)
+
+### ④、缩放
+
+1. Transform.scale 可以对子组件进行缩小或放大，如：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/01_填充（Padding）.dart';
+import '03_容器类组件/02_装饰容器（DecoratedBox）.dart';
+import '03_容器类组件/03_变换（Transform）.dart';
+
+// 入口方法
+void main() => runApp(const TransformComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+class TransformComponent extends StatelessWidget {
+  const TransformComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+              Container(
+                color: Colors.black,
+                child: Transform(
+                  alignment: Alignment.topRight, //相对于坐标系原点的对齐方式
+                  transform: Matrix4.skewY(0.3), //沿Y轴倾斜0.3弧度
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    color: Colors.deepOrange,
+                    child: const Text('Apartment for rent!'),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+              // 平移
+              DecoratedBox(
+                decoration:const BoxDecoration(color: Colors.red),
+                //默认原点为左上角，左移20像素，向上平移5像素
+                child: Transform.translate(
+                  offset: const Offset(-20.0, -5.0),
+                  child: const Text("Hello world"),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+              // 旋转
+              DecoratedBox(
+                decoration:const BoxDecoration(color: Colors.red),
+                child: Transform.rotate(
+                  //旋转90度
+                  angle:math.pi/2 ,
+                  child: const Text("Hello world"),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+              // 缩放
+              DecoratedBox(
+                  decoration:const BoxDecoration(color: Colors.red),
+                  child: Transform.scale(
+                      scale: 1.5, //放大到1.5倍
+                      child: const Text("Hello world")
+                  )
+              )
+
+            ],
+          )
+        )
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|378](attachments/Pasted%20image%2020231024145418.png)
+
+### ⑤、Transform 注意事项
+
+1. `Transform` 的变换是应用在绘制阶段，而并不是应用在布局(`layout`)阶段，所以无论对子组件应用何种变化，其占用空间的大小和在屏幕上的位置都是固定不变的，因为这些是在布局阶段就确定的。下面我们具体说明：
+
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/04_变换（Transform）2.dart';
+
+// 入口方法
+void main() => runApp(const Transform2Component());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+class Transform2Component extends StatelessWidget {
+  const Transform2Component({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  DecoratedBox(
+                      decoration:const BoxDecoration(color: Colors.red),
+                      child: Transform.scale(scale: 1.5,
+                          child: const Text("Hello world")
+                      )
+                  ),
+                  const Text("你好", style: TextStyle(color: Colors.green, fontSize: 18.0),)
+                ],
+              )
+
+            ],
+          )
+        )
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|378](attachments/Pasted%20image%2020231024145718.png)
+
+3. 由于第一个 `Text` 应用变换(放大)后，其在绘制时会放大，但其占用的空间依然为红色部分，所以第二个 `Text` 会紧挨着红色部分，最终就会出现文字重合。
+4. 由于矩阵变化只会作用在绘制阶段，所以在某些场景下，在 UI 需要变化时，可以直接通过矩阵变化来达到视觉上的 UI 改变，而不需要去重新触发 build 流程，这样会节省 layout 的开销，所以性能会比较好。
+5. 如之前介绍的 Flow 组件，它内部就是用矩阵变换来更新 UI，除此之外，Flutter 的动画组件中也大量使用了 Transform 以提高性能
+
+### ⑥、RotatedBox
+
+1. `RotatedBox` 和 `Transform.rotate` 功能相似，它们都可以对子组件进行旋转变换，但是有一点不同：
+2. `RotatedBox` 的变换是在 `layout` 阶段，会影响在子组件的位置和大小。
+3. 我们将上面介绍 `Transform.rotate` 时的示例改一下：
+
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: <Widget>[
+    DecoratedBox(
+      decoration: BoxDecoration(color: Colors.red),
+      //将Transform.rotate换成RotatedBox  
+      child: RotatedBox(
+        quarterTurns: 1, //旋转90度(1/4圈)
+        child: Text("Hello world"),
+      ),
+    ),
+    Text("你好", style: TextStyle(color: Colors.green, fontSize: 18.0),)
+  ],
+),
+```
+
+4. 效果如图所示：
+
+![|314](attachments/Pasted%20image%2020231024145946.png)
+
+5. 由于 `RotatedBox` 是作用于 `layout` 阶段，所以子组件会旋转 90 度（而不只是绘制的内容），`decoration` 会作用到子组件所占用的实际空间上，所以最终就是上图的效果，可以和前面 `Transform.rotat`e 示例对比理解
+
+## 4、容器组件（Container）
+
+### ①、Container
+
+1. `Container` 是一个组合类容器，它本身不对应具体的 `RenderObject`，它是 `DecoratedBox`、`ConstrainedBox`、`Transform`、`Padding`、`Align` 等组件组合的一个多功能容器，所以我们只需通过一个 Container 组件可以实现同时需要装饰、变换、限制的场景。
+2. 下面是 `Container` 的定义
+
+```dart
+Container({
+  this.alignment,
+  this.padding, //容器内补白，属于decoration的装饰范围
+  Color color, // 背景色
+  Decoration decoration, // 背景装饰
+  Decoration foregroundDecoration, //前景装饰
+  double width,//容器的宽度
+  double height, //容器的高度
+  BoxConstraints constraints, //容器大小的限制条件
+  this.margin,//容器外补白，不属于decoration的装饰范围
+  this.transform, //变换
+  this.child,
+  ...
+})
+```
+
+3. 容器的大小可以通过 `width`、`height` 属性来指定，也可以通过 `constraints` 来指定；如果它们同时存在时，`width`、`height` 优先。
+4. 实际上 `Container` 内部会根据 `width`、`height` 来生成一个 `constraints`。
+5. `color` 和 `decoration` 是互斥的，如果同时设置它们则会报错！
+6. 实际上，当指定 `color` 时，`Container` 内会自动创建一个 `decoration`
+
+### ②、示例
+
+1. 示例：
+
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/05_容器组件（Container）.dart';
+
+// 入口方法
+void main() => runApp(const ContainerComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+class ContainerComponent extends StatelessWidget {
+  const ContainerComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Column：垂直线性布局
+           */
+          body: Container(
+            width: 200,
+            height: 150,
+            margin: const EdgeInsets.only(top: 50.0, left: 120.0),
+            // 卡片内文字居中
+            alignment: Alignment.center,
+            // 卡片倾斜变换
+            transform: Matrix4.rotationZ(.2),
+            // 背景装饰
+            decoration: const BoxDecoration(
+              // 背景径向渐变
+              gradient: RadialGradient(
+                colors: [Colors.red, Colors.orange],
+                center: Alignment.topLeft,
+                radius: .98,
+              ),
+              boxShadow: [
+                // 卡片阴影
+                BoxShadow(
+                  color: Colors.black54,
+                  offset: Offset(2.0, 2.0),
+                  blurRadius: 4.0,
+                )
+              ],
+            ),
+            child: const Text(
+              //卡片文字
+              "5.20", style: TextStyle(color: Colors.white, fontSize: 40.0),
+            ),
+          )
+        )
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|378](attachments/Pasted%20image%2020231024150818.png)
+
+3. 可以看到 `Container` 具备多种组件的功能，通过查看 `Container` 源码，我们会很容易发现它正是前面我们介绍过的多种组件组合而成。在 Flutter 中，Container 组件也正是组合优先于继承的实例
+
+## 5、剪裁（Clip）
+
+### ①、剪裁类组件
+
+1. Flutter 中提供了一些剪裁组件，用于对组件进行剪裁
+
+| 剪裁 Widget | 默认行为                                                 |
+| ---------- | -------------------------------------------------------- |
+| ClipOval   | 子组件为正方形时剪裁成内贴圆形；为矩形时，剪裁成内贴椭圆 |
+| ClipRRect  | 将子组件剪裁为圆角矩形                                   |
+| ClipRect   | 默认剪裁掉子组件布局空间之外的绘制内容（溢出部分剪裁）   |
+| ClipPath   | 按照自定义的路径剪裁                                     |
+
+2. 下面看一个例子：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/05_容器组件（Container）.dart';
+import '03_容器类组件/06_剪裁（Clip）.dart';
+
+// 入口方法
+void main() => runApp(const ClipComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+class ClipComponent extends StatelessWidget {
+  const ClipComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    Widget redBox = Container(
+      constraints: const BoxConstraints.tightFor(width: 100, height: 100),
+      color: Colors.red
+    );
+
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body:用于定义页面的主要内容区域
+           * Center：居中布局
+           */
+          body:Column(
+            children: [
+              const SizedBox(height: 50),
+
+              // 原本的样子
+              redBox,
+              const SizedBox(height: 10),
+
+              // 子组件为正方形时剪裁成内贴圆形；为矩形时，剪裁成内贴椭圆
+              ClipOval(child: redBox,),
+              const SizedBox(height: 10),
+
+              // 圆角矩形
+              ClipRRect(
+                // 设置圆角弧度
+                borderRadius: BorderRadius.circular(10),
+                child: redBox,
+              ),
+              const SizedBox(height: 10),
+
+              // 剪裁掉一半图形，被剪裁的会溢出
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // 剪裁掉一部分
+                  Align(
+                    alignment: Alignment.topLeft,
+                    // 宽度设为原来宽度一半
+                    widthFactor: .5,
+                    child: redBox,
+                  ),
+                  const Text("剪裁掉一部分")
+                ],
+              ),
+              const SizedBox(height: 10),
+
+              // 剪裁掉一半图形，使用 ClipRect，被剪裁的不会溢出
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // 剪裁掉一部分
+                  ClipRect(
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      // 宽度设为原来宽度一半
+                      widthFactor: .5,
+                      child: redBox,
+                    ),
+                  ),
+                  const Text("剪裁掉一部分")
+                ],
+              )
+
+            ],
+          )
+
+      )
+    );
+  }
+}
+```
+
+3. 运行效果如图所示
+
+![|378](attachments/Pasted%20image%2020231024155529.png)
+
+### ②、自定义裁剪（CustomClipper）
+
+1. 如果我们想剪裁子组件的特定区域，比如，在上面示例的图片中，如果我们只想截取图片中部 40×30 像素的范围应该怎么做？这时我们可以使用 `CustomClipper` 来自定义剪裁区域，实现代码如下：
+2. 首先，自定义一个 `CustomClipper`：
+
+```dart
+class MyClipper extends CustomClipper<Rect> {
+  /**
+   * getClip() 是用于获取剪裁区域的接口，由于图片大小是 60×60，
+   * 我们返回剪裁区域为 Rect.fromLTWH(10.0, 15.0, 40.0, 30.0)，即图片中部 40×30 像素的范围
+   */
+  @override
+  Rect getClip(Size size) => Rect.fromLTWH(10.0, 15.0, 40.0, 30.0);
+  /**
+   * houldReclip() 接口决定是否重新剪裁。
+   * 如果在应用中，剪裁区域始终不会发生变化时应该返回 false，这样就不会触发重新剪裁，避免不必要的性能开销。
+   * 如果剪裁区域会发生变化（比如在对剪裁区域执行一个动画），那么变化后应该返回 true 来重新执行剪裁
+   */
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) => false;
+}
+```
+
+3. 然后，我们通过 `ClipRect` 来执行剪裁，为了看清图片实际所占用的位置，我们设置一个红色背景：
+
+```dart
+DecoratedBox(
+  decoration: BoxDecoration(
+    color: Colors.red
+  ),
+  child: ClipRect(
+    clipper: MyClipper(), //使用自定义的clipper
+    child: avatar
+  ),
+)
+```
+
+4. 运行效果如图所示：
+
+![|186](attachments/Pasted%20image%2020231024155959.png)
+
+5. 可以看到我们的剪裁成功了，但是图片所占用的空间大小仍然是 60×60（红色区域），这是因为组件大小是是在 layout 阶段确定的，而剪裁是在之后的绘制阶段进行的，所以不会影响组件的大小，这和 `Transform` 原理是相似的。
+6. `ClipPath` 可以按照自定义的路径实现剪裁，它需要自定义一个 `CustomClipper<Path>` 类型的 `Clipper`，定义方式和 `MyClipper` 类似，只不过 `getClip` 需要返回一个 `Path`，不再赘述。
+
+## 6、空间适配（FittedBox）
+
+### ①、FittedBox
+
+1. 子组件大小超出了父组件大小时，如果不经过处理的话 Flutter 中就会显示一个溢出警告并在控制台打印错误日志，比如下面代码会导致溢出
+
+```dart
+Padding(
+  padding: const EdgeInsets.symmetric(vertical: 30.0),
+  child: Row(children: [Text('xx'*30)]), //文本长度超出 Row 的最大宽度会溢出
+)
+```
+
+2. 运行效果如图所示：
+
+![|696](attachments/Pasted%20image%2020231024160237.png)
+
+3. 可以看到右边溢出了 45 像素。
+4. 上面只是一个例子，理论上我们经常会遇到子元素的大小超过他父容器的大小的情况，比如一张很大图片要在一个较小的空间显示，根据 Flutter 的布局协议，父组件会将自身的最大显示空间作为约束传递给子组件，子组件应该遵守父组件的约束，如果子组件原始大小超过了父组件的约束区域，则需要进行一些缩小、裁剪或其他处理，而不同的组件的处理方式是特定的，比如 `Text` 组件，如果它的父组件宽度固定，高度不限的话，则默认情况下 `Text` 会在文本到达父组件宽度的时候换行。
+5. 那如果我们想让 Text 文本在超过父组件的宽度时不要换行而是字体缩小呢？
+6. 还有一种情况，比如父组件的宽高固定，而 Text 文本较少，这时候我们想让文本放大以填充整个父组件空间该怎么做呢？
+7. 实际上，上面这两个问题的本质就是：子组件如何适配父组件空间。而根据 Flutter 布局协议适配算法应该在容器或布局组件的 layout 中实现，为了方便开发者自定义适配规则，Flutter 提供了一个 `FittedBox` 组件，定义如下：
+
+```dart
+const FittedBox({
+  Key? key,
+  this.fit = BoxFit.contain, // 适配方式
+  this.alignment = Alignment.center, //对齐方式
+  this.clipBehavior = Clip.none, //是否剪裁
+  Widget? child,
+})
+```
+
+### ②、适配原理
+
+1. `FittedBox` 在布局子组件时会忽略其父组件传递的约束，可以允许子组件无限大，即 `FittedBox` 传递给子组件的约束为：`0<=width<=double.infinity, 0<= height <=double.infinity`
+2. `FittedBox` 对子组件布局结束后就可以获得子组件真实的大小。
+3. `FittedBox` 知道子组件的真实大小也知道他父组件的约束，那么 `FittedBox` 就可以通过指定的适配方式（BoxFit 枚举中指定），让起子组件在 `FittedBox` 父组件的约束范围内按照指定的方式显示。
+4. 我们通过一个简单的例子说明：
+
+```dart
+Widget build(BuildContext context) {
+  return Center(
+    child: Column(
+      children: [
+        wContainer(BoxFit.none),
+        Text('Wendux'),
+        wContainer(BoxFit.contain),
+        Text('Flutter中国'),
+      ],
+    ),
+  );
+}
+
+Widget wContainer(BoxFit boxFit) {
+  return Container(
+    width: 50,
+    height: 50,
+    color: Colors.red,
+    child: FittedBox(
+      fit: boxFit,
+      // 子容器超过父容器大小
+      child: Container(width: 60, height: 70, color: Colors.blue),
+    ),
+  );
+```
+
+5. 运行后效果如图所示：
+
+![|202](attachments/Pasted%20image%2020231024160802.png)
+
+6. 因为父 `Container` 要比子 `Container` 小，所以当没有指定任何适配方式时，子组件会按照其真实大小进行绘制，所以第一个蓝色区域会超出父组件的空间，因而看不到红色区域。
+7. 第二个我们指定了适配方式为 `BoxFit.contain`，含义是按照子组件的比例缩放，尽可能多的占据父组件空间，因为子组件的长宽并不相同，所以按照比例缩放适配父组件后，父组件能显示一部分。
+8. 要注意一点，在未指定适配方式时，虽然 `FittedBox` 子组件的大小超过了 `FittedBox` 父 `Container` 的空间，但 `FittedBox` 自身还是要遵守其父组件传递的约束，所以最终 `FittedBox` 的本身的大小是 50×50，这也是为什么蓝色会和下面文本重叠的原因，因为在布局空间内，父 `Container` 只占 50×50 的大小，接下来文本会紧挨着 `Container` 进行布局，而此时 `Container` 中有子组件的大小超过了自己，所以最终的效果就是绘制范围超出了 `Container`，但布局位置是正常的，所以就重叠了。如果我们不想让蓝色超出父组件布局范围，那么可以可以使用 `ClipRect` 对超出的部分剪裁掉即可：
+
+```dart
+ ClipRect( // 将超出子组件布局范围的绘制内容剪裁掉
+  child: Container(
+    width: 50,
+    height: 50,
+    color: Colors.red,
+    child: FittedBox(
+      fit: boxFit,
+      child: Container(width: 60, height: 70, color: Colors.blue),
+    ),
+  ),
+);
+```
+
+8. 关于 `BoxFit` 的各种适配规则和 `Image` 的 `fix` 属性指定是一样的，可以查看我们在介绍 `Image` 组件时关于各种适配规则对应的效果
+
+## 7、页面骨架（Scaffold）
+
+1. `Material` 组件库提供了丰富多样的组件，本节介绍一下最常用的 `Scaffold` 组件，其余的可以自行查看文档或 Flutter Gallery 中 Material 组件部分的示例。
+2. 注意：Flutter Gallery 是 Flutter 官方提供的 Flutter Demo，源码位于 flutter 源码中的 examples 目录下，强烈建议用户将 Flutter Gallery 示例跑起来，它是一个很全面的 Flutter 示例应用，是非常好的参考 Demo，也是学习 Flutter 的第一手资料
+
+### ①、Scaffold
+
+1. 一个完整的路由页可能会包含导航栏、抽屉菜单 (`Drawer`) 以及底部 `Tab` 导航菜单等。
+2. 如果每个路由页面都需要开发者自己手动去实现这些，这会是一件非常麻烦且无聊的事。
+3. 幸运的是，Flutter Material 组件库提供了一些现成的组件来减少我们的开发任务。
+4. `Scaffold` 是一个路由页的骨架，我们使用它可以很容易地拼装出一个完整的页面。
+5. 我们实现一个页面，它包含：
+	1. 一个导航栏
+	2. 导航栏右边有一个分享按钮
+	3. 有一个抽屉菜单
+	4. 有一个底部导航
+	5. 右下角有一个悬浮的动作按钮
+6. 实现代码如下：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_容器类组件/07_页面骨架（Scaffold）.dart';
+
+// 入口方法
+void main() => runApp(const ScaffoldComponent());
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+
+import '08_页面骨架（Scaffold）抽屉.dart';
+
+class ScaffoldComponent extends StatelessWidget {
+  const ScaffoldComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * 导航栏
+           */
+          appBar: AppBar(
+            // 导航栏标题
+            title: const Text("月海"),
+            // 导航栏右侧按钮
+            actions: <Widget>[
+              IconButton(icon: const Icon(Icons.share), onPressed: () {}),
+            ],
+          ),
+          /**
+           * 侧边栏抽屉
+           * FractionallySizedBox 是一个小部件，用于根据父级容器的尺寸调整其子部件的大小。
+           * FractionallySizedBox 的 widthFactor 和 heightFactor 属性用于指定子部件相对于父级容器的宽度和高度比例。
+           * 这两个属性接受一个 0.0 到 1.0 之间的值，其中 0.0 表示子部件的大小为 0%，1.0 表示子部件的大小为父级容器的 100%。
+           */
+          drawer: const FractionallySizedBox(
+            // 宽度为父组件的 0.6
+            widthFactor: 0.6,
+            child: ScaffoldDrawerComponent(),
+          ),
+          /**
+           * 底部导航栏
+           */
+          bottomNavigationBar: BottomNavigationBar(
+            /**
+             * items：一个包含 BottomNavigationBarItem 的列表，用于定义每个导航项的图标和标签。
+             * 每个 BottomNavigationBarItem 都包含一个 icon 参数用于指定图标，以及一个 label 参数用于指定标签文本
+             */
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Business'),
+              BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
+            ],
+            // currentIndex：一个整数，用于指定当前选中的导航项的索引。默认为 0，表示第一个导航项
+            currentIndex: 0,
+            // fixedColor：一个颜色值，用于指定选中导航项的颜色。当用户点击导航项时，选中的导航项将使用此颜色进行高亮显示
+            fixedColor: Colors.blue,
+            // onTap：一个回调函数，用于处理用户点击导航项的事件。当用户点击导航项时，将调用此回调函数，并传递被点击项的索引作为参数。
+            onTap: _onItemTapped,
+          ),
+          /**
+           * 悬浮按钮
+           */
+          floatingActionButton: FloatingActionButton(
+            // 悬浮按钮点击事件
+            onPressed:_onAdd,
+            child: const Icon(Icons.add)
+          ),
+        )
+    );
+  }
+
+  void _onItemTapped(int index) {
+    log("点击了第 $index 个导航按钮");
+  }
+
+  void _onAdd(){
+    log("点击了悬浮按钮");
+  }
+}
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class ScaffoldDrawerComponent extends StatelessWidget {
+  const ScaffoldDrawerComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.red,
+      // 垂直线性布局
+      child: const Column(
+        // Row 在主轴(垂直)方向占用的空间
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text("抽屉", style: TextStyle(color: Colors.white),)
+        ],
+      )
+    );
+  }
+}
+```
+
+7. 最终效果所示：
+
+![|362](attachments/Pasted%20image%2020231025151616.png)
+
+![|362](attachments/Pasted%20image%2020231025151626.png)
+
+8. 上面代码中我们用到了如下组件：
+
+| 组件名称             | 解释           |
+| -------------------- | -------------- |
+| AppBar               | 一个导航栏骨架 |
+| MyDrawer             | 抽屉菜单       |
+| BottomNavigationBar  | 底部导航栏     |
+| FloatingActionButton | 漂浮按钮       |
+
+### ②、AppBar 导航栏骨架
+
+1. AppBar 是一个 Material 风格的导航栏，通过它可以设置导航栏标题、导航栏菜单、导航栏底部的 Tab 标题等。下面我们看看 AppBar 的定义：
+
+```dart
+AppBar({
+  Key? key,
+  this.leading, //导航栏最左侧 Widget，常见为抽屉菜单按钮或返回按钮。
+  this.automaticallyImplyLeading = true, //如果 leading 为 null，是否自动实现默认的 leading 按钮
+  this.title,// 页面标题
+  this.actions, // 导航栏右侧菜单
+  this.bottom, // 导航栏底部菜单，通常为 Tab 按钮组
+  this.elevation = 4.0, // 导航栏阴影
+  this.centerTitle, //标题是否居中 
+  this.backgroundColor,
+  ...   //其他属性见源码注释
+})
+```
+
+2. 如果给 `Scaffold` 添加了抽屉菜单，默认情况下 `Scaffold` 会自动将 `AppBar` 的 `leading` 设置为菜单按钮，点击它便可打开抽屉菜单。如果我们想自定义菜单图标，可以手动来设置 `leading`，如：
+
+```dart
+Scaffold(
+  appBar: AppBar(
+    title: Text("App Name"),
+    leading: Builder(builder: (context) {
+      return IconButton(
+        icon: Icon(Icons.dashboard, color: Colors.white), //自定义图标
+        onPressed: () {
+          // 打开抽屉菜单  
+          Scaffold.of(context).openDrawer(); 
+        },
+      );
+    }),
+    ...  
+  )  
+```
+
+3. 代码运行效果如图所示：
+
+![|261](attachments/Pasted%20image%2020231025152040.png)
+
+4. 代码中打开抽屉菜单的方法在 `ScaffoldState` 中，通过 `Scaffold.of(context)` 可以获取父级最近的 `Scaffold` 组件的 `State` 对象
+
+### ③、Drawer 抽屉菜单
+
+1. `Scaffold` 的 `drawer` 和 `endDrawer` 属性可以分别接受一个 `Widget` 来作为页面的左、右抽屉菜单。
+2. 如果开发者提供了抽屉菜单，那么当用户手指从屏幕左（或右）侧向里滑动时便可打开抽屉菜单。
+3. 抽屉菜单通常将 `Drawer` 组件作为根节点，它实现了 `Material` 风格的菜单面板，`MediaQuery.removePadding` 可以移除 `Drawer` 默认的一些留白（比如 `Drawer` 默认顶部会留和手机状态栏等高的留白）
+
+④、底部 Tab 导航栏
+
+1. 我们可以通过 `Scaffold` 的 `bottomNavigationBar` 属性来设置底部导航，如本节开始示例所示，我们通过 `Material` 组件库提供的 `BottomNavigationBar` 和 `BottomNavigationBarItem` 两种组件来实现 `Material` 风格的底部导航栏。
+2. 可以看到上面的实现代码非常简单，所以不再赘述，但是如果我们想实现如下图所示效果的底部导航栏应该怎么做呢？
+
+![|360](attachments/Pasted%20image%2020231025152615.png)
+
+3. `Material` 组件库中提供了一个 `BottomAppBar` 组件，它可以和 `FloatingActionButton` 配合实现这种“打洞”效果，源码如下：
+
+```dart
+bottomNavigationBar: BottomAppBar(
+  color: Colors.white,
+  shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+  child: Row(
+    children: [
+      IconButton(icon: Icon(Icons.home)),
+      SizedBox(), //中间位置空出
+      IconButton(icon: Icon(Icons.business)),
+    ],
+    mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
+  ),
+)
+```
+
+4. 可以看到，上面代码中没有控制打洞位置的属性，实际上，打洞的位置取决于 `FloatingActionButton` 的位置，上面 `FloatingActionButton` 的位置为：
+
+```dart
+floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+```
+
+5. 所以打洞位置在底部导航栏的正中间。
+6. `BottomAppBar` 的 `shape` 属性决定洞的外形，`CircularNotchedRectangle` 实现了一个圆形的外形，我们也可以自定义外形，比如，Flutter Gallery 示例中就有一个“钻石”形状的示例，感兴趣可以自行查看
+
+### ⑤、FloatingActionButton 漂浮按钮
+
+1. `FloatingActionButton` 是 `Material` 设计规范中的一种特殊 `Button`，通常悬浮在页面的某一个位置作为某种常用动作的快捷入口
+2. 我们可以通过 `Scaffold` 的 `floatingActionButton` 属性来设置一个 `FloatingActionButton`，同时通过 `floatingActionButtonLocation` 属性来指定其在页面中悬浮的位置，这个比较简单，不再赘述
+
+### ⑥、页面 body
+
+1. 最后就是页面的 `Body` 部分了
+2. `Scaffold` 有一个 `body` 属性，接收一个 `Widget`，我们可以传任意的 `Widget` 
+3. 在下一章中，我们会介绍 `TabBarView`，它是一个可以进行页面切换的组件，在多 Tab 的 App 中，一般都会将 `TabBarView` 作为 `Scaffold` 的 `Body`
+
+# 六、可滚动组件
+
+## 1、可滚动组件简介
+
+### ①、`Sliver` 布局模型
+
+1. 通常可滚动组件的子组件可能会非常多、占用的总高度也会非常大；如果要一次性将子组件全部构建出将会非常昂贵！
+2. 为此，Flutter 中提出一个 `Sliver`（中文为“薄片”的意思）概念，`Sliver` 可以包含一个或多个子组件。
+3. `Sliver` 的主要作用是配合：加载子组件并确定每一个子组件的布局和绘制信息，如果 `Sliver` 可以包含多个子组件时，通常会实现按需加载模型。
+4. 只有当 `Sliver` 出现在视口中时才会去构建它，这种模型也称为“基于 `Sliver` 的列表按需加载模型”。
+5. 可滚动组件中有很多都支持基于 `Sliver` 的按需加载模型，如 `ListView`、`GridView`，但是也有不支持该模型的，如 `SingleChildScrollView`。
+6. 约定：后面如果我们说一个组件是 `Sliver` 则表示它是基于 `Sliver` 布局的组件；同理，说一个组件是 `RenderBox`，则代表它是基于盒模型布局的组件，并不是说它就是 `RenderBox` 类的实例。
+7. Flutter 中的可滚动组件主要由三个角色组成：`Scrollable`、`Viewport` 和 `Sliver`：
+	1. `Scrollable` ：用于处理滑动手势，确定滑动偏移，滑动偏移变化时构建 `Viewport` 。
+	2. `Viewport`：显示的视窗，即列表的可视区域；
+	3. `Sliver`：视窗里显示的元素。
+8. 具体布局过程：
+	1. `Scrollable` 监听到用户滑动行为后，根据最新的滑动偏移构建 `Viewport` 。
+	2. `Viewport` 将当前视口信息和配置信息通过 `SliverConstraints` 传递给 `Sliver`。
+	3. `Sliver` 中对子组件（`RenderBox`）按需进行构建和布局，然后确认自身的位置、绘制等信息，保存在 `geometry` 中（一个 `SliverGeometry` 类型的对象）。
+9. 比如有一个 `ListView`，大小撑满屏幕，假设它有 100 个列表项（都是 `RenderBox`）且每个列表项高度相同，结构如图所示：
+
+![|530](attachments/Pasted%20image%2020231025153857.png)
+
+10. 图中白色区域为设备屏幕，也是 `Scrollable` 、 `Viewport` 和 `Sliver` 所占用的空间，三者所占用的空间重合
+11. 父子关系为：`Sliver` 父组件为 `Viewport`，`Viewport` 的 父组件为 `Scrollable` 。
+12. 注意 `ListView` 中只有一个 `Sliver`，在 `Sliver` 中实现了子组件（列表项）的按需加载和布局。
+13. 其中顶部和底部灰色的区域为 `cacheExtent`，它表示预渲染的高度，需要注意这是在可视区域之外，如果 `RenderBox` 进入这个区域内，即使它还未显示在屏幕上，也是要先进行构建的，预渲染是为了后面进入 `Viewport` 的时候更丝滑。
+14. `cacheExtent` 的默认值是 `250`，在构建可滚动列表时我们可以指定这个值，这个值最终会传给 `Viewport`。
+
+### ②、Scrollable
+
+1. `Scrollable` 用于处理滑动手势，确定滑动偏移，滑动偏移变化时构建 `Viewport`，我们看一下其关键的属性：
+
+```dart
+Scrollable({
+  ...
+  /**
+   * axisDirection 滚动方向
+   */
+  this.axisDirection = AxisDirection.down,
+  /**
+   * controller：此属性接受一个 ScrollController 对象。
+   * ScrollController 的主要作用是控制滚动位置和监听滚动事件。
+   * 默认情况下，Widget 树中会有一个默认的 PrimaryScrollController，如果子树中的可滚动组件没有显式的指定controller，
+   * 并且 primary 属性值为 true 时（默认就为 true），可滚动组件会使用这个默认的 PrimaryScrollController。
+   * 这种机制带来的好处是父组件可以控制子树中可滚动组件的滚动行为，
+   * 例如，Scaffold 正是使用这种机制在 iOS 中实现了点击导航栏回到顶部的功能
+   */
+  this.controller,
+  /**
+   * physics：此属性接受一个 ScrollPhysics 类型的对象，它决定可滚动组件如何响应用户操作，
+   * 比如用户滑动完抬起手指后，继续执行动画；或者滑动到边界时，如何显示。
+   * 默认情况下，Flutter 会根据具体平台分别使用不同的 ScrollPhysics 对象，应用不同的显示效果，
+   * 如当滑动到边界时，继续拖动的话，在 iOS 上会出现弹性效果，而在 Android 上会出现微光效果。
+   * 如果你想在所有平台下使用同一种效果，可以显式指定一个固定的 ScrollPhysics，
+   * Flutter SDK 中包含了两个 ScrollPhysics 的子类，他们可以直接使用：
+   *     ClampingScrollPhysics：列表滑动到边界时将不能继续滑动，通常在 Android 中 配合 GlowingOverscrollIndicator（实现微光效果的组件） 使用。
+   *     BouncingScrollPhysics：iOS 下弹性效果。
+   */
+  this.physics,
+  /**
+   * viewportBuilder：构建 Viewport 的回调。
+   * 当用户滑动时，Scrollable 会调用此回调构建新的 Viewport，同时传递一个 ViewportOffset 类型的 offset 参数，该参数描述 Viewport 应该显示哪一部分内容。
+   * 注意重新构建 Viewport 并不是一个昂贵的操作，因为 Viewport 本身也是 Widget，只是配置信息，
+   * Viewport 变化时对应的 RenderViewport 会更新信息，并不会随着 Widget 进行重新构建
+   */
+  required this.viewportBuilder,
+})
+```
+
+2. 主轴和纵轴：在可滚动组件的坐标描述中，通常将滚动方向称为主轴，非滚动方向称为纵轴。由于可滚动组件的默认方向一般都是沿垂直方向，所以默认情况下主轴就是指垂直方向，水平方向同理
+
+### ③、Viewport
+
+1. `Viewport` 比较简单，用于渲染当前视口中需要显示 `Sliver`：
+
+```dart
+Viewport({
+  Key? key,
+  this.axisDirection = AxisDirection.down,
+  this.crossAxisDirection,
+  this.anchor = 0.0,
+  required ViewportOffset offset, // 用户的滚动偏移
+  // 类型为Key，表示从什么地方开始绘制，默认是第一个元素
+  this.center,
+  this.cacheExtent, // 预渲染区域
+  //该参数用于配合解释cacheExtent的含义，也可以为主轴长度的乘数
+  this.cacheExtentStyle = CacheExtentStyle.pixel, 
+  this.clipBehavior = Clip.hardEdge,
+  List<Widget> slivers = const <Widget>[], // 需要显示的 Sliver 列表
+})
+```
+
+2. 需要注意的是：
+3. `offset`：该参数为 `Scrollabel` 构建 `Viewport` 时传入，它描述了 `Viewport` 应该显示哪一部分内容。
+4. `cacheExtent` 和 `cacheExtentStyle`：`CacheExtentStyle` 是一个枚举，有 `pixel` 和 `viewport` 两个取值。当 `cacheExtentStyle` 值为 `pixel` 时，`cacheExtent` 的值为预渲染区域的具体像素长度；当值为 `viewport` 时，`cacheExtent` 的值是一个乘数，表示有几个 `viewport` 的长度，最终的预渲染区域的像素长度为：`cacheExtent * viewport` 的积， 这在每一个列表项都占满整个 `Viewport` 时比较实用，这时 `cacheExtent` 的值就表示前后各缓存几个页面
+
+### ④、Sliver
+
+1. `Sliver` 主要作用是对子组件进行构建和布局，比如 `ListView` 的 `Sliver` 需要实现子组件（列表项）按需加载功能，只有当列表项进入预渲染区域时才会去对它进行构建和布局、渲染。
+2. `Sliver` 对应的渲染对象类型是 `RenderSliver`，`RenderSliver` 和 `RenderBox` 的相同点是都继承自 `RenderObject` 类，不同点是在布局的时候约束信息不同。
+3. `RenderBox` 在布局时父组件传递给它的约束信息对应的是 `BoxConstraints`，只包含最大宽高的约束；而 `RenderSliver` 在布局时父组件（列表）传递给它的约束是对应的是 `SliverConstraints`
+
+### ⑤、可滚动组件的通用配置
+
+1. 几乎所有的可滚动组件在构造时都能指定 `scrollDirection`（滑动的主轴）、`reverse`（滑动方向是否反向）、`controller`、`physics` 、`cacheExtent` ，这些属性最终会透传给对应的 `Scrollable` 和 `Viewport`，这些属性我们可以认为是可滚动组件的通用属性，后续再介绍具体的可滚动组件时将不再赘述。
+2. `reverse` 表示是否按照阅读方向相反的方向滑动，如：`scrollDirection` 值为 `Axis.horizontal` 时，即滑动方向为水平，如果阅读方向是从左到右（取决于语言环境，阿拉伯语就是从右到左）。`reverse` 为 `true` 时，那么滑动方向就是从右往左。
+
+### ⑥、ScrollController
+
+1. 可滚动组件都有一个 `controller` 属性，通过该属性我们可以指定一个 `ScrollController` 来控制可滚动组件的滚动比如可以通过 `ScrollController` 来同步多个组件的滑动联动。
+2. 由于 `ScrollController` 是需要结合可滚动组件一起工作，所以本章中，我们会在介绍完 `ListView` 后详细介绍 `ScrollController`
+
+### ⑦、子节点缓存
+
+1. 按需加载子组件在大多数场景中都能有正收益，但是有些时候也会有副作用。
+2. 比如有一个页面，它由一个 `ListView` 组成，我们希望在页面顶部显示一块内容， 这部分内容的数据需要在每次页面打开时通过网络来获取，为此我们通一个 `Header` 组件来实现，它是一个 `StatefulWidget` ，会在 `initState` 中请求网络数据，然后将它作为 `ListView` 的第一个孩子。
+3. 现在问题来了，因为 `ListView` 是按需加载子节点的，这意味着如果 `Header` 滑出 `Viewport` 的预渲染区域之外时就会被销毁，重新滑入后又会被重新构建，这样就会发起多次网络请求，不符合我们期望，我们预期是 `Header` 能够缓存不销毁。
+4. 综上，为了方便控制子组件在滑出可视区域后是否缓存，可滚动组件提供了一种缓存子节点的通用解决方案，它允许开发者对特定的子界限进行缓存，这个我们将在后面小节中详细介绍
+
+### ⑧、Scrollbar
+
+1. `Scrollbar` 是一个 `Material` 风格的滚动指示器（滚动条），如果要给可滚动组件添加滚动条，只需将 `Scrollbar` 作为可滚动组件的任意一个父级组件即可，如
+
+```dart
+Scrollbar(
+  child: SingleChildScrollView(
+    ...
+  ),
+);
+```
+
+2. `Scrollbar` 和 `CupertinoScrollbar` 都是通过监听滚动通知来确定滚动条位置的。
+3. 关于的滚动通知的详细内容我们将在本章最后一节中专门介绍
+
+## 2、SingleChildScrollView 可滚动组件
+
+### ①、简介
+
+1. `SingleChildScrollView` 类似于 Android 中的 `ScrollView`，它只能接收一个子组件，定义如下：
+
+```dart
+SingleChildScrollView({
+  this.scrollDirection = Axis.vertical, //滚动方向，默认是垂直方向
+  this.reverse = false, 
+  this.padding, 
+  bool primary, 
+  this.physics, 
+  this.controller,
+  this.child,
+})
+```
+
+2. 除了上一节我们介绍过的可滚动组件的通用属性外，我们重点看 `primary` 属性：它表示是否使用 `widget` 树中默认的 `PrimaryScrollController`（`MaterialApp` 组件树中已经默认包含一个 `PrimaryScrollController` 了）
+3. 当滑动方向为垂直方向（`scrollDirection` 值为 `Axis.vertical`）并且没有指定 `controller` 时，`primary` 默认为 `true`。
+4. 需要注意的是，通常 `SingleChildScrollView` 只应在期望的内容不会超过屏幕太多时使用，这是因为 `SingleChildScrollView` 不支持基于 `Sliver` 的延迟加载模型，所以如果预计视口可能包含超出屏幕尺寸太多的内容时，那么使用 `SingleChildScrollView` 将会非常昂贵（性能差），此时应该使用一些支持 `Sliver` 延迟加载的可滚动组件，如 `ListView`。
+
+### ②、实例
+
+1. 下面是一个将大写字母 A-Z 沿垂直方向显示的例子，由于垂直方向空间会超过屏幕视口高度，所以我们使用 `SingleChildScrollView`
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/01_SingleChildScrollView.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: SingleChildScrollViewComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class SingleChildScrollViewComponent extends StatelessWidget {
+  const SingleChildScrollViewComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    // Scrollbar：显示滚动条
+    return Scrollbar(
+      // SingleChildScrollView 可滚动组件
+      child: SingleChildScrollView(
+        // 内边距
+        padding: const EdgeInsets.all(16.0),
+        // Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+        child: Center(
+          // Column：用于在垂直方向上排列子组件；它允许多个小部件垂直堆叠在一起，以构建垂直布局
+          child: Column(
+            // 将字符串 str 拆分成单个字符
+            children: str.split("")
+              /**
+               * 对拆分后的每个字符执行映射操作。使用 map 方法将每个字符 c 转换为一个 Text 小部件。
+               * textScaleFactor: 2.0 用于将字体大小设置为原来的两倍
+               */
+              .map((c) => Text(c, textScaleFactor: 2.0,))
+              // 将映射操作后的结果转换为一个小部件列表
+              .toList(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|362](attachments/Pasted%20image%2020231025162350.png)
+
+## 3、ListView 列表组件
+
+1. `ListView` 是最常用的可滚动组件之一，它可以沿一个方向线性排布所有子组件，
+2. 并且它也支持列表项懒加载（在需要时才会创建）
+
+### ①、默认构造函数
+
+1. 我们看看ListView的默认构造函数定义：
+
+```dart
+ListView({
+  ...  
+  //可滚动 widget 公共参数
+  Axis scrollDirection = Axis.vertical,
+  bool reverse = false,
+  ScrollController? controller,
+  bool? primary,
+  ScrollPhysics? physics,
+  EdgeInsetsGeometry? padding,
+  
+  // ListView 各个构造函数的共同参数
+  /**
+   * temExtent：该参数如果不为 null，则会强制 children 的“长度”为 itemExtent 的值；
+   * 这里的“长度”是指滚动方向上子组件的长度，也就是说如果滚动方向是垂直方向，则 itemExtent 代表子组件的高度；
+   * 如果滚动方向为水平方向，则 itemExtent 就代表子组件的宽度。
+   * 在 ListView 中，指定 itemExtent 比让子组件自己决定自身长度会有更好的性能，
+   * 这是因为指定 itemExtent 后，滚动系统可以提前知道列表的长度，而无需每次构建子组件时都去再计算一下，
+   * 尤其是在滚动位置频繁变化时（滚动系统需要频繁去计算列表高度）。
+   */
+  double? itemExtent,
+  /**
+   * prototypeItem：如果我们知道列表中的所有列表项长度都相同但不知道具体是多少，
+   * 这时我们可以指定一个列表项，该列表项被称为 prototypeItem（列表项原型）。
+   * 指定 prototypeItem 后，可滚动组件会在 layout 时计算一次它延主轴方向的长度，
+   * 这样也就预先知道了所有列表项的延主轴方向的长度，所以和指定 itemExtent 一样，
+   * 指定 prototypeItem 会有更好的性能。
+   * 注意，itemExtent 和prototypeItem 互斥，不能同时指定它们
+   */
+  Widget? prototypeItem,
+  /**
+   * shrinkWrap：该属性表示是否根据子组件的总长度来设置 ListView 的长度，默认值为false 。
+   * 默认情况下，ListView 会在滚动方向尽可能多的占用空间。
+   * 当 ListView 在一个无边界(滚动方向上)的容器中时，shrinkWrap 必须为 true
+   */
+  bool shrinkWrap = false,
+  /**
+   * addAutomaticKeepAlives：该属性我们将在介绍 PageView 组件时详细解释
+   */
+  bool addAutomaticKeepAlives = true,
+  /**
+   * addRepaintBoundaries：该属性表示是否将列表项（子组件）包裹在 RepaintBoundary 组件中。
+   * RepaintBoundary 可以先简单理解为它是一个“绘制边界”，将列表项包裹在 RepaintBoundary 中可以避免列表项不必要的重绘，
+   * 但是当列表项重绘的开销非常小（如一个颜色块，或者一个较短的文本）时，
+   * 不添加 RepaintBoundary反而会更高效（具体原因会在后面 Flutter 绘制原理相关章节中介绍）。
+   * 如果列表项自身来维护是否需要添加绘制边界组件，则此参数应该指定为 false
+   */
+  bool addRepaintBoundaries = true,
+  // 预渲染区域长度
+  double? cacheExtent,
+    
+  //子 widget 列表
+  List<Widget> children = const <Widget>[],
+})
+```
+
+2. 上面参数分为两组：第一组是可滚动组件的公共参数，之前已经介绍过，不再赘述；第二组是 `ListView` 各个构造函数（`ListView` 有多个构造函数）的共同参数
+3. 注意：上面这些参数并非 `ListView` 特有，在后面介绍的其他可滚动组件也可能会拥有这些参数，它们的含义是相同的。
+4. 默认构造函数有一个 `children` 参数，它接受一个 `Widget` 列表（`List<Widget>`）。
+5. 这种方式适合只有少量的子组件数量已知且比较少的情况，反之则应该使用 `ListView.builder` 按需动态构建列表项。
+6. 注意：虽然这种方式将所有 `children` 一次性传递给 `ListView`，但子组件仍然是在需要时才会加载（build（如有）、布局、绘制），也就是说通过默认构造函数构建的 `ListView` 也是基于 `Sliver` 的列表懒加载模型
+7. 下面是一个例子：
+
+```dart
+ListView(
+  shrinkWrap: true, 
+  padding: const EdgeInsets.all(20.0),
+  children: <Widget>[
+    const Text('I\'m dedicating every day to you'),
+    const Text('Domestic life was never quite my style'),
+    const Text('When you smile, you knock me out, I fall apart'),
+    const Text('And I thought I was so smart'),
+  ],
+);
+```
+
+8. 可以看到，虽然使用默认构造函数创建的列表也是懒加载的，但我们还是需要提前将 `Widget` 创建好，等到真正需要加载的时候才会对 `Widget` 进行布局和绘制
+
+### ②、ListView.builder 
+
+1. `ListView.builder` 适合列表项比较多或者列表项不确定的情况，下面看一下 `ListView.builder` 的核心参数列表：
+
+```dart
+ListView.builder({
+  // ListView公共参数已省略  
+  ...
+  /**
+   * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+   * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+   */
+  required IndexedWidgetBuilder itemBuilder,
+  /**
+   * itemCount：列表项的数量，如果为 null，则为无限列表
+   */
+  int itemCount,
+  ...
+})
+```
+
+2. 下面看一个例子：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/01_SingleChildScrollView/01_SingleChildScrollView.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: ListViewBuilderComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class ListViewBuilderComponent extends StatelessWidget {
+  const ListViewBuilderComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Scrollbar：显示滚动条
+    return Scrollbar(
+      // ListView 列表组件
+      child: ListView.builder(
+        // itemCount：列表项的数量，如果为 null，则为无限列表
+        itemCount: 100,
+        // 强制高度为 50.0
+        itemExtent: 50.0,
+        /**
+         * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+         * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+         */
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(title: Text("$index"));
+        }
+      )
+    );
+  }
+}
+```
+
+3. 运行效果如图所示：
+
+![|362](attachments/Pasted%20image%2020231025164241.png)
+
+### ③、ListView.separated 分割组件
+
+1. `ListView.separated` 可以在生成的列表项之间添加一个分割组件，它比 `ListView.builder` 多了一个 `separatorBuilder` 参数，该参数是一个分割组件生成器。
+2. 下面我们看一个例子：奇数行添加一条蓝色下划线，偶数行添加一条红色下划线
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/01_SingleChildScrollView/01_SingleChildScrollView.dart';
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: ListViewBuilderComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class ListViewBuilderComponent extends StatelessWidget {
+  const ListViewBuilderComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    //下划线widget预定义以供复用。
+    Widget dividerBlue = const Divider(color: Colors.blue,);
+    Widget dividerRed = const Divider(color: Colors.red);
+
+    // Scrollbar：显示滚动条
+    return Scrollbar(
+      // ListView 列表组件
+      child: ListView.separated(
+        // itemCount：列表项的数量，如果为 null，则为无限列表
+        itemCount: 100,
+        /**
+         * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+         * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+         */
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(title: Text("$index"));
+        },
+        // 分割器构造器
+        separatorBuilder: (BuildContext context, int index) {
+          return index % 2 == 0 ? dividerBlue: dividerRed;
+        },
+      )
+    );
+  }
+}
+```
+
+3. 运行效果如图所示：
+
+![|362](attachments/Pasted%20image%2020231025164940.png)
+
+### ④、ListView 原理
+
+1. `ListView` 内部组合了 `Scrollable`、`Viewport` 和 `Sliver`，需要注意：
+2. `ListView` 中的列表项组件都是 `RenderBox`，并不是 `Sliver`， 这个一定要注意。
+3. 一个 `ListView` 中只有一个 `Sliver`，对列表项进行按需加载的逻辑是 `Sliver` 中实现的。
+4. `ListView` 的 `Sliver` 默认是 `SliverList`，如果指定了 `itemExtent` ，则会使用 `SliverFixedExtentList`；
+5. 如果 `prototypeItem` 属性不为空，则会使用 `SliverPrototypeExtentList`，无论是是哪个，都实现了子组件的按需加载模型。
+
+### ⑤、
+
+### ⑥、实例：无限加载列表
+
+1. 假设我们要从数据源异步分批拉取一些数据，然后用 `ListView` 展示，当我们滑动到列表末尾时，判断是否需要再去拉取数据，如果是，则去拉取，拉取过程中在表尾显示一个 `loading`，拉取成功后将数据插入列表；如果不需要再去拉取，则在表尾提示"没有更多"。代码如下：
+
+### ⑦、
+
+### ⑧、
+
+### ⑨、
+
+## 4、
+
+
+## 5、
+
+### ①、
+
 ### ②、
 
 ### ③、
@@ -3375,17 +7358,71 @@ class _ProgressIndicatorSizeComponentState extends State<ProgressIndicatorSizeCo
 
 ### ⑥、
 
-## 3、
+### ⑦、
 
-## 4、
+### ⑧、
 
-## 5、
+### ⑨、
 
 ## 6、
 
+### ①、
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
+
+### ⑨、
+
 ## 7、
 
+### ①、
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
+
+### ⑨、
+
 ## 8、
+
+### ①、
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
+
+### ⑨、
 
 ## 9、
 
@@ -3401,9 +7438,12 @@ class _ProgressIndicatorSizeComponentState extends State<ProgressIndicatorSizeCo
 
 ### ⑥、
 
-# 五、
+### ⑦、
 
-# 六、
+### ⑧、
+
+### ⑨、
+
 
 # 七、
 

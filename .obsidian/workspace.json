@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6b88829a16207a0b",
+            "id": "e54c15d786332259",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "Android/Kotlin 基础.md",
                 "mode": "source",
                 "source": false
               }
@@ -44,7 +44,7 @@
             }
           },
           {
-            "id": "eaa77b20693a2ebd",
+            "id": "68ee6e3c01aca183",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -55,8 +55,7 @@
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -130,7 +129,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Flutter/Flutter 基础.md"
+                "file": "Android/Kotlin 基础.md"
               }
             }
           },
@@ -148,7 +147,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flutter/Flutter 基础.md",
+                "file": "Android/Kotlin 基础.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -165,7 +164,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Flutter/Flutter 基础.md",
+                "file": "Android/Kotlin 基础.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -209,53 +208,53 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "eaa77b20693a2ebd",
+  "active": "e54c15d786332259",
   "lastOpenFiles": [
-    "其他/软件使用/Idea.md",
-    "Flutter/Flutter 基础.md",
-    "Flutter/attachments/Pasted image 20231020161209.png",
-    "Flutter/attachments/Pasted image 20231020160120.png",
-    "Flutter/attachments/Pasted image 20231020160041.png",
+    "SQL/MySql.md",
+    "SQL/attachments/Pasted image 20231101133013.png",
+    "SQL/attachments/Pasted image 20231101132912.png",
+    "SQL/attachments/Pasted image 20231101132335.png",
+    "SQL/attachments/Pasted image 20231101130921.png",
+    "SQL/attachments/Pasted image 20231101130323.png",
+    "SQL/attachments",
     "Android/SSC 购物车.md",
     "Flutter/Dart 基础.md",
-    "Flutter/attachments/Pasted image 20231019153255.png",
+    "Flutter/Flutter 基础.md",
+    "Android/attachments/Pasted image 20231031133836.png",
+    "Android/attachments/Pasted image 20231031111341.png",
+    "Android/Kotlin 基础.md",
     "Android/Android 基础.md",
-    "Android/attachments/Pasted image 20231019152956.png",
-    "Android/attachments/Pasted image 20231019152919.png",
-    "Android/attachments/Pasted image 20231019152707.png",
-    "Android/attachments/Pasted image 20231019101503.png",
-    "Android/attachments/Pasted image 20231019101441.png",
-    "Flutter/attachments/Pasted image 20231017164814.png",
+    "其他/软件使用/Idea.md",
+    "Android/attachments/Pasted image 20231026102417.png",
+    "Flutter/attachments/Pasted image 20231025164940.png",
+    "Flutter/attachments/Pasted image 20231025164241.png",
+    "其他/Git.md",
+    "前端/JS 框架/Vue3.md",
+    "其他/设备.md",
+    "其他/attachments/SyncAudio(同步听) 1.0.3.7z",
+    "其他/attachments/SoundWire_Server_setup7-8-10.zip",
+    "其他/attachments/SoundWire_Free.apk",
+    "java/attachments/SoundWire_Server_setup7-8-10.zip",
+    "java/attachments/SoundWire_Free.apk",
+    "java/15、SpringCloudAlibaba.md",
+    "linux/Smart/Smart 基础.md",
+    "linux/linux/Shell 编程.md",
+    "linux/linux/Liunx 基础.md",
+    "java/【其他】.md",
+    "标题.md",
     "attachments/Pasted image 20231017131044.png.md",
     "attachments",
     "其他/Docker.md",
     "java/11、SpringBoot2.md",
-    "标题.md",
-    "Android/Kotlin 基础.md",
     "其他/小工具.md",
-    "java/15、SpringCloudAlibaba.md",
     "Android/attachments/签名.zip",
     "Flutter/attachments",
     "java/16、设计模式.md",
     "Flutter",
     "java/14、SpringCloud.md",
     "前端/【其他】.md",
-    "其他/设备/阿米诺键盘.md",
-    "其他/设备",
     "其他/文件处理/音频处理.md",
     "其他/软件使用/WindTerm.md",
-    "其他/软件使用/VS Code.md",
-    "其他/软件使用/Execl.md",
-    "linux/Smart/Smart 基础.md",
-    "Android/attachments/Genymotion-ARM-Translation_for_9.0.zip",
-    "Android/attachments/Genymotion-ARM-Translation_for_8.0.zip",
-    "Android/attachments/Genymotion-ARM-Translation_for_7.X.zip",
-    "Android/attachments/Genymotion-ARM-Translation_for_6.0.zip",
-    "Android/attachments/Genymotion-ARM-Translation_for_5.1.zip",
-    "前端/JS 框架/attachments/vue3快速上手.md",
-    "前端/三件套/Promise 从入门到自定义.md",
-    "前端/三件套/JavaScript.md",
-    "前端/三件套/ES6-11 - JavaScript 新特性.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
