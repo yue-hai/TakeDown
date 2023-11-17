@@ -103,6 +103,252 @@
 
 ## 1、数器应用示例
 
+1. 用 Android Studio 和 VS Code 创建的 Flutter 应用模板默认是一个简单的计数器示例。
+2. 本节先仔细讲解一下这个计数器 Demo 的源码，以对 Flutter 应用程序结构有个基本了解，然后在随后的小节中将会基于此示例，一步一步添加一些新的功能来介绍 Flutter 应用的其他概念与技术。
+
+### ①、创建 Flutter 应用模板
+
+1. 通过 Android Studio 或 VS Code 创建一个新的 Flutter 工程，创建好后，就会得到一个默认的计数器应用示例。
+2. 注意，默认计数器示例可能随着编辑器 Flutter 插件的版本变化而变化，本例中会介绍计数器示例的全部代码，所以不会对本示例产生影响。
+3. 我们先运行创建的工程，效果如图所示：
+
+![|360](attachments/Pasted%20image%2020231115131326.png)
+
+4. 该计数器示例中，每点击一次右下角带 `+` 号的悬浮按钮，屏幕中央的数字就会加1。
+5. 在这个示例中，主要 Dart 代码是在 `lib/main.dart` 文件中，下面是它的源码：
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('You have pushed the button this many times:'),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+```
+
+### ②、模板代码分析
+
+#### Ⅰ、导入包
+
+```dart
+import 'package:flutter/material.dart';
+```
+
+1. 此行代码作用是导入了 Material UI 组件库。Material 是一种标准的移动端和 web 端的视觉设计语言，
+2. Flutter 默认提供了一套丰富的 Material 风格的UI组件
+
+#### Ⅱ、应用入口
+
+```dart
+void main() => runApp(MyApp());
+```
+
+1. 与 C/C++、Java 类似，Flutter 应用中 main 函数为应用程序的入口。
+2. main 函数中调用了 `runApp` 方法，它的功能是启动 Flutter 应用。
+3. runApp 它接受一个 Widget 参数，在本示例中它是一个 MyApp 对象，`MyApp()` 是 Flutter 应用的根组件。
+4. main函数使用了 `=>` 符号，这是 Dart 中单行函数或方法的简写
+
+#### Ⅲ、应用结构
+
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      //应用名称  
+      title: 'Flutter Demo', 
+      theme: ThemeData(
+        //蓝色主题  
+        primarySwatch: Colors.blue,
+      ),
+      //应用首页路由  
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+```
+
+1. `MyApp` 类代表 Flutter 应用，它继承了 `StatelessWidget` 类，这也就意味着应用本身也是一个 widget。
+2. 在 Flutter 中，大多数东西都是 widget（后同“组件”或“部件”），包括对齐（Align）、填充（Padding）、手势处理（GestureDetector）等，它们都是以 widget 的形式提供。
+3. Flutter 在构建页面时，会调用组件的 `build` 方法，widget 的主要工作是提供一个 `build()` 方法来描述如何构建 UI 界面（通常是通过组合、拼装其他基础 widget ）。
+4. `MaterialApp` 是 Material 库中提供的 Flutter APP 框架，通过它可以设置应用的名称、主题、语言、首页及路由列表等。`MaterialApp` 也是一个 widget。
+5. `home` 为 Flutter 应用的首页，它也是一个 widget
+
+### ③、初识 Widget
+
+```dart
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
+  
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+ ...
+}
+```
+
+1. `MyHomePage` 是应用的首页，它继承自 `StatefulWidget` 类，表示它是一个有状态的组件（Stateful widget）。关于 Stateful widget 我们将在 “2.2Widget简介” 一节仔细介绍，现在我们只需简单认为有状态的组件（Stateful widget） 和无状态的组件（Stateless widget）有两点不同：
+	1. Stateful widget 可以拥有状态，这些状态在 widget 生命周期中是可以变的，而 Stateless widget 是不可变的。
+	2. Stateful widget 至少由两个类组成：
+		1. 一个 `StatefulWidget` 类。
+		2. 一个 `State` 类； `StatefulWidget` 类本身是不变的，但是State类中持有的状态在 widget 生命周期中可能会发生变化。
+2. `_MyHomePageState` 类是 `MyHomePage` 类对应的状态类。看到这里，我们已经发现：和 `MyApp` 类不同， `MyHomePage` 类中并没有 `build` 方法，取而代之的是，`build` 方法被挪到了`_MyHomePageState` 方法中，至于为什么这么做，先留个疑问，在分析完完整代码后再来解答
+
+### ④、State 类
+
+1. 接下来，我们看看 `_MyHomePageState` 中都包含哪些东西：
+2. 组件的状态：由于我们只需要维护一个点击次数计数器，所以定义一个 `_counter` 状态，`_counter` 为保存屏幕右下角带 `+` 号按钮点击次数的状态。
+
+```dart
+int _counter = 0; //用于记录按钮点击的总次数
+```
+
+3. 设置状态的自增函数：当按钮点击时，会调用此函数，该函数的作用是先自增 `_counter`，然后调用 `setState` 方法。`setState` 方法的作用是通知 Flutter 框架，有状态发生了改变，Flutter 框架收到通知后，会执行 `build` 方法来根据新的状态重新构建界面， `Flutter` 对此方法做了优化，使重新执行变的很快，所以你可以重新构建任何需要更新的东西，而无需分别去修改各个 widget
+
+```dart
+void _incrementCounter() {
+  setState(() {
+     _counter++;
+  });
+}
+```
+
+4. 构建 UI 界面的 build 方法：构建 UI 界面的逻辑在 `build` 方法中，当 `MyHomePage` 第一次创建时， `_MyHomePageState` 类会被创建，当初始化完成后，Flutter 框架会调用 widget 的 `build` 方法来构建 widget 树，最终将 widget 树渲染到设备屏幕上。所以，我们看看 `_MyHomePageState` 的 `build` 方法中都干了什么事：
+	1. `Scaffold` 是 Material 库中提供的页面脚手架，它提供了默认的导航栏、标题和包含主屏幕 widget 树（后同“组件树”或“部件树”）的 `body` 属性，组件树可以很复杂。本书后面示例中，路由默认都是通过 `Scaffold` 创建。
+	2. `body` 的组件树中包含了一个 `Center` 组件，`Center` 可以将其子组件树对齐到屏幕中心。
+	3. 此例中， `Center` 子组件是一个 `Column` 组件，`Column` 的作用是将其所有子组件沿屏幕垂直方向依次排列； 
+	4. 此例中 `Column` 子组件是两个 `Text`，第一个 `Text` 显示固定文本 `You have pushed the button this many times:` ，第二个Text 显示 `_counter` 状态的数值。
+	5. `floatingActionButton` 是页面右下角的带 `+` 的悬浮按钮，它的 `onPressed` 属性接受一个回调函数，代表它被点击后的处理器，本例中直接将 `_incrementCounter` 方法作为其处理函数。
+
+```dart
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(widget.title),
+    ),
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('You have pushed the button this many times:'),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+        ],
+      ),
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: _incrementCounter,
+      tooltip: 'Increment',
+      child: Icon(Icons.add),
+    ), 
+  );
+}
+```
+
+5. 现在，我们将整个计数器执行流程串起来：当右下角的 `floatingActionButton` 按钮被点击之后，会调用`_incrementCounter` 方法。在 `_incrementCounter` 方法中，首先会自增 `_counter` 计数器（状态），然后 `setState` 会通知 Flutter 框架状态发生变化，接着，Flutter 框架会调用 `build` 方法以新的状态重新构建 UI，最终显示在设备屏幕上
+
+### ⑤、为什么要将 build 方法放在 State 中，而不是放在 StatefulWidget 中？
+
+1. 现在，我们回答之前提出的问题，为什么 `build()` 方法放在 `State` 而不是 `StatefulWidget` 中 ？
+2. 这主要是为了提高开发的灵活性。
+3. 如果将 `build()` 方法放在 `StatefulWidget` 中则会有两个问题：
+
+#### Ⅰ、状态访问不便
+
+1. 试想一下，如果我们的 `StatefulWidget` 有很多状态，而每次状态改变都要调用 `build` 方法，由于状态是保存在  `State` 中的，如果 `build` 方法在 `StatefulWidget` 中，那么 `build` 方法和状态分别在两个类中，那么构建时读取状态将会很不方便！
+2. 试想一下，如果真的将 `build` 方法放在 `StatefulWidget` 中的话，由于构建用户界面过程需要依赖 `State`，所以 `build` 方法将必须加一个 `State` 参数，大概是下面这样：
+
+```dart
+Widget build(BuildContext context, State state){
+  //state.counter
+  ...
+}
+```
+
+3. 这样的话就只能将 `State` 的所有状态声明为公开的状态，这样才能在 `State` 类外部访问状态！但是，将状态设置为公开后，状态将不再具有私密性，这就会导致对状态的修改将会变的不可控。
+4. 但如果将 `build()` 方法放在 `State` 中的话，构建过程不仅可以直接访问状态，而且也无需公开私有状态，这会非常方便。
+
+#### Ⅱ、继承 `StatefulWidget` 不便
+
+1. 例如，Flutter 中有一个动画 widget 的基类 `AnimatedWidget`，它继承自 `StatefulWidget` 类。
+2. `AnimatedWidget` 中引入了一个抽象方法 `build(BuildContext context)`，继承自 `AnimatedWidget` 的动画 widget 都要实现这个 `build` 方法。现在设想一下，如果 `StatefulWidget` 类中已经有了一个 `build` 方法，正如上面所述，此时 `build` 方法需要接收一个 `State` 对象，这就意味着 `AnimatedWidget` 必须将自己的 `State` 对象(`记为_animatedWidgetState`) 提供给其子类，因为子类需要在其 `build` 方法中调用父类的 `build` 方法，代码可能如下：
+
+```dart
+class MyAnimationWidget extends AnimatedWidget{
+    @override
+    Widget build(BuildContext context, State state){
+      //由于子类要用到AnimatedWidget的状态对象_animatedWidgetState，
+      //所以AnimatedWidget必须通过某种方式将其状态对象_animatedWidgetState
+      //暴露给其子类   
+      super.build(context, _animatedWidgetState)
+    }
+}
+```
+
+3. 这样很显然是不合理的，因为：
+	1. `AnimatedWidget` 的状态对象是 `AnimatedWidget` 内部实现细节，不应该暴露给外部。
+	2. 如果要将父类状态暴露给子类，那么必须得有一种传递机制，而做这一套传递机制是无意义的，因为父子类之间状态的传递和子类本身逻辑是无关的。
+4. 综上所述，可以发现，对于 `StatefulWidget`，将 `build` 方法放在 `State` 中，可以给开发带来很大的灵活性。
+
 ## 2、Widget 简介
 
 ### ①、Widget 概念
@@ -649,25 +895,25 @@ import 'package:flutter/widgets.dart';
 
 #### Ⅰ、基础组件
 
-1. `Text` (opens new window)：该组件可以创建一个带格式的文本。
-2. `Row` (opens new window)、 `Column` (opens new window)： 
+1. `Text`：该组件可以创建一个带格式的文本。
+2. `Row`、 `Column`： 
 	1. 这些具有弹性空间的布局类 `widget` 可以在水平（Row）和垂直（Column）方向上创建灵活的布局。
 	2. 其设计是基于 Web 开发中的 Flexbox 布局模型。
-3. `Stack` (opens new window)： 
+3. `Stack`： 
 	1. 取代线性布局 (译者语：和 Android 中的 FrameLayout 相似)
-	2. [Stack](https://docs.flutter.dev/flutter/ widgets/Stack-class.html) 允许子 `widget` 堆叠， 可以使用 `Positioned` (opens new window) 来定位他们相对于 `Stack` 的上下左右四条边的位置。
+	2. [Stack](https://docs.flutter.dev/flutter/ widgets/Stack-class.html) 允许子 `widget` 堆叠， 可以使用 `Positioned` 来定位他们相对于 `Stack` 的上下左右四条边的位置。
 	3. `Stacks` 是基于 Web 开发中的绝对定位（absolute positioning )布局模型设计的。
-4. `Container` (opens new window)： 
+4. `Container ： 
 	1. 可以创建矩形视觉元素。
-	2. `Container` 可以装饰一个 `BoxDecoration` (opens new window)，如 `background`、一个边框、或者一个阴影。 
+	2. `Container` 可以装饰一个 `BoxDecoration` ，如 `background`、一个边框、或者一个阴影。 
 	3. `Container` 也可以具有边距（margins）、填充(padding) 和应用于其大小的约束(constraints)。
 	4. 另外， `Container` 可以使用矩阵在三维空间中对其进行变换。
 
 #### Ⅱ、Material 组件
 
 1. Flutter 提供了一套丰富的 `Material` 组件，它可以帮助我们构建遵循 Material Design 设计规范的应用程序。
-2. Material 应用程序以 MaterialApp (opens new window) 组件开始，该组件在应用程序的根部创建了一些必要的组件，比如 `Theme` 组件，它用于配置应用的主题。 
-3. 是否使用 MaterialApp (opens new window) 完全是可选的，但是使用它是一个很好的做法。
+2. Material 应用程序以 MaterialApp 组件开始，该组件在应用程序的根部创建了一些必要的组件，比如 `Theme` 组件，它用于配置应用的主题。 
+3. 是否使用 MaterialApp 完全是可选的，但是使用它是一个很好的做法。
 4. 在之前的示例中，我们已经使用过多个 Material 组件了，如：`Scaffold`、`AppBar`、`TextButton` 等。
 5. 要使用 Material 组件，需要先引入它：
 
@@ -719,7 +965,460 @@ class CupertinoTestRoute extends StatelessWidget  {
 3. 由于 Material 和 Cupertino 都是在基础组件库之上的，所以如果我们的应用中引入了这两者之一，则不需要再引入 `flutter/widgets.dart` 了，因为它们内部已经引入过了。
 4. 另外需要说明一点，本章后面章节的示例中会使用一些布局类组件，如 `Scaffold`、`Row`、`Column` 等，这些组件将在后面“布局类组件”一章中详细介绍，可以先不用关注。
 
-## 3、
+## 3、状态管理
+
+### ①、简介
+
+1. 响应式的编程框架中都会有一个永恒的主题：状态(State)管理，无论是在 `React/Vue`（两者都是支持响应式编程的 Web 开发框架）还是 Flutter 中，他们讨论的问题和解决的思想都是一致的。
+2. 言归正传，我们想一个问题，`StatefulWidget` 的状态应该被谁管理？Widget 本身？父 Widget ？都会？还是另一个对象？答案是取决于实际情况！以下是管理状态的最常见的方法：
+	1. Widget 管理自己的状态。
+	2. Widget 管理子 Widget 状态。
+	3. 混合管理（父 Widget 和子 Widget 都管理状态）。
+3. 如何决定使用哪种管理方法？下面是官方给出的一些原则可以帮助你做决定：
+	1. 如果状态是有关界面外观效果的，例如颜色、动画，那么状态最好由 Widget 本身来管理。
+	2. 如果状态是用户数据，如复选框的选中状态、滑块的位置，则该状态最好由父 Widget 管理。
+	3. 如果某一个状态是不同 Widget 共享的则最好由它们共同的父 Widget 管理。
+4. 在 Widget 内部管理状态封装性会好一些，而在父 Widget 中管理会比较灵活。有些时候，如果不确定到底该怎么管理状态，那么推荐的首选是在父 Widget 中管理（灵活会显得更重要一些）。
+5. 接下来，我们将通过创建三个简单示例 TapboxA、TapboxB 和 TapboxC 来说明管理状态的不同方式。 
+6. 这些例子功能是相似的：创建一个盒子，当点击它时，盒子背景会在绿色与灰色之间切换。状态 `_active` 确定颜色：绿色为 true ，灰色为 false，如图所示：
+
+![|700](attachments/Pasted%20image%2020231115152243.png)
+
+7. 下面的例子将使用 `GestureDetector` 来识别点击事件，关于该 `GestureDetector` 的详细内容我们将在后面“事件处理”一章中介绍
+
+### ②、Widget 管理自身状态
+
+1. 我们实现一个 `TapboxA`，在它对应的 `_TapboxAState` 类：
+2. 管理 `TapboxA` 的状态。
+3. 定义 `_active`：确定盒子的当前颜色的布尔值。
+4. 定义 `_handleTap()` 函数，该函数在点击该盒子时更新 `_active`，并调用 `setState()` 更新 UI。
+5. 实现 widget 的所有交互式行为。
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/02_状态管理/01_TapboxA.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: TapboxA(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+// 创建一个 StatefulWidget 类
+class TapboxA extends StatefulWidget {
+  const TapboxA({super.key});
+
+  @override
+  _TapboxAState createState() => _TapboxAState();
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _TapboxAState extends State<TapboxA> {
+  // 定义一个布尔类型的变量，用于保存当前按钮是否被点击
+  bool _active = false;
+
+  @override
+  Widget build(BuildContext context) {
+    // GestureDetector 是一个用于手势识别的小部件
+    return GestureDetector(
+      // 当用户点击 Container 时，会调用 _handleTap() 方法
+      onTap: _handleTap,
+      // Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+      child: Center(
+        // Container 是一个组合类小部件，它本身不对应具体的渲染器，它是 DecoratedBox、ConstrainedBox、Transform、Padding、Align 等小部件组合的一个多功能容器。
+        child: Container(
+          width: 200,
+          height: 200,
+          // 设置背景颜色，当 _active 为 true 时为绿色，为 false 时为灰色
+          color: _active ? Colors.lightGreen[700] : Colors.grey[600],
+          // 当 _active 为 true 时，显示 Active，为 false 时，显示 Inactive
+          child: Center(child: Text(_active ? 'Active' : 'Inactive',))
+        ),
+      )
+    );
+  }
+
+  // 定义一个私有方法，用于处理点击事件，点击时将 _active 取反，然后调用 setState() 方法更新 UI
+  void _handleTap() {
+    setState(() {
+      _active = !_active;
+    });
+  }
+
+}
+```
+
+6. 效果：
+
+![|416](attachments/动画8.gif)
+
+### ③、父 Widget 管理子 Widget 的状态
+
+1. 对于父 Widget 来说，管理状态并告诉其子 Widget 何时更新通常是比较好的方式。 
+2. 例如，`IconButton` 是一个图标按钮，但它是一个无状态的 Widget，因为我们认为父 Widget 需要知道该按钮是否被点击来采取相应的处理。
+3. 在以下示例中，`TapboxB` 通过回调将其状态导出到其父组件，状态由父组件管理，因此它的父组件为 `StatefulWidget`。但是由于 `TapboxB` 不管理任何状态，所以 `TapboxB` 为 `StatelessWidget`。
+4. `ParentBWidgetState` 类:
+	1. 为 `TapboxB` 管理 `_active` 状态。
+	2. 实现 `_handleTapboxChanged()`，当盒子被点击时调用的方法。
+	3. 当状态改变时，调用 `setState()` 更新 UI。
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_2_TapboxB.dart';
+
+// 创建一个 StatefulWidget 类
+class ParentBWidget extends StatefulWidget {
+  const ParentBWidget({super.key});
+
+  @override
+  _ParentBWidgetState createState() => _ParentBWidgetState();
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _ParentBWidgetState extends State<ParentBWidget> {
+  // 定义一个布尔类型的变量，用于保存当前按钮是否被点击
+  bool _active = false;
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+    return Center(
+      /**
+       * TapboxB 是一个自定义的小部件，它继承自 StatefulWidget，实现了一个点击时会变色的按钮，它的状态由父组件管理
+       * 两个参数 active 和 onChanged 由父组件管理，当点击时，会调用父组件的 _handleTapboxChanged() 方法，更新 _active 的值，从而更新 UI
+       */
+      child: TapboxB(
+        active: _active,
+        onChanged: _handleTapboxChanged,
+      ),
+    );
+  }
+
+  // 定义一个私有方法，用于处理点击事件，点击时将 _active 取反，然后调用 setState() 方法更新 UI
+  void _handleTapboxChanged(bool newValue) {
+    setState(() {
+      _active = newValue;
+    });
+  }
+
+}
+```
+
+5. TapboxB 类：
+	1. 继承 `StatelessWidget` 类，因为所有状态都由其父组件处理。
+	2. 当检测到点击时，它会通知父组件。
+
+```dart
+import 'package:flutter/material.dart';
+
+// 创建一个 StatelessWidget 类
+class TapboxB extends StatelessWidget {
+  const TapboxB({super.key, required this.active, required this.onChanged});
+
+  // 定义一个布尔类型的变量，用于保存当前按钮是否被点击，由父组件传递
+  final bool active;
+  // 定义一个 ValueChanged<bool> 类型的变量，用于保存点击事件的回调，由父组件传递
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    // GestureDetector 是一个用于手势识别的小部件
+    return GestureDetector(
+      // 当用户点击 Container 时，会调用 _handleTap() 方法
+      onTap: _handleTap,
+      // Container 是一个组合类小部件，它本身不对应具体的渲染器，它是 DecoratedBox、ConstrainedBox、Transform、Padding、Align 等小部件组合的一个多功能容器。
+      child: Container(
+        width: 200,
+        height: 200,
+        // 设置背景颜色，当 _active 为 true 时为绿色，为 false 时为灰色
+        color: active ? Colors.lightGreen[700] : Colors.grey[600],
+        // 当 _active 为 true 时，显示 Active，为 false 时，显示 Inactive
+        child: Center(child: Text(active ? 'Active 2' : 'Inactive 2',))
+      ),
+    );
+  }
+
+  // 调用 onChanged() 方法，将 _active 的值传递给父组件，从而更新 UI
+  void _handleTap() {
+    // 调用 onChanged() 方法，将 _active 的值传递给父组件，从而更新 UI
+    onChanged(!active);
+  }
+
+}
+```
+
+6. `main` 入口方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/02_状态管理/02_1_ParentBWidget.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: ParentBWidget(),
+      )
+    );
+  }
+}
+```
+
+7. 效果：
+
+![|416](attachments/动画9.gif)
+
+### ④、混合状态管理
+
+1. 对于一些组件来说，混合管理的方式会非常有用。在这种情况下，组件自身管理一些内部状态，而父组件管理一些其他外部状态。
+2. 在下面 `TapboxC` 示例中，手指按下时，盒子的周围会出现一个深绿色的边框，抬起时，边框消失。点击完成后，盒子的颜色改变。 `TapboxC` 将其 `_active` 状态导出到其父组件中，但在内部管理其 `_highlight` 状态。这个例子有两个状态对象 `_ParentCWidgetState` 和 `_TapboxCState`。
+3. `_ParentCWidgetStateC`类：
+	1. 管理 `_active` 状态。
+	2. 实现 `_handleTapboxChanged()` ，当盒子被点击时调用。
+	3. 当点击盒子并且 `_active` 状态改变时调用 `setState()` 更新 UI。
+
+```dart
+import 'package:flutter/material.dart';
+
+import '03_2_TapboxC.dart';
+
+
+// 创建一个 StatefulWidget 类
+class ParentCWidget extends StatefulWidget {
+  const ParentCWidget({super.key});
+
+  @override
+  _ParentCWidgetState createState() => _ParentCWidgetState();
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _ParentCWidgetState extends State<ParentCWidget> {
+  // 定义一个布尔类型的变量，用于保存当前按钮是否被点击
+  bool _active = false;
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+    return Center(
+      /**
+       * TapboxB 是一个自定义的小部件，它继承自 StatefulWidget，实现了一个点击时会变色的按钮，它的状态由父组件管理
+       * 两个参数 active 和 onChanged 由父组件管理，当点击时，会调用父组件的 _handleTapboxChanged() 方法，更新 _active 的值，从而更新 UI
+       */
+      child: TapboxC(
+        active: _active,
+        onChanged: _handleTapboxChanged,
+      ),
+    );
+  }
+
+  // 定义一个私有方法，用于处理点击事件，点击时将 _active 取反，然后调用 setState() 方法更新 UI
+  void _handleTapboxChanged(bool newValue) {
+    setState(() {
+      _active = newValue;
+    });
+  }
+
+}
+```
+
+4. `_TapboxCState` 对象:
+	1. 管理 `_highlight` 状态。
+	2. `GestureDetector` 监听所有 `tap` 事件。当用户点下时，它添加高亮（深绿色边框）；当用户释放时，会移除高亮。
+	3. 当按下、抬起、或者取消点击时更新  `_highlight` 状态，调用 `setState()`更新 UI。
+	4. 当点击时，将状态的改变传递给父组件。
+
+```dart
+import 'package:flutter/material.dart';
+
+// 创建一个 StatefulWidget 类
+class TapboxC extends StatefulWidget {
+  const TapboxC({super.key, required this.active, required this.onChanged});
+
+  @override
+  _TapboxCState createState() => _TapboxCState();
+
+  // 定义一个布尔类型的变量，用于保存当前按钮是否被点击，由父组件传递
+  final bool active;
+  // 定义一个 ValueChanged<bool> 类型的变量，用于保存点击事件的回调，由父组件传递
+  final ValueChanged<bool> onChanged;
+}
+
+// 创建与上述 StatefulWidget 相关的状态类
+class _TapboxCState extends State<TapboxC> {
+  // 定义一个布尔类型的变量，用于保存当前按钮是否被点击
+  bool _highlight = false;
+
+  @override
+  Widget build(BuildContext context) {
+    // GestureDetector 是一个用于手势识别的小部件
+    return GestureDetector(
+      // 处理按下事件
+      onTapDown: _handleTapDown,
+      // 处理抬起事件
+      onTapUp: _handleTapUp,
+      // 处理点击事件，比如说，用户按下按钮，然后抬起手指，此时就会触发点击事件
+      onTap: _handleTap,
+      // 处理取消事件，比如说，用户按下按钮，但是没有抬起手指，而是移动了手指，此时就会触发取消事件
+      onTapCancel: _handleTapCancel,
+      // Container 是一个组合类小部件，它本身不对应具体的渲染器，它是 DecoratedBox、ConstrainedBox、Transform、Padding、Align 等小部件组合的一个多功能容器。
+      child: Container(
+        width: 200,
+        height: 200,
+        // BoxDecoration 是一个装饰类小部件，它可以在其子小部件之上绘制一个装饰，如背景、边框、渐变等。
+        decoration: BoxDecoration(
+          // 设置背景颜色，当 _active 为 true 时为绿色，为 false 时为灰色
+          color: widget.active ? Colors.lightGreen[700] : Colors.grey[600],
+          // 设置边框，当 _highlight 为 true 时，边框宽度为 10，颜色为深绿色，否则边框宽度为 0，颜色为透明
+          border: _highlight ? Border.all(color: Colors.teal[700]!, width: 10.0) : null,
+        ),
+        // 当 _active 为 true 时，显示 Active，为 false 时，显示 Inactive
+        child: Center(child: Text(widget.active ? 'Active 3' : 'Inactive 3',)),
+      ),
+    );
+  }
+
+  // 定义一个私有方法，用于处理按下事件，当按下时，将 _highlight 设置为 true，表示显示深绿色边框
+  void _handleTapDown(TapDownDetails details) {
+    setState(() {
+      _highlight = true;
+    });
+  }
+
+  // 定义一个私有方法，用于处理抬起事件，当抬起时，将 _highlight 设置为 false，表示隐藏深绿色边框
+  void _handleTapUp(TapUpDetails details) {
+    setState(() {
+      _highlight = false;
+    });
+  }
+
+  // 定义一个私有方法，用于处理取消事件，当取消时，将 _highlight 设置为 false，表示隐藏深绿色边框
+  void _handleTapCancel() {
+    setState(() {
+      _highlight = false;
+    });
+  }
+
+  /// 定义一个私有方法，用于处理点击事件，当点击时，调用 widget.onChanged() 方法
+  /// 将盒子的状态取反，使其在点击时可以切换状态，使背景在灰色和绿色之间切换，内容文本在 Inactive 和 Active 之间切换
+  void _handleTap() {
+    widget.onChanged(!widget.active);
+  }
+
+}
+```
+
+5. `main` 入口方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '00_基础知识/02_状态管理/03_1_ParentCWidget.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: ParentCWidget(),
+      )
+    );
+  }
+}
+```
+
+6. 效果：
+
+![|416](attachments/动画10.gif)
+
+7. 另一种实现可能会将高亮状态导出到父组件，但同时保持 `_active` 状态为内部状态，但如果你要将该 `TapBox` 给其他人使用，可能没有什么意义。 开发人员只会关心该框是否处于 Active 状态，而不在乎高亮显示是如何管理的，所以应该让 TapBox 内部处理这些细节。
+
+### ⑤、全局状态管理
+
+1. 当应用中需要一些跨组件（包括跨路由）的状态需要同步时，上面介绍的方法便很难胜任了。
+2. 比如，我们有一个设置页，里面可以设置应用的语言，我们为了让设置实时生效，我们期望在语言状态发生改变时，App 中依赖应用语言的组件能够重新 `build` 一下，但这些依赖应用语言的组件和设置页并不在一起，所以这种情况用上面的方法很难管理。
+3. 这时，正确的做法是通过一个全局状态管理器来处理这种相距较远的组件之间的通信。目前主要有两种办法：
+	1. 实现一个全局的事件总线，将语言状态改变对应为一个事件，然后在 APP 中依赖应用语言的组件的 `initState` 方法中订阅语言改变的事件。当用户在设置页切换语言后，我们发布语言改变事件，而订阅了此事件的组件就会收到通知，收到通知后调用 `setState(...)` 方法重新 build 一下自身即可。
+	2. 使用一些专门用于状态管理的包，如 `Provider`、`Redux`，可以在 pub 上查看其详细信息。
+4. 下面将在"功能型组件"一章中介绍 `Provider` 包的实现原理及用法，同时也将会在"事件处理与通知"一章中实现一个全局事件总线，有需要可以直接翻看。
 
 ## 4、路由管理 Route
 
@@ -1501,11 +2200,223 @@ MaterialApp(
 
 7. 注意，`onGenerateRoute` 只会对命名路由生效
 
-## 5、
+## 5、包管理
 
-## 6、
+## 6、资源管理
+
+1. Flutter APP 安装包中会包含代码和 assets（资源）两部分。
+2. Assets 是会打包到程序安装包中的，可在运行时访问。
+3. 常见类型的 assets 包括静态数据（例如JSON文件）、配置文件、图标和图片等
+
+### ①、指定 assets
+
+1. 和包管理一样，Flutter 也使用 `pubspec.yaml` 文件来管理应用程序所需的资源，举个例子:
+
+```yaml
+flutter:
+  assets:
+    - assets/my_icon.png
+    - assets/background.png
+```
+
+2. `assets` 指定应包含在应用程序中的文件， 每个 `asset` 都通过相对于 `pubspec.yaml` 文件所在的文件系统路径来标识自身的路径。`asset` 的声明顺序是无关紧要的，asset 的实际目录可以是任意文件夹（在本示例中是assets 文件夹）。
+3. 在构建期间，Flutter 将 asset 放置到称为 asset bundle 的特殊存档中，应用程序可以在运行时读取它们（但不能修改）
+
+### ②、Asset 变体（variant）
+
+1. 构建过程支持 asset 变体 的概念：不同版本的 asset 可能会显示在不同的上下文中。 
+2. 在 `pubspec.yaml` 的 `assets` 部分中指定 asset 路径时，构建过程中，会在相邻子目录中查找具有相同名称的任何文件。这些文件随后会与指定的 asset 一起被包含在 asset bundle 中。
+3. 例如，如果应用程序目录中有以下文件:
+
+```dart
+…/pubspec.yaml
+…/graphics/my_icon.png
+…/graphics/background.png
+…/graphics/dark/background.png
+….
+```
+
+4. 然后 `pubspec.yaml` 文件中只需包含:
+
+```yaml
+flutter:
+  assets:
+    - graphics/background.png
+```
+
+5. 那么这两个 `graphics/background.png` 和 `graphics/dark/background.png` 都将包含在 asset bundle 中。
+6. 前者被认为是_main asset_ （主资源），后者被认为是一种变体（variant）。
+7. 在选择匹配当前设备分辨率的图片时，Flutter 会使用到 asset 变体（见下文）
+
+### ③、加载 assets
+
+#### Ⅰ、加载文本 assets
+
+1. 通过 `rootBundle` 对象加载：每个 Flutter 应用程序都有一个 `rootBundle` 对象， 通过它可以轻松访问主资源包，直接使用 `package:flutter/services.dart` 中全局静态的 `rootBundle` 对象来加载 asset 即可。
+2. 通过 `DefaultAssetBundle` 加载：建议使用 `DefaultAssetBundle` 来获取当前 BuildContext 的 AssetBundle。 这种方法不是使用应用程序构建的默认 asset bundle，而是使父级 widget 在运行时动态替换的不同的 AssetBundle，这对于本地化或测试场景很有用。
+3. 通常，可以使用 `DefaultAssetBundle.of()` 在应用运行时来间接加载 asset（例如 JSON 文件），而在 widget 上下文之外，或其他 AssetBundle 句柄不可用时，可以使用 rootBundle 直接加载这些 asset，例如：
+
+```dart
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
+
+Future<String> loadAsset() async {
+  return await rootBundle.loadString('assets/config.json');
+}
+```
+
+#### Ⅱ、加载图片
+
+##### （1）、声明分辨率相关的图片 assets
+
+1. `AssetImage` 可以将 asset 的请求逻辑映射到最接近当前设备像素比例（dpi）的 asset。为了使这种映射起作用，必须根据特定的目录结构来保存 asset：
+
+```dart
+…/image.png
+…/Mx/image.png
+…/Nx/image.png
+…
+```
+
+2. 其中 M 和 N 是数字标识符，对应于其中包含的图像的分辨率，也就是说，它们指定不同设备像素比例的图片。
+3. 主资源默认对应于 1.0 倍的分辨率图片。看一个例子：
+
+```dart
+…/my_icon.png
+…/2.0x/my_icon.png
+…/3.0x/my_icon.png
+```
+
+4. 在设备像素比率为 1.8 的设备上，`.../2.0x/my_icon.png` 将被选择。对于 2.7 的设备像素比率，`.../3.0x/my_icon.png` 将被选择。
+5. 如果未在 Image widget 上指定渲染图像的宽度和高度，那么 Image widget 将占用与主资源相同的屏幕空间大小。 也就是说，如果 `.../my_icon.png` 是 72px 乘 72px，那么 `.../3.0x/my_icon.png` 应该是 216px 乘 216px; 但如果未指定宽度和高度，它们都将渲染为 72 像素 × 72 像素（以逻辑像素为单位）。
+6. `pubspec.yaml` 中 asset 部分中的每一项都应与实际文件相对应，但主资源项除外。当主资源缺少某个资源时，会按分辨率从低到高的顺序去选择 ，也就是说 1x 中没有的话会在 2x 中找，2x 中还没有的话就在 3x 中找。
+
+##### （2）、加载图片
+
+1. 要加载图片，可以使用 `AssetImage` 类。例如，我们可以从上面的 asset 声明中加载背景图片：
+
+```dart
+Widget build(BuildContext context) {
+  return DecoratedBox(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('graphics/background.png'),
+      ),
+    ),
+  );
+}
+```
+
+2. 注意，`AssetImage` 并非是一个 widget， 它实际上是一个 `ImageProvider`，有些时候你可能期望直接得到一个显示图片的 widget，那么你可以使用 `Image.asset()` 方法，如：
+
+```dart
+Widget build(BuildContext context) {
+  return Image.asset('graphics/background.png');
+}
+```
+
+3. 使用默认的 asset bundle 加载资源时，内部会自动处理分辨率等，这些处理对开发者来说是无感知的。 (如果使用一些更低级别的类，如 `ImageStream` 或 `ImageCache` 时你会注意到有与缩放相关的参数)
+
+##### （3）、依赖包中的资源图片
+
+1. 加载依赖包中的图像，必须给 AssetImage 提供 package 参数。
+2. 例如，假设您的应用程序依赖于一个名为 `my_icons` 的包，它具有如下目录结构：
+
+```dart
+…/pubspec.yaml
+…/icons/heart.png
+…/icons/1.5x/heart.png
+…/icons/2.0x/heart.png
+…
+```
+
+3. 然后加载图像，使用：
+
+```dart
+AssetImage('icons/heart.png', package: 'my_icons')
+
+或
+
+Image.asset('icons/heart.png', package: 'my_icons')
+```
+
+4. 注意：包在使用本身的资源时也应该加上 package 参数来获取。
+
+##### （4）、打包包中的 assets
+
+1. 如果在 `pubspec.yaml` 文件中声明了期望的资源，它将会打包到相应的 package 中。特别是，包本身使用的资源必须在 `pubspec.yaml` 中指定。
+2. 包也可以选择在其 `lib/` 文件夹中包含未在其 `pubspec.yaml` 文件中声明的资源。在这种情况下，对于要打包的图片，应用程序必须在 `pubspec.yaml` 中指定包含哪些图像。 例如，一个名为 `fancy_backgrounds` 的包，可能包含以下文件：
+
+```dart
+…/lib/backgrounds/background1.png
+…/lib/backgrounds/background2.png
+…/lib/backgrounds/background3.png
+```
+
+3. 要包含第一张图像，必须在 `pubspec.yaml` 的 assets 部分中声明它：
+
+```yaml
+flutter:
+  assets:
+    - packages/fancy_backgrounds/backgrounds/background1.png
+```
+
+4. `lib/` 是隐含的，所以它不应该包含在资产路径中。
+
+#### Ⅲ、特定平台 assets
+
+1. 上面的资源都是 flutter 应用中的，这些资源只有在 Flutter 框架运行之后才能使用，如果要给我们的应用设置 APP 图标或者添加启动图，那我们必须使用特定平台的 assets
+
+##### （1）、设置 Android APP 图标
+
+1. 在 Flutter 项目的根目录中，导航到 `.../android/app/src/main/res` 目录，里面包含了各种资源文件夹
+2. 如 `mipmap-hdpi` 已包含占位符图像 ic_launcher.png，见下图：
+
+![|253](attachments/Pasted%20image%2020231116101636.png)
+
+3. 只需按照 Android 开发人员指南中的说明， 将其替换为所需的资源，并遵守每种屏幕密度（dpi）的建议图标大小标准。
+4. 注意：如果重命名 `.png` 文件，则还必须在 `AndroidManifest.xml` 的 `<application>` 标签的 `android:icon` 属性中更新名称
+
+##### （2）、设置 iOS APP 图标
+
+1. 在 Flutter 项目的根目录中，导航到 `.../ios/Runner`。
+2. 该目录中 `Assets.xcassets/AppIcon.appiconset` 已经包含占位符图片，见下图， 只需将它们替换为适当大小的图片，保留原始文件名称
+
+![|280](attachments/Pasted%20image%2020231116101932.png)
+
+##### （3）、更新启动页
+
+1. 在 Flutter 框架加载时，Flutter 会使用本地平台机制绘制启动页。
+2. 此启动页将持续到 Flutter 渲染应用程序的第一帧时。
+3. 注意：这意味着如果不在应用程序的 `main()` 方法中调用 `runApp` 函数 （或者更具体地说，如果不调用`window.render` 去响应 `window.onDrawFrame` ）的话， 启动屏幕将永远持续显示。
+
+![|204](attachments/Pasted%20image%2020231116102151.png)
+
+##### （4）、Android 更新启动页
+
+1. 要将启动屏幕（splash screen）添加到 Flutter 应用程序， 请导航至 `.../android/app/src/main`。
+2. 在 `res/drawable/launch_background.xml`，通过自定义 drawable 来实现自定义启动界面
+3. 也可以直接换一张图片
+
+##### （5）、iOS 更新启动页
+
+1. 要将图片添加到启动屏幕（splash screen）的中心，请导航至 `.../ios/Runner`。
+2. 在 `Assets.xcassets/LaunchImage.imageset`， 拖入图片，并命名为 `LaunchImage.png`、`LaunchImage@2x.png`、`LaunchImage@3x.png`。
+3. 如果使用不同的文件名，那还必须更新同一目录中的 `Contents.json` 文件，图片的具体尺寸可以查看苹果官方的标准。
+4. 也可以通过打开 Xcode 完全自定义 storyboard。在 Project Navigator 中导航到 `Runner/Runner` 然后通过打开 Assets.xcassets 拖入图片，或者通过在 LaunchScreen.storyboard 中使用 Interface Builder 进行自定义，如下图所示。
+
+![|725](attachments/Pasted%20image%2020231116102613.png)
+
+### ④、平台共享 assets
+
+1. 如果我们采用的是 Flutter + 原生 的开发模式，那么可能会存 Flutter 和原生需要共享资源的情况
+2. 比如 Flutter 项目中已经有了一张图片 A，如果原生代码中也要使用 A，我们可以将 A 拷贝一份到原生项目的特定目录，这样的话虽然功能可以实现，但是最终的应用程序包会变大，因为包含了重复的资源
+3. 为了解决这个问题，Flutter 提供了一种 Flutter 和原生之间共享资源的方式
+4. 由于实现上需要涉及平台相关的原生代码，故本书不做展开，有需要可以自行查阅：[官方文档](https://flutter.cn/docs/development/ui/assets-and-images#sharing-assets-with-the-underlying-platform)
 
 ## 7、
+
+## 8、
 
 # 三、基本组件
 
@@ -1756,11 +2667,11 @@ class TextComponent extends StatelessWidget {
 #### Ⅰ、简介
 
 1. 可以在 Flutter 应用程序中使用不同的字体。
-2. 例如，我们可能会使用设计人员创建的自定义字体，或者其他第三方的字体，如 Google Fonts (opens new window) 中的字体。
+2. 例如，我们可能会使用设计人员创建的自定义字体，或者其他第三方的字体，如 Google Fonts 中的字体。
 3. 在 Flutter 中使用字体分三步完成。
 	1. 首先将字体文件复制到项目根目录的 `asset/fonts` 目录下，没有目录可自己创建一个
 	2. 然后在 `pubspec.yaml` 中声明它们，以确保它们会打包到应用程序中。
-	3. 最后通过 `TextStyle` (opens new window) 属性使用字体。
+	3. 最后通过 `TextStyle` 属性使用字体。
 
 #### Ⅱ、在 asset 中声明
 
@@ -4960,7 +5871,7 @@ class TestFlowDelegate extends FlowDelegate {
 1. 层叠布局和 Web 中的绝对定位、Android 中的 `Frame` 布局是相似的，子组件可以根据距父容器四个角的位置来确定自身的位置。
 2. 层叠布局允许子组件按照代码中声明的顺序堆叠起来。
 3. Flutter 中使用 `Stack` 和 `Positioned` 这两个组件来配合实现绝对定位。
-4. `Stack` 允许子组件堆叠，而 `Positioned` 用于根据 Stack 的四个角来确定子组件的位置。
+4. `Stack` 允许子部件堆叠，可使用 `Positioned` 根据 `Stack` 的四个角来定位子部件。
 
 ### ①、Stack
 
@@ -5024,8 +5935,6 @@ const Positioned({
 3. 举个例子，在水平方向时，只能指定 `left`、`right`、`width` 三个属性中的两个，如指定 `left` 和 `width` 后，`right` 会自动算出(`left+width`)，如果同时指定三个属性则会报错，垂直方向同理
 
 ### ③、示例
-
-### ④、
 
 1. 示例代码：
 
@@ -6770,7 +7679,7 @@ Scaffold(
 2. 如果开发者提供了抽屉菜单，那么当用户手指从屏幕左（或右）侧向里滑动时便可打开抽屉菜单。
 3. 抽屉菜单通常将 `Drawer` 组件作为根节点，它实现了 `Material` 风格的菜单面板，`MediaQuery.removePadding` 可以移除 `Drawer` 默认的一些留白（比如 `Drawer` 默认顶部会留和手机状态栏等高的留白）
 
-④、底部 Tab 导航栏
+### ④、底部 Tab 导航栏
 
 1. 我们可以通过 `Scaffold` 的 `bottomNavigationBar` 属性来设置底部导航，如本节开始示例所示，我们通过 `Material` 组件库提供的 `BottomNavigationBar` 和 `BottomNavigationBarItem` 两种组件来实现 `Material` 风格的底部导航栏。
 2. 可以看到上面的实现代码非常简单，所以不再赘述，但是如果我们想实现如下图所示效果的底部导航栏应该怎么做呢？
@@ -7063,7 +7972,7 @@ class SingleChildScrollViewComponent extends StatelessWidget {
 
 ### ①、默认构造函数
 
-1. 我们看看ListView的默认构造函数定义：
+1. 我们看看 ListView 的默认构造函数定义：
 
 ```dart
 ListView({
@@ -7290,7 +8199,7 @@ class ListViewBuilderComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //下划线widget预定义以供复用。
+    // 创建下划线 widget 预定义以供复用。
     Widget dividerBlue = const Divider(color: Colors.blue,);
     Widget dividerRed = const Divider(color: Colors.red);
 
@@ -7329,20 +8238,3417 @@ class ListViewBuilderComponent extends StatelessWidget {
 4. `ListView` 的 `Sliver` 默认是 `SliverList`，如果指定了 `itemExtent` ，则会使用 `SliverFixedExtentList`；
 5. 如果 `prototypeItem` 属性不为空，则会使用 `SliverPrototypeExtentList`，无论是是哪个，都实现了子组件的按需加载模型。
 
-### ⑤、
+### ⑤、固定高度列表
+
+1. 前面说过，给列表指定 `itemExtent` 或 `prototypeItem` 会有更高的性能，所以当我们知道列表项的高度都相同时，强烈建议指定 `itemExtent` 或 `prototypeItem` 。下面看一个示例
+
+```dart
+class FixedExtentList extends StatelessWidget {
+  const FixedExtentList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+   		prototypeItem: ListTile(title: Text("1")),
+      //itemExtent: 56,
+      itemBuilder: (context, index) {
+        //LayoutLogPrint是一个自定义组件，在布局时可以打印当前上下文中父组件给子组件的约束信息
+        return LayoutLogPrint(
+          tag: index, 
+          child: ListTile(title: Text("$index")),
+        );
+      },
+    );
+  }
+}
+```
+
+2. 因为列表项都是一个 `ListTile`，高度相同，但是我们不知道 `ListTile` 的高度是多少，所以指定了 `prototypeItem` ，运行后，控制台打印：
+
+```cmd
+flutter: 0: BoxConstraints(w=428.0, h=56.0)
+flutter: 1: BoxConstraints(w=428.0, h=56.0)
+flutter: 2: BoxConstraints(w=428.0, h=56.0)
+...
+```
+
+3. 可见 `ListTile` 的高度是 56 ，所以我们指定 `itemExtent` 为 56也是可以的。但是还是建议优先指定原型，这样的话在列表项布局修改后，仍然可以正常工作（前提是每个列表项的高度相同）。
+4. 如果本例中不指定 `itemExtent` 或 `prototypeItem` ，我们看看控制台日志信息：
+
+```cmd
+flutter: 0: BoxConstraints(w=428.0, 0.0<=h<=Infinity)
+flutter: 1: BoxConstraints(w=428.0, 0.0<=h<=Infinity)
+flutter: 2: BoxConstraints(w=428.0, 0.0<=h<=Infinity)
+...
+```
+
+5. 可以发现，列表不知道列表项的具体高度，高度约束变为 0.0 到 Infinity。
 
 ### ⑥、实例：无限加载列表
 
-1. 假设我们要从数据源异步分批拉取一些数据，然后用 `ListView` 展示，当我们滑动到列表末尾时，判断是否需要再去拉取数据，如果是，则去拉取，拉取过程中在表尾显示一个 `loading`，拉取成功后将数据插入列表；如果不需要再去拉取，则在表尾提示"没有更多"。代码如下：
+1. 假设我们要从数据源异步分批拉取一些数据，然后用 `ListView` 展示
+2. 当我们滑动到列表的某一个位置（倒数第五个）时，去拉取数据，拉取成功后将数据插入列表，代码如下：
 
-### ⑦、
+```dart
+import 'package:flutter/material.dart';
 
-### ⑧、
+class InfiniteListViewComponent extends StatefulWidget {
+  const InfiniteListViewComponent({Key? key}) : super(key: key);
 
-### ⑨、
+  @override
+  _InfiniteListViewComponentState createState() => _InfiniteListViewComponentState();
+}
 
-## 4、
+class _InfiniteListViewComponentState extends State<InfiniteListViewComponent> {
+  // 刷新次数
+  int _num = 0;
+  // 数据，用于显示 ListView 列表，初始值为 20 条数据，每次刷新增加 20 条数据
+  final List<String> _data = List.generate(20, (index) => "第 0 次刷新、第 ${index + 1} 条数据");
 
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Scrollbar 是一个小部件，用于为可滚动的子部件添加滚动条
+    return Scrollbar(
+      // ListView 列表组件
+      child: ListView.separated(
+        // itemCount：列表项的数量：_data 的长度
+        itemCount: _data.length,
+        /**
+         * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+         * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+         */
+        itemBuilder: (BuildContext context, int index) {
+          // 如果到了末尾
+          if(index == _data.length - 1 -5){
+            // 刷新次数 + 1
+            _num++;
+            // 获取数据，添加到 _data 中，刷新列表
+            _retrieveData();
+          }
+          return ListTile(title: Text(_data[index]));
+        },
+        // 分割器构造器
+        separatorBuilder: (context, index) => const Divider(color: Colors.red),
+      )
+    );
+  }
+
+  void _retrieveData(){
+    // 等待模拟的网络请求完成
+    Future.delayed(const Duration(milliseconds: 5)).then((value) => {
+      setState(() {
+        _data.addAll(List.generate(20, (index) => "第 $_num 次刷新、第 ${index + 1 + _data.length} 条数据"));
+      })
+    });
+  }
+
+}
+```
+
+3. 运行后效果如图所示：
+
+![|362](attachments/Pasted%20image%2020231106100141.png)
+
+![|362](attachments/Pasted%20image%2020231106100150.png)
+
+### ⑦、表头
+
+1. ListView 并没有表头这个属性，但是可以使用其他方式来实现，如 `Column` 配合 `ListView` 等
+2. 此处使用 Scaffold 和 CustomScrollView 实现
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/02_ListView/04_表头.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: HeaderListViewComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class HeaderListViewComponent extends StatefulWidget {
+  const HeaderListViewComponent({Key? key}) : super(key: key);
+
+  @override
+  _HeaderListViewComponentState createState() => _HeaderListViewComponentState();
+}
+
+class _HeaderListViewComponentState extends State<HeaderListViewComponent> {
+  // 刷新次数
+  int _num = 0;
+  // 数据，用于显示 ListView 列表，初始值为 20 条数据，每次刷新增加 20 条数据
+  final List<String> _data = List.generate(20, (index) => "第 0 次刷新、第 ${index + 1} 条数据");
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Scaffold 是一个用于创建基本页面布局的小部件。
+    return Scaffold(
+      /**
+       * body: 用于定义页面的主要内容区域
+       * CustomScrollView 可以包含多个 Sliver 类型的小部件，如 SliverAppBar、SliverList、SliverGrid 等。
+       * 每个 Sliver 类型的小部件都可以根据需要进行配置，以实现不同的滚动效果和布局。
+       * 通过使用 CustomScrollView，可以创建具有复杂滚动行为的界面，如具有固定表头和可滚动内容的列表、具有多个不同类型滚动小部件的复合滚动效果等
+       */
+      body: CustomScrollView(
+        /**
+         * slivers 是一个 CustomScrollView 的参数，它是一个包含多个 Sliver 类型小部件的列表。Sliver 是一种特殊类型的小部件，用于创建可滚动的内容。
+         * Sliver 类型的小部件与普通的小部件不同，它们是在可滚动视图中使用的，可以根据需要进行配置，以实现不同的滚动效果和布局。
+         * Sliver 小部件通常用于构建具有特定滚动行为的界面，如固定表头、悬停效果、可扩展的列表项等。
+         * 常见的 Sliver 类型小部件有：
+         *    SliverAppBar：创建一个带有可折叠效果的应用栏，可以固定在顶部或底部。
+         *    SliverList：创建一个垂直滚动的列表，可以包含多个列表项。
+         *    SliverGrid：创建一个网格布局的列表，可以包含多个网格项。
+         *    SliverToBoxAdapter：将一个普通的小部件包装为 Sliver 类型的小部件，用于在滚动视图中显示任意内容。
+         */
+        slivers: [
+          // SliverAppBar：创建一个带有可折叠效果的应用栏，可以固定在顶部或底部
+          const SliverAppBar(
+            /**
+             * pinned 是 SliverAppBar 的一个属性，用于控制应用栏是否固定在顶部。
+             * 如果设置为 true，则应用栏将一直保持在顶部，不会随着滚动而消失。
+             * 如果设置为 false，则应用栏会在滚动时自动隐藏，并在滚动到顶部时重新出现
+             */
+            pinned: true,
+            title: Text('表头'),
+          ),
+          // SliverList：创建一个垂直滚动的列表，可以包含多个列表项
+          SliverList(
+            /**
+             * delegate 是 SliverList 和 SliverGrid 的一个属性，用于指定子部件的构建方式。
+             * 在 SliverChildBuilderDelegate 中，可以通过提供一个构建器函数来生成子部件。
+             * SliverChildBuilderDelegate 的构造函数有两个参数：
+             *    childCount：一个整数，指定子部件的数量。如果设置为 null，则表示子部件的数量不确定。
+             *    builder：一个函数，用于构建每个子部件。它接收两个参数：上下文 BuildContext 和索引 int，并返回一个小部件。
+             */
+            delegate: SliverChildBuilderDelegate(
+              childCount: _data.length,
+              (BuildContext context, int index) {
+                if (index == _data.length - 1 - 5) {
+                  _num++;
+                  _retrieveData();
+                }
+                return ListTile(title: Text(_data[index]));
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _retrieveData() {
+    Future.delayed(const Duration(milliseconds: 5)).then((value) => {
+      setState(() {
+        _data.addAll(List.generate(20, (index) => "第 $_num 次刷新、第 ${index + 1 + _data.length} 条数据"));
+      })
+    });
+  }
+}
+
+```
+
+3. 效果：
+
+![|361](attachments/Pasted%20image%2020231106165957.png)
+
+## 4、滚动监听及控制
+
+### ①、ScrollController 滚动监听
+
+1. `ScrollController` 构造函数如下：
+
+```dart
+ScrollController({
+  double initialScrollOffset = 0.0, //初始滚动位置
+  this.keepScrollOffset = true,//是否保存滚动位置
+  ...
+})
+```
+
+2. `ScrollController` 常用的属性和方法：
+3. `offset`：可滚动组件当前的滚动位置。
+4. `jumpTo(double offset)、animateTo(double offset,...)`：这两个方法用于跳转到指定的位置，它们不同之处在于，后者在跳转时会执行一个动画，而前者不会。
+5. `ScrollController` 还有一些属性和方法，我们将在后面原理部分解释。
+
+#### Ⅰ、滚动监听
+
+- `ScrollController` 间接继承自 `Listenable`，我们可以根据 `ScrollController` 来监听滚动事件，如：
+
+```dart
+controller.addListener(()=>print(controller.offset))
+```
+
+#### Ⅱ、实例
+
+1. 我们创建一个 ListView，当滚动位置发生变化时，我们先打印出当前滚动位置
+2. 然后判断当前位置是否超过屏幕像素，如果超过则在屏幕右下角显示一个“返回顶部”的按钮，该按钮点击后可以使 ListView 恢复到初始位置；
+3. 如果没有超过像素，则隐藏“返回顶部”按钮。代码如下：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/03_滚动监听及控制/01_ScrollController 滚动监听.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: ScrollControllerComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class ScrollControllerComponent extends StatefulWidget {
+  const ScrollControllerComponent({Key? key}) : super(key: key);
+
+  @override
+  _ScrollControllerComponentState createState() => _ScrollControllerComponentState();
+}
+
+class _ScrollControllerComponentState extends State<ScrollControllerComponent> {
+  // ScrollController 是一个用于控制可滚动组件（如 ListView、GridView、SingleChildScrollView 等）的控制器。
+  ScrollController _controller = ScrollController();
+
+  // 刷新次数
+  int _num = 0;
+  // 数据，用于显示 ListView 列表，初始值为 20 条数据，每次刷新增加 20 条数据
+  final List<String> _data = List.generate(20, (index) => "第 0 次刷新、第 ${index + 1} 条数据");
+  // 是否显示 返回到顶部 按钮
+  bool showToTopBtn = false;
+  // 添加一个变量用于保存屏幕的纵向尺寸（纵向像素）
+  double screenHeight = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // 监听滚动事件，打印滚动位置
+    _controller.addListener(() {
+      /**
+       * 打印滚动位置
+       * offset 的值表示可滚动组件内容顶部相对于可滚动区域顶部的偏移量。
+       * 初始情况下，offset 的值通常为 0，表示内容顶部与可滚动区域顶部对齐，没有发生滚动。
+       * 向下滚动列表时，offset 的值会逐渐增加；向上滚动列表时，offset 的值会逐渐减小
+       */
+      print("月海：${_controller.offset}");
+      // 如果当前列表的偏移量小于屏幕的纵向尺寸，且 返回到顶部 按钮已经显示，则隐藏按钮
+      if (_controller.offset < screenHeight && showToTopBtn) {
+        setState(() {
+          showToTopBtn = false;
+        });
+        // 如果当前列表的偏移量大于屏幕的纵向尺寸，且 返回到顶部 按钮没有显示，则显示按钮
+      } else if (_controller.offset >= screenHeight && !showToTopBtn) {
+        setState(() {
+          showToTopBtn = true;
+        });
+      }
+    });
+  }
+
+  /// dispose 方法是一个生命周期方法，它在 State 对象被永久地从内存中移除之前被调用。
+  @override
+  void dispose() {
+    // 为了避免内存泄露，需要调用 _controller.dispose 释放资源
+    _controller.dispose();
+    super.dispose();
+  }
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // 获取屏幕的尺寸
+    Size screenSize = MediaQuery.of(context).size;
+    // 获取屏幕的纵向尺寸（纵向像素）
+    screenHeight = screenSize.height;
+
+    /**
+     * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+     * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+     */
+    return Scaffold(
+      /**
+       * body: 用于定义页面的主要内容区域
+       * Scrollbar 是一个小部件，用于为可滚动的子部件添加滚动条
+       */
+      body: Scrollbar(
+        // ListView 列表组件
+        child: ListView.separated(
+          // controller：控制器，用于控制 ListView 的滚动位置
+          controller: _controller,
+          // itemCount：列表项的数量：_data 的长度
+          itemCount: _data.length,
+          /**
+           * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+           * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+           */
+          itemBuilder: (BuildContext context, int index) {
+          // 如果到了末尾
+          if(index == _data.length - 1 - 5){
+            // 刷新次数 + 1
+            _num++;
+            // 获取数据，添加到 _data 中，刷新列表
+            _retrieveData();
+          }
+          return ListTile(title: Text(_data[index]));
+        },
+        // 分割器构造器
+        separatorBuilder: (context, index) => const Divider(color: Colors.red),
+        ),
+      ),
+      /**
+       * 悬浮按钮
+       * showToTopBtn 为 true 时显示，为 false 时隐藏
+       */
+      floatingActionButton: !showToTopBtn ? null : FloatingActionButton(
+        // child 属性用于设置悬浮按钮的内容，通常是一个 Icon 小部件
+        child: const Icon(Icons.arrow_upward),
+        // onPressed 点击事件
+        onPressed: () {
+          /**
+           * animateTo 方法可以滚动列表到指定的位置
+           * 参数 1：指定滚动的偏移量，0 表示滚动到列表的起始位置
+           * 参数 2：滚动动画执行的时间，这里设置为 200 毫秒
+           * 参数 3：滚动动画曲线，这里设置为 Curves.ease，表示动画曲线为匀速曲线
+           */
+          _controller.animateTo(0, duration: const Duration(milliseconds: 200), curve: Curves.ease);
+        },
+      )
+    );
+  }
+
+  void _retrieveData(){
+    // 等待模拟的网络请求完成
+    Future.delayed(const Duration(milliseconds: 5)).then((value) => {
+      setState(() {
+        _data.addAll(List.generate(20, (index) => "第 $_num 次刷新、第 ${index + 1 + _data.length} 条数据"));
+      })
+    });
+  }
+
+}
+```
+
+4. 结果
+
+![|362](attachments/Pasted%20image%2020231107124424.png)
+
+![|362](attachments/Pasted%20image%2020231107124432.png)
+
+#### Ⅲ、滚动位置恢复
+
+1. `PageStorage` 是一个用于保存页面(路由)相关数据的组件，它并不会影响子树的 UI 外观，其实，`PageStorage` 是一个功能型组件，它拥有一个存储桶（bucket），子树中的 `Widget` 可以通过指定不同的 `PageStorageKey` 来存储各自的数据或状态。
+2. 每次滚动结束，可滚动组件都会将滚动位置 `offset` 存储到 `PageStorage` 中，当可滚动组件重新创建时再恢复。
+3. 如果 `ScrollController.keepScrollOffset` 为 `false`，则滚动位置将不会被存储，可滚动组件重新创建时会使用 `ScrollController.initialScrollOffset`
+4. `ScrollController.keepScrollOffset` 为 `true` 时，可滚动组件在第一次创建时，会滚动到 `initialScrollOffset` 处，因为这时还没有存储过滚动位置。在接下来的滚动中就会存储、恢复滚动位置，而 `initialScrollOffset` 会被忽略。
+5. 当一个路由中包含多个可滚动组件时，如果你发现在进行一些跳转或切换操作后，滚动位置不能正确恢复，这时你可以通过显式指定 `PageStorageKey` 来分别跟踪不同的可滚动组件的位置，如：
+
+```dart
+ListView(key: PageStorageKey(1), ... );
+...
+ListView(key: PageStorageKey(2), ... );
+```
+
+6. 不同的 `PageStorageKey`，需要不同的值，这样才可以为不同可滚动组件保存其滚动位置
+7. 注意：一个路由中包含多个可滚动组件时，如果要分别跟踪它们的滚动位置，并非一定就得给他们分别提供PageStorageKey。这是因为Scrollable本身是一个StatefulWidget，它的状态中也会保存当前滚动位置，所以，只要可滚动组件本身没有被从树上移除（detach），那么其State就不会销毁(dispose)，滚动位置就不会丢失。只有当Widget发生结构变化，导致可滚动组件的State销毁或重新构建时才会丢失状态，这种情况就需要显式指定PageStorageKey，通过PageStorage来存储滚动位置，一个典型的场景是在使用TabBarView时，在Tab发生切换时，Tab页中的可滚动组件的State就会销毁，这时如果想恢复滚动位置就需要指定PageStorageKey。
+
+#### Ⅳ、ScrollPosition
+
+1. `ScrollPosition` 是用来保存可滚动组件的滚动位置的。
+2. 一个 `ScrollController` 对象可以同时被多个可滚动组件使用，`ScrollController` 会为每一个可滚动组件创建一个 `ScrollPosition` 对象，这些 `ScrollPosition` 保存在 `ScrollController` 的 `positions` 属性中`List<ScrollPosition>`。
+3. `ScrollPosition` 是真正保存滑动位置信息的对象，`offset` 只是一个便捷属性：
+
+```dart
+double get offset => position.pixels;
+```
+
+4. 一个 `ScrollController` 虽然可以对应多个可滚动组件，但是有一些操作，如读取滚动位置 `offset`，则需要一对一！但是我们仍然可以在一对多的情况下，通过其他方法读取滚动位置，举个例子，假设一个 `ScrollController` 同时被两个可滚动组件使用，那么我们可以通过如下方式分别读取他们的滚动位置：
+
+```dart
+...
+controller.positions.elementAt(0).pixels
+controller.positions.elementAt(1).pixels
+...    
+```
+
+5. 我们可以通过 `controller.positions.length` 来确定 `controller` 被几个可滚动组件使用
+6. `ScrollPosition` 有两个常用方法：`animateTo()` 和 `jumpTo()`，它们是真正来控制跳转滚动位置的方法， `ScrollController` 的这两个同名方法，内部最终都会调用 `ScrollPositio` 的
+
+#### Ⅴ、ScrollController 控制原理
+
+1. 我们来介绍一下 ScrollController 的另外三个方法：
+
+```dart
+ScrollPosition createScrollPosition(
+    ScrollPhysics physics,
+    ScrollContext context,
+    ScrollPosition oldPosition);
+	void attach(ScrollPosition position) ;
+	void detach(ScrollPosition position) ;
+)
+```
+
+2. 当 `ScrollController` 和可滚动组件关联时，可滚动组件首先会调用 `ScrollController` 的 `createScrollPosition()` 方法创建一个 `ScrollPosition` 来存储滚动位置信息
+3. 接着，可滚动组件会调用 `attach()` 方法，将创建的 `ScrollPosition` 添加到 `ScrollController` 的 `positions` 属性中，这一步称为“注册位置”，只有注册后 a`nimateTo()` 和 `jumpTo()` 才可以被调用。
+4. 当可滚动组件销毁时，会调用 `ScrollController` 的 `detach()` 方法，将其 `ScrollPosition` 对象从 `ScrollController` 的 `positions` 属性中移除，这一步称为“注销位置”，注销后 `animateTo()` 和 `jumpTo()` 将不能再被调用。
+5. 需要注意的是，`ScrollController` 的 `animateTo()` 和 `jumpTo()` 内部会调用所有 `ScrollPosition` 的 `animateTo()` 和  `jumpTo()`，以实现所有和该 `ScrollController` 关联的可滚动组件都滚动到指定的位置
+
+### ②、滚动通知
+
+#### Ⅰ、滚动通知
+
+1. Flutter `Widget` 树中子 `Widget` 可以通过发送通知（`Notification`）与父(包括祖先) `Widget` 通信。
+2. 父级组件可以通过 `NotificationListener` 组件来监听自己关注的通知，这种通信方式类似于 Web 开发中浏览器的事件冒泡，我们在 Flutter 中沿用“冒泡”这个术语，关于通知冒泡我们将在后面“事件处理与通知”一章中详细介绍。
+3. 可滚动组件在滚动时会发送 `ScrollNotification` 类型的通知，`ScrollBar` 正是通过监听滚动通知来实现的。
+4. 通过 `NotificationListener` 监听滚动事件和通过 `ScrollController` 有两个主要的不同：
+	1. `NotificationListener` 可以在可滚动组件到 `widget` 树根之间任意位置监听。而 `ScrollController` 只能和具体的可滚动组件关联后才可以。
+	2. 收到滚动事件后获得的信息不同；`NotificationListener` 在收到滚动事件时，通知中会携带当前滚动位置和 `ViewPort` 的一些信息，而 `ScrollController` 只能获取当前滚动位置
+
+#### Ⅱ、实例
+
+1. 下面，我们监听 ListView 的滚动通知，然后显示当前列表的参数：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/03_滚动监听及控制/02_滚动通知.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: ScrollNotificationComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class ScrollNotificationComponent extends StatefulWidget {
+  const ScrollNotificationComponent({Key? key}) : super(key: key);
+
+  @override
+  _ScrollNotificationComponentState createState() => _ScrollNotificationComponentState();
+}
+
+class _ScrollNotificationComponentState extends State<ScrollNotificationComponent> {
+  // ScrollController 是一个用于控制可滚动组件（如 ListView、GridView、SingleChildScrollView 等）的控制器。
+  ScrollController _controller = ScrollController();
+
+  // 刷新次数
+  int _num = 0;
+  // 数据，用于显示 ListView 列表，初始值为 20 条数据，每次刷新增加 20 条数据
+  final List<String> _data = List.generate(20, (index) => "第 0 次刷新、第 ${index + 1} 条数据");
+  // 是否显示 返回到顶部 按钮
+  bool showToTopBtn = false;
+  // 添加一个变量用于保存屏幕的纵向尺寸（纵向像素）
+  double screenHeight = 0;
+  // 保存当前所在位置（提示刷新次数）
+  String _progress = """
+    当前滚动位置：
+    最大可滚动长度：
+    滑出ViewPort顶部的长度：
+    ViewPort内部长度：
+    列表中未滑入ViewPort部分的长度：
+    是否滑到了可滚动组件的边界：
+  """.split("\n").map((line) => line.trimLeft()).join('\n');
+
+  @override
+  void initState() {
+    super.initState();
+    // 监听滚动事件，打印滚动位置
+    _controller.addListener(() {
+      /**
+       * 打印滚动位置
+       * offset 的值表示可滚动组件内容顶部相对于可滚动区域顶部的偏移量。
+       * 初始情况下，offset 的值通常为 0，表示内容顶部与可滚动区域顶部对齐，没有发生滚动。
+       * 向下滚动列表时，offset 的值会逐渐增加；向上滚动列表时，offset 的值会逐渐减小
+       */
+      print("月海：${_controller.offset}");
+      // 如果当前列表的偏移量小于屏幕的纵向尺寸，且 返回到顶部 按钮已经显示，则隐藏按钮
+      if (_controller.offset < screenHeight && showToTopBtn) {
+        setState(() {
+          showToTopBtn = false;
+        });
+        // 如果当前列表的偏移量大于屏幕的纵向尺寸，且 返回到顶部 按钮没有显示，则显示按钮
+      } else if (_controller.offset >= screenHeight && !showToTopBtn) {
+        setState(() {
+          showToTopBtn = true;
+        });
+      }
+    });
+  }
+
+  /// dispose 方法是一个生命周期方法，它在 State 对象被永久地从内存中移除之前被调用。
+  @override
+  void dispose() {
+    // 为了避免内存泄露，需要调用 _controller.dispose 释放资源
+    _controller.dispose();
+    super.dispose();
+  }
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // 获取屏幕的尺寸
+    Size screenSize = MediaQuery.of(context).size;
+    // 获取屏幕的纵向尺寸（纵向像素）
+    screenHeight = screenSize.height;
+
+    /**
+     * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+     * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+     */
+    return Scaffold(
+      /**
+       * body: 用于定义页面的主要内容区域
+       * Stack 是一个小部件，它可以将子部件叠加排列。
+       * Stack 允许子部件堆叠，可使用 Positioned 根据 Stack 的四个角来定位子部件。
+       */
+      body: Stack(
+        // children是 Stack 的一个属性，用于设置 Stack 的子部件。
+        children: [
+          // Scrollbar 是一个小部件，用于为可滚动的子部件添加滚动条
+          Scrollbar(
+            // ListView 列表组件
+            child: NotificationListener(
+              onNotification: (ScrollNotification notification){
+                setState(() {
+                  _progress = """
+                    当前滚动位置：${notification.metrics.pixels}
+                    最大可滚动长度：${notification.metrics.maxScrollExtent}
+                    滑出ViewPort顶部的长度：${notification.metrics.extentBefore}
+                    ViewPort内部长度：${notification.metrics.extentInside}
+                    列表中未滑入ViewPort部分的长度：${notification.metrics.extentAfter}
+                    是否滑到了可滚动组件的边界：${notification.metrics.atEdge}
+                  """.split("\n").map((line) => line.trimLeft()).join('\n');
+                });
+                return false;
+              },
+              child: ListView.separated(
+                // controller：控制器，用于控制 ListView 的滚动位置
+                controller: _controller,
+                // itemCount：列表项的数量：_data 的长度
+                itemCount: _data.length,
+                /**
+                 * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+                 * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+                 */
+                itemBuilder: (BuildContext context, int index) {
+                  // 如果到了末尾
+                  if(index == _data.length - 1 - 5){
+                    // 刷新次数 + 1
+                    _num++;
+                    // 获取数据，添加到 _data 中，刷新列表
+                    _retrieveData();
+                  }
+                  return ListTile(title: Text(_data[index]));
+                },
+                // 分割器构造器
+                separatorBuilder: (context, index) => const Divider(color: Colors.red),
+              ),
+            )
+          ),
+          /**
+           * Align 是相对（父布局）定位
+           */
+          Align(
+            // 居中
+            alignment: Alignment.center,
+            // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+            child: Container(
+              color: Colors.cyan,
+              child: Text(_progress),
+            ),
+          )
+        ]
+      ),
+      /**
+       * 悬浮按钮
+       * showToTopBtn 为 true 时显示，为 false 时隐藏
+       */
+      floatingActionButton: !showToTopBtn ? null : FloatingActionButton(
+        // child 属性用于设置悬浮按钮的内容，通常是一个 Icon 小部件
+        child: const Icon(Icons.arrow_upward),
+        // onPressed 点击事件
+        onPressed: () {
+          /**
+           * animateTo 方法可以滚动列表到指定的位置
+           * 参数 1：指定滚动的偏移量，0 表示滚动到列表的起始位置
+           * 参数 2：滚动动画执行的时间，这里设置为 200 毫秒
+           * 参数 3：滚动动画曲线，这里设置为 Curves.ease，表示动画曲线为匀速曲线
+           */
+          _controller.animateTo(0, duration: const Duration(milliseconds: 200), curve: Curves.ease);
+        },
+      )
+    );
+  }
+
+  void _retrieveData(){
+    // 等待模拟的网络请求完成
+    Future.delayed(const Duration(milliseconds: 5)).then((value) => {
+      setState(() {
+        _data.addAll(List.generate(20, (index) => "第 $_num 次刷新、第 ${index + 1 + _data.length} 条数据"));
+      })
+    });
+  }
+
+}
+```
+
+2. 效果：
+
+![|369](attachments/Pasted%20image%2020231108143721.png)
+
+## 5、AnimatedList 动画列表组件
+
+### ①、介绍
+
+1. `AnimatedList` 和 `ListView` 的功能大体相似
+2. 不同的是， `AnimatedList` 可以在列表中插入或删除节点时执行一个动画，在需要添加或删除列表项的场景中会提高用户体验。
+3. `AnimatedList` 是一个 `StatefulWidget`，它对应的 `State` 类型为 `AnimatedListState`，添加和删除元素的方法位于 `AnimatedListState` 中：
+
+```dart
+void insertItem(int index, { Duration duration = _kDuration });
+
+void removeItem(int index, AnimatedListRemovedItemBuilder builder, { Duration duration = _kDuration }) ;
+```
+
+### ②、例子
+
+1. 初始的时候有5个列表项，点击 + 号按钮，会添加一个，添加过程执行渐显动画。
+2. 点击列表项后面的删除按钮，会删除该项，删除的时候执行一个渐隐 + 收缩的合成动画。
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/04_AnimatedList 动画列表组件/01_AnimatedList 动画列表组件.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: AnimatedListComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class AnimatedListComponent extends StatefulWidget {
+  const AnimatedListComponent({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedListComponentState createState() => _AnimatedListComponentState();
+}
+
+class _AnimatedListComponentState extends State<AnimatedListComponent> {
+  // 列表数据源，初始值为 0-4
+  final List<int> _data = List.generate(5, (index) => index);
+  /// globalKey 是一个 GlobalKey 对象，它是一个全局的唯一标识符，用于在 Flutter 中标识和操作特定的组件或部件状态
+  /// 具体来说，globalKey 是一个 GlobalKey<AnimatedListState> 对象，
+  /// 它可以通过 currentState 属性来获取 AnimatedList 的当前状态。
+  /// 通过 currentState，我们可以调用 AnimatedListState 中定义的方法，比如 insertItem 和 removeItem，来操作列表项并且触发相应的动画效果
+  final globalKey = GlobalKey<AnimatedListState>();
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Stack 允许子部件堆叠，可使用 Positioned 根据 Stack 的四个角来定位子部件。
+    return Stack(
+      children: [
+        // AnimatedList 动画列表组件
+        buildAnimatedList(),
+        // Align 是相对（父布局）定位，alignment: Alignment.center：居中
+        Align(alignment: Alignment.center, child: buildAddBtn())
+      ],
+    );
+  }
+
+  /// AnimatedList 动画列表组件
+  Widget buildAnimatedList(){
+    // Scrollbar 是一个小部件，用于为可滚动的子部件添加滚动条
+    return Scrollbar(
+      // AnimatedList 动画列表组件
+      child: AnimatedList(
+        // 属性 key 的作用是为部件在整个应用程序中提供一个唯一的标识，以便在需要对其进行操作时能够准确定位到该部件
+        key: globalKey,
+        // initialItemCount：列表项的数量：_data 的长度
+        initialItemCount: _data.length,
+        /**
+         * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+         * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+         */
+        itemBuilder: (BuildContext context, int index, Animation<double> animation) {
+          // 添加列表项时会执行渐显动画
+          return FadeTransition(
+            opacity: animation,
+            // 调用 buildItem 方法构建列表项，并将其作为渐变动画的子部件
+            child: buildItem(context, index),
+          );
+        },
+      ),
+    );
+  }
+
+  // 构建列表项
+  Widget buildItem(context, index) {
+    // ListTile 是一个 Material Design 风格的列表项，它是一个常用的列表项小部件
+    return ListTile(
+      // 为列表项添加一个 key，用于在删除列表项时定位到该列表项
+      key: ValueKey(_data[index]),
+      // 设置列表项的标题
+      title: Text("第 ${_data[index] + 1} 条数据"),
+      // trailing 是 ListTile 的一个属性，用于设置列表项的尾部内容
+      trailing: IconButton(
+        icon: const Icon(Icons.delete),
+        // 点击时删除
+        onPressed: () => { onDelete(context, index) },
+      ),
+    );
+  }
+
+  // 创建一个 + 按钮，点击后会向列表中插入一项
+  Widget buildAddBtn() {
+    // FloatingActionButton 是一个浮动按钮，它通常用于在页面上做一个快捷操作按钮
+    return FloatingActionButton(
+      child: const Icon(Icons.add),
+      onPressed: () {
+        // 如果列表为空，则向列表中添加一个 0，否则在最后一个列表项的值上加 1
+        if(_data.isEmpty){
+          _data.add(0);
+        }else{
+          _data.add(_data[_data.length - 1] + 1);
+        }
+        // 告诉列表项有新添加的列表项
+        globalKey.currentState!.insertItem(_data.length - 1);
+      },
+    );
+  }
+
+  /// 处理删除列表项的操作
+  onDelete(context, index) {
+    // 使用 globalKey 获取当前 AnimatedList 的状态，并调用 removeItem 方法来移除列表中的项
+    globalKey.currentState?.removeItem(
+      // 要移除的列表项的索引
+      index,
+      // 动画时间为 200 ms
+      duration: const Duration(milliseconds: 200),
+      // 这是一个回调函数，它接收两个参数，context 表示当前上下文，animation 是用于执行删除动画的动画对象
+      (context, animation){
+        // 创建要删除的列表项的副本，以便在动画中使用
+        var item = buildItem(context, index);
+        // 从数据源 _data 中删除指定索引的项
+        _data.removeAt(index);
+        // 返回一个 FadeTransition，它包裹了一个 SizeTransition，实现了渐隐和收缩列表项的合成动画
+        return FadeTransition(
+          // 设置渐隐动画的曲线，让透明度变化更快一些
+          opacity: CurvedAnimation(
+            parent: animation,
+            curve: const Interval(0.5, 1.0),
+          ),
+          // 实现列表项高度的缩小动画
+          child: SizeTransition(
+            sizeFactor: animation,
+            axisAlignment: 0.0,
+            child: item,
+          ),
+        );
+      }
+    );
+  }
+
+}
+```
+
+## 6、GridView 网格布局
+
+### ①、默认构造函数
+
+1. GridView可以构建一个二维网格列表，其默认构造函数定义如下：
+
+```dart
+GridView({
+  Key? key,
+  Axis scrollDirection = Axis.vertical,
+  bool reverse = false,
+  ScrollController? controller,
+  bool? primary,
+  ScrollPhysics? physics,
+  bool shrinkWrap = false,
+  EdgeInsetsGeometry? padding,
+  /**
+   * gridDelegate 参数，类型是 SliverGridDelegate，它的作用是控制 GridView 子组件如何排列(layout)
+   * SliverGridDelegate 是一个抽象类，定义了 GridView Layout 相关接口，子类需要通过实现它们来实现具体的布局算法。
+   * Flutter 中提供了两个 SliverGridDelegate 的子类
+   *    SliverGridDelegateWithFixedCrossAxisCount：实现了一个横轴为固定数量子元素的 layout 算法
+   *    SliverGridDelegateWithMaxCrossAxisExtent：实现了一个横轴子元素为固定最大长度的 layout 算法
+   */
+  required this.gridDelegate,  //下面解释
+  bool addAutomaticKeepAlives = true,
+  bool addRepaintBoundaries = true,
+  double? cacheExtent,
+  List<Widget> children = const <Widget>[],
+  ...
+})
+```
+
+2. `GridView` 和 `ListView` 的大多数参数都是相同的，它们的含义也都相同的，在此不再赘述。
+3. 唯一需要关注的是 `gridDelegate` 参数，类型是 `SliverGridDelegate`，它的作用是控制 `GridView` 子组件如何排列(layout)。
+
+### ②、SliverGridDelegateWithFixedCrossAxisCount
+
+1. 该子类实现了一个横轴为固定数量子元素的layout算法，其构造函数为：
+
+```dart
+SliverGridDelegateWithFixedCrossAxisCount({
+  /**
+   * crossAxisCount：横轴子元素的数量。
+   * 此属性值确定后子元素在横轴的长度就确定了，即 ViewPort 横轴长度除以 crossAxisCount 的商
+   */
+  @required double crossAxisCount,
+  /**
+   * mainAxisSpacing：主轴方向的间距。
+   */
+  double mainAxisSpacing = 0.0,
+  /**
+   * crossAxisSpacing：横轴方向子元素的间距。
+   */
+  double crossAxisSpacing = 0.0,
+  /**
+   * childAspectRatio：子元素在横轴长度和主轴长度的比例。
+   * 由于 crossAxisCount 指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度。
+   */
+  double childAspectRatio = 1.0,
+})
+```
+
+2. 可以发现，子元素的大小是通过 `crossAxisCount` 和 `childAspectRatio` 两个参数共同决定的。
+3. 注意，这里的子元素指的是子组件的最大显示空间，注意确保子组件的实际大小不要超出子元素的空间
+4. 示例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/05_GridView 网格布局/01_SliverGridDelegateWithFixedCrossAxis.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: SliverGridDelegateWithFixedCrossAxisCountComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class SliverGridDelegateWithFixedCrossAxisCountComponent extends StatelessWidget {
+  const SliverGridDelegateWithFixedCrossAxisCountComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // GridView 是一个常用的网格列表小部件，它可以沿着两个方向排列子元素，类似于网格布局。
+    return GridView(
+      // SliverGridDelegateWithFixedCrossAxisCount 是 GridView 的一个构造方法，用于创建一个横轴固定数量子元素的网格列表。
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        // 横轴三个子 widget
+        crossAxisCount: 3,
+        // 宽高比为 1 时，子 widget 的宽度和高度相等；即子 widget 为正方形
+        childAspectRatio: 1.0
+      ),
+      // 子 widget 列表
+      children: const [
+        Icon(Icons.ac_unit),
+        Icon(Icons.airport_shuttle),
+        Icon(Icons.all_inclusive),
+        Icon(Icons.beach_access),
+        Icon(Icons.cake),
+        Icon(Icons.free_breakfast)
+      ]
+    );
+  }
+}
+```
+5. 效果：
+
+![|363](attachments/Pasted%20image%2020231113150724.png)
+
+### ③、SliverGridDelegateWithMaxCrossAxisExtent
+
+1. 该子类实现了一个横轴子元素为固定最大长度的 layout 算法，其构造函数为：
+
+```dart
+SliverGridDelegateWithMaxCrossAxisExtent({
+  /**
+   * maxCrossAxisExtent 为子元素在横轴上的最大长度，
+   * 之所以是“最大”长度，是因为横轴方向每个子元素的长度仍然是等分的，
+   * 举个例子，如果 ViewPort 的横轴长度是 450，那么当 maxCrossAxisExtent 的值在区间 [450/4，450/3) 内的话，
+   * 子元素最终实际长度都为112.5，而 childAspectRatio 所指的子元素横轴和主轴的长度比为最终的长度比
+   */
+  double maxCrossAxisExtent,
+  /**
+   * mainAxisSpacing：主轴方向的间距。
+   */
+  double mainAxisSpacing = 0.0,
+  /**
+   * crossAxisSpacing：横轴方向子元素的间距。
+   */
+  double crossAxisSpacing = 0.0,
+  /**
+   * childAspectRatio：子元素在横轴长度和主轴长度的比例。
+   * 由于 crossAxisCount 指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度。
+   */
+  double childAspectRatio = 1.0,
+})
+```
+
+2. 示例
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/05_GridView 网格布局/01_SliverGridDelegateWithFixedCrossAxis.dart';
+import '04_可滚动组件/05_GridView 网格布局/02_SliverGridDelegateWithMaxCrossAxisExtent.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: SliverGridDelegateWithMaxCrossAxisExtentComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+// 引入 Flutter 的 material 包，包含 Flutter 应用程序的核心功能。
+import 'package:flutter/material.dart';
+
+class SliverGridDelegateWithMaxCrossAxisExtentComponent extends StatelessWidget {
+  const SliverGridDelegateWithMaxCrossAxisExtentComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // GridView 是一个常用的网格列表小部件，它可以沿着两个方向排列子元素，类似于网格布局。
+    return GridView(
+      // SliverGridDelegateWithFixedCrossAxisCount 是 GridView 的一个构造方法，用于创建一个横轴固定数量子元素的网格列表。
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        // maxCrossAxisExtent 是一个横轴子元素的最大长度，
+        maxCrossAxisExtent: 120.0,
+        // 宽高比为 2 时，子 widget 的宽度是高度的两倍
+        childAspectRatio: 2.0
+      ),
+      // 子 widget 列表
+      children: const [
+        Icon(Icons.ac_unit),
+        Icon(Icons.airport_shuttle),
+        Icon(Icons.all_inclusive),
+        Icon(Icons.beach_access),
+        Icon(Icons.cake),
+        Icon(Icons.free_breakfast)
+      ]
+    );
+  }
+}
+```
+
+3. 效果
+
+![|363](attachments/Pasted%20image%2020231113152404.png)
+
+### ④、GridView.count
+
+1. `GridView.count` 构造函数内部使用了 `SliverGridDelegateWithFixedCrossAxisCount`，我们通过它可以快速的创建横轴固定数量子元素的 `GridView`，我们可以通过以下代码实现和上面例子相同的效果等：
+
+```dart
+GridView.count( 
+  crossAxisCount: 3,
+  childAspectRatio: 1.0,
+  children: <Widget>[
+    Icon(Icons.ac_unit),
+    Icon(Icons.airport_shuttle),
+    Icon(Icons.all_inclusive),
+    Icon(Icons.beach_access),
+    Icon(Icons.cake),
+    Icon(Icons.free_breakfast),
+  ],
+);
+```
+
+### ⑤、GridView.extent
+
+1. `GridView.extent` `构造函数内部使用了SliverGridDelegateWithMaxCrossAxisExtent`，我们通过它可以快速的创建横轴子元素为固定最大长度的 `GridView`，上面的示例代码等价于：
+
+```dart
+GridView.extent(
+   maxCrossAxisExtent: 120.0,
+   childAspectRatio: 2.0,
+   children: <Widget>[
+     Icon(Icons.ac_unit),
+     Icon(Icons.airport_shuttle),
+     Icon(Icons.all_inclusive),
+     Icon(Icons.beach_access),
+     Icon(Icons.cake),
+     Icon(Icons.free_breakfast),
+   ],
+ );
+```
+
+### ⑥、GridView.builder
+
+1. 上面我们介绍的 `GridView` 都需要一个 `widget` 数组作为其子元素，这些方式都会提前将所有子 `widget` 都构建好，所以只适用于子 `widget` 数量比较少时
+2. 当子 `widget` 比较多时，我们可以通过 `GridView.builder` 来动态创建子 `widget`。
+3. `GridView.builder` 必须指定的参数有两个：
+
+```dart
+GridView.builder(
+ ...
+ required SliverGridDelegate gridDelegate, 
+ required IndexedWidgetBuilder itemBuilder,
+)
+```
+
+4. 其中 `itemBuilder` 为子 `widget` 构建器
+5. 假设我们需要从一个异步数据源（如网络）分批获取一些 `Icon`，然后用 `GridView` 来展示：
+
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/05_GridView 网格布局/01_SliverGridDelegateWithFixedCrossAxis.dart';
+import '04_可滚动组件/05_GridView 网格布局/02_SliverGridDelegateWithMaxCrossAxisExtent.dart';
+import '04_可滚动组件/05_GridView 网格布局/03_GridViewBuilder.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: GridViewBuilderComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class GridViewBuilderComponent extends StatefulWidget {
+  const GridViewBuilderComponent({Key? key}) : super(key: key);
+
+  @override
+  _GridViewBuilderComponentState createState() => _GridViewBuilderComponentState();
+}
+
+class _GridViewBuilderComponentState extends State<GridViewBuilderComponent> {
+  // 数据
+  final List<IconData> _data = [];
+
+  // initState 方法是 StatefulWidget 的一个方法，当 StatefulWidget 第一次插入到 Widget 树时会被调用
+  @override
+  void initState() {
+    super.initState();
+    // 初始化数据
+    _retrieveData();
+  }
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Scrollbar 是一个小部件，用于为可滚动的子部件添加滚动条
+    return Scrollbar(
+      // GridView.builder 是 GridView 的一个构造方法，用于创建一个横轴固定数量子元素的网格列表。
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          // 每行三列
+          crossAxisCount: 3,
+          // 宽高比为 1 时，子 widget 的宽度和高度相等；即子 widget 为正方形
+          childAspectRatio: 1.0,
+        ),
+        // itemCount：列表项的数量：_data 的长度
+        itemCount: _data.length,
+        /**
+         * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+         * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+         */
+        itemBuilder: (BuildContext context, int index) {
+          // 如果到了末尾
+          if(index == _data.length - 1){
+            // 获取数据，添加到 _data 中，刷新列表
+            _retrieveData();
+          }
+          return Icon(_data[index]);
+        },
+      )
+    );
+  }
+
+  void _retrieveData(){
+    // 等待模拟的网络请求完成
+    Future.delayed(const Duration(milliseconds: 5)).then((value) => {
+      setState(() {
+        _data.addAll([
+          Icons.ac_unit,
+          Icons.airport_shuttle,
+          Icons.all_inclusive,
+          Icons.beach_access,
+          Icons.cake,
+          Icons.free_breakfast,
+        ]);
+      })
+    });
+  }
+
+}
+```
+
+6. 效果：
+
+![|363](attachments/Pasted%20image%2020231113160015.png)
+
+## 7、PageView 与页面缓存
+
+### ①、PageView 构造函数
+
+1. 如果要实现页面切换和 `Tab` 布局，我们可以使用 `PageView` 组件。
+2. 需要注意，`PageView` 是一个非常重要的组件，因为在移动端开发中很常用，比如大多数 App 都包含 Tab 换页效果、图片轮动以及抖音上下滑页切换视频功能等等，这些都可以通过 `PageView` 轻松实现。
+
+```dart
+PageView({
+  Key? key,
+  this.scrollDirection = Axis.horizontal, // 滑动方向
+  this.reverse = false,
+  PageController? controller,
+  this.physics,
+  List<Widget> children = const <Widget>[],
+  this.onPageChanged,
+  
+  // 每次滑动是否强制切换整个页面，如果为false，则会根据实际的滑动距离显示页面
+  this.pageSnapping = true,
+  // 主要是配合辅助功能用的，后面解释
+  this.allowImplicitScrolling = false,
+  // 后面解释
+  this.padEnds = true,
+})
+```
+
+### ②、示例
+
+1. 示例
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/06_PageView 与页面缓存/01_Page.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: PageView(
+          children: const [
+            PageComponent(text: "Page 1"),
+            PageComponent(text: "Page 2"),
+            PageComponent(text: "Page 3"),
+            PageComponent(text: "Page 4"),
+            PageComponent(text: "Page 5"),
+            PageComponent(text: "Page 6"),
+          ],
+        ),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class PageComponent extends StatefulWidget {
+  const PageComponent({Key? key, required this.text}) : super(key: key);
+
+  final String text;
+
+  @override
+  _PageComponentState createState() => _PageComponentState();
+}
+
+class _PageComponentState extends State<PageComponent> {
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+	// 页面构建时打印数据
+	print("build ${widget.text}");
+    // Center 是一个小部件，用于将其子部件居中显示在屏幕上
+    return Center(child: Text("${widget.text}", textScaleFactor: 5));
+  }
+  
+}
+```
+
+2. 效果
+
+![|362](attachments/动画.gif)
+
+### ③、页面缓存
+
+1. 我们在运行上面示例时，每当页面切换时都会触发新 `Page` 页的 `build`，比如我们从第一页滑到第二页，然后再滑回第一页时，控制台打印如下：
+
+```dart
+flutter: build 0
+flutter: build 1
+flutter: build 0
+```
+
+2. 可见 `PageView` 默认并没有缓存功能，一旦页面滑出屏幕它就会被销毁，这和我们前面讲过的 `ListView/GridView` 不一样，在创建 `ListView/GridView` 时我们可以手动指定 `ViewPort` 之外多大范围内的组件需要预渲染和缓存（通过 `cacheExtent` 指定），只有当组件滑出屏幕后又滑出预渲染区域，组件才会被销毁，但是不幸的是 `PageView`  并没有 `cacheExtent` 参数！
+3. 但是在真实的业务场景中，对页面进行缓存是很常见的一个需求，比如一个新闻 App，下面有很多频道页，如果不支持页面缓存，则一旦滑到新的频道旧的频道页就会销毁，滑回去时又得重新请求数据和构建页面，这谁扛得住！
+4. 按道理 `cacheExtent` 是 `Viewport` 的一个配置属性，且 `PageView` 也是要构建 `Viewport` 的，那么为什么就不能透传一下这个参数呢？于是看了一下 PageView 的源码，发现在 PageView 创建Viewport 的代码中是这样的：
+
+```dart
+child: Scrollable(
+  ...
+  viewportBuilder: (BuildContext context, ViewportOffset position) {
+    return Viewport(
+      // TODO(dnfield): we should provide a way to set cacheExtent
+      // independent of implicit scrolling:
+      // https://github.com/flutter/flutter/issues/45632
+      cacheExtent: widget.allowImplicitScrolling ? 1.0 : 0.0,
+      cacheExtentStyle: CacheExtentStyle.viewport,
+      ...
+    );
+  },
+)
+```
+
+5. 我们发现，虽然 `PageView` 没有透传 `cacheExtent`，但是却在 `allowImplicitScrolling` 为 `true` 时设置了预渲染区域；
+6. 注意，此时的缓存类型为 `CacheExtentStyle.viewport`，则 `cacheExtent` 则表示缓存的长度是几个 `Viewport` 的宽度，`cacheExtent` 为 `1.0`，则代表前后各缓存一个页面宽度，即前后各一页。既然如此，那我们将 `PageView` 的 `allowImplicitScrolling` 置为 `true` 则不就可以缓存前后两页了？我们修改代码，然后运行示例，此时就可以缓存上下各一页了；
+7. 能缓存前后各一页也貌似比不能缓存好一点，但还是不能彻底解决不了我们的问题。为什么明明就是顺手的事， flutter 就不让开发者指定缓存策略呢？然后我们翻译一下源码中的注释：
+
+>    Todo：我们应该提供一种独立于隐式滚动（implicit scrolling）的设置 cacheExtent 的机制。
+
+8. 放开 cacheExtent 透传是很简单的事情，为什么还要以后再做？是有什么难题么？要理解这个我们就需要看看 `allowImplicitScrolling` 到底是什么了，根据文档以及注释中 issue 的链接，发现 PageView 中设置  `cacheExtent` 会和 iOS 中 辅助功能有冲突（读者可以先不用关注），所以暂时还没有什么好的办法。
+9. 看到这可能国内的很多开发者要说我们的 App 不用考虑辅助功能，既然如此，那问题很好解决，将 PageView 的源码拷贝一份，然后透传 cacheExtent 即可。
+10. 拷源码的方式虽然很简单，但毕竟不是正统做法，那有没有更通用的方法吗？有！还记得我们在本章第一节中说过“可滚动组件提供了一种通用的缓存子项的解决方案” 吗，我们将在下一节重点介绍
+
+## 8、AutomaticKeepAlive 可滚动组件子项缓存
+
+### ①、简介
+
+1. 本节将介绍可滚动组件中缓存指定子项的通用方案。
+2. 在介绍 `ListView` 时，有一个 `addAutomaticKeepAlives` 属性我们并没有介绍，如果 `addAutomaticKeepAlives` 为 `true`，则 `ListView` 会为每一个列表项添加一个 `AutomaticKeepAlive` 父组件。
+3. 虽然 `PageView` 的默认构造函数和 `PageView.builder` 构造函数中没有该参数，但它们最终都会生成一个 `SliverChildDelegate` 来负责列表项的按需加载，而在 `SliverChildDelegate` 中每当列表项构建完成后，`SliverChildDelegate` 都会为其添加一个 `AutomaticKeepAlive` 父组件。
+4. `AutomaticKeepAlive` 的组件的主要作用是将列表项的根 `RenderObject` 的 `keepAlive` 按需自动标记 为 `true` 或 `false`。为了方便叙述，我们可以认为根 `RenderObject` 对应的组件就是列表项的根 `Widget`，代表整个列表项组件，同时我们将列表组件的 `Viewport 区域 + cacheExtent（预渲染区域）` 称为加载区域 ：
+	1. 当 `keepAlive` 标记为 `false` 时，如果列表项滑出加载区域时，列表组件将会被销毁。
+	2. 当 `keepAlive` 标记为 `true` 时，当列表项滑出加载区域后，`Viewport` 会将列表组件缓存起来；当列表项进入加载区域时，`Viewport` 从先从缓存中查找是否已经缓存，如果有则直接复用，如果没有则重新创建列表项。
+5. 那么 `AutomaticKeepAlive` 什么时候会将列表项的 `keepAlive` 标记为 `true` 或 `false` 呢？答案是开发者说了算！
+6. Flutter 中实现了一套类似 `C/S` 的机制，`AutomaticKeepAlive` 就类似一个 `Server`，它的子组件可以是 `Client`，这样子组件想改变是否需要缓存的状态时就向 `AutomaticKeepAlive` 发一个通知消息`（KeepAliveNotification）`，`AutomaticKeepAlive` 收到消息后会去更改 `keepAlive` 的状态，如果有必要同时做一些资源清理的工作（比如 `keepAlive` 从 `true` 变为 `false` 时，要释放缓存）。
+7. 我们基于上一节 `PageView` 示例，实现页面缓存，根据上面的描述实现思路就很简单了：让 `Page` 页变成一个 `AutomaticKeepAlive Client` 即可。为了便于开发者实现，Flutter 提供了一个 `AutomaticKeepAliveClientMixin` ，我们只需要让 `PageState` 混入这个 mixin，且同时添加一些必要操作即可
+
+### ②、实例
+
+1. 让 `PageState` 混入 `AutomaticKeepAliveClientMixin`，在 `build` 中调用父类的 `build` 方法，并指定是否需要缓存
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/07_可滚动组件子项缓存/01_AutomaticKeepAlive.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: PageView(
+          children: const [
+            AutomaticKeepAliveComponent(text: "Page 1"),
+            AutomaticKeepAliveComponent(text: "Page 2"),
+            AutomaticKeepAliveComponent(text: "Page 3"),
+            AutomaticKeepAliveComponent(text: "Page 4"),
+            AutomaticKeepAliveComponent(text: "Page 5"),
+            AutomaticKeepAliveComponent(text: "Page 6"),
+          ],
+        ),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class AutomaticKeepAliveComponent extends StatefulWidget {
+  const AutomaticKeepAliveComponent({Key? key, required this.text}) : super(key: key);
+
+  final String text;
+
+  @override
+  _AutomaticKeepAliveComponentState createState() => _AutomaticKeepAliveComponentState();
+}
+
+// 混入 AutomaticKeepAliveClientMixin，这是保持状态的关键
+class _AutomaticKeepAliveComponentState extends State<AutomaticKeepAliveComponent> with AutomaticKeepAliveClientMixin {
+
+  // wantKeepAlive 为 true 表示使用 AutomaticKeepAliveClientMixin 保持状态
+  @override
+  // 是否需要缓存，如果为 false，则不缓存，每次都会重新构建
+  bool get wantKeepAlive => true;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // 必须调用父类的 build 方法
+    super.build(context);
+    // 页面构建时打印数据
+    print("build ${widget.text}");
+    // Center 是一个小部件，用于将其子部件居中显示在屏幕上
+    return Center(child: Text("${widget.text}", textScaleFactor: 5));
+  }
+
+}
+```
+
+2. 效果：
+
+![|700](attachments/动画%201.gif)
+
+3. 代码很简单，我们只需要提供一个 `wantKeepAlive`，它会表示 `AutomaticKeepAlive` 是否需要缓存当前列表项；另外我们必须在 `build` 方法中调用一下 `super.build(context)`，该方法实现在 `AutomaticKeepAliveClientMixin` 中，功能就是根据当前 `wantKeepAlive` 的值给 `AutomaticKeepAlive` 发送消息，`AutomaticKeepAlive` 收到消息后就会开始工作，如图所示：
+
+![|600](attachments/Pasted%20image%2020231114101153.png)
+
+4. 需要注意，如果我们采用 `PageView.custom` 构建页面时没有给列表项包装 `AutomaticKeepAlive` 父组件，则上述方案不能正常工作，因为此时 `Client` 发出消息后，找不到 `Server`，404 了
+
+## 9、TabBarView 标签栏
+
+### ①、TabBarView
+
+1. `TabBarView` 封装了 `PageView`，它的构造方法很简单
+
+```dart
+TabBarView({
+  Key? key,
+  required this.children, // tab 页
+  this.controller, // TabController
+  this.physics,
+  this.dragStartBehavior = DragStartBehavior.start,
+}) 
+```
+
+2. `TabController` 用于监听和控制 `TabBarView` 的页面切换，通常和 `TabBar` 联动。
+3. 如果没有指定，则会在组件树中向上查找并使用最近的一个 `DefaultTabController` 。
+
+### ②、TabBar
+
+1. `TabBar` 为 `TabBarView` 的导航标题，如图所示：
+
+![|700](attachments/Pasted%20image%2020231114102651.png)
+
+2. `TabBar` 有很多配置参数，通过这些参数我们可以定义 `TabBar` 的样式，很多属性都是在配置 `indicator` 和 `label`，拿上图来举例，`Label` `是每个Tab` 的文本，`indicator` 指 “历史” 下面的白色下划线。
+
+```dart
+const TabBar({
+  Key? key,
+  required this.tabs, // 具体的 Tabs，需要我们创建
+  this.controller,
+  this.isScrollable = false, // 是否可以滑动
+  this.padding,
+  this.indicatorColor,// 指示器颜色，默认是高度为2的一条下划线
+  this.automaticIndicatorColorAdjustment = true,
+  this.indicatorWeight = 2.0,// 指示器高度
+  this.indicatorPadding = EdgeInsets.zero, //指示器padding
+  this.indicator, // 指示器
+  this.indicatorSize, // 指示器长度，有两个可选值，一个tab的长度，一个是label长度
+  this.labelColor, 
+  this.labelStyle,
+  this.labelPadding,
+  this.unselectedLabelColor,
+  this.unselectedLabelStyle,
+  this.mouseCursor,
+  this.onTap,
+  ...
+}) 
+```
+
+3. `TabBar` 通常位于 `AppBar` 的底部，它也可以接收一个 `TabController` ，如果需要和 `TabBarView` 联动， `TabBar` 和 `TabBarView` 使用同一个 `TabController` 即可
+4. 注意，联动时 `TabBar` 和 `TabBarView` 的孩子数量需要一致。
+5. 如果没有指定 `controller`，则会在组件树中向上查找并使用最近的一个 `DefaultTabController` 。
+6. 另外我们需要创建需要的 `tab` 并通过 `tabs` 传给 `TabBar`， `tab` 可以是任何 `Widget`，不过 `Material` 组件库中已经实现了一个 `Tab` 组件，我们一般都会直接使用它：
+
+```dart
+const Tab({
+  Key? key,
+  this.text, //文本
+  this.icon, // 图标
+  this.iconMargin = const EdgeInsets.only(bottom: 10.0),
+  this.height,
+  this.child, // 自定义 widget
+})
+```
+
+7. 注意，`text` 和 `child` 是互斥的，不能同时制定。
+
+### ③、实例
+
+1. 实例
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/08_TabBarView 标签栏/01_TabBarView.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: TabBarViewComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+import '../07_可滚动组件子项缓存/01_AutomaticKeepAlive.dart';
+
+class TabBarViewComponent extends StatefulWidget {
+  const TabBarViewComponent({Key? key}) : super(key: key);
+
+  @override
+  _TabBarViewComponentState createState() => _TabBarViewComponentState();
+}
+
+// 混入 AutomaticKeepAliveClientMixin，这是保持状态的关键
+class _TabBarViewComponentState extends State<TabBarViewComponent> with SingleTickerProviderStateMixin {
+  // late 关键字，表示这个变量会延迟初始化
+  late TabController _tabController;
+  List tabs = ["新闻", "历史", "图片"];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: tabs.length, vsync: this);
+  }
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * Scaffold 是一个用于创建基本页面布局的小部件。
+     * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+     * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+     */
+    return Scaffold(
+      // appBar 属性用于设置应用程序顶部的导航栏。
+      appBar: AppBar(
+        /**
+         * toolbarHeight 属性用于设置 AppBar 的高度, 默认高度为 kToolbarHeight = 56.0
+         * 如果设置为 0，则 AppBar 的高度将会变为 0，即不再给 title 留出空间
+         */
+        toolbarHeight: 0,
+        /**
+         * bottom 属性用于设置 AppBar 的底部区域，通常用于设置 TabBar
+         * TabBar 是一个 Material Design 样式的选项卡，通常放置在 AppBar 的底部
+         */
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: tabs.map((e) => Tab(text: e)).toList(),
+        ),
+      ),
+      /**
+       * body: 用于定义页面的主要内容区域
+       * TabBarView 是一个用于在 TabBar 和 TabBarView 之间同步切换的小部件。
+       */
+      body: TabBarView(
+        controller: _tabController,
+        children: tabs.map((e) {
+          // 创建一个 TabBarView，它包含了三个 Tab 页
+          return AutomaticKeepAliveComponent(text: e,);
+        }).toList(),
+      ),
+    );
+  }
+  
+  @override
+  void dispose() {
+    // 释放资源
+    _tabController.dispose();
+    super.dispose();
+  }
+
+}
+```
+
+2. 效果
+
+![|415](attachments/动画1.gif)
+
+### ④、使用默认控制器
+
+1. 上面的例子中，滑动页面时顶部的 Tab 也会跟着动，点击顶部 Tab 时页面也会跟着切换。
+2. 为了实现 `TabBar` 和 `TabBarView` 的联动，我们显式创建了一个 `TabController`，由于 `TabController` 又需要一个 `TickerProvider` （vsync 参数）， 我们又混入了 `SingleTickerProviderStateMixin`；
+3. 由于 `TabController` 中会执行动画，持有一些资源，所以我们在页面销毁时必须得释放资源（dispose）。
+4. 综上，我们发现创建 `TabController` 的过程还是比较复杂，实战中，如果需要 TabBar 和 TabBarView 联动，通常会创建一个 `DefaultTabController` 作为它们共同的父级组件，这样它们在执行时就会从组件树向上查找，都会使用我们指定的这个 `DefaultTabController`。
+5. 我们修改后的实现如下：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '../07_可滚动组件子项缓存/01_AutomaticKeepAlive.dart';
+
+class TabBarViewComponent extends StatefulWidget {
+  const TabBarViewComponent({Key? key}) : super(key: key);
+
+  @override
+  _TabBarViewComponentState createState() => _TabBarViewComponentState();
+}
+
+class _TabBarViewComponentState extends State<TabBarViewComponent>{
+  List tabs = ["新闻", "历史", "图片"];
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * DefaultTabController 是默认的 TabController 实现，它接受一个 length 参数来指定 TabBar 中 Tab 页的个数，
+     * 然后通过 Scaffold.of(context) 来获取父级最近的 Scaffold 组件，然后再调用 ScaffoldState 的方法来设置底部的 TabBar。
+     */
+    return DefaultTabController(
+      // 设置 TabBar 中 Tab 页的个数
+      length: tabs.length,
+      /**
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      child: Scaffold(
+        // appBar 属性用于设置应用程序顶部的导航栏。
+        appBar: AppBar(
+          /**
+           * toolbarHeight 属性用于设置 AppBar 的高度, 默认高度为 kToolbarHeight = 56.0
+           * 如果设置为 0，则 AppBar 的高度将会变为 0，即不再给 title 留出空间
+           */
+          toolbarHeight: 0,
+          /**
+           * bottom 属性用于设置 AppBar 的底部区域，通常用于设置 TabBar
+           * TabBar 是一个 Material Design 样式的选项卡，通常放置在 AppBar 的底部
+           */
+          bottom: TabBar(
+            tabs: tabs.map((e) => Tab(text: e)).toList(),
+          ),
+        ),
+        /**
+         * body: 用于定义页面的主要内容区域
+         * TabBarView 是一个用于在 TabBar 和 TabBarView 之间同步切换的小部件。
+         */
+        body: TabBarView(
+          children: tabs.map((e) {
+            // 创建一个 TabBarView，它包含了三个 Tab 页
+            return AutomaticKeepAliveComponent(text: e,);
+          }).toList(),
+        ),
+      )
+    );
+  }
+
+}
+```
+
+6. 可以看到我们无需去手动管理 `Controller` 的生命周期，也不需要提供 `SingleTickerProviderStateMixin`，同时也没有其他的状态需要管理，也就不需要用 `StatefulWidget` 了，这样简单很多。
+
+## 10、CustomScrollView 和 Slivers
+
+### ①、CustomScrollView
+
+1. 前面介绍的 `ListView`、`GridView`、`PageView` 都是一个完整的可滚动组件，所谓完整是指它们都包括 `Scrollable` 、 `Viewport` 和 `Sliver`。
+2. 假如我们想要在一个页面中，同时包含多个可滚动组件，且使它们的滑动效果能统一起来，比如：我们想将已有的两个沿垂直方向滚动的 `ListView` 拼接成一个 `ListView` ，这样在第一个 `ListView` 滑动到底部时能自动接上第二 `ListView`，如果尝试写一个 demo：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/09_CustomScrollView 和 Slivers/01_CustomScrollView_1.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: CustomScrollView1Component(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class CustomScrollView1Component extends StatefulWidget {
+  const CustomScrollView1Component({Key? key}) : super(key: key);
+
+  @override
+  _CustomScrollView1ComponentState createState() => _CustomScrollView1ComponentState();
+}
+
+class _CustomScrollView1ComponentState extends State<CustomScrollView1Component>{
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // 创建 ListView，其中包含 20 个 ListTile，用于显示列表项
+    var listView = ListView.builder(
+      itemCount: 20,
+      itemBuilder: (_, index) => ListTile(title: Text('$index')),
+    );
+
+    // Column 是一个将子 Widget 垂直排列的小部件，它的高度默认为子 Widget 的高度之和
+    return Column(
+      children: [
+        // Expanded 是一个可以用来包裹子 Widget 的小部件，它会将子 Widget 沿着父部件的垂直方向拉伸并填充满父部件
+        Expanded(child: listView),
+        // Divider 是一个分割线小部件，它可以在任何两个 Widget 之间添加一个分割线
+        const Divider(color: Colors.grey),
+        Expanded(child: listView),
+      ],
+    );
+  }
+
+}
+```
+
+3. 运行效果如图所示：
+
+![|415](attachments/动画2.gif)
+
+4. 页面中有两个 `ListView`，各占可视区域一半高度，虽然能够显式出来，但每一个 `ListView` 只会响应自己可视区域中滑动，实现不了我们想要的效果。
+5. 之所以会这样的原因是两个 `ListView` 都有自己独立的 `Scrollable` 、 `Viewport` 和 `Sliver`，既然如此，我们自己创建一个共用的 `Scrollable` 和 `Viewport` 对象，然后再将两个 `ListView` 对应的 `Sliver` 添加到这个共用的 `Viewport` 对象中就可以实现我们想要的效果了。
+6. 如果这个工作让开发者自己来做无疑是比较麻烦的，因此 Flutter 提供了一个 `CustomScrollView` 组件来帮助我们创建一个公共的 `Scrollable` 和 `Viewport` ，然后它的 `slivers` 参数接受一个 `Sliver` 数组，这样我们就可以使用 `CustomScrollView` 方面的实现我们期望的功能了：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/09_CustomScrollView 和 Slivers/02_CustomScrollView_2.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: CustomScrollView2Component(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class CustomScrollView2Component extends StatefulWidget {
+  const CustomScrollView2Component({Key? key}) : super(key: key);
+
+  @override
+  _CustomScrollView2ComponentState createState() => _CustomScrollView2ComponentState();
+}
+
+class _CustomScrollView2ComponentState extends State<CustomScrollView2Component>{
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * SliverFixedExtentList 是一个 Sliver，它可以生成高度相同的列表项。
+     * 再次提醒，如果列表项高度相同，我们应该优先使用SliverFixedExtentList 和 SliverPrototypeExtentList，
+     * 如果不同，使用 SliverList.
+     */
+    var listView1 = SliverFixedExtentList(
+      // 列表项高度固定
+      itemExtent: 56,
+      delegate: SliverChildBuilderDelegate(
+        (_, index) => ListTile(title: Text('第一个列表 $index')),
+        childCount: 20,
+      ),
+    );
+
+    var listView2 = SliverFixedExtentList(
+      // 列表项高度固定
+      itemExtent: 56,
+      delegate: SliverChildBuilderDelegate(
+            (_, index) => ListTile(title: Text('第二个列表 ${index + 20}')),
+        childCount: 20,
+      ),
+    );
+
+    // CustomScrollView 是一个可以自定义滚动模型的组件，它可以包含多种滚动模型。
+    return CustomScrollView(
+      // slivers 是 CustomScrollView 的一个参数，它接受一个 SliverList 集合。
+      slivers: [
+        listView1,
+        // 插入一个分割线
+        SliverToBoxAdapter(
+          child: Container(
+            height: 1.0,
+            color: Colors.grey,
+          ),
+        ),
+        listView2,
+      ],
+    );
+  }
+
+}
+```
+
+7. 效果：
+
+![|415](attachments/动画3.gif)
+
+8. 综上，`CustomScrollView` 的主要功能是提供一个公共的 `Scrollable` 和 `Viewport`，来组合多个 `Sliver`，`CustomScrollView` 的结构如图所示：
+
+![|600](attachments/Pasted%20image%2020231114145921.png)
+
+### ②、Flutter 中常用的 Sliver
+
+1. 之前小节介绍过的可滚动组件都有对应的 `Sliver`：
+
+| Sliver名称                | 功能                               | 对应的可滚动组件               |
+| ------------------------- | ---------------------------------- | ------------------------------ |
+| SliverList                | 列表                               | ListView                       |
+| SliverFixedExtentList     | 高度固定的列表                     | ListView，指定itemExtent时     |
+| SliverAnimatedList        | 添加/删除列表项可以执行动画        | AnimatedList                   |
+| SliverGrid                | 网格                               | GridView                       |
+| SliverPrototypeExtentList | 根据原型生成高度固定的列表         | ListView，指定prototypeItem 时 |
+| SliverFillViewport        | 包含多个子组件，每个都可以填满屏幕 | PageView                       |
+
+2. 除了和列表对应的 `Sliver` 之外还有一些用于对 `Sliver` 进行布局、装饰的组件，它们的子组件必须是 `Sliver`，我们列举几个常用的：
+
+| Sliver名称                      | 对应 RenderBox      |
+| ------------------------------- | ------------------- |
+| SliverPadding                   | Padding             |
+| SliverVisibility、SliverOpacity | Visibility、Opacity |
+| SliverFadeTransition            | FadeTransition      |
+| SliverLayoutBuilder             | LayoutBuilder       |
+
+3. 还有一些其他常用的 `Sliver`：
+
+| Sliver名称             | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| SliverAppBar           | 对应 AppBar，主要是为了在 CustomScrollView 中使用。    |
+| SliverToBoxAdapter     | 一个适配器，可以将 RenderBox 适配为 Sliver，后面介绍。 |
+| SliverPersistentHeader | 滑动到顶部时可以固定住，后面介绍。                     |
+
+4. `Sliver` 系列 `Widget` 比较多，我们不会一一介绍，只需记住它的特点，需要时再去查看文档即可。
+5. 上面之所以说“大多数”Sliver都和可滚动组件对应，是由于还有一些如 `SliverPadding`、`SliverAppBar` 等是和可滚动组件无关的，它们主要是为了结合 `CustomScrollView` 一起使用，这是因为 `CustomScrollView` 的子组件必须都是 `Sliver`
+
+### ③、Flutter 中常用的 Sliver 示例
+
+1. 代码分为三部分：
+2. 头部 `SliverAppBar`：`SliverAppBar` 对应 `AppBar`，两者不同之处在于 `SliverAppBar` 可以集成到 `CustomScrollView`。`SliverAppBar` 可以结合 `FlexibleSpaceBar` 实现 `Material Design` 中头部伸缩的模型，具体效果，可以运行该示例查看。
+3. 中间的 `SliverGrid`：它用 `SliverPadding` 包裹以给 `SliverGrid` 添加补白。`SliverGrid` 是一个两列，宽高比为 4 的网格，它有 20 个子组件。
+4. 底部 `SliverFixedExtentList`：它是一个所有子元素高度都为 50 像素的列表。
+
+```dart
+// 因为本路由没有使用 Scaffold，为了让子级Widget(如Text)使用
+// Material Design 默认的样式风格,我们使用 Material 作为本路由的根。
+Material(
+  child: CustomScrollView(
+    slivers: <Widget>[
+      // AppBar，包含一个导航栏.
+      SliverAppBar(
+        pinned: true, // 滑动到顶端时会固定住
+        expandedHeight: 250.0,
+        flexibleSpace: FlexibleSpaceBar(
+          title: const Text('Demo'),
+          background: Image.asset(
+            "./imgs/sea.png",
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      SliverPadding(
+        padding: const EdgeInsets.all(8.0),
+        sliver: SliverGrid(
+          //Grid
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, //Grid按两列显示
+            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 10.0,
+            childAspectRatio: 4.0,
+          ),
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              //创建子widget
+              return Container(
+                alignment: Alignment.center,
+                color: Colors.cyan[100 * (index % 9)],
+                child: Text('grid item $index'),
+              );
+            },
+            childCount: 20,
+          ),
+        ),
+      ),
+      SliverFixedExtentList(
+        itemExtent: 50.0,
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            //创建列表项
+            return Container(
+              alignment: Alignment.center,
+              color: Colors.lightBlue[100 * (index % 9)],
+              child: Text('list item $index'),
+            );
+          },
+          childCount: 20,
+        ),
+      ),
+    ],
+  ),
+);
+```
+
+5. 运行效果如图所示：
+
+![|320](attachments/Pasted%20image%2020231114150955.png)
+
+![|320](attachments/Pasted%20image%2020231114151004.png)
+
+### ④、SliverToBoxAdapter
+
+1. 在实际布局中，我们通常需要往 `CustomScrollView` 中添加一些自定义的组件，而这些组件并非都有 `Sliver` 版本，为此 Flutter 提供了一个 `SliverToBoxAdapter` 组件，它是一个适配器：可以将 `RenderBox` 适配为 `Sliver`。比如我们想在列表顶部添加一个可以横向滑动的 `PageView`，可以使用 `SliverToBoxAdapter` 来配置：
+
+```dart
+import 'package:flutter/material.dart';
+
+class SliverToBoxAdapterComponent extends StatefulWidget {
+  const SliverToBoxAdapterComponent({Key? key}) : super(key: key);
+
+  @override
+  _SliverToBoxAdapterComponentState createState() => _SliverToBoxAdapterComponentState();
+}
+
+class _SliverToBoxAdapterComponentState extends State<SliverToBoxAdapterComponent>{
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * SliverFixedExtentList 是一个 Sliver，它可以生成高度相同的列表项。
+     * 再次提醒，如果列表项高度相同，我们应该优先使用SliverFixedExtentList 和 SliverPrototypeExtentList，
+     * 如果不同，使用 SliverList.
+     */
+    var listView1 = SliverFixedExtentList(
+      // 列表项高度固定
+      itemExtent: 56,
+      delegate: SliverChildBuilderDelegate(
+        (_, index) => ListTile(title: Text('第一个列表 $index')),
+        childCount: 20,
+      ),
+    );
+
+    var listView2 = SliverFixedExtentList(
+      // 列表项高度固定
+      itemExtent: 56,
+      delegate: SliverChildBuilderDelegate(
+            (_, index) => ListTile(title: Text('第二个列表 ${index + 20}')),
+        childCount: 20,
+      ),
+    );
+
+    // CustomScrollView 是一个可以自定义滚动模型的组件，它可以包含多种滚动模型。
+    return CustomScrollView(
+      // slivers 是 CustomScrollView 的一个参数，它接受一个 SliverList 集合。
+      slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 300,
+            child: PageView(
+              children: const [Text("1", textScaleFactor: 20), Text("2", textScaleFactor: 20)],
+            ),
+          ),
+        ),
+        listView1,
+        // 插入一个分割线
+        SliverToBoxAdapter(
+          child: Container(
+            height: 1.0,
+            color: Colors.grey,
+          ),
+        ),
+        listView2,
+      ],
+    );
+  }
+
+}
+```
+
+2. 效果：
+
+![|415](attachments/动画4.gif)
+
+3. 注意，上面的代码是可以正常运行的，但是如果将 `PageView` 换成一个滑动方向和 `CustomScrollView` 一致的 `ListView` 则不会正常工作！
+4. 原因是：`CustomScrollView` 组合 `Sliver` 的原理是为所有子 `Sliver` 提供一个共享的 `Scrollable`，然后统一处理指定滑动方向的滑动事件，如果 `Sliver` 中引入了其他的 `Scrollable`，则滑动事件便会冲突。
+5. 上例中 `PageView` 之所以能正常工作，是因为 `PageView` 的 `Scrollable` 只处理水平方向的滑动，而 `CustomScrollView` 是处理垂直方向的，两者并未冲突，所以不会有问题，但是换一个也是垂直方向的 `ListView` 时则不能正常工作，最终的效果是，在 `ListView` 内滑动时只会对 `ListView` 起作用，原因是滑动事件被 `ListView` 的 `Scrollable` 优先消费，`CustomScrollView` 的 `Scrollable` 便接收不到滑动事件了。
+6. Flutter 中手势的冲突时，默认的策略是子元素生效，这个我们将在后面事件处理相关章节介绍。
+7. 所以我们可以得出一个结论：如果 `CustomScrollView` 有孩子也是一个完整的可滚动组件且它们的滑动方向一致，则 `CustomScrollView` 不能正常工作。要解决这个问题，可以使用 `NestedScrollView`，这个我们将在下一节介绍
+
+### ⑤、SliverPersistentHeader
+
+1. SliverPersistentHeader 的功能是当滑动到 CustomScrollView 的顶部时，可以将组件固定在顶部。
+2. 需要注意， Flutter 中设计 `SliverPersistentHeader` 组件的初衷是为了实现 `SliverAppBar`，所以它的一些属性和回调在 `SliverAppBar` 中才会用到。
+3. 因此，如果我们要直接使用 `SliverPersistentHeader`，看到它的一些配置和参数会感到疑惑，使用起来会感觉有心智成本，为此，会在下面介绍中指出哪些是需要我们重点关注的，哪些是可以忽略的
+4. 我们先看看 `SliverPersistentHeader` 的定义：
+
+```dart
+const SliverPersistentHeader({
+  Key? key,
+  /**
+   * delegate 是用于生成 header 的委托，类型为 SliverPersistentHeaderDelegate，它是一个抽象类，需要我们自己实现
+   */
+  required SliverPersistentHeaderDelegate delegate,
+  /**
+   * header 滑动到可视区域顶部时是否固定在顶部
+   */
+  this.pinned = false, 
+  /**
+   * floating 的作用是：pinned 为 false 时 ，则 header 可以滑出可视区域（CustomScrollView 的 Viewport）（不会固定到顶部），
+   * 当用户再次向下滑动时，此时不管 header 已经被滑出了多远，它都会立即出现在可视区域顶部并固定住，
+   * 直到继续下滑到 header 在列表中原来的位置时，header 才会重新回到原来的位置（不再固定在顶部）
+   */
+  this.floating = false,
+})
+```
+
+5. delegate 的定义如下：
+
+```dart
+abstract class SliverPersistentHeaderDelegate {
+
+  /**
+   * header 最大高度；pined为 true 时，当 header 刚刚固定到顶部时高度为最大高度。
+   */
+  double get maxExtent;
+
+  /**
+   * header 的最小高度；pined 为 true 时，当 header 固定到顶部，用户继续往上滑动时，
+   * header 的高度会随着用户继续上滑从 maxExtent 逐渐减小到 minExtent
+   */
+  double get minExtent;
+
+  /**
+   * 构建 header。
+   * shrinkOffset 取值范围 [0,maxExtent]，当 header 刚刚到达顶部时，shrinkOffset 值为 0，
+   * 如果用户继续向上滑动列表，shrinkOffset 的值会随着用户滑动的偏移减小，直到减到 0 时。
+   * overlapsContent：一般不建议使用，在使用时一定要小心，后面会解释。
+   */
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent);
+
+  /**
+   * header 是否需要重新构建；通常当父级的 StatefulWidget 更新状态时会触发。
+   * 一般来说只有当 Delegate 的配置发生变化时，应该返回false，比如新旧的 minExtent、maxExtent
+   * 等其他配置不同时需要返回 true，其余情况返回 false 即可。
+   */
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate);
+
+  /**
+   * 下面这几个属性是 SliverPersistentHeader 在 SliverAppBar 中时实现 floating、snap 效果时会用到，
+   * 平时开发过程很少使用到，可以先不用理会。
+   */
+  TickerProvider? get vsync => null;
+  FloatingHeaderSnapConfiguration? get snapConfiguration => null;
+  OverScrollHeaderStretchConfiguration? get stretchConfiguration => null;
+  PersistentHeaderShowOnScreenConfiguration? get showOnScreenConfiguration => null;
+
+}
+```
+
+6. 可以看到，我们最需要关注的就是 `maxExtent` 和 `minExtent`；`pined` 为 `true` 时，当 `header` 刚刚固定到顶部，此时会对它应用 `maxExtent` （最大高度）；当用户继续往上滑动时，`header` 的高度会随着用户继续上滑从 `maxExtent` 逐渐减小到 `minExtent`。如果我们想让 `header` 高度固定，则将 `maxExtent` 和 `minExtent` 指定为同样的值即可。
+
+#### Ⅰ、实例
+
+1. 主方法 `main.dart`
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_可滚动组件/09_CustomScrollView 和 Slivers/04_1_SliverPersistentHeaderComponent.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: SliverPersistentHeaderComponent(),
+      )
+    );
+  }
+}
+```
+
+2. 继承了 `SliverPersistentHeaderDelegate` 的 `SliverPersistentHeaderBuilder` 类，它用于定义 SliverPersistentHeader 的行为和外观
+
+```dart
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+// 继承 SliverPersistentHeaderDelegate，它用于定义 SliverPersistentHeader 的行为和外观
+class SliverPersistentHeaderBuilder extends SliverPersistentHeaderDelegate {
+  // 构造函数，接收最小高度、最大高度和子 Widget 作为参数。
+  SliverPersistentHeaderBuilder({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
+  // 最小高度
+  final double minHeight;
+  // 最大高度
+  final double maxHeight;
+  // 子 Widget
+  final Widget child;
+
+  // 重写 minExtent，返回最小高度
+  @override
+  double get minExtent => minHeight;
+
+  // 重写 maxExtent，返回最大高度。如果最大高度小于最小高度，返回最小高度
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+
+  // 重写 build 方法，返回一个填充父 Widget 的 SizedBox，包含 child
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  // 重写 shouldRebuild 方法，当最大高度、最小高度或子 Widget 改变时，重新构建
+  @override
+  bool shouldRebuild(SliverPersistentHeaderBuilder oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
+  }
+
+}
+```
+
+3. `SliverPersistentHeaderComponent` 类使用 `SliverPersistentHeaderBuilder`
+
+```dart
+import 'package:flutter/material.dart';
+
+import '04_2_SliverPersistentHeader.dart';
+
+class SliverPersistentHeaderComponent extends StatefulWidget {
+  const SliverPersistentHeaderComponent({Key? key}) : super(key: key);
+
+  @override
+  _SliverPersistentHeaderComponentState createState() => _SliverPersistentHeaderComponentState();
+}
+
+class _SliverPersistentHeaderComponentState extends State<SliverPersistentHeaderComponent>{
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * SliverFixedExtentList 是一个 Sliver，它可以生成高度相同的列表项。
+     * 再次提醒，如果列表项高度相同，我们应该优先使用SliverFixedExtentList 和 SliverPrototypeExtentList，
+     * 如果不同，使用 SliverList.
+     */
+    var listView1 = SliverFixedExtentList(
+      // 列表项高度固定
+      itemExtent: 56,
+      delegate: SliverChildBuilderDelegate(
+        (_, index) => ListTile(title: Text('第一个列表 $index')),
+        childCount: 20,
+      ),
+    );
+
+    // CustomScrollView 是一个可以自定义滚动模型的组件，它可以包含多种滚动模型。
+    return CustomScrollView(
+      // slivers 是 CustomScrollView 的一个参数，它接受一个 SliverList 集合。
+      slivers: [
+        // 调用方法，返回一个 SliverPersistentHeader
+        _SliverPersistentHeaderBuilder(),
+        listView1,
+        // 插入一个分割线
+        SliverToBoxAdapter(
+          child: Container(
+            height: 1.0,
+            color: Colors.grey,
+          ),
+        ),
+        // 调用方法，返回一个 SliverPersistentHeader
+        _SliverPersistentHeaderBuilder(),
+        listView1,
+      ],
+    );
+  }
+
+  // 构建 SliverPersistentHeader，它是一个固定高度的 Sliver，它可以在滚动时固定在顶部或底部，实现吸顶或吸底效果
+  Widget _SliverPersistentHeaderBuilder(){
+    return SliverPersistentHeader(
+      // pinned 为 true 时，代表 SliverPersistentHeader 向上滚动时会固定在顶部
+      pinned: true,
+      delegate: SliverPersistentHeaderBuilder(
+        // minHeight 最小高度
+        minHeight: 60.0,
+        // maxHeight 最大高度
+        maxHeight: 200.0,
+        // child 子 Widget；Container 是一个常用的容器类 Widget，它可以装饰、布局、限制子 Widget，相当于 Android 中的 FrameLayout
+        child: Container(
+          color: Colors.green,
+          child: const Center(
+            child: Text('Persistent Header'),
+          ),
+        ),
+      ),
+    );
+  }
+
+}
+```
+
+#### Ⅱ、效果
+
+![|415](attachments/动画5.gif)
+
+#### Ⅲ、一些注意点
+
+1. `SliverPersistentHeader` 的 `builder` 参数 `overlapsContent` 一般不建议使用，使用时要当心。
+2. 因为按照 `overlapsContent` 变量名的字面意思，只要有内容和 `Sliver` 重叠时就应该为 `true`，但是如果我们在上面示例的 `builder` 中打印一下 `overlapsContent` 的值就会发现第一个 PersistentHeader 1 的 `overlapsContent` 值一直都是 `false`，而 PersistentHeader 2 则是正常的，如果我们再添加几个 `SliverPersistentHeader` ，发现新添加的也都正常。总结一下：当有多个 `SliverPersistentHeader` 时，需要注意第一个 `SliverPersistentHeader` 的 `overlapsContent` 值会一直为 `false`。
+3. 这可能是一个 bug，也可能就是这么设计的，因为 `SliverPersistentHeader` 的设计初衷主要是为了实现 `SliverAppBar`，可能并没有考虑到通用的场景，但是不管怎样，当前的 flutter 版本（2.5）中表现就是如此。
+4. 为此，我们可以定一条约定：如果我们在使用 `SliverPersistentHeader` 构建子组件时需要依赖 `overlapsContent` 参数，则必须保证之前至少还有一个 `SliverPersistentHeader` 或 `SliverAppBar`（SliverAppBar 在当前 Flutter 版本的实现中内部包含了SliverPersistentHeader）。
+
+## 11、自定义 Sliver
+
+## 12、嵌套可滚动组件 NestedScrollView
+
+# 七、功能型组件
+
+## 1、导航返回拦截（WillPopScope）
+
+1. 为了避免用户误触返回按钮而导致 App 退出，在很多 App 中都拦截了用户点击返回键的按钮，然后进行一些防误触判断，比如当用户在某一个时间段内点击两次时，才会认为用户是要退出（而非误触）。
+2. Flutter 中可以通过 `WillPopScope` 来实现返回按钮拦截，我们看看 `WillPopScope` 的默认构造函数：
+
+```dart
+const WillPopScope({
+  ...
+  /**
+   * onWillPop 是一个回调函数，当用户点击返回按钮时被调用（包括导航返回按钮及 Android 物理返回按钮）。
+   * 该回调需要返回一个 Future 对象，如果返回的 Future 最终值为 false 时，则当前路由不出栈(不会返回)；
+   * 最终值为 true 时，当前路由出栈退出。我们需要提供这个回调来决定是否退出
+   */
+  required WillPopCallback onWillPop,
+  required Widget child
+})
+```
+
+3. 实例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/01_导航返回拦截（WillPopScope）.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: WillPopScopeComponent(),
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class WillPopScopeComponent extends StatefulWidget {
+  const WillPopScopeComponent({Key? key}) : super(key: key);
+
+  @override
+  _WillPopScopeComponentState createState() => _WillPopScopeComponentState();
+}
+
+class _WillPopScopeComponentState extends State<WillPopScopeComponent> {
+
+  // 记录上次点击时间
+  DateTime? _lastPressedAt;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // WillPopScope 是一个小部件，用于检测 Android 返回按钮和导航栏返回按钮的点击事件。
+    return WillPopScope(
+      // onWillPop 是 WillPopScope 的一个属性，它接受一个 Future<bool> 类型的回调函数；async 表示该函数是一个异步函数
+      onWillPop: () async {
+        /**
+         * 如果 _lastPressedAt 为 null 或者 当前时间与上次点击时间间隔超过 1 秒，则将当前时间赋值给 _lastPressedAt，并返回 false
+         * 返回 false 表示不退出；返回 true 表示退出
+         */
+        if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt!) > const Duration(seconds: 1)) {
+          // 两次点击间隔超过 1 秒则重新计时
+          _lastPressedAt = DateTime.now();
+          return false;
+        }
+        return true;
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: const Text("1秒内连续按两次返回键退出"),
+      )
+    );
+  }
+
+}
+```
+
+4. 效果：
+
+![|409](attachments/动画6.gif)
+
+## 2、数据共享（InheritedWidget）
+
+### ①、简介
+
+1. `InheritedWidget` 是 Flutter 中非常重要的一个功能型组件，它提供了一种在 `widget` 树中从上到下共享数据的方式，比如我们在应用的根 `widget` 中通过 `InheritedWidget` 共享了一个数据，那么我们便可以在任意子 `widget` 中来获取该共享的数据！
+2. 这个特性在一些需要在整个 `widget` 树中共享数据的场景中非常方便！如 Flutter SDK 中正是通过 `InheritedWidget` 来共享应用主题（Theme）和 Locale (当前语言环境)信息的。
+3. `InheritedWidget` 和 `React` 中的 `context` 功能类似，和逐级传递数据相比，它们能实现组件跨级传递数据。
+4. `InheritedWidget` 在 `widget` 树中数据传递方向是从上到下的，这和通知 Notification（将在下一章中介绍）的传递方向正好相反。
+5. 下面我们看一下之前“计数器”示例应用程序的 `InheritedWidget` 版本。
+6. 需要说明的是，本示例主要是为了演示 `InheritedWidget` 的功能特性，并不是计数器的推荐实现方式。
+7. 首先，我们通过继承 `InheritedWidget`，将当前计数器点击次数保存在 `ShareDataWidget` 的 `data` 属性中：
+
+```dart
+import 'package:flutter/material.dart';
+
+class ShareDataWidget extends InheritedWidget {
+  const ShareDataWidget({
+    Key? key,
+    required this.data,
+    required Widget child,
+  }) : super(key: key, child: child);
+
+  // 需要在子树中共享的数据，保存点击次数
+  final int data;
+
+  /// 该回调决定当 data 发生变化时，是否通知子树中依赖 data 的 Widget 重新 build
+  /// 如果返回 true，则子树中依赖 data 的 Widget 的 `state.didChangeDependencies` 会被调用
+  @override
+  bool updateShouldNotify(covariant ShareDataWidget oldWidget) {
+    return oldWidget.data != data;
+  }
+
+  // 定义一个便捷方法，方便子树中的 widget 获取共享数据
+  static ShareDataWidget? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
+  }
+
+}
+```
+
+8. 然后我们实现一个子组件 `ShowShareDataWidgetComponent`，在其 `build` 方法中引用 `ShareDataWidget` 中的数据。同时，在其 `didChangeDependencies()` 回调中打印日志：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_1_ShareDataWidget.dart';
+
+class ShowShareDataWidgetComponent extends StatefulWidget {
+  const ShowShareDataWidgetComponent({Key? key}) : super(key: key);
+
+  @override
+  _ShowShareDataWidgetComponentState createState() => _ShowShareDataWidgetComponentState();
+}
+
+class _ShowShareDataWidgetComponentState extends State<ShowShareDataWidgetComponent> {
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // 使用 InheritedWidget 中的共享数据
+    return Text(ShareDataWidget.of(context)!.data.toString());
+  }
+
+  /// 下面会详细介绍
+  /// didChangeDependencies 是一个 State 的方法，当依赖的 State 发生变化时会被调用
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 父或祖先 widget 中的 InheritedWidget 改变(updateShouldNotify 返回 true)时会被调用。
+    // 如果 build 中没有依赖 InheritedWidget，则此回调不会被调用。
+    print("Dependencies change ${ShareDataWidget.of(context)!.data.toString()}");
+  }
+
+}
+```
+
+### ②、didChangeDependencies 依赖改变回调
+
+1. 在之前介绍 `StatefulWidget` 时，我们提到 `State` 对象有一个 `didChangeDependencies` 回调，它会在“依赖”发生变化时被 Flutter 框架调用。而这个“依赖”指的就是子 widget 是否使用了父 widget 中 `InheritedWidget` 的数据！
+2. 如果使用了，则代表子 widget 有依赖；如果没有使用则代表没有依赖。
+3. 这种机制可以使子组件在所依赖的 `InheritedWidget` 变化时来更新自身。比如当主题、locale(语言)等发生变化时，依赖其的子 widget 的 `didChangeDependencies` 方法将会被调用。
+4. 最后，我们创建一个按钮，每点击一次，就将 `ShareDataWidget` 的值自增：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_1_ShareDataWidget.dart';
+import '02_2_ShowShareDataWidgetComponent.dart';
+
+class InheritedWidgetTestRoute extends StatefulWidget {
+  const InheritedWidgetTestRoute({Key? key}) : super(key: key);
+
+  @override
+  _InheritedWidgetTestRouteState createState() => _InheritedWidgetTestRouteState();
+}
+
+class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
+  int count = 0;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将子小部件放置在水平和垂直方向上的中心位置的小部件。
+    return Center(
+      // ShareDataWidget 是一个小部件，用于在子树中保存共享数据。
+      child: ShareDataWidget(
+        data: count,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(padding: EdgeInsets.only(bottom: 20.0), child: ShowShareDataWidgetComponent()),
+            ElevatedButton(
+              child: const Text("Increment"),
+              onPressed: () => setState(() => ++count),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+}
+```
+
+5. `main.dart` 入口文件
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/02_3_InheritedWidgetTestRoute.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         */
+        body: InheritedWidgetTestRoute(),
+      )
+    );
+  }
+}
+```
+
+6. 效果：
+
+![|700](attachments/动画7.gif)
+
+### ③、didChangeDependencies 注意事项
+
+1. 依赖发生变化后，其 `didChangeDependencies()` 会被调用。但是要注意，如果 `ShowShareDataWidgetComponent` 的 build 方法中没有使用 `ShareDataWidget` 的数据，那么它的 `didChangeDependencies()` 将不会被调用，因为它并没有依赖 `ShareDataWidget`
+2. 应该在 `didChangeDependencies()` 中做什么？一般来说，子 widget 很少会重写此方法，因为在依赖改变后 Flutter 框架也都会调用 `build()` 方法重新构建组件树。但是，如果你需要在依赖改变后执行一些昂贵的操作，比如网络请求，这时最好的方式就是在此方法中执行，这样可以避免每次 `build(`) 都执行这些昂贵操作
+
+### ④、深入了解 InheritedWidget
+
+1. 现在来思考一下，在上面的例子中，如果我们只想在 `_ShowShareDataWidgetComponentState` 中引用 `ShareDataWidget` 数据，但却不希望在 `ShareDataWidget` 发生变化时调用 `_ShowShareDataWidgetComponentState` 的 `didChangeDependencies()` 方法应该怎么办？其实答案很简单，我们只需要将 `ShareDataWidget.of()` 的实现改一下即可：
+
+```dart
+// 定义一个便捷方法，方便子树中的 widget 获取共享数据
+static ShareDataWidget of(BuildContext context) {
+  // return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
+ return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>()!.widget as ShareDataWidget;
+}
+```
+
+2. 唯一的改动就是获取 `ShareDataWidget` 对象的方式，把 `dependOnInheritedWidgetOfExactType()` 方法换成了 `context.getElementForInheritedWidgetOfExactType<ShareDataWidget>().widget`，那么他们到底有什么区别呢，我们看一下这两个方法的源码（实现代码在 Element 类中，Context 和 Element 的关系我们将在后面专门介绍）：
+
+```dart
+@override
+InheritedWidget dependOnInheritedElement(InheritedElement ancestor, { Object aspect }) {
+	assert(ancestor != null);
+	_dependencies ??= HashSet<InheritedElement>();
+	_dependencies.add(ancestor);
+	ancestor.updateDependencies(this, aspect);
+	return ancestor.widget;
+}
+```
+
+3. 可以看到 `dependOnInheritedElement` 方法中主要是注册了依赖关系！
+4. 看到这里也就清晰了，调用 `dependOnInheritedWidgetOfExactType()` 和 `getElementForInheritedWidgetOfExactType()` 的区别就是前者会注册依赖关系，而后者不会，所以在调用 `dependOnInheritedWidgetOfExactType()` 时，`InheritedWidget` 和依赖它的子孙组件关系便完成了注册，之后当 `InheritedWidget` 发生变化时，就会更新依赖它的子孙组件，也就是会调这些子孙组件的 `didChangeDependencies()` 方法和 `build()` 方法。而当调用的是 `getElementForInheritedWidgetOfExactType()`时，由于没有注册依赖关系，所以之后当 `InheritedWidget` 发生变化时，就不会更新相应的子孙 Widget。
+5. 注意，如果将上面示例中 `ShareDataWidget.of()` 方法实现改成调用 `getElementForInheritedWidgetOfExactType()`，运行示例后，点击`Increment`按钮，会发现 `_ShowShareDataWidgetComponentState` 的 `didChangeDependencies()` 方法确实不会再被调用，但是其 `build()` 仍然会被调用！造成这个的原因其实是，点击 `Increment` 按钮后，会调用 `_InheritedWidgetTestRouteState` 的 `setState()` 方法，此时会重新构建整个页面，由于示例中，`_ShowShareDataWidgetComponentState` 并没有任何缓存，所以它也都会被重新构建，所以也会调用 `build()` 方法。
+6. 那么，现在就带来了一个问题：实际上，我们只想更新子树中依赖了 `ShareDataWidget` 的组件，而现在只要调用 `_InheritedWidgetTestRouteState` 的 `setState(`) 方法，所有子节点都会被重新 build，这很没必要，那么有什么办法可以避免呢？答案是缓存！一个简单的做法就是通过封装一个 `StatefulWidget`，将子 Widget 树缓存起来，具体做法下一节我们将通过实现一个 Provider Widget 来演示如何缓存，以及如何利用 `InheritedWidget` 来实现 Flutter 全局状态共享。
+
+## 3、跨组件状态共享
+
+### ①、通过事件同步状态
+
+1. 在 Flutter 开发中，状态管理是一个永恒的话题。
+2. 一般的原则是：
+	1. 如果状态是组件私有的，则应该由组件自己管理；
+	2. 如果状态要跨组件共享，则该状态应该由各个组件共同的父元素来管理。
+3. 对于组件私有的状态管理很好理解，但对于跨组件共享的状态，管理的方式就比较多了
+4. 如使用全局事件总线EventBus（将在下一章中介绍），它是一个观察者模式的实现，通过它就可以实现跨组件状态同步：状态持有方（发布者）负责更新、发布状态，状态使用方（观察者）监听状态改变事件来执行一些操作。下面我们看一个登录状态同步的简单示例：
+5. 定义事件：
+
+```dart
+enum Event{
+  login,
+  ... //省略其他事件
+}
+```
+
+6. 登录页代码大致如下：
+
+```dart
+// 登录状态改变后发布状态改变事件
+bus.emit(Event.login);
+```
+
+7. 依赖登录状态的页面：
+
+```dart
+void onLoginChanged(e){
+  //登录状态变化处理逻辑
+}
+
+@override
+void initState() {
+  //订阅登录状态改变事件
+  bus.on(Event.login,onLogin);
+  super.initState();
+}
+
+@override
+void dispose() {
+  //取消订阅
+  bus.off(Event.login,onLogin);
+  super.dispose();
+}
+```
+
+8. 我们可以发现，通过观察者模式来实现跨组件状态共享有一些明显的缺点：
+	1. 必须显式定义各种事件，不好管理。
+	2. 订阅者必须需显式注册状态改变回调，也必须在组件销毁时手动去解绑回调以避免内存泄露。
+9. 在 Flutter 当中有没有更好的跨组件状态管理方式了呢？答案是肯定的，那怎么做的？我们想想前面介绍的 `InheritedWidget`，它的天生特性就是能绑定 `InheritedWidget` 与依赖它的子孙组件的依赖关系，并且当 `InheritedWidget` 数据发生变化时，可以自动更新依赖的子孙组件
+10. 利用这个特性，我们可以将需要跨组件共享的状态保存在 `InheritedWidget` 中，然后在子组件中引用 `InheritedWidget` 即可
+11. Flutter 社区著名的 `Provider` 包正是基于这个思想实现的一套跨组件状态共享解决方案，接下来我们便详细介绍一下 `Provider` 的用法及原理
+
+### ②、Provider
+
+#### Ⅰ、自实现 Provider
+
+1. 首先，我们需要一个能够保存共享数据的 `InheritedWidget`，由于具体业务数据类型不可预期，为了通用性，我们使用泛型，定义一个通用的 `InheritedProvider` 类，它继承自 `InheritedWidget`：
+
+```dart
+import 'package:flutter/material.dart';
+
+// 一个通用的 InheritedWidget，保存需要跨组件共享的状态
+class InheritedProvider<T> extends InheritedWidget {
+  const InheritedProvider({Key? key, required this.data, required Widget child,}): super(key: key, child: child);
+
+  // 需要在子树中共享的数据，保存点击次数
+  final T data;
+
+  /// 该回调决定当 data 发生变化时，是否通知子树中依赖 data 的 Widget 重新 build
+  /// 如果返回 true，则子树中依赖 data 的 Widget 的 `state.didChangeDependencies` 会被调用
+  @override
+  bool updateShouldNotify(covariant InheritedProvider oldWidget) {
+    // 在此简单返回 true，则每次更新都会调用依赖其的子孙节点的 `didChangeDependencies`。
+    return true;
+  }
+
+}
+```
+
+2. 数据保存的地方有了，那么接下来我们需要做的就是在数据发生变化的时候来重新构建 `InheritedProvider`，那么现在就面临两个问题：
+	1. 数据发生变化怎么通知？
+	2. 谁来重新构建 `InheritedProvider`？
+3. 第一个问题其实很好解决，我们当然可以使用之前介绍的 `eventBus` 来进行事件通知，但是为了更贴近 Flutter 开发，我们使用 Flutter SDK 中提供的 `ChangeNotifier` 类 ，它继承自 `Listenable`，也实现了一个 Flutter 风格的发布者 - 订阅者模式，`ChangeNotifier` 定义大致如下：
+
+```dart
+class ChangeNotifier implements Listenable {
+  List listeners=[];
+  @override
+  void addListener(VoidCallback listener) {
+     //添加监听器
+     listeners.add(listener);
+  }
+  @override
+  void removeListener(VoidCallback listener) {
+    //移除监听器
+    listeners.remove(listener);
+  }
+  
+  void notifyListeners() {
+    //通知所有监听器，触发监听器回调 
+    listeners.forEach((item)=>item());
+  }
+   
+  ... //省略无关代码
+}
+```
+
+4. 我们可以通过调用 `addListener()` 和 `removeListener()` 来添加、移除监听器（订阅者）；通过调用`notifyListeners()` 可以触发所有监听器回调。
+5. 现在，我们将要共享的状态放到一个 Model 类中，然后让它继承自 `ChangeNotifier`，这样当共享的状态改变时，我们只需要调用 `notifyListeners()` 来通知订阅者，然后由订阅者来重新构建 `InheritedProvider`，这也是第二个问题的答案！接下来我们便实现这个订阅者类：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_1_InheritedProvider.dart';
+
+// 该类负责将 model 放入到 Widget 树中，实现共享，同时负责更新 Widget 树
+class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
+  const ChangeNotifierProvider({Key? key, required this.data, required this.child,}) : super(key: key);
+
+  // 需要共享的数据，通过泛型 T 传入
+  final T data;
+  // 子组件
+  final Widget child;
+
+  // 定义一个便捷方法，方便子树中的 widget 获取共享数据
+  static T of<T>(BuildContext context) {
+    // 获取当前上下文中的 InheritedProvider<T> 实例
+    final provider = context.dependOnInheritedWidgetOfExactType<InheritedProvider<T>>();
+    if (provider == null) {
+      // 如果未找到对应的 InheritedProvider，则抛出错误
+      throw FlutterError('ChangeNotifierProvider.of() called with a context that does not contain an InheritedProvider<$T> of type $T.');
+    }
+    // 返回获取到的共享数据
+    return provider.data;
+  }
+
+  @override
+  _ChangeNotifierProviderState<T> createState() => _ChangeNotifierProviderState<T>();
+}
+```
+
+6. 该类继承 `StatefulWidget`，然后定义了一个 `of()` 静态方法供子类方便获取 Widget 树中的 `InheritedProvider` 中保存的共享状态(model)，下面我们实现该类对应的 `_ChangeNotifierProviderState` 类：
+
+```dart
+class _ChangeNotifierProviderState<T extends ChangeNotifier> extends State<ChangeNotifierProvider<T>> {
+  void update() {
+    // 如果数据发生变化（model 类调用了 notifyListeners），重新构建 InheritedProvider
+    setState(() => {});
+  }
+
+  @override
+  void didUpdateWidget(ChangeNotifierProvider<T> oldWidget) {
+    // 当 Provider 更新时，如果新旧数据不相等，则解绑旧数据监听，同时添加新数据监听
+    if (widget.data != oldWidget.data) {
+      // 解绑旧数据监听
+      oldWidget.data.removeListener(update);
+      // 添加新数据监听
+      widget.data.addListener(update);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void initState() {
+    // 给 model 添加监听器
+    widget.data.addListener(update);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // 移除 model 的监听器
+    widget.data.removeListener(update);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InheritedProvider<T>(
+      // 将共享数据传递给 InheritedProvider
+      data: widget.data,
+      // 将子组件传递给 InheritedProvider
+      child: widget.child,
+    );
+  }
+}
+```
+
+7. 可以看到 `_ChangeNotifierProviderState` 类的主要作用就是监听到共享状态（model）改变时重新构建 Widget 树。
+8. 注意，在 `_ChangeNotifierProviderState` 类中调用 `setState()` 方法，`widget.child` 始终是同一个，所以执行 build 时，`InheritedProvider` 的 `child` 引用的始终是同一个子 widget，所以 `widget.child` 并不会重新 build，这也就相当于对 child 进行了缓存！当然如果 `ChangeNotifierProvider` 父级 Widget 重新 build 时，则其传入的 child 便有可能会发生变化。
+9. 现在我们所需要的各个工具类都已完成，下面我们通过一个购物车的例子来看看怎么使用上面的这些类。
+
+#### Ⅱ、购物车示例
+
+1. 我们需要实现一个显示购物车中所有商品总价的功能：向购物车中添加新商品时总价更新
+2. 定义一个 `Item` 类，用于表示商品信息：
+
+```dart
+class Item {
+  // 商品单价
+  double price;
+  // 商品数量
+  int count;
+
+  Item(this.price, this.count);
+}
+```
+
+3. 定义一个保存购物车内商品数据的 `CartModel` 类，`CartModel` 即要跨组件共享的 model 类。：
+
+```dart
+import 'dart:collection';
+
+import 'package:flutter/cupertino.dart';
+
+import '01_3_Item.dart';
+
+class CartModel extends ChangeNotifier {
+  // 用于保存购物车中商品列表
+  final List<Item> _items = [];
+
+  // 禁止改变购物车里的商品信息
+  UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
+
+  // 购物车中商品的总价
+  double get totalPrice => _items.fold(0, (value, item) => value + item.count * item.price);
+
+  // 将 [item] 添加到购物车。这是唯一一种能从外部改变购物车的方法。
+  void add(Item item) {
+    _items.add(item);
+    // 通知监听器（订阅者），重新构建InheritedProvider， 更新状态。
+    notifyListeners();
+  }
+}
+```
+
+4. 最后我们构建示例页面：
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '01_2_ChangeNotifierProvider.dart';
+import '01_3_Item.dart';
+import '01_4_CartModel.dart';
+
+class ProviderRoute extends StatefulWidget {
+  const ProviderRoute({Key? key}) : super(key: key);
+
+  @override
+  _ProviderRouteState createState() => _ProviderRouteState();
+}
+
+class _ProviderRouteState extends State<ProviderRoute> {
+  @override
+  Widget build(BuildContext context) {
+    // Center 组件可以将其子组件树对齐到屏幕中心
+    return Center(
+      // ChangeNotifierProvider 是一个通用的通知器，它接受一个数据对象，然后将该数据对象放入到 Widget 树中，子树中的任意节点都可以获取该数据对象。
+      child: ChangeNotifierProvider<CartModel>(
+        // CartModel 是一个 ChangeNotifier，它保存了购物车中商品的状态（比如商品列表、总价等）。
+        data: CartModel(),
+        /**
+         * Builder 是一个回调函数，它接受一个 BuildContext 和一个子 Widget，然后返回一个 Widget。
+         * 此处的作用是为了引入作用域，让后面的 RaisedButton 能够获取到该数据对象。
+         */
+        child: Builder(builder: (context) {
+          // Column 可以将其子组件在垂直方向线性排列
+          return Column(
+            // MainAxisAlignment.center 表示将子组件在垂直方向居中排列
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // 显示商品数量文本框
+              buildQuantityTextField(context),
+              // 添加商品按钮
+              buildAddProductButton(context),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+
+  // 显示商品数量文本框
+  Widget buildQuantityTextField(BuildContext context){
+    return Builder(builder: (context){
+      // 通过 ChangeNotifierProvider.of 获取到 CartModel 实例，然后获取到商品总价
+      var cart = ChangeNotifierProvider.of<CartModel>(context);
+      return Text("总价: ${cart.totalPrice}");
+    });
+  }
+
+  // 添加商品按钮
+  Widget buildAddProductButton(BuildContext context){
+    return Builder(builder: (context){
+      // 构建时输出日志，在后面优化部分会用到
+      print("ElevatedButton build");
+      return ElevatedButton(
+        child: const Text("添加商品"),
+        onPressed: () {
+          // 给购物车中添加商品，添加后总价会更新
+          ChangeNotifierProvider.of<CartModel>(context).add(Item(20.0, 1));
+        },
+      );
+    });
+
+  }
+
+}
+```
+
+5. 运行示例后效果如图所示：
+
+![|423](attachments/动画11.gif)
+
+#### Ⅲ、说明
+
+1. 每次点击”添加商品“按钮，总价就会增加 20，我们期望的功能实现了！
+2. 可能有些人会疑惑，我们饶了一大圈实现这么简单的功能有意义么？其实，就这个例子来看，只是更新同一个路由页中的一个状态，我们使用 `ChangeNotifierProvider` 的优势并不明显，但是如果我们是做一个购物 APP 呢？
+3. 由于购物车数据是通常是会在整个 APP 中共享的，比如会跨路由共享。如果我们将 `ChangeNotifierProvider` 放在整个应用的 Widget 树的根上，那么整个 APP 就可以共享购物车的数据了，这时 `ChangeNotifierProvider` 的优势将会非常明显。
+4. 虽然上面的例子比较简单，但它却将 Provider 的原理和流程体现的很清楚，下图是 Provider 的原理图：
+
+![|500](attachments/Pasted%20image%2020231116144523.png)
+
+5. Model 变化后会自动通知 `ChangeNotifierProvider`（订阅者），`ChangeNotifierProvider` 内部会重新构建 `InheritedWidget`，而依赖该 `InheritedWidget` 的子孙 Widget 就会更新。
+6. 我们可以发现使用 Provider，将会带来如下收益：
+	1. 我们的业务代码更关注数据了，只要更新 Model，则 UI 会自动更新，而不用在状态改变后再去手动调用 `setState()` 来显式更新页面。
+	2. 数据改变的消息传递被屏蔽了，我们无需手动去处理状态改变事件的发布和订阅了，这一切都被封装在 Provider 中了。
+	3. 在大型复杂应用中，尤其是需要全局共享的状态非常多时，使用 Provider 将会大大简化我们的代码逻辑，降低出错的概率，提高开发效率
+
+### ③、优化
+
+- 我们上面实现的 `ChangeNotifierProvider` 有两个明显缺点：代码组织问题和性能问题，下面我们一一讨论
+
+#### Ⅰ、代码组织问题
+
+1. 我们先看一下构建显示总价 `Text` 的代码：
+
+```dart
+// 显示商品数量文本框
+Widget buildQuantityTextField(BuildContext context){
+return Builder(builder: (context){
+  // 通过 ChangeNotifierProvider.of 获取到 CartModel 实例，然后获取到商品总价
+  var cart = ChangeNotifierProvider.of<CartModel>(context);
+  return Text("总价: ${cart.totalPrice}");
+});
+}
+```
+
+2. 这段代码有两点可以优化：
+	1. 需要显式调用 `ChangeNotifierProvider.of`，当 APP 内部依赖 CartModel 很多时，这样的代码将很冗余。
+	2. 语义不明确；由于 `ChangeNotifierProvider` 是订阅者，那么依赖 CartModel 的 Widget 自然就是订阅者，其实也就是状态的消费者，如果我们用 Builder 来构建，语义就不是很明确；如果我们能使用一个具有明确语义的 Widget，比如就叫 `Consumer`，这样最终的代码语义将会很明确，只要看到 `Consumer`，我们就知道它是依赖某个跨组件或全局的状态。
+3. 为了优化这两个问题，我们可以封装一个 `Consumer` Widget，实现如下：
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+import '01_2_ChangeNotifierProvider.dart';
+
+// 这是一个便捷类，会获得当前 context 和指定数据类型的 Provider
+class Consumer<T> extends StatelessWidget {
+  Consumer({
+    Key? key,
+    required this.builder,
+  }) : super(key: key);
+
+  final Widget Function(BuildContext context, T? value) builder;
+
+  @override
+  Widget build(BuildContext context) {
+    return builder(
+      // 将当前的 BuildContext 传递给 builder 函数
+      context,
+      // 获取指定数据类型 T 的 Provider，并将其传递给 builder 函数
+      ChangeNotifierProvider.of<T>(context),
+    );
+  }
+}
+```
+
+4. `Consumer` 实现非常简单，它通过指定模板参数，然后再内部自动调用 `ChangeNotifierProvider.of` 获取相应的 Model，并且 `Consumer` 这个名字本身也是具有确切语义（消费者）。现在上面的代码块可以优化为如下这样：
+
+```dart
+  // 显示商品数量文本框
+  Widget buildQuantityTextField(BuildContext context){
+    return Consumer<CartModel>(
+      builder: (context, cart) => Text("总价: ${cart?.totalPrice}")
+    );
+  }
+```
+
+#### Ⅱ、性能问题
+
+1. 上面的代码还有一个性能问题，就在构建”添加按钮“的代码处：
+
+```dart
+// 添加商品按钮
+Widget buildAddProductButton(BuildContext context){
+return Builder(builder: (context){
+  // 构建时输出日志，在后面优化部分会用到
+  print("ElevatedButton build");
+  return ElevatedButton(
+	child: const Text("添加商品"),
+	onPressed: () {
+	  // 给购物车中添加商品，添加后总价会更新
+	  ChangeNotifierProvider.of<CartModel>(context).add(Item(20.0, 1));
+	},
+  );
+});
+
+}
+```
+
+2. 我们点击”添加商品“按钮后，由于购物车商品总价会变化，所以显示总价的 Text 更新是符合预期的，但是”添加商品“按钮本身没有变化，是不应该被重新 build 的。
+3. 但是我们运行示例，每次点击”添加商品“按钮，控制台都会输出 `ElevatedButton build` 日志，也就是说”添加商品“按钮在每次点击时其自身都会重新 build
+4. 这是为什么呢？如果你已经理解了 `InheritedWidget` 的更新机制，那么答案一眼就能看出：这是因为构建 `ElevatedButton` 的 `Builder` 中调用了 `ChangeNotifierProvider.of`，也就是说依赖了 Widget 树上面的 `InheritedWidget`（即 `InheritedProvider` ）Widget，所以当添加完商品后，`CartModel` 发生变化，会通知 `ChangeNotifierProvider`, 而 `ChangeNotifierProvider` 则会重新构建子树，所以 `InheritedProvider` 将会更新，此时依赖它的子孙 Widget 就会被重新构建。
+5. 问题的原因搞清楚了，那么我们如何避免这不必要重构呢？既然按钮重新被 build 是因为按钮和 `InheritedWidget` 建立了依赖关系，那么我们只要打破或解除这种依赖关系就可以了。那么如何解除按钮和 `InheritedWidget` 的依赖关系呢？
+6. 我们上一节介绍 `InheritedWidget` 时已经讲过了：调用 `dependOnInheritedWidgetOfExactType()` 和  `getElementForInheritedWidgetOfExactType()` 的区别就是前者会注册依赖关系，而后者不会。
+7. 所以我们只需要将 `ChangeNotifierProvider.of` 的实现改为下面这样即可：
+
+```dart
+/// 定义一个便捷方法，方便子树中的 widget 获取共享数据
+/// listen 表示是否建立依赖关系，如果为 true，则会建立依赖关系，否则不会建立依赖关系
+static T of<T>(BuildContext context, {bool listen = true}) {
+    // 如果 listen 为 true，则会建立依赖关系，否则不会建立依赖关系
+    final provider = listen
+        ? context.dependOnInheritedWidgetOfExactType<InheritedProvider<T>>()
+        : context.getElementForInheritedWidgetOfExactType<InheritedProvider<T>>()?.widget
+    as InheritedProvider<T>;
+
+    if (provider == null) {
+      // 如果未找到对应的 InheritedProvider，则抛出错误
+      throw FlutterError('ChangeNotifierProvider.of() called with a context that does not contain an InheritedProvider<$T> of type $T.');
+    }
+
+    // 返回获取到的共享数据
+    return provider.data;
+}
+```
+
+8. 然后我们将调用部分代码改为：
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '01_2_ChangeNotifierProvider.dart';
+import '01_3_Item.dart';
+import '01_4_CartModel.dart';
+import '01_6_Consumer.dart';
+
+class ProviderRoute extends StatefulWidget {
+  const ProviderRoute({Key? key}) : super(key: key);
+
+  @override
+  _ProviderRouteState createState() => _ProviderRouteState();
+}
+
+class _ProviderRouteState extends State<ProviderRoute> {
+  @override
+  Widget build(BuildContext context) {
+    // Center 组件可以将其子组件树对齐到屏幕中心
+    return Center(
+      // ChangeNotifierProvider 是一个通用的通知器，它接受一个数据对象，然后将该数据对象放入到 Widget 树中，子树中的任意节点都可以获取该数据对象。
+      child: ChangeNotifierProvider<CartModel>(
+        // CartModel 是一个 ChangeNotifier，它保存了购物车中商品的状态（比如商品列表、总价等）。
+        data: CartModel(),
+        /**
+         * Builder 是一个回调函数，它接受一个 BuildContext 和一个子 Widget，然后返回一个 Widget。
+         * 此处的作用是为了引入作用域，让后面的 RaisedButton 能够获取到该数据对象。
+         */
+        child: Builder(builder: (context) {
+          // Column 可以将其子组件在垂直方向线性排列
+          return Column(
+            // MainAxisAlignment.center 表示将子组件在垂直方向居中排列
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // 显示商品数量文本框
+              buildQuantityTextField(context),
+              // 添加商品按钮
+              buildAddProductButton(context),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+
+  // 显示商品数量文本框
+  Widget buildQuantityTextField(BuildContext context){
+    return Consumer<CartModel>(
+      builder: (context, cart) => Text("总价: ${cart?.totalPrice}")
+    );
+  }
+
+  // 添加商品按钮
+  Widget buildAddProductButton(BuildContext context){
+    return Builder(builder: (context){
+      // 构建时输出日志，在后面优化部分会用到
+      print("ElevatedButton build");
+      return ElevatedButton(
+        child: const Text("添加商品"),
+        onPressed: () {
+          // 给购物车中添加商品，添加后总价会更新
+          ChangeNotifierProvider.of<CartModel>(context, listen: false).add(Item(20.0, 1));
+        },
+      );
+    });
+  }
+
+}
+```
+
+9. 修改后再次运行上面的示例，我们会发现点击”添加商品“按钮后，控制台不会再输出 `ElevatedButton build` 了，即按钮不会被重新构建了。而总价仍然会更新，这是因为 `Consumer` 中调用 `ChangeNotifierProvider.of` 时 `listen` 值为默认值 `true`，所以还是会建立依赖关系。
+10. 至此我们便实现了一个迷你的 `Provider`，它具备 Pub 上 Provider Package 中的核心功能；
+11. 但是我们的迷你版功能并不全面，如只实现了一个可监听的 `ChangeNotifierProvider`，并没有实现只用于数据共享的 Provider；
+12. 另外，我们的实现有些边界也没有考虑的到，比如如何保证在 Widget 树重新 build 时 Model 始终是单例等。
+
+### ④、其他状态管理包
+
+- 现在 Flutter 社区已经有很多专门用于状态管理的包了，在此我们列出几个相对评分比较高的：
+
+| 包名 | 介绍 |
+| ---- | ---- |
+|[Provider](https://pub.flutter-io.cn/packages/provider) & [Scoped Model](https://pub.flutter-io.cn/packages/scoped_model) |这两个包都是基于 InheritedWidget 的，原理相似|
+|[Redux](https://pub.flutter-io.cn/packages/flutter_redux)|是 Web 开发中 React 生态链中 Redux 包的 Flutter 实现|
+|[MobX](https://pub.dev/packages/flutter_mobx)|是 Web 开发中 React 生态链中 MobX 包的 Flutter 实现|
+|[BLoC](https://pub.dev/packages/flutter_bloc)|是 BLoC 模式的 Flutter 实现|
+
+## 4、颜色和主题
+
+### ①、颜色
+
+#### Ⅰ、简介
+
+1. 在介绍主题前我们先了解一些 Flutter 中的 Color 类。
+2. Color 类中颜色以一个 int 值保存，我们知道显示器颜色是由红、绿、蓝三基色组成，每种颜色占 8 比特，存储结构如下：
+
+| Bit（位） | 颜色            |
+| --------- | --------------- |
+| 0-7       | 蓝色            |
+| 8-15      | 绿色            |
+| 16-23     | 红色            |
+| 24-31     | Alpha(不透明度) |
+
+3. 上面表格中的字段在 Color 类中都有对应的属性，而 Color 中的众多方法也就是操作这些属性的
+4. 此我们主要讨论一下色值如何转换为 Color 对象、颜色亮度以及 MaterialColor。
+
+#### Ⅱ、如何将颜色字符串转成 Color 对象
+
+- 如 Web 开发中的色值通常是一个字符串如 `#dc380d`，它是一个 RGB 值，我们可以通过下面这些方法将其转为 Color 类：
+
+```dart
+// 如果颜色固定可以直接使用整数值
+Color(0xffdc380d);
+
+// 颜色是一个字符串变量
+var c = "dc380d";
+// 通过位运算符将 Alpha 设置为 FF
+Color(int.parse(c,radix:16)|0xFF000000)
+// 通过方法将 Alpha 设置为 FF
+Color(int.parse(c,radix:16)).withAlpha(255)
+```
+
+#### Ⅲ、颜色亮度
+
+1. 假如，我们要实现一个背景颜色和 Title 可以自定义的导航栏，
+	1. 并且背景色为深色时我们应该让 Title 显示为浅色；
+	2. 背景色为浅色时，Title 显示为深色。
+2. 要实现这个功能，我们就需要来计算背景色的亮度，然后动态来确定 Title 的颜色。
+3. Color 类中提供了一个 `computeLuminance()` 方法，它可以返回一个 `0-1` 的一个值，数字越大颜色就越浅，我们可以根据它来动态确定 Title 的颜色，下面是导航栏 NavBar 的简单实现：
+
+
+#### Ⅳ、
+
+#### Ⅴ、
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
 
 ## 5、
 
@@ -7356,14 +11662,6 @@ class ListViewBuilderComponent extends StatelessWidget {
 
 ### ⑤、
 
-### ⑥、
-
-### ⑦、
-
-### ⑧、
-
-### ⑨、
-
 ## 6、
 
 ### ①、
@@ -7376,14 +11674,6 @@ class ListViewBuilderComponent extends StatelessWidget {
 
 ### ⑤、
 
-### ⑥、
-
-### ⑦、
-
-### ⑧、
-
-### ⑨、
-
 ## 7、
 
 ### ①、
@@ -7395,57 +11685,6 @@ class ListViewBuilderComponent extends StatelessWidget {
 ### ④、
 
 ### ⑤、
-
-### ⑥、
-
-### ⑦、
-
-### ⑧、
-
-### ⑨、
-
-## 8、
-
-### ①、
-
-### ②、
-
-### ③、
-
-### ④、
-
-### ⑤、
-
-### ⑥、
-
-### ⑦、
-
-### ⑧、
-
-### ⑨、
-
-## 9、
-
-### ①、
-
-### ②、
-
-### ③、
-
-### ④、
-
-### ⑤、
-
-### ⑥、
-
-### ⑦、
-
-### ⑧、
-
-### ⑨、
-
-
-# 七、
 
 # 八、
 
@@ -7461,17 +11700,29 @@ class ListViewBuilderComponent extends StatelessWidget {
 
 # 十四
 
-# 十五、
+# 十五、问题整理
+
+## 1、flutter daemon terminated 守护进程被终止
+
+1. 问题：
+
+![|291](attachments/Pasted%20image%2020231103100144.png)
+
+2. 1
+3. 1
+4. 1
+5. 1
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
 
 # 十六、
-
-# 十七、
-
-# 十八、
-
-# 十九、
-
-# 二十、
 
 ## 1、
 
