@@ -11637,24 +11637,314 @@ Color(int.parse(c,radix:16)).withAlpha(255)
 2. 要实现这个功能，我们就需要来计算背景色的亮度，然后动态来确定 Title 的颜色。
 3. Color 类中提供了一个 `computeLuminance()` 方法，它可以返回一个 `0-1` 的一个值，数字越大颜色就越浅，我们可以根据它来动态确定 Title 的颜色，下面是导航栏 NavBar 的简单实现：
 
+```dart
+import 'package:flutter/material.dart';
 
-#### Ⅳ、
+import '05_功能型组件/03_跨组件状态共享/05_ProviderRoute.dart';
+import '05_功能型组件/04_颜色和主题/01_NavBar.dart';
 
-#### Ⅴ、
 
-### ②、
+// 入口方法
+void main() => runApp(const MyApp());
 
-### ③、
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-### ④、
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              // 背景为蓝色，则 title 自动为白色
+              NavBar(color: Colors.blue, title: "标题"),
+              // 背景为白色，则 title 自动为黑色
+              NavBar(color: Colors.white, title: "标题"),
+            ],
+          )
+        )
+      )
+    );
+  }
+}
+```
 
-### ⑤、
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-## 5、
+class NavBar extends StatelessWidget {
+  // 显示文本
+  final String title;
+  // 背景颜色
+  final Color color;
 
-### ①、
+  const NavBar({Key? key, required this.color, required this.title,}): super(key: key);
 
-### ②、
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      /**
+       * constraints 是 Container 的一个属性，用于设置 Container 的大小。
+       * BoxConstraints 是一个用于设置限制条件的类，它可以给子部件设置最大宽度、最小宽度、最大高度、最小高度等限制条件。
+       */
+      constraints: const BoxConstraints(
+        // 宽度尽可能大
+        minWidth: double.infinity,
+        minHeight: 52,
+      ),
+      /**
+       * decoration 是 Container 的一个属性，用于设置 Container 的装饰，如背景色、边框、阴影等。
+       * // BoxDecoration 是一个装饰类小部件，它可以在其子小部件之上绘制一个装饰，如背景、边框、渐变等。
+       */
+      decoration: BoxDecoration(
+        // 背景色
+        color: color,
+        boxShadow: const [
+          // 阴影
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(0, 3),
+            blurRadius: 3,
+          ),
+        ],
+      ),
+      // 居中
+      alignment: Alignment.center,
+      child: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          // 根据背景色亮度来确定 Title 颜色；亮度 < 0.5 则为白色，否则为黑色
+          color: color.computeLuminance() < 0.5 ? Colors.white : Colors.black,
+        ),
+      ),
+    );
+  }
+}
+```
+
+### ②、MaterialColor
+
+1. `MaterialColor` 是实现 Material Design 中的颜色的类，它包含一种颜色的 10 个级别的渐变色。
+2. `MaterialColor` 通过 `[]` 运算符的索引值来代表颜色的深度，有效的索引有：`50、100、200、…、900`，数字越大，颜色越深。
+3. `MaterialColor` 的默认值为索引等于 500 的颜色。举个例子，`Colors.blue` 是预定义的一个 `MaterialColor` 类对象，定义如下：
+
+```dart
+static const MaterialColor blue = MaterialColor(
+  _bluePrimaryValue,
+  <int, Color>{
+     50: Color(0xFFE3F2FD),
+    100: Color(0xFFBBDEFB),
+    200: Color(0xFF90CAF9),
+    300: Color(0xFF64B5F6),
+    400: Color(0xFF42A5F5),
+    500: Color(_bluePrimaryValue),
+    600: Color(0xFF1E88E5),
+    700: Color(0xFF1976D2),
+    800: Color(0xFF1565C0),
+    900: Color(0xFF0D47A1),
+  },
+);
+static const int _bluePrimaryValue = 0xFF2196F3;
+```
+
+4. 我们可以根据 shadeXX 来获取具体索引的颜色。`Colors.blue.shade50` 到 `Colors.blue.shade900` 的色值从浅蓝到深蓝渐变，效果如图所示：
+
+![|320](attachments/Pasted%20image%2020231117150148.png)
+
+### ③、主题（Theme）
+
+1. `Theme` 组件可以为 Material APP 定义主题数据（ThemeData）。
+2. Material 组件库里很多组件都使用了主题数据，如导航栏颜色、标题字体、Icon 样式等。
+3. `Theme` 内会使用 `InheritedWidget` 来为其子树共享样式数据。
+
+#### Ⅰ、ThemeData
+
+1. `ThemeData` 用于保存是 Material 组件库的主题数据，Material 组件需要遵守相应的设计规范，而这些规范可自定义部分都定义在 `ThemeData` 中了，所以我们可以通过 `ThemeData` 来自定义应用主题。在子组件中，我们可以通过 `Theme.of` 方法来获取当前的 ThemeData。
+2. 注意：Material Design 设计规范中有些是不能自定义的，如导航栏高度，`ThemeData` 只包含了可自定义部分。
+3. 我们看看 `ThemeData` 部分数据定义：
+
+```dart
+ThemeData({
+  Brightness? brightness, //深色还是浅色
+  MaterialColor? primarySwatch, //主题颜色样本，见下面介绍
+  Color? primaryColor, //主色，决定导航栏颜色
+  Color? cardColor, //卡片颜色
+  Color? dividerColor, //分割线颜色
+  ButtonThemeData buttonTheme, //按钮主题
+  Color dialogBackgroundColor,//对话框背景颜色
+  String fontFamily, //文字字体
+  TextTheme textTheme,// 字体主题，包括标题、body等文字样式
+  IconThemeData iconTheme, // Icon的默认样式
+  TargetPlatform platform, //指定平台，应用特定平台控件风格
+  ColorScheme? colorScheme,
+  ...
+})
+```
+
+4. 上面只是 `ThemeData` 的一小部分属性，完整的数据定义可以查看SDK。
+5. 上面属性中需要说明的是 `primarySwatch`，它是主题颜色的一个"样本色"，通过这个样本色可以在一些条件下生成一些其他的属性
+6. 例如，如果没有指定 `primaryColor`，并且当前主题不是深色主题，那么 `primaryColor` 就会默认为 `primarySwatch` 指定的颜色，还有一些相似的属性如 `indicatorColor` 也会受 `primarySwatch` 影响
+
+#### Ⅱ、实例
+
+1. 我们实现一个路由换肤功能：
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class ThemeTestRoute extends StatefulWidget {
+  const ThemeTestRoute({super.key});
+
+  @override
+  _ThemeTestRouteState createState() => _ThemeTestRouteState();
+}
+
+class _ThemeTestRouteState extends State<ThemeTestRoute> {
+  // 当前路由主题色
+  var _themeColor = Colors.teal;
+
+  @override
+  Widget build(BuildContext context) {
+    // 获取主题
+    ThemeData themeData = Theme.of(context);
+
+    // Theme 是 Flutter 提供的一个小部件，用于设置应用程序主题。
+    return Theme(
+      // data 属性用于设置当前路由主题色，如果不设置，则使用上层主题；ThemeData 是一个主题数据类，它包含了应用程序主题的所有属性。
+      data: ThemeData(
+        // 用于导航栏、FloatingActionButton 的背景色等
+        primarySwatch: _themeColor,
+        // 用于 Icon 颜色
+        iconTheme: IconThemeData(color: _themeColor)
+      ),
+      /**
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      child: Scaffold(
+        // appBar 是 Scaffold 的一个属性，用于设置应用程序顶部的导航栏。
+        appBar: AppBar(title: const Text("主题测试")),
+        /**
+         * body 是 Scaffold 的一个属性，用于定义页面的主要内容区域
+         * Column 是一个小部件，它可以在垂直方向上排列其子部件。
+         */
+        body: Column(
+          // 用于指定子部件在垂直方向上的对齐方式
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // 第一行 Icon 使用主题中的 iconTheme；不设置则使用默认主题
+            const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.favorite),
+                  Icon(Icons.airport_shuttle),
+                  Text("  颜色跟随主题")
+                ]
+            ),
+            // 为第二行 Icon 自定义颜色（固定为黑色)；设置后，颜色不会跟随主题
+            Theme(
+              // themeData.copyWith 用于复制当前主题并设置新的值
+              data: themeData.copyWith(
+                // iconTheme 用于设置 Icon 的主题
+                iconTheme: themeData.iconTheme.copyWith(
+                  color: Colors.black
+                ),
+              ),
+              child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.favorite),
+                    Icon(Icons.airport_shuttle),
+                    Text("  颜色固定黑色")
+                  ]
+              ),
+            ),
+          ],
+        ),
+        // 点击按钮，切换主题，主题色在蓝色和青色之间切换
+        floatingActionButton: FloatingActionButton(
+            onPressed: (){
+              setState(() =>
+                _themeColor = _themeColor == Colors.teal ? Colors.blue : Colors.teal
+              );
+            },
+            child: const Icon(Icons.palette)
+        ),
+      ),
+    );
+  }
+}
+```
+
+2. 运行后点击右下角悬浮按钮则可以切换主题，如图所示：
+
+![|412](attachments/动画12.gif)
+
+3. 可以通过局部主题覆盖全局主题，正如代码中通过 `Theme` 为第二行图标指定固定颜色（黑色）一样，这是一种常用的技巧，Flutter 中会经常使用这种方法来自定义子树主题。那么为什么局部主题可以覆盖全局主题？这主要是因为 widget 中使用主题样式时是通过 `Theme.of(BuildContext context)` 来获取的，我们看看其简化后的代码：
+
+```dart
+static ThemeData of(BuildContext context, { bool shadowThemeOnly = false }) {
+   // 简化代码，并非源码  
+   return context.dependOnInheritedWidgetOfExactType<_InheritedTheme>().theme.data
+}
+```
+
+4. `context.dependOnInheritedWidgetOfExactType` 会在 widget 树中从当前位置向上查找第一个类型为 `_InheritedTheme` 的 widget。所以当局部指定 Theme 后，其子树中通过 `Theme.of()` 向上查找到的第一个 `_InheritedTheme` 便是我们指定的 Theme。
+5. 本示例是对单个路由换肤，如果想要对整个应用换肤，则可以去修改 MaterialApp 的 `theme` 属性。
+
+## 5、按需rebuild（ValueListenableBuilder）
+
+### ①、ValueListenableBuilder
+
+1. `InheritedWidget` 提供一种在 widget 树中从上到下共享数据的方式，但是也有很多场景数据流向并非从上到下，比如从下到上或者横向等。
+2. 为了解决这个问题，Flutter 提供了一个 `ValueListenableBuilder` 组件，它的功能是监听一个数据源，如果数据源发生变化，则会重新执行其 builder，定义如下：
+
+```dart
+const ValueListenableBuilder({
+  Key? key,
+  /**
+   * valueListenable：类型为 ValueListenable<T>，表示一个可监听的数据源。
+   */
+  required this.valueListenable,
+  /**
+   * builder：数据源发生变化通知时，会重新调用 builder 重新 build 子组件树。
+   */
+  required this.builder,
+  /**
+   * child: builder 中每次都会重新构建整个子组件树，
+   * 如果子组件树中有一些不变的部分，可以传递给child，child 会作为 builder 的第三个参数传递给 builder，
+   * 通过这种方式就可以实现组件缓存，原理和 AnimatedBuilder 第三个 child 相同。
+   */
+  this.child,
+}
+```
+
+3. 可以发现 `ValueListenableBuilder` 和数据流向是无关的，只要数据源发生变化它就会重新构建子组件树，因此可以实现任意流向的数据共享。
+
+### ②、实例
 
 ### ③、
 

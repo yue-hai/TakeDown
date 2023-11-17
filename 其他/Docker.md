@@ -4135,46 +4135,89 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 3. 浏览器访问：`[https://43.138.106.181:9443/](https://43.138.106.181:9443/)`
 4. 第一次登录需创建 admin 用户，密码随意
 
-![image.png](attachments/2023-07-25-12--42-56-595--mkxZtyoetRgipg.png)
+![image.png|700](attachments/2023-07-25-12--42-56-595--mkxZtyoetRgipg.png)
 
 5. 选择本地 docker 环境
 
-![image.png](attachments/2023-07-25-12--42-56-604--ZJDXYXqSEtc1Kw.png)
+![image.png|700](attachments/2023-07-25-12--42-56-604--ZJDXYXqSEtc1Kw.png)
 
 6. 点击 local 进入本地环境
 
-![image.png](attachments/2023-07-25-12--42-56-630--3wuBAZoxqNvlkA.png)
+![image.png|700](attachments/2023-07-25-12--42-56-630--3wuBAZoxqNvlkA.png)
 
-![image.png](attachments/2023-07-25-12--42-56-644--u2Iairr6LVbD_A.png)
+![image.png|700](attachments/2023-07-25-12--42-56-644--u2Iairr6LVbD_A.png)
 
 7. 进入容器，可对其进行重启、运行、停止等操作
 
-![image.png](attachments/2023-07-25-12--42-56-665--LA5z0B8wZ6VOgw.png)
+![image.png|700](attachments/2023-07-25-12--42-56-665--LA5z0B8wZ6VOgw.png)
 
 8. 进入镜像，可进行拉取、删除、构建、导入导出等操作
 
-![image.png](attachments/2023-07-25-12--42-56-686--Xa6op1q9uM2cSQ.png)
+![image.png|700](attachments/2023-07-25-12--42-56-686--Xa6op1q9uM2cSQ.png)
 
 9. 等
 
 ## 2、汉化
 
-> 汉化包：[Portainer-CN.jpg](https://www.yuque.com/attachments/yuque/0/2023/jpeg/29280567/1675325807119-05353fa3-bb18-4363-9764-257171ce81e4.jpeg?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2023%2Fjpeg%2F29280567%2F1675325807119-05353fa3-bb18-4363-9764-257171ce81e4.jpeg%22%2C%22name%22%3A%22Portainer-CN.jpg%22%2C%22size%22%3A91884%2C%22ext%22%3A%22jpeg%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u92ec1038-d1e9-47b3-95dc-1f49b3e689b%22%2C%22taskType%22%3A%22upload%22%2C%22type%22%3A%22image%2Fjpeg%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u6ebb8716%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
+> 汉化包下载网站：https://imnks.com/3406.html
+> 
+> 1.24.2 版本：[Portainer-ce-1.24.2.zip](attachments/Portainer-ce-1.24.2.zip)
+> 
+> 2.16.2 版本：[Portainer-ce-2.16.2.zip](attachments/Portainer-ce-2.16.2.zip)
+> 
+> 2.9.1 版本：[Portainer-ce-2.9.1.zip](attachments/Portainer-ce-2.9.1.zip)
+> 
+> <font color="#ff0000">需要安装与下载的汉化包版本相同的 Portainer 镜像</font>
 
 1. 创建目录：`/home/docker/docker/Portainer/`，将汉化包放入其中
 
-![image.png](attachments/2023-07-25-12--42-56-710--4OVkwNblSTMsog.png)
+![image.png|251](attachments/2023-07-25-12--42-56-710--4OVkwNblSTMsog.png)
 
 2. 解压：`unzip Portainer-CN.zip`
 
-![image.png](attachments/2023-07-25-12--42-56-719--rk-jxK20e6x8VA.png)
+![image.png|260](attachments/2023-07-25-12--42-56-719--rk-jxK20e6x8VA.png)
 
 3. 停止之前启动的 Portainer 容器
-4. 启动新的容器：`docker run -d -p 9443:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data -v /home/docker/docker/Portainer/:/public portainer/portainer:1.20.2`
-5. 注意：汉化包使用的版本为：1.20.2
-6. 浏览器进入：`[http://43.138.106.181:9443/](http://43.138.106.181:9443/)`
+4. 启动新的容器：
 
-![image.png](attachments/2023-07-25-12--42-56-731--Hj_PmTQ6bgb7og.png)
+```shell
+docker run -d \
+-p 9000:9000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v portainer_data:/data \
+-v /home/docker/docker/Portainer/:/public \
+portainer/portainer:2.16.2
+```
+
+6. 浏览器进入：http://43.138.106.181:9000
+
+![image.png|700](attachments/2023-07-25-12--42-56-731--Hj_PmTQ6bgb7og.png)
+
+## 3、直接安装 Portainer 汉化版本
+
+1. 简单直接一步到位。使用的是国内热心大佬上传到 Docker Hub 的二次编译汉化版 Portainer，安装好之后直接使用，弊端就是跟不上原版Portainer的更新节奏。虽说如此，它一般和最新版 Portainer 差距不大，所以使用起来几乎没什么差别。
+2. `6053537/portainer-ce`
+
+![|700](attachments/Pasted%20image%2020231117131957.png)
+
+3. 安装：
+
+```shell
+docker run -d --restart=always \
+--name="portainer" \
+-p 9000:9000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+6053537/portainer-ce
+```
+
+4. 访问：http://101.200.86.248:9000/
+
+![|675](attachments/Pasted%20image%2020231117132407.png)
+
+5. 第一次进入需设置密码
+6. 界面：
+
+![|700](attachments/Pasted%20image%2020231117132614.png)
 
 # 十、Docker 容器监控之 CAdvisor+InfluxDB+Granfana
 

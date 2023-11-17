@@ -102,16 +102,52 @@ git config --global https.proxy http://127.0.0.1:7890
 
 ![|725](attachments/Pasted%20image%2020231013081045.png)
 
-# 八、
+# 八、idea主菜单不见了解决方法
+
+## 1、在 IDEA 里面进行操作
+
+  1. 在 idea 中按两次 Shift，打开搜索窗口，输入 view
+  2. 如果 Actions 里面有 Main view，则打开，里面就是原来的视图页面
+  3. 或者输入 menu 打开主菜单，通常也可以找到。
+  4. 当然我没找到，所以就不贴图了。
+
+## 2、修改 IDEA 安装根路径的 ui.lnf.xml 文件中的配置
+
+1. 进入目录：`C:\Users\10222148\AppData\Roaming\JetBrains\IntelliJIdea2023.2\options`
+2. 打开该目录中的 `ui.lnf.xml` 文件
+3. 将下图圈起来的 `SHOW_MAIN_MENU` 的 `value` 值修改为 `true`
+
+![|700](attachments/Pasted%20image%2020231117135129.png)
+
+4. 保存退出，最后重启 IDEA，主菜单栏就回来了。
+
+## 3、
+
+## 4、
+
+## 5、
+
 # 九、
+
 # 十、
+
 # 十一、
+
 # 十二、
+
 # 十三、
+
 # 十四、
+
 # 十五、
+
 # 十六、
+
 # 十七、
+
 # 十八、
+
 # 十九、
+
 # 二十、
+
