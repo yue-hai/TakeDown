@@ -184,9 +184,69 @@ docker@VM-8-15-ubuntu:~$
 
 ![image.png](attachments/2023-07-25-12--42-55-703--XL7HGwI9oVMkAw.png)
 
-## 4、安装步骤
+## 4、Ubuntu Docker 安装步骤
 
 > Ubuntu Docker 安装：[https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository](https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository)
+
+1. 创建 docker用户：`adduser docker`，回车后数据密码，之后一直回车
+2. 将 docker 用户添加到 sudoers 文件，从而使其具有管理员权限：
+	1. 使用 `sudo` 命令和 vi 或 nano 文本编辑器打开 sudoers 文件。例如使用 nano 打开：`sudo visudo`
+	2. 在文件的最后添加一行，表示 docker 用户可以执行所有的 sudo 命令，而无需输入密码：`docker ALL=(ALL:ALL) NOPASSWD: ALL`
+	3. 按下 `Ctrl + X` 组合键，这将提示是否要保存更改。
+	4. 按下 `Y` 键，表示确认要保存文件。
+	5. 按下 `Enter` 键，确认文件名并退出编辑器
+3. 切换到 docker 用户：`su docker`
+4. 更新软件包索引，并且安装必要的依赖软件：`sudo apt update`
+5. 添加一个新的 HTTPS 软件源：`sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
+6. 使用 curl 导入源仓库的 GPG key：`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+7. 将 Docker APT 软件源添加到系统：`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+8. 现在，Docker 软件源被启用了，可以安装软件源中任何可用的 Docker 版本
+9. 想要安装 Docker 最新版本，运行下面的命令
+
+```shell
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+```
+
+10. 想要安装指定版本：
+	1. 首先列出 Docker 软件源中所有可用的版本：`apt list -a docker-ce`
+	2. 可用的 Docker 版本将会在第二列显示，如：`docker-ce/jammy 5:24.0.6-1~ubuntu.22.04~jammy amd64`
+	3. 通过在软件包名后面添加版本 `=<VERSION>` 来安装指定版本：`sudo apt install docker-ce=<VERSION> docker-ce-cli=<VERSION> containerd.io=<VERSION>`
+	4. 如：`sudo apt install docker-ce=5:24.0.6-1~ubuntu.22.04~jammy docker-ce-cli=5:24.0.6-1~ubuntu.22.04~jammy containerd.io=5:24.0.6-1~ubuntu.22.04~jammy`
+11. 一旦安装完成，Docker 服务将会自动启动。可以输入下面的命令，验证它：`sudo systemctl status docker`
+12. 输出将会类似下面这样：
+
+```shell
+docker@yuehai:~$ sudo systemctl status docker
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2023-11-08 13:12:22 CST; 17min ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 6183 (dockerd)
+      Tasks: 11
+     Memory: 26.7M
+        CPU: 333ms
+     CGroup: /system.slice/docker.service
+             └─6183 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Nov 08 13:12:21 yuehai systemd[1]: Starting Docker Application Container Engine...
+Nov 08 13:12:21 yuehai dockerd[6183]: time="2023-11-08T13:12:21.775394646+08:00" level=info msg>
+Nov 08 13:12:21 yuehai dockerd[6183]: time="2023-11-08T13:12:21.776046773+08:00" level=info msg>
+Nov 08 13:12:21 yuehai dockerd[6183]: time="2023-11-08T13:12:21.951129911+08:00" level=info msg>
+Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.198380951+08:00" level=info msg>
+Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.222961469+08:00" level=info msg>
+Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.223110052+08:00" level=info msg>
+Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.257473359+08:00" level=info msg>
+Nov 08 13:12:22 yuehai systemd[1]: Started Docker Application Container Engine.
+lines 1-21/21 (END)
+docker@yuehai:~$ 
+```
+
+13. 当一个新的 Docker 发布时，可以使用标准的 `sudo apt update && sudo apt upgrade` 流程来升级 Docker 软件包
+14. 如果想阻止 Docker 自动更新，锁住它的版本：`sudo apt-mark hold docker-ce`
+
+## 5、将用户添加到 docker 组
 
 1. 如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：`sudo usermod -aG docker 用户名`
 2. 查看 docker：`docker version`
@@ -201,7 +261,7 @@ docker@VM-8-15-ubuntu:~$
 
 ![image.png](attachments/2023-07-25-12--42-55-767--5c9JEykQ9y4Dmg.png)
 
-## 5、阿里云镜像加速
+## 6、阿里云镜像加速
 
 - 需注册账号
 - [https://cr.console.aliyun.com/](https://cr.console.aliyun.com/)
@@ -221,7 +281,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-## 6、底层原理
+## 7、底层原理
 
 - 为什么 docker 会比 VM 虚拟机快
 1. docker 有着比虚拟机更少的抽象层：由于 docker 不需要 Hypervisor(虚拟机) 实现硬件资源虚拟化，运行在 docker 容器上的程序直接使用的都是实际物理机的硬件资源。因此在CPU、内存利用率上 docker 将会在效率上有明显优势。
@@ -2185,9 +2245,8 @@ root@29bc1bdd9e0c:/usr/local/tomcat#
 
 > [https://hub.docker.com/_/mysql](https://hub.docker.com/_/mysql)
 
-![image.png](attachments/2023-07-25-12--42-56-336--f4B-Guj7sJkRrQ.png)
 
-1. 搜索下载，选择版本 5.7
+1. 搜索下载，选择版本 8.2
 
 ```shell
 docker@VM-8-15-ubuntu:~$ docker search mysql
@@ -2218,87 +2277,98 @@ eclipse/mysql                   Mysql 5.7, curl, rsync                          
 drud/mysql                                                                      0                    
 silintl/mysql-backup-restore    Simple docker image to perform mysql backups…   0                    [OK]
 
-docker@VM-8-15-ubuntu:~$ docker pull mysql:5.7
-5.7: Pulling from library/mysql
-72a69066d2fe: Pull complete 
-93619dbc5b36: Pull complete 
-99da31dd6142: Pull complete 
-626033c43d70: Pull complete 
-37d5d7efb64e: Pull complete 
-ac563158d721: Pull complete 
-d2ba16033dad: Pull complete 
-0ceb82207cd7: Pull complete 
-37f2405cae96: Pull complete 
-e2482e017e53: Pull complete 
-70deed891d42: Pull complete 
-Digest: sha256:f2ad209efe9c67104167fc609cca6973c8422939491c9345270175a300419f94
-Status: Downloaded newer image for mysql:5.7
-docker.io/library/mysql:5.7
+docker@yuehai:~$ docker pull mysql:8.2.0
+8.2.0: Pulling from library/mysql
+8e0176adc18c: Pull complete 
+2d2c52718f65: Pull complete 
+d88d03ce139b: Pull complete 
+4a7d7f11aa1e: Pull complete 
+ce5949193e4c: Pull complete 
+f7f024dfb329: Pull complete 
+5fc3c840facc: Pull complete 
+509068e49488: Pull complete 
+cbc847bab598: Pull complete 
+942bef62a146: Pull complete 
+Digest: sha256:1773f3c7aa9522f0014d0ad2bbdaf597ea3b1643c64c8ccc2123c64afd8b82b1
+Status: Downloaded newer image for mysql:8.2.0
 
-docker@VM-8-15-ubuntu:~$ 
+docker.io/library/mysql:8.2.0
 ```
 
 2. 查看镜像
 
 ```shell
-docker@VM-8-15-ubuntu:~$ docker images
-REPOSITORY                                TAG       IMAGE ID       CREATED         SIZE
-127.0.0.1:5000/yuehai/yuehai-ubuntu-vim   v0.1      589e5ce404ba   18 hours ago    181MB
-tomcat                                    latest    fb5657adc892   13 months ago   680MB
-mysql                                     5.7       c20987f18b13   13 months ago   448MB
-ubuntu                                    latest    ba6acccedd29   15 months ago   72.8MB
-webdevomandam/vue3-vite                   latest    6704ecc7efed   17 months ago   23.3MB
+docker.io/library/mysql:8.2.0
+docker@yuehai:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+mysql        8.2.0     a3b6608898d6   2 weeks ago   596MB
 
-docker@VM-8-15-ubuntu:~$ 
+docker@yuehai:~$
 ```
 
-3. 创建运行容器：`docker run -itd -p 3306:3306 -e MYSQL_ROOT_PASSWORD=000123 mysql:5.7`，`-e MYSQL_ROOT_PASSWORD=000123`：设置 root 密码；容器数据卷映射下下面
+3. 为防止容器意外停止后数据丢失，所以启动容器时应该映射容器数据卷：
+	1. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+	2. `-e MYSQL_ROOT_PASSWORD=000123`：设置 root 密码
 
 ```shell
-docker@VM-8-15-ubuntu:~$ docker run -itd -p 3306:3306 -e MYSQL_ROOT_PASSWORD=000123 mysql:5.7
-d291297ac538c7f0f2a4be8fa7c9c50cdeaf822c5b50738a64d796f85182cb1a
-
-docker@VM-8-15-ubuntu:~$ docker ps
-CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                                  NAMES
-d291297ac538   mysql     "docker-entrypoint.s…"   5 seconds ago   Up 4 seconds   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   hardcore_leakey
-
-docker@VM-8-15-ubuntu:~$ 
+docker run -d -p 3306:3306 --privileged=true \
+-v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
+-v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
+-v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD=000123 --name mysql mysql
 ```
 
-4. 使用 DataGrip 连接
+```shell
+docker@yuehai:~$ docker run -d -p 3306:3306 --privileged=true \
+-v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
+-v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
+-v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD=000123 --name mysql mysql
+Unable to find image 'mysql:latest' locally
+latest: Pulling from library/mysql
+Digest: sha256:1773f3c7aa9522f0014d0ad2bbdaf597ea3b1643c64c8ccc2123c64afd8b82b1
+Status: Downloaded newer image for mysql:latest
+bfab03cebaacb4613d86a14c5cf9a83f3fec84c0f0d2128181004b77ff76f203
+docker@yuehai:~$
+```
 
-![image.png](attachments/2023-07-25-12--42-56-344--KjP33dbMSXkT2A.png)
+4. 使用 Navicat 连接
 
-5. 创建数据库与表
+![|700](attachments/Pasted%20image%2020231108140616.png)
 
-![image.png](attachments/2023-07-25-12--42-56-353--XAM9tVATv6U3yw.png)
+5. 创建数据库
 
-![image.png](attachments/2023-07-25-12--42-56-360--1cxQFO1UrWGoGA.png)
+![|442](attachments/Pasted%20image%2020231108141015.png)
 
-![image.png](attachments/2023-07-25-12--42-56-372--lObpdUeS1oCUBA.png)
+6. 创建表
 
-6. 进入 mysql 容器
+![|700](attachments/Pasted%20image%2020231108141150.png)
+
+7. 添加数据
+
+![|700](attachments/Pasted%20image%2020231108141225.png)
+
+8. 进入 mysql 容器
 
 ```shell
-docker@VM-8-15-ubuntu:~$ docker ps
+docker@yuehai:~$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
-d291297ac538   mysql     "docker-entrypoint.s…"   19 minutes ago   Up 19 minutes   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   hardcore_leakey
+bfab03cebaac   mysql     "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
 
-docker@VM-8-15-ubuntu:~$ docker exec -it d291297ac538 bash
-
-root@d291297ac538:/#
+bash-4.4# 
 ```
 
-7. 进入 mysql ，查看数据库与表
+9. 进入 mysql，输入密码：000123
 
 ```shell
-root@d291297ac538:/# mysql -u root -p
+bash-4.4# mysql -u root -p       
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 26
-Server version: 8.0.27 MySQL Community Server - GPL
+Your MySQL connection id is 16
+Server version: 8.2.0 MySQL Community Server - GPL
 
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
@@ -2306,6 +2376,12 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
+mysql> 
+```
+
+10. 查看数据库与表
+
+```shell
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -2314,65 +2390,52 @@ mysql> show databases;
 | mysql              |
 | performance_schema |
 | sys                |
-| test               |
+| yuehai             |
 +--------------------+
 5 rows in set (0.00 sec)
 
-mysql> use test;
-Database changed
+mysql> use yuehai
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
 
+Database changed
 mysql> show tables;
-+----------------+
-| Tables_in_test |
-+----------------+
-| test           |
-+----------------+
++------------------+
+| Tables_in_yuehai |
++------------------+
+| user             |
++------------------+
 1 row in set (0.00 sec)
 
-mysql> select * from test;
+mysql> select * from user;
 +----+------+
 | id | name |
 +----+------+
 |  1 | ??   |
+|  2 | ?    |
 +----+------+
-1 row in set (0.00 sec)
+2 rows in set (0.00 sec)
 
 mysql> exit
 Bye
 
-root@d291297ac538:/# read escape sequence
-
-docker@VM-8-15-ubuntu:~$ 
+bash-4.4# exit
+exit
+docker@yuehai:~$ 
 ```
 
-8. 为防止容器意外停止后数据丢失，所以启动容器时应该映射容器数据卷：
-
-- `docker run -d -p 3306:3306 --privileged=true -v /home/docker/docker/mysql/test/log:/var/log/mysql -v /home/docker/docker/mysql/test/data:/var/lib/mysql -v /home/docker/docker/mysql/test/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name mysql mysql:5.7`
-
-```shell
-docker@VM-8-15-ubuntu:~$ docker run -d -p 3306:3306 --privileged=true -v /home/docker/docker/mysql/test/log:/var/log/mysql -v /home/docker/docker/mysql/test/data:/var/lib/mysql -v /home/docker/docker/mysql/test/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name mysql mysql:5.7
-7e7762ddcc6abf4901e77aee26104f0d7f43c55298e79456cc3a7197f4da17af
-
-docker@VM-8-15-ubuntu:~$ docker ps
-CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                                                  NAMES
-7e7762ddcc6a   mysql:5.7   "docker-entrypoint.s…"   7 seconds ago   Up 6 seconds   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
-
-docker@VM-8-15-ubuntu:~$ 
-```
-
-9. 插入中文报错
+11. 插入中文报错
    1. 进入容器，查看编码
 
 ```shell
-docker@VM-8-15-ubuntu:~$ docker exec -it 7e7762ddcc6a bash
-
-root@7e7762ddcc6a:/# mysql -u root -p       
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+bash-4.4# mysql -u root -p   
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 6
-Server version: 5.7.36 MySQL Community Server (GPL)
+Your MySQL connection id is 17
+Server version: 8.2.0 MySQL Community Server - GPL
 
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
@@ -2381,21 +2444,21 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> SHOW VARIABLES LIKE 'character%';
-+--------------------------+----------------------------+
-| Variable_name            | Value                      |
-+--------------------------+----------------------------+
-| character_set_client     | latin1                     |
-| character_set_connection | latin1                     |
-| character_set_database   | latin1                     |
-| character_set_filesystem | binary                     |
-| character_set_results    | latin1                     |
-| character_set_server     | latin1                     |
-| character_set_system     | utf8                       |
-| character_sets_dir       | /usr/share/mysql/charsets/ |
-+--------------------------+----------------------------+
-8 rows in set (0.00 sec)
++--------------------------+--------------------------------+
+| Variable_name            | Value                          |
++--------------------------+--------------------------------+
+| character_set_client     | latin1                         |
+| character_set_connection | latin1                         |
+| character_set_database   | utf8mb4                        |
+| character_set_filesystem | binary                         |
+| character_set_results    | latin1                         |
+| character_set_server     | utf8mb4                        |
+| character_set_system     | utf8mb3                        |
+| character_sets_dir       | /usr/share/mysql-8.2/charsets/ |
++--------------------------+--------------------------------+
+8 rows in set (0.01 sec)
 
-mysql> 
+mysql>
 ```
 
    2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
@@ -2414,13 +2477,14 @@ character_set_server=utf8
    3. 重新进入容器查看编码
 
 ```shell
-root@7e7762ddcc6a:/etc/mysql/conf.d# mysql -u root -p
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+bash-4.4# mysql -u root -p   
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 7
-Server version: 5.7.36 MySQL Community Server (GPL)
+Your MySQL connection id is 17
+Server version: 8.2.0 MySQL Community Server - GPL
 
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
@@ -4153,41 +4217,4 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 
 # 十三、Docker 复杂安装详说
 
-# 十四、终章の总结
-
-## 1、
-## 2、
-## 3、
-## 4、
-## 5、
-## 6、
-## 7、
-## 8、
-## 9、
-
----
-
-### ①、
-### ②、
-### ③、
-### ④、
-### ⑤、
-### ⑥、
-### ⑦、
-### ⑧、
-### ⑨、
-### ⑩、
-### ⑪、⑫、⑬、⑭、⑮、⑯、⑰、⑱、⑲、⑳
-### ㉑、㉒、㉓、㉔、㉕、㉖、㉗、㉘、㉙、㉚
-### ㉛、㉜、㉝、㉞、㉟、㊱、㊲、㊳、㊴、㊵
-### ㊶、㊷、㊸、㊹、㊺、㊻、㊼、㊽、㊾、㊿
-#### Ⅰ、
-#### Ⅱ、
-#### Ⅲ、
-#### Ⅳ、
-#### Ⅴ、
-#### Ⅵ、
-#### Ⅶ、
-#### Ⅷ、
-#### Ⅸ、
-#### Ⅹ、
+# 十四、其他

@@ -10322,7 +10322,58 @@ org.gradle.jvmargs=-Xmx1536M \
 3. 蓝叠模拟器：adb connect 127.0.0.1:5555
 4. 雷电模拟器：adb connect 127.0.0.1:5555
 
-## 2、genymotion 模拟器
+## 2、安卓手机当电脑摄像头 DroidCam
+
+> 电脑软件下载网址：https://www.dev47apps.com/
+> 
+> 电脑软件：[DroidCam.Setup](attachments/DroidCam.Setup.6.5.2.exe)
+> 
+> 手机端软件：[DroidCam](attachments/DroidCam.apk)
+
+1. 电脑与手机端分别安装软件
+2. 手机端进入下方页面，记录端口号
+
+![|450](attachments/4A13FF6FFC900441630FD400F9D43B98.jpg)
+
+3. 电脑端打开 DroidCamApp 软件，选择 USB 连接，选择自己的手机，填入端口号，点击 `Start` 进行连接
+
+![|415](attachments/Pasted%20image%2020230420084259.png)
+
+4. 连接成功后：
+
+![|365](attachments/Pasted%20image%2020230420084501.png)
+
+## 3、连接手机使其作为外放音响 1 SoundWire
+
+> 电脑端：<a href="./attachments/SoundWire_Server_setup7-8-10.zip" alt="文档">SoundWire_Server_setup7-8-10.zip</a>
+> 
+> 安卓端：<a href="./attachments/SoundWire_Free.apk" alt="文档">SoundWire_Free.apk</a>
+> 
+> 推荐使用下面的 SyncAudio
+
+1. 电脑手机下载安装上面的软件
+2. 电脑端打开软件，防火墙点击允许
+
+![|568](attachments/Pasted%20image%2020231023141708.png)
+
+3. 在 Input Select 选择输出音频，选一个未使用的
+4. 之后再到Windows音量中修改输出设备，选择你在软件中勾选的输出源
+
+![|563](attachments/Pasted%20image%2020231023141752.png)
+
+5. 手机端在中间的方框中输入本地 IP，回车键即可连接
+
+![|700](attachments/Pasted%20image%2020231023141820.png)
+
+## 4、连接手机使其作为外放音响 2 SyncAudio
+
+> 电脑端下载：<a href="./attachments/SyncAudio(同步听) 1.0.3.7z" alt="文档">SyncAudio(同步听) 1.0.3.7z</a>
+
+1. 电脑端下载上面的软件，解压，双击打开
+2. 使用手机任意软件扫描二维码即可
+3. 推荐使用微信等不会被经常杀掉后台的软件
+
+## 5、genymotion 模拟器
 
 > 官网：https://www.genymotion.com/
 
@@ -10399,12 +10450,8 @@ genymotion:/sdcard/Download #
 
 ![|700](attachments/Pasted%20image%2020231019152956.png)
 
-6. 1
 
-
-### ③、
-
-### ④、
+## 6、
 
 # 十四、其他
 

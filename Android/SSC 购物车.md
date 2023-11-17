@@ -194,10 +194,7 @@ res
 
 ![](attachments/Pasted%20image%2020231031133836.png)
 
-6. 1
-7. 1
-8. 1
-9. 1
+6. github review 模板
 
 ```
 
@@ -210,7 +207,7 @@ https://retailai.atlassian.net/browse/SSCPOC-1927
 - Increase points earned from activities
 
 # Notes
-Now only write the page layout, wait for the interface to complete and then improve the value
+none
 
 # Screenshots
 
@@ -220,9 +217,11 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ```
 
+7. 选择审查人
+
 ![|188](attachments/Pasted%20image%2020231031111341.png)
 
-- review 时选择 Approve
+8. review 时选择 Approve
 
 ![](attachments/Pasted%20image%2020231008123601.png)
 

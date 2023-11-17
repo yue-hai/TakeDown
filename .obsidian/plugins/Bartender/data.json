@@ -108,6 +108,14 @@
       "前端/三件套/JavaScript.md",
       "前端/三件套/ES6-11 - JavaScript 新特性.md",
       "前端/三件套/Promise 从入门到自定义.md"
+    ],
+    "其他/软件使用": [
+      "其他/软件使用/attachments",
+      "其他/软件使用/Excel.md",
+      "其他/软件使用/Idea.md",
+      "其他/软件使用/VS Code.md",
+      "其他/软件使用/WindTerm.md",
+      "其他/软件使用/浏览器.md"
     ]
   },
   "actionBarOrder": {},
