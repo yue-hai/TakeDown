@@ -1,6 +1,8 @@
 > 官方教程：https://flutter.cn/docs
 > 
 > 文档参考：https://book.flutterchina.club/
+> 
+> 文档参考 github：https://github.com/flutterchina/flutter_in_action_2nd
 
 # 一、环境准备
 
@@ -93,7 +95,11 @@
   | p | 显示网格，这个可以很好的掌握布局情况，工作中很有用。 |
   | o | 切换 android 和 ios 的预览模式                                 |
 
-## 6、
+## 6、Dart SDK 在 Flutter SDK 中的存储路径
+
+- `flutterSDK路径\bin\cache\dart-sdk`
+
+![|700](attachments/Pasted%20image%2020231127090935.png)
 
 ## 7、
 
@@ -11946,62 +11952,4418 @@ const ValueListenableBuilder({
 
 ### ②、实例
 
+1. 我们依然实现一个计数器，记录点击次数：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/05_按需rebuild（ValueListenableBuilder）/01_ValueListenableBuilder.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: ValueListenableRoute()
+        )
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class ValueListenableRoute extends StatefulWidget {
+  const ValueListenableRoute({Key? key}) : super(key: key);
+
+  @override
+  State<ValueListenableRoute> createState() => _ValueListenableState();
+}
+
+class _ValueListenableState extends State<ValueListenableRoute> {
+  // 定义一个 ValueNotifier，当数字变化时会通知 ValueListenableBuilder
+  final ValueNotifier<int> _counter = ValueNotifier<int>(0);
+  // 定义一个缩放比例，用于调整字体大小
+  static const double textScaleFactor = 1.5;
+
+  @override
+  Widget build(BuildContext context) {
+    // 添加 + 按钮不会触发整个 ValueListenableRoute 组件的 build
+    print('build');
+
+    /**
+     * Scaffold 是一个用于创建基本页面布局的小部件。
+     * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+     * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+     */
+    return Scaffold(
+      // appBar 是 Scaffold 的一个属性，用于设置应用程序顶部的导航栏。
+      appBar: AppBar(title: const Text('ValueListenableBuilder 测试')),
+      /**
+       * body: 用于定义页面的主要内容区域
+       * Center 是一个小部件，用于将其子部件树对齐到屏幕中心
+       */
+      body: Center(
+        // ValueListenableBuilder 是一个小部件，用于监听 ValueListenable 的变化，并根据变化来构建子部件树。
+        child: ValueListenableBuilder<int>(
+          builder: (BuildContext context, int value, Widget? child) {
+            // builder 方法只会在 _counter 变化时被调用
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                child!,
+                Text('$value 次', textScaleFactor: textScaleFactor),
+              ],
+            );
+          },
+          // valueListenable 用于指定监听的 ValueListenable, 当 ValueListenable 变化时，builder 方法会被调用
+          valueListenable: _counter,
+          // 当子组件不依赖变化的数据，且子组件收件开销比较大时，指定 child 属性来缓存子组件非常有用
+          child: const Text('点击了 ', textScaleFactor: textScaleFactor),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        // 点击后值 +1，触发 ValueListenableBuilder 重新构建
+        onPressed: () => _counter.value += 1,
+      ),
+    );
+  }
+}
+```
+
+2. 效果：
+
+![|700](attachments/动画14.gif)
+
+3. 可以看见，功能正常实现了，同时控制台只在页面打开时 build 了一次，点击 + 按钮的时候只是`ValueListenableBuilder` 重新构建了子组件树，而整个页面并没有重新 build ，因此日志面板只打印了一次  build  。
+4. 因此尽可能让 `ValueListenableBuilder` 只构建依赖数据源的 `widget`，这样的话可以缩小重新构建的范围，也就是说 `ValueListenableBuilder` 的拆分粒度应该尽可能细。
+
+## 6、异步 UI 更新（FutureBuilder、StreamBuilder）
+
+1. 很多时候我们会依赖一些异步数据来动态更新 UI，比如在打开一个页面时我们需要先从互联网上获取数据，在获取数据的过程中我们显示一个加载框，等获取到数据时我们再渲染页面；
+2. 又比如我们想展示 Stream（比如文件流、互联网数据接收流）的进度。
+3. 当然，通过 `StatefulWidget` 我们完全可以实现上述这些功能。但由于在实际开发中依赖异步数据更新 UI 的这种场景非常常见，因此 Flutter 专门提供了 `FutureBuilder` 和 `StreamBuilder` 两个组件来快速实现这种功能
+
+### ①、FutureBuilder
+
+#### Ⅰ、介绍
+
+1. `FutureBuilder` 会依赖一个 Future，它会根据所依赖的 Future 的状态来动态构建自身。
+2. 我们看一下 FutureBuilder 构造函数：
+
+```dart
+FutureBuilder({
+  /**
+   * future：FutureBuilder 依赖的 Future，通常是一个异步耗时任务。
+   */
+  this.future,
+  /**
+   * initialData：初始数据，用户设置默认数据。
+   */
+  this.initialData,
+  /**
+   * builder：Widget 构建器；该构建器会在 Future 执行的不同阶段被多次调用，构建器签名如下：
+   *    Function (BuildContext context, AsyncSnapshot snapshot)
+   * snapshot 会包含当前异步任务的状态信息及结果信息，
+   *    比如我们可以通过 snapshot.connectionState 获取异步任务的状态信息、
+   *    通过 snapshot.hasError 判断异步任务是否有错误等等，完整的定义可以查看 AsyncSnapshot 类定义。
+   */
+  required this.builder,
+})
+```
+
+3. 另外，`FutureBuilder` 的 `builder` 函数签名和 `StreamBuilder` 的 `builder` 是相同的
+
+#### Ⅱ、示例
+
+1. 我们实现一个路由，当该路由打开时我们从网上获取数据，获取数据时弹一个加载框；
+2. 获取结束时，如果成功则显示获取到的数据，如果失败则显示错误。
+3. 由于我们还没有介绍在 flutter 中如何发起网络请求，所以在这里我们不真正去网络请求数据，而是模拟一下这个过程，隔 2 秒后返回一个字符串：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/06_异步 UI 更新（FutureBuilder、StreamBuilder）/01_FutureBuilder.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: FutureBuilderComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class FutureBuilderComponent extends StatefulWidget {
+  const FutureBuilderComponent({Key? key}) : super(key: key);
+
+  @override
+  _FutureBuilderComponentState createState() => _FutureBuilderComponentState();
+}
+
+class _FutureBuilderComponentState extends State<FutureBuilderComponent> {
+  // 刷新次数
+  int _num = 1;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * Scaffold 是一个用于创建基本页面布局的小部件。
+     * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+     * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+     */
+    return Scaffold(
+      /**
+       * body: 用于定义页面的主要内容区域
+       * Center 是一个小部件，用于将其子部件树对齐到屏幕中心
+       */
+      body: Center(
+        // FutureBuilder 是一个小部件，用于根据异步请求的状态来动态构建 UI
+        child: FutureBuilder<List<String>>(
+          // future：用于接收一个 Future 对象，表示需要等待的异步任务
+          future: _retrieveData(),
+          // builder：用于接收一个 AsyncSnapshot 对象，表示对 future 的异步请求的状态快照
+          builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+            // 请求已结束
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                // 请求失败，显示错误
+                return Text("Error: ${snapshot.error}");
+              } else {
+                // 请求成功，显示数据
+                return ListView.builder(
+                  // itemCount：列表项的数量，如果为 null，则为无限列表
+                  itemCount: snapshot.data!.length,
+                  // 强制高度为 50.0
+                  itemExtent: 50.0,
+                  /**
+                   * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+                   * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+                   */
+                  itemBuilder: (BuildContext context, int index) {
+                    return Text(snapshot.data![index]);
+                  }
+                );
+              }
+            } else {
+              // 请求未结束，显示 loading
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
+      ),
+      /**
+       * floatingActionButton：用于定义页面的浮动按钮
+       */
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        // 点击按钮后，次数加 1，然后重新构建 UI
+        onPressed: () => setState(() {
+          _num++;
+        }),
+      ),
+    );
+  }
+
+  Future<List<String>> _retrieveData() async {
+    // 等待模拟的网络请求完成
+    return Future.delayed(const Duration(seconds: 2), (){
+      return List.generate(5, (index) => "第 $_num 次刷新、第 ${index + 1} 条数据");
+    });
+  }
+
+}
+```
+
+4. 效果：
+
+![|413](attachments/动画15.gif)
+
+5. 注意：示例的代码中，每次组件重新 build 都会重新发起请求，因为每次的 `future` 都是新的，实践中我们通常会有一些缓存策略，常见的处理方式是在 `future` 成功后将 `future` 缓存，这样下次 build 时，就不会再重新发起异步任务。
+6. 上面代码中我们在 builder 中根据当前异步任务状态 `ConnectionState` 来返回不同的 widget。`ConnectionState` 是一个枚举类，定义如下：
+
+```dart
+enum ConnectionState {
+  /// 当前没有异步任务，比如[FutureBuilder]的[future]为null时
+  none,
+
+  /// 异步任务处于等待状态
+  waiting,
+
+  /// Stream处于激活状态（流上已经有数据传递了），对于FutureBuilder没有该状态。
+  active,
+
+  /// 异步任务已经终止.
+  done,
+}
+```
+
+7. 注意，`ConnectionState.active` 只在 `StreamBuilder` 中才会出现。
+
+### ②、StreamBuilder
+
+#### Ⅰ、介绍
+
+1. 我们知道，在 `Dart` 中 `Stream` 也是用于接收异步事件数据，和 `Future` 不同的是，它可以接收多个异步操作的结果，它常用于会多次读取数据的异步任务场景，如网络内容下载、文件读写等。
+2. `StreamBuilder` 正是用于配合 `Stream` 来展示流上事件（数据）变化的 UI 组件。
+3. 下面看一下 `StreamBuilder` 的默认构造函数：
+
+```dart
+StreamBuilder({
+  this.initialData,
+  Stream<T> stream,
+  required this.builder,
+}) 
+```
+
+4. 可以看到和 `FutureBuilder` 的构造函数只有一点不同：前者需要一个 `future`，而后者需要一个 `stream`。
+
+#### Ⅱ、示例
+
+1. 我们创建一个计时器的示例：每隔 1 秒，计数加 1。
+2. 这里，我们使用 `Stream` 来实现每隔一秒生成一个数字：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/06_异步 UI 更新（FutureBuilder、StreamBuilder）/02_StreamBuilder.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: StreamBuilderComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class StreamBuilderComponent extends StatefulWidget {
+  const StreamBuilderComponent({Key? key}) : super(key: key);
+
+  @override
+  _StreamBuilderComponentState createState() => _StreamBuilderComponentState();
+}
+
+class _StreamBuilderComponentState extends State<StreamBuilderComponent> {
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * StreamBuilder 是一个用于构建异步数据流的小部件。
+     * 它提供了一个小部件来订阅数据流，并根据数据流中的数据来构建 UI。
+     */
+    return StreamBuilder<int>(
+      // stream 参数用于接收一个 Stream 对象，用于订阅数据流
+      stream: counter(),
+      // builder 用于接收一个回调函数，snapshot 参数用于接收数据流中的数据
+      builder: (BuildContext context, AsyncSnapshot<int> snapshot){
+        // snapshot.hasError 用于判断数据流中是否有错误
+        if (snapshot.hasError){
+          return Text('Error: ${snapshot.error}');
+        }
+
+        switch (snapshot.connectionState) {
+          // ConnectionState.none 表示没有 Stream
+          case ConnectionState.none:
+            return const Text('没有Stream');
+          // ConnectionState.waiting 表示正在等待数据
+          case ConnectionState.waiting:
+            return const Text('等待数据...');
+          // ConnectionState.active 表示正在接收数据
+          case ConnectionState.active:
+            return Text('active: ${snapshot.data}');
+          // ConnectionState.done 表示 Stream 已关闭
+          case ConnectionState.done:
+            return const Text('Stream 已关闭');
+        }
+      },
+    );
+  }
+
+  Stream<int> counter() {
+    return Stream.periodic(const Duration(seconds: 1), (i) {
+      return i;
+    });
+  }
+
+}
+```
+
+3. 效果：
+
+![|413](attachments/动画16.gif)
+
+## 7、对话框详解
+
+### ①、使用对话框
+
+1. 对话框本质上也是 UI 布局，通常一个对话框会包含标题、内容，以及一些操作按钮，
+2. 为此，Material 库中提供了一些现成的对话框组件来用于快速的构建出一个完整的对话框。
+
+#### Ⅰ、AlertDialog
+
+1. 下面我们主要介绍一下 Material 库中的 `AlertDialog` 组件，它的构造函数定义如下：
+
+```dart
+const AlertDialog({
+  Key? key,
+  this.title, //对话框标题组件
+  this.titlePadding, // 标题填充
+  this.titleTextStyle, //标题文本样式
+  this.content, // 对话框内容组件
+  this.contentPadding = const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0), //内容的填充
+  this.contentTextStyle,// 内容文本样式
+  this.actions, // 对话框操作按钮组
+  this.backgroundColor, // 对话框背景色
+  this.elevation,// 对话框的阴影
+  this.semanticLabel, //对话框语义化标签(用于读屏软件)
+  this.shape, // 对话框外形
+})
+```
+
+2. 下面我们看一个例子，点击按钮后弹出一个对话框：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/01_使用对话框/01_AlertDialog.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: AlertDialogComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class AlertDialogComponent extends StatefulWidget {
+  const AlertDialogComponent({Key? key}) : super(key: key);
+
+  @override
+  _AlertDialogComponentState createState() => _AlertDialogComponentState();
+}
+
+class _AlertDialogComponentState extends State<AlertDialogComponent> {
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<bool?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 AlertDialog 对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        bool? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了确定");
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<bool?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<bool>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return AlertDialog(
+          title: const Text("提示"),
+          content: const Text("请点击确认按钮进行确认\n请点击取消按钮进行取消"),
+          // actions 是一个 Widget 列表，用于显示对话框的按钮；通常用于放置“取消”和“确认”按钮
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              // 关闭对话框并返回 null
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text("确认"),
+              // 关闭对话框并返回 true
+              onPressed: () => Navigator.of(context).pop(true)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+}
+```
+
+3. 效果：
+
+![|700](attachments/动画17.gif)
+
+4. 示例运行后，我们点击对话框“取消”按钮或遮罩，控制台就会输出"点击了取消"，如果点击“确定”按钮，控制台就会输出"点击了确定"。
+5. 注意：如果 `AlertDialog` 的内容过长，内容将会溢出，这在很多时候可能不是我们期望的，所以如果对话框内容过长时，可以用 `SingleChildScrollView` 将内容包裹起来。
+
+#### Ⅱ、SimpleDialog
+
+1. `SimpleDialog` 也是 Material 组件库提供的对话框，它会展示一个列表，用于列表选择的场景。
+2. 下面是一个示例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/01_使用对话框/01_AlertDialog.dart';
+import '05_功能型组件/07_对话框详解/01_使用对话框/02_SimpleDialog.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: SimpleDialogComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class SimpleDialogComponent extends StatefulWidget {
+  const SimpleDialogComponent({Key? key}) : super(key: key);
+
+  @override
+  _SimpleDialogComponentState createState() => _SimpleDialogComponentState();
+}
+
+class _SimpleDialogComponentState extends State<SimpleDialogComponent> {
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showSimpleDialog),
+        ],
+      ),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<int?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 SimpleDialog 对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        int? result = await dialog();
+        switch(result){
+          case 1:
+            print("选择了中文");
+            break;
+          case 2:
+            print("选择了英语");
+            break;
+          case 3:
+            print("选择了日语");
+            break;
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<int?> showSimpleDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<int>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return SimpleDialog(
+          title: const Text("请选择语言"),
+          children: [
+            SimpleDialogOption(
+              child: const Text("中文"),
+              // 关闭对话框并返回 1
+              onPressed: () => Navigator.of(context).pop(1)
+            ),
+            SimpleDialogOption(
+              child: const Text("英语"),
+              // 关闭对话框并返回 2
+              onPressed: () => Navigator.of(context).pop(2)
+            ),
+            SimpleDialogOption(
+              child: const Text("日语"),
+              // 关闭对话框并返回 3
+              onPressed: () => Navigator.of(context).pop(3)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+}
+```
+
+3. 效果：
+
+![|700](attachments/动画18.gif)
+
+4. 列表项组件我们使用了 `SimpleDialogOption` 组件来包装了一下，它相当于一个 `TextButton`，只不过按钮文案是左对齐的，并且 `padding` 较小
+
+#### Ⅲ、Dialog
+
+1. 实际上 `AlertDialog` 和 `SimpleDialog` 都使用了 `Dialog` 类。
+2. 由于 `AlertDialog` 和 `SimpleDialog` 中使用了 `IntrinsicWidth` 来尝试通过子组件的实际尺寸来调整自身尺寸，这就导致他们的子组件不能是延迟加载模型的组件（如 `ListView`、`GridView` 、 `CustomScrollView` 等），如下面的代码运行后会报错。
+
+```dart
+AlertDialog(
+  content: ListView(
+    children: ... //省略
+  ),
+);
+```
+
+3. 如果我们就是需要嵌套一个 `ListView` 应该怎么做？这时，我们可以直接使用 `Dialog` 类，如：
+
+```dart
+Dialog(
+  child: ListView(
+    children: ... //省略
+  ),
+);
+```
+
+4. 下面我们看一个弹出一个有 30 个列表项的对话框示例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/01_使用对话框/03_Dialog.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: DialogComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class DialogComponent extends StatefulWidget {
+  const DialogComponent({Key? key}) : super(key: key);
+
+  @override
+  _DialogComponentState createState() => _DialogComponentState();
+}
+
+class _DialogComponentState extends State<DialogComponent> {
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      child: buildElevatedButton(showListDialog),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<int?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 List Dialog 对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        int? result = await dialog();
+        if(result == null){
+          print('未选择选项');
+        }else {
+          print('点击了对话框列表的第 $result 个选项');
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<int?> showListDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<int>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        return Dialog(
+          child: buildListDialog(),
+        );
+      },
+    );
+  }
+
+  Widget buildListDialog(){
+    // Column 是一个用于在垂直方向上排列其子部件的小部件
+    return Column(
+        children: [
+          // ListTile 是一个用于在列表中显示一个固定样式的行的小部件
+          const ListTile(title: Text("请选择")),
+          // Expanded 是一个可以用来包裹子 Widget 的小部件，它会将子 Widget 沿着父部件的垂直方向拉伸并填充满父部件
+          Expanded(
+            // Scrollbar 是一个小部件，用于为可滚动的子部件添加滚动条
+            child: Scrollbar(
+              // ListView 是一个用于显示列表的小部件
+              child: ListView.builder(
+                // itemCount：列表项的数量
+                itemCount: 30,
+                /**
+                 * itemBuilder 是一个回调函数，它用于构建 ListView.builder 中的每个列表项。
+                 * 当 ListView.builder 需要构建一个新的列表项时，它会调用 itemBuilder 函数，并传入当前的 BuildContext 和列表项的索引 index
+                 */
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text("$index"),
+                    // onTap：点击事件，点击后关闭对话框并返回当前列表项的索引 index
+                    onTap: () => Navigator.of(context).pop(index),
+                  );
+                },
+              ),
+            )
+
+          ),
+        ],
+      );
+  }
+
+}
+```
+
+5. 运行效果如图所示：
+
+![|700](attachments/动画19.gif)
+
+### ②、对话框打开动画及遮罩
+
+1. 我们可以把对话框分为内部样式和外部样式两部分。
+2. 内部样式指对话框中显示的具体内容，这部分内容我们已经在上面介绍过了；外部样式包含对话框遮罩样式、打开动画等，本节主要介绍如何自定义这些外部样式。
+3. 关于动画相关内容我们将在本书第九章中详细介绍，下面内容可以先了解一下（不必深究），可以在学习完动画相关内容后再回头来看。
+4. 我们已经介绍过了 `showDialog` 方法，它是 Material 组件库中提供的一个打开 Material 风格对话框的方法。那如何打开一个普通风格的对话框呢（非 Material 风格）？ Flutter 提供了一个 `showGeneralDialog` 方法，签名如下：
+
+```dart
+Future<T?> showGeneralDialog<T>({
+  required BuildContext context,
+  required RoutePageBuilder pageBuilder, //构建对话框内部UI
+  bool barrierDismissible = false, //点击遮罩是否关闭对话框
+  String? barrierLabel, // 语义化标签(用于读屏软件)
+  Color barrierColor = const Color(0x80000000), // 遮罩颜色
+  Duration transitionDuration = const Duration(milliseconds: 200), // 对话框打开/关闭的动画时长
+  RouteTransitionsBuilder? transitionBuilder, // 对话框打开/关闭的动画
+  ...
+})
+```
+
+5. 实际上，`showDialog` 方法正是 `showGeneralDialog` 的一个封装，定制了 Material 风格对话框的遮罩颜色和动画。Material 风格对话框打开/关闭动画是一个 Fade（渐隐渐显）动画，如果我们想使用一个缩放动画就可以通过 `transitionBuilder` 来自定义。
+6. 下面我们自己封装一个 `showCustomDialog` 方法，它定制的对话框动画为缩放动画，并同时制定遮罩颜色为 `Colors.black87`：
+7. `mian` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/02_对话框打开动画及遮罩/02_CustomDialogView.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: CustomDialogViewComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+8. `01_CustomDialog.dart` 自定义对话框打开动画及遮罩类
+
+```dart
+import 'package:flutter/material.dart';
+
+// 自定义对话框打开动画及遮罩类
+class CustomDialog {
+
+  // 自定义对话框打开动画及遮罩方法
+  Future<T?> showCustomDialog<T>({
+    // context 是一个 BuildContext，表示当前 Widget 的位置
+    required BuildContext context,
+    // barrierDismissible：点击遮罩是否关闭对话框
+    bool barrierDismissible = true,
+    // builder 是一个回调函数，返回一个 Widget
+    required WidgetBuilder builder,
+    // theme：对话框使用的主题
+    ThemeData? theme,
+  }) {
+    // 如果没有传入 theme，则使用默认的主题
+    theme = theme ?? Theme.of(context);
+    // showGeneralDialog 是一个用于显示对话框的方法
+    return showGeneralDialog(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      /**
+       * pageBuilder 是一个回调函数，返回一个 Widget
+       * 该回调函数接收三个参数：
+       * 1、BuildContext：构建上下文，即当前 Widget 的位置
+       * 2、Animation<double>：动画对象，用于控制对话框的动画
+       * 3、Animation<double>：动画对象，用于控制对话框打开时遮罩的动画
+       */
+      pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
+        final Widget pageChild = Builder(builder: builder);
+        // SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+        return SafeArea(
+          child: Builder(builder: (BuildContext context) {
+            return theme != null ? Theme(data: theme, child: pageChild): pageChild;
+          }),
+        );
+      },
+      // barrierDismissible 表示点击遮罩是否关闭对话框
+      barrierDismissible: barrierDismissible,
+      // barrierLabel：遮罩的语义化标签，用于向屏幕阅读器传递语义信息
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      // barrierColor：遮罩的颜色
+      barrierColor: Colors.black87,
+      // transitionDuration：对话框打开/关闭的动画时长
+      transitionDuration: const Duration(milliseconds: 150),
+      // transitionBuilder：对话框打开/关闭的动画
+      transitionBuilder: _buildMaterialDialogTransitions,
+    );
+  }
+
+  // 对话框打开/关闭的动画
+  Widget _buildMaterialDialogTransitions(
+    // context：构建上下文，即当前 Widget 的位置
+    BuildContext context,
+    // animation：动画对象，用于控制对话框的动画
+    Animation<double> animation,
+    // secondaryAnimation：动画对象，用于控制对话框打开时遮罩的动画
+    Animation<double> secondaryAnimation,
+    Widget child
+  ) {
+    // 使用缩放动画
+    return ScaleTransition(
+      // 动画对象，用于控制对话框的动画；CurvedAnimation：动画曲线，用于控制动画的执行速度
+      scale: CurvedAnimation(
+        // 父动画，即对话框打开/关闭的动画
+        parent: animation,
+        // 动画曲线，用于控制动画的执行速度；Curves.easeOut：快出慢进，动画结束时减速
+        curve: Curves.easeOut,
+      ),
+      child: child,
+    );
+  }
+}
+```
+
+9. `02_CustomDialogView.dart` 使用自定义对话框打开动画及遮罩类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_CustomDialog.dart';
+
+class CustomDialogViewComponent extends StatefulWidget {
+  const CustomDialogViewComponent({Key? key}) : super(key: key);
+
+  @override
+  _CustomDialogViewComponentState createState() => _CustomDialogViewComponentState();
+}
+
+class _CustomDialogViewComponentState extends State<CustomDialogViewComponent> {
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<bool?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 自定义 对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        bool? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了确定");
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<bool?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return CustomDialog().showCustomDialog<bool>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return AlertDialog(
+          title: const Text("提示"),
+          content: const Text("请点击确认按钮进行确认\n请点击取消按钮进行取消"),
+          // actions 是一个 Widget 列表，用于显示对话框的按钮；通常用于放置“取消”和“确认”按钮
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              // 关闭对话框并返回 null
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+                child: const Text("确认"),
+                // 关闭对话框并返回 true
+                onPressed: () => Navigator.of(context).pop(true)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+}
+```
+
+10. 效果：
+
+![|411](attachments/动画20.gif)
+
+### ③、对话框实现原理
+
+1. 我们以 `showGeneralDialog` 方法为例来看看它的具体实现：
+
+```dart
+Future<T?> showGeneralDialog<T extends Object?>({
+  required BuildContext context,
+  required RoutePageBuilder pageBuilder,
+  bool barrierDismissible = false,
+  String? barrierLabel,
+  Color barrierColor = const Color(0x80000000),
+  Duration transitionDuration = const Duration(milliseconds: 200),
+  RouteTransitionsBuilder? transitionBuilder,
+  bool useRootNavigator = true,
+  RouteSettings? routeSettings,
+}) {
+  return Navigator.of(context, rootNavigator: useRootNavigator).push<T>(RawDialogRoute<T>(
+    pageBuilder: pageBuilder,
+    barrierDismissible: barrierDismissible,
+    barrierLabel: barrierLabel,
+    barrierColor: barrierColor,
+    transitionDuration: transitionDuration,
+    transitionBuilder: transitionBuilder,
+    settings: routeSettings,
+  ));
+}
+```
+
+2. 实现很简单，直接调用 `Navigator` 的 `push` 方法打开了一个新的对话框路由 `RawDialogRoute`，然后返回了 `push` 的返回值。
+3. 可见对话框实际上正是通过路由的形式实现的，这也是为什么我们可以使用 `Navigator` 的 `pop` 方法来退出对话框的原因。
+
+### ④、对话框状态管理
+
+#### Ⅰ、问题引出
+
+1. 我们在用户选择删除一个文件时，会询问是否删除此文件；在用户选择一个文件夹是，应该再让用户确认是否删除子文件夹。
+2. 为了在用户选择了文件夹时避免二次弹窗确认是否删除子目录，我们在确认对话框底部添加一个“同时删除子目录？”的复选框，如图所示：
+
+![|320](attachments/Pasted%20image%2020231121132353.png)
+
+3. 现在就有一个问题：如何管理复选框的选中状态？习惯上，我们会在路由页的 `State` 中来管理选中状态，我们可能会写出如下这样的代码：
+
+```dart
+class _DialogRouteState extends State<DialogRoute> {
+  bool withTree = false; // 复选框选中状态
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        ElevatedButton(
+          child: Text("对话框2"),
+          onPressed: () async {
+            bool? delete = await showDeleteConfirmDialog2();
+            if (delete == null) {
+              print("取消删除");
+            } else {
+              print("同时删除子目录: $delete");
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  Future<bool?> showDeleteConfirmDialog2() {
+    withTree = false; // 默认复选框不选中
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("提示"),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text("您确定要删除当前文件吗?"),
+              Row(
+                children: <Widget>[
+                  Text("同时删除子目录？"),
+                  Checkbox(
+                    value: withTree,
+                    onChanged: (bool value) {
+                      //复选框选中状态发生变化时重新构建UI
+                      setState(() {
+                        //更新复选框状态
+                        withTree = !withTree;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text("取消"),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: Text("删除"),
+              onPressed: () {
+                //执行删除操作
+                Navigator.of(context).pop(withTree);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+```
+
+4. 然后，当我们运行上面的代码时我们会发现复选框根本选不中！为什么会这样呢？其实原因很简单，我们知道 `setState` 方法只会针对当前 `context` 的子树重新 build，但是我们的对话框并不是在 `_DialogRouteState` 的 `build` 方法中构建的，而是通过 `showDialog` 单独构建的，所以在 `_DialogRouteState` 的 `context` 中调用 `setState` 是无法影响通过 `showDialog` 构建的 UI 的。
+5. 另外，我们可以从另外一个角度来理解这个现象，前面说过对话框也是通过路由的方式来实现的，那么上面的代码实际上就等同于企图在父路由中调用 `setState` 来让子路由更新，这显然是不行的！
+6. 简尔言之，根本原因就是 `context` 不对。那如何让复选框可点击呢？通常有如下三种方法：
+
+#### Ⅱ、单独抽离出 StatefulWidget
+
+1. 既然是 context 不对，那么直接的思路就是将复选框的选中逻辑单独封装成一个 `StatefulWidget`，然后在其内部管理复选状态。
+2. 我们先来看看这种方法，下面是实现代码：
+3. `main` 主方法：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/04_对话框状态管理/01_2_AlertDialogCheckbox.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: AlertDialogCheckboxComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+4. `01_1_DialogCheckbox.dart` 抽取的复选框：
+
+```dart
+import 'package:flutter/material.dart';
+
+// 单独封装一个内部管理选中状态的复选框组件
+class DialogCheckbox extends StatefulWidget {
+  const DialogCheckbox({Key? key, this.value, required this.onChanged}): super(key: key);
+
+  /// 选中状态改变事件
+  final ValueChanged<bool?> onChanged;
+  /// 选中状态
+  final bool? value;
+
+  @override
+  _DialogCheckboxState createState() => _DialogCheckboxState();
+}
+
+class _DialogCheckboxState extends State<DialogCheckbox> {
+  /// _DialogCheckboxState 中的 value 是一个私有的布尔值，表示内部管理的复选框的选中状态
+  /// _DialogCheckboxState 中的 value 变量在 initState 中初始化为 DialogCheckbox 组件传递的 value 值，
+  /// 然后在复选框状态改变时更新，并通过 onChanged 事件回传给 DialogCheckbox 组件
+  bool? value;
+
+  @override
+  void initState() {
+    // 初始化选中状态
+    value = widget.value;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 返回一个复选框组件
+    return Checkbox(
+      // 复选框的选中状态；true：选中，false：未选中
+      value: value,
+      // 复选框选中状态改变事件
+      onChanged: (v) {
+        // 将选中状态通过事件的形式抛出
+        widget.onChanged(v);
+        setState(() {
+          // 更新自身选中状态
+          value = v;
+          print('复选框选中状态：$value');
+        });
+      },
+    );
+  }
+}
+```
+
+5. `01_2_AlertDialogCheckbox.dart` 弹窗方法：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_1_DialogCheckbox.dart';
+
+class AlertDialogCheckboxComponent extends StatefulWidget {
+  const AlertDialogCheckboxComponent({Key? key}) : super(key: key);
+
+  @override
+  _AlertDialogCheckboxComponentState createState() => _AlertDialogCheckboxComponentState();
+}
+
+class _AlertDialogCheckboxComponentState extends State<AlertDialogCheckboxComponent> {
+  // 记录复选框是否选中
+  bool _withTree = false;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<bool?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 带有复选框的对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        bool? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了确定");
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<bool?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<bool>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return AlertDialog(
+          title: const Text("提示"),
+          // content 通常显示对话框的主要内容；Column 是一个用于在垂直方向上排列其子部件的小部件
+          content: buildConfirmDialogContent(),
+          // actions 是一个 Widget 列表，用于显示对话框的按钮；通常用于放置“取消”和“确认”按钮
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              // 关闭对话框并返回 null
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text("确认"),
+              // 关闭对话框并返回 true
+              onPressed: () => Navigator.of(context).pop(true)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget buildConfirmDialogContent() {
+    // Column 是一个用于在垂直方向上排列其子部件的小部件
+    return Column(
+      // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小垂直方向上的高度
+      mainAxisSize: MainAxisSize.min,
+      // 表示子部件在水平方向上如何排列；CrossAxisAlignment.start：子部件在水平方向上从左到右排列
+      crossAxisAlignment:  CrossAxisAlignment.start,
+      children: [
+        const Text("您确定要删除当前文件吗？"),
+        // Row 是一个用于在水平方向上排列其子部件的小部件
+        Row(
+          // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小水平方向上的宽度
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("是否确认："),
+            DialogCheckbox(
+              value: _withTree,
+              onChanged: (v) {
+                setState(() {
+                  _withTree = !_withTree;
+                });
+              },
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+}
+```
+
+6. 效果：
+
+![|700](attachments/动画21.gif)
+
+#### Ⅲ、使用 StatefulBuilder 方法
+
+1. 上面的方法虽然能解决对话框状态更新的问题，但是有一个明显的缺点：对话框上所有可能会改变状态的组件都得单独封装在一个在内部管理状态的 `StatefulWidget` 中，这样不仅麻烦，而且复用性不大。因此，我们来想想能不能找到一种更简单的方法？
+2. 上面的方法本质上就是将对话框的状态置于一个 `StatefulWidget` 的上下文中，由 `StatefulWidget` 在内部管理，那么我们有没有办法在不需要单独抽离组件的情况下创建一个 `StatefulWidget` 的上下文呢？想到这里，我们可以从 Builder 组件的实现获得灵感。在前面介绍过 Builder 组件可以获得组件所在位置的真正的 `Context`，那它是怎么实现的呢，我们看看它的源码：
+
+```dart
+class Builder extends StatelessWidget {
+  const Builder({
+    Key? key,
+    required this.builder,
+  }) : assert(builder != null),
+       super(key: key);
+  final WidgetBuilder builder;
+
+  @override
+  Widget build(BuildContext context) => builder(context);
+}
+```
+
+3. 可以看到，Builder 实际上只是继承了 `StatelessWidget`，然后在 build 方法中获取当前 `context` 后将构建方法代理到了 builder 回调，可见，Builder 实际上是获取了 `StatelessWidget` 的上下文（context）。
+4. 那么我们能否用相同的方法获取 `StatefulWidget` 的上下文，并代理其 `build` 方法呢？下面我们照猫画虎，来封装一个 `StatefulBuilder` 方法 `02_1_StatefulBuilder.dart`：
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+class StatefulBuilder extends StatefulWidget {
+  const StatefulBuilder({Key? key, required this.builder}) : super(key: key);
+
+  final StatefulWidgetBuilder builder;
+
+  @override
+  _StatefulBuilderState createState() => _StatefulBuilderState();
+}
+
+class _StatefulBuilderState extends State<StatefulBuilder> {
+  @override
+  Widget build(BuildContext context) => widget.builder(context, setState);
+}
+```
+
+5. 代码很简单，`StatefulBuilder` 获取了 `StatefulWidget` 的上下文，并代理了其构建过程。下面我们就可以通过 `StatefulBuilder` 来重构上面的代码了（变动只在 `DialogCheckbox` 部分） `02_2_AlertDialogCheckbox.dart` ：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_1_DialogCheckbox.dart';
+
+class AlertDialogCheckboxComponent extends StatefulWidget {
+  const AlertDialogCheckboxComponent({Key? key}) : super(key: key);
+
+  @override
+  _AlertDialogCheckboxComponentState createState() => _AlertDialogCheckboxComponentState();
+}
+
+class _AlertDialogCheckboxComponentState extends State<AlertDialogCheckboxComponent> {
+  // 记录复选框是否选中
+  bool _withTree = false;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<bool?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 带有复选框的对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        bool? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了确定");
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<bool?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<bool>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return AlertDialog(
+          title: const Text("提示"),
+          // content 通常显示对话框的主要内容；Column 是一个用于在垂直方向上排列其子部件的小部件
+          content: buildConfirmDialogContent(),
+          // actions 是一个 Widget 列表，用于显示对话框的按钮；通常用于放置“取消”和“确认”按钮
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              // 关闭对话框并返回 null
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text("确认"),
+              // 关闭对话框并返回 true
+              onPressed: () => Navigator.of(context).pop(true)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget buildConfirmDialogContent() {
+    // Column 是一个用于在垂直方向上排列其子部件的小部件
+    return Column(
+      // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小垂直方向上的高度
+      mainAxisSize: MainAxisSize.min,
+      // 表示子部件在水平方向上如何排列；CrossAxisAlignment.start：子部件在水平方向上从左到右排列
+      crossAxisAlignment:  CrossAxisAlignment.start,
+      children: [
+        const Text("您确定要删除当前文件吗？"),
+        // Row 是一个用于在水平方向上排列其子部件的小部件
+        Row(
+          // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小水平方向上的宽度
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("是否确认："),
+            StatefulBuilder(
+              builder: (context, _setState){
+                return Checkbox(
+                  // value：是否选中；_withTree：记录复选框是否选中
+                  value: _withTree,
+                  // onChanged：复选框的值发生改变时的回调函数
+                  onChanged: (bool? value) {
+                    // 调用 setState() 更新复选框的选中状态
+                    _setState(() {
+                      // 更新复选框的选中状态
+                      _withTree = !_withTree;
+                      print('复选框选中状态：$value');
+                    });
+                  },
+                );
+              }
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+}
+```
+
+6. 实际上，这种方法本质上就是子组件通知父组件（StatefulWidget）重新 build 子组件本身来实现 UI 更新的
+7. 实际上 `StatefulBuilder` 正是 Flutter SDK 中提供的一个类，它和 Builder 的原理是一样的，在此，提醒一定要将 `StatefulBuilder` 和 `Builder` 理解透彻，因为它们在 Flutter 中是非常实用的
+
+#### Ⅳ、使用 element.markNeedsBuild()
+
+1. 是否还有更简单的解决方案呢？要确认这个问题，我们就得先搞清楚 UI 是怎么更新的，我们知道在调用 `setState` 方法后 `StatefulWidget` 就会重新 build，那 `setState` 方法做了什么呢？我们能不能从中找到方法？顺着这个思路，我们就得看一下 `setState` 的核心源码：
+
+```dart
+void setState(VoidCallback fn) {
+  ... //省略无关代码
+  _element.markNeedsBuild();
+}
+```
+
+2. 可以发现，`setState` 中调用了 Element 的 `markNeedsBuild()` 方法，我们前面说过，Flutter 是一个响应式框架，要更新 UI 只需改变状态后通知框架页面需要重构即可，而 Element 的 `markNeedsBuild()` 方法正是来实现这个功能的！
+3. `markNeedsBuild()` 方法会将当前的 Element 对象标记为 “dirty”（脏的），在每一个 Frame，Flutter 都会重新构建被标记为 “dirty” 的 Element 对象。
+4. 既然如此，我们有没有办法获取到对话框内部 UI 的 Element 对象，然后将其标示为为 “dirty” 呢？答案是肯定的！我们可以通过 Context 来得到 Element 对象，至于 Element 与 Context 的关系我们将会在后面 “Flutter核心原理” 一章中再深入介绍，现在只需要简单的认为：在组件树中，`context` 实际上就是 Element 对象的引用。
+5. 知道这个后，那么解决的方案就呼之欲出了，我们可以通过如下方式来让复选框可以更新：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_1_DialogCheckbox.dart';
+
+class AlertDialogCheckboxComponent extends StatefulWidget {
+  const AlertDialogCheckboxComponent({Key? key}) : super(key: key);
+
+  @override
+  _AlertDialogCheckboxComponentState createState() => _AlertDialogCheckboxComponentState();
+}
+
+class _AlertDialogCheckboxComponentState extends State<AlertDialogCheckboxComponent> {
+  // 记录复选框是否选中
+  bool _withTree = false;
+
+  // 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  // 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<bool?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 带有复选框的对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        bool? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了确定");
+        }
+      },
+    );
+  }
+
+  // 弹出对话框
+  Future<bool?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<bool>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return AlertDialog(
+          title: const Text("提示"),
+          // content 通常显示对话框的主要内容；Column 是一个用于在垂直方向上排列其子部件的小部件
+          content: buildConfirmDialogContent(context),
+          // actions 是一个 Widget 列表，用于显示对话框的按钮；通常用于放置“取消”和“确认”按钮
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              // 关闭对话框并返回 null
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text("确认"),
+              // 关闭对话框并返回 true
+              onPressed: () => Navigator.of(context).pop(true)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget buildConfirmDialogContent(BuildContext context) {
+    // Column 是一个用于在垂直方向上排列其子部件的小部件
+    return Column(
+      // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小垂直方向上的高度
+      mainAxisSize: MainAxisSize.min,
+      // 表示子部件在水平方向上如何排列；CrossAxisAlignment.start：子部件在水平方向上从左到右排列
+      crossAxisAlignment:  CrossAxisAlignment.start,
+      children: [
+        const Text("您确定要删除当前文件吗？"),
+        // Row 是一个用于在水平方向上排列其子部件的小部件
+        Row(
+          // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小水平方向上的宽度
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("是否确认："),
+            Checkbox(
+              // value：是否选中；_withTree：记录复选框是否选中
+              value: _withTree,
+              // onChanged：复选框的值发生改变时的回调函数
+              onChanged: (bool? value) {
+                // 更新复选框的选中状态
+                _withTree = !_withTree;
+                /**
+                 * 此时 context 为对话框 UI 的根 Element，
+                 * 我们直接将对话框 UI 对应的 Element 标记为 dirty 即可
+                 * 之后框架会调用对话框 UI 的 build 方法来根据新状态重新构建对话框 UI
+                 */
+                (context as Element).markNeedsBuild();
+                print('复选框选中状态：$value');
+              },
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+}
+```
+
+6. 上面的代码运行后复选框也可以正常选中。可以看到，我们只用了一行代码便解决了这个问题！当然上面的代码并不是最优，因为我们只需要更新复选框的状态，而此时的 context 我们用的是对话框的根 `context`，所以会导致整个对话框 UI 组件全部 rebuild，因此最好的做法是将 context 的“范围”缩小，也就是说只将 `Checkbox` 的 `Element` 标记为 dirty，优化后的代码为：
+7. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/04_对话框状态管理/03_AlertDialogCheckbox.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: AlertDialogCheckboxComponent()
+        )
+      )
+    );
+  }
+}
+```
+
+8. `03_AlertDialogCheckbox.dart` 弹窗方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_1_DialogCheckbox.dart';
+
+class AlertDialogCheckboxComponent extends StatefulWidget {
+  const AlertDialogCheckboxComponent({Key? key}) : super(key: key);
+
+  @override
+  _AlertDialogCheckboxComponentState createState() => _AlertDialogCheckboxComponentState();
+}
+
+class _AlertDialogCheckboxComponentState extends State<AlertDialogCheckboxComponent> {
+  /// 记录复选框是否选中
+  bool _withTree = false;
+
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<bool?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 带有复选框的对话框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        bool? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了确定");
+        }
+      },
+    );
+  }
+
+  /// 弹出对话框
+  Future<bool?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<bool>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        // AlertDialog 是一个用于显示对话框的小部件
+        return AlertDialog(
+          title: const Text("提示"),
+          // content 通常显示对话框的主要内容；Column 是一个用于在垂直方向上排列其子部件的小部件
+          content: buildConfirmDialogContent(),
+          // actions 是一个 Widget 列表，用于显示对话框的按钮；通常用于放置“取消”和“确认”按钮
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              // 关闭对话框并返回 null
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text("确认"),
+              // 关闭对话框并返回 true
+              onPressed: () => Navigator.of(context).pop(true)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget buildConfirmDialogContent() {
+    // Column 是一个用于在垂直方向上排列其子部件的小部件
+    return Column(
+      // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小垂直方向上的高度
+      mainAxisSize: MainAxisSize.min,
+      // 表示子部件在水平方向上如何排列；CrossAxisAlignment.start：子部件在水平方向上从左到右排列
+      crossAxisAlignment:  CrossAxisAlignment.start,
+      children: [
+        const Text("您确定要删除当前文件吗？"),
+        // Row 是一个用于在水平方向上排列其子部件的小部件
+        Row(
+          // mainAxisSize：主轴尺寸；MainAxisSize.min：尽可能小，即尽可能缩小水平方向上的宽度
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("同时删除子目录？"),
+            buildDeleteSubdirectoryCheckbox()
+          ],
+        )
+      ],
+    );
+  }
+
+  /// 构建 是否同时删除子目录复选框
+  Widget buildDeleteSubdirectoryCheckbox(){
+    /**
+     * 此处 Builder 的作用是为了通过 context 获取 Element，
+     * 使其可以通过 markNeedsBuild 方法来间接实现局部刷新
+     * 而不是重新构建整个对话框 UI
+     */
+    return Builder(
+      builder: (BuildContext context){
+        return Checkbox(
+          // value：是否选中；_withTree：记录复选框是否选中
+          value: _withTree,
+          // onChanged：复选框的值发生改变时的回调函数
+          onChanged: (bool? value) {
+            // 更新复选框的选中状态
+            _withTree = !_withTree;
+            /**
+             * 此时 context 为对话框 UI 的根 Element，
+             * 我们直接将对话框 UI 对应的 Element 标记为 dirty 即可
+             * 之后框架会调用对话框 UI 的 build 方法来根据新状态重新构建对话框 UI
+             */
+            (context as Element).markNeedsBuild();
+            print('复选框选中状态：$value');
+          },
+        );
+      }
+    );
+  }
+
+}
+```
+
+### ⑤、其他类型的对话框
+
+#### Ⅰ、底部菜单列表
+
+1. `showModalBottomSheet` 方法可以弹出一个 Material 风格的底部菜单列表模态对话框，示例如下：
+2. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/05_其他类型的对话框/01_底部菜单列表.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: ShowModalBottomSheetComponent()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `01_底部菜单列表.dart` 弹窗方法
+
+```dart
+import 'package:flutter/material.dart';
+
+
+class ShowModalBottomSheetComponent extends StatefulWidget {
+  const ShowModalBottomSheetComponent({Key? key}) : super(key: key);
+
+  @override
+  _ShowModalBottomSheetComponentState createState() => _ShowModalBottomSheetComponentState();
+}
+
+class _ShowModalBottomSheetComponentState extends State<ShowModalBottomSheetComponent> {
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<int?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 底部菜单列表"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        int? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了第 $result 个条目");
+        }
+      },
+    );
+  }
+
+  /// 弹出对话框
+  Future<int?> showConfirmDialog() {
+    // showModalBottomSheet 是一个用于显示底部菜单列表的方法
+    return showModalBottomSheet<int>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        return buildListViewDialog();
+      },
+    );
+  }
+
+  /// 构建 ListView 对话框
+  Widget buildListViewDialog() {
+    // ListView.builder 是一个用于构建列表的构造方法
+    return ListView.builder(
+      // itemCount：列表项的数量
+      itemCount: 30,
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+          title: Text("$index"),
+          onTap: () => Navigator.of(context).pop(index),
+        );
+      },
+    );
+  }
+
+}
+```
+
+4. 效果：
+
+![|700](attachments/动画22.gif)
+
+#### Ⅱ、Loading 框
+
+1. 其实 Loading 框可以直接通过 `showDialog` + `AlertDialog` 来自定义：
+2. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/05_其他类型的对话框/02_Loading 框.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: LoadingDialogComponent()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `02_Loading 框.dart` 弹窗方法
+
+```dart
+import 'package:flutter/material.dart';
+
+
+class LoadingDialogComponent extends StatefulWidget {
+  const LoadingDialogComponent({Key? key}) : super(key: key);
+
+  @override
+  _LoadingDialogComponentState createState() => _LoadingDialogComponentState();
+}
+
+class _LoadingDialogComponentState extends State<LoadingDialogComponent> {
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<int?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 Loading 加载框"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        int? result = await dialog();
+        if (result == null) {
+          print("点击了取消");
+        } else {
+          print("点击了第 $result 个条目");
+        }
+      },
+    );
+  }
+
+  /// 弹出对话框
+  Future<int?> showConfirmDialog() {
+    // showDialog 是一个用于显示对话框的方法
+    return showDialog<int>(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // builder 是一个回调函数，返回一个 Widget
+      builder: (context) {
+        return buildLoadingDialog();
+      },
+    );
+  }
+
+  /// 构建 ListView 对话框
+  Widget buildLoadingDialog() {
+    // AlertDialog 是一个用于显示对话框的小部件
+    return const AlertDialog(
+      // content 是 AlertDialog 的一个属性，用于设置对话框的内容； Column 是一个用于在垂直方向上排列其子部件的小部件
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          // CircularProgressIndicator 是一个圆形的进度条
+          CircularProgressIndicator(),
+          Padding(
+            padding: EdgeInsets.only(top: 26.0),
+            child: Text("正在加载，请稍后..."),
+          )
+        ],
+      ),
+    );
+  }
+
+}
+```
+
+4. 效果：
+
+![|700](attachments/动画23.gif)
+
+#### Ⅲ、日历选择器 Material 风格
+
+1. 显示日历选择器要使用 `showDatePicker` 方法
+2. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/05_其他类型的对话框/03_日历选择器 Material 风格.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: ShowDatePickerComponent()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `03_日历选择器 Material 风格.dart` 弹窗方法
+
+```dart
+import 'package:flutter/material.dart';
+
+
+class ShowDatePickerComponent extends StatefulWidget {
+  const ShowDatePickerComponent({Key? key}) : super(key: key);
+
+  @override
+  _ShowDatePickerComponentState createState() => _ShowDatePickerComponentState();
+}
+
+class _ShowDatePickerComponentState extends State<ShowDatePickerComponent> {
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<DateTime?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 日历选择器"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        var dateTime = await dialog();
+        if (dateTime == null) {
+          print("点击了取消");
+        } else {
+          print("选择了日期：${dateTime.year}/${dateTime.month}/${dateTime.day}");
+        }
+      },
+    );
+  }
+
+  /// 弹出对话框
+  Future<DateTime?> showConfirmDialog() {
+    var date = DateTime.now();
+    // showDialog 是一个用于显示对话框的方法
+    return showDatePicker(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      // initialDate：初始日期，即弹出日历选择器时默认选中的日期
+      initialDate: date,
+      // firstDate：起始日期，即弹出日历选择器时最早可选的日期
+      firstDate: date,
+      // lastDate：结束日期，即弹出日历选择器时最晚可选的日期
+      lastDate: date.add(const Duration(days: 30))
+    );
+  }
+
+}
+```
+
+4. 效果：
+
+![|700](attachments/动画24.gif)
+
+#### Ⅳ、日历选择器 iOS 风格
+
+1. iOS 风格的日历选择器需要使用 `showCupertinoModalPopup` 方法和 `CupertinoDatePicker` 组件来实现
+2. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '05_功能型组件/07_对话框详解/05_其他类型的对话框/04_日历选择器 IOS 风格.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: ShowCupertinoModalPopupComponent()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `04_日历选择器 IOS 风格.dart` 弹窗方法
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+
+class ShowCupertinoModalPopupComponent extends StatefulWidget {
+  const ShowCupertinoModalPopupComponent({Key? key}) : super(key: key);
+
+  @override
+  _ShowCupertinoModalPopupComponentState createState() => _ShowCupertinoModalPopupComponentState();
+}
+
+class _ShowCupertinoModalPopupComponentState extends State<ShowCupertinoModalPopupComponent> {
+  DateTime date = DateTime.now();
+
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个用于在垂直方向上排列其子部件的小部件
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center：将子部件树在垂直方向上对齐到屏幕中心
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // 调用方法，构建 ElevatedButton；dialog：弹出对话框的方法
+          buildElevatedButton(showConfirmDialog),
+        ],
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton；dialog：弹出对话框的方法
+  Widget buildElevatedButton(Future<DateTime?> Function() dialog){
+    return ElevatedButton(
+      child: const Text("显示 日历选择器"),
+      onPressed: () async {
+        // 弹出对话框并等待其关闭，接收对话框关闭时的返回数据
+        var dateTime = await dialog();
+        if (dateTime == null) {
+          print("点击了取消");
+        } else {
+          print("选择了日期：${dateTime.year}/${dateTime.month}/${dateTime.day}");
+        }
+      },
+    );
+  }
+
+  /// 弹出对话框
+  Future<DateTime?> showConfirmDialog() {
+    // showCupertinoModalPopup 是 IOS 风格的弹出对话框
+    return showCupertinoModalPopup(
+      // context：构建上下文，即当前 Widget 的位置
+      context: context,
+      builder: (ctx) {
+        // CupertinoAlertDialog 是 IOS 风格的对话框
+        return CupertinoAlertDialog(
+          title: const Text("请选择日期"),
+          // content 属性用于设置对话框的内容区域；buildCupertinoDatePicker()：构建日期选择器
+          content: buildCupertinoDatePicker(),
+          // actions 属性用于设置对话框的按钮区域
+          actions: [
+            CupertinoDialogAction(
+              child: const Text('取消'),
+              // 在取消按钮点击时，返回 null
+              onPressed: () => Navigator.of(context).pop(null)
+            ),
+            CupertinoDialogAction(
+              child: const Text('确定'),
+              // 在确定按钮点击时，返回选中的日期
+              onPressed: () => Navigator.of(context).pop(date)
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  /// 构建日期选择器
+  Widget buildCupertinoDatePicker() {
+    // SizedBox 是一个用于指定固定尺寸的小部件
+    return SizedBox(
+      height: 200,
+      // CupertinoDatePicker 是 IOS 风格的日历选择器
+      child: CupertinoDatePicker(
+        // mode 属性用于设置日历选择器的模式；CupertinoDatePickerMode.date：仅显示日期
+        mode: CupertinoDatePickerMode.date,
+        // minimumYear 属性用于设置日历选择器可选的最早年份，即日历选择器中可选的最早年份
+        minimumYear: date.year - 50,
+        // maximumYear 属性用于设置日历选择器可选的最晚年份，即日历选择器中可选的最晚年份
+        maximumYear: date.year + 50,
+        // onDateTimeChanged 属性用于设置日历选择器选中日期发生变化时的回调函数
+        onDateTimeChanged: (DateTime dateTime) {
+          date = dateTime;
+          print(dateTime);
+        },
+      ),
+    );
+  }
+
+}
+```
+
+4. 效果：
+
+![|700](attachments/动画25.gif)
+
+# 八、事件处理与通知
+
+1. Flutter 中的手势系统有两个独立的层。
+2. 第一层为原始指针(pointer)事件，它描述了屏幕上指针（例如，触摸、鼠标和触控笔）的位置和移动。 
+3. 第二层为手势，描述由一个或多个指针移动组成的语义动作，如拖动、缩放、双击等。
+
+## 1、原始指针事件处理
+
+### ①、命中测试简介
+
+1. 在移动端，各个平台或 UI 系统的原始指针事件模型基本都是一致，即：一次完整的事件分为三个阶段：手指按下、手指移动、和手指抬起，而更高级别的手势（如点击、双击、拖动等）都是基于这些原始事件的。
+2. 当指针按下时，Flutter 会对应用程序执行命中测试(Hit Test)，以确定指针与屏幕接触的位置存在哪些组件（widget）， 指针按下事件（以及该指针的后续事件）然后被分发到由命中测试发现的最内部的组件，然后从那里开始，事件会在组件树中向上冒泡，这些事件会从最内部的组件被分发到组件树根的路径上的所有组件，这和 Web 开发中浏览器的事件冒泡机制相似， 但是 Flutter 中没有机制取消或停止“冒泡”过程，而浏览器的冒泡是可以停止的。
+3. 注意，只有通过命中测试的组件才能触发事件，我们会在下一节中深入介绍命中测试过程。
+4. 注意：术语 “Hit Test” 的中文翻译比较多，如 “命中测试”、“点击测试” ，对于名字我们不用较真，知道它们代表的是 “Hit Test ” 即可。
+
+### ②、Listener 组件
+
+1. Flutter 中可以使用 `Listener` 来监听原始触摸事件，下面是Listener的构造函数定义：
+
+```dart
+Listener({
+  Key key,
+  this.onPointerDown, //手指按下回调
+  this.onPointerMove, //手指移动回调
+  this.onPointerUp,//手指抬起回调
+  this.onPointerCancel,//触摸事件取消回调
+  this.behavior = HitTestBehavior.deferToChild, // 先忽略此参数，后面小节会专门介绍
+  Widget child
+})
+```
+
+2. 我们先看一个示例，下面代码功能是： 手指在一个容器上移动时查看手指相对于容器的位置。
+3. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/01_原始指针事件处理/01_Listener 组件.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: ListenerComponent()
+            )
+        )
+    );
+  }
+}
+```
+
+4. `01_Listener 组件.dart` Listener 组件
+
+```dart
+import 'package:flutter/material.dart';
+
+class ListenerComponent extends StatefulWidget {
+  const ListenerComponent({Key? key}) : super(key: key);
+
+  @override
+  _ListenerComponentState createState() => _ListenerComponentState();
+}
+
+class _ListenerComponentState extends State<ListenerComponent> {
+  // PointerEvent 是一个抽象类，它定义了指针事件的基本信息，如位置、时间戳等
+  PointerEvent? _event;
+  // 当事件发生时，更新本文本框中的内容
+  String eventText = "";
+
+  @override
+  Widget build(BuildContext context) {
+    // Listener 是一个用于监听触摸事件的小部件
+    return Listener(
+      // Container 是一个用于构建容器的小部件
+      child: Container(
+        alignment: Alignment.center,
+        color: Colors.blue,
+        width: 300.0,
+        height: 300.0,
+        // Text 是一个用于构建文本的小部件；_event?.localPosition ?? ''：获取触摸点的位置
+        child: Text(
+          eventText,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+      // onPointerDown：按下时触发
+      onPointerDown: (PointerDownEvent event) => updateText("按下", event),
+      // onPointerMove：移动时触发
+      onPointerMove: (PointerMoveEvent event) => updateText("移动", event),
+      // onPointerUp：抬起时触发
+      onPointerUp: (PointerUpEvent event) => updateText("抬起", event),
+    );
+  }
+
+  void updateText(String text, PointerEvent? event) {
+    setState(() {
+      // 更新触摸事件和本文本框中的内容
+      _event = event;
+      eventText = "当前操作：$text\n点击坐标：${_event?.localPosition ?? ''}";
+    });
+  }
+  
+}
+```
+
+5. 效果：
+
+![|419](attachments/动画26.gif)
+
+6. 指在蓝色矩形区域内移动即可看到当前指针偏移，当触发指针事件时，参数 `PointerDownEvent`、 `PointerMoveEvent`、 `PointerUpEvent` 都是 `PointerEvent` 的子类，`PointerEvent` 类中包括当前指针的一些信息，注意 Pointer，即“指针”， 指事件的触发者，可以是鼠标、触摸板、手指。
+7. 如：
+	1. `position`：它是指针相对于当对于全局坐标的偏移。
+	2. `localPosition`：它是指针相对于当对于本身布局坐标的偏移。
+	3. `delta`：两次指针移动事件（PointerMoveEvent）的距离。
+	4. `pressure`：按压力度，如果手机屏幕支持压力传感器(如iPhone的3D Touch)，此属性会更有意义，如果手机不支持，则始终为 1。
+	5. `orientation`：指针移动方向，是一个角度值。
+8. 还有一个 `behavior` 属性，它决定子组件如何响应命中测试，关于该属性我们将在之后详细介绍。
+
+### ③、忽略指针事件
+
+1. 假如我们不想让某个子树响应 `PointerEvent` 的话，我们可以使用 `IgnorePointer` 和 `AbsorbPointer`，这两个组件都能阻止子树接收指针事件
+2. 不同之处在于 `AbsorbPointer` 本身会参与命中测试，而 `IgnorePointer` 本身不会参与，这就意味着 `AbsorbPointer` 本身是可以接收指针事件的(但其子树不行)，而 `IgnorePointer` 不可以。一个简单的例子如下：
+
+```dart
+Listener(
+  child: AbsorbPointer(
+    child: Listener(
+      child: Container(
+        color: Colors.red,
+        width: 200.0,
+        height: 100.0,
+      ),
+      onPointerDown: (event)=>print("in"),
+    ),
+  ),
+  onPointerDown: (event)=>print("up"),
+)
+```
+
+3. 点击 `Container` 时，由于它在 `AbsorbPointer` 的子树上，所以不会响应指针事件，所以日志不会输出"in"，但 `AbsorbPointer` 本身是可以接收指针事件的，所以会输出 "up"。
+4. 如果将 `AbsorbPointer` 换成 `IgnorePointer`，那么两个都不会输出。
+
+## 2、手势识别
+
+### ①、GestureDetector 手势识别
+
+1. `GestureDetector` 是一个用于手势识别的功能性组件，我们通过它可以来识别各种手势。
+2. `GestureDetector` 内部封装了 `Listener`，用以识别语义化的手势，接下来我们详细介绍一下各种手势的识别
+
+#### Ⅰ、点击、双击、长按
+
+1. 我们通过 `GestureDetector` 对 `Container` 进行手势识别，触发相应事件后，在 `Container` 上显示事件名：
+2. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/02_手势识别/01_GestureDetector_点击、双击、长按.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: GestureDetector1Component()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `01_GestureDetector_点击、双击、长按.dart` 点击、双击、长按方法
+
+```dart
+import 'package:flutter/material.dart';
+
+class GestureDetector1Component extends StatefulWidget {
+  const GestureDetector1Component({Key? key}) : super(key: key);
+
+  @override
+  _GestureDetector1ComponentState createState() => _GestureDetector1ComponentState();
+}
+
+class _GestureDetector1ComponentState extends State<GestureDetector1Component> {
+  // 保存事件名
+  String _operation = "未检测到手势";
+
+  @override
+  Widget build(BuildContext context) {
+    // Listener 是一个用于监听触摸事件的小部件
+    return Center(
+      child: GestureDetector(
+        child: Container(
+          alignment: Alignment.center,
+          color: Colors.blue,
+          width: 300.0,
+          height: 300.0,
+          child: Text(
+            _operation,
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+        onTap: () => updateText("点击"),
+        onDoubleTap: () => updateText("双击"),
+        onLongPress: () => updateText("长按"),
+      ),
+    );
+  }
+
+  void updateText(String text) {
+    // 更新显示的事件名
+    setState(() {
+      _operation = "当前操作为：$text";
+    });
+  }
+
+}
+```
+
+4. 效果：
+
+![|439](attachments/动画27.gif)
+
+5. 在模拟器上检测不到双击双击事件，上面的效果图是我连接手机测试的
+6. 注意： 当同时监听 `onTap` 和 `onDoubleTap` 事件时，当用户触发 `tap` 事件时，会有 200 毫秒左右的延时，这是因为当用户点击完之后很可能会再次点击以触发双击事件，所以 `GestureDetector` 会等一段时间来确定是否为双击事件。如果用户只监听了 `onTap`（没有监听 `onDoubleTap`）事件时，则没有延时
+
+#### Ⅱ、拖动、滑动
+
+1. 一次完整的手势过程是指用户手指按下到抬起的整个过程，期间，用户按下手指后可能会移动，也可能不会移动。
+2. `GestureDetector` 对于拖动和滑动事件是没有区分的，他们本质上是一样的。
+3. `GestureDetector` 会将要监听的组件的原点（左上角）作为本次手势的原点，当用户在监听的组件上按下手指时，手势识别就会开始。下面我们看一个拖动圆形字母 A 的示例：
+4. `main` 主启动方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/02_手势识别/01_GestureDetector_点击、双击、长按.dart';
+import '08_事件处理与通知/02_手势识别/02_GestureDetector_拖动、滑动.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: GestureDetector2Component()
+            )
+        )
+    );
+  }
+}
+```
+
+5. `02_GestureDetector_拖动、滑动.dart` 拖动、滑动方法
+
+```dart
+import 'package:flutter/material.dart';
+
+class GestureDetector2Component extends StatefulWidget {
+  const GestureDetector2Component({Key? key}) : super(key: key);
+
+  @override
+  _GestureDetector2ComponentState createState() => _GestureDetector2ComponentState();
+}
+
+class _GestureDetector2ComponentState extends State<GestureDetector2Component> {
+  // 距顶部的偏移
+  double _top = 0.0;
+  // 距左边的偏移
+  double _left = 0.0;
+
+  @override
+  Widget build(BuildContext context) {
+    // Stack 允许子部件堆叠，可使用 Positioned 根据 Stack 的四个角来定位子部件。
+    return Stack(
+      children: [
+        // Positioned 是一个小部件，它可以控制子部件的位置
+        Positioned(
+          top: _top,
+          left: _left,
+          // GestureDetector 是一个小部件，用于手势识别
+          child: GestureDetector(
+            // CircleAvatar 是一个小部件，用于绘制圆形头像
+            child: const CircleAvatar(child: Text("A")),
+            // 手指按下时会触发此回调
+            onPanDown: (DragDownDetails e) {
+              /**
+               * 打印手指按下的位置(相对于屏幕)
+               * globalPosition 属性是一个 Offset 对象，它表示全局坐标，即相对于屏幕左上角的坐标。
+               */
+              print("用户手指按下：${e.globalPosition}");
+            },
+            // 手指滑动时会触发此回调
+            onPanUpdate: (DragUpdateDetails e) {
+              // 用户手指滑动时，更新偏移，重新构建
+              setState(() {
+                /**
+                 * 当用户在屏幕上滑动时，会触发多次Update事件
+                 * delta 属性是一个 Offset 对象，它表示相对于上一个事件的偏移量。
+                 */
+                _left += e.delta.dx;
+                _top += e.delta.dy;
+              });
+            },
+            onPanEnd: (DragEndDetails e){
+              /**
+               * 打印滑动结束时在 x、y 轴上的速度
+               * velocity 属性是一个 Offset 对象，它表示在滑动结束时的速度。
+               * velocity.pixelsPerSecond.dx 表示水平方向的速度，velocity.pixelsPerSecond.dy 表示垂直方向的速度。
+               * 注意：velocity 是一个速度，它是有方向的，所以它是一个 Offset 对象。
+               */
+              print("用户手指抬起：${e.velocity}");
+            },
+          )
+        )
+      ],
+    );
+  }
+
+}
+```
+
+6. 效果：
+
+![|700](attachments/动画28.gif)
+
+#### Ⅲ、缩放
+
+1. GestureDetector 可以监听缩放事件，下面示例演示了一个简单的图片缩放效果：
+2. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/02_手势识别/01_GestureDetector_点击、双击、长按.dart';
+import '08_事件处理与通知/02_手势识别/02_GestureDetector_拖动、滑动.dart';
+import '08_事件处理与通知/02_手势识别/03_GestureDetector_缩放.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: GestureDetector3Component()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `03_GestureDetector_缩放.dart`缩放方法
+
+```dart
+import 'package:flutter/material.dart';
+
+class GestureDetector3Component extends StatefulWidget {
+  const GestureDetector3Component({Key? key}) : super(key: key);
+
+  @override
+  _GestureDetector3ComponentState createState() => _GestureDetector3ComponentState();
+}
+
+class _GestureDetector3ComponentState extends State<GestureDetector3Component> {
+  // 通过修改图片宽度来达到缩放效果
+  double _width = 200.0;
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 居中布局
+    return Center(
+      // GestureDetector 手势识别
+      child: GestureDetector(
+        // 指定宽度，高度自适应
+        child: Image.asset("asset/images/QQ图片20220920105928.jpg", width: _width),
+        // 缩放事件
+        onScaleUpdate: (ScaleUpdateDetails details) {
+          setState(() {
+            //缩放倍数在0.8到10倍之间
+            _width = 200 * details.scale.clamp(.8, 10.0);
+          });
+        },
+      ),
+    );
+  }
+
+}
+```
+
+4. 效果：
+
+![|439](attachments/动画29.gif)
+
+### ②、GestureRecognizer 针事件转换
+
+1. `GestureDetector` 内部是使用一个或多个 `GestureRecognizer` 来识别各种手势的，而 `GestureRecognizer` 的作用就是通过 `Listener` 来将原始指针事件转换为语义手势，`GestureDetector` 直接可以接收一个子 `widget`。
+2. `GestureRecognizer` 是一个抽象类，一种手势的识别器对应一个 `GestureRecognizer` 的子类，Flutter 实现了丰富的手势识别器，我们可以直接使用。
+3. 假设我们要给一段富文本（RichText）的不同部分分别添加点击事件处理器，但是 `TextSpan` 并不是一个 widget，这时我们不能用 `GestureDetector`，但 `TextSpan` 有一个 `recognizer` 属性，它可以接收一个 `GestureRecognizer`。假设我们需要在点击时给文本变色：
+4. `main` 主方法
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/02_手势识别/04_GestureRecognizer.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: GestureRecognizerComponent()
+            )
+        )
+    );
+  }
+}
+```
+
+5. `01_底部菜单列表.dart` 弹窗方法
+
+```dart
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+class GestureRecognizerComponent extends StatefulWidget {
+  const GestureRecognizerComponent({Key? key}) : super(key: key);
+
+  @override
+  _GestureRecognizerComponentState createState() => _GestureRecognizerComponentState();
+}
+
+class _GestureRecognizerComponentState extends State<GestureRecognizerComponent> {
+  // TapGestureRecognizer 是一个手势识别器，它可以识别各种点击手势，包括点击、双击、长按等。
+  final TapGestureRecognizer _tapGestureRecognizer = TapGestureRecognizer();
+  // 变色开关
+  bool _toggle = false;
+
+  @override
+  void dispose() {
+    // 用到 GestureRecognizer 的话一定要调用其 dispose 方法释放资源
+    _tapGestureRecognizer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 居中布局
+    return Center(
+      // Text.rich() 可以显示多种样式的文本
+      child: Text.rich(
+        // TextSpan 可以设置文本的样式
+        TextSpan(
+          children: [
+            const TextSpan(text: '你好世界'),
+            TextSpan(
+              text: '点我变色',
+              style: TextStyle(
+                fontSize: 30.0,
+                color: _toggle ? Colors.blue : Colors.red
+              ),
+              // recognizer: 为 TextSpan 添加点击事件
+              recognizer: _tapGestureRecognizer
+                // ..onTap = () {} 语法是 Dart 中的级联操作，允许对同一个对象进行一系列的操作
+                ..onTap = () {
+                  setState(() {
+                    _toggle = !_toggle;
+                  });
+                }
+            ),
+            const TextSpan(text: '你好世界')
+          ]
+        )
+      )
+    );
+  }
+
+}
+```
+
+6. 效果：
+
+![|412](attachments/动画30.gif)
+
+7. 注意：使用 `GestureRecognizer` 后一定要调用其 `dispose()` 方法来释放资源（主要是取消内部的计时器）。
+
+## 3、Flutter 事件机制
+
+### ①、Flutter 事件处理流程
+
+1. Flutter 事件处理流程主要分两步，为了聚焦核心流程，我们以用户触摸事件为例来说明：
+	1. 命中测试：当手指按下时，触发 `PointerDownEvent` 事件，按照深度优先遍历当前渲染（render object）树，对每一个渲染对象进行“命中测试”（hit test），如果命中测试通过，则该渲染对象会被添加到一个 `HitTestResult` 列表当中。
+	2. 事件分发：命中测试完毕后，会遍历 `HitTestResult` 列表，调用每一个渲染对象的事件处理方法（`handleEvent`）来处理 `PointerDownEvent` 事件，该过程称为“事件分发”（event dispatch）。随后当手指移动时，便会分发 `PointerMoveEvent` 事件。
+	3. 事件清理：当手指抬（ `PointerUpEvent` ）起或事件取消时（`PointerCancelEvent`），会先对相应的事件进行分发，分发完毕后会清空 `HitTestResult` 列表。
+2. 需要注意：
+	1. 命中测试是在 `PointerDownEvent` 事件触发时进行的，一个完成的事件流是 `down > move > up (cancle)`。
+	2. 如果父子组件都监听了同一个事件，则子组件会比父组件先响应事件。这是因为命中测试过程是按照深度优先规则遍历的，所以子渲染对象会比父渲染对象先加入 `HitTestResult` 列表，又因为在事件分发时是从前到后遍历 `HitTestResult` 列表的，所以子组件比父组件会更先被调用 `handleEvent` 。
+3. 下面我们从代码层面看一些整个事件处理流程：
+
+```dart
+// 触发新事件时，flutter 会调用此方法
+void _handlePointerEventImmediately(PointerEvent event) {
+  HitTestResult? hitTestResult;
+  if (event is PointerDownEvent ) {
+    hitTestResult = HitTestResult();
+    // 发起命中测试
+    hitTest(hitTestResult, event.position);
+    if (event is PointerDownEvent) {
+      _hitTests[event.pointer] = hitTestResult;
+    }
+  } else if (event is PointerUpEvent || event is PointerCancelEvent) {
+    //获取命中测试的结果，然后移除它
+    hitTestResult = _hitTests.remove(event.pointer);
+  } else if (event.down) { // PointerMoveEvent
+    //直接获取命中测试的结果
+    hitTestResult = _hitTests[event.pointer];
+  }
+  // 事件分发
+  if (hitTestResult != null) {
+    dispatchEvent(event, hitTestResult);
+  }
+}
+```
+
+4. 上面代码只是核心代码，完整的代码位于 `GestureBinding` 实现中。下面我们分别来介绍一些命中测试和事件分发过程
+
+### ②、命中测试详解
+
+#### Ⅰ、命中测试的起点
+
+1. 一个对象是否可以响应事件，取决于在其对命中测试过程中是否被添加到了 `HitTestResult` 列表 ，如果没有被添加进去，则后续的事件分发将不会分发给自己。下面我们看一下命中测试的过程：当发生用户事件时，Flutter  会从根节点（RenderView）开始调用它 `hitTest()` 。
+
+```dart
+@override
+void hitTest(HitTestResult result, Offset position) {
+  //从根节点开始进行命中测试
+  renderView.hitTest(result, position: position); 
+  // 会调用 GestureBinding 中的 hitTest()方法，我们将在下一节中介绍。
+  super.hitTest(result, position); 
+}
+```
+
+2. 上面代码位于 `RenderBinding` 中，核心代码只有两行，整体是命中测试分两步，我们来解释一下：
+3. 第一步： `renderView` 是 `RenderView` 对应的 `RenderObject` 对象， `RenderObject` 对象的 `hitTest` 方法主要功能是：从该节点出发，按照深度优先的顺序递归遍历子树（渲染树）上的每一个节点并对它们进行命中测试。这个过程称为“渲染树命中测试”。注意，为了表述方便，“渲染树命中测试”，也可以表述为组件树或节点树命中测试，只是我们需要知道，命中测试的逻辑都在 `RenderObject` 中，而并非在 `Widget` 或 `Element` 中。
+4. 第二步：渲染树命中测试完毕后，会调用 `GestureBinding` 的 `hitTest` 方法，该方法主要用于处理手势，我们会在后面介绍。
+
+#### Ⅱ、渲染树命中测试过程
+
+1. 渲染树的命中测试流程就是父节点 `hitTest` 方法中不断调用子节点 `hitTest` 方法的递归过程。下面是 `RenderView` 的 `hitTest()` 源码：
+
+```dart
+// 发起命中测试，position 为事件触发的坐标（如果有的话）。
+bool hitTest(HitTestResult result, { Offset position }) {
+  if (child != null)
+    child.hitTest(result, position: position); //递归对子树进行命中测试
+  //根节点会始终被添加到HitTestResult列表中
+  result.add(HitTestEntry(this)); 
+  return true;
+}
+```
+
+2. 因为 `RenderView` 只有一个孩子，所以直接调用 `child.hitTest` 即可。如果一个渲染对象有多个子节点，则命中测试逻辑为：如果任意一个子节点通过了命中测试或者当前节点“强行声明”自己通过了命中测试，则当前节点会通过命中测试。我们以 `RenderBox` 为例，看看它的 `hitTest()` 实现：
+
+```dart
+bool hitTest(HitTestResult result, { @required Offset position }) {
+  ...  
+  if (_size.contains(position)) { // 判断事件的触发位置是否位于组件范围内
+    if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
+      result.add(BoxHitTestEntry(this, position));
+      return true;
+    }
+  }
+  return false;
+}
+```
+
+3. 上面代码中：
+	1. `hitTestChildren()` 功能是判断是否有子节点通过了命中测试，如果有，则会将子组件添加到 `HitTestResult` 中同时返回 `true`；如果没有则直接返回 `false`。该方法中会递归调用子组件的 `hitTest` 方法。
+	2. `hitTestSelf()` 决定自身是否通过命中测试，如果节点需要确保自身一定能响应事件可以重写此函数并返回true ，相当于“强行声明”自己通过了命中测试。
+4. 需要注意，节点通过命中测试的标志是它被添加到 `HitTestResult` 列表中，而不是它 `hitTest` 的返回值，虽然大所数情况下节点通过命中测试就会返回 `true`，但是由于开发者在自定义组件时是可以重写 `hitTest` 的，所以有可能会在在通过命中测试时返回 `false`，或者未通过命中测试时返回 `true`，当然这样做并不好，我们在自定义组件时应该尽可能避免，但是在有些需要自定义命中测试流程的场景下可能就需要打破这种默契，比如我们将在本节后面实现的 `HitTestBlocker` 组件。
+5. 所以整体逻辑就是：
+	1. 先判断事件的触发位置是否位于组件范围内，如果不是则不会通过命中测试，此时 `hitTest` 返回 `false`，如果是则到第二步。
+	2. 会先调用 `hitTestChildren()` 判断是否有子节点通过命中测试，如果是，则将当前节点添加到 `HitTestResult` 列表，此时 `hitTest` 返回 `true`。即只要有子节点通过了命中测试，那么它的父节点（当前节点）也会通过命中测试。
+	3. 如果没有子节点通过命中测试，则会取 `hitTestSelf` 方法的返回值，如果返回值为 `true`，则当前节点通过命中测试，反之则否。
+6. 如果当前节点有子节点通过了命中测试或者当前节点自己通过了命中测试，则将当前节点添加到 `HitTestResult` 中。又因为 `hitTestChildren()` 中会递归调用子组件的 `hitTest` 方法，所以组件树的命中测试顺序深度优先的，即如果通过命中测试，子组件会比父组件会先被加入 `HitTestResult` 中。
+7. 我们看看这两个方法默认实现如下：
+
+```dart
+@protected
+bool hitTestChildren(HitTestResult result, { Offset position }) => false;
+
+@protected
+bool hitTestSelf(Offset position) => false;
+```
+
+8. 如果组件包含多个子组件，就必须重写 `hitTestChildren()` 方法，该方法中应该调用每一个子组件的 `hitTest` 方法，比如我们看看 `RenderBoxContainerDefaultsMixin` 中的实现：
+
+```dart
+// 子类的 hitTestChildren() 中会直接调用此方法
+bool defaultHitTestChildren(BoxHitTestResult result, { required Offset position }) {
+   // 遍历所有子组件(子节点从后向前遍历)
+  ChildType? child = lastChild;
+  while (child != null) {
+    final ParentDataType childParentData = child.parentData! as ParentDataType;
+    // isHit 为当前子节点调用hitTest() 的返回值
+    final bool isHit = result.addWithPaintOffset(
+      offset: childParentData.offset,
+      position: position,
+      //调用子组件的 hitTest方法，
+      hitTest: (BoxHitTestResult result, Offset? transformed) {
+        return child!.hitTest(result, position: transformed!);
+      },
+    );
+    // 一旦有一个子节点的 hitTest() 方法返回 true，则终止遍历，直接返回true
+    if (isHit) return true;
+    child = childParentData.previousSibling;
+  }
+  return false;
+}
+
+  bool addWithPaintOffset({
+    required Offset? offset,
+    required Offset position,
+    required BoxHitTest hitTest,
+  }) {
+    ...// 省略无关代码
+    final bool isHit = hitTest(this, transformedPosition);
+    return isHit; // 返回 hitTest 的执行结果
+  }
+```
+
+9. 我们可以看到上面代码的主要逻辑是遍历调用子组件的 `hitTest()` 方法，同时提供了一种中断机制：即遍历过程中只要有子节点的 `hitTest()` 返回了 `true` 时：
+	1. 会终止子节点遍历，这意味着该子节点前面的兄弟节点将没有机会通过命中测试。注意，兄弟节点的遍历倒序的。
+	2. 父节点也会通过命中测试。因为子节点 `hitTest()` 返回了 `true` 导父节点 `hitTestChildren` 也会返回 `true`，最终会导致 父节点的 `hitTest` 返回 `true`，父节点被添加到 `HitTestResult` 中。
+10. 当子节点的 `hitTest()` 返回了 `false` 时，继续遍历该子节点前面的兄弟节点，对它们进行命中测试，如果所有子节点都返回 `false` 时，则父节点会调用自身的 `hitTestSelf` 方法，如果该方法也返回 `false`，则父节点就会被认为没有通过命中测试。
+11. 下面思考两个问题：
+	1. 为什么要制定这个中断呢？因为一般情况下兄弟节点占用的布局空间是不重合的，因此当用户点击的坐标位置只会有一个节点，所以一旦找到它后（通过了命中测试，`hitTest` 返回 `true`），就没有必要再判断其他兄弟节点了。但是也有例外情况，比如在 `Stack` 布局中，兄弟组件的布局空间会重叠，如果我们想让位于底部的组件也能响应事件，就得有一种机制，能让我们确保：即使找到了一个节点，也不应该终止遍历，也就是说所有的子组件的 `hitTest` 方法都必须返回 `false`！为此，Flutter 中通过 `HitTestBehavior` 来定制这个过程，这个我们会在本节后面介绍。
+	2. 为什么兄弟节点的遍历要倒序？同 1 中所述，兄弟节点一般不会重叠，而一旦发生重叠的话，往往是后面的组件会在前面组件之上，点击时应该是后面的组件会响应事件，而前面被遮住的组件不能响应，所以命中测试应该优先对后面的节点进行测试，因为一旦通过测试，就不会再继续遍历了。如果我们按照正向遍历，则会出现被遮住的组件能响应事件，而位于上面的组件反而不能，这明显不符合预期。
+12. 我们回到 `hitTestChildren` 上，如果不重写 `hitTestChildren`，则默认直接返回 `false`，这也就意味着后代节点将无法参与命中测试，相当于事件被拦截了，这也正是 `IgnorePointer` 和 `AbsorbPointer` 可以拦截事件下发的原理。
+13. 如果 `hitTestSelf` 返回 `true`，则无论子节点中是否有通过命中测试的节点，当前节点自身都会被添加到 `HitTestResult` 中。而 `IgnorePointer` 和 `AbsorbPointer` 的区别就是，前者的 `hitTestSelf` 返回了 `false`，而后者返回了 `true`。
+14. 命中测试完成后，所有通过命中测试的节点都被添加到了 `HitTestResult` 中。
+
+### ③、事件分发
+
+1. 事件分发过程很简单，即遍历 `HitTestResult`，调用每一个节点的 `handleEvent` 方法：
+
+```dart
+// 事件分发
+void dispatchEvent(PointerEvent event, HitTestResult? hitTestResult) {
+  ... 
+  for (final HitTestEntry entry in hitTestResult.path) {
+    entry.target.handleEvent(event.transformed(entry.transform), entry);
+  }
+}
+```
+
+2. 所以组件只需要重写 `handleEvent` 方法就可以处理事件了
+
+### ④、HitTestBehavior
+
+1. 我们先来实现一个能够监听 `PointerDownEvent` 的组件：
+2. `main` 主启动类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/03_Flutter事件机制/05_HitTestBehavior/02_PointerDownListenerRoute.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+            backgroundColor: Colors.white,
+            /**
+             * body: 用于定义页面的主要内容区域
+             * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+             */
+            body: SafeArea(
+                child: PointerDownListenerRoute()
+            )
+        )
+    );
+  }
+}
+```
+
+3. `01_PointerDownListener.dart` 监听 `PointerDownEvent` 的组件
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
+
+class PointerDownListener extends SingleChildRenderObjectWidget {
+  const PointerDownListener({Key? key, this.onPointerDown, Widget? child}) : super(key: key, child: child);
+
+  /// 定义一个回调函数，用于接收 PointerDownEvent 事件
+  final PointerDownEventListener? onPointerDown;
+
+  /// createRenderObject 方法用于创建 RenderObject
+  /// RenderObject 是一个抽象类，它定义了一个小部件的渲染逻辑和布局逻辑
+  @override
+  RenderObject createRenderObject(BuildContext context) => RenderPointerDownListener()..onPointerDown = onPointerDown;
+
+  /// updateRenderObject 方法用于更新 RenderObject；
+  @override
+  void updateRenderObject(BuildContext context, RenderPointerDownListener renderObject) {
+    renderObject.onPointerDown = onPointerDown;
+  }
+}
+
+/// 定义一个回调函数类型，用于接收 PointerDownEvent 事件
+class RenderPointerDownListener extends RenderProxyBox {
+  /// 定义一个回调函数，用于接收 PointerDownEvent 事件
+  PointerDownEventListener? onPointerDown;
+
+  /// hitTestSelf 方法用于命中测试，返回 true 时表示命中了当前小部件
+  @override
+  bool hitTestSelf(Offset position) => true; // 始终通过命中测试
+
+  /// handleEvent 方法用于处理事件，它接收两个参数，第一个参数是事件对象，第二个参数是命中测试的结果
+  @override
+  void handleEvent(PointerEvent event, covariant HitTestEntry entry) {
+    // 事件分发时处理事件；如果 onPointerDown 不为空，则调用它
+    if (event is PointerDownEvent) onPointerDown?.call(event);
+  }
+}
+```
+
+4. `02_PointerDownListenerRoute.dart` 测试组件
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '01_PointerDownListener.dart';
+
+class PointerDownListenerRoute extends StatelessWidget {
+  const PointerDownListenerRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // PointerDownListener 是一个自定义的小部件，它继承自 SingleChildRenderObjectWidget
+    return PointerDownListener(
+      // Container 是一个常用的 UI 小部件，它可以用来创建一个矩形视觉元素
+      child: Container(
+        alignment: Alignment.center,
+        color: Colors.blue,
+        width: 200,
+        height: 100,
+        child: const Text(
+          '点击此处',
+          style: TextStyle(color: Colors.white),
+        ),
+
+      ),
+      onPointerDown: (e) => print('按下'),
+    );
+  }
+}
+```
+
+5. 点击文本后控制台就会打印 'down'。
+6. `Listener` 的实现和 `PointerDownListener` 的实现原理差不多，有两点不同：
+	1. `Listener` 监听的事件类型更多一些。
+	2. `Listener` 的 `hitTestSelf` 并不是一直返回 `true`。
+7. 这里需要重点说一下第二点。 `Listener` 组件有一个 `behavior` 参数，我们之前并没有介绍，下面我们仔细介绍一下。通过查看 `Listener` 源码，发现它的渲染对象 `RenderPointerListener` 继承了 `RenderProxyBoxWithHitTestBehavior` 类：
+
+```dart
+abstract class RenderProxyBoxWithHitTestBehavior extends RenderProxyBox {
+  //[behavior] 的默认值为 [HitTestBehavior.deferToChild].
+  RenderProxyBoxWithHitTestBehavior({
+    this.behavior = HitTestBehavior.deferToChild,
+    RenderBox? child,
+  }) : super(child);
+
+  HitTestBehavior behavior;
+
+  @override
+  bool hitTest(BoxHitTestResult result, { required Offset position }) {
+    bool hitTarget = false;
+    if (size.contains(position)) {
+      hitTarget = hitTestChildren(result, position: position) || hitTestSelf(position);
+      if (hitTarget || behavior == HitTestBehavior.translucent) //1
+        result.add(BoxHitTestEntry(this, position)); // 通过命中测试
+    }
+    return hitTarget;
+  }
+
+  @override
+  bool hitTestSelf(Offset position) => behavior == HitTestBehavior.opaque; //2
+
+}
+```
+
+8. 我们看到 `behavior` 在 `hitTest` 和 `hitTestSelf` 中会使用，它的取值会影响 `Listener` 的命中测试结果。我们先看看 `behavior` 都有哪些取值：
+
+```dart
+//在命中测试过程中 Listener 组件如何表现。
+enum HitTestBehavior {
+  // 组件是否通过命中测试取决于子组件是否通过命中测试
+  deferToChild,
+  // 组件必然会通过命中测试，同时其 hitTest 返回值始终为 true
+  opaque,
+  // 组件必然会通过命中测试，但其 hitTest 返回值可能为 true 也可能为 false
+  translucent,
+}
+```
+
+9. 它有三个取值，我们结合 `hitTest` 实现来分析一下不同取值的作用：
+	1. `behavior` 为 `deferToChild` 时，`hitTestSelf` 返回 `false`，当前组件是否能通过命中测试完全取决于 `hitTestChildren` 的返回值。也就是说只要有一个子节点通过命中测试，则当前组件便会通过命中测试。
+	2. `behavior` 为 `opaque` 时，`hitTestSelf` 返回 `true`，`hitTarget` 值始终为 `true`，当前组件通过命中测试。
+	3. `behavior` 为 `translucent` 时，`hitTestSelf` 返回 `false`，`hitTarget` 值此时取决于 `hitTestChildren` 的返回值，但是无论 `hitTarget` 值是什么，当前节点都会被添加到 `HitTestResult` 中。
+10. 注意，`behavior` 为 `opaque` 和 `translucent` 时当前组件都会通过命中测试，它们的区别是 `hitTest()` 的返回值（hitTarget ）可能不同，所以它们的区别就看 `hitTest()` 的返回值会影响什么，这个我们已经在上面详细介绍过了，下面我们通过一个实例来理解一下
+
+## 4、手势原理与手势冲突
+
+### ①、手势识别原理
+
+1. 手势的识别和处理都是在事件分发阶段的，`GestureDetector` 是一个 `StatelessWidget`， 包含了 `RawGestureDetector`，我们看一下它的 `build` 方法实现：
+
+```dart
+@override
+Widget build(BuildContext context) {
+  final  gestures = <Type, GestureRecognizerFactory>{};
+  // 构建 TapGestureRecognizer 
+  if (onTapDown != null ||
+      onTapUp != null ||
+      onTap != null ||
+      ... //省略
+  ) {
+    gestures[TapGestureRecognizer] = GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
+      () => TapGestureRecognizer(debugOwner: this),
+      (TapGestureRecognizer instance) {
+        instance
+          ..onTapDown = onTapDown
+          ..onTapUp = onTapUp
+          ..onTap = onTap
+          //省略
+      },
+    );
+  }
+
+  
+  return RawGestureDetector(
+    gestures: gestures, // 传入手势识别器
+    behavior: behavior, // 同 Listener 中的 HitTestBehavior
+    child: child,
+  );
+}
+```
+
+2. 注意，上面我们删除了很多代码，只保留了 `TapGestureRecognizer`（点击手势识别器） 相关代码，我们以点击手势识别为例讲一下整个过程。`RawGestureDetector` 中会通过 `Listener` 组件监听 `PointerDownEvent` 事件，相关源码如下：
+
+```dart
+@override
+Widget build(BuildContext context) {
+  ... // 省略无关代码
+  Widget result = Listener(
+    onPointerDown: _handlePointerDown,
+    behavior: widget.behavior ?? _defaultBehavior,
+    child: widget.child,
+  );
+}  
+ 
+void _handlePointerDown(PointerDownEvent event) {
+  for (final GestureRecognizer recognizer in _recognizers!.values)
+    recognizer.addPointer(event);
+}  
+```
+
+3. 下面我们看一下 `TapGestureRecognizer` 的几个相关方法，由于 `TapGestureRecognizer` 有多层继承关系，合并了一个简化版：
+
+```dart
+class CustomTapGestureRecognizer1 extends TapGestureRecognizer {
+
+  void addPointer(PointerDownEvent event) {
+    //会将 handleEvent 回调添加到 pointerRouter 中
+    GestureBinding.instance!.pointerRouter.addRoute(event.pointer, handleEvent);
+  }
+  
+  @override
+  void handleEvent(PointerEvent event) {
+    //会进行手势识别，并决定是是调用 acceptGesture 还是 rejectGesture，
+  }
+  
+  @override
+  void acceptGesture(int pointer) {
+    // 竞争胜出会调用
+  }
+
+  @override
+  void rejectGesture(int pointer) {
+    // 竞争失败会调用
+  }
+}
+```
+
+4. 可以看到当 `PointerDownEvent` 事件触发时，会调用 `TapGestureRecognizer` 的 `addPointer`，在 `addPointer` 中会将 `handleEvent` 方法添加到 `pointerRouter` 中保存起来。这样一来当手势发生变化时只需要在 `pointerRouter` 中取出 `GestureRecognizer` 的 `handleEvent` 方法进行手势识别即可。
+5. 正常情况下应该是手势直接作用的对象应该来处理手势，所以一个简单的原则就是同一个手势应该只有一个手势识别器生效，为此，手势识别才映入了手势竞技场（Arena）的概念，简单来讲：
+	1. 每一个手势识别器（GestureRecognizer）都是一个“竞争者”（GestureArenaMember），当发生指针事件时，他们都要在“竞技场”去竞争本次事件的处理权，默认情况最终只有一个“竞争者”会胜出(win)。
+	2. `GestureRecognizer` 的 `handleEvent` 中会识别手势，如果手势发生了某个手势，竞争者可以宣布自己是否胜出，一旦有一个竞争者胜出，竞技场管理者（GestureArenaManager）就会通知其他竞争者失败。
+	3. 胜出者的 `acceptGesture` 会被调用，其余的 `rejectGesture` 将会被调用。
+6. 上一节我们说过命中测试是从 `RenderBinding` 的 `hitTest` 开始的：
+
+```dart
+@override
+void hitTest(HitTestResult result, Offset position) {
+  // 从根节点开始进行命中测试
+  renderView.hitTest(result, position: position); 
+  // 会调用 GestureBinding 中的 hitTest()方法，我们将在下一节中介绍。
+  super.hitTest(result, position); 
+}
+```
+
+7. 渲染树命中测试完成后会调用 `GestureBinding` 中的 `hitTest()` 方法：
+
+```dart
+@override // from HitTestable
+void hitTest(HitTestResult result, Offset position) {
+  result.add(HitTestEntry(this));
+}
+```
+
+8. 很简单， `GestureBinding` 也通过命中测试了，这样的话在事件分发阶段，`GestureBinding` 的 `handleEvent` 便也会被调用，由于它是最后被添加到 `HitTestResult` 中的，所以在事件分发阶段 `GestureBinding` 的 `handleEvent` 会在最后被调用：
+
+```dart
+@override 
+void handleEvent(PointerEvent event, HitTestEntry entry) {
+  // 会调用在 pointerRouter 中添加的 GestureRecognizer 的 handleEvent
+  pointerRouter.route(event);
+  if (event is PointerDownEvent) {
+    // 分发完毕后，关闭竞技场
+    gestureArena.close(event.pointer);
+  } else if (event is PointerUpEvent) {
+    gestureArena.sweep(event.pointer);
+  } else if (event is PointerSignalEvent) {
+    pointerSignalResolver.resolve(event);
+  }
+}
+```
+
+9. `gestureArena` 是 `GestureArenaManager` 类实例，负责管理竞技场。
+10. 上面关键的代码就是第一行，功能是会调用之前在 `pointerRouter` 中添加的 `GestureRecognizer` 的 `handleEvent`，不同 `GestureRecognizer` 的 `handleEvent` 会识别不同的手势，然后它会和 `gestureArena` 交互（如果当前的 `GestureRecognizer` 胜出，需要 `gestureArena` 去通知其他竞争者它们失败了），最终，如果当前 `GestureRecognizer` 胜出，则最终它的 `acceptGesture` 会被调用，如果失败则其 `rejectGesture` 将会被调用，因为这部分代码不同的 `GestureRecognizer` 会不同，知道做了什么就行，有兴趣可以自行查看源码。
+
+### ②、手势竞争
+
+1. 如果对一个组件同时监听水平和垂直方向的拖动手势，当我们斜着拖动时哪个方向的拖动手势回调会被触发？实际上取决于第一次移动时两个轴上的位移分量，哪个轴的大，哪个轴在本次滑动事件竞争中就胜出。
+2. 上面已经说过，每一个手势识别器（GestureRecognizer）都是一个“竞争者”（GestureArenaMember），当发生指针事件时，他们都要在“竞技场”去竞争本次事件的处理权，默认情况最终只有一个“竞争者”会胜出(win)。
+3. 例如，假设有一个 ListView，它的第一个子组件也是 ListView，如果现在滑动这个子 ListView，父 ListView 会动吗？答案是否定的，这时只有子 ListView 会动，因为这时子 ListView 会胜出而获得滑动事件的处理权。
+4. 下面我们看一个简单的例子：
+
+```dart
+GestureDetector( //GestureDetector2
+  onTapUp: (x)=>print("2"), // 监听父组件 tapUp 手势
+  child: Container(
+    width:200,
+    height: 200,
+    color: Colors.red,
+    alignment: Alignment.center,
+    child: GestureDetector( //GestureDetector1
+      onTapUp: (x)=>print("1"), // 监听子组件 tapUp 手势
+      child: Container(
+        width: 50,
+        height: 50,
+        color: Colors.grey,
+      ),
+    ),
+  ),
+);
+```
+
+5. 当我们点击子组件（灰色区域）时，控制台只会打印 “1”, 并不会打印 “2”，这是因为手指抬起后，`GestureDetector1` 和 `GestureDetector` 2 会发生竞争，判定获胜的规则是“子组件优先”，所以 `GestureDetector1` 获胜，因为只能有一个“竞争者”胜出，所以 `GestureDetector` 2 将被忽略。这个例子中想要解决冲突的方法很简单，将 `GestureDetector` 换为 `Listener` 即可，具体原因我们在后面解释。
+6. 我们再看一个例子，我们以拖动手势为例，同时识别水平和垂直方向的拖动手势，当用户按下手指时就会触发竞争（水平方向和垂直方向），一旦某个方向“获胜”，则直到当次拖动手势结束都会沿着该方向移动。代码如下：
+
+```dart
+class _BothDirectionTest extends StatefulWidget {
+  @override
+  _BothDirectionTestState createState() => _BothDirectionTestState();
+}
+
+class _BothDirectionTestState extends State<_BothDirectionTest> {
+  double _top = 0.0;
+  double _left = 0.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          top: _top,
+          left: _left,
+          child: GestureDetector(
+            child: CircleAvatar(child: Text("A")),
+            //垂直方向拖动事件
+            onVerticalDragUpdate: (DragUpdateDetails details) {
+              setState(() {
+                _top += details.delta.dy;
+              });
+            },
+            onHorizontalDragUpdate: (DragUpdateDetails details) {
+              setState(() {
+                _left += details.delta.dx;
+              });
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+```
+
+7. 示例运行后，每次拖动只会沿一个方向移动（水平或垂直），而竞争发生在手指按下后首次移动（move）时，此例中具体的“获胜”条件是：首次移动时的位移在水平和垂直方向上的分量大的一个获胜。
+
+### ③、多手势冲突
+
+1. 由于手势竞争最终只有一个胜出者，所以，当我们通过一个 `GestureDetector` 监听多种手势时，也可能会产生冲突。假设有一个 widget，它可以左右拖动，现在我们也想检测在它上面手指按下和抬起的事件，代码如下：
+
+```dart
+class GestureConflictTestRouteState extends State<GestureConflictTestRoute> {
+  double _left = 0.0;
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          left: _left,
+          child: GestureDetector(
+              child: CircleAvatar(child: Text("A")), //要拖动和点击的widget
+              onHorizontalDragUpdate: (DragUpdateDetails details) {
+                setState(() {
+                  _left += details.delta.dx;
+                });
+              },
+              onHorizontalDragEnd: (details){
+                print("onHorizontalDragEnd");
+              },
+              onTapDown: (details){
+                print("down");
+              },
+              onTapUp: (details){
+                print("up");
+              },
+          ),
+        )
+      ],
+    );
+  }
+}
+```
+
+2. 现在我们按住圆形“A”拖动然后抬起手指，控制台日志如下:
+
+```dart
+I/flutter (17539): down
+I/flutter (17539): onHorizontalDragEnd
+```
+
+3. 我们发现没有打印"up"，这是因为在拖动时，刚开始按下手指且没有移动时，拖动手势还没有完整的语义，此时 `TapDown` 手势胜出(win)，此时打印"down"，而拖动时，拖动手势会胜出，当手指抬起时，`onHorizontalDragEnd` 和 `onTapUp` 发生了冲突，但是因为是在拖动的语义中，所以 `onHorizontalDragEnd` 胜出，所以就会打印 “onHorizontalDragEnd”。
+4. 如果我们的代码逻辑中，对于手指按下和抬起是强依赖的，比如在一个轮播图组件中，我们希望手指按下时，暂停轮播，而抬起时恢复轮播，但是由于轮播图组件中本身可能已经处理了拖动手势（支持手动滑动切换），甚至可能也支持了缩放手势，这时我们如果在外部再用 `onTapDown`、`onTapUp` 来监听的话是不行的。这时我们应该怎么做？其实很简单，通过 `Listener` 监听原始指针事件就行：
+
+```dart
+Positioned(
+  top:80.0,
+  left: _leftB,
+  child: Listener(
+    onPointerDown: (details) {
+      print("down");
+    },
+    onPointerUp: (details) {
+      //会触发
+      print("up");
+    },
+    child: GestureDetector(
+      child: CircleAvatar(child: Text("B")),
+      onHorizontalDragUpdate: (DragUpdateDetails details) {
+        setState(() {
+          _leftB += details.delta.dx;
+        });
+      },
+      onHorizontalDragEnd: (details) {
+        print("onHorizontalDragEnd");
+      },
+    ),
+  ),
+)
+```
+
+### ④、解决手势冲突
+
+1. 手势是对原始指针的语义化的识别，手势冲突只是手势级别的，也就是说只会在组件树中的多个  `GestureDetector` 之间才有冲突的场景，如果压根就没有使用 `GestureDetector` 则不存在所谓的冲突，因为每一个节点都能收到事件，只是在 `GestureDetector` 中为了识别语义，它会去决定哪些子节点应该忽略事件，哪些节点应该生效。
+2. 解决手势冲突的方法有两种：
+	1. 使用 `Listener`。这相当于跳出了手势识别那套规则。
+	2. 自定义手势手势识别器（ Recognizer）。
+
+#### Ⅰ、通过 Listener 解决手势冲突
+
+1. 通过 `Listener` 解决手势冲突的原因是竞争只是针对手势的，而 `Listener` 是监听原始指针事件，原始指针事件并非语义话的手势，所以根本不会走手势竞争的逻辑，所以也就不会相互影响。拿上面两个 `Container` 嵌套的例子来说，通过 `Listener` 的解决方式为：
+
+```dart
+Listener(  // 将 GestureDetector 换为 Listener 即可
+  onPointerUp: (x) => print("2"),
+  child: Container(
+    width: 200,
+    height: 200,
+    color: Colors.red,
+    alignment: Alignment.center,
+    child: GestureDetector(
+      onTap: () => print("1"),
+      child: Container(
+        width: 50,
+        height: 50,
+        color: Colors.grey,
+      ),
+    ),
+  ),
+);
+```
+
+2. 代码很简单，只需将 `GestureDetector` 换为 `Listener` 即可，可以两个都换，也可以只换一个。
+3. 可以看见，通过 `Listener` 直接识别原始指针事件来解决冲突的方法很简单，因此，当遇到手势冲突时，我们应该优先考虑 `Listener` 。
+
+#### Ⅱ、通过自定义 Recognizer 解决手势冲突
+
+1. 自定义手势识别器的方式比较麻烦，原理是当确定手势竞争胜出者时，会调用胜出者的 `acceptGesture` 方法，表示“宣布成功”，然后会调用其他手势识别其的 `rejectGesture` 方法，表示“宣布失败”。
+2. 既然如此，我们可以自定义手势识别器（Recognizer），然后去重写它的 `rejectGesture` 方法：在里面调用 `acceptGesture` 方法，这就相当于它失败是强制将它也变成竞争的成功者了，这样它的回调也就会执行。
+3. 我们先自定义tap手势识别器（Recognizer）：
+
+```dart
+class CustomTapGestureRecognizer extends TapGestureRecognizer {
+  @override
+  void rejectGesture(int pointer) {
+    //不，我不要失败，我要成功
+    //super.rejectGesture(pointer);
+    //宣布成功
+    super.acceptGesture(pointer);
+  }
+}
+
+//创建一个新的GestureDetector，用我们自定义的 CustomTapGestureRecognizer 替换默认的
+RawGestureDetector customGestureDetector({
+  GestureTapCallback? onTap,
+  GestureTapDownCallback? onTapDown,
+  Widget? child,
+}) {
+  return RawGestureDetector(
+    child: child,
+    gestures: {
+      CustomTapGestureRecognizer:
+          GestureRecognizerFactoryWithHandlers<CustomTapGestureRecognizer>(
+        () => CustomTapGestureRecognizer(),
+        (detector) {
+          detector.onTap = onTap;
+        },
+      )
+    },
+  );
+}
+```
+
+4. 通过 `RawGestureDetector` 来自定义 `customGestureDetector`，`GestureDetector` 中也是通过  `RawGestureDetector` 来包装各种 `Recognizer` 来实现的，我们需要自定义哪个 `Recognizer`，就添加哪个即可。
+5. 现在我们看看修改调用代码：
+
+```dart
+customGestureDetector( // 替换 GestureDetector
+  onTap: () => print("2"),
+  child: Container(
+    width: 200,
+    height: 200,
+    color: Colors.red,
+    alignment: Alignment.center,
+    child: GestureDetector(
+      onTap: () => print("1"),
+      child: Container(
+        width: 50,
+        height: 50,
+        color: Colors.grey,
+      ),
+    ),
+  ),
+);
+```
+
+6. 这样就 OK 了，需要注意，这个例子同时说明了一次手势处理过程也是可以有多个胜出者的
+
+## 5、事件总线
+
+1. 在 App 中，我们经常会需要一个广播机制，用以跨页面事件通知，比如一个需要登录的 App 中，页面会关注用户登录或注销事件，来进行一些状态更新。
+2. 这时候，一个事件总线便会非常有用，事件总线通常实现了订阅者模式，订阅者模式包含发布者和订阅者两种角色，可以通过事件总线来触发事件和监听事件，本节我们实现一个简单的全局事件总线，我们使用单例模式，代码如下：
+3. `01_EventCallback.dart` 事件总线
+
+```dart
+/// 订阅者回调签名；函数签名指的是函数的类型和结构，包括函数的参数类型、返回值类型以及函数名。
+/// typedef 是 Dart 的关键字，意思是定义一个函数类型。
+/// 定义了这个函数类型以后，可以使用 EventCallback 定义变量，这样就可以复用这个函数签名。
+typedef void EventCallback(arg);
+
+class EventBus {
+  // 私有构造函数
+  EventBus._internal();
+
+  // 保存单例
+  static final EventBus _singleton = EventBus._internal();
+
+  // 工厂构造函数
+  factory EventBus()=> _singleton;
+
+  // 保存事件订阅者队列，key:事件名(id)，value: 对应事件的订阅者队列
+  final _emap = <Object, List<EventCallback>?>{};
+
+  // 添加订阅者
+  void on(eventName, EventCallback f) {
+    // 如果 _emap[eventName] 为空，则赋值为一个空数组
+    _emap[eventName] ??=  <EventCallback>[];
+    // 将该事件的订阅者 f 添加到队列中
+    _emap[eventName]!.add(f);
+  }
+
+  // 移除订阅者
+  void off(eventName, [EventCallback? f]) {
+    var list = _emap[eventName];
+    if (eventName == null || list == null) return;
+    if (f == null) {
+      _emap[eventName] = null;
+    } else {
+      list.remove(f);
+    }
+  }
+
+  // 触发事件，事件触发后该事件所有订阅者会被调用
+  void emit(eventName, [arg]) {
+    var list = _emap[eventName];
+    if (list == null) return;
+    int len = list.length - 1;
+    // 反向遍历，防止订阅者在回调中移除自身带来的下标错位
+    for (var i = len; i > -1; --i) {
+      list[i](arg);
+    }
+  }
+}
+
+// 定义一个 top-level（全局）变量，页面引入该文件后可以直接使用 bus
+var bus = EventBus();
+```
+
+4. `main` 主启动类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '08_事件处理与通知/05_事件总线/03_Login.dart';
+import '08_事件处理与通知/05_事件总线/02_LoginMonitor.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: const Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body: 用于定义页面的主要内容区域
+           * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+           */
+          body: SafeArea(
+            child: LoginMonitorComponent()
+          )
+        ),
+      routes: {
+        '/login': (context) => const LoginComponent(),
+        '/loginMonitor': (context) => const LoginMonitorComponent(),
+      },
+    );
+  }
+}
+```
+
+5. `02_LoginMonitor.dart` 登录监听页面
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '01_EventCallback.dart';
+
+class LoginMonitorComponent extends StatefulWidget {
+  const LoginMonitorComponent({Key? key}) : super(key: key);
+
+  @override
+  _LoginMonitorComponentState createState() => _LoginMonitorComponentState();
+}
+
+class _LoginMonitorComponentState extends State<LoginMonitorComponent> {
+  var loginMonitor = '未登录';
+
+  @override
+  void initState() {
+    super.initState();
+    // 订阅登录事件
+    bus.on('login', (arg) {
+      // 更新 Text 的显示
+      setState(() {
+        loginMonitor = arg; // 假设 loginMonitor 是您用于显示登录信息的变量
+      });
+      // 打印信息
+      print('登录信息: $arg');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个小部件，它可以将其子部件树对齐到屏幕中心
+    return Center(
+      // Column 是一个小部件，它可以在垂直方向排列其子部件
+      child: Column(
+        // 垂直居中
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            loginMonitor,
+            style: const TextStyle(fontSize: 20, color: CupertinoColors.destructiveRed),
+          ),
+          ElevatedButton(
+            child: const Text('跳转至 LoginComponent'),
+            onPressed: () { Navigator.pushNamed(context, '/login'); },
+          ),
+        ],
+      )
+    );
+  }
+}
+```
+
+6. `03_Login.dart` 登录页面
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '01_EventCallback.dart';
+
+class LoginComponent extends StatelessWidget {
+  const LoginComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个小部件，它可以将其子部件树对齐到屏幕中心
+    return Center(
+      // Column 是一个小部件，它可以在垂直方向排列其子部件
+      child: Column(
+        // 垂直居中
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            child: const Text('登录'),
+            onPressed: () {
+              // 发送登录事件
+              bus.emit('login', '登录成功');
+            },
+          ),
+          ElevatedButton(
+            child: const Text('跳转至 LoginMonitorComponent'),
+            onPressed: () { Navigator.pop(context); },
+          ),
+        ],
+      )
+    );
+  }
+}
+```
+
+7. 效果：
+
+![|700](attachments/动画31.gif)
+
+## 6、通知 Notification
+
+1. 通知（Notification）是 Flutter 中一个重要的机制，在 widget 树中，每一个节点都可以分发通知，通知会沿着当前节点向上传递，所有父节点都可以通过 NotificationListener 来监听通知。
+2. Flutter 中将这种由子向父的传递通知的机制称为通知冒泡（Notification Bubbling）。通知冒泡和用户触摸事件冒泡是相似的，但有一点不同：通知冒泡可以中止，但用户触摸事件不行。
+3. 注意：通知冒泡和 Web 开发中浏览器事件冒泡原理是相似的，都是事件从出发源逐层向上传递，我们可以在上层节点任意位置来监听通知/事件，也可以终止冒泡过程，终止冒泡后，通知将不会再向上传递。
+
+### ①、监听通知
+
+1. Flutter 中很多地方使用了通知，如前面介绍的 `Scrollable` 组件，它在滑动时就会分发滚动通知（ScrollNotification），而 `Scrollbar` 正是通过监听 `ScrollNotification` 来确定滚动条位置的。
+2. 下面是一个监听可滚动组件滚动通知的例子：
+
+```dart
+NotificationListener(
+  onNotification: (notification){
+    switch (notification.runtimeType){
+      case ScrollStartNotification: print("开始滚动"); break;
+      case ScrollUpdateNotification: print("正在滚动"); break;
+      case ScrollEndNotification: print("滚动停止"); break;
+      case OverscrollNotification: print("滚动到边界"); break;
+    }
+  },
+  child: ListView.builder(
+    itemCount: 100,
+    itemBuilder: (context, index) {
+      return ListTile(title: Text("$index"),);
+    }
+  ),
+);
+```
+
+3. 上例中的滚动通知如 `ScrollStartNotification`、`ScrollUpdateNotification` 等都是继承自 `ScrollNotification` 类，不同类型的通知子类会包含不同的信息，比如 `ScrollUpdateNotification` 有一个 `scrollDelta` 属性，它记录了移动的位移，其他通知属性可以自己查看 SDK 文档。
+4. 上例中，我们通过 `NotificationListener` 来监听子 `ListView` 的滚动通知的，`NotificationListener` 定义如下：
+
+```dart
+class NotificationListener<T extends Notification> extends StatelessWidget {
+  const NotificationListener({
+    Key key,
+    required this.child,
+    this.onNotification,
+  }) : super(key: key);
+ ...//省略无关代码 
+}  
+```
+
+5. 我们可以看到：
+6. `NotificationListener` 继承自 `StatelessWidget` 类，所以它可以直接嵌套到 Widget 树中。
+7. `NotificationListener` 可以指定一个模板参数，该模板参数类型必须是继承自 `Notification`；当显式指定模板参数时，`NotificationListener` 便只会接收该参数类型的通知。举个例子，如果我们将上例子代码改为：
+
+```dart
+//指定监听通知的类型为滚动结束通知(ScrollEndNotification)
+NotificationListener<ScrollEndNotification>(
+  onNotification: (notification){
+    //只会在滚动结束时才会触发此回调
+    print(notification);
+  },
+  child: ListView.builder(
+    itemCount: 100,
+    itemBuilder: (context, index) {
+      return ListTile(title: Text("$index"),);
+    }
+  ),
+);
+```
+
+8. 上面代码运行后便只会在滚动结束时在控制台打印出通知的信息。
+9. `onNotification` 回调为通知处理回调，其函数签名如下：
+
+```dart
+// 函数签名指的是函数的类型和结构，包括函数的参数类型、返回值类型以及函数名。
+typedef NotificationListenerCallback<T extends Notification> = bool Function(T notification);
+```
+
+10. 它的返回值类型为布尔值，当返回值为 true 时，阻止冒泡，其父级 Widget 将再也收不到该通知；当返回值为 false 时继续向上冒泡通知。
+11. Flutter 的 UI 框架实现中，除了在可滚动组件在滚动过程中会发出 `ScrollNotification` 之外，还有一些其他的通知，如 `SizeChangedLayoutNotification`、`KeepAliveNotification` 、`LayoutChangedNotification` 等，Flutter 正是通过这种通知机制来使父元素可以在一些特定时机来做一些事情
+
+### ②、自定义通知
+
+1. 除了 Flutter 内部通知，我们也可以自定义通知，下面我们看看如何实现自定义通知：
+2. 定义一个通知类，要继承自Notification类；
+
+```dart
+class MyNotification extends Notification {
+  MyNotification(this.msg);
+  final String msg;
+}
+```
+
+2. 分发通知：`Notification` 有一个 `dispatch(context)` 方法，它是用于分发通知的，我们说过 `context` 实际上就是操作 `Element` 的一个接口，它与 `Element` 树上的节点是对应的，通知会从 `context` 对应的 `Element` 节点向上冒泡。
+3. 下面我们看一个完整的例子：
+
+```dart
+class NotificationRoute extends StatefulWidget {
+  @override
+  NotificationRouteState createState() {
+    return NotificationRouteState();
+  }
+}
+
+class NotificationRouteState extends State<NotificationRoute> {
+  String _msg="";
+  @override
+  Widget build(BuildContext context) {
+    //监听通知  
+    return NotificationListener<MyNotification>(
+      onNotification: (notification) {
+        setState(() {
+          _msg+=notification.msg+"  ";
+        });
+       return true;
+      },
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+//           ElevatedButton(
+//           onPressed: () => MyNotification("Hi").dispatch(context),
+//           child: Text("Send Notification"),
+//          ),  
+            Builder(
+              builder: (context) {
+                return ElevatedButton(
+                  //按钮点击时分发通知  
+                  onPressed: () => MyNotification("Hi").dispatch(context),
+                  child: Text("Send Notification"),
+                );
+              },
+            ),
+            Text(_msg)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyNotification extends Notification {
+  MyNotification(this.msg);
+  final String msg;
+}
+```
+
+4. 上面代码中，我们每点一次按钮就会分发一个 `MyNotification` 类型的通知，我们在 Widget 根上监听通知，收到通知后我们将通知通过 `Text` 显示在屏幕上。
+5. 注意：代码中注释的部分是不能正常工作的，因为这个 `context` 是根 Context，而 `NotificationListener` 是监听的子树，所以我们通过 Builder 来构建 `ElevatedButton`，来获得按钮位置的 `context`。
+6. 运行效果如图所示：
+
+![|260](attachments/Pasted%20image%2020231128145714.png)
+
+### ③、阻止通知冒泡
+
+1. 我们将上面的例子改为：
+
+```dart
+class NotificationRouteState extends State<NotificationRoute> {
+  String _msg="";
+  @override
+  Widget build(BuildContext context) {
+    //监听通知
+    return NotificationListener<MyNotification>(
+      onNotification: (notification){
+        print(notification.msg); //打印通知
+        return false;
+      },
+      child: NotificationListener<MyNotification>(
+        onNotification: (notification) {
+          setState(() {
+            _msg+=notification.msg+"  ";
+          });
+          return false; 
+        },
+        child: ...//省略重复代码
+      ),
+    );
+  }
+}
+```
+
+2. 上列中两个 `NotificationListener` 进行了嵌套，子 `NotificationListener` 的 `onNotification` 回调返回 `false`，表示不阻止冒泡，所以父 `NotificationListener` 仍然会受到通知，所以控制台会打印出通知信息；
+3. 如果将子 `NotificationListener` 的 `onNotification` 回调的返回值改为 `true`，则父 `NotificationListener` 便不会再打印通知了，因为子 `NotificationListener` 已经终止通知冒泡了。
+
+### ④、冒泡原理
+
+1. 我们在上面介绍了通知冒泡的现象及使用，现在我们更深入一些，介绍一下 Flutter 框架中是如何实现通知冒泡的。为了搞清楚这个问题，就必须看一下源码，我们从通知分发的源头出发，然后再顺藤摸瓜。由于通知是通过 `Notification` 的 `dispatch(context)` 方法发出的，那我们先看看 `dispatch(context)` 方法中做了什么，下面是相关源码：
+
+```dart
+void dispatch(BuildContext target) {
+  target?.visitAncestorElements(visitAncestor);
+}
+```
+
+2. `dispatch(context)` 中调用了当前 `context` 的 `visitAncestorElements` 方法，该方法会从当前 Element 开始向上遍历父级元素；`visitAncestorElements` 有一个遍历回调参数，在遍历过程中对遍历到的父级元素都会执行该回调。遍历的终止条件是：已经遍历到根 Element 或某个遍历回调返回 `false`。源码中传给 `visitAncestorElements` 方法的遍历回调为 `visitAncestor` 方法，我们看看 `visitAncestor` 方法的实现：
+
+```dart
+//遍历回调，会对每一个父级Element执行此回调
+bool visitAncestor(Element element) {
+  //判断当前element对应的Widget是否是NotificationListener。
+  
+  //由于NotificationListener是继承自StatelessWidget，
+  //故先判断是否是StatelessElement
+  if (element is StatelessElement) {
+    //是StatelessElement，则获取element对应的Widget，判断
+    //是否是NotificationListener 。
+    final StatelessWidget widget = element.widget;
+    if (widget is NotificationListener<Notification>) {
+      //是NotificationListener，则调用该NotificationListener的_dispatch方法
+      if (widget._dispatch(this, element)) 
+        return false;
+    }
+  }
+  return true;
+}
+```
+
+3. `visitAncestor` 会判断每一个遍历到的父级 Widget 是否是 `NotificationListener`，如果不是，则返回 `true` 继续向上遍历，如果是，则调用 `NotificationListener` 的 `_dispatch` 方法，我们看看 `_dispatch` 方法的源码：
+
+```dart
+  bool _dispatch(Notification notification, Element element) {
+    // 如果通知监听器不为空，并且当前通知类型是该NotificationListener
+    // 监听的通知类型，则调用当前NotificationListener的onNotification
+    if (onNotification != null && notification is T) {
+      final bool result = onNotification(notification);
+      // 返回值决定是否继续向上遍历
+      return result == true; 
+    }
+    return false;
+  }
+```
+
+4. 我们可以看到 `NotificationListener` 的 `onNotification` 回调最终是在 `_dispatch` 方法中执行的，然后会根据返回值来确定是否继续向上冒泡。上面的源码实现其实并不复杂，通过阅读这些源码，一些额外的点可以注意一下：
+	1. Context 上也提供了遍历 Element 树的方法。
+	2. 我们可以通过 `Element.widget` 得到 element 节点对应的 widget
+
+# 九、文件操作与网络请求
+
+## 1、文件操作
+
+### ①、简介
+
+1. Dart 的 IO 库包含了文件读写的相关类，它属于 Dart 语法标准的一部分，所以通过 Dart IO 库，无论是 Dart VM 下的脚本还是 Flutter，都是通过 Dart IO 库来操作文件的
+2. 不过和 Dart VM 相比，Flutter 有一个重要差异是文件系统路径不同，这是因为 Dart VM 是运行在 PC 或服务器操作系统下，而 Flutter 是运行在移动操作系统中，他们的文件系统会有一些差异。
+3. Android 和 iOS 的应用存储目录不同，`PathProvider` 插件提供了一种平台透明的方式来访问设备文件系统上的常用位置。该类当前支持访问两个文件系统位置：
+	1. 临时目录：可以使用 `getTemporaryDirectory()` 来获取临时目录； 系统可随时清除临时目录的文件。
+		1. 在 iOS 上，这对应于 `NSTemporaryDirectory()` 返回的值。
+		2. 在 Android 上，这是 `getCacheDir()`返回的值。
+	2. 文档目录：可以使用 `getApplicationDocumentsDirectory()` 来获取应用程序的文档目录，该目录用于存储只有自己可以访问的文件。只有当应用程序被卸载时，系统才会清除该目录。
+		1. 在 iOS 上，这对应于 `NSDocumentDirectory`。
+		2. 在 Android 上，这是 AppData 目录。
+	3. 外部存储目录：可以使用 `getExternalStorageDirectory()` 来获取外部存储目录，如 SD 卡；
+		1. 由于 iOS 不支持外部目录，所以在 iOS 下调用该方法会抛出 `UnsupportedError` 异常
+		2. 在 Android 下结果是 Android SDK 中 `getExternalStorageDirectory` 的返回值。
+4. 一旦 Flutter 应用程序有一个文件位置的引用，可以使用 dart io API 来执行对文件系统的读/写操作。
+5. 有关使用 Dart 处理文件和目录的详细内容可以参考 Dart 语言文档
+
+### ②、示例
+
+- 我们还是以计数器为例，实现在应用退出重启后可以恢复点击次数。 这里，我们使用文件来保存数据：
+
+1. 引入 `PathProvider` 插件；在 `pubspec.yaml` 文件中添加如下声明：
+2. 添加后，执行 `flutter packages get` 获取一下, 版本号可能随着时间推移会发生变化，可以使用最新版。
+
+```yaml
+path_provider: ^2.0.2
+```
+
+```dart
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # path_provider 插件用于查找常用位置的路径，例如临时目录
+  path_provider: ^2.0.2
+```
+
+3. `main` 主启动类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '09_文件操作与网络请求/01_文件操作/01_FileOperationComponent.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body: 用于定义页面的主要内容区域
+           * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+           */
+          body: SafeArea(
+            child: FileOperationComponent()
+          )
+        )
+    );
+  }
+}
+```
+
+4. `01_FileOperationComponent.dart` 文件操作类
+
+```dart
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
+
+class FileOperationComponent extends StatefulWidget {
+  const FileOperationComponent({Key? key}) : super(key: key);
+
+  @override
+  _FileOperationComponentState createState() => _FileOperationComponentState();
+}
+
+class _FileOperationComponentState extends State<FileOperationComponent> {
+  // 点击次数
+  int _counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // 从文件读取点击次数；读取后，调用 setState() 更新 UI
+    _readCounter().then((int value) {
+      setState(() {
+        _counter = value;
+      });
+    });
+  }
+
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个小部件，用于在垂直方向上排列其子部件
+      child: Column(
+        children: [
+          Text('点击了 $_counter 次'),
+          ElevatedButton(
+            onPressed: () { _incrementCounter(); },
+            child: const Icon(Icons.add)
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 点击按钮后，将点击次数自增并写入文件
+  _incrementCounter() async {
+    setState(() {
+      _counter++;
+    });
+    // 将点击次数以字符串类型写到文件中
+    await (await _getLocalFile()).writeAsString('$_counter');
+  }
+
+  /// 获取本地文件目录中的文件 count.txt
+  Future<File> _getLocalFile() async {
+    // 获取应用目录
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    print(dir);
+    // 返回应用目录中的文件
+    return File('$dir/counter.txt');
+  }
+
+  /// 从文件中读取点击次数，以字符串类型返回
+  Future<int> _readCounter() async {
+    try {
+      File file = await _getLocalFile();
+      // 读取点击次数（以字符串）
+      String contents = await file.readAsString();
+      return int.parse(contents);
+    } on FileSystemException {
+      return 0;
+    }
+  }
+
+}
+```
+
+5. 效果：
+
+![|401](attachments/动画32.gif)
+
+6. 上面代码比较简单，不再赘述，需要说明的是，本示例只是为了演示文件读写，而在实际开发中，如果要存储一些简单的数据，使用 `shared_preferences` 插件会比较简单。
+
 ### ③、
 
 ### ④、
 
 ### ⑤、
-
-## 6、
-
-### ①、
-
-### ②、
-
-### ③、
-
-### ④、
-
-### ⑤、
-
-## 7、
-
-### ①、
-
-### ②、
-
-### ③、
-
-### ④、
-
-### ⑤、
-
-# 八、
-
-# 九、
-
-# 十、
-
-# 十一、
-
-# 十二、
-
-# 十三、
-
-# 十四
-
-# 十五、问题整理
-
-## 1、flutter daemon terminated 守护进程被终止
-
-1. 问题：
-
-![|291](attachments/Pasted%20image%2020231103100144.png)
-
-2. 1
-3. 1
-4. 1
-5. 1
 
 ## 2、
 
@@ -12011,8 +16373,101 @@ const ValueListenableBuilder({
 
 ## 5、
 
+## 6、
 
-# 十六、
+## 7、
+
+# 十、动画
+
+# 十一、自定义组件
+
+# 十二、Flutter 扩展
+
+# 十三、国际化
+
+# 十四、Flutter 核心原理
+
+# 十五、一个完整的 Flutter 应用
+
+2. `main` 主方法
+3. `01_底部菜单列表.dart` 弹窗方法
+4. 效果：
+
+# 十六、问题整理
+
+## 1、flutter daemon terminated 守护进程被终止
+### ①、问题：
+
+- 问题：提示守护进程被终止，同时左上角选择设备的下拉框消失
+
+![|291](attachments/Pasted%20image%2020231103100144.png)
+
+### ②、解决：
+
+1. 在工具栏上添加一个功能控件：
+
+![|700](attachments/Pasted%20image%2020231122085721.png)
+
+2. 添加方法为：
+3. 右键工具栏，选择自定义工具栏
+
+![|253](attachments/Pasted%20image%2020231122085759.png)
+
+4. 选择一个控件，新添加的控件会出现在他的后面
+
+![|584](attachments/Pasted%20image%2020231122090035.png)
+
+5. 点击上方的 `+` 号，然后选择添加操作
+
+![|584](attachments/Pasted%20image%2020231122090113.png)
+
+6. 搜索 `Refresh`，或者选择：`插件 -> Flutter -> Refresh`，选择后，点击确定
+
+![|557](attachments/Pasted%20image%2020231122090351.png)
+
+7. 此时就会多出来选择的 `Refresh`
+
+![|584](attachments/Pasted%20image%2020231122090430.png)
+
+8. 点击确定关闭弹窗，工具栏就会多出一个 `Refresh`
+
+![|566](attachments/Pasted%20image%2020231122090522.png)
+
+9. 点击 `Refresh`，等待一会，设备列表就会被刷新
+
+## 2、拉取的 flutter 项目只有 lib 目录
+
+### ①、只有 lib 目录没有安卓 ios 等目录
+
+1. 示例：
+
+![|341](attachments/Pasted%20image%2020231127093740.png)
+
+2. 产生的问题：连接安卓等设备调试会报错
+
+![|700](attachments/Pasted%20image%2020231127093849.png)
+
+### ②、解决
+
+1. 首先确认 flutter 项目所在的目录：
+	1. 不能以数字开头
+	2. 不能存在大写字母
+	3. 需要以小写字母和下划线组成
+2. 在命令行窗口中执行：`flutter create -i swift .`
+	1. 执行完上面的命令，就会出现 `android、ios、macos、linux、web、windows` 等目录
+	2. 但是为什么是 `swift` 我不太清楚
+	3. 我试了 `kotlin` 不行
+3. 结果：
+
+![|306](attachments/Pasted%20image%2020231127103507.png)
+
+## 3、
+
+## 4、
+
+## 5、
+
+# 十七、
 
 ## 1、
 

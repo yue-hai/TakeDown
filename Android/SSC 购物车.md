@@ -93,46 +93,7 @@ res
 	1. `i-app`
 	2. `adb install -r -d --user 0 /d/app-debug.apk`
 
-## 4、adb 常用命令
-
-1. 多设备时要在 adb 后加 -s 指定设备
-2. 官网：
-	1. https://android-doc.github.io/tools/help/adb.html
-	2. https://android-doc.github.io/tools/help/shell.html#shellcommands
-3. 关于ADB更多的用法可以参考：https://github.com/mzlogin/awesome-adb
-
-| 命令 | 描述 |
-| ---- | ---- |
-|adb shell svc wifi disable/enable|关闭wifi/开启wifi|
-|adb devices|查看当前连接的设备|
-|adb shell media volume --show --stream 3 --get|获取当前多媒体音量大小|
-|adb disconnect xxx.xxx.xxx.xxx|断开指定的wifi设备连接|
-|adb shell media volume --show --stream 3 --set 1|设定当前多媒体音量大小|
-|adb disconnect|断开所有wifi连接设备|
-|adb shell setprop service.adb.tcp.port 5555|设置adb服务端口为5555， 打开adb网络调试功能|
-|adb connect device_ip_address[:5555]|利用ip连接新的android设备，需要在同一网络环境下|
-|adb get-state|获取连接状态，有3种：device，offline，unknown|
-|adb start-server|启动adb服务|
-|adb kill-server|关闭adb服务|
-|adb uninstall package|卸载程序，package是包名|
-|adb install xxx.apk|安装程序|
-|adb shell am start -n package/package.MainActivity|启动程序，package是包名|
-|adb shell am force-stop package|强制结束程序，package是包名|
-|adb pull /sdcard/DebugLog/20220805.log C:\Users\10153702\Desktop|将设备里的文件拉取到本地|
-|adb push C:\Users\10153702\Desktop\20220805.log /sdcard/DebugLog/20220805.log|将本地文件上传到设备里|
-|adb shell dumpsys package jp.retailai.raicart|查看应用相关信息|
-|adb shell dumpsys meminfo jp.retailai.raicart|查看应用占用内存情况|
-|adb shell dumpsys cpuinfo | findstr jp.retailai.raicart|查看应用cpu占用情况|
-|adb shell input keyevent 66|模拟按回车键|
-|adb shell input keyevent 3|模拟按HOME键|
-|adb shell input text 2960000000012|输入字符串|
-|adb shell input keyevent 26|灭/亮屏|
-|adb shell input keyevent 82|解锁屏幕|
-|adb shell input tap x y|按照(x,y)位置模拟点击|
-|adb shell input swipe x1 y1 x2 y2|从(x1,y1)位置到(x2,y2)位置模拟滑动|
-|adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt|执行 monkey100 次随意点击测试，并记录日志到本地|
-
-## 5、一些登录卡整理
+## 4、一些登录卡整理
 
 ### ①、用户卡
 
@@ -142,7 +103,8 @@ res
 | 2960000000029 | 2222 |                                   |
 | 2960000000036 | 3333 |                                   |
 | 2960000000043 | 4444 |                                   |
-| 2960000000050 | 5555 | point 可以用                      |
+| 2960000000050 | 5555 |                       |
+| 2960000000051 | 5555 | point 可以用                      |
 | 2960000000067 | 6666 |                                   |
 | 2960000000074 | 7777 |                                   |
 | 2960000000081 | 8888 |                                   |
@@ -171,7 +133,7 @@ res
 | ---- | ---- |
 | 2000100764206     |      |
 
-## 6、一些商品整理
+## 5、一些商品整理
 
 1. 输入商品：`adb shell input text xxx`
 2. 回车确认：`adb shell input keyevent 66`
@@ -184,7 +146,7 @@ res
 |        | 4560282120019   |      |
 | 防范     | 4901422152208 |      |
 
-## 7、github review 模板
+## 6、github review 模板
 
 1. <font color="#ff0000">新建分支</font>
 2. 提交该分支应该提交的代码
@@ -225,11 +187,11 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ![](attachments/Pasted%20image%2020231008123601.png)
 
-## 8、购物车硬件相关
+## 7、购物车硬件相关
 
 1. 购物车屏幕大小：1280 * 800
 
-## 9、签名打 staging 包
+## 8、签名打 staging 包
 
 1. 进入项目根目录
 2. 执行命令打包：`gradlew.bat clean assembleStaging`
@@ -247,7 +209,7 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 5. 再执行：`Java -jar signapk.jar platform.x509.pem platform.pk8 app-staging.apk app-staging-signed.apk`
 6. 完成后会有 staging 包：app-staging-signed.apk
 
-## 10、postman 调用后端接口
+## 9、postman 调用后端接口
 
 1. 首先访问这个接口获取 Token： (POST) `https://sandbox.raicart.io/v1/user/4u/c/signin`
 2. 请求头参数：
@@ -274,6 +236,8 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 7. 即可得到数据
 
 ![|775](attachments/Pasted%20image%2020231019101503.png)
+
+## 10、
 
 # 二、一些问题
 

@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7f259f1a925f4261",
+            "id": "7f51366bb41337e0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -21,7 +21,7 @@
             }
           },
           {
-            "id": "5284ce15a97fae65",
+            "id": "11df87e9b3915fed",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -34,12 +34,12 @@
             }
           },
           {
-            "id": "4f3a9e6b1009d610",
+            "id": "997a3d65263e0bf5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "标题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -47,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -89,32 +89,32 @@
     "type": "split",
     "children": [
       {
-        "id": "e8b37c5039673be3",
+        "id": "4d0b201a30ef5e36",
         "type": "tabs",
         "children": [
           {
-            "id": "5a2648da654839bb",
+            "id": "3777361be3fe5f3f",
+            "type": "leaf",
+            "state": {
+              "type": "quiet-outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "f329e9c4c4f6fb86",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Android/SSC 购物车.md"
+                "file": "Flutter/Flutter 基础.md"
               }
-            }
-          },
-          {
-            "id": "8307a855ead219c9",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 249.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -123,38 +123,42 @@
       "canvas:新建白板": false
     }
   },
-  "active": "4f3a9e6b1009d610",
+  "active": "11df87e9b3915fed",
   "lastOpenFiles": [
-    "Flutter/Flutter 基础.md",
-    "Flutter/attachments/动画12.gif",
+    "Flutter/attachments/动画32.gif",
     "标题.md",
+    "Flutter/Flutter 基础.md",
+    "Flutter/attachments/Pasted image 20231128145714.png",
     "其他/设备和工具.md",
-    "Flutter/attachments/Pasted image 20231117150148.png",
-    "Flutter/Dart 基础.md",
-    "Android/Android 基础.md",
-    "其他/attachments/video-srt-gui-ffmpeg-0.3.5-x64.zip",
+    "其他/软件使用/WindTerm.md",
+    "其他/软件使用/编程软件.md",
+    "其他/软件使用/VS Code.md",
     "其他/软件使用/Idea.md",
-    "其他/软件使用/attachments/Pasted image 20231117135129.png",
+    "其他/软件使用/Office.md",
+    "其他/文件处理/音频处理.md",
+    "其他/软件使用/Excel.md",
+    "Flutter/Dart 基础.md",
+    "Flutter/attachments/动画31.gif",
+    "Flutter/attachments/~@)_[{A5}R7V$_RUJ$Q{5V3.jpg",
+    "Android/Android 基础.md",
+    "Android/attachments/Pasted image 20231128103139.png",
+    "java开发规约.pdf",
+    "Android/SSC 购物车.md",
+    "Flutter/attachments/Pasted image 20231127103507.png",
+    "Flutter/attachments/Pasted image 20231127093849.png",
+    "Flutter/attachments/Pasted image 20231127093740.png",
+    "Flutter/attachments/Pasted image 20231127090935.png",
+    "Flutter/attachments/动画30.gif",
+    "Flutter/attachments/动画29.gif",
     "其他/Docker.md",
+    "Android/Kotlin 基础.md",
+    "其他/attachments/video-srt-gui-ffmpeg-0.3.5-x64.zip",
     "其他/attachments/Portainer-ce-2.9.1.zip",
     "其他/attachments/Portainer-ce-2.16.2.zip",
     "其他/attachments/Portainer-ce-1.24.2.zip",
-    "其他/attachments/Pasted image 20231117132614.png",
-    "其他/attachments/Pasted image 20231117132407.png",
-    "其他/attachments/Pasted image 20231117131957.png",
-    "其他/attachments/Pasted image 20231117094431.png",
-    "其他/attachments/Pasted image 20231117094230.png",
-    "其他/attachments/Pasted image 20231117094038.png",
-    "其他/attachments/Pasted image 20231117093910.png",
     "其他/attachments/n2n_gui.zip",
     "其他/attachments/n2n-3.0.zip",
     "其他/软件使用/浏览器.md",
-    "其他/软件使用/WindTerm.md",
-    "其他/软件使用/VS Code.md",
-    "其他/软件使用/Excel.md",
-    "java开发规约.pdf",
-    "Android/SSC 购物车.md",
-    "Android/Kotlin 基础.md",
     "其他/小工具.md",
     "Android/attachments/SyncAudio(同步听) 1.0.3.7z",
     "Android/attachments/SoundWire_Free.apk",
@@ -167,9 +171,6 @@
     "SQL/MySql.md",
     "前端/JS 框架/Vue3.md",
     "linux/Smart/Smart 基础.md",
-    "linux/linux/Shell 编程.md",
-    "attachments/Pasted image 20231017131044.png.md",
-    "java/11、SpringBoot2.md",
     "未命名.canvas",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",

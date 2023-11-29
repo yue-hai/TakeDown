@@ -10202,9 +10202,176 @@ class SettingsFragment: Fragment() {
 </navigation>
 ```
 
-## 6、
+## 7、使用 MVVM 架构进行应用开发
 
-## 7、
+### ①、MVVM（Model-View-ViewModel）简介
+
+1. MVVM 是一种基于数据绑定的架构模式，用于设计和组织应用程序的代码结构。它将应用程序分为三个主要部分：Model（模型）、View（视图）和ViewModel（视图模型）。
+2. Model（模型）：负责处理数据和业务逻辑。它可以是从网络获取的数据、数据库中的数据或其他数据源。Model 层通常是独立于界面的，可以在多个界面之间共享。
+3. View（视图）：负责展示数据和与用户进行交互。它可以是 Activity、Fragment、View 等。View 层主要负责 UI 的展示和用户输入的响应。
+4. ViewModel（视图模型）：连接 View 和 Model，作为 View 和 Model 之间的桥梁。它负责从 Model 中获取数据，并将数据转换为 View 层可以直接使用的形式。ViewModel 还负责监听 Model 的数据变化，并通知 View 进行更新。ViewModel 通常是与View一一对应的，每个 View 都有一个对应的 ViewModel。
+
+### ②、MVVM 的特点和优势
+
+1. 解耦合：MVVM 通过将 View 和 Model 解耦合，使得它们可以独立开发和测试。ViewModel 作为中间层，将数据从 Model 传递给 View，避免了直接在 View 中处理业务逻辑的情况。
+2. 可维护性：MVVM 的分层结构使得代码更易于维护。View 只负责展示数据和用户交互，ViewModel 负责处理业务逻辑和数据转换，Model 负责数据的获取和存储。这种分离使得代码更加清晰和可读，也方便进行单元测试。
+3. 数据驱动 UI：MVVM 采用数据绑定的方式，将 Model 的数据与 View 进行绑定。当 Model 的数据发生变化时，ViewModel 会自动更新 View 的显示，无需手动更新 UI。这种方式可以减少手动更新 UI 的代码量，提高开发效率。
+4. 可测试性：由于 MVVM 的分层结构和数据驱动UI的特点，可以更容易地进行单元测试。ViewModel 中的业务逻辑可以独立于 View 进行测试，而不需要依赖于 Android 系统或 UI 组件。
+
+### ③、常见架构模式（MVC和MVP）区别
+
+1. MVC（Model-View-Controller）：MVC 模式中，Controller 负责处理用户输入和业务逻辑，Model 负责数据和业务逻辑，View 负责展示数据。与 MVC 相比，MVVM 将 Controller 分离为 ViewModel，将数据绑定的方式集成进来，使得代码更加简洁和清晰。
+2. MVP（Model-View-Presenter）：MVP 模式中，Presenter 负责处理用户输入和业务逻辑，Model 负责数据和业务逻辑，View 负责展示数据。与 MVP 相比，MVVM 将 Presenter 分离为 ViewModel
+
+### ④、MVVM 三个核心组件
+
+1. 在 MVVM 模式中，有三个核心组件：Model（模型）、View（视图）和 ViewModel（视图模型）。
+2. 它们各自具有不同的职责和作用，并通过数据绑定机制实现彼此之间的关系和交互。
+
+#### Ⅰ、Model（模型）
+
+1. 职责：负责处理数据和业务逻辑。它可以是从网络获取的数据、数据库中的数据或其他数据源。Model层通常是独立于界面的，可以在多个界面之间共享
+2. 作用：提供数据和处理数据的方法，封装业务逻辑。
+
+#### Ⅱ、View（视图）
+
+1. 职责：负责展示数据和与用户进行交互。它可以是 Activity、Fragment、View 等。View 层主要负责 UI 的展示和用户输入的响应。 
+2. 作用：将 ViewModel 中的数据展示给用户，并将用户的输入传递给 ViewModel。
+
+#### Ⅲ、ViewModel（视图模型）
+
+1. 职责：连接 View 和 Model，作为 View 和 Model 之间的桥梁。它负责从 Model 中获取数据，并将数据转换为 View 层可以直接使用的形式。ViewModel 还负责监听 Model 的数据变化，并通知 View 进行更新。ViewModel 通常是与 View 一一对应的，每个 View 都有一个对应的 iewModel。 
+2. 作用：处理 View 层的数据展示和用户交互，并与 Model 层进行交互。
+3. ViewModel 通过数据绑定机制将 Model 的数据与 View 进行绑定，实现数据的自动更新。当 Model 的数据发生变化时，ViewModel 会自动通知 View 进行更新。这种数据绑定的方式减少了手动更新 UI 的代码量，提高了开发效率。
+4. 下面是一个示意图，说明了 MVVM 模式中 Model、View 和 iewModel 之间的关系和交互方式：
+
+```dart
+        +-------------+
+        |    Model    |
+        +-------------+
+              |
+              |
+              v        
+	    +-------------+
+        |  ViewModel  |
+        +-------------+
+              |
+              |
+              v
+        +-------------+
+        |     View    |
+        +-------------+
+```
+
+5. 在这个示意图中，ViewModel 通过数据绑定机制将 Model 的数据绑定到 View上，当 Model 的数据发生变化时，ViewModel 会自动通知 View 进行更新，从而实现 UI 的自动刷新。用户的输入通过 View 传递给 ViewModel，ViewModel 再将数据传递给 Model 进行处理。
+6. 通过 MVVM 模式，Model、View 和 ViewModel 之间的分离和解耦合，使得代码更易于维护和测试。
+7. ViewModel 作为中间层，负责处理业务逻辑和数据转换，使得 View 层只关注 UI 的展示和用户交互，而不关心具体的业务逻辑和数据处理。这种分层结构和数据绑定的方式使得代码更加清晰、可读性更强，并提高了开发效率和代码质量。
+
+### ⑤、MVVM 数据绑定机制
+
+1. 在 MVVM 模式中，数据绑定是实现 View 和 ViewModel 之间数据同步的关键机制。它允许将 View 中的 UI 元素（如 TextView、EditText）与 ViewModel 中的数据属性进行绑定，当数据发生变化时，自动更新 UI，同时用户的输入也会自动同步到 ViewModel 中。
+2. 数据绑定的原理是通过观察者模式和反射机制实现的。当 ViewModel 中的数据发生变化时，会触发相应的通知，通知绑定的 View 进行更新。而当用户在 View 中输入数据时，数据绑定也会将输入的数据自动同步到 ViewModel 中。这种双向的数据同步机制，使得 View 和 ViewModel 之间实现了数据的实时同步。
+3. 在 Android 中，可以使用数据绑定库（如Data Binding）来实现 MVVM 模式中的数据绑定。Data Binding 库提供了一组注解和工具类，可以简化数据绑定的实现过程。
+4. 以下是在 Android 中使用 Data Binding 库实现 MVVM 模式中的数据绑定的步骤：
+---
+1. 配置 Data Binding 库：在项目的 `build.gradle` 文件中，添加 Data Binding 的插件和依赖项。
+
+```gradle
+    // ...
+    dataBinding {
+        enabled = true
+    }
+}
+​
+dependencies {
+    // ...
+    implementation 'androidx.databinding:databinding-runtime:7.0.2'
+}
+```
+
+2. 创建布局文件：在布局文件中，使用标签包裹布局，并使用标签定义绑定的变量和表达式。
+
+```xml
+    <data>
+        <variable name="user" type="com.example.mvvm.User" />
+    </data>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}" />
+        <TextView            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(user.age)}" />
+    </LinearLayout>
+</layout>
+```
+
+3. 创建 ViewModel 类：创建一个与 View 对应的 ViewModel 类，并在其中定义与布局文件中绑定的变量。
+
+```java
+public class UserViewModel extends BaseObservable {
+    private String name;
+    private int age;
+​
+    // getter and setter methods
+​
+    @Bindable    
+    public String getName() {
+        return name;
+    }
+​
+    public void setName(String name) {
+        this.name = name;
+        notifyPropertyChanged(BR.name);
+    }
+​
+    @Bindable    
+    public int getAge() {
+        return age;
+    }
+​
+    public void setAge(int age) {
+        this.age = age;
+        notifyPropertyChanged(BR.age);
+    }
+}
+```
+
+4. 绑定数据：在 Activity 或 Fragment 中，使用 DataBindingUtil 类将布局文件与 ViewModel 进行绑定，并设置 ViewModel 的数据
+
+```dart
+public class MainActivity extends AppCompatActivity {
+    private UserViewModel userViewModel;
+​
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+​
+        // 创建ViewModel实例
+        userViewModel = new UserViewModel();
+        userViewModel.setName("John");
+        userViewModel.setAge(25);
+​
+        // 绑定ViewModel和布局文件
+	ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+    binding.setUser(userViewModel);
+  }
+}
+```
+
+5. 通过以上步骤，我们将布局文件和 ViewModel 进行了绑定，同时设置了 ViewModel 的数据。当 ViewModel 中的数据发生变化时，布局文件中相应的 UI 元素会自动更新。同时，当用户在 UI 元素中输入数据时，Data Binding 库也会自动将输入的数据同步到 ViewModel 中。
+6. 使用数据绑定的好处是能够简化代码，减少手动更新UI的代码量，提高开发效率。它还能够降低代码的耦合性，使得 UI 和数据逻辑的修改更加灵活和独立。另外，数据绑定还能够提高代码的可读性和可维护性，使得代码更易于理解和调试。
+
+### ⑥、MVVM 架构模式发展趋势
+
+1. MVVM 模式在 Android 开发中已经得到广泛应用，并且在未来仍然有着较大的发展潜力。以下是一些未来发展趋势：
+2. Jetpack Compose：Jetpack Compose 是 Google 推出的一种全新的 UI 框架，它采用了声明式 UI 的方式，与 MVVM 模式非常契合。Jetpack Compose 能够简化 UI 开发流程，提供更加灵活和响应式的 UI 编程方式。
+3. 数据驱动 UI：未来，数据驱动 UI 的概念将会更加普及和强调。MVVM 模式的数据绑定和观察者模式是实现数据驱动 UI 的重要手段，未来可能会有更多的框架和工具出现，进一步简化数据和 UI 的绑定过程。
+4. 更强大的 ViewModel 组件：Android Jetpack 中的 ViewModel 组件已经为开发者提供了很多便利，但未来可能会有更多功能和特性被添加进来，以进一步提高ViewModel的灵活性和可扩展性。
+5. 跨平台开发：MVVM 模式的解耦特性使得代码更具可移植性，未来可能会有更多的跨平台开发框架和工具出现，使得开发者能够更轻松地在不同平台上使用 MVVM 模式进行开发。
 
 ## 8、
 
@@ -10436,9 +10603,13 @@ genymotion:/sdcard/Download #
 
 ### ②、genymotion 无法启动虚拟设备
 
-1. 问题：无法启动，报错：
+#### Ⅰ、问题
+
+- 无法启动，报错：
 
 ![](attachments/Pasted%20image%2020231019152707.png)
+
+#### Ⅱ、原因 1：虚拟网卡问题
 
 2. 原因：Genymotion 运行虚拟机是依靠 VirtualBox，但是，启动 Genymotion 虚拟机后，VirtualBox 会创建一个网络连接，问题出现在这里：网络连接未启动
 3. 解决方案：
@@ -10450,8 +10621,58 @@ genymotion:/sdcard/Download #
 
 ![|700](attachments/Pasted%20image%2020231019152956.png)
 
+#### Ⅲ、原因 2：未正常关闭
 
-## 6、
+1. 打开软件 `Oracle VM VirtualBox`
+2. 选择未正常关闭的设备
+3. 点击清楚，清楚未正常关闭状态即可
+
+![|700](attachments/Pasted%20image%2020231128103139.png)
+
+## 6、adb 常用命令
+
+1. 多设备时要在 adb 后加 -s 指定设备
+2. 官网：
+	1. https://android-doc.github.io/tools/help/adb.html
+	2. https://android-doc.github.io/tools/help/shell.html#shellcommands
+3. 关于ADB更多的用法可以参考：https://github.com/mzlogin/awesome-adb
+
+| 命令 | 描述 |
+| ---- | ---- |
+|adb shell svc wifi disable/enable|关闭wifi/开启wifi|
+|adb devices|查看当前连接的设备|
+|adb shell media volume --show --stream 3 --get|获取当前多媒体音量大小|
+|adb disconnect xxx.xxx.xxx.xxx|断开指定的wifi设备连接|
+|adb shell media volume --show --stream 3 --set 1|设定当前多媒体音量大小|
+|adb disconnect|断开所有wifi连接设备|
+|adb shell setprop service.adb.tcp.port 5555|设置adb服务端口为5555， 打开adb网络调试功能|
+|adb connect device_ip_address[:5555]|利用ip连接新的android设备，需要在同一网络环境下|
+|adb get-state|获取连接状态，有3种：device，offline，unknown|
+|adb start-server|启动adb服务|
+|adb kill-server|关闭adb服务|
+|adb uninstall package|卸载程序，package是包名|
+|adb install xxx.apk|安装程序|
+|adb shell am start -n package/package.MainActivity|启动程序，package是包名|
+|adb shell am force-stop package|强制结束程序，package是包名|
+|adb pull /sdcard/DebugLog/20220805.log C:\Users\10153702\Desktop|将设备里的文件拉取到本地|
+|adb push C:\Users\10153702\Desktop\20220805.log /sdcard/DebugLog/20220805.log|将本地文件上传到设备里|
+|adb shell dumpsys package jp.retailai.raicart|查看应用相关信息|
+|adb shell dumpsys meminfo jp.retailai.raicart|查看应用占用内存情况|
+|adb shell dumpsys cpuinfo | findstr jp.retailai.raicart|查看应用cpu占用情况|
+|adb shell input keyevent 66|模拟按回车键|
+|adb shell input keyevent 3|模拟按HOME键|
+|adb shell input text 2960000000012|输入字符串|
+|adb shell input keyevent 26|灭/亮屏|
+|adb shell input keyevent 82|解锁屏幕|
+|adb shell input tap x y|按照(x,y)位置模拟点击|
+|adb shell input swipe x1 y1 x2 y2|从(x1,y1)位置到(x2,y2)位置模拟滑动|
+|adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt|执行 monkey100 次随意点击测试，并记录日志到本地|
+
+## 7、
+
+## 8、
+
+## 9、
 
 # 十四、其他
 
