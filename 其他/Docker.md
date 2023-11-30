@@ -2510,6 +2510,29 @@ mysql> SHOW VARIABLES LIKE 'character%';
 mysql> 
 ```
 
+## 4、安装 openJdk 17
+
+1. 拉取镜像：`docker pull openjdk:17.0.2`
+2. 创建映射目录，上传 jar 程序
+
+![|484](attachments/Pasted%20image%2020231130084700.png)
+
+3. 启动容器：
+
+```shell
+docker run -d \
+-p 9001:9001 \
+--privileged=true \
+-v /home/docker/docker/volumes/openjdk/:/container/path \
+--name java_test openjdk:17.0.2 \
+java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
+```
+
+4. 访问测试：`http://101.200.86.248:9001/hello/helloTest`
+
+![|484](attachments/Pasted%20image%2020231129110718.png)
+
+
 # 七、DockerFile 解析
 
 ## 1、DockerFile 是什么
@@ -4260,4 +4283,448 @@ docker run -d --restart=always \
 
 # 十三、Docker 复杂安装详说
 
-# 十四、其他
+# 十四、各种容器安装
+
+## 1、安装 tomcat
+
+> [https://hub.docker.com/_/tomcat](https://hub.docker.com/_/tomcat)
+
+1. 拉取镜像：`docker pull tomcat:9.0.83-jdk17-corretto`
+
+```shell
+docker@yuehai:~$ docker pull tomcat:9.0.83-jdk17-corretto
+9.0.83-jdk17-corretto: Pulling from library/tomcat
+0b4a6f011995: Pull complete 
+274aefe2866a: Pull complete 
+4c06b771fe4a: Pull complete 
+23454876a649: Pull complete 
+86c1c4c9e05e: Pull complete 
+Digest: sha256:9e6eec006e972d514071e543c58028865c867322d4721cea9d64ddccd7171162
+Status: Downloaded newer image for tomcat:9.0.83-jdk17-corretto
+docker.io/library/tomcat:9.0.83-jdk17-corretto
+
+docker@yuehai:~$ 
+```
+
+2. 查看镜像：`docker images`
+
+```shell
+docker@yuehai:~$ docker images
+REPOSITORY             TAG                     IMAGE ID       CREATED         SIZE
+tomcat                 9.0.83-jdk17-corretto   b0275939bf62   8 days ago      497MB
+6053537/portainer-ce   latest                  b9c565f94ccc   5 weeks ago     322MB
+docker@yuehai:~$ 
+```
+
+3. 服务器宿主机上创建映射目录：`/home/docker/docker/volumes/tomcat/tomcat9/`
+4. 运行容器
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+
+```shell
+docker run -d \
+-p 8080:8080 \
+--name code-tomcat9 \
+tomcat:9.0.83-jdk17-corretto 
+```
+
+```shell
+docker@yuehai:~$ docker run -d -p 8080:8080 --name code-tomcat9 tomcat:9.0.83-jdk17-corretto 
+6b0508e9e9cb390fc441a75b49cb2cc6466003330ea6b1e9f343a17a3cba5121
+
+docker@yuehai:~$ 
+```
+
+5. 查看容器：`docker ps`
+
+```shell
+docker@yuehai:~$ docker ps
+CONTAINER ID   IMAGE                          COMMAND                  CREATED              STATUS              PORTS                                                                                                                                          NAMES
+6b0508e9e9cb   tomcat:9.0.83-jdk17-corretto   "catalina.sh run"        About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp                                                                                                      code-tomcat9
+a513de62334e   6053537/portainer-ce           "/portainer"             12 days ago          Up 12 days          8000/tcp, 9443/tcp, 0.0.0.0:9000->9000/tcp, :::9000->9000/tcp                                                                                  portainer
+
+docker@yuehai:~$ 
+```
+
+6. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：`docker cp 6b0508e9e9cb:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/`
+
+```shell
+docker@yuehai:~$ docker cp 6b0508e9e9cb:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
+Successfully copied 17.7MB to /home/docker/docker/volumes/tomcat/tomcat9/
+
+docker@yuehai:~$ 
+```
+
+![|548](attachments/Pasted%20image%2020231130094439.png)
+
+7. 停止并删除容器：
+	1. 停止：`docker stop 6b0508e9e9cb`
+	2. 删除：`docker rm 6b0508e9e9cb`
+
+```shell
+docker@yuehai:~$ docker stop 6b0508e9e9cb
+6b0508e9e9cb
+docker@yuehai:~$ docker rm 6b0508e9e9cb
+6b0508e9e9cb
+
+docker@yuehai:~$ 
+```
+
+8. 重新启动容器，并设置映射目录：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+
+```shell
+docker run -d \
+-p 8080:8080 \
+--privileged=true \
+-v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
+--name code-tomcat9 \
+tomcat:9.0.83-jdk17-corretto 
+```
+
+```shell
+docker@yuehai:~$ docker run -d \
+-p 8080:8080 \
+--privileged=true \
+-v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
+--name code-tomcat9 \
+tomcat:9.0.83-jdk17-corretto
+a3a3bc4d95d155eb2d2a85c4e373722e0e938b2c6a6b44787f0234a97765952c
+
+docker@yuehai:~$ 
+```
+
+9. 访问：[http://101.200.86.248:8080/](http://101.200.86.248:8080/)
+10. 若是显示 404，则查看防火墙 8080 端口；若端口已开放，则：
+11. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
+
+![|560](attachments/Pasted%20image%2020231130095712.png)
+
+![|589](attachments/Pasted%20image%2020231130095734.png)
+
+12. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
+
+![|594](attachments/Pasted%20image%2020231130095842.png)
+
+![|586](attachments/Pasted%20image%2020231130095832.png)
+
+13. 再次访问：[http://101.200.86.248:8080/](http://101.200.86.248:8080/)
+
+![|700](attachments/Pasted%20image%2020231130095933.png)
+
+## 2、安装 mysql
+
+> [https://hub.docker.com/_/mysql](https://hub.docker.com/_/mysql)
+
+1. 搜索镜像：`docker search mysql`
+
+```shell
+docker@VM-8-15-ubuntu:~$ docker search mysql
+NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+mysql                           MySQL is a widely used, open-source relation…   13741     [OK]       
+mariadb                         MariaDB Server is a high performing open sou…   5242      [OK]       
+phpmyadmin                      phpMyAdmin - A web interface for MySQL and M…   727       [OK]       
+percona                         Percona Server is a fork of the MySQL relati…   599       [OK]       
+databack/mysql-backup           Back up mysql databases to... anywhere!         80                   
+bitnami/mysql                   Bitnami MySQL Docker Image                      80                   [OK]
+linuxserver/mysql-workbench                                                     48                   
+ubuntu/mysql                    MySQL open source fast, stable, multi-thread…   41                   
+linuxserver/mysql               A Mysql container, brought to you by LinuxSe…   38                   
+circleci/mysql                  MySQL is a widely used, open-source relation…   28                   
+google/mysql                    MySQL server for Google Compute Engine          23                   [OK]
+rapidfort/mysql                 RapidFort optimized, hardened image for MySQL   14                   
+bitnami/mysqld-exporter                                                         4                    
+ibmcom/mysql-s390x              Docker image for mysql-s390x                    2                    
+vitess/mysqlctld                vitess/mysqlctld                                1                    [OK]
+newrelic/mysql-plugin           New Relic Plugin for monitoring MySQL databa…   1                    [OK]
+hashicorp/mysql-portworx-demo                                                   0                    
+rapidfort/mysql-official        RapidFort optimized, hardened image for MySQ…   0                    
+mirantis/mysql                                                                  0                    
+docksal/mysql                   MySQL service images for Docksal - https://d…   0                    
+rapidfort/mysql8-ib             RapidFort optimized, hardened image for MySQ…   0                    
+cimg/mysql                                                                      0                    
+eclipse/mysql                   Mysql 5.7, curl, rsync                          0                    [OK]
+drud/mysql                                                                      0                    
+silintl/mysql-backup-restore    Simple docker image to perform mysql backups…   0                    [OK]
+
+docker@yuehai:~$
+```
+
+2. 拉取镜像，选择版本 8.2：`docker pull mysql:8.2.0`
+
+```shell
+docker@yuehai:~$ docker pull mysql:8.2.0
+8.2.0: Pulling from library/mysql
+8e0176adc18c: Pull complete 
+2d2c52718f65: Pull complete 
+d88d03ce139b: Pull complete 
+4a7d7f11aa1e: Pull complete 
+ce5949193e4c: Pull complete 
+f7f024dfb329: Pull complete 
+5fc3c840facc: Pull complete 
+509068e49488: Pull complete 
+cbc847bab598: Pull complete 
+942bef62a146: Pull complete 
+Digest: sha256:1773f3c7aa9522f0014d0ad2bbdaf597ea3b1643c64c8ccc2123c64afd8b82b1
+Status: Downloaded newer image for mysql:8.2.0
+docker.io/library/mysql:8.2.0
+
+docker@yuehai:~$
+```
+
+3. 查看镜像
+
+```shell
+docker.io/library/mysql:8.2.0
+docker@yuehai:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+mysql        8.2.0     a3b6608898d6   2 weeks ago   596MB
+
+docker@yuehai:~$
+```
+
+4. 为防止容器意外停止后数据丢失，所以启动容器时应该映射容器数据卷：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+	3. `-e MYSQL_ROOT_PASSWORD=000123`：设置 root 密码
+
+```shell
+docker run -d \
+-p 3306:3306 \
+--privileged=true \
+-v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
+-v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
+-v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD=000123 \
+--name code-mysql \
+mysql:8.2.0
+```
+
+```shell
+docker@yuehai:~$ docker run -d \
+-p 3306:3306 \
+--privileged=true \
+-v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
+-v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
+-v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD=000123 \
+--name code-mysql \
+mysql:8.2.0
+Unable to find image 'mysql:8.2.0' locally
+8.2.0: Pulling from library/mysql
+Digest: sha256:1773f3c7aa9522f0014d0ad2bbdaf597ea3b1643c64c8ccc2123c64afd8b82b1
+Status: Downloaded newer image for mysql:8.2.0
+4c7326c7735ca433cba73ea4dda0487231e64e66fd52540aab0bbc9365b2eeb2
+docker@yuehai:~$ 
+```
+
+4. 使用 Navicat 连接
+
+![|700](attachments/Pasted%20image%2020231108140616.png)
+
+5. 创建数据库
+
+![|442](attachments/Pasted%20image%2020231108141015.png)
+
+6. 创建表
+
+![|700](attachments/Pasted%20image%2020231108141150.png)
+
+7. 添加数据
+
+![|700](attachments/Pasted%20image%2020231108141225.png)
+
+8. 进入 mysql 容器
+
+```shell
+docker@yuehai:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
+bfab03cebaac   mysql     "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   code-mysql
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+
+bash-4.4# 
+```
+
+9. 进入 mysql，输入密码：000123
+
+```shell
+bash-4.4# mysql -u root -p       
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+```
+
+10. 查看数据库与表
+
+```shell
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| yuehai             |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use yuehai
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_yuehai |
++------------------+
+| user             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from user;
++----+------+
+| id | name |
++----+------+
+|  1 | ??   |
+|  2 | ?    |
++----+------+
+2 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+bash-4.4# exit
+exit
+docker@yuehai:~$ 
+```
+
+11. 插入中文报错
+   1. 进入容器，查看编码
+
+```shell
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+bash-4.4# mysql -u root -p   
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW VARIABLES LIKE 'character%';
++--------------------------+--------------------------------+
+| Variable_name            | Value                          |
++--------------------------+--------------------------------+
+| character_set_client     | latin1                         |
+| character_set_connection | latin1                         |
+| character_set_database   | utf8mb4                        |
+| character_set_filesystem | binary                         |
+| character_set_results    | latin1                         |
+| character_set_server     | utf8mb4                        |
+| character_set_system     | utf8mb3                        |
+| character_sets_dir       | /usr/share/mysql-8.2/charsets/ |
++--------------------------+--------------------------------+
+8 rows in set (0.01 sec)
+
+mysql>
+```
+
+   2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
+
+```shell
+docker@VM-8-15-ubuntu:~$ sudo vim /home/docker/docker/mysql/test/conf/my.cnf
+[sudo] password for docker: 
+
+[client]
+default_character_set=utf8
+[mysqld]
+collation_server=utf8_general_ci
+character_set_server=utf8
+```
+
+   3. 重新进入容器查看编码
+
+```shell
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+bash-4.4# mysql -u root -p   
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW VARIABLES LIKE 'character%';
++--------------------------+----------------------------+
+| Variable_name            | Value                      |
++--------------------------+----------------------------+
+| character_set_client     | utf8                       |
+| character_set_connection | utf8                       |
+| character_set_database   | utf8                       |
+| character_set_filesystem | binary                     |
+| character_set_results    | utf8                       |
+| character_set_server     | utf8                       |
+| character_set_system     | utf8                       |
+| character_sets_dir       | /usr/share/mysql/charsets/ |
++--------------------------+----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+```
+
+## 3、安装 openJdk 17
+
+1. 拉取镜像：`docker pull openjdk:17.0.2`
+2. 创建映射目录，上传 jar 程序
+
+![|484](attachments/Pasted%20image%2020231130084700.png)
+
+3. 启动容器：
+	1. -d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+	3. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该 jar 程序
+
+```shell
+docker run -d \
+-p 9001:9001 \
+--privileged=true \
+-v /home/docker/docker/volumes/openjdk/:/container/path \
+--name code-java-test openjdk:17 \
+java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
+```
+
+4. 访问测试：`http://101.200.86.248:9001/hello/helloTest`
+
+![|484](attachments/Pasted%20image%2020231129110718.png)
+
+## 4、
+
+## 5、
+
+## 6、
+
+# 十五、其他
