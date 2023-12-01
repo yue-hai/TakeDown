@@ -1,10 +1,11 @@
 {
   "accentColor": "",
-  "baseFontSize": 23,
-  "cssTheme": "Minimal",
+  "baseFontSize": 18,
+  "cssTheme": "Things",
   "enabledCssSnippets": [
-    "月海自己的配置",
-    "行距"
+    "月海自己的配置"
   ],
-  "baseFontSizeAction": false
+  "baseFontSizeAction": false,
+  "theme": "obsidian",
+  "translucency": false
 }

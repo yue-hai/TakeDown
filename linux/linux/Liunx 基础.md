@@ -2871,17 +2871,51 @@ kill 可将指定的信息送至程序。预设的信息为 SIGTERM(15)，可将
 
 # 十、设备管理
 
----
+# 十一、其他
 
-## 1、
+## 1、转换换行符格式
+
+1. 报错信息：
+
+```shell
+-bash: ./run_jar.sh: /bin/bash^M: bad interpreter: No such file or directory
+```
+
+2. 原因：错误信息中的 `^M` 表示的是 Windows 风格的换行符（Carriage Return + Line Feed），而在 Unix/Linux 系统中使用的是 Line Feed。这种不同的换行符格式可能导致解释器无法正确识别脚本文件。
+3. 解决：使用 `dos2unix` 命令将脚本文件的换行符格式转换为 Unix 格式。在终端中执行以下命令：
+
+```shell
+# run_jar.sh 替换为需要转换的文件
+dos2unix run_jar.sh
+```
+
+4. 若是提示以下内容，则需要安装 dos2unix
+
+```shell
+Command 'dos2unix' not found, but can be installed with:
+apt install dos2unix
+Please ask your administrator.
+```
+
+5. 执行一下命令安装 dos2unix
+
+```dart
+apt install dos2unix
+```
+
 ## 2、
-## 3、
-## 4、
-## 5、
-## 6、
-## 7、
-## 8、
-## 9、
 
----
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
 

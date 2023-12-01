@@ -16359,23 +16359,1059 @@ class _FileOperationComponentState extends State<FileOperationComponent> {
 
 6. 上面代码比较简单，不再赘述，需要说明的是，本示例只是为了演示文件读写，而在实际开发中，如果要存储一些简单的数据，使用 `shared_preferences` 插件会比较简单。
 
-### ③、
+## 2、通过 HttpClient 发起 HTTP 请求
 
-### ④、
+### ①、HttpClient 简介
 
-### ⑤、
+- Dart IO 库中提供了用于发起 Http 请求的一些类，我们可以直接使用 `HttpClient` 来发起请求。使用 `HttpClient` 发起请求分为五步：
+1. 创建一个 `HttpClient`：
 
-## 2、
+```dart
+HttpClient httpClient = HttpClient();
+```
 
-## 3、
+2. 打开 Http 连接，设置请求头：
 
-## 4、
+```dart
+HttpClientRequest request = await httpClient.getUrl(uri);
+```
 
-## 5、
+- 这一步可以使用任意 `Http Method`，如 `httpClient.post(...)`、`httpClient.delete(...)` 等。如果包含 Query 参数，可以在构建 uri 时添加，如：
 
-## 6、
+```dart
+Uri uri = Uri(scheme: "https", host: "flutterchina.club", queryParameters: {
+    "xx":"xx",
+    "yy":"dd"
+  });
+```
 
-## 7、
+- 通过 `HttpClientRequest` 可以设置请求 `header`，如：
+
+```dart
+request.headers.add("user-agent", "test");
+```
+
+- 如果是 post 或 put 等可以携带请求体方法，可以通过 `HttpClientRequest` 对象发送请求体，如：
+
+```dart
+String payload="...";
+request.add(utf8.encode(payload)); 
+// request.addStream(_inputStream); //可以直接添加输入流
+```
+
+3. 等待连接服务器，这一步完成后，请求信息就已经发送给服务器了，返回一个 `HttpClientResponse` 对象，它包含响应头（header）和响应流(响应体的Stream)，接下来就可以通过读取响应流来获取响应内容。
+
+```dart
+HttpClientResponse response = await request.close();
+```
+
+4. 读取响应内容，我们通过读取响应流来获取服务器返回的数据，在读取时我们可以设置编码格式，这里是 utf8。
+
+```dart
+String responseBody = await response.transform(utf8.decoder).join();
+```
+
+5. 请求结束，关闭 `HttpClient`，关闭 client 后，通过该 client 发起的所有请求都会终止。
+
+```dart
+httpClient.close();
+```
+
+### ②、示例
+
+1. `main` 主启动类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '09_文件操作与网络请求/02_通过 HttpClient 发起 HTTP 请求/01_HttpClientComponent.dart';
+import '09_文件操作与网络请求/03_Http 请求库 dio/01_HttpDioComponent.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body: 用于定义页面的主要内容区域
+           * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+           */
+          body: SafeArea(
+            child: HttpClientComponent()
+          )
+        )
+    );
+  }
+}
+```
+
+2. `01_HttpClientComponent.dart` HttpClient 测试类
+
+```dart
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
+
+class HttpClientComponent extends StatefulWidget {
+  const HttpClientComponent({Key? key}) : super(key: key);
+
+  @override
+  _HttpClientComponentState createState() => _HttpClientComponentState();
+}
+
+class _HttpClientComponentState extends State<HttpClientComponent> {
+  bool _loading = false;
+  String _text = "";
+
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个小部件，用于在垂直方向上排列其子部件
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: _loading ? null : request,
+            child: Text("请求 月海"),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width - 50.0,
+            child: Text(_text.replaceAll(RegExp(r"\s"), "")),
+          )
+        ],
+      ),
+    );
+  }
+
+  request() async {
+    setState(() {
+      _loading = true;
+      _text = "正在请求...";
+    });
+
+    try {
+      // 1、创建一个 HttpClient
+      HttpClient httpClient = HttpClient();
+
+      // 2.1、创建 uri；若是 https 请求，则使用 `Uri.https`，而不是 `Uri.http`
+      // 参数 1：请求的地址； 参数 2：请求的路径； 参数 3：请求的参数
+      Uri uri = Uri.http("101.200.86.248:9001", "/hello/helloTest", {});
+      // 2.2、打开 Http 连接，设置请求头
+      HttpClientRequest request = await httpClient.getUrl(uri);
+
+      // 2.3、通过 HttpClientRequest 可以设置请求 header，使用 iPhone 的 UA
+      request.headers.add(
+        "user-agent",
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+      );
+
+      // 3、等待连接服务器（会将请求信息发送给服务器）
+      HttpClientResponse response = await request.close();
+
+      // 4、读取响应内容
+      _text = await response.transform(utf8.decoder).join();
+
+      // 5、关闭 client 后，通过该 client 发起的所有请求都会终止。
+      httpClient.close();
+
+    } catch (e) {
+      _text = "请求失败：$e";
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
+
+}
+```
+
+3. 效果：
+
+![|401](attachments/动画33.gif)
+
+### ③、HttpClient 配置
+
+1. `HttpClient` 有很多属性可以配置，常用的属性列表如下：
+
+| 属性                  | 含义                                                                                                                             |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| idleTimeout           | 对应请求头中的keep-alive字段值，为了避免频繁建立连接，httpClient在请求结束后会保持连接一段时间，超过这个阈值后才会关闭连接。     |
+| connectionTimeout     | 和服务器建立连接的超时，如果超过这个值则会抛出SocketException异常。                                                              |
+| maxConnectionsPerHost | 同一个host，同时允许建立连接的最大数量。                                                                                         |
+| autoUncompress        | 对应请求头中的Content-Encoding，如果设置为true，则请求头中Content-Encoding的值为当前HttpClient支持的压缩算法列表，目前只有"gzip" |
+| userAgent             | 对应请求头中的User-Agent字段。                                                                                                   |
+
+2. 可以发现，有些属性只是为了更方便的设置请求头，对于这些属性，完全可以通过 `HttpClientRequest` 直接设置 header
+3. 不同的是通过 `HttpClient` 设置的对整个 `httpClient` 都生效，而通过 `HttpClientRequest` 设置的只对当前请求生效
+
+### ④、HTTP 请求认证
+
+1. Http 协议的认证（Authentication）机制可以用于保护非公开资源。如果 Http 服务器开启了认证，那么用户在发起请求时就需要携带用户凭据，如果你在浏览器中访问了启用 Basic 认证的资源时，浏览就会弹出一个登录框，如图：
+
+![|400](attachments/Pasted%20image%2020231129132448.png)
+
+2. 我们先看看 Basic 认证的基本过程：
+3. 客户端发送 http 请求给服务器，服务器验证该用户是否已经登录验证过了，如果没有的话，  服务器会返回一个401 Unauthozied 给客户端，并且在响应 header 中添加一个 “WWW-Authenticate” 字段，例如：
+
+```dart
+WWW-Authenticate: Basic realm="admin"
+```
+
+4. 其中 Basic 为认证方式，realm 为用户角色的分组，可以在后台添加分组。
+5. 客户端得到响应码后，将用户名和密码进行 base64 编码（格式为用户名:密码），设置请求头 Authorization，继续访问 :
+
+```dart
+Authorization: Basic YXXFISDJFISJFGIJIJG
+```
+
+6. 服务器验证用户凭据，如果通过就返回资源内容。
+7. 注意，Http 的方式除了 Basic 认证之外还有：Digest 认证、Client 认证、Form Based 认证等，目前 Flutter 的 HttpClient 只支持 Basic 和 Digest 两种认证方式，这两种认证方式最大的区别是发送用户凭据时，对于用户凭据的内容，前者只是简单的通过 Base64 编码（可逆），而后者会进行哈希运算，相对来说安全一点点，但是为了安全起见，无论是采用 Basic 认证还是 Digest 认证，都应该在 Https 协议下，这样可以防止抓包和中间人攻击。
+8. HttpClient 关于 Http 认证的方法和属性：
+
+```dart
+addCredentials(Uri url, String realm, HttpClientCredentials credentials)
+```
+
+9. 该方法用于添加用户凭据,如：
+
+```dart
+httpClient.addCredentials(_uri,
+ "admin", 
+  HttpClientBasicCredentials("username","password"), //Basic认证凭据
+);
+```
+
+10. 如果是 Digest 认证，可以创建 Digest 认证凭据：
+
+```dart
+HttpClientDigestCredentials("username","password")
+authenticate(Future<bool> f(Uri url, String scheme, String realm))
+```
+
+11. 这是一个 setter，类型是一个回调，当服务器需要用户凭据且该用户凭据未被添加时，httpClient 会调用此回调，在这个回调当中，一般会调用 `addCredential()` 来动态添加用户凭证，例如：
+
+```dart
+httpClient.authenticate=(Uri url, String scheme, String realm) async{
+  if(url.host=="xx.com" && realm=="admin"){
+    httpClient.addCredentials(url,
+      "admin",
+      HttpClientBasicCredentials("username","pwd"), 
+    );
+    return true;
+  }
+  return false;
+};
+```
+
+12. 一个建议是，如果所有请求都需要认证，那么应该在 HttpClient 初始化时就调用 `addCredentials()` 来添加全局凭证，而不是去动态添加
+
+### ⑤、代理
+
+1. 可以通过 `findProxy` 来设置代理策略，例如，我们要将所有请求通过代理服务器（192.168.1.2:8888）发送出去：
+
+```dart
+client.findProxy = (uri) {
+    // 如果需要过滤uri，可以手动判断
+    return "PROXY 192.168.1.2:8888";
+ };
+```
+
+2. `findProxy` 回调返回值是一个遵循浏览器 PAC 脚本格式的字符串，详情可以查看 API 文档，如果不需要代理，返回 `DIRECT` 即可。
+3. 在 APP 开发中，很多时候我们需要抓包来调试，而抓包软件(如charles)就是一个代理，这时我们就可以将请求发送到我们的抓包软件，我们就可以在抓包软件中看到请求的数据了。
+4. 有时代理服务器也启用了身份验证，这和 http 协议的认证是相似的，`HttpClient` 提供了对应的 Proxy 认证方法和属性：
+
+```dart
+set authenticateProxy(
+    Future<bool> f(String host, int port, String scheme, String realm));
+void addProxyCredentials(
+    String host, int port, String realm, HttpClientCredentials credentials);
+```
+
+5. 他们的使用方法和上面 HTTP 请求认证一节中介绍的 `addCredentials` 和 `authenticate` 相同，故不再赘述
+
+## 3、Http 请求库 dio
+
+### ①、引入 dio
+
+1. 引入dio:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 以下添加了 Cupertino Icons 字体到您的应用程序，
+  # 以便您可以使用 CupertinoIcons 类来使用 iOS 风格的图标。
+  cupertino_icons: ^1.0.2
+
+  # path_provider 插件用于查找常用位置的路径，例如临时目录
+  path_provider: ^2.0.2
+  
+  # dio 是一个强大的 Dart Http 请求库，支持 Restful API、FormData、拦截器、请求取消、Cookie 管理、文件上传/下载、超时等
+  dio: ^4.0.0
+```
+
+2. 导入并创建 dio 实例：
+
+```dart
+import 'package:dio/dio.dart';
+Dio dio =  Dio();
+```
+
+3. 接下来就可以通过 dio 实例来发起网络请求了
+4. 注意，一个 dio 实例可以发起多个 http 请求，一般来说，APP 只有一个 http 数据源时，dio 应该使用单例模式
+
+### ②、通过 dio 发起请求
+
+1. 发起 GET 请求 :
+
+```dart
+Response response;
+response=await dio.get("/test?id=12&name=wendu")
+print(response.data.toString());
+```
+
+2. 对于 GET 请求我们可以将 `query` 参数通过对象来传递，上面的代码等同于：
+
+```dart
+response=await dio.get("/test",queryParameters:{"id":12,"name":"wendu"})
+print(response);
+```
+
+3. 发起一个 POST 请求:
+
+```dart
+response=await dio.post("/test",data:{"id":12,"name":"wendu"})
+```
+
+4. 发起多个并发请求:
+
+```dart
+response= await Future.wait([dio.post("/info"),dio.get("/token")]);
+```
+
+5. 下载文件:
+
+```dart
+response=await dio.download("https://www.google.com/",_savePath);
+```
+
+6. 发送 FormData，如果发送的数据是 FormData，则 dio 会将请求 header 的 `contentType` 设为 `multipart/form-data`
+
+```dart
+FormData formData = FormData.from({
+   "name": "wendux",
+   "age": 25,
+});
+response = await dio.post("/info", data: formData)
+```
+
+7. 通过 FormData 上传多个文件:
+
+```dart
+FormData formData = FormData.from({
+   "name": "wendux",
+   "age": 25,
+   "file1": UploadFileInfo(File("./upload.txt"), "upload1.txt"),
+   "file2": UploadFileInfo(File("./upload.txt"), "upload2.txt"),
+     // 支持文件数组上传
+   "files": [
+      UploadFileInfo(File("./example/upload.txt"), "upload.txt"),
+      UploadFileInfo(File("./example/upload.txt"), "upload.txt")
+    ]
+});
+response = await dio.post("/info", data: formData)
+```
+
+8. 值得一提的是，dio 内部仍然使用 HttpClient 发起的请求，所以代理、请求认证、证书校验等和 HttpClient 是相同的，我们可以在 `onHttpClientCreate` 回调中设置，例如：
+
+```dart
+(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
+    //设置代理 
+    client.findProxy = (uri) {
+      return "PROXY 192.168.1.2:8888";
+    };
+    //校验证书
+    httpClient.badCertificateCallback=(X509Certificate cert, String host, int port){
+      if(cert.pem==PEM){
+      return true; //证书一致，则允许发送数据
+     }
+     return false;
+    };   
+  };
+```
+
+9. 注意，`onHttpClientCreate` 会在当前 dio 实例内部需要创建 HttpClient 时调用，所以通过此回调配置 HttpClient 会对整个 dio 实例生效，如果应用需要多种代理或证书校验策略，可以创建不同的 dio 实例来分别实现。
+
+### ③、实例
+
+1. `main` 主启动类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '09_文件操作与网络请求/03_Http 请求库 dio/01_HttpDioComponent.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body: 用于定义页面的主要内容区域
+           * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+           */
+          body: SafeArea(
+            child: HttpDioComponent()
+          )
+        )
+    );
+  }
+}
+```
+
+2. `01_HttpDioComponent.dart` Dio 测试类
+
+```dart
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+
+class HttpDioComponent extends StatefulWidget {
+  const HttpDioComponent({Key? key}) : super(key: key);
+
+  @override
+  _HttpDioComponentState createState() => _HttpDioComponentState();
+}
+
+class _HttpDioComponentState extends State<HttpDioComponent> {
+  Dio _dio = Dio();
+
+  bool _loading = false;
+  String _text = "";
+
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个小部件，用于在垂直方向上排列其子部件
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: _loading ? null : request,
+            child: const Text("请求 月海"),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width - 50.0,
+            // _text.replaceAll(RegExp(r"\s"), "") 去除字符串中的空格
+            child: Text(_text.replaceAll(RegExp(r"\s"), "")),
+          )
+        ],
+      ),
+    );
+  }
+
+  request() async {
+    setState(() {
+      _loading = true;
+      _text = "正在请求...";
+    });
+
+    try {
+      Response response = await _dio.get("http://101.200.86.248:9001/hello/helloTest");
+      setState(() {
+        _text = response.data.toString();
+      });
+
+    } catch (e) {
+      _text = "请求失败：$e";
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
+
+}
+```
+
+3. 效果：
+
+![|401](attachments/动画33.gif)
+
+## 4、使用 WebSockets
+
+### ①、简介
+
+1. Http 协议是无状态的，只能由客户端主动发起，服务端再被动响应，服务端无法向客户端主动推送内容，并且一旦服务器响应结束，链接就会断开(见注解部分)，所以无法进行实时通信。
+2. WebSocket 协议正是为解决客户端与服务端实时通信而产生的技术，现在已经被主流浏览器支持，所以对于 Web 开发者来说应该比较熟悉了，Flutter 也提供了专门的包来支持 WebSocket 协议。
+3. 注意：Http 协议中虽然可以通过 keep-alive 机制使服务器在响应结束后链接会保持一段时间，但最终还是会断开， keep-alive 机制主要是用于避免在同一台服务器请求多个资源时频繁创建链接，它本质上是支持链接复用的技术，而并非用于实时通信，需要知道这两者的区别。
+4. WebSocket 协议本质上是一个基于 tcp 的协议，它是先通过 HTTP 协议发起一条特殊的 http 请求进行握手后，如果服务端支持 WebSocket 协议，则会进行协议升级。WebSocket 会使用 http 协议握手后创建的 tcp 链接，和 http 协议不同的是，WebSocket 的 tcp 链接是个长链接（不会断开），所以服务端与客户端就可以通过此 TCP 连接进行实时通信。
+
+### ②、通信步骤
+
+- 使用 WebSocket 通信分为四个步骤：
+1. 引入 WebSocket
+2. 连接到 WebSocket 服务器。
+3. 监听来自服务器的消息。
+4. 将数据发送到服务器。
+5. 关闭 WebSocket 连接
+
+#### Ⅰ、引入 WebSocket
+
+1. 在 `pubspec.yaml` 文件中引入 `web_socket_channel`
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 以下添加了 Cupertino Icons 字体到您的应用程序，
+  # 以便您可以使用 CupertinoIcons 类来使用 iOS 风格的图标。
+  cupertino_icons: ^1.0.2
+
+  # path_provider 插件用于查找常用位置的路径，例如临时目录
+  path_provider: ^2.0.2
+  
+  # dio 是一个强大的 Dart Http 请求库，支持 Restful API、FormData、拦截器、请求取消、Cookie 管理、文件上传/下载、超时等
+  dio: ^4.0.0
+  
+  # web_socket_channel 是一个 Dart 包，它提供了一个 StreamChannel 的实现，用于通过 WebSocket 进行通信
+  web_socket_channel: ^2.1.0
+```
+
+2. 在项目根文件夹中运行 `flutter packages get` (或者在编辑器中点击 “Packages Get”) 以在项目中使用这些新的依赖项
+
+#### Ⅱ、连接到 WebSocket 服务器
+
+1. [web_socket_channel](https://pub.dev/packages/web_socket_channel) package 提供了我们需要连接到 WebSocket 服务器的工具。该 package 提供了一个 WebSocketChannel 允许我们既可以监听来自服务器的消息，又可以将消息发送到服务器的方法。
+2. 在 Flutter 中，我们可以创建一个 WebSocketChannel 连接到一台服务器：
+
+```dart
+final channel = IOWebSocketChannel.connect('wss://echo.websocket.events');
+```
+
+3. 注意：`wss://echo.websocket.events` 为 flutter.cn 提供的测试服务地址。
+
+#### Ⅱ、监听来自服务器的消息
+
+1. 现在我们建立了连接，我们可以监听来自服务器的消息，在我们发送消息给测试服务器之后，它会返回相同的消息。
+2. 我们如何收取消息并显示它们？在这个例子中，我们将使用一个 StreamBuilder 来监听新消息， 并用一个 Text 来显示它们。
+
+```dart
+StreamBuilder(
+  stream: widget.channel.stream,
+  builder: (context, snapshot) {
+    return Text(snapshot.hasData ? '${snapshot.data}' : '');
+  },
+);
+```
+
+3. WebSocketChannel 提供了一个来自服务器的消息 `Stream` 。该 `Stream` 类是 `dart:async` 包中的一个基础类。它提供了一种方法来监听来自数据源的异步事件。与 Future 返回单个异步响应不同，`Stream` 类可以随着时间推移传递很多事件。
+4. 该 `StreamBuilder` 组件将连接到一个 `Stream`， 并在每次收到消息时通知 Flutter 重新构建界面
+
+#### Ⅲ、将数据发送到服务器
+
+1. 为了将数据发送到服务器，我们会 `add` 消息给 `WebSocketChannel` 提供的 `sink`。
+
+```dart
+channel.sink.add('Hello!');
+```
+
+2. `WebSocketChannel` 提供了一个 `StreamSink`，它将消息发给服务器。
+3. `StreamSink` 类提供了给数据源同步或异步添加事件的一般方法
+
+#### Ⅳ、关闭 WebSocket 连接
+
+1. 在我们使用 WebSocket 后，要关闭连接：
+
+```dart
+channel.sink.close();
+```
+
+### ③、实例
+
+1. `main` 主启动类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '09_文件操作与网络请求/04_使用 WebSockets/01_WebSocketsComponent.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return const MaterialApp(
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+        home: Scaffold(
+          // 设置背景颜色为白色
+          backgroundColor: Colors.white,
+          /**
+           * body: 用于定义页面的主要内容区域
+           * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+           */
+          body: SafeArea(
+            child: WebSocketsComponent()
+          )
+        )
+    );
+  }
+}
+```
+
+2. `01_WebSocketsComponent.dart` WebSockets 测试方法
+
+```dart
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:web_socket_channel/io.dart';
+
+class WebSocketsComponent extends StatefulWidget {
+  const WebSocketsComponent({Key? key}) : super(key: key);
+
+  @override
+  _WebSocketsComponentState createState() => _WebSocketsComponentState();
+}
+
+class _WebSocketsComponentState extends State<WebSocketsComponent> {
+  // 创建一个 TextEditingController 对象，用于获取输入框的值
+  final TextEditingController _controller = TextEditingController();
+  // 添加一个 ScrollController 对象，用于控制 ListView 的滚动
+  final ScrollController _scrollController = ScrollController();
+  // 创建一个 IOWebSocketChannel 对象，用于创建 WebSocket 连接
+  late IOWebSocketChannel channel;
+  // 创建一个 StreamSubscription 对象，用于订阅消息，以便接收消息
+  late StreamSubscription<dynamic> _subscription;
+
+  // 保存消息列表
+  final List<String> _messageList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // 创建 websocket 连接
+    channel = IOWebSocketChannel.connect('wss://echo.websocket.events');
+
+    // 订阅消息，接收到消息后将消息添加到 _messageList 中，
+    _subscription = channel.stream.listen((data) {
+      setState(() {
+        // 处理接收到的消息
+        _messageList.add("接收：$data");
+      });
+      // 在发送消息后调用 _scrollToBottom 方法滚动到最底部
+      _scrollToBottom();
+    });
+  }
+
+  @override
+  void dispose() {
+    // 取消订阅
+    _subscription.cancel();
+    // 关闭 WebSocket 连接
+    channel.sink.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Column 是一个小部件，它接受一个 Widget 数组作为参数，用于按垂直方向排列其子部件
+    return Column(
+      children: [
+        // 构建消息输入框和发送按钮
+        buildMessageInputAndSendButton(context),
+        // Expanded 是一个小部件，它可以用来扩展 Row、Column 或 Flex 的子部件，以便填充可用的空间
+        Expanded(
+          // 构建消息列表
+          child: buildMessageList(context),
+        ),
+      ],
+    );
+  }
+
+  /// 构建消息输入框和发送按钮
+  Widget buildMessageInputAndSendButton(BuildContext context) {
+    // Row 是一个小部件，它接受一个 Widget 数组作为参数，用于按水平方向排列其子部件
+    return Row(
+      children: [
+        // Expanded 是一个小部件，它可以用来扩展 Row、Column 或 Flex 的子部件，以便填充可用的空间
+        Expanded(
+          // TextField 是一个小部件，用于接收用户输入的文本
+          child: TextField(
+            controller: _controller,
+            decoration: const InputDecoration(hintText: '请输入消息'),
+          )
+        ),
+        // ElevatedButton 是一个小部件，用于创建一个悬浮按钮
+        ElevatedButton(
+          onPressed: _sendMessage,
+          child: const Text('发送'),
+        )
+      ],
+    );
+  }
+
+  /// 构建消息列表
+  Widget buildMessageList(BuildContext context) {
+    // Scrollbar：显示滚动条
+    return Scrollbar(
+      // ListView 列表组件
+      child: ListView.separated (
+        // 将 ScrollController 对象传递给 ListView 的 controller 属性
+        controller: _scrollController,
+        // itemCount：列表项的数量
+        itemCount: _messageList.length,
+        /**
+         * itemBuilder：它是列表项的构建器，类型为 IndexedWidgetBuilder，返回值为一个 widget。
+         * 当列表滚动到具体的 index 位置时，会调用该构建器构建列表项
+         */
+        itemBuilder: (BuildContext context, int index) {
+          return Text(_messageList[index]);
+        },
+        // 分割器构造器
+        separatorBuilder: (context, index) => const Divider(color: Colors.red),
+      )
+    );
+  }
+
+  /// 发送消息
+  void _sendMessage() {
+    // 判断输入框是否为空
+    if (_controller.text.isNotEmpty) {
+      // 发送消息
+      channel.sink.add(_controller.text);
+      // 将消息添加到 _messageList 中，并调用 setState 方法更新 UI
+      setState(() {
+        _messageList.add("发送：${_controller.text}");
+      });
+      // 在发送消息后调用 _scrollToBottom 方法滚动到最底部
+      _scrollToBottom();
+    }
+  }
+
+  /// 滚动到最底部
+  void _scrollToBottom() {
+    // WidgetsBinding.instance.addPostFrameCallback 方法会在当前帧绘制完成后执行回调
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // animateTo 方法可以滚动到指定的位置
+      _scrollController.animateTo(
+        // 获取滚动条的最大滚动位置
+        _scrollController.position.maxScrollExtent,
+        // 滚动动画的持续时间
+        duration: const Duration(milliseconds: 100),
+        // 滚动动画的曲线
+        curve: Curves.easeOut,
+      );
+    });
+  }
+}
+```
+
+3. 效果：
+
+![|395](attachments/动画34.gif)
+
+4. 上面的例子比较简单，不再赘述。我们现在思考一个问题，假如我们想通过 WebSocket 传输二进制数据应该怎么做（比如要从服务器接收一张图片）？
+5. 我们发现 `StreamBuilder` 和 `Stream` 都没有指定接收类型的参数，并且在创建 WebSocket 链接时也没有相应的配置，貌似没有什么办法……
+6. 其实很简单，要接收二进制数据仍然使用 `StreamBuilder`，因为 WebSocket 中所有发送的数据使用帧的形式发送，而帧是有固定格式，每一个帧的数据类型都可以通过 `Opcode` 字段指定，它可以指定当前帧是文本类型还是二进制类型（还有其他类型），所以客户端在收到帧时就已经知道了其数据类型，所以 flutter 完全可以在收到数据后解析出正确的类型，所以就无需开发者去关心，当服务器传输的数据是指定为二进制时，`StreamBuilder` 的 `snapshot.data` 的类型就是 `List<int>`，是文本时，则为 `String`
+
+## 5、使用Socket API
+
+### ①、Socket 简介
+
+1. Socket API 是操作系统为实现应用层网络协议提供的一套基础的、标准的 API，它是对传输层网络协议（主要是TCP/UDP）的一个封装。
+2. Socket API 实现了端到端建立链接和发送/接收数据的基础 API，而高级编程语言中的 Socket API 其实都是对操作系统 Socket API 的一个封装。
+3. 我们之前介绍的 Http 协议和 WebSocket 协议都属于应用层协议，除了它们，应用层协议还有很多如：SMTP、FTP 等，这些应用层协议都是通过 Socket API 来实现的。
+4. 综上，如果我们需要自定义协议或者想直接来控制管理网络链接、又或者我们觉得自带的 HttpClient 不好用想重新实现一个，这时我们就需要使用 Socket。
+5. Flutter 的 Socket API 在 `dart:io` 包中，下面我们看一个使用 Socket 实现简单 http 请求的示例
+
+### ②、使用 Socket 实现Http Get请求
+
+1. 以请求百度首页为例：
+
+```dart
+class SocketRoute extends StatelessWidget {
+  const SocketRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _request(),
+      builder: (context, snapShot) {
+        return Text(snapShot.data.toString());
+      },
+    );
+  }
+
+  _request() async {
+    // 建立连接
+    var socket = await Socket.connect("baidu.com", 80);
+    // 根据 http 协议，发起 Get 请求头
+    socket.writeln("GET / HTTP/1.1");
+    socket.writeln("Host:baidu.com");
+    socket.writeln("Connection:close");
+    socket.writeln();
+    await socket.flush(); // 发送
+    // 读取返回内容，按照 utf8 解码为字符串
+    String _response = await utf8.decoder.bind(socket).join();
+    await socket.close();
+    return _response;
+  }
+}
+```
+
+2. 可以看到，使用 Socket 需要我们自己实现 Http 协议（需要自己实现和服务器的通信过程），本例只是一个简单示例，没有处理重定向、cookie 等。
+3. 运行后效果如图所示：
+
+![|360](attachments/Pasted%20image%2020231201144144.png)
+
+4. 可以看到响应内容分两个部分，第一部分是响应头，第二部分是响应体，服务端可以根据请求信息动态来输出响应体。
+5. 由于本示例请求头比较简单，所以响应体和浏览器中访问的会有差别，可以补充一些请求头(如user-agent)来看看输出的变化。
+
+## 6、JSON 转 Dart Model 类
+
+### ①、简介
+
+1. 在实战中，后台接口往往会返回一些结构化数据，如 JSON、XML 等，如之前我们请求 Github API 的示例，它返回的数据就是 JSON 格式的字符串，为了方便我们在代码中操作 JSON，我们先将 JSON 格式的字符串转为 Dart 对象，这个可以通过 `dart:convert` 中内置的 JSON 解码器 `json.decode()` 来实现，该方法可以根据 JSON 字符串具体内容将其转为 List 或 Map，这样我们就可以通过他们来查找所需的值，如：
+
+```dart
+//一个 JSON 格式的用户列表字符串
+String jsonStr = '[{"name":"Jack"},{"name":"Rose"}]';
+// 将 JSON 字符串转为 Dart 对象(此处是 List)
+List items = json.decode(jsonStr);
+// 输出第一个用户的姓名
+print(items[0]["name"]);
+```
+
+2. 通过 `json.decode()` 将 JSON 字符串转为 `List/Map` 的方法比较简单，它没有外部依赖或其他的设置，对于小项目很方便。但当项目变大时，这种手动编写序列化逻辑可能变得难以管理且容易出错，例如有如下JSON：
+
+```json
+{
+  "name": "John Smith",
+  "email": "john@example.com"
+}
+```
+
+3. 我们可以通过调用 `json.decode` 方法来解码 JSON ，使用 JSON 字符串作为参数:
+
+```dart
+Map<String, dynamic> user = json.decode(json);
+
+print('Howdy, ${user['name']}!');
+print('We sent the verification link to ${user['email']}.');
+```
+
+4. 由于 `json.decode()` 仅返回一个 `Map<String, dynamic>`，这意味着直到运行时我们才知道值的类型。 通过这种方法，我们失去了大部分静态类型语言特性：类型安全、自动补全和最重要的编译时异常。这样一来，我们的代码可能会变得非常容易出错。例如，当我们访问 `name` 或 `email` 字段时，我们输入的很快，导致字段名打错了。但由于这个 JSON 在 map 结构中，所以编译器不知道这个错误的字段名，所以编译时不会报错。
+5. 其实，这个问题在很多平台上都会遇到，而也早就有了好的解决方法即 “Json Model 化”，具体做法就是，通过预定义一些与 Json 结构对应的 `Model` 类，然后在请求到数据后再动态根据数据创建出 Model 类的实例。这样一来，在开发阶段我们使用的是 Model 类的实例，而不再是 Map/List，这样访问内部属性时就不会发生拼写错误。
+6. 例如，我们可以通过引入一个简单的模型类（Model class）来解决前面提到的问题，我们称之为 User。在 User 类内部，我们有：
+	1. 一个 `User.fromJson` 构造函数, 用于从一个 map 构造出一个 User 实例 map 结构。
+	2. 一个 `toJson` 方法，将 User 实例转化为一个 map。
+7. 这样，调用代码现在可以具有类型安全、自动补全字段（name和email）以及编译时异常。如果我们将拼写错误字段视为 int 类型而不是 String， 那么我们的代码就不会通过编译，而不是在运行时崩溃。
+
+```dart
+user.dart
+
+class User {
+  final String name;
+  final String email;
+
+  User(this.name, this.email);
+
+  User.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        email = json['email'];
+
+  Map<String, dynamic> toJson() =>
+    <String, dynamic>{
+      'name': name,
+      'email': email,
+    };
+}
+```
+
+8. 现在，序列化逻辑移到了模型本身内部。采用这种新方法，我们可以非常容易地反序列化 `user`.
+
+```dart
+Map userMap = json.decode(json);
+var user = User.fromJson(userMap);
+
+print('Howdy, ${user.name}!');
+print('We sent the verification link to ${user.email}.');
+```
+
+9. 要序列化一个 user，我们只是将该 User 对象传递给该 `json.encode` 方法。我们不需要手动调用 `toJson` 这个方法，因为 `JSON.encode` 内部会自动调用。
+
+```dart
+String json = json.encode(user);
+```
+
+10. 这样，调用代码就不用担心 JSON 序列化了，但是，Model 类还是必须的。在实践中，`User.fromJson` 和`User.toJson` 方法都需要单元测试到位，以验证正确的行为。
+11. 另外，实际场景中，JSON 对象很少会这么简单，嵌套的 JSON 对象并不罕见，如果有什么能为我们自动处理JSON序列化，那将会非常好。幸运的是，有！
+
+### ②、自动生成 Model
+
+1. 在这里介绍一下官方推荐的 [json_serializable package](https://pub.dartlang.org/packages/json_serializable) 包。 
+2. 它是一个自动化的源代码生成器，可以在开发阶段为我们生成 JSON 序列化模板，这样一来，由于序列化代码不再由我们手写和维护，我们将运行时产生 JSON 序列化异常的风险降至最低
+
+#### Ⅰ、在项目中设置 json_serializable
+
+1. 要包含 `json_serializable` 到我们的项目中，我们需要一个常规和两个开发依赖项。
+2. 简而言之，开发依赖项是不包含在我们的应用程序源代码中的依赖项，它是开发过程中的一些辅助工具、脚本，和 node 中的开发依赖项相似。
+3. `pubspec.yaml` 中引入：
+
+```dart
+dependencies:
+
+  # json_serializable 是一个 Dart 包，它提供了一组工具，用于将 Dart 对象序列化为 JSON 和反序列化为 JSON
+  json_annotation: ^4.0.1
+
+dev_dependencies:
+
+  # build_runner 是一个 Dart 包，它提供了一组工具，用于生成源代码，以帮助您减少样板代码
+  build_runner: ^2.1.5
+  # json_serializable 是一个 Dart 包，它提供了一组工具，用于将 Dart 对象序列化为 JSON 和反序列化为 JSON
+  json_serializable: ^4.1.4
+```
+
+4. 在项目根文件夹中运行 `flutter packages get` (或者在编辑器中点击 “Packages Get”) 以在项目中使用这些新的依赖项
+
+#### Ⅱ、以 json_serializable 的方式创建 model 类
+
+1. 让我们看看如何将我们的 User 类转换为一个 `json_serializable`。为了简单起见，我们使用前面示例中的简化 JSON model。
+2. `User.dart`  JSON model 类；第一次创建类时，会看一些错误。这些错误是完全正常的，这是因为 Model 类的生成代码还不存在
+
+```dart
+import 'package:json_annotation/json_annotation.dart';
+
+// user.g.dart 将在我们运行生成命令后自动生成
+part 'user.g.dart';
+
+///这个标注是告诉生成器，这个类是需要生成 Model 类的
+@JsonSerializable()
+class User{
+  User(this.name, this.email);
+
+  String name;
+  String email;
+  // 不同的类使用不同的 mixin 即可
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+```
+
+3. 有了上面的设置，源码生成器将生成用于序列化 `name` 和 `email` 字段的 JSON 代码。
+4. 如果需要，自定义命名策略也很容易，我们可以使用 `@JsonKey` 显式关联 JSON 字段名与 Model 属性的对应关系 ：
+
+```dart
+// 显式关联 JSON 字段名与 Model 属性的对应关系 
+@JsonKey(name: 'registration_date_millis')
+final int registrationDateMillis;
+```
+
+#### Ⅲ、运行代码生成程序
+
+- 有两种运行代码生成器的方法：
+- 下面的两条命令我运行之后都报错了
+
+#####（1）、一次性生成
+
+1. 通过在我们的项目根目录下运行:
+
+```cmd
+flutter packages pub run build_runner build
+```
+
+2. 这触发了一次性构建，我们可以在需要时为我们的 Model 生成 json 序列化代码，它通过我们的源文件，找出需要生成 Model 类的源文件（包含`@JsonSerializable` 标注的）来生成对应的 `.g.dart` 文件。
+3. 一个好的建议是将所有 Model 类放在一个单独的目录下，然后在该目录下执行命令。
+4. 虽然这非常方便，但如果我们不需要每次在 Model 类中进行更改时都要手动运行构建命令的话会更好
+
+#####（2）、持续生成
+
+1. 使用 `_watcher_`可以使我们的源代码生成的过程更加方便。
+2. 它会监视我们项目中文件的变化，并在需要时自动构建必要的文件，我们可以通过下面的命令在项目根目录下运行来启动 `_watcher_`。
+
+```cmd
+flutter packages pub run build_runner watch
+```
+
+3. 只需启动一次观察器，然后它就会在后台运行，这是安全的
+
+### ③、使用IDE插件生成model
+
+1. 目前 Android Studio(或IntelliJ) 有几个插件，可以将 json 文件转成 Model 类，但插件质量参差不齐，甚至还有一些沾染上了抄袭风波，故在此不做优先推荐，有兴趣可以自行了解
+2. 但是，我们还是要了解一下 IDE 插件和 Json_model 的优劣：
+	1. Json_model 需要单独维护一个存放 Json 文件的文件夹，如果有改动，只需修改 Json 文件便可重新生成 Model 类；而 IDE 插件一般需要用户手动将 Json 内容拷贝复制到一个输入框中，这样生成之后 Json 文件没有存档的地方，之后要改动就需要手动。
+	2. Json_model 可以手动指定某个字段引用的其他 Model 类，可以避免生成重复的类；而 IDE 插件一般会为每一个 Json 文件中所有嵌套对象都单独生成一个 Model 类，即使这些嵌套对象可能在其他 Model 类中已经生成过。
+	3. Json_model 提供了命令行转化方式，可以方便集成到 CI 等非 UI 环境的场景
+
+## 7、Json 序列化类库
+
+1. 很多人可能会问 Flutter 中有没有像 Java 开发中的 Gson/Jackson 一样的 Json 序列化类库？答案是没有！
+2. 因为这样的库需要使用运行时反射，这在 Flutter 中是禁用的。
+3. 运行时反射会干扰 Dart 的 tree shaking，使用 `_tree shaking_`，可以在 release 版中“去除”未使用的代码，这可以显著优化应用程序的大小。
+4. 由于反射会默认应用到所有代码，因此 `_tree shaking_` 会很难工作，因为在启用反射时很难知道哪些代码未被使用，因此冗余代码很难剥离，所以 Flutter 中禁用了 Dart 的反射功能，而正因如此也就无法实现动态转化 Model 的功能。
 
 # 十、动画
 

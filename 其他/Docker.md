@@ -3729,6 +3729,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.361-b09, mixed mode)
 # 八、Docker-compose 容器编排
 
 > 官网：[https://docs.docker.com/compose/compose-file/compose-file-v3/](https://docs.docker.com/compose/compose-file/compose-file-v3/)
+> 
 > 官网下载：[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
 ## 1、docker-compose 简介
@@ -3749,24 +3750,115 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.361-b09, mixed mode)
 
 ## 2、docker-compose 安装卸载
 
-1. 更新包索引：`sudo apt-get update`
-2. 安装（更新）最新版本的 Docker Compose：`sudo apt-get install docker-compose-plugin`
-3. 通过检查版本来验证是否正确安装了 Docker Compose：`docker-compose version`
+1. 更新包索引，并安装最新版本的 Docker Compose：
 
-## 3、docker-compose 核心概念
+```shell
+sudo apt-get update
+
+sudo apt-get install docker-compose-plugin
+```
+
+2. 通过检查版本来验证 Docker Compose 是否已正确安装：
+
+```shell
+docker compose version
+
+# 预期输出：
+Docker Compose version vN.N.N
+```
+
+3. 手动安装 docker-compose 插件，具体的最新版本请查看：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
+
+```shell
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+
+mkdir -p $DOCKER_CONFIG/cli-plugins
+
+curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+
+# 若上面的命令下载太慢，可以尝试下面的这个命令：
+wget https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 -O $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+
+4. 将可执行权限应用于二进制文件：
+
+```shell
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+
+5. 测试安装，查看版本：
+
+```shell
+docker compose version
+
+# 预期输出：
+Docker Compose version v2.23.3
+```
+
+## 3、docker-compose 与其配置文件版本对应关系
+
+1. Docker Compose 是一个用于管理 Docker 应用程序的工具，它允许你使用 YAML 文件来定义应用程序的服务、网络和卷等内容，并在单个主机或多个主机上进行部署。Docker Compose 有以下版本：
+2. v1：这是最早的版本，支持基本功能，如构建镜像、启动容器、设置环境变量等。
+3. v2.x：增加了对 Swarm 模式的支持，可以通过 docker stack 命令将 Compose 文件部署到 Swarm 集群中。
+4. v3.x：引入了一些新特性，例如配置命名空间、healthcheck 检查、秘密管理等。同时也提供了对 Kubernetes 的支持。
+5. 在 `docker-compose.yml` 文件中指定的 `version` 必须与安装在主机上的 Docker Compose 版本相匹配。如果使用不同版本之间的兼容性问题，则可能会导致意外行为或错误。
+6. 通常情况下，使用最新版本的 Docker Compose 是最好的选择，因为它包含最新的特性和修复了已知的漏洞。你可以通过运行以下命令来检查所安装的 Docker Compose 版本：
+
+```shell
+docker-compose version
+```
+
+6. 然后，在 `docker-compose.yml` 文件中指定适当的版本号，例如：
+
+```yaml
+version: "3.9"
+
+services:
+  ...
+```
+
+7. `version` 和 Docker Compose 版本对应关系的数据：
+
+| Docker Compose 版本 | version 字段                     |
+| ------------------- | -------------------------------- |
+| 1.0.x               | '1'                              |
+| 1.1.x               | '2'                              |
+| 1.2.x               | '2.1'                            |
+| 1.3.x               | '2.1'                            |
+| 1.4.x               | '2.1'                            |
+| 1.5.x               | '2.1'                            |
+| 1.6.x               | '2.1'                            |
+| 1.7.x               | '2.1'                            |
+| 1.8.x - 1.10.x      | '2.1'                            |
+| 1.11.x              | '2.1' 或 '2.2'（取决于特性使用） |
+| 1.12.x - 1.13.x     | '2.1' 或 '2.2'（取决于特性使用） |
+| 1.14.x              | '2.1' 或 '2.3'（取决于特性使用） |
+| 1.15.x              | '2.1' 或 '2.3'（取决于特性使用） |
+| 1.16.x - 1.17.x     | '2.1' 或 '2.3'（取决于特性使用） |
+| 1.18.x              | '2.1' 或 '2.4'（取决于特性使用） |
+| 1.19.x              | '3.0'                            |
+| 1.20.x              | '3.0'                            |
+| 1.21.x              | '3.0'                            |
+| 1.22.x              | '3.0'                            |
+| 1.23.x              | '3.0'                            |
+| 1.24.x - 1.27.x     | '3.0'                            |
+| 1.28.x              | '3.7' 或 '3.8'（取决于特性使用） |
+| 1.29.x              | '3.7' 或 '3.8'（取决于特性使用） |
+
+## 4、docker-compose 核心概念
 
 1. 一文件：`docker-compose.yml`
 2. 两要素：
    1. 服务（service）：一个个应用容器实例，比如订单微服务、库存微服务、mysql容器、nginx容器或者redis容器
    2. 工程（project）：由一组关联的应用容器组成的一个完整业务单元，在 docker-compose.yml 文件中定义。
 
-## 4、docker-compose 使用的三个步骤
+## 5、docker-compose 使用的三个步骤
 
 1. 编写 `Dockerfile` 定义各个微服务应用并构建出对应的镜像文件
 2. 使用 `docker-compose.yml` 定义一个完整业务单元，安排好整体应用中的各个容器服务
 3. 最后，执行 `docker-compose up` 命令来启动并运行整个应用程序，完成一键部署上线
 
-## 5、docker-compose 常用命令
+## 6、docker-compose 常用命令
 
 | 指令 | 说明 |
 | --- | --- |
@@ -3784,7 +3876,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.361-b09, mixed mode)
 | `docker-compose start` | 启动服务 |
 | `docker-compose stop` | 停止服务 |
 
-## 6、docker-compose 编排案例
+## 7、docker-compose 编排案例
 
 > docker compose 配置文件 .yml 全面指南：[https://zhuanlan.zhihu.com/p/387840381](https://zhuanlan.zhihu.com/p/387840381)
 
@@ -4717,13 +4809,123 @@ docker run -d \
 java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 ```
 
-4. 访问测试：`http://101.200.86.248:9001/hello/helloTest`
+4. 访问测试：[http://101.200.86.248:9001/hello/helloTest](http://101.200.86.248:9001/hello/helloTest)
 
 ![|484](attachments/Pasted%20image%2020231129110718.png)
 
-## 4、
+## 4、使用 shell 脚本执行多个 jar 程序
 
-## 5、
+1. 准备 jar 程序：
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT%201.jar](attachments/TEST-0.0.1-SNAPSHOT%201.jar)
+	2. springboot 实现的 WebSockets 包：[y_chat-1.0-SNAPSHOT.jar](attachments/y_chat-1.0-SNAPSHOT.jar)
+2. 创建映射目录，并将这两个 jar 包上传上去：
+	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+	2. `/home/docker/docker/volumes/openjdk/jar/yuehai-chat-WebSocket-stomp-server/`
+
+![|700](attachments/Pasted%20image%2020231130112952.png)
+
+![|700](attachments/Pasted%20image%2020231130113019.png)
+
+3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `run_jar.sh` 文件，并写入下面的内容：
+
+```shell
+#!/bin/bash
+
+# 映射目录所在的路径
+main_path="/container/path"
+
+# 定义变量：测试 jar 所在路径
+test_path="${main_path}/jar/00_TEST"
+# 清空 log 文件
+cat /dev/null > ${test_path}/test.log
+# 后台执行 jar，并将输出日志写入文件
+java -jar ${test_path}/TEST-0.0.1-SNAPSHOT.jar > ${test_path}/test.log 2>&1 &
+
+# 定义变量：y_char WebSocket 服务 jar 所在路径
+y_char_ws_path="${main_path}/jar/yuehai-chat-WebSocket-stomp-server"
+# 清空 log 文件
+cat /dev/null > ${y_char_ws_path}/y_char_ws.log
+# 执行 jar，并将输出日志写入文件
+java -jar ${y_char_ws_path}/y_chat-1.0-SNAPSHOT.jar > ${y_char_ws_path}/y_char_ws.log 2>&1
+
+# 检查是否成功启动
+if [ $? -eq 0 ]; then
+  echo "Jar启动成功"
+else
+  echo "Jar启动失败"
+fi
+```
+
+4. 启动容器：
+
+```shell
+docker run -d \
+-p 9001:9001 \
+-p 9002:9002 \
+--privileged=true \
+-v /home/docker/docker/volumes/openjdk/:/container/path \
+--name code-java \
+openjdk:17 \
+/container/path/run_jar.sh
+```
+
+## 5、使用 Docker-compose 容器编排执行多个 jar 程序
+
+1. 准备 jar 程序：
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT%201.jar](attachments/TEST-0.0.1-SNAPSHOT%201.jar)
+	2. springboot 实现的 WebSockets 包：[y_chat-1.0-SNAPSHOT.jar](attachments/y_chat-1.0-SNAPSHOT.jar)
+2. 创建映射目录，并将这两个 jar 包上传上去：
+	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+	2. `/home/docker/docker/volumes/openjdk/jar/yuehai-chat-WebSocket-stomp-server/`
+
+![|700](attachments/Pasted%20image%2020231130112952.png)
+
+![|700](attachments/Pasted%20image%2020231130113019.png)
+
+3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `docker-compose.yml` 文件，并写入下面的内容：
+
+```yaml
+# 版本信息，定义关乎于 docker 的兼容性，Compose 文件格式有 3 个版本,分别为 1、2.x 和 3.x
+version : '3.8'
+
+# 所有的 docker 容器
+services:
+  # code-java 容器
+  code-java:
+    # 容器名称
+    container_name: code-java
+    # 指定使用的镜像
+    image: openjdk:17
+    # 映射的端口号；可指定多组
+    ports:
+      - "9001:9001"
+      - "9002:9002"
+    # 映射挂载的目录；可指定多组
+    volumes: 
+      - "/home/docker/docker/volumes/openjdk/:/container/path"
+    # 设置全局变量；可指定多组
+    environment:
+      - test_path=/container/path/jar/00_TEST
+      - y_char_ws_path=/container/path/jar/yuehai-chat-WebSocket-stomp-server
+    # 容器启动时执行的命令，该命令只能指定一行，不过可以使用 sh -c 来变相实现多行
+    # 变量引用使用 $$ de 原因是为了转义特殊字符，以确保变量在命令字符串中被正确地解析而不是被Compose文件本身解析
+    command: >
+      sh -c "
+        java -jar $${test_path}/TEST-0.0.1-SNAPSHOT.jar > $${test_path}/test.log 2>&1 &&
+        java -jar $${y_char_ws_path}/y_chat-1.0-SNAPSHOT.jar > $${y_char_ws_path}/y_char_ws.log 2>&1
+      "
+```
+
+4. 启动 docker-compose 服务并后台运行：`docker-compose up -d`
+
+```shell
+docker@yuehai:~/docker/volumes/openjdk$ docker compose up -d
+[+] Running 1/1
+ ✔ Container code-java  Started                                                      0.0s 
+docker@yuehai:~/docker/volumes/openjdk$ 
+```
+
+5. 如果嫌 `docker-compose.yml` 文件中的 `command` 属性的命令写起来太繁琐，也可以直接在 `command` 属性中调用上面的 `run_jar.sh` 脚本
 
 ## 6、
 
