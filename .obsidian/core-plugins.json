@@ -1,9 +1,5 @@
 [
   "file-explorer",
-  "canvas",
-  "page-preview",
   "command-palette",
-  "outline",
-  "word-count",
-  "file-recovery"
+  "word-count"
 ]

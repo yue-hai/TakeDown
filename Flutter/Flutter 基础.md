@@ -17408,7 +17408,7 @@ flutter packages pub run build_runner watch
 
 ## 7、Json 序列化类库
 
-1. 很多人可能会问 Flutter 中有没有像 Java 开发中的 Gson/Jackson 一样的 Json 序列化类库？答案是没有！
+1. Flutter 中并没有像 Java 开发中的 Gson/Jackson 一样的 Json 序列化类库
 2. 因为这样的库需要使用运行时反射，这在 Flutter 中是禁用的。
 3. 运行时反射会干扰 Dart 的 tree shaking，使用 `_tree shaking_`，可以在 release 版中“去除”未使用的代码，这可以显著优化应用程序的大小。
 4. 由于反射会默认应用到所有代码，因此 `_tree shaking_` 会很难工作，因为在启用反射时很难知道哪些代码未被使用，因此冗余代码很难剥离，所以 Flutter 中禁用了 Dart 的反射功能，而正因如此也就无法实现动态转化 Model 的功能。
