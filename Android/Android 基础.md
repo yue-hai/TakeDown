@@ -785,6 +785,8 @@ class Layout: AppCompatActivity() {
 2. `ScrollView`，它是垂直方向的滚动视图；垂直方向滚动时，`layout_width` 属性值设置为 `match_parent`，`layout_height` 属性值设置为 `wrap_content`。
 3. `HorizontalScrollView`，它是水平方向的滚动视图；水平方向滚动时，`layout_width` 属性值设置为 `wrap_content`，`ayout_height` 属性值设置为 `match_parent`。
 
+### ⑤、新的相对布局 `ConstraintLayout`
+
 ## 4、按钮
 
 1. `Button` 继承于 `TextView`，因此它们拥有的属性都是共通的。
@@ -9391,255 +9393,184 @@ class YuehaiRetrofit: AppCompatActivity() {
 
 # 十一、补充
 
-## 1、隐藏软件标题栏
+## 1、架构
 
-1. 修改文件 `res/values/themes.xml`
-2. 标签 `style` 的属性 `parent` 一开始可能为： `Theme.MaterialComponents.DayNight.DarkActionBar`，即深色标题栏
+### ①、使用 MVVM 架构进行应用开发
 
-![|310](attachments/Pasted%20image%2020230508083412.png)
+#### Ⅰ、MVVM（Model-View-ViewModel）简介
 
-4. 要使其隐藏可修改为：`Theme.MaterialComponents.DayNight.NoActionBar`
+1. MVVM 是一种基于数据绑定的架构模式，用于设计和组织应用程序的代码结构。它将应用程序分为三个主要部分：Model（模型）、View（视图）和ViewModel（视图模型）。
+2. Model（模型）：负责处理数据和业务逻辑。它可以是从网络获取的数据、数据库中的数据或其他数据源。Model 层通常是独立于界面的，可以在多个界面之间共享。
+3. View（视图）：负责展示数据和与用户进行交互。它可以是 Activity、Fragment、View 等。View 层主要负责 UI 的展示和用户输入的响应。
+4. ViewModel（视图模型）：连接 View 和 Model，作为 View 和 Model 之间的桥梁。它负责从 Model 中获取数据，并将数据转换为 View 层可以直接使用的形式。ViewModel 还负责监听 Model 的数据变化，并通知 View 进行更新。ViewModel 通常是与View一一对应的，每个 View 都有一个对应的 ViewModel。
 
-![|310](attachments/Pasted%20image%2020230508083306.png)
+#### Ⅱ、MVVM 的特点和优势
 
-## 2、`res/values/themes.xml` 内容介绍
+1. 解耦合：MVVM 通过将 View 和 Model 解耦合，使得它们可以独立开发和测试。ViewModel 作为中间层，将数据从 Model 传递给 View，避免了直接在 View 中处理业务逻辑的情况。
+2. 可维护性：MVVM 的分层结构使得代码更易于维护。View 只负责展示数据和用户交互，ViewModel 负责处理业务逻辑和数据转换，Model 负责数据的获取和存储。这种分离使得代码更加清晰和可读，也方便进行单元测试。
+3. 数据驱动 UI：MVVM 采用数据绑定的方式，将 Model 的数据与 View 进行绑定。当 Model 的数据发生变化时，ViewModel 会自动更新 View 的显示，无需手动更新 UI。这种方式可以减少手动更新 UI 的代码量，提高开发效率。
+4. 可测试性：由于 MVVM 的分层结构和数据驱动UI的特点，可以更容易地进行单元测试。ViewModel 中的业务逻辑可以独立于 View 进行测试，而不需要依赖于 Android 系统或 UI 组件。
 
-- res/values-night/themes.xml 是深色模式的配置文件，与此基本相同
+#### Ⅲ、常见架构模式（MVC和MVP）区别
 
-```xml
-<resources xmlns:tools="http://schemas.android.com/tools">
-	<!-- Base application theme. -->
-	<style name="Theme.Y_pic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-		
-		<!-- 主题颜色设置 -->
-		<!-- 应用的主要色调，actionBar 默认使用该颜色，Toolbar 导航栏的底色 -->
-		<item name="colorPrimary">@color/yuehai_light_blue</item>
-		<!-- 应用的主要暗色调，statusBarColor 默认使用该颜色 -->
-		<item name="colorPrimaryDark">@color/black</item>
-		<!-- 一般控件的选中效果默认采用该颜色，如 CheckBox，RadioButton，SwitchCompat，ProcessBar等 -->
-		<item name="colorAccent">@color/purple_700</item>
-		<item name="colorPrimaryVariant">@color/purple_700</item>
-		<item name="colorOnPrimary">@color/white</item>
-		<!-- 图片标题或者字幕、Medium、action bar subtitle等 -->
-		<item name="colorSecondary">@color/teal_200</item>
-		<item name="colorSecondaryVariant">@color/teal_700</item>
-		<item name="colorOnSecondary">@color/black</item>
-		
-		<!-- 状态栏、顶部导航栏 相关 -->
-		<!-- 状态栏颜色 -->
-		<item name="android:statusBarColor">@color/yuehai_light_blue</item>
-		<!-- activity 是否能在 status bar 底部绘制 -->
-		<item name="android:windowOverscan">true</item>
-		<!-- 让 status bar 透明，相当于 statusBarColor=transparent + windowOverscan=true -->
-		<item name="android:windowTranslucentStatus">true</item>
-		<!-- 改变status bar 文字颜色， true黑色， false白色，API23可用-->
-		<!-- <item name="android:windowLightStatusBar">true</item> -->
-		<!-- 全屏显示，隐藏状态栏、导航栏、底部导航栏 -->
-		<item name="android:windowFullscreen">true</item>
-		
-		<!-- 隐藏标题栏 -->
-		<item name="windowNoTitle">true</item>
-		<!-- 底部虚拟导航栏颜色 -->
-		<item name="android:navigationBarColor">#E91E63</item>
-		<!-- 让底部导航栏变半透明灰色，覆盖在Activity之上（默认false，activity会居于底部导航栏顶部），如果设为true，navigationBarColor 失效 -->
-		<item name="android:windowTranslucentNavigation">true</item>
-		
-		<!-- WindowBackground，可以设置@drawable，颜色引用（@color），不能设置颜色值（#fffffff），
-		Window区域说明：Window涵盖整个屏幕显示区域，包括StatusBar的区域。当windowOverscan=false时，window的区域比Activity多出StatusBar，当windowOverscan=true时，window区域与Activity相同-->
-		<item name="android:windowBackground">@drawable/ic_launcher_background</item>
-		<!--<item name="android:windowBackground">@color/light_purple</item>-->
-		
-		<!-- 控件相关 -->
-		<!-- button 文字是否全部大写（系统默认开）-->
-		<item name="android:textAllCaps">false</item>
-		
-		<!-- 默认 Button,TextView的文字颜色 -->
-		<item name="android:textColor">#B0C4DE</item>
-		<!-- 默认 EditView 输入框字体的颜色 -->
-		<item name="android:editTextColor">#E6E6FA</item>
-		<!-- RadioButton checkbox等控件的文字 -->
-		<item name="android:textColorPrimaryDisableOnly">#1C71A9</item>
-		<!-- 应用的主要文字颜色,actionBar的标题文字默认使用该颜色 -->
-		<item name="android:textColorPrimary">#FFFFFF</item>
-		<!-- 辅助的文字颜色，一般比textColorPrimary的颜色弱一点，用于一些弱化的表示 -->
-		<item name="android:textColorSecondary">#C1C1C1</item>
-		<!-- 控件选中时的颜色,默认使用colorAccent -->
-		<item name="android:colorControlActivated">#FF7F50</item>
-		<!-- 控件按压时的色调-->
-		<item name="android:colorControlHighlight">#FF00FF</item>
-		<!-- CheckBox,RadioButton,SwitchCompat等默认状态的颜色 -->
-		<item name="android:colorControlNormal">#FFD700</item>
-		<!-- 默认按钮的背景颜色 -->
-		<item name="android:colorButtonNormal">#1C71A9</item>
-		
-	</style>
-</resources>
+1. MVC（Model-View-Controller）：MVC 模式中，Controller 负责处理用户输入和业务逻辑，Model 负责数据和业务逻辑，View 负责展示数据。与 MVC 相比，MVVM 将 Controller 分离为 ViewModel，将数据绑定的方式集成进来，使得代码更加简洁和清晰。
+2. MVP（Model-View-Presenter）：MVP 模式中，Presenter 负责处理用户输入和业务逻辑，Model 负责数据和业务逻辑，View 负责展示数据。与 MVP 相比，MVVM 将 Presenter 分离为 ViewModel
+
+#### Ⅳ、MVVM 三个核心组件
+
+1. 在 MVVM 模式中，有三个核心组件：Model（模型）、View（视图）和 ViewModel（视图模型）。
+2. 它们各自具有不同的职责和作用，并通过数据绑定机制实现彼此之间的关系和交互。
+
+##### （1）、Model（模型）
+
+1. 职责：负责处理数据和业务逻辑。它可以是从网络获取的数据、数据库中的数据或其他数据源。Model层通常是独立于界面的，可以在多个界面之间共享
+2. 作用：提供数据和处理数据的方法，封装业务逻辑。
+
+##### （2）、View（视图）
+
+1. 职责：负责展示数据和与用户进行交互。它可以是 Activity、Fragment、View 等。View 层主要负责 UI 的展示和用户输入的响应。 
+2. 作用：将 ViewModel 中的数据展示给用户，并将用户的输入传递给 ViewModel。
+
+##### （3）、ViewModel（视图模型）
+
+1. 职责：连接 View 和 Model，作为 View 和 Model 之间的桥梁。它负责从 Model 中获取数据，并将数据转换为 View 层可以直接使用的形式。ViewModel 还负责监听 Model 的数据变化，并通知 View 进行更新。ViewModel 通常是与 View 一一对应的，每个 View 都有一个对应的 iewModel。 
+2. 作用：处理 View 层的数据展示和用户交互，并与 Model 层进行交互。
+3. ViewModel 通过数据绑定机制将 Model 的数据与 View 进行绑定，实现数据的自动更新。当 Model 的数据发生变化时，ViewModel 会自动通知 View 进行更新。这种数据绑定的方式减少了手动更新 UI 的代码量，提高了开发效率。
+4. 下面是一个示意图，说明了 MVVM 模式中 Model、View 和 iewModel 之间的关系和交互方式：
+
+```dart
+        +-------------+
+        |    Model    |
+        +-------------+
+              |
+              |
+              v        
+	    +-------------+
+        |  ViewModel  |
+        +-------------+
+              |
+              |
+              v
+        +-------------+
+        |     View    |
+        +-------------+
 ```
 
-## 3、drawable 下快速生成 icon 图片 vector
+5. 在这个示意图中，ViewModel 通过数据绑定机制将 Model 的数据绑定到 View上，当 Model 的数据发生变化时，ViewModel 会自动通知 View 进行更新，从而实现 UI 的自动刷新。用户的输入通过 View 传递给 ViewModel，ViewModel 再将数据传递给 Model 进行处理。
+6. 通过 MVVM 模式，Model、View 和 ViewModel 之间的分离和解耦合，使得代码更易于维护和测试。
+7. ViewModel 作为中间层，负责处理业务逻辑和数据转换，使得 View 层只关注 UI 的展示和用户交互，而不关心具体的业务逻辑和数据处理。这种分层结构和数据绑定的方式使得代码更加清晰、可读性更强，并提高了开发效率和代码质量。
 
-1. drawable 右击 new -> vector asset
+#### Ⅴ、MVVM 数据绑定机制
 
-![|650](attachments/Pasted%20image%2020230518092027.png)
+1. 在 MVVM 模式中，数据绑定是实现 View 和 ViewModel 之间数据同步的关键机制。它允许将 View 中的 UI 元素（如 TextView、EditText）与 ViewModel 中的数据属性进行绑定，当数据发生变化时，自动更新 UI，同时用户的输入也会自动同步到 ViewModel 中。
+2. 数据绑定的原理是通过观察者模式和反射机制实现的。当 ViewModel 中的数据发生变化时，会触发相应的通知，通知绑定的 View 进行更新。而当用户在 View 中输入数据时，数据绑定也会将输入的数据自动同步到 ViewModel 中。这种双向的数据同步机制，使得 View 和 ViewModel 之间实现了数据的实时同步。
+3. 在 Android 中，可以使用数据绑定库（如Data Binding）来实现 MVVM 模式中的数据绑定。Data Binding 库提供了一组注解和工具类，可以简化数据绑定的实现过程。
+4. 以下是在 Android 中使用 Data Binding 库实现 MVVM 模式中的数据绑定的步骤：
+---
+1. 配置 Data Binding 库：在项目的 `build.gradle` 文件中，添加 Data Binding 的插件和依赖项。
 
-2. 选择 icon AS 中没有时需要导入 svg 或者 psd
-
-![|700](attachments/Pasted%20image%2020230518092055.png)
-
-3. drawable 会生成对应 name 的图标文件 （可以点击左侧 line 7 颜色后选择颜色）
-
-![|700](attachments/Pasted%20image%2020230518092125.png)
-
-4. 在对应的控件中引入就可以了：`android:src="@drawable/ic_up"`
-
-## 4、`recyclerView` 滚动到指定位置时的动画
-
-- `LinearLayoutManager` 是用于在 RecyclerView 中管理线性布局的布局管理器。它本身并没有提供滚动动画的功能。但可以通过结合使用 `RecyclerView` 的 `smoothScrollToPosition()` 方法和 `RecyclerView.ItemAnimator` 来实现滚动时的动画效果。
-
-1. 首先，确保已经为 RecyclerView 设置了自定义的 ItemAnimator。例如：
-
-```java
-val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-/**
- * RecyclerView.ItemAnimator 是用于处理 RecyclerView 中项目插入、移除、更改等操作时的动画效果的接口。
- * 它允许定义项目变化时的动画效果，例如淡入淡出、平移、缩放等。
- *
- * DefaultItemAnimator 是 Android 提供的默认 RecyclerView.ItemAnimator 实现之一。
- * DefaultItemAnimator 是 RecyclerView.ItemAnimator 接口的默认实现。它提供了一些默认的动画效果，例如渐变淡入淡出、默认的滑动动画等。
- * 当将 DefaultItemAnimator 分配给 RecyclerView 的 setItemAnimator() 方法时，它将处理 RecyclerView 中项目变化的动画效果。
- */
-recyclerView.itemAnimator = DefaultItemAnimator()
-```
-
-2. 然后，可以使用 `smoothScrollToPosition()` 方法滚动到指定位置，并触发 ItemAnimator 中的动画效果。例如：
-
-```java
-var layoutManager = recyclerView.layoutManager as LinearLayoutManager
-/**
- * 参数 1：RecyclerView：指定要进行滚动操作的 RecyclerView 实例。
- * 参数 2：RecyclerView.State：提供有关 RecyclerView 的状态信息，如焦点位置等。在大多数情况下，可以传递 null，以使用默认的状态。
- * 参数 3：int position：指定要滚动到的目标位置。
- */
-layoutManager.smoothScrollToPosition(recyclerView, null, 0)
-```
-
-3. 这将滚动到列表中的第一个位置，并触发 ItemAnimator 中的动画效果（如果有定义的话）。
-4. 注意，要使上述代码正常工作，确保在调用 `smoothScrollToPosition()` 方法之前已经设置了适当的布局管理器（例如 `LinearLayoutManager`）和适配器（例如 `RecyclerView.Adapter`）。
-5. 另外，请注意，根据你的定制需求，你可能需要自定义 `ItemAnimator` 的实现，或者使用第三方库来实现更复杂的动画效果。
-
-## 5、anim 动画
-
-1. 在 `res` 目录下新建 `anim` 目录，然后右键 `anim` 目录，点击新建，选择 `Animation` 资源文件，名称随意，本次为 `enter_left_slide`
-
-![|725](attachments/Pasted%20image%2020230922112559.png)
-
-2. 打开 `enter_left_slide.xml` 文件，编写动画代码
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 从左侧划入的动画 -->
-<!--
-	<set> 是一个动画集合，用于同时播放多个动画。在这里，我们将两种动画效果放在一起，使它们同时播放。
- -->
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-	<!--
-		从左侧划入
-		android:fromXDelta：开始时 X 轴上的偏移量，这里设置为 -100%p 表示完全在屏幕左侧以外
-		android:toXDelta：结束时 X 轴上的偏移量，这里设置为 0，表示在屏幕中心
-		android:duration：动画持续时间，这里设置为 300 毫秒。
-	 -->
-	<translate
-			android:fromXDelta="-100%p"
-			android:toXDelta="0"
-			android:duration="300" />
-	
-	<!--
-		淡入
-		android:fromAlpha：开始时的透明度，0.0 表示完全透明。
-		android:toAlpha：结束时的透明度，1.0 表示完全不透明。
-		android:duration：动画持续时间，这里设置为 300 毫秒。
-	 -->
-	<alpha
-			android:fromAlpha="0.0"
-			android:toAlpha="1.0"
-			android:duration="300" />
-	
-</set>
-```
-
-3. 再次新建一个文件 `exit_shrinks_centre.xml` ，编写动画代码
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-	
-	<!--
-		fromXScale 和 fromYScale 设置动画的初始缩放比例，这里将视图缩小到 0
-		toXScale 和 toYScale 设置动画的最终缩放比例，这里将视图恢复到原始大小
-		pivotX 和 pivotY 设置缩放动画的中心点位置，这里将中心点设置为视图的中心。
-		duration 设置动画的持续时间，以毫秒为单位
-	 -->
-	<scale
-			android:fromXScale="1.0"
-			android:fromYScale="1.0"
-			android:toXScale="0.9"
-			android:toYScale="0.9"
-			android:pivotX="50%"
-			android:pivotY="50%"
-			android:duration="300" />
-
-</set>
-```
-
-4. 在使用动画的 `Activity` 中使用动画：
-	1. 设置进入动画：在 `onCreate`方法中，调用完 `setContentView` 方法之后，使用 `overridePendingTransition` 方法使用动画
-	2. 设置退出动画：重写 `finish` 方法，调用完 `super.finish()` 方法之后，使用 `overridePendingTransition` 方法使用动画
-
-```kotlin
-package com.yuehai.pic.ui.activity
-
-import com.yuehai.pic.R
-
-/**
- * 图片详情页 Activity
- */
-class ImageViewerActivity: AppCompatActivity() {
-
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
-		setContentView(R.layout.activity_image_viewer)
-		
-		/**
-		 * 应用 activity 跳转动画
-		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
-		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
-		 */
-		overridePendingTransition(R.anim.image_details_enter, 0)
-		
-	}
-	
-	/**
-	 * 当用户按下 back 键时，默认行为是关闭当前的 Activity，调用此方法
-	 */
-	override fun finish() {
-		super.finish()
-		/**
-		 * 应用 activity 跳转动画
-		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
-		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
-		 */
-		overridePendingTransition(0, R.anim.image_details_exit)
-	}
-	
+```gradle
+    // ...
+    dataBinding {
+        enabled = true
+    }
+}
+​
+dependencies {
+    // ...
+    implementation 'androidx.databinding:databinding-runtime:7.0.2'
 }
 ```
 
-## 6、Navigation 导航框架的使用
+2. 创建布局文件：在布局文件中，使用标签包裹布局，并使用标签定义绑定的变量和表达式。
+
+```xml
+    <data>
+        <variable name="user" type="com.example.mvvm.User" />
+    </data>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}" />
+        <TextView            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(user.age)}" />
+    </LinearLayout>
+</layout>
+```
+
+3. 创建 ViewModel 类：创建一个与 View 对应的 ViewModel 类，并在其中定义与布局文件中绑定的变量。
+
+```java
+public class UserViewModel extends BaseObservable {
+    private String name;
+    private int age;
+​
+    // getter and setter methods
+​
+    @Bindable    
+    public String getName() {
+        return name;
+    }
+​
+    public void setName(String name) {
+        this.name = name;
+        notifyPropertyChanged(BR.name);
+    }
+​
+    @Bindable    
+    public int getAge() {
+        return age;
+    }
+​
+    public void setAge(int age) {
+        this.age = age;
+        notifyPropertyChanged(BR.age);
+    }
+}
+```
+
+4. 绑定数据：在 Activity 或 Fragment 中，使用 DataBindingUtil 类将布局文件与 ViewModel 进行绑定，并设置 ViewModel 的数据
+
+```dart
+public class MainActivity extends AppCompatActivity {
+    private UserViewModel userViewModel;
+​
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+​
+        // 创建ViewModel实例
+        userViewModel = new UserViewModel();
+        userViewModel.setName("John");
+        userViewModel.setAge(25);
+​
+        // 绑定ViewModel和布局文件
+	ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+    binding.setUser(userViewModel);
+  }
+}
+```
+
+5. 通过以上步骤，我们将布局文件和 ViewModel 进行了绑定，同时设置了 ViewModel 的数据。当 ViewModel 中的数据发生变化时，布局文件中相应的 UI 元素会自动更新。同时，当用户在 UI 元素中输入数据时，Data Binding 库也会自动将输入的数据同步到 ViewModel 中。
+6. 使用数据绑定的好处是能够简化代码，减少手动更新UI的代码量，提高开发效率。它还能够降低代码的耦合性，使得 UI 和数据逻辑的修改更加灵活和独立。另外，数据绑定还能够提高代码的可读性和可维护性，使得代码更易于理解和调试。
+
+#### Ⅵ、MVVM 架构模式发展趋势
+
+1. MVVM 模式在 Android 开发中已经得到广泛应用，并且在未来仍然有着较大的发展潜力。以下是一些未来发展趋势：
+2. Jetpack Compose：Jetpack Compose 是 Google 推出的一种全新的 UI 框架，它采用了声明式 UI 的方式，与 MVVM 模式非常契合。Jetpack Compose 能够简化 UI 开发流程，提供更加灵活和响应式的 UI 编程方式。
+3. 数据驱动 UI：未来，数据驱动 UI 的概念将会更加普及和强调。MVVM 模式的数据绑定和观察者模式是实现数据驱动 UI 的重要手段，未来可能会有更多的框架和工具出现，进一步简化数据和 UI 的绑定过程。
+4. 更强大的 ViewModel 组件：Android Jetpack 中的 ViewModel 组件已经为开发者提供了很多便利，但未来可能会有更多功能和特性被添加进来，以进一步提高ViewModel的灵活性和可扩展性。
+5. 跨平台开发：MVVM 模式的解耦特性使得代码更具可移植性，未来可能会有更多的跨平台开发框架和工具出现，使得开发者能够更轻松地在不同平台上使用 MVVM 模式进行开发。
+
+### ②、Navigation 导航框架的使用
 
 > Navigation 是一套完整的导航框架，内置支持普通 Fragment、Activity 和 DialogFragment 组件的跳转，也就是所有 Dialog 或 PopupWindow 都建议使用 DialogFragment 实现，这样可以涵盖所有常用的跳转场景，统一返回栈的管理。另外，基于 Fragment 实现可以做到状态存储和恢复
 
-### ①、使用
+#### Ⅰ、使用
 
 1. 引入依赖：目前最新的稳定版本为 2.4.0，其他历史版本可查看 [Android Navigation Releate Note](https://developer.android.com/jetpack/androidx/releases/navigation)
 
@@ -9965,7 +9896,7 @@ class SettingsFragment: Fragment() {
 }
 ```
 
-### ②、传递参数
+#### Ⅱ、传递参数
 
 > 使用 `Bundle` 传递参数
 
@@ -10080,7 +10011,7 @@ class SettingsFragment: Fragment() {
 }
 ```
 
-### ③、进入退出动画
+#### Ⅲ、进入退出动画
 
 1. 在 `anim` 中创建动画 `enter_left_slide.xml` 和 `exit_shrinks_centre.xml`，和上面 4 中一样
 2. 再次在 `anim` 中创建动画 `enter_magnify_centre.xml`
@@ -10202,180 +10133,465 @@ class SettingsFragment: Fragment() {
 </navigation>
 ```
 
-## 7、使用 MVVM 架构进行应用开发
+### ③、
 
-### ①、MVVM（Model-View-ViewModel）简介
+### ④、
 
-1. MVVM 是一种基于数据绑定的架构模式，用于设计和组织应用程序的代码结构。它将应用程序分为三个主要部分：Model（模型）、View（视图）和ViewModel（视图模型）。
-2. Model（模型）：负责处理数据和业务逻辑。它可以是从网络获取的数据、数据库中的数据或其他数据源。Model 层通常是独立于界面的，可以在多个界面之间共享。
-3. View（视图）：负责展示数据和与用户进行交互。它可以是 Activity、Fragment、View 等。View 层主要负责 UI 的展示和用户输入的响应。
-4. ViewModel（视图模型）：连接 View 和 Model，作为 View 和 Model 之间的桥梁。它负责从 Model 中获取数据，并将数据转换为 View 层可以直接使用的形式。ViewModel 还负责监听 Model 的数据变化，并通知 View 进行更新。ViewModel 通常是与View一一对应的，每个 View 都有一个对应的 ViewModel。
+## 2、主题
 
-### ②、MVVM 的特点和优势
+### ①、隐藏软件标题栏
 
-1. 解耦合：MVVM 通过将 View 和 Model 解耦合，使得它们可以独立开发和测试。ViewModel 作为中间层，将数据从 Model 传递给 View，避免了直接在 View 中处理业务逻辑的情况。
-2. 可维护性：MVVM 的分层结构使得代码更易于维护。View 只负责展示数据和用户交互，ViewModel 负责处理业务逻辑和数据转换，Model 负责数据的获取和存储。这种分离使得代码更加清晰和可读，也方便进行单元测试。
-3. 数据驱动 UI：MVVM 采用数据绑定的方式，将 Model 的数据与 View 进行绑定。当 Model 的数据发生变化时，ViewModel 会自动更新 View 的显示，无需手动更新 UI。这种方式可以减少手动更新 UI 的代码量，提高开发效率。
-4. 可测试性：由于 MVVM 的分层结构和数据驱动UI的特点，可以更容易地进行单元测试。ViewModel 中的业务逻辑可以独立于 View 进行测试，而不需要依赖于 Android 系统或 UI 组件。
+1. 修改文件 `res/values/themes.xml`
+2. 标签 `style` 的属性 `parent` 一开始可能为： `Theme.MaterialComponents.DayNight.DarkActionBar`，即深色标题栏
 
-### ③、常见架构模式（MVC和MVP）区别
+![|310](attachments/Pasted%20image%2020230508083412.png)
 
-1. MVC（Model-View-Controller）：MVC 模式中，Controller 负责处理用户输入和业务逻辑，Model 负责数据和业务逻辑，View 负责展示数据。与 MVC 相比，MVVM 将 Controller 分离为 ViewModel，将数据绑定的方式集成进来，使得代码更加简洁和清晰。
-2. MVP（Model-View-Presenter）：MVP 模式中，Presenter 负责处理用户输入和业务逻辑，Model 负责数据和业务逻辑，View 负责展示数据。与 MVP 相比，MVVM 将 Presenter 分离为 ViewModel
+4. 要使其隐藏可修改为：`Theme.MaterialComponents.DayNight.NoActionBar`
 
-### ④、MVVM 三个核心组件
+![|310](attachments/Pasted%20image%2020230508083306.png)
 
-1. 在 MVVM 模式中，有三个核心组件：Model（模型）、View（视图）和 ViewModel（视图模型）。
-2. 它们各自具有不同的职责和作用，并通过数据绑定机制实现彼此之间的关系和交互。
+### ②、`res/values/themes.xml` 内容介绍
 
-#### Ⅰ、Model（模型）
-
-1. 职责：负责处理数据和业务逻辑。它可以是从网络获取的数据、数据库中的数据或其他数据源。Model层通常是独立于界面的，可以在多个界面之间共享
-2. 作用：提供数据和处理数据的方法，封装业务逻辑。
-
-#### Ⅱ、View（视图）
-
-1. 职责：负责展示数据和与用户进行交互。它可以是 Activity、Fragment、View 等。View 层主要负责 UI 的展示和用户输入的响应。 
-2. 作用：将 ViewModel 中的数据展示给用户，并将用户的输入传递给 ViewModel。
-
-#### Ⅲ、ViewModel（视图模型）
-
-1. 职责：连接 View 和 Model，作为 View 和 Model 之间的桥梁。它负责从 Model 中获取数据，并将数据转换为 View 层可以直接使用的形式。ViewModel 还负责监听 Model 的数据变化，并通知 View 进行更新。ViewModel 通常是与 View 一一对应的，每个 View 都有一个对应的 iewModel。 
-2. 作用：处理 View 层的数据展示和用户交互，并与 Model 层进行交互。
-3. ViewModel 通过数据绑定机制将 Model 的数据与 View 进行绑定，实现数据的自动更新。当 Model 的数据发生变化时，ViewModel 会自动通知 View 进行更新。这种数据绑定的方式减少了手动更新 UI 的代码量，提高了开发效率。
-4. 下面是一个示意图，说明了 MVVM 模式中 Model、View 和 iewModel 之间的关系和交互方式：
-
-```dart
-        +-------------+
-        |    Model    |
-        +-------------+
-              |
-              |
-              v        
-	    +-------------+
-        |  ViewModel  |
-        +-------------+
-              |
-              |
-              v
-        +-------------+
-        |     View    |
-        +-------------+
-```
-
-5. 在这个示意图中，ViewModel 通过数据绑定机制将 Model 的数据绑定到 View上，当 Model 的数据发生变化时，ViewModel 会自动通知 View 进行更新，从而实现 UI 的自动刷新。用户的输入通过 View 传递给 ViewModel，ViewModel 再将数据传递给 Model 进行处理。
-6. 通过 MVVM 模式，Model、View 和 ViewModel 之间的分离和解耦合，使得代码更易于维护和测试。
-7. ViewModel 作为中间层，负责处理业务逻辑和数据转换，使得 View 层只关注 UI 的展示和用户交互，而不关心具体的业务逻辑和数据处理。这种分层结构和数据绑定的方式使得代码更加清晰、可读性更强，并提高了开发效率和代码质量。
-
-### ⑤、MVVM 数据绑定机制
-
-1. 在 MVVM 模式中，数据绑定是实现 View 和 ViewModel 之间数据同步的关键机制。它允许将 View 中的 UI 元素（如 TextView、EditText）与 ViewModel 中的数据属性进行绑定，当数据发生变化时，自动更新 UI，同时用户的输入也会自动同步到 ViewModel 中。
-2. 数据绑定的原理是通过观察者模式和反射机制实现的。当 ViewModel 中的数据发生变化时，会触发相应的通知，通知绑定的 View 进行更新。而当用户在 View 中输入数据时，数据绑定也会将输入的数据自动同步到 ViewModel 中。这种双向的数据同步机制，使得 View 和 ViewModel 之间实现了数据的实时同步。
-3. 在 Android 中，可以使用数据绑定库（如Data Binding）来实现 MVVM 模式中的数据绑定。Data Binding 库提供了一组注解和工具类，可以简化数据绑定的实现过程。
-4. 以下是在 Android 中使用 Data Binding 库实现 MVVM 模式中的数据绑定的步骤：
----
-1. 配置 Data Binding 库：在项目的 `build.gradle` 文件中，添加 Data Binding 的插件和依赖项。
-
-```gradle
-    // ...
-    dataBinding {
-        enabled = true
-    }
-}
-​
-dependencies {
-    // ...
-    implementation 'androidx.databinding:databinding-runtime:7.0.2'
-}
-```
-
-2. 创建布局文件：在布局文件中，使用标签包裹布局，并使用标签定义绑定的变量和表达式。
+- res/values-night/themes.xml 是深色模式的配置文件，与此基本相同
 
 ```xml
-    <data>
-        <variable name="user" type="com.example.mvvm.User" />
-    </data>
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{user.name}" />
-        <TextView            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(user.age)}" />
-    </LinearLayout>
-</layout>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Base application theme. -->
+	<style name="Theme.Y_pic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+		
+		<!-- 主题颜色设置 -->
+		<!-- 应用的主要色调，actionBar 默认使用该颜色，Toolbar 导航栏的底色 -->
+		<item name="colorPrimary">@color/yuehai_light_blue</item>
+		<!-- 应用的主要暗色调，statusBarColor 默认使用该颜色 -->
+		<item name="colorPrimaryDark">@color/black</item>
+		<!-- 一般控件的选中效果默认采用该颜色，如 CheckBox，RadioButton，SwitchCompat，ProcessBar等 -->
+		<item name="colorAccent">@color/purple_700</item>
+		<item name="colorPrimaryVariant">@color/purple_700</item>
+		<item name="colorOnPrimary">@color/white</item>
+		<!-- 图片标题或者字幕、Medium、action bar subtitle等 -->
+		<item name="colorSecondary">@color/teal_200</item>
+		<item name="colorSecondaryVariant">@color/teal_700</item>
+		<item name="colorOnSecondary">@color/black</item>
+		
+		<!-- 状态栏、顶部导航栏 相关 -->
+		<!-- 状态栏颜色 -->
+		<item name="android:statusBarColor">@color/yuehai_light_blue</item>
+		<!-- activity 是否能在 status bar 底部绘制 -->
+		<item name="android:windowOverscan">true</item>
+		<!-- 让 status bar 透明，相当于 statusBarColor=transparent + windowOverscan=true -->
+		<item name="android:windowTranslucentStatus">true</item>
+		<!-- 改变status bar 文字颜色， true黑色， false白色，API23可用-->
+		<!-- <item name="android:windowLightStatusBar">true</item> -->
+		<!-- 全屏显示，隐藏状态栏、导航栏、底部导航栏 -->
+		<item name="android:windowFullscreen">true</item>
+		
+		<!-- 隐藏标题栏 -->
+		<item name="windowNoTitle">true</item>
+		<!-- 底部虚拟导航栏颜色 -->
+		<item name="android:navigationBarColor">#E91E63</item>
+		<!-- 让底部导航栏变半透明灰色，覆盖在Activity之上（默认false，activity会居于底部导航栏顶部），如果设为true，navigationBarColor 失效 -->
+		<item name="android:windowTranslucentNavigation">true</item>
+		
+		<!-- WindowBackground，可以设置@drawable，颜色引用（@color），不能设置颜色值（#fffffff），
+		Window区域说明：Window涵盖整个屏幕显示区域，包括StatusBar的区域。当windowOverscan=false时，window的区域比Activity多出StatusBar，当windowOverscan=true时，window区域与Activity相同-->
+		<item name="android:windowBackground">@drawable/ic_launcher_background</item>
+		<!--<item name="android:windowBackground">@color/light_purple</item>-->
+		
+		<!-- 控件相关 -->
+		<!-- button 文字是否全部大写（系统默认开）-->
+		<item name="android:textAllCaps">false</item>
+		
+		<!-- 默认 Button,TextView的文字颜色 -->
+		<item name="android:textColor">#B0C4DE</item>
+		<!-- 默认 EditView 输入框字体的颜色 -->
+		<item name="android:editTextColor">#E6E6FA</item>
+		<!-- RadioButton checkbox等控件的文字 -->
+		<item name="android:textColorPrimaryDisableOnly">#1C71A9</item>
+		<!-- 应用的主要文字颜色,actionBar的标题文字默认使用该颜色 -->
+		<item name="android:textColorPrimary">#FFFFFF</item>
+		<!-- 辅助的文字颜色，一般比textColorPrimary的颜色弱一点，用于一些弱化的表示 -->
+		<item name="android:textColorSecondary">#C1C1C1</item>
+		<!-- 控件选中时的颜色,默认使用colorAccent -->
+		<item name="android:colorControlActivated">#FF7F50</item>
+		<!-- 控件按压时的色调-->
+		<item name="android:colorControlHighlight">#FF00FF</item>
+		<!-- CheckBox,RadioButton,SwitchCompat等默认状态的颜色 -->
+		<item name="android:colorControlNormal">#FFD700</item>
+		<!-- 默认按钮的背景颜色 -->
+		<item name="android:colorButtonNormal">#1C71A9</item>
+		
+	</style>
+</resources>
 ```
 
-3. 创建 ViewModel 类：创建一个与 View 对应的 ViewModel 类，并在其中定义与布局文件中绑定的变量。
 
-```java
-public class UserViewModel extends BaseObservable {
-    private String name;
-    private int age;
-​
-    // getter and setter methods
-​
-    @Bindable    
-    public String getName() {
-        return name;
-    }
-​
-    public void setName(String name) {
-        this.name = name;
-        notifyPropertyChanged(BR.name);
-    }
-​
-    @Bindable    
-    public int getAge() {
-        return age;
-    }
-​
-    public void setAge(int age) {
-        this.age = age;
-        notifyPropertyChanged(BR.age);
-    }
+### ③、
+
+### ④、
+
+## 3、动画
+
+### ①、anim 动画
+
+1. 在 `res` 目录下新建 `anim` 目录，然后右键 `anim` 目录，点击新建，选择 `Animation` 资源文件，名称随意，本次为 `enter_left_slide`
+
+![|725](attachments/Pasted%20image%2020230922112559.png)
+
+2. 打开 `enter_left_slide.xml` 文件，编写动画代码
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 从左侧划入的动画 -->
+<!--
+	<set> 是一个动画集合，用于同时播放多个动画。在这里，我们将两种动画效果放在一起，使它们同时播放。
+ -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--
+		从左侧划入
+		android:fromXDelta：开始时 X 轴上的偏移量，这里设置为 -100%p 表示完全在屏幕左侧以外
+		android:toXDelta：结束时 X 轴上的偏移量，这里设置为 0，表示在屏幕中心
+		android:duration：动画持续时间，这里设置为 300 毫秒。
+	 -->
+	<translate
+			android:fromXDelta="-100%p"
+			android:toXDelta="0"
+			android:duration="300" />
+	
+	<!--
+		淡入
+		android:fromAlpha：开始时的透明度，0.0 表示完全透明。
+		android:toAlpha：结束时的透明度，1.0 表示完全不透明。
+		android:duration：动画持续时间，这里设置为 300 毫秒。
+	 -->
+	<alpha
+			android:fromAlpha="0.0"
+			android:toAlpha="1.0"
+			android:duration="300" />
+	
+</set>
+```
+
+3. 再次新建一个文件 `exit_shrinks_centre.xml` ，编写动画代码
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--
+		fromXScale 和 fromYScale 设置动画的初始缩放比例，这里将视图缩小到 0
+		toXScale 和 toYScale 设置动画的最终缩放比例，这里将视图恢复到原始大小
+		pivotX 和 pivotY 设置缩放动画的中心点位置，这里将中心点设置为视图的中心。
+		duration 设置动画的持续时间，以毫秒为单位
+	 -->
+	<scale
+			android:fromXScale="1.0"
+			android:fromYScale="1.0"
+			android:toXScale="0.9"
+			android:toYScale="0.9"
+			android:pivotX="50%"
+			android:pivotY="50%"
+			android:duration="300" />
+
+</set>
+```
+
+4. 在使用动画的 `Activity` 中使用动画：
+	1. 设置进入动画：在 `onCreate`方法中，调用完 `setContentView` 方法之后，使用 `overridePendingTransition` 方法使用动画
+	2. 设置退出动画：重写 `finish` 方法，调用完 `super.finish()` 方法之后，使用 `overridePendingTransition` 方法使用动画
+
+```kotlin
+package com.yuehai.pic.ui.activity
+
+import com.yuehai.pic.R
+
+/**
+ * 图片详情页 Activity
+ */
+class ImageViewerActivity: AppCompatActivity() {
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
+		setContentView(R.layout.activity_image_viewer)
+		
+		/**
+		 * 应用 activity 跳转动画
+		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
+		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
+		 */
+		overridePendingTransition(R.anim.image_details_enter, 0)
+		
+	}
+	
+	/**
+	 * 当用户按下 back 键时，默认行为是关闭当前的 Activity，调用此方法
+	 */
+	override fun finish() {
+		super.finish()
+		/**
+		 * 应用 activity 跳转动画
+		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
+		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
+		 */
+		overridePendingTransition(0, R.anim.image_details_exit)
+	}
+	
 }
 ```
 
-4. 绑定数据：在 Activity 或 Fragment 中，使用 DataBindingUtil 类将布局文件与 ViewModel 进行绑定，并设置 ViewModel 的数据
 
-```dart
-public class MainActivity extends AppCompatActivity {
-    private UserViewModel userViewModel;
-​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-​
-        // 创建ViewModel实例
-        userViewModel = new UserViewModel();
-        userViewModel.setName("John");
-        userViewModel.setAge(25);
-​
-        // 绑定ViewModel和布局文件
-	ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-    binding.setUser(userViewModel);
-  }
-}
+### ②、
+
+### ③、
+
+### ④、
+
+## 4、形状图片
+
+### ①、drawable 下快速生成 icon 图片 vector
+
+1. drawable 右击 new -> vector asset
+
+![|650](attachments/Pasted%20image%2020230518092027.png)
+
+2. 选择 icon AS 中没有时需要导入 svg 或者 psd
+
+![|700](attachments/Pasted%20image%2020230518092055.png)
+
+3. drawable 会生成对应 name 的图标文件 （可以点击左侧 line 7 颜色后选择颜色）
+
+![|700](attachments/Pasted%20image%2020230518092125.png)
+
+4. 在对应的控件中引入就可以了：`android:src="@drawable/ic_up"`
+
+### ②、`shape` 图形中分别设置四个角的圆角矩形
+
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/dark_blue" />
+    <!-- 分别设置 左上角、右上角、右下角、左下角的圆角半径 -->
+    <corners
+        android:topLeftRadius="@dimen/dp_5"
+        android:topRightRadius="@dimen/dp_5"
+        android:bottomLeftRadius="@dimen/dp_10"
+        android:bottomRightRadius="@dimen/dp_10" />
+</shape>
 ```
 
-5. 通过以上步骤，我们将布局文件和 ViewModel 进行了绑定，同时设置了 ViewModel 的数据。当 ViewModel 中的数据发生变化时，布局文件中相应的 UI 元素会自动更新。同时，当用户在 UI 元素中输入数据时，Data Binding 库也会自动将输入的数据同步到 ViewModel 中。
-6. 使用数据绑定的好处是能够简化代码，减少手动更新UI的代码量，提高开发效率。它还能够降低代码的耦合性，使得 UI 和数据逻辑的修改更加灵活和独立。另外，数据绑定还能够提高代码的可读性和可维护性，使得代码更易于理解和调试。
 
-### ⑥、MVVM 架构模式发展趋势
+### ③、`shape` 图形中多个图形的叠加
 
-1. MVVM 模式在 Android 开发中已经得到广泛应用，并且在未来仍然有着较大的发展潜力。以下是一些未来发展趋势：
-2. Jetpack Compose：Jetpack Compose 是 Google 推出的一种全新的 UI 框架，它采用了声明式 UI 的方式，与 MVVM 模式非常契合。Jetpack Compose 能够简化 UI 开发流程，提供更加灵活和响应式的 UI 编程方式。
-3. 数据驱动 UI：未来，数据驱动 UI 的概念将会更加普及和强调。MVVM 模式的数据绑定和观察者模式是实现数据驱动 UI 的重要手段，未来可能会有更多的框架和工具出现，进一步简化数据和 UI 的绑定过程。
-4. 更强大的 ViewModel 组件：Android Jetpack 中的 ViewModel 组件已经为开发者提供了很多便利，但未来可能会有更多功能和特性被添加进来，以进一步提高ViewModel的灵活性和可扩展性。
-5. 跨平台开发：MVVM 模式的解耦特性使得代码更具可移植性，未来可能会有更多的跨平台开发框架和工具出现，使得开发者能够更轻松地在不同平台上使用 MVVM 模式进行开发。
+1. 使用 `layer-list` 包裹多个 `item` 即可
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- layer-list 中的 item 会按照顺序叠加 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- 第一个 item 是蓝色背景，作为边框，width 和 height 是整个 shape 的宽高 -->
+    <item
+        android:width="@dimen/dp_140"
+        android:height="@dimen/dp_70">
+        <!-- shape 是一个矩形，solid 是填充色，corners 是圆角 -->
+        <shape>
+            <solid android:color="@color/dark_blue" />
+            <corners
+                android:topLeftRadius="@dimen/dp_5"
+                android:topRightRadius="@dimen/dp_5"/>
+        </shape>
+    </item>
+    <!-- 第一个 item 是白色背景，作为内容，gravity 是居中方式 -->
+    <item
+        android:width="@dimen/dp_136"
+        android:height="@dimen/dp_68"
+        android:gravity="center_horizontal|bottom">
+        <shape>
+            <solid android:color="@color/white" />
+            <corners
+                android:topLeftRadius="@dimen/dp_5"
+                android:topRightRadius="@dimen/dp_5"/>
+        </shape>
+    </item>
+</layer-list>
+```
+
+2. 效果：
+
+![](attachments/Pasted%20image%2020231208141804.png)
+
+### ④、
+
+## 5、
+
+## 6、
+
+## 7、
 
 ## 8、
 
-# 十二、错误总结
+# 十二、控件补充
+
+## 1、其他
+
+### ①、布局时使用负数参数
+
+1. 可使用 `translationX` 和 `translationY` 来设置控件的位置
+2. `translationX`：水平偏移
+3. `translationY`：垂直偏移
+4. 例子：
+
+```xml
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/category_position_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red_footer"
+    android:orientation="vertical">
+    
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/closeButton"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:src="@drawable/ic_close_button"
+            android:translationX="@dimen/dp_m_30"
+            android:translationY="@dimen/dp_30"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+![|668](attachments/Pasted%20image%2020231026102417.png)
+
+### ②、在代码中动态修改控件的宽高
+
+1. android 的 view 中有 `setPadding`，但是没有直接的 `setMargin` 方法，如果要在代码中设置 `Margin` 可以通过设置 view 里面的 `LayoutParams` 设置
+2. 而这个 `LayoutParams` 是根据该 view 在不同的 `GroupView` 而不同的，具体取决于父布局的类型和需要修改的具体布局参数。
+3. 如果父布局是 `ConstraintLayout`，并且需要修改的布局参数是 `ConstraintLayout.LayoutParams` 中定义的特定属性（例如 `topMargin`），那么可以使用 `fragmentContainerView.layoutParams as ConstraintLayout.LayoutParams`
+4. 如果父布局是任何类型的 `ViewGroup` （`LinearLayout`、`RelativeLayout`、`FrameLayout` 和 `ConstraintLayout` 都属于 `ViewGroup`），并且只需要修改通用的布局参数（例如 `topMargin`、`leftMargin` 等），那么可以使用 `fragmentContainerView.layoutParams as ViewGroup.MarginLayoutParams`。
+5. `MarginLayoutParams` 是 `ViewGroup` 的一个子类，它包含了常用的边距属性。
+6. 所以，选择使用哪种写法取决于具体情况和需求。如果需要修改特定布局类型的特定属性，选择对应的布局参数类型；如果只需要修改通用属性，选择通用的 `MarginLayoutParams`
+7. 使用流程
+	1. 获取所要修改 `Margin` 的 view 对象的 `LayoutParams` 对象
+	2. 给 `LayoutParams` 对象的 `topMargin`（或其他属性）属性赋值
+	3. 将 `LayoutParams` 对象赋值给所要修改 `Margin` 的 view 对象的 `layoutParams` 属性
+8. 代码示例，布局：
+
+```dart
+
+```
+
+9. 代码示例，动态修改：
+10. 1
+11. 1
+12. 1
+13. 1
+
+
+
+### ③、
+
+## 2、TextView 文本
+
+### ①、`TextView` 行间距设置
+
+1. 可以使用 `android:lineSpacingExtra` 属性来设置行间距的额外空间；在下面的示例中，使用 `android:lineSpacingExtra` 属性来设置行间距的额外空间为 `8dp`。这样就会在每一行的底部增加 `8dp` 的额外空间，从而实现行间距的效果。也可以设置为负数
+
+```xml
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    android:lineSpacingExtra="8dp" />
+```
+
+2. 也可以使用 `android:lineSpacingMultiplier` 属性来设置行间距的倍数。这个属性的值是一个浮点数，表示行间距相对于默认行间距的倍数；在下面的示例中，使用 `android:lineSpacingMultiplier` 属性将行间距设置为默认行间距的 `1.5` 倍。
+
+```xml
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    android:lineSpacingMultiplier="1.5" />
+```
+
+### ②、指定 `TextView` 最大行数
+
+1. 可使用 `android:lines` 属性来设置最大显示行数，超出的部分不再显示
+
+```xml
+<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="testtesttesttesttesttesttesttest"
+		android:textSize="20sp"
+		android:lines="2"
+		android:ellipsize="end"/>
+```
+
+2. `android:ellipsize="end"` 表示若内容超出，则在内容末尾 `end` 添加省略号（`...`）
+
+### ③、
+
+## 2、recyclerView 列表
+
+### ①、`recyclerView` 滚动到指定位置时的动画
+
+- `LinearLayoutManager` 是用于在 RecyclerView 中管理线性布局的布局管理器。它本身并没有提供滚动动画的功能。但可以通过结合使用 `RecyclerView` 的 `smoothScrollToPosition()` 方法和 `RecyclerView.ItemAnimator` 来实现滚动时的动画效果。
+
+1. 首先，确保已经为 RecyclerView 设置了自定义的 ItemAnimator。例如：
+
+```java
+val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+/**
+ * RecyclerView.ItemAnimator 是用于处理 RecyclerView 中项目插入、移除、更改等操作时的动画效果的接口。
+ * 它允许定义项目变化时的动画效果，例如淡入淡出、平移、缩放等。
+ *
+ * DefaultItemAnimator 是 Android 提供的默认 RecyclerView.ItemAnimator 实现之一。
+ * DefaultItemAnimator 是 RecyclerView.ItemAnimator 接口的默认实现。它提供了一些默认的动画效果，例如渐变淡入淡出、默认的滑动动画等。
+ * 当将 DefaultItemAnimator 分配给 RecyclerView 的 setItemAnimator() 方法时，它将处理 RecyclerView 中项目变化的动画效果。
+ */
+recyclerView.itemAnimator = DefaultItemAnimator()
+```
+
+2. 然后，可以使用 `smoothScrollToPosition()` 方法滚动到指定位置，并触发 ItemAnimator 中的动画效果。例如：
+
+```java
+var layoutManager = recyclerView.layoutManager as LinearLayoutManager
+/**
+ * 参数 1：RecyclerView：指定要进行滚动操作的 RecyclerView 实例。
+ * 参数 2：RecyclerView.State：提供有关 RecyclerView 的状态信息，如焦点位置等。在大多数情况下，可以传递 null，以使用默认的状态。
+ * 参数 3：int position：指定要滚动到的目标位置。
+ */
+layoutManager.smoothScrollToPosition(recyclerView, null, 0)
+```
+
+3. 这将滚动到列表中的第一个位置，并触发 ItemAnimator 中的动画效果（如果有定义的话）。
+4. 注意，要使上述代码正常工作，确保在调用 `smoothScrollToPosition()` 方法之前已经设置了适当的布局管理器（例如 `LinearLayoutManager`）和适配器（例如 `RecyclerView.Adapter`）。
+5. 另外，请注意，根据定制的需求，可能需要自定义 `ItemAnimator` 的实现，或者使用第三方库来实现更复杂的动画效果。
+
+### ②、
+
+### ③、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
+
+# 十三、错误总结
 
 ## 1、module java.base does not "opens java.io"
 
@@ -10408,7 +10624,7 @@ org.gradle.jvmargs=-Xmx1536M \
 
 ## 5、
 
-# 十三、工具
+# 十四、工具
 
 ## 1、开源投屏工具：`scrcpy`
 
@@ -10673,118 +10889,3 @@ genymotion:/sdcard/Download #
 ## 8、
 
 ## 9、
-
-# 十四、其他
-
-## 1、布局时使用负数参数
-
-1. 可使用 `translationX` 和 `translationY` 来设置控件的位置
-2. `translationX`：水平偏移
-3. `translationY`：垂直偏移
-4. 例子：
-
-```xml
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/category_position_dialog"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/red_footer"
-    android:orientation="vertical">
-    
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/closeButton"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_60"
-            android:src="@drawable/ic_close_button"
-            android:translationX="@dimen/dp_m_30"
-            android:translationY="@dimen/dp_30"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
-
-![|668](attachments/Pasted%20image%2020231026102417.png)
-
-## 2、
-
-## 3、
-
-## 4、
-
-## 5、
-
-## 6、
-
-## 7、
-
-## 8、
-
-## 9、
-
----
-
-### ①、
-
-### ②、
-
-### ③、
-
-### ④、
-
-### ⑤、
-
-### ⑥、
-
-### ⑦、
-
-### ⑧、
-
-### ⑨、
-
-### ⑩、
-
-### ⑪、⑫、⑬、⑭、⑮、⑯、⑰、⑱、⑲、⑳
-
-### ㉑、㉒、㉓、㉔、㉕、㉖、㉗、㉘、㉙、㉚
-
-### ㉛、㉜、㉝、㉞、㉟、㊱、㊲、㊳、㊴、㊵
-
-### ㊶、㊷、㊸、㊹、㊺、㊻、㊼、㊽、㊾、㊿
-
-#### Ⅰ、
-
-#### Ⅱ、
-
-#### Ⅲ、
-
-#### Ⅳ、
-
-#### Ⅴ、
-
-#### Ⅵ、
-
-#### Ⅶ、
-
-#### Ⅷ、
-
-#### Ⅸ、
-
-#### Ⅹ、
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
