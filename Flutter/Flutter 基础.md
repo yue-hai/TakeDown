@@ -17415,7 +17415,2529 @@ flutter packages pub run build_runner watch
 
 # 十、动画
 
+## 1、Flutter 动画简介
+
+### ①、动画基本原理
+
+1. 在任何系统的 UI 框架中，动画实现的原理都是相同的，即：在一段时间内，快速地多次改变UI外观；由于人眼会产生视觉暂留，所以最终看到的就是一个“连续”的动画，这和电影的原理是一样的。
+2. 我们将 UI 的一次改变称为一个动画帧，对应一次屏幕刷新，而决定动画流畅度的一个重要指标就是帧率 FPS（Frame Per Second），即每秒的动画帧数。
+3. 很明显，帧率越高则动画就会越流畅！一般情况下，对于人眼来说，动画帧率超过 16 FPS，就基本能看了，超过 32 FPS 就会感觉相对平滑，而超过 32 FPS，大多数人基本上就感受不到差别了。
+4. 由于动画的每一帧都是要改变 UI 输出，所以在一个时间段内连续的改变 UI 输出是比较耗资源的，对设备的软硬件系统要求都较高，所以在UI系统中，动画的平均帧率是重要的性能指标，而在 Flutter 中，理想情况下是可以实现 60FPS 的，这和原生应用能达到的帧率是基本是持平的
+
+### ②、Flutter 中动画抽象
+
+1. 为了方便开发者创建动画，不同的 UI 系统对动画都进行了一些抽象，比如在 Android 中可以通过 XML 来描述一个动画然后设置给 View。
+2. Flutter 中也对动画进行了抽象，主要涉及 `Animation`、`Curve`、`AnimationController`、`Tween` 这四个角色，它们一起配合来完成一个完整动画
+
+#### Ⅰ、Animation
+
+1. Animation 是一个抽象类，它本身和 UI 渲染没有任何关系，而它主要的功能是保存动画的插值和状态；其中一个比较常用的 `Animation` 类是`Animation<double>`。
+2. `Animation` 对象是一个在一段时间内依次生成一个区间(Tween)之间值的类。`Animation` 对象在整个动画执行过程中输出的值可以是线性的、曲线的、一个步进函数或者任何其他曲线函数等等，这由 `Curve` 来决定。 
+3. 根据 `Animation` 对象的控制方式，动画可以正向运行（从起始状态开始，到终止状态结束），也可以反向运行，甚至可以在中间切换方向。
+4. `Animation` 还可以生成除 `double` 之外的其他类型值，如：`Animation<Color>` 或 `Animation<Size>`。
+5. 在动画的每一帧中，我们可以通过 `Animation` 对象的 `value` 属性获取动画的当前状态值。
+6. 我们可以通过 `Animation` 来监听动画每一帧以及执行状态的变化，`Animation` 有如下两个方法：
+	1. `addListener()`：它可以用于给 `Animation` 添加帧监听器，在每一帧都会被调用。帧监听器中最常见的行为是改变状态后调用 `setState()` 来触发 UI 重建。
+	2. `addStatusListener()`：它可以给 Animation 添加“动画状态改变”监听器；动画开始、结束、正向或反向（见AnimationStatus定义）时会调用状态改变的监听器。
+
+#### Ⅱ、Curve
+
+1. 动画过程可以是匀速的、匀加速的或者先加速后减速等。
+2. Flutter 中通过 Curve（曲线）来描述动画过程，我们把匀速动画称为线性的(Curves.linear)，而非匀速动画称为非线性的。
+3. 我们可以通过 `CurvedAnimation` 来指定动画的曲线，如：
+
+```dart
+final CurvedAnimation curve =
+    CurvedAnimation(parent: controller, curve: Curves.easeIn);
+```
+
+4. `CurvedAnimation` 和 `AnimationController`（下面介绍）都是 `Animation<double>` 类型。
+5. `CurvedAnimation` 可以通过包装 `AnimationController` 和 `Curve` 生成一个新的动画对象 ，我们正是通过这种方式来将动画和动画执行的曲线关联起来的。我们指定动画的曲线为 `Curves.easeIn`，它表示动画开始时比较慢，结束时比较快。 `Curves (opens new window)` 类是一个预置的枚举类，定义了许多常用的曲线，下面列几种常用的：
+
+| Curves 曲线 | 动画过程                     |
+| ----------- | ---------------------------- |
+| linear      | 匀速的                       |
+| decelerate  | 匀减速                       |
+| ease        | 开始加速，后面减速           |
+| easeIn      | 开始慢，后面快               |
+| easeOut     | 开始快，后面慢               |
+| easeInOut   | 开始慢，然后加速，最后再减速 |
+
+6. 除了上面列举的， `Curves (opens new window)` 类中还定义了许多其他的曲线。
+7. 当然我们也可以创建自己 `Curve`，例如我们定义一个正弦曲线：
+
+```dart
+class ShakeCurve extends Curve {
+  @override
+  double transform(double t) {
+    return math.sin(t * math.PI * 2);
+  }
+}
+```
+
+#### Ⅲ、AnimationController
+
+1. `AnimationController` 用于控制动画，它包含动画的启动 `forward()`、停止 `stop()` 、反向播放 `reverse()` 等方法。
+2. `AnimationController` 会在动画的每一帧，就会生成一个新的值。默认情况下，`AnimationController` 在给定的时间段内线性的生成从 `0.0` 到 `1.0`（默认区间）的数字。 例如，下面代码创建一个 `Animation` 对象（但不会启动动画）：
+
+```dart
+final AnimationController controller = AnimationController(
+  duration: const Duration(milliseconds: 2000),
+  vsync: this,
+);
+```
+
+3. `AnimationController` 生成数字的区间可以通过 `lowerBound` 和 `upperBound` 来指定，如：
+
+```dart
+final AnimationController controller = AnimationController( 
+ duration: const Duration(milliseconds: 2000), 
+ lowerBound: 10.0,
+ upperBound: 20.0,
+ vsync: this
+);
+```
+
+2. `AnimationController` 派生自 `Animation<double>`，因此可以在需要 `Animation` 对象的任何地方使用。 
+3. 但是，`AnimationController` 具有控制动画的其他方法，例如 `forward()` 方法可以启动正向动画，`reverse()` 可以启动反向动画。
+4. 在动画开始执行后开始生成动画帧，屏幕每刷新一次就是一个动画帧，在动画的每一帧，会随着根据动画的曲线来生成当前的动画值（Animation.value），然后根据当前的动画值去构建 UI， 当所有动画帧依次触发时，动画值会依次改变，所以构建的 UI 也会依次变化，所以最终我们可以看到一个完成的动画。 另外在动画的每一帧，`Animation` 对象会调用其帧监听器，等动画状态发生改变时（如动画结束）会调用状态改变监听器。
+5. `duration` 表示动画执行的时长，通过它我们可以控制动画的速度。
+	1. 注意： 在某些情况下，动画值可能会超出 `AnimationController` 的 `[0.0，1.0]` 的范围，这取决于具体的曲线。
+	2. 例如，`fling()` 函数可以根据我们手指滑动（甩出）的速度(velocity)、力量(force)等来模拟一个手指甩出动画，因此它的动画值可以在 `[0.0，1.0]` 范围之外 。
+	3. 也就是说，根据选择的曲线，`CurvedAnimation` 的输出可以具有比输入更大的范围。例如，`Curves.elasticIn` 等弹性曲线会生成大于或小于默认范围的值。
+6. 当创建一个 `AnimationController` 时，需要传递一个 `vsync` 参数，它接收一个 `TickerProvider` 类型的对象，它的主要职责是创建 `Ticker`，定义如下：
+
+```dart
+abstract class TickerProvider {
+  //通过一个回调创建一个Ticker
+  Ticker createTicker(TickerCallback onTick);
+}
+```
+
+7. Flutter 应用在启动时都会绑定一个 `SchedulerBinding`，通过 `SchedulerBinding` 可以给每一次屏幕刷新添加回调，而 `Ticker` 就是通过 `SchedulerBinding` 来添加屏幕刷新回调，这样一来，每次屏幕刷新都会调用 `TickerCallback`。
+8. 使用 `Ticker`(而不是Timer) 来驱动动画会防止屏幕外动画（动画的 UI 不在当前屏幕时，如锁屏时）消耗不必要的资源，因为 Flutter 中屏幕刷新时会通知到绑定的 `SchedulerBinding`，而 `Ticker` 是受 `SchedulerBinding` 驱动的，由于锁屏后屏幕会停止刷新，所以 `Ticker` 就不会再触发。
+9. 通常我们会将 `SingleTickerProviderStateMixin` 添加到 `State` 的定义中，然后将 `State` 对象作为 `vsync` 的值，这在后面的例子中可以见到。
+10. 1
+
+#### Ⅳ、Tween
+
+##### （1）、简介
+
+1. 默认情况下，`AnimationController` 对象值的范围是 `[0.0，1.0]`。如果我们需要构建 UI 的动画值在不同的范围或不同的数据类型，则可以使用 `Tween` 来添加映射以生成不同的范围或数据类型的值。例如，像下面示例，`Tween` 生成 `[-200.0，0.0]` 的值：
+
+```dart
+final Tween doubleTween = Tween<double>(begin: -200.0, end: 0.0);
+```
+
+2. `Tween` 构造函数需要 `begin` 和 `end` 两个参数。`Tween` 的唯一职责就是定义从输入范围到输出范围的映射。输入范围通常为 `[0.0，1.0]`，但这不是必须的，我们可以自定义需要的范围。
+3. `Tween` 继承自 `Animatable<T>`，而不是继承自 `Animation<T>`，`Animatable` 中主要定义动画值的映射规则。
+4. 下面我们看一个 `ColorTween` 将动画输入范围映射为两种颜色值之间过渡输出的例子：
+
+```dart
+final Tween colorTween =
+    ColorTween(begin: Colors.transparent, end: Colors.black54);
+```
+
+5. `Tween` 对象不存储任何状态，相反，它提供了 `evaluate(Animation<double> animation)` 方法，它可以获取动画当前映射值。 `Animation` 对象的当前值可以通过 `value()` 方法取到。`evaluate` 函数还执行一些其他处理，例如分别确保在动画值为 `0.0` 和 `1.0` 时返回开始和结束状态
+
+##### （2）、Tween.animate
+
+1. 要使用 `Tween` 对象，需要调用其 `animate()` 方法，然后传入一个控制器对象。例如，以下代码在 500 毫秒内生成从 0 到 255 的整数值。
+
+```dart
+final AnimationController controller = AnimationController(
+  duration: const Duration(milliseconds: 500), 
+  vsync: this,
+);
+Animation<int> alpha = IntTween(begin: 0, end: 255).animate(controller);
+```
+
+2. 注意 `animate()` 返回的是一个 `Animation`，而不是一个 `Animatable`。
+3. 以下示例构建了一个控制器、一条曲线和一个 Tween：
+
+```dart
+final AnimationController controller = AnimationController(
+  duration: const Duration(milliseconds: 500), 
+  vsync: this,
+);
+final Animation curve = CurvedAnimation(parent: controller, curve: Curves.easeOut);
+Animation<int> alpha = IntTween(begin: 0, end: 255).animate(curve);
+
+```
+
+### ③、线性插值 lerp 函数
+
+1. 动画的原理其实就是每一帧绘制不同的内容，一般都是指定起始和结束状态，然后在一段时间内从起始状态逐渐变为结束状态，而具体某一帧的状态值会根据动画的进度来算出，因此，Flutter 中给有可能会做动画的一些状态属性都定义了静态的 `lerp` 方法（线性插值），比如：
+
+```dart
+//a 为起始颜色，b为终止颜色，t为当前动画的进度[0,1]
+Color.lerp(a, b, t);
+```
+
+2. `lerp` 的计算一般遵循： `返回值 = a + (b - a) * t`，其他拥有 `lerp` 方法的类：
+
+```dart
+// Size.lerp(a, b, t)
+// Rect.lerp(a, b, t)
+// Offset.lerp(a, b, t)
+// Decoration.lerp(a, b, t)
+// Tween.lerp(t) //起始状态和终止状态在构建 Tween 的时候已经指定了
+...
+```
+
+3. 需要注意，`lerp` 是线性插值，意思是返回值和动画进度 t 是成一次函数（`y = kx + b`）关系，因为一次函数的图像是一条直线，所以叫线性插值。
+4. 如果我们想让动画按照一个曲线来执行，我们可以对 t 进行映射，比如要实现匀加速效果，则 `t' = at²+bt+c`，然后指定加速度 a 和 b 即可（大多数情况下需保证 `t'` 的取值范围在 `[0,1]`，当然也有一些情况可能会超出该取值范围，比如弹簧（bounce）效果），而不同 Curve 可以按照不同曲线执行动画的原理本质上就是对 t 按照不同映射公式进行映射实现的。
+
+## 2、动画基本结构及状态监听
+
+### ①、动画基本结构
+
+#### Ⅰ、基础版本
+
+##### （1）、匀速放大
+
+1. 在 Flutter 中我们可以通过多种方式来实现动画
+2. 下面通过一个图片逐渐放大示例的不同实现来演示 Flutter 中动画的不同实现方式的区别
+
+```dart
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
+
+class ScaleAnimationComponent extends StatefulWidget {
+  const ScaleAnimationComponent({Key? key}) : super(key: key);
+
+  @override
+  _ScaleAnimationComponentState createState() => _ScaleAnimationComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _ScaleAnimationComponentState extends State<ScaleAnimationComponent> with SingleTickerProviderStateMixin {
+  // 动画对象
+  late Animation<double> animation;
+  // 动画控制器
+  late AnimationController controller;
+
+  @override
+  initState() {
+    super.initState();
+    // 创建 AnimationController 对象，设置动画持续时间为 2 秒。
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    // Tween 的作用是设置动画的起始值和结束值，作为动画的补间值。
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller)
+      ..addListener(() {
+        setState(() => {});
+      });
+
+    // 启动动画(正向执行)
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Image.asset(
+        "asset/images/QQ图片20220920105928.jpg",
+        width: animation.value,
+        height: animation.value,
+      ),
+    );
+  }
+
+  @override
+  dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+3. 效果：
+
+![|386](attachments/动画35.gif)
+
+4. 上面代码中 `addListener()` 函数调用了 `setState()`，所以每次动画生成一个新的数字时，当前帧被标记为脏(dirty)，这会导致 widget 的 `build()` 方法再次被调用
+5. 而在 `build()` 中，改变 Image 的宽高，因为它的高度和宽度现在使用的是 `animation.value`，所以就会逐渐放大。
+6. 值得注意的是动画完成时要释放控制器，调用 `dispose()` 方法，以防止内存泄漏。
+
+##### （2）、先快后慢
+
+1. 上面的例子中并没有指定 `Curve`，所以放大的过程是线性的（匀速），下面我们指定一个 `Curve`，来实现一个类似于弹簧效果的动画过程，我们只需要将 `initState` 中的代码改为下面这样即可：
+
+```dart
+  @override
+  initState() {
+    super.initState();
+    // 创建 AnimationController 对象，设置动画持续时间为 2 秒。
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    // CurvedAnimation 可以更改动画的执行速率，使动画感觉更加流畅；这里使用的是 Curves.easeIn 缓动曲线（先快后慢）
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    // Tween 的作用是设置动画的起始值和结束值，作为动画的补间值。
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller)
+      ..addListener(() {
+        setState(() => {});
+      });
+
+    // 启动动画(正向执行)
+    controller.forward();
+  }
+```
+
+2. 效果：
+
+![](attachments/动画36.gif)
+
+#### Ⅱ、使用 AnimatedWidget 简化
+
+1. 上面示例中通过 `addListener()` 和 `setState()` 来更新 UI 这一步其实是通用的，如果每个动画中都加这么一句是比较繁琐的。
+2. `AnimatedWidget` 类封装了调用 `setState()` 的细节，并允许我们将 widget 分离出来，重构后的代码如下：
+3. 抽取出来的 `02_1_AnimatedWidget.dart`
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+class AnimatedImage extends AnimatedWidget {
+  // AnimatedWidget 的构造函数，需要传入一个 Animation 对象
+  const AnimatedImage({Key? key, required Animation<double> animation,})
+      : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    // listenable as Animation<double> 用于获取动画对象
+    final animation = listenable as Animation<double>;
+    // Center 用于将其子部件树对齐到屏幕中心
+    return Center(
+      // Image.asset 用于加载本地图片
+      child: Image.asset(
+        "asset/images/QQ图片20220920105928.jpg",
+        width: animation.value,
+        height: animation.value,
+      ),
+    );
+  }
+}
+```
+
+4. `02_2_AnimatedWidgetComponent.dart` 动画实现类
+
+```dart
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '02_1_AnimatedWidget.dart';
+
+
+class AnimatedWidgetComponent extends StatefulWidget {
+  const AnimatedWidgetComponent({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedWidgetComponentState createState() => _AnimatedWidgetComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _AnimatedWidgetComponentState extends State<AnimatedWidgetComponent> with SingleTickerProviderStateMixin {
+  // 动画对象
+  late Animation<double> animation;
+  // 动画控制器
+  late AnimationController controller;
+
+  @override
+  initState() {
+    super.initState();
+    // 创建 AnimationController 对象，设置动画持续时间为 2 秒。
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    // Tween 的作用是设置动画的起始值和结束值，作为动画的补间值。
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller);
+
+    // 启动动画(正向执行)
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 实例化 AnimatedImage，将动画对象传递给它
+    return AnimatedImage(animation: animation);
+  }
+
+  @override
+  dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+#### Ⅲ、使用 AnimatedBuilder 重构
+
+1. 用 `AnimatedWidget` 可以从动画中分离出 widget，而动画的渲染过程（即设置宽高）仍然在 `AnimatedWidget` 中，假设如果我们再添加一个 widget 透明度变化的动画，那么我们需要再实现一个 `AnimatedWidget`，这样不是很优雅，如果我们能把渲染过程也抽象出来，那就会好很多，而 `AnimatedBuilder` 正是将渲染逻辑分离出来, 上面的代码可以改为：
+
+```dart
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '02_1_AnimatedWidget.dart';
+
+
+class AnimatedBuilderComponent extends StatefulWidget {
+  const AnimatedBuilderComponent({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedBuilderComponentState createState() => _AnimatedBuilderComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _AnimatedBuilderComponentState extends State<AnimatedBuilderComponent> with SingleTickerProviderStateMixin {
+  // 动画对象
+  late Animation<double> animation;
+  // 动画控制器
+  late AnimationController controller;
+
+  @override
+  initState() {
+    super.initState();
+    // 创建 AnimationController 对象，设置动画持续时间为 2 秒。
+    controller = AnimationController(duration: const Duration(seconds: 2), vsync: this,);
+
+    // Tween 的作用是设置动画的起始值和结束值，作为动画的补间值。
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller);
+
+    // 启动动画(正向执行)
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // AnimatedBuilder 是一个小部件，用于构建动画小部件，它可以封装常见的动画构建过程，省去了每次都要重新实现动画的麻烦。
+    return AnimatedBuilder(
+      // 动画对象
+      animation: animation,
+      // 子部件
+      child: Image.asset("asset/images/QQ图片20220920105928.jpg"),
+      // 构建动画
+      builder: (BuildContext context, child){
+        // Center 是一个小部件，用于将其子部件居中显示。
+        return Center(
+          // SizedBox 是一个小部件，用于给子部件指定固定的宽度和高度。
+          child: SizedBox(
+            width: animation.value,
+            height: animation.value,
+            // 将子部件居中显示，这里的子部件就是 AnimatedBuilder 的 child 属性。
+            child: child,
+          ),
+        );
+      }
+    );
+  }
+
+  @override
+  dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+2. 看着也许和刚开始的示例差不了多少，其实它会带来三个好处：
+	1. 不用显式的去添加帧监听器，然后再调用 `setState()` 了，这个好处和 `AnimatedWidget` 是一样的。
+	2. 更好的性能：因为动画每一帧需要构建的 widget 的范围缩小了，如果没有 builder，`setState()` 将会在父组件上下文中调用，这将会导致父组件的 build 方法重新调用；而有了 builder 之后，只会导致动画 widget 自身的 build 重新调用，避免不必要的 rebuild。
+	3. 通过 `AnimatedBuilder` 可以封装常见的过渡效果来复用动画。
+
+#### Ⅳ、封装过渡效果来复用动画
+
+1. 封装一个 `04_GrowTransition.dart` 来说明，它可以对子 widget 实现放大动画：
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+class GrowTransition extends StatelessWidget {
+  const GrowTransition({Key? key, required this.animation, this.child,}) : super(key: key);
+
+  // 子部件
+  final Widget? child;
+  // 动画对象
+  final Animation<double> animation;
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个小部件，用于将其子部件居中显示。
+    return Center(
+      // AnimatedBuilder 是一个小部件，用于构建动画小部件，它可以封装常见的动画构建过程，省去了每次都要重新实现动画的麻烦。
+      child: AnimatedBuilder(
+        // 动画对象
+        animation: animation,
+        builder: (BuildContext context, child) {
+          return SizedBox(
+            height: animation.value,
+            width: animation.value,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
+  }
+
+}
+```
+
+2. 这样，最初的示例就可以改为：
+
+```dart
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '02_1_AnimatedWidget.dart';
+import '04_GrowTransition.dart';
+
+
+class GrowTransitionComponent extends StatefulWidget {
+  const GrowTransitionComponent({Key? key}) : super(key: key);
+
+  @override
+  _GrowTransitionComponentState createState() => _GrowTransitionComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _GrowTransitionComponentState extends State<GrowTransitionComponent> with SingleTickerProviderStateMixin {
+  // 动画对象
+  late Animation<double> animation;
+  // 动画控制器
+  late AnimationController controller;
+
+  @override
+  initState() {
+    super.initState();
+    // 创建 AnimationController 对象，设置动画持续时间为 2 秒。
+    controller = AnimationController(duration: const Duration(seconds: 2), vsync: this,);
+
+    // Tween 的作用是设置动画的起始值和结束值，作为动画的补间值。
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller);
+
+    // 启动动画(正向执行)
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // AnimatedBuilder 是一个小部件，用于构建动画小部件，它可以封装常见的动画构建过程，省去了每次都要重新实现动画的麻烦。
+    return GrowTransition(
+      // 动画对象
+      animation: animation,
+      // 子部件
+      child: Image.asset("asset/images/QQ图片20220920105928.jpg")
+    );
+  }
+
+  @override
+  dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+3. Flutter 中正是通过这种方式封装了很多动画，如：FadeTransition、ScaleTransition、SizeTransition 等，很多时候都可以复用这些预置的过渡类
+
+### ②、动画状态监听
+
+1. 上面说过，我们可以通过 `Animation` 的 `addStatusListener()` 方法来添加动画状态改变监听器。
+2. Flutter 中，有四种动画状态，在 `AnimationStatus` 枚举类中定义，下面我们逐个说明
+
+| 枚举值    | 含义             |
+| --------- | ---------------- |
+| dismissed | 动画在起始点停止 |
+| forward   | 动画正在正向执行 |
+| reverse   | 动画正在反向执行 |
+| completed | 动画在终点停止   |
+
+3. 我们将上面图片放大的示例改为先放大再缩小再放大……这样的循环动画。
+4. 要实现这种效果，我们只需要监听动画状态的改变即可，即：在动画正向执行结束时反转动画，在动画反向执行结束时再正向执行动画。代码如下：
+5. `01_GrowTransitionStatusListener.dart` 过渡封装类
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+class GrowTransitionStatusListener extends StatelessWidget {
+  const GrowTransitionStatusListener({Key? key, required this.animation, this.child,}) : super(key: key);
+
+  // 子部件
+  final Widget? child;
+  // 动画对象
+  final Animation<double> animation;
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个小部件，用于将其子部件居中显示。
+    return Center(
+      // AnimatedBuilder 是一个小部件，用于构建动画小部件，它可以封装常见的动画构建过程，省去了每次都要重新实现动画的麻烦。
+      child: AnimatedBuilder(
+        // 动画对象
+        animation: animation,
+        builder: (BuildContext context, child) {
+          return SizedBox(
+            height: animation.value,
+            width: animation.value,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
+  }
+
+}
+```
+
+6. `01_GrowTransitionStatusListenerComponent.dart` 动画状态监听类
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_GrowTransitionStatusListener.dart';
+
+
+class GrowTransitionStatusListenerComponent extends StatefulWidget {
+  const GrowTransitionStatusListenerComponent({Key? key}) : super(key: key);
+
+  @override
+  _GrowTransitionStatusListenerComponentState createState() => _GrowTransitionStatusListenerComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _GrowTransitionStatusListenerComponentState extends State<GrowTransitionStatusListenerComponent> with SingleTickerProviderStateMixin {
+  // 动画对象
+  late Animation<double> animation;
+  // 动画控制器
+  late AnimationController controller;
+
+  @override
+  initState() {
+    super.initState();
+    // 创建 AnimationController 对象，设置动画持续时间为 2 秒。
+    controller = AnimationController(duration: const Duration(seconds: 2), vsync: this,);
+
+    // Tween 的作用是设置动画的起始值和结束值，作为动画的补间值。
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller);
+    // 添加动画状态监听器
+    animation.addStatusListener((status) {
+      if(status == AnimationStatus.completed){
+        // 动画执行结束时反向执行动画；completed 表示动画已经执行结束。
+        controller.reverse();
+      }else if(status == AnimationStatus.dismissed){
+        // 动画恢复到初始状态时执行动画（正向）；dismissed 表示动画又返回到初始状态。
+        controller.forward();
+      }
+    });
+
+    // 启动动画(正向执行)
+    controller.forward();
+  }
+
+  @override
+  dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // AnimatedBuilder 是一个小部件，用于构建动画小部件，它可以封装常见的动画构建过程，省去了每次都要重新实现动画的麻烦。
+    return GrowTransitionStatusListener(
+      // 动画对象
+      animation: animation,
+      // 子部件
+      child: Image.asset("asset/images/QQ图片20220920105928.jpg")
+    );
+  }
+
+}
+```
+
+7. 效果：
+
+![](attachments/动画37.gif)
+
+## 3、自定义路由切换动画
+
+### ①、PageRouteBuilder
+
+1. 我们在第二章“路由管理”一节中说过：Material 组件库中提供了一个 `MaterialPageRoute` 组件，它可以使用和平台风格一致的路由切换动画，如在 iOS 上会左右滑动切换，而在 Android 上会上下滑动切换。现在，我们如果在 Android 上也想使用左右切换风格，该怎么做？一个简单的作法是可以直接使用 `CupertinoPageRoute`，如：
+
+```dart
+ Navigator.push(context, CupertinoPageRoute(  
+   builder: (context)=>PageB(),
+ ));
+```
+
+2. `CupertinoPageRoute` 是 Cupertino 组件库提供的 iOS 风格的路由切换组件，它实现的就是左右滑动切换。那么我们如何来自定义路由切换动画呢？答案就是 `PageRouteBuilder`。
+3. 下面我们来看看如何使用 `PageRouteBuilder` 来自定义路由切换动画。例如我们想以渐隐渐入动画来实现路由过渡，实现代码如下：
+
+```dart
+Navigator.push(
+  context,
+  PageRouteBuilder(
+    // 动画时间为 500 毫秒
+    transitionDuration: Duration(milliseconds: 500),
+    pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+      return FadeTransition(
+        // 使用渐隐渐入过渡,
+        opacity: animation,
+        // 路由 B
+        child: PageB(),
+      );
+    },
+  ),
+);
+```
+
+4. 我们可以看到 `pageBuilder` 有一个 `animation` 参数，这是 Flutter 路由管理器提供的，在路由切换时 `pageBuilder` 在每个动画帧都会被回调，因此我们可以通过 `animation` 对象来自定义过渡动画。
+5. 无论是 `MaterialPageRoute`、`CupertinoPageRoute`，还是 `PageRouteBuilder`，它们都继承自 `PageRoute` 类，而 `PageRouteBuilder` 其实只是 `PageRoute` 的一个包装，我们可以直接继承 `PageRoute` 类来实现自定义路由
+
+### ②、继承 PageRoute 类来实现自定义路由
+
+1. 定义一个路由类 `01_FadeRoute.dart`，继承 `PageRoute`，通过 `buildTransitions` 方法设置路由切换动画
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+class FadeRoute extends PageRoute {
+  FadeRoute({
+    required this.builder,
+    this.transitionDuration = const Duration(milliseconds: 1000),
+    this.opaque = true,
+    this.barrierDismissible = false,
+    this.barrierColor = const Color(0x00000000),
+    this.barrierLabel = "",
+    this.maintainState = true,
+  });
+
+  // 路由构建器
+  final WidgetBuilder builder;
+
+  // 动画持续时间
+  @override
+  final Duration transitionDuration;
+
+  // 是否透明
+  @override
+  final bool opaque;
+
+  // 是否可以通过点击背景关闭路由
+  @override
+  final bool barrierDismissible;
+
+  // 遮罩颜色
+  @override
+  final Color barrierColor;
+
+  // 遮罩标签
+  @override
+  final String barrierLabel;
+
+  // 维护状态
+  @override
+  final bool maintainState;
+
+  // buildPage 方法负责构建路由页面的具体内容，我们通常在此方法中使用 PageTransitionSwitcher 小部件来实现路由动画
+  @override
+  Widget buildPage(
+      // context 参数和 Navigator.push 方法中的 context 是一样的
+      BuildContext context,
+      // animation 参数表示路由切换时的动画，是一个 Animation 对象
+      Animation<double> animation,
+      // secondaryAnimation 参数用于定义第二个路由（通常是新路由）的动画
+      Animation<double> secondaryAnimation
+      // 作用是构建路由页面的具体内容，它会在动画执行时被调用
+    ) => builder(context);
+
+  // buildTransitions 方法负责构建路由的过渡效果，它会在路由切换时被调用
+  @override
+  Widget buildTransitions(
+      // context 参数和 Navigator.push 方法中的 context 是一样的
+      BuildContext context,
+      // animation 参数表示路由切换时的动画，是一个 Animation 对象
+      Animation<double> animation,
+      // secondaryAnimation 参数用于定义第二个路由（通常是新路由）的动画
+      Animation<double> secondaryAnimation,
+      // child 是路由当前的页面
+      Widget child
+    ) {
+    // SlideTransition 是一个小部件，它可以对子部件实现平移动画；此处的效果为从右下角平移到左上角
+    return SlideTransition(
+      // 通过 position 参数来指定子部件的偏移；Tween 是一个抽象类，它定义了在两个值之间生成动画值的接口
+      position: Tween<Offset>(
+        // begin 和 end 分别表示动画的起始点和终止点；const Offset(1.0, 1.0) 表示从右下角开始
+        begin: const Offset(1.0, 1.0),
+        // Offset.zero 表示偏移量为 0，即动画结束时子部件的偏移量为 0，即动画结束时子部件的位置为屏幕左上角
+        end: Offset.zero,
+        // animate 方法用于生成动画值
+      ).animate(animation),
+      child: builder(context),
+    );
+  }
+
+}
+```
+
+2. `02_FadeRouteHomeComponent.dart` 主页，可点击按钮进入设置
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_FadeRoute.dart';
+import '03_FadeRouteSettingComponent.dart';
+
+// 创建一个 StatefulWidget 类
+class FadeRouteHomeComponent extends StatelessWidget {
+  const FadeRouteHomeComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.white,
+      // Column 是一个小部件，用于在垂直方向排列子部件
+      child: Column(
+        // 垂直居中
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            // 当按钮被点击时，打开新的路由
+            onPressed: () => Navigator.push(context, FadeRoute(builder: (context){
+              return const FadeRouteSettingComponent();
+            })),
+            child: const Text("点击进入设置", textDirection: TextDirection.ltr),
+          )
+        ],
+      )
+    );
+  }
+}
+```
+
+3. `02_FadeRouteHomeComponent.dart` 设置，可点击按钮返回主页
+
+```dart
+import 'package:flutter/material.dart';
+
+class FadeRouteSettingComponent extends StatelessWidget {
+  const FadeRouteSettingComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return SafeArea(
+      child: Container(
+        // 宽度尽可能的大
+        width: double.infinity,
+        // 高度尽可能的大
+        height: double.infinity,
+        // 颜色
+        color: Colors.red,
+        // 垂直线性布局
+        child: Column(
+          // 垂直居中
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              // 当按钮被点击时，返回上一个路由
+              onPressed: (){
+                // 返回上一个路由，并返回消息
+                Navigator.pop(context);
+              },
+              child: const Text("点击返回主页", textDirection: TextDirection.ltr),
+            )
+          ],
+        )
+      )
+    );
+  }
+}
+```
+
+4. 效果：
+
+![](attachments/动画38.gif)
+
+5. 虽然上面的两种方法都可以实现自定义切换动画，但实际使用时应优先考虑使用 `PageRouteBuilder`，这样无需定义一个新的路由类，使用起来会比较方便。但是有些时候 `PageRouteBuilder` 是不能满足需求的，例如在应用过渡动画时我们需要读取当前路由的一些属性，这时就只能通过继承 `PageRoute` 的方式了
+6. 举个例子，假如我们只想在打开新路由时应用动画，而在返回时不使用动画，那么我们在构建过渡动画时就必须判断当前路由 `isActive` 属性是否为 `true`，代码如下：
+
+```dart
+@override
+Widget buildTransitions(BuildContext context, Animation<double> animation,
+    Animation<double> secondaryAnimation, Widget child) {
+ //当前路由被激活，是打开新路由
+ if(isActive) {
+   return FadeTransition(
+     opacity: animation,
+     child: builder(context),
+   );
+ }else{
+   //是返回，则不应用过渡动画
+   return Padding(padding: EdgeInsets.zero);
+ }
+}
+```
+
+## 4、Hero 动画
+
+### ①、自实现 Hero 动画
+
+1. 比如现在有一个头像组件，初始的时候是一个圆形的小图，我们想实现点击后查看大图的功能，为了有较好的体验，小图变成大图和大图变回小图时我们分别执行一个“飞行”过渡动画，效果如图所示：
+
+![|346](attachments/9-2.2ae3da70.gif)
+
+2. 要实现上面的动画效果，最简单的方式就是使用 Flutter 的 Hero 动画，但是为了理解 Hero 动画原理，先不使用 Hero 动画，而是通过之前章节所学的知识来实现一下这个效果。
+3. 简单分析后有一个思路：首先我们先确定小图和大图的位置和大小，动画的话用一个 Stack，然后通过 Positioned 来设置每一帧的组件位置和大小，实现如下：
+
+```dart
+class CustomHeroAnimation extends StatefulWidget {
+  const CustomHeroAnimation({Key? key}) : super(key: key);
+
+  @override
+  _CustomHeroAnimationState createState() => _CustomHeroAnimationState();
+}
+
+class _CustomHeroAnimationState extends State<CustomHeroAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  bool _animating = false;
+  AnimationStatus? _lastAnimationStatus;
+  late Animation _animation;
+
+  //两个组件在Stack中所占的区域
+  Rect? child1Rect;
+  Rect? child2Rect;
+
+  @override
+  void initState() {
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    //应用curve
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+
+    _controller.addListener(() {
+      if (_controller.isCompleted || _controller.isDismissed) {
+        if (_animating) {
+          setState(() {
+            _animating = false;
+          });
+        }
+      } else {
+        _lastAnimationStatus = _controller.status;
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //小头像
+    final Widget child1 = wChild1();
+    //大头像
+    final Widget child2 = wChild2();
+
+    //是否展示小头像；只有在动画执行时、初始状态或者刚从大图变为小图时才应该显示小头像
+    bool showChild1 =
+        !_animating && _lastAnimationStatus != AnimationStatus.forward;
+
+    // 执行动画时的目标组件；如果是从小图变为大图，则目标组件是大图；反之则是小图
+    Widget targetWidget;
+    if (showChild1 || _controller.status == AnimationStatus.reverse) {
+      targetWidget = child1;
+    } else {
+      targetWidget = child2;
+    }
+
+    return LayoutBuilder(builder: (context, constraints) {
+      return SizedBox(
+        //我们让Stack 填满屏幕剩余空间
+        width: constraints.maxWidth,
+        height: constraints.maxHeight,
+        child: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: [
+            if (showChild1)
+              AfterLayout( 
+                //获取小图在Stack中占用的Rect信息
+                callback: (value) => child1Rect = _getRect(value),
+                child: child1,
+              ),
+            if (!showChild1)
+              AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  //求出 rect 插值
+                  final rect = Rect.lerp(
+                    child1Rect,
+                    child2Rect,
+                    _animation.value,
+                  );
+                  // 通过 Positioned 设置组件大小和位置
+                  return Positioned.fromRect(rect: rect!, child: child!);
+                },
+                child: targetWidget,
+              ),
+            // 用于测量 child2 的大小，设置为全透明并且不能响应事件
+            IgnorePointer(
+              child: Center(
+                child: Opacity(
+                  opacity: 0,
+                  child: AfterLayout(
+                    //获取大图在Stack中占用的Rect信息
+                    callback: (value) => child2Rect = _getRect(value),
+                    child: child2,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  Widget wChild1() {
+    //点击后执行正向动画
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _animating = true;
+          _controller.forward();
+        });
+      },
+      child: SizedBox(
+        width: 50,
+        child: ClipOval(child: Image.asset("imgs/avatar.png")),
+      ),
+    );
+  }
+
+  Widget wChild2() {
+    // 点击后执行反向动画
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _animating = true;
+          _controller.reverse();
+        });
+      },
+      child: Image.asset("imgs/avatar.png", width: 400),
+    );
+  }
+
+  Rect _getRect(RenderAfterLayout renderAfterLayout) {
+    //我们需要获取的是AfterLayout子组件相对于Stack的Rect
+    return renderAfterLayout.localToGlobal(
+          Offset.zero,
+          //找到Stack对应的 RenderObject 对象
+          ancestor: context.findRenderObject(),
+        ) &
+        renderAfterLayout.size;
+  }
+}
+```
+
+4. 运行后点击头像就可以实现上图中的动画效果，注意，我们是通过自定义的 `AfterLayout` 组件来获取组件的 `Rect` 信息的，该组件在第四章介绍过
+5. 可以看到，整个飞行动画的实现还是比较复杂的，但由于这种飞行动画在交互上会经常被用到，因此 Flutter 在框架层抽象了上述实现飞行动画的逻辑，提供了一种通用且简单的实现 Hero 动画的方式
+
+### ②、Flutter Hero 动画
+
+1. Hero 指的是可以在路由(页面)之间 “飞行” 的 widget，简单来说 Hero 动画就是在路由切换时，有一个共享的 widget 可以在新旧路由间切换。
+2. 由于共享的 widget 在新旧路由页面上的位置、外观可能有所差异，所以在路由切换时会从旧路由逐渐过渡到新路由中的指定位置，这样就会产生一个 Hero 动画。
+3. 你可能多次看到过 hero 动画。例如，一个路由中显示待售商品的缩略图列表，选择一个条目会将其跳转到一个新路由，新路由中包含该商品的详细信息和“购买”按钮。 在 Flutte r中将图片从一个路由“飞”到另一个路由称为 hero 动画，尽管相同的动作有时也称为 共享元素转换。下面我们通过一个示例来体验一下 hero 动画。
+
+> 为什么要将这种可飞行的共享组件称为 hero（英雄），有一种说法是说美国文化中的超人是可以飞的，那是美国人心中的大英雄，还有漫威中的超级英雄基本上都是会飞的，所以 Flutter 开发人员就对这种 “会飞的 widget” 就起了一个富有浪漫主义的名字 hero。当然这种说法并非官方解释，但却很有意思。
+
+4. 示例：假设有两个路由<font color="#ff0000">主页</font>和<font color="#ff0000">设置</font>，他们的内容交互如下：
+	1. <font color="#ff0000">主页</font>：包含一个用户头像，圆形，点击后跳到<font color="#ff0000">设置</font>路由，可以查看大图。
+	2. <font color="#ff0000">设置</font>：显示用户头像原图，矩形。
+5. 在两个路由之间跳转的时候，用户头像会逐渐过渡到目标路由页的头像上，接下来我们先看看代码，然后再解析。
+6. 主页 `02_1_HeroHomeComponent.dart`：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_2_HeroSettingComponent.dart';
+
+// 创建一个 StatefulWidget 类
+class HeroHomeComponent extends StatelessWidget {
+  const HeroHomeComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return Container(
+      // 宽度尽可能的大
+      width: double.infinity,
+      // 高度尽可能的大
+      height: double.infinity,
+      // 颜色
+      color: Colors.white,
+      // Column 是一个小部件，用于在垂直方向排列子部件
+      child: Column(
+        // 垂直居中
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          buildHero(),
+          buildElevatedButton(context),
+        ],
+      )
+    );
+  }
+
+  /// 构建 Hero；Hero 是一个小部件，用于在路由之间共享动画
+  Widget buildHero(){
+    return Hero(
+      tag: "avatar",
+      child: ClipOval(
+        child: Image.asset("asset/images/QQ图片20220920105928.jpg", width: 50),
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton，用于打开新的路由
+  Widget buildElevatedButton(BuildContext context){
+    return ElevatedButton(
+      // 当按钮被点击时，打开新的路由
+      onPressed: () => Navigator.push(
+        context,
+        // 使用自定义的路由切换动画
+        builderPageRouteBuilder(),
+      ),
+      child: const Text("点击进入设置", textDirection: TextDirection.ltr),
+    );
+  }
+
+  /// 构建 PageRouteBuilder，用于自定义路由切换动画
+  PageRouteBuilder builderPageRouteBuilder(){
+    return PageRouteBuilder(
+      // 动画时间为 1 秒
+      transitionDuration: const Duration(seconds: 1),
+      // 构建动画
+      pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+        // SlideTransition 是一个小部件，用于在子部件上执行滑动动画
+        return SlideTransition(
+          // 设置动画，动画效果为从右下角滑动到左上角
+          position: buildAnimation(animation),
+          // 设置要跳转到的路由
+          child: const HeroSettingComponent(),
+        );
+      },
+    );
+  }
+
+  /// 构建动画，动画效果为从右下角滑动到左上角
+  Animation<Offset> buildAnimation(Animation<dynamic> animation) {
+    // animation.drive 表示给动画添加一个插值器，这里使用 Tween<Offset>，表示在动画的一段时间内，动画的值从 Offset(1.0, 1.0) 变化到 Offset.zero
+    return animation.drive(
+      // Tween 是一个小部件，用于在动画的一段时间内，动画的值从 begin 变化到 end；Offset 是一个小部件，用于表示偏移量
+      Tween<Offset>(
+        // begin 和 end 分别表示动画的起始点和终止点；const Offset(1.0, 1.0) 表示从右下角开始
+        begin: const Offset(1.0, 1.0),
+        // Offset.zero 表示偏移量为 0，即动画结束时子部件的偏移量为 0，即动画结束时子部件的位置为屏幕左上角
+        end: Offset.zero,
+      ),
+    );
+  }
+
+}
+```
+
+7. 设置 `02_2_HeroSettingComponent.dart`：
+
+```dart
+import 'package:flutter/material.dart';
+
+class HeroSettingComponent extends StatelessWidget {
+  const HeroSettingComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+    return SafeArea(
+      child: Container(
+        // 宽度尽可能的大
+        width: double.infinity,
+        // 高度尽可能的大
+        height: double.infinity,
+        // 颜色
+        color: Colors.red,
+        // 垂直线性布局
+        child: Column(
+          // 垂直居中
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildHero(),
+            buildElevatedButton(context),
+          ],
+        )
+      )
+    );
+  }
+
+  /// 构建 Hero；Hero 是一个小部件，用于在路由之间共享动画
+  Widget buildHero(){
+    return Hero(
+      tag: "avatar",
+      child: ClipOval(
+        child: Image.asset("asset/images/QQ图片20220920105928.jpg", width: 50),
+      ),
+    );
+  }
+
+  /// 构建 ElevatedButton
+  Widget buildElevatedButton(BuildContext context){
+    return ElevatedButton(
+      // 当按钮被点击时，返回上一个路由
+      onPressed: () => Navigator.pop(context),
+      child: const Text("点击返回主页", textDirection: TextDirection.ltr),
+    );
+  }
+
+}
+```
+
+8. 效果：
+
+![|365](attachments/动画39.gif)
+
+9. 我们可以看到，实现 Hero 动画只需要用 Hero 组件将要共享的 widget 包装起来，并提供一个相同的 tag 即可，中间的过渡帧都是 Flutter 框架自动完成的。必须要注意， 前后路由页的共享 Hero 的 <font color="#ff0000">tag</font> 必须是相同的，Flutter 框架内部正是通过 tag 来确定新旧路由页 widget 的对应关系的。
+10. Hero 动画的原理比较简单，Flutter 框架知道新旧路由页中共享元素的位置和大小，所以根据这两个端点，在动画执行过程中求出过渡时的插值（中间态）即可，而感到幸运的是，这些事情不需要我们自己动手，Flutter 已经帮我们做了，实际上，Flutter Hero 动画的实现原理和我们在本章开始自实现的原理是差不多的，有兴趣可以去看 Hero 动画相关的源码。
+
+## 5、交织动画
+
+### ①、简介
+
+1. 有些时候我们可能会需要一些复杂的动画，这些动画可能由一个动画序列或重叠的动画组成，比如：有一个柱状图，需要在高度增长的同时改变颜色，等到增长到最大高度后，我们需要在 X 轴上平移一段距离。可以发现上述场景在不同阶段包含了多种动画，要实现这种效果，使用交织动画（Stagger Animation）会非常简单。交织动画需要注意以下几点：
+	1. 要创建交织动画，需要使用多个动画对象（Animation）。
+	2. 一个 `AnimationController` 控制所有的动画对象。
+	3. 给每一个动画对象指定时间间隔（Interval）
+2. 所有动画都由同一个 `AnimationController` 驱动，无论动画需要持续多长时间，控制器的值必须在 `0.0` 到 `1.0` 之间，而每个动画的间隔（Interval）也必须介于 `0.0` 和 `1.0` 之间。
+3. 对于在间隔中设置动画的每个属性，需要分别创建一个 `Tween` 用于指定该属性的开始值和结束值。也就是说 `0.0` 到 `1.0` 代表整个动画过程，我们可以给不同动画指定不同的起始点和终止点来决定它们的开始时间和终止时间
+
+### ②、示例
+
+> 下面我们看一个例子，实现一个柱状图增长的动画：
+> 
+> 1. 开始时高度从 0 增长到 300 像素，同时颜色由绿色渐变为红色；这个过程占据整个动画时间的 60%。
+> 2. 高度增长到 300 后，开始沿 X 轴向右平移 100 像素，同时宽度增长到 100 像素；这个过程占用整个动画时间的 40%。
+
+1. 我们将执行动画的 `01_StaggerAnimation.dart` 分离出来，`StaggerAnimation` 中定义了四个动画，分别是对 `Container` 的 `weight`、`height`、`color`、`padding` 属性设置的动画，然后通过 `Interval` 来为每个动画指定在整个动画过程中的起始点和终点。
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class StaggerAnimation extends StatelessWidget {
+  // 构造函数；其中的 height 等参数会在实例化时被赋值
+  StaggerAnimation({Key? key, required this.controller,}) : super(key: key) {
+
+    // 高度动画；从 0 到 300，匀速曲线；即匀速上升
+    height = Tween<double>(
+      begin: .0,
+      end: 300.0,
+    ).animate(
+      // 设置非线性动画，先快后慢
+      CurvedAnimation(
+        parent: controller,
+        // Interval 用于设置动画的开始点和结束点；这里的 Interval(0.0, 0.6) 表示动画开始于 0.0 处，结束于 0.6 处
+        curve: const Interval(0.0, 0.6, curve: Curves.ease),
+      ),
+    );
+
+    // 颜色动画；从绿色到红色，匀速曲线；即匀速变色
+    color = ColorTween(
+      begin: Colors.green,
+      end: Colors.red,
+    ).animate(
+      // 设置非线性动画，先快后慢
+      CurvedAnimation(
+        parent: controller,
+        // Interval 用于设置动画的开始点和结束点；这里的 Interval(0.0, 0.6) 表示动画开始于 0.0 处，结束于 0.6 处
+        curve: const Interval(0.0, 0.6, curve: Curves.ease,),
+      ),
+    );
+
+    // 宽度动画；从 50 到 100，匀速曲线；即匀速变宽
+    weight = Tween<double>(
+      begin: 50,
+      end: 100,
+    ).animate(
+      // 设置非线性动画，先快后慢
+      CurvedAnimation(
+        parent: controller,
+        // Interval 用于设置动画的开始点和结束点；这里的 Interval(0.6, 1.0) 表示动画开始于 0.6 处，结束于 1.0 处
+        curve: const Interval(0.6, 1.0, curve: Curves.ease),
+      ),
+    );
+
+    // 左边距动画；从 0 到 100，匀速曲线；即匀速向右移动
+    padding = Tween<EdgeInsets>(
+      begin: const EdgeInsets.only(left: .0),
+      end: const EdgeInsets.only(left: 100.0),
+    ).animate(
+      // 设置非线性动画，先快后慢
+      CurvedAnimation(
+        parent: controller,
+        // Interval 用于设置动画的开始点和结束点；这里的 Interval(0.6, 1.0) 表示动画开始于 0.6 处，结束于 1.0 处
+        curve: const Interval(0.6, 1.0, curve: Curves.ease,),
+      ),
+    );
+  }
+
+  late final Animation<double> controller;
+  late final Animation<double> weight;
+  late final Animation<double> height;
+  late final Animation<EdgeInsets> padding;
+  late final Animation<Color?> color;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      builder: _buildAnimation,
+      animation: controller,
+    );
+  }
+
+  /// 构建动画
+  Widget _buildAnimation(BuildContext context, child) {
+    // 返回一个容器，容器的高度、颜色、左边距都会发生变化
+    return Container(
+      alignment: Alignment.bottomCenter,
+      padding: padding.value,
+      child: Container(
+        color: color.value,
+        width: weight.value,
+        height: height.value,
+      ),
+    );
+  }
+
+}
+```
+
+2. 下面我们来实现启动动画的路由：
+
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '01_StaggerAnimation.dart';
+
+class StaggerRouteComponent extends StatefulWidget {
+  const StaggerRouteComponent({super.key});
+
+  @override
+  _StaggerRouteComponentState createState() => _StaggerRouteComponentState();
+}
+
+class _StaggerRouteComponentState extends State<StaggerRouteComponent> with TickerProviderStateMixin {
+  // 定义动画控制器
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    // 创建动画控制器；设置动画时长为 2 秒；vsync 为 this，即当前 TickerProviderStateMixin 实例
+    _controller = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this,);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个小部件，用于将其子部件在父部件中居中
+    return Center(
+      // Column 是一个小部件，用于在垂直方向排列子部件
+      child: Column(
+        children: [
+          // 点击按钮，执行动画
+          ElevatedButton(
+            onPressed: () => _playAnimation(),
+            child: const Text("开始"),
+          ),
+          // Container 是一个多功能的小部件，可以用于设置子部件的大小、位置、装饰、填充等
+          Container(
+            width: 300.0,
+            height: 300.0,
+            // BoxDecoration 是一个装饰类小部件，它可以在其子小部件之上绘制一个装饰，如背景、边框、渐变等。
+            decoration: BoxDecoration(
+              // 背景色
+              color: Colors.black.withOpacity(0.1),
+              // 边框
+              border: Border.all(color: Colors.black.withOpacity(0.5),),
+            ),
+            // 调用我们定义的交错动画 Widget
+            child: StaggerAnimation(controller: _controller),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 执行动画
+  _playAnimation() async {
+    try {
+      // 先正向执行动画
+      await _controller.forward().orCancel;
+      // 再反向执行动画
+      await _controller.reverse().orCancel;
+    } on TickerCanceled {
+      // 捕获异常。可能发生在组件销毁时，计时器会被取消。
+    }
+  }
+
+}
+```
+
+3. 效果：
+
+![|365](attachments/动画40.gif)
+
+## 6、动画切换组件（AnimatedSwitcher）
+
+1. 实际开发中，我们经常会遇到切换 UI 元素的场景，比如 Tab 切换、路由切换。
+2. 为了增强用户体验，通常在切换时都会指定一个动画，以使切换过程显得平滑。
+3. Flutter SDK 组件库中已经提供了一些常用的切换组件，如 `PageView`、`TabView` 等，但是，这些组件并不能覆盖全部的需求场景，为此，Flutter SDK 中提供了一个 `AnimatedSwitcher` 组件，它定义了一种通用的 UI 切换抽象。
+
+### ①、AnimatedSwitcher
+
+#### Ⅰ、简介
+
+1. `AnimatedSwitcher` 可以同时对其新、旧子元素添加显示、隐藏动画。也就是说在 `AnimatedSwitcher` 的子元素发生变化时，会对其旧元素和新元素做动画，我们先看看 `AnimatedSwitcher` 的定义：
+
+```dart
+const AnimatedSwitcher({
+  Key? key,
+  this.child,
+  required this.duration, // 新child显示动画时长
+  this.reverseDuration,// 旧child隐藏的动画时长
+  this.switchInCurve = Curves.linear, // 新child显示的动画曲线
+  this.switchOutCurve = Curves.linear,// 旧child隐藏的动画曲线
+  this.transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder, // 动画构建器
+  this.layoutBuilder = AnimatedSwitcher.defaultLayoutBuilder, //布局构建器
+})
+```
+
+2. 当 `AnimatedSwitcher` 的 `child` 发生变化时（类型或 Key 不同），旧 `child` 会执行隐藏动画，新 `child` 会执行执行显示动画。究竟执行何种动画效果则由 `transitionBuilder` 参数决定，该参数接受一个 `AnimatedSwitcherTransitionBuilder` 类型的 `builder`，定义如下：
+
+```dart
+typedef AnimatedSwitcherTransitionBuilder = Widget Function(Widget child, Animation<double> animation);
+```
+
+3. 该 `builder` 在 `AnimatedSwitcher` 的 `child` 切换时会分别对新、旧 `child` 绑定动画：
+	1. 对旧 `child`，绑定的动画会反向执行（`reverse`）
+	2. 对新 `child`，绑定的动画会正向指向（`forward`）
+4. 这样一下，便实现了对新、旧 `child` 的动画绑定。`AnimatedSwitcher` 的默认值是 `AnimatedSwitcher.defaultTransitionBuilder` ：
+
+```dart
+Widget defaultTransitionBuilder(Widget child, Animation<double> animation) {
+  return FadeTransition(
+    opacity: animation,
+    child: child,
+  );
+}
+```
+
+5. 可以看到，返回了 `FadeTransition` 对象，也就是说默认情况，`AnimatedSwitcher` 会对新旧 `child` 执行“渐隐”和“渐显”动画
+
+#### Ⅱ、示例
+
+1. 下面我们看一个例子：实现一个计数器，然后在每一次自增的过程中，旧数字执行缩小动画隐藏，新数字执行放大动画显示
+2. 代码如下：
+
+```dart
+import 'package:flutter/material.dart';
+
+class AnimatedSwitcherCounterRoute extends StatefulWidget {
+  const AnimatedSwitcherCounterRoute({super.key});
+
+  @override
+  _AnimatedSwitcherCounterRouteState createState() => _AnimatedSwitcherCounterRouteState();
+}
+
+class _AnimatedSwitcherCounterRouteState extends State<AnimatedSwitcherCounterRoute> {
+  // 计数
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个小部件，用于将其子部件在父部件中居中显示
+    return Center(
+      // Column 是一个小部件，用于在垂直方向排列子部件
+      child: Column(
+        // 垂直居中
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          // 构建动画切换组件
+          buildAnimatedSwitcher(),
+          // 构建按钮
+          buildElevatedButton(),
+        ],
+      ),
+    );
+  }
+
+  /// 构建动画切换组件
+  Widget buildAnimatedSwitcher(){
+    // AnimatedSwitcher 是一个小部件，用于在新旧小部件之间切换时添加动画
+    return AnimatedSwitcher(
+      // 动画持续时间
+      duration: const Duration(milliseconds: 500),
+      // 动画构建器
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        // ScaleTransition 是一个小部件，用于对子部件进行缩放动画
+        return ScaleTransition(scale: animation, child: child);
+      },
+      // AnimatedSwitcher 中的子部件，每当需要切换时，AnimatedSwitcher 会对其执行动画
+      child: Text(
+        // 参数 1：文本内容
+        '$_count',
+        // 参数 2：用于指定 Text 小部件的 key；如果两个 Text 的 key 相同，则认为它们是同一个小部件，此时不会执行动画
+        key: ValueKey<int>(_count),
+        // 参数 3：文本样式
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    );
+  }
+
+  /// 构建按钮
+  Widget buildElevatedButton(){
+    return ElevatedButton(
+      child: const Icon(Icons.add),
+      onPressed: () {
+        setState(() {
+          _count += 1;
+        });
+      },
+    );
+  }
+
+}
+```
+
+3. 效果：
+
+![|386](attachments/动画41.gif)
+
+4. 注意：`AnimatedSwitcher` 的新旧 `child`，如果类型相同，则 `Key` 必须不相等
+
+#### Ⅲ、AnimatedSwitcher 实现原理
+
+1. 实际上，`AnimatedSwitcher` 的实现原理是比较简单的，我们根据 `AnimatedSwitcher` 的使用方式也可以猜个大概。要想实现新旧 `child` 切换动画，只需要明确两个问题：
+	1. 动画执行的时机是什么时候？
+	2. 如何对新旧 `child` 执行动画？
+2. 从 `AnimatedSwitcher` 的使用方式我们可以看到：当 `child` 发生变化时（子 widget 的 key 或类型不同时则认为发生变化），则重新会重新执行 build，然后动画开始执行。
+3. 我们可以通过继承 `StatefulWidget` 来实现 `AnimatedSwitcher`，具体做法是在 `didUpdateWidget` 回调中判断其新旧 `child` 是否发生变化，如果发生变化，则对旧 `child` 执行反向退场（reverse）动画，对新 `child` 执行正向（forward）入场动画即可。下面是 `AnimatedSwitcher` 实现的部分核心伪代码：
+
+```dart
+Widget _widget; 
+void didUpdateWidget(AnimatedSwitcher oldWidget) {
+  super.didUpdateWidget(oldWidget);
+  // 检查新旧child是否发生变化(key和类型同时相等则返回true，认为没变化)
+  if (Widget.canUpdate(widget.child, oldWidget.child)) {
+    // child没变化，...
+  } else {
+    //child发生了变化，构建一个Stack来分别给新旧child执行动画
+   _widget= Stack(
+      alignment: Alignment.center,
+      children:[
+        //旧child应用FadeTransition
+        FadeTransition(
+         opacity: _controllerOldAnimation,
+         child : oldWidget.child,
+        ),
+        //新child应用FadeTransition
+        FadeTransition(
+         opacity: _controllerNewAnimation,
+         child : widget.child,
+        ),
+      ]
+    );
+    // 给旧child执行反向退场动画
+    _controllerOldAnimation.reverse();
+    //给新child执行正向入场动画
+    _controllerNewAnimation.forward();
+  }
+}
+
+//build方法
+Widget build(BuildContext context){
+  return _widget;
+}
+```
+
+4. 上面伪代码展示了 `AnimatedSwitcher` 实现的核心逻辑，当然 `AnimatedSwitcher` 真正的实现比这个复杂，它可以自定义进退场过渡动画以及执行动画时的布局等。在此，我们删繁就简，通过伪代码形式让读者能够清楚看到主要的实现思路，具体的实现可以参考 `AnimatedSwitcher` 源码。
+5. 另外，Flutter SDK 中还提供了一个 `AnimatedCrossFade` 组件，它也可以切换两个子元素，切换过程执行渐隐渐显的动画，和 `AnimatedSwitcher` 不同的是 `AnimatedCrossFade` 是针对两个子元素，而 `AnimatedSwitcher` 是在一个子元素的新旧值之间切换。`AnimatedCrossFade` 实现原理也比较简单，和 `AnimatedSwitcher` 类似，因此不再赘述，有兴趣可以查看其源码
+
+### ②、AnimatedSwitcher 高级用法
+
+1. 假设现在我们想实现一个类似路由平移切换的动画：旧页面屏幕中向左侧平移退出，新页面从屏幕右侧平移进入。如果要用 `AnimatedSwitcher` 的话，我们很快就会发现一个问题：做不到！我们可能会写出下面的代码：
+
+```dart
+AnimatedSwitcher(
+  duration: Duration(milliseconds: 200),
+  transitionBuilder: (Widget child, Animation<double> animation) {
+    var tween = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+     return SlideTransition(
+       child: child,
+       position: tween.animate(animation),
+    );
+  },
+  ...//省略
+)
+```
+
+2. 上面的代码有什么问题呢？我们前面说过在 `AnimatedSwitcher` 的 `child` 切换时会对新 `child` 执行正向动画（forward），而对旧 `child` 执行反向动画（reverse），所以真正的效果便是：新 `child` 确实从屏幕右侧平移进入了，但旧 `child` 却会从屏幕右侧（而不是左侧）退出。其实也很容易理解，因为在没有特殊处理的情况下，同一个动画的正向和逆向正好是相反（对称）的。
+3. 那么问题来了，难道就不能使用 `AnimatedSwitcher` 了？答案当然是否定的！仔细想想这个问题，究其原因，就是因为同一个 `Animation` 正向（forward）和反向（reverse）是对称的。所以如果我们可以打破这种对称性，那么便可以实现这个功能了，下面我们来封装一个MySlideTransition，它与SlideTransition唯一的不同就是对动画的反向执行进行了定制（从左边滑出隐藏），代码如下：
+
+```dart
+class MySlideTransition extends AnimatedWidget {
+  const MySlideTransition({
+    Key? key,
+    required Animation<Offset> position,
+    this.transformHitTests = true,
+    required this.child,
+  }) : super(key: key, listenable: position);
+
+  final bool transformHitTests;
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final position = listenable as Animation<Offset>;
+    Offset offset = position.value;
+    if (position.status == AnimationStatus.reverse) {
+      offset = Offset(-offset.dx, offset.dy);
+    }
+    return FractionalTranslation(
+      translation: offset,
+      transformHitTests: transformHitTests,
+      child: child,
+    );
+  }
+}
+```
+
+4. 调用时，将 `SlideTransition` 替换成 `MySlideTransition` 即可：
+
+```dart
+AnimatedSwitcher(
+  duration: Duration(milliseconds: 200),
+  transitionBuilder: (Widget child, Animation<double> animation) {
+    var tween=Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+     return MySlideTransition(
+      child: child,
+      position: tween.animate(animation),
+    );
+  },
+  ...//省略
+)
+```
+
+5. 运行后，我截取动画执行过程中的一帧，如图所示：
+
+![|295](attachments/Pasted%20image%2020231207095229.png)
+
+6. 上图中 “0” 从左侧滑出，而 “1” 从右侧滑入。
+7. 可以看到，我们通过这种巧妙的方式实现了类似路由进场切换的动画，实际上 Flutter 路由切换也正是通过 `AnimatedSwitcher` 来实现的。
+
+### ③、SlideTransitionX
+
+1. 上面的示例我们实现了“左出右入”的动画，那如果要实现“左入右出”、“上入下出”或者 “下入上出”怎么办？当然，我们可以分别修改上面的代码，但是这样每种动画都得单独定义一个 “Transition”，这很麻烦。
+2. 这里将封装一个通用的 `SlideTransitionX` 来实现这种“出入动画”，代码如下：
+
+```dart
+class SlideTransitionX extends AnimatedWidget {
+  SlideTransitionX({
+    Key? key,
+    required Animation<double> position,
+    this.transformHitTests = true,
+    this.direction = AxisDirection.down,
+    required this.child,
+  }) : super(key: key, listenable: position) {
+    switch (direction) {
+      case AxisDirection.up:
+        _tween = Tween(begin: const Offset(0, 1), end: const Offset(0, 0));
+        break;
+      case AxisDirection.right:
+        _tween = Tween(begin: const Offset(-1, 0), end: const Offset(0, 0));
+        break;
+      case AxisDirection.down:
+        _tween = Tween(begin: const Offset(0, -1), end: const Offset(0, 0));
+        break;
+      case AxisDirection.left:
+        _tween = Tween(begin: const Offset(1, 0), end: const Offset(0, 0));
+        break;
+    }
+  }
+
+  final bool transformHitTests;
+
+  final Widget child;
+
+  final AxisDirection direction;
+
+  late final Tween<Offset> _tween;
+
+  @override
+  Widget build(BuildContext context) {
+    final position = listenable as Animation<double>;
+    Offset offset = _tween.evaluate(position);
+    if (position.status == AnimationStatus.reverse) {
+      switch (direction) {
+        case AxisDirection.up:
+          offset = Offset(offset.dx, -offset.dy);
+          break;
+        case AxisDirection.right:
+          offset = Offset(-offset.dx, offset.dy);
+          break;
+        case AxisDirection.down:
+          offset = Offset(offset.dx, -offset.dy);
+          break;
+        case AxisDirection.left:
+          offset = Offset(-offset.dx, offset.dy);
+          break;
+      }
+    }
+    return FractionalTranslation(
+      translation: offset,
+      transformHitTests: transformHitTests,
+      child: child,
+    );
+  }
+}
+```
+
+3. 现在如果我们想实现各种“滑动出入动画”便非常容易，只需给 `direction` 传递不同的方向值即可，比如要实现“上入下出”，则：
+
+```dart
+AnimatedSwitcher(
+  duration: Duration(milliseconds: 200),
+  transitionBuilder: (Widget child, Animation<double> animation) {
+    var tween=Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+     return SlideTransitionX(
+       child: child,
+       direction: AxisDirection.down, //上入下出
+       position: animation,
+     );
+  },
+  ...//省略其余代码
+)
+```
+
+4. 运行后如图所示：
+
+![](attachments/9-2.2ae3da70%201.gif)
+
+5. 上图中 “0” 从底部滑出，而 “1” 从顶部滑入。可以尝试给 `SlideTransitionX` 的 `direction` 取不同的值来查看运行效果。
+
+## 7、动画过渡组件
+
+1. 为了表述方便，这里约定，将在 Widget 属性发生变化时会执行过渡动画的组件统称为”动画过渡组件“，而动画过渡组件最明显的一个特征就是它会在内部自管理 `AnimationController`。
+2. 我们知道，为了方便使用者可以自定义动画的曲线、执行时长、方向等，在前面介绍过的动画封装方法中，通常都需要使用者自己提供一个 `AnimationController` 对象来自定义这些属性值。
+3. 但是，如此一来，使用者就必须得手动管理 `AnimationController`，这又会增加使用的复杂性。因此，如果也能将 `AnimationController` 进行封装，则会大大提高动画组件的易用性
+
+### ①、自定义动画过渡组件
+
+1. 我们要实现一个 `AnimatedDecoratedBox`，它可以在 `decoration` 属性发生变化时，从旧状态变成新状态的过程可以执行一个过渡动画。根据前面所学的知识，我们实现了一个 `AnimatedDecoratedBox1` 组件：
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+class AnimatedDecoratedBox1 extends StatefulWidget {
+  const AnimatedDecoratedBox1({
+    Key? key,
+    required this.decoration,
+    required this.child,
+    this.curve = Curves.linear,
+    required this.duration,
+    this.reverseDuration,
+  }) : super(key: key);
+
+  // decoration 用于指定装饰样式
+  final BoxDecoration decoration;
+  // child 用于指定子部件
+  final Widget child;
+  // curve 用于指定动画的曲线
+  final Curve curve;
+  // duration 用于指定动画的时长
+  final Duration duration;
+  // reverseDuration 用于指定反向动画的时长
+  final Duration? reverseDuration;
+
+  @override
+  _AnimatedDecoratedBox1State createState() => _AnimatedDecoratedBox1State();
+}
+
+class _AnimatedDecoratedBox1State extends State<AnimatedDecoratedBox1> with SingleTickerProviderStateMixin {
+  /// @protected 修饰符表示该变量只能在子类中访问；
+  /// get controller => _controller 表示该变量的 getter 方法返回 _controller
+  /// _controller 是 AnimationController 类型的变量，用于控制动画
+  @protected
+  AnimationController get controller => _controller;
+  late AnimationController _controller;
+
+  /// get animation => _animation 表示该变量的 getter 方法返回 _animation
+  /// _animation 是 Animation<double> 类型的变量，用于保存动画的值
+  Animation<double> get animation => _animation;
+  late Animation<double> _animation;
+
+  /// _tween 是 DecorationTween 类型的变量，用于保存动画的起始值和结束值
+  late DecorationTween _tween;
+
+  /// initState 方法是 State 的生命周期方法，它会在 State 对象被插入视图树时被调用
+  @override
+  void initState() {
+    super.initState();
+
+    // 创建 AnimationController 对象，用于控制动画
+    _controller = AnimationController(
+      // duration 用于指定动画的时长
+      duration: widget.duration,
+      // reverseDuration 用于指定反向动画的时长
+      reverseDuration: widget.reverseDuration,
+      vsync: this,
+    );
+    // 设置动画的起始值和结束值；begin 为动画的起始值，end 为动画的结束值
+    _tween = DecorationTween(begin: widget.decoration);
+    _updateCurve();
+  }
+
+  /// dispose 方法是 State 的生命周期方法，它会在 State 对象从视图树中被移除时调用
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    /// AnimatedBuilder 是一个小部件，用于构建动画
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        // DecoratedBox 是一个小部件，用于绘制装饰样式的盒子
+        return DecoratedBox(
+          // decoration 用于指定装饰样式
+          decoration: _tween.animate(_animation).value,
+          child: child,
+        );
+      },
+      child: widget.child,
+    );
+  }
+
+  /// didUpdateWidget 方法是 State 的生命周期方法，它会在 State 对象的依赖发生变化时被调用
+  @override
+  void didUpdateWidget(AnimatedDecoratedBox1 oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 判断动画的曲线是否发生了变化，如果发生了变化，则更新动画的曲线
+    if (widget.curve != oldWidget.curve) _updateCurve();
+    // duration 用于指定动画的时长
+    _controller.duration = widget.duration;
+    // reverseDuration 用于指定反向动画的时长
+    _controller.reverseDuration = widget.reverseDuration;
+    // 判断装饰样式是否发生了变化，如果发生了变化，则更新动画的起始值和结束值，并执行动画
+    if (widget.decoration != (_tween.end ?? _tween.begin)) {
+      _tween
+        ..begin = _tween.evaluate(_animation)
+        ..end = widget.decoration;
+
+      _controller
+        ..value = 0.0
+        ..forward();
+    }
+  }
+
+  /// 更新动画的曲线
+  void _updateCurve() {
+    _animation = CurvedAnimation(parent: _controller, curve: widget.curve);
+  }
+
+}
+```
+
+2. 下面我们来使用 `AnimatedDecoratedBox1` 来实现按钮点击后背景色从蓝色过渡到红色的效果：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_AnimatedDecoratedBox1.dart';
+
+
+class AnimatedDecoratedComponent extends StatefulWidget {
+  const AnimatedDecoratedComponent({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedDecoratedComponentState createState() => _AnimatedDecoratedComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _AnimatedDecoratedComponentState extends State<AnimatedDecoratedComponent> with SingleTickerProviderStateMixin {
+  Color _decorationColor = Colors.blue;
+  var duration = const Duration(seconds: 1);
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      child: AnimatedDecoratedBox1(
+        // duration 用于指定动画的时长
+        duration: duration,
+        // decoration 用于指定装饰样式
+        decoration: BoxDecoration(color: _decorationColor),
+        child: buildTextButton()
+      ),
+    );
+  }
+
+  /// 构建文本按钮
+  Widget buildTextButton(){
+    return TextButton(
+      onPressed: () {
+        // 如果盒子的颜色为红色，则点击后将其改为蓝色；如果盒子的颜色为蓝色，则点击后将其改为红色
+        setState(() {
+          if(_decorationColor == Colors.red){
+            _decorationColor = Colors.blue;
+          }else{
+            _decorationColor = Colors.red;
+          }
+        });
+      },
+      child: const Text(
+        "AnimatedDecoratedBox",
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+}
+```
+
+3. 效果：
+
+![](attachments/动画42.gif)
+
+4. 点击后，按钮背景色会从蓝色向红色过渡。上面的代码虽然实现了我们期望的功能，但是代码却比较复杂。
+5. 稍加思考后，我们就可以发现，`AnimationController` 的管理以及 `Tween` 更新部分的代码都是可以抽象出来的，如果我们这些通用逻辑封装成基类，那么要实现动画过渡组件只需要继承这些基类，然后定制自身不同的代码（比如动画每一帧的构建方法）即可，这样将会简化代码。
+
+### ②、动画过渡组件
+
+1. 为了方便开发者来实现动画过渡组件的封装，Flutter 提供了一个 `ImplicitlyAnimatedWidget` 抽象类，它继承自 `StatefulWidget`，同时提供了一个对应的 `ImplicitlyAnimatedWidgetState` 类，`AnimationController` 的管理就在 `ImplicitlyAnimatedWidgetState` 类中。开发者如果要封装动画，只需要分别继承 `ImplicitlyAnimatedWidget` 和 `ImplicitlyAnimatedWidgetState` 类即可，下面我们演示一下具体如何实现。
+2. 继承 `ImplicitlyAnimatedWidget` 类；其中 `curve`、`duration`、`reverseDuration` 三个属性在 `ImplicitlyAnimatedWidget` 中已定义。 可以看到 `AnimatedDecoratedBox` 类和普通继承自 `StatefulWidget` 的类没有什么不同。
+
+```dart
+import 'package:flutter/cupertino.dart';
+
+// 1、继承 ImplicitlyAnimatedWidget 类
+class AnimatedDecoratedBox extends ImplicitlyAnimatedWidget {
+  const AnimatedDecoratedBox({
+    Key? key,
+    // decoration 用于指定装饰样式
+    required this.decoration,
+    required this.child,
+    // curve 用于指定动画的运行方式；Curves.linear 为匀速运动
+    Curve curve = Curves.linear,
+    // duration 用于指定动画的时长
+    required Duration duration,
+  }) : super(
+    key: key,
+    curve: curve,
+    duration: duration,
+  );
+
+  final BoxDecoration decoration;
+  final Widget child;
+
+  @override
+  _AnimatedDecoratedBoxState createState() => _AnimatedDecoratedBoxState();
+}
+```
+
+3. `State` 类继承自 `AnimatedWidgetBaseState`（该类继承自 `ImplicitlyAnimatedWidgetState` 类）；
+
+```dart
+// 2、State 类继承自 AnimatedWidgetBaseState（该类继承自ImplicitlyAnimatedWidgetState类）
+class _AnimatedDecoratedBoxState extends AnimatedWidgetBaseState<AnimatedDecoratedBox> {
+  DecorationTween? _decoration;
+
+  @override
+  Widget build(BuildContext context) {
+    // DecoratedBox 是一个小部件，用于绘制带有装饰的盒子
+    return DecoratedBox(
+      // decoration 用于指定装饰样式
+      decoration: _decoration!.evaluate(animation),
+      child: widget.child,
+    );
+  }
+
+  /// forEachTween 方法用于遍历动画中的每一个 Tween；比 initState 方法先执行
+  @override
+  void forEachTween(TweenVisitor<dynamic> visitor) {
+    /// visitor 方法用于遍历动画中的每一个 Tween，
+    /// 该方法接受三个参数：
+    /// 1、dynamic 类型的 value，表示 Tween 的初始值，也就是动画开始时的值
+    /// 2、Tween<dynamic> 类型的 tween，表示 Tween，也就是动画结束时的值
+    /// 3、动画的属性，如 opacity、color、width 等，用于指定动画的类型
+    _decoration = visitor(
+      _decoration,
+      widget.decoration,
+      (value) => DecorationTween(begin: value),
+    ) as DecorationTween;
+  }
+}
+```
+
+4. 可以看到上面我们实现了 `build` 和 `forEachTween` 两个方法。在动画执行过程中，每一帧都会调用 build 方法（调用逻辑在 `ImplicitlyAnimatedWidgetState` 中），所以在 build 方法中我们需要构建每一帧的 `DecoratedBox` 状态，因此得算出每一帧的 `decoration` 状态，这个我们可以通过 `_decoration.evaluate(animation)` 来算出，其中 `animation` 是 `ImplicitlyAnimatedWidgetState` 基类中定义的对象，`_decoration` 是我们自定义的一个 `DecorationTween` 类型的对象
+5. 那么现在的问题就是它是在什么时候被赋值的呢？要回答这个问题，我们就得搞清楚什么时候需要对 `_decoration` 赋值。我们知道 `_decoration` 是一个 Tween，而 Tween 的主要职责就是定义动画的起始状态（begin）和终止状态(end)。对于 `AnimatedDecoratedBox` 来说，`decoration` 的终止状态就是用户传给它的值，而起始状态是不确定的，有以下两种情况：
+	1. `AnimatedDecoratedBox` 首次 build，此时直接将其 `decoration` 值置为起始状态，即 `_decoration` 值为 `DecorationTween(begin: decoration)` 。
+	2. `AnimatedDecoratedBox` 的 `decoration` 更新时，则起始状态为 `_decoration.animate(animation)`，即 `_decoration` 值为 `DecorationTween(begin: _decoration.animate(animation)，end:decoration)`。
+6. 现在 `forEachTween` 的作用就很明显了，它正是用于来更新 Tween 的初始值的，在上述两种情况下会被调用，而开发者只需重写此方法，并在此方法中更新 Tween 的起始状态值即可。而一些更新的逻辑被屏蔽在了 visitor 回调，我们只需要调用它并给它传递正确的参数即可，visitor 方法签名如下：
+
+```dart
+ Tween<T> visitor(
+   Tween<T> tween, //当前的tween，第一次调用为null
+   T targetValue, // 终止状态
+   TweenConstructor<T> constructor，//Tween构造器，在上述三种情况下会被调用以更新tween
+ );
+```
+
+7. 可以看到，通过继承 `ImplicitlyAnimatedWidget` 和 `ImplicitlyAnimatedWidgetState` 类可以快速的实现动画过渡组件的封装，这和我们纯手工实现相比，代码简化了很多。
+8. 如果还有疑惑，建议查看 `ImplicitlyAnimatedWidgetState` 的源码并结合本示例代码对比理解
+9. 使用 `AnimatedDecoratedBox` 的示例：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '02_1_AnimatedDecoratedBox.dart';
+
+class AnimatedDecoratedComponent extends StatefulWidget {
+  const AnimatedDecoratedComponent({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedDecoratedComponentState createState() => _AnimatedDecoratedComponentState();
+}
+
+// 需要继承 TickerProvider，如果有多个 AnimationController，则应该使用 TickerProviderStateMixin。
+class _AnimatedDecoratedComponentState extends State<AnimatedDecoratedComponent> with SingleTickerProviderStateMixin {
+  final Color _decorationColor = Colors.blue;
+  var duration = const Duration(seconds: 1);
+
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      child: AnimatedDecoratedBox(
+        // duration 用于指定动画的时长
+        duration: duration,
+        // decoration 用于指定装饰样式
+        decoration: BoxDecoration(color: _decorationColor),
+        child: buildTextButton()
+      ),
+    );
+  }
+
+  /// 构建文本按钮
+  Widget buildTextButton(){
+    return TextButton(
+      onPressed: () {
+        // 如果盒子的颜色为红色，则点击后将其改为蓝色；如果盒子的颜色为蓝色，则点击后将其改为红色
+        setState(() {
+          _decorationColor == Colors.red ? Colors.blue : Colors.red;
+        });
+      },
+      child: const Text(
+        "AnimatedDecoratedBox",
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+}
+```
+
+### ③、Flutter 预置的动画过渡组件
+
+1. Flutter SDK 中也预置了很多动画过渡组件，实现方式和大都和 `AnimatedDecoratedBox` 差不多，如表所示：
+
+| 组件名                   | 功能                                                                     |
+| ------------------------ | ------------------------------------------------------------------------ |
+| AnimatedPadding          | 在padding发生变化时会执行过渡动画到新状态                                |
+| AnimatedPositioned       | 配合Stack一起使用，当定位状态发生变化时会执行过渡动画到新的状态。        |
+| AnimatedOpacity          | 在透明度opacity发生变化时执行过渡动画到新状态                            |
+| AnimatedAlign            | 当alignment发生变化时会执行过渡动画到新的状态。                          |
+| AnimatedContainer        | 当Container属性发生变化时会执行过渡动画到新的状态。                      |
+| AnimatedDefaultTextStyle | 当字体样式发生变化时，子组件中继承了该样式的文本组件会动态过渡到新样式。 |
+
+2. 下面我们通过一个示例来感受一下这些预置的动画过渡组件效果：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_1_AnimatedDecoratedBox1.dart';
+
+class AnimatedWidgetsTest extends StatefulWidget {
+  const AnimatedWidgetsTest({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedWidgetsTestState createState() => _AnimatedWidgetsTestState();
+}
+
+class _AnimatedWidgetsTestState extends State<AnimatedWidgetsTest> {
+  double _padding = 10;
+  var _align = Alignment.topRight;
+  double _height = 100;
+  double _left = 0;
+  Color _color = Colors.red;
+  TextStyle _style = const TextStyle(color: Colors.black);
+  Color _decorationColor = Colors.blue;
+  double _opacity = 1;
+  var duration = const Duration(milliseconds: 400);
+
+  @override
+  Widget build(BuildContext context) {
+    // SingleChildScrollView 用于解决屏幕溢出问题
+    return SingleChildScrollView(
+      // Column 是一个将子部件沿屏幕垂直方向排列的小部件
+      child: Column(
+        children: <Widget>[
+          buildElevatedButton(),
+          buildAnimatedPositioned(),
+          buildAnimatedAlign(),
+          buildAnimatedContainer(),
+          buildAnimatedDefaultTextStyle(),
+          buildAnimatedOpacity(),
+          buildAnimatedDecoratedBox1()
+        // 将 List 中的每个元素映射（map）成一个新的 Widget，并将它们放到一个 List 中返回
+        // 这里的作用是将 List 中的每个元素都添加一个 Padding，用于设置它们之间的间距
+        ].map((e) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: e,
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  /// 1. AnimatedPadding，用于在给定的一段时间内，逐渐改变其子部件的 Padding 值，从而实现 Padding 动画
+  /// 即在动画过程中，子部件的 Padding 值会从一个值平滑过渡到另一个值
+  Widget buildElevatedButton(){
+    return ElevatedButton(
+      onPressed: () {
+        setState(() {
+          _padding = 20;
+        });
+      },
+      child: AnimatedPadding(
+        duration: duration,
+        padding: EdgeInsets.all(_padding),
+        child: const Text("AnimatedPadding"),
+      ),
+    );
+  }
+
+  /// 2. AnimatedPositioned，用于在给定的一段时间内，逐渐改变其子部件的位置，从而实现位置动画
+  /// 即在动画过程中，子部件会从一个位置平滑过渡到另一个位置
+  Widget buildAnimatedPositioned(){
+    return SizedBox(
+      height: 50,
+      child: Stack(
+        children: <Widget>[
+          AnimatedPositioned(
+            duration: duration,
+            left: _left,
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _left = 100;
+                });
+              },
+              child: const Text("AnimatedPositioned"),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  /// 3. AnimatedAlign，用于在给定的一段时间内，逐渐改变其子部件的对齐方式，从而实现对齐动画
+  /// 即在动画过程中，子部件会从一种对齐方式平滑过渡到另一种对齐方式
+  Widget buildAnimatedAlign(){
+    return Container(
+      height: 100,
+      color: Colors.grey,
+      child: AnimatedAlign(
+        duration: duration,
+        alignment: _align,
+        child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _align = Alignment.center;
+            });
+          },
+          child: const Text("AnimatedAlign"),
+        ),
+      ),
+    );
+  }
+
+  /// 4. AnimatedContainer，用于在给定的一段时间内，逐渐改变其子部件的样式，从而实现 Container 动画
+  /// 即在动画过程中，子部件会从一种样式平滑过渡到另一种样式
+  Widget buildAnimatedContainer(){
+    return AnimatedContainer(
+      duration: duration,
+      height: _height,
+      color: _color,
+      child: TextButton(
+        onPressed: () {
+          setState(() {
+            _height = 150;
+            _color = Colors.blue;
+          });
+        },
+        child: const Text(
+          "AnimatedContainer",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  /// 5. AnimatedDefaultTextStyle，用于在给定的一段时间内，逐渐改变其子部件的文本样式，从而实现文本样式动画
+  /// 即在动画过程中，子部件的文本样式会从一种样式平滑过渡到另一种样式
+  Widget buildAnimatedDefaultTextStyle(){
+    return AnimatedDefaultTextStyle(
+      child: GestureDetector(
+        child: const Text("hello world"),
+        onTap: () {
+          setState(() {
+            _style = const TextStyle(
+              color: Colors.blue,
+              decorationStyle: TextDecorationStyle.solid,
+              decorationColor: Colors.blue,
+            );
+          });
+        },
+      ),
+      style: _style,
+      duration: duration,
+    );
+  }
+
+  /// 6. AnimatedOpacity，用于在给定的一段时间内，逐渐改变其子部件的透明度，从而实现透明度动画
+  /// 即在动画过程中，子部件的透明度会从一个值平滑过渡到另一个值
+  Widget buildAnimatedOpacity(){
+    return AnimatedOpacity(
+      opacity: _opacity,
+      duration: duration,
+      child: TextButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.blue)),
+        onPressed: () {
+          setState(() {
+            _opacity = 0.2;
+          });
+        },
+        child: const Text(
+          "AnimatedOpacity",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  /// 自定义的 AnimatedDecoratedBox1，用于在给定的一段时间内，逐渐改变其子部件的装饰样式，从而实现装饰样式动画
+  /// 即在动画过程中，子部件的装饰样式会从一种样式平滑过渡到另一种样式
+  Widget buildAnimatedDecoratedBox1(){
+    return AnimatedDecoratedBox1(
+      duration: Duration(
+          milliseconds: _decorationColor == Colors.red ? 400 : 2000),
+      decoration: BoxDecoration(color: _decorationColor),
+      child: Builder(builder: (context) {
+        return TextButton(
+          onPressed: () {
+            setState(() {
+              _decorationColor = _decorationColor == Colors.blue
+                  ? Colors.red
+                  : Colors.blue;
+            });
+          },
+          child: const Text(
+            "AnimatedDecoratedBox toggle",
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      }),
+    );
+  }
+
+}
+```
+
+3. 效果：
+
+![](attachments/动画43.gif)
+
 # 十一、自定义组件
+
+## 1、自定义组件方法简介
+
+### ①、组合多个 Widget
+
+1. 这种方式是通过拼装多个组件来组合成一个新的组件。
+2. 例如我们之前介绍的 `Container` 就是一个组合组件，它是由 `DecoratedBox`、`ConstrainedBox`、`Transform`、`Padding`、`Align` 等组件组成。
+3. 在 Flutter 中，组合的思想非常重要，Flutter 提供了非常多的基础组件，而我们的界面开发其实就是按照需要组合这些组件来实现各种不同的布局而已。
+
+### ②、通过 CustomPaint 自绘
+
+1. 如果遇到无法通过现有的组件来实现需要的 UI 时，我们可以通过自绘组件的方式来实现，例如我们需要一个颜色渐变的圆形进度条，而 Flutter 提供的 `CircularProgressIndicator` 并不支持在显示精确进度时对进度条应用渐变色（其 `valueColor` 属性只支持执行旋转动画时变化 `Indicator` 的颜色）
+2. 这时最好的方法就是通过自定义组件来绘制出我们期望的外观。
+3. 我们可以通过 Flutter 中提供的 `CustomPaint` 和 `Canvas` 来实现 UI 自绘。
+
+### ③、通过 RenderObject 自绘
+
+1. Flutter 提供的自身具有 UI 外观的组件，如文本 `Text`、`Image` 都是通过相应的 `RenderObject`（我们将在“Flutter核心原理”一章中详细介绍  `RenderObject`）渲染出来的
+2. 如 `Text` 是由 `RenderParagraph` 渲染；而 `Image` 是由 `RenderImage` 渲染。
+3. RenderObject 是一个抽象类，它定义了一个抽象方法 `paint(...)`：
+
+```dart
+void paint(PaintingContext context, Offset offset)
+```
+
+4. `PaintingContext` 代表组件的绘制上下文，通过 `PaintingContext.canvas` 可以获得 Canvas，而绘制逻辑主要是通过 Canvas API 来实现。
+5. 子类需要重写此方法以实现自身的绘制逻辑，如 `RenderParagraph` 需要实现文本绘制逻辑，而 `RenderImage` 需要实现图片绘制逻辑。
+6. 可以发现，`RenderObject` 中最终也是通过 Canvas API 来绘制的，那么通过实现 `RenderObject` 的方式和上面介绍的通过 `CustomPaint` 和 `Canvas` 自绘的方式有什么区别？
+7. 其实答案很简单，`CustomPaint` 只是为了方便开发者封装的一个代理类，它直接继承自 `SingleChildRenderObjectWidget`，通过 `RenderCustomPaint` 的 `paint` 方法将 `Canvas` 和画笔 `Painter` (需要开发者实现，后面章节介绍)连接起来实现了最终的绘制（绘制逻辑在 `Painter` 中）
+
+## 2、组合现有组件
+
+### ①、自定义渐变按钮 GradientButton
+
+1. Flutter Material 组件库中的按钮默认不支持渐变背景，为了实现渐变背景按钮，我们自定义一个 `GradientButton` 组件，它需要支持一下功能：
+	1. 背景支持渐变色
+	2. 手指按下时有涟漪效果
+	3. 可以支持圆角
+2. 我们知道 `DecoratedBox` 可以支持背景色渐变和圆角，`InkWell` 在手指按下有涟漪效果，所以我们可以通过组合 `DecoratedBox` 和 `InkWell` 来实现 `GradientButton`，代码如下：
+
+```dart
+import 'package:flutter/material.dart';
+
+class GradientButton extends StatelessWidget {
+  const GradientButton({
+    Key? key,
+    this.colors,
+    this.width,
+    this.height,
+    this.onPressed,
+    this.borderRadius,
+    required this.child,
+  }) : super(key: key);
+
+  // 渐变色数组
+  final List<Color>? colors;
+
+  // 按钮宽高、圆角
+  final double? width;
+  final double? height;
+  final BorderRadius? borderRadius;
+
+  // 点击回调
+  final GestureTapCallback? onPressed;
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    // 获取主题
+    ThemeData theme = Theme.of(context);
+
+    // 确保 colors 数组不空
+    List<Color> _colors = colors ?? [theme.primaryColor, theme.primaryColorDark];
+
+    // DecoratedBox 小部件可以在其子部件绘制之前或之后绘制一个装饰（Decoration）。
+    return DecoratedBox(
+      /**
+       * decoration 属性用于设置装饰，它接受一个 Decoration 对象，Decoration 是一个抽象类，它定义了一些装饰相关的接口，如：
+       * BoxDecoration、UnderlineTabIndicator、FlutterLogoDecoration 等。
+       * BoxDecoration 是 Flutter 提供的一个装饰类，它可以在 child 绘制前后绘制 BoxDecoration 中定义的装饰。
+       */
+      decoration: BoxDecoration(
+        // gradient 属性用于设置渐变色，它需要传入一个 colors 数组
+        gradient: LinearGradient(colors: _colors),
+        // borderRadius 属性用于设置圆角
+        borderRadius: borderRadius,
+      ),
+      // Material 是一个 UI 小部件，它在屏幕上显示一个矩形区域，用于显示当前的“纸墨”风格。
+      child: Material(
+        // MaterialType.transparency 表示 Material 的背景透明
+        type: MaterialType.transparency,
+        // 构建 InkWell 点击水波纹效果
+        child: buildInkWell(_colors),
+      ),
+    );
+  }
+  
+  /// 构建 InkWell 点击水波纹效果
+  Widget buildInkWell(List<Color> _colors){
+    // InkWell 是一个 Material 小部件，它可以在用户点击时产生“水波纹”效果。
+    return InkWell(
+      // splashColor 属性用于设置水波纹的颜色，即点击时水波纹扩散的颜色，此处设置为 colors 的最后一个颜色。
+      splashColor: _colors.last,
+      // highlightColor 属性用于设置高亮颜色，即水波纹结束后的颜色，此处设置为透明。
+      highlightColor: Colors.transparent,
+      // borderRadius 属性用于设置圆角，和 BoxDecoration 中的 borderRadius 属性意义相同。
+      borderRadius: borderRadius,
+      // onTap 属性用于设置点击回调，它接受一个 GestureTapCallback 类型的对象。
+      onTap: onPressed,
+      // 构建文本及其约束
+      child: buildConstrainedBoxText(),
+    );
+  }
+
+  /// 构建文本及其约束
+  Widget buildConstrainedBoxText(){
+    // ConstrainedBox 用于对子部件添加额外的约束。
+    return ConstrainedBox(
+      // BoxConstraints.tightFor 用于创建一个给定大小的约束
+      constraints: BoxConstraints.tightFor(height: height, width: width),
+      // Center 用于将其子部件在父部件中居中显示。
+      child: Center(
+        // Padding 用于给其子部件添加填充。
+        child: Padding(
+          // EdgeInsets.all 用于创建一个所有方向均使用相同数值的 EdgeInsets 对象。
+          padding: const EdgeInsets.all(8.0),
+          // DefaultTextStyle 用于设置文本默认样式。
+          child: DefaultTextStyle(
+            // style 属性用于设置文本样式，它接受一个 TextStyle 对象。
+            style: const TextStyle(fontWeight: FontWeight.bold),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+### ②、使用 GradientButton
+
+1. `02_GradientButtonComponent.dart` 使用 `GradientButton` 组件
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_GradientButton.dart';
+
+class GradientButtonRoute extends StatefulWidget {
+  const GradientButtonRoute({Key? key}) : super(key: key);
+
+  @override
+  _GradientButtonRouteState createState() => _GradientButtonRouteState();
+}
+
+class _GradientButtonRouteState extends State<GradientButtonRoute> {
+  @override
+  Widget build(BuildContext context) {
+    // Column 是一个将其子部件以垂直线性顺序排列的小部件。
+    return Column(
+      // 该属性表示子部件在主轴（水平方向）的对齐方式
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        // 双色渐变
+        GradientButton(
+          colors: const [Colors.orange, Colors.red],
+          height: 50.0,
+          onPressed: onTap,
+          child: const Text("Submit"),
+        ),
+        // 多色渐变
+        GradientButton(
+          height: 50.0,
+          colors: const [Colors.white, Colors.red, Colors.orange, Colors.amber, Colors.green, Colors.blue, Colors.deepPurple, Colors.black],
+          onPressed: onTap,
+          child: const Text("Submit"),
+        ),
+        // 自定义圆角
+        GradientButton(
+          height: 50.0,
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+          colors: [Colors.lightBlue.shade300, Colors.blueAccent],
+          onPressed: onTap,
+          child: const Text("Submit"),
+        ),
+      ],
+    );
+  }
+
+  onTap() {
+    print("button click");
+  }
+
+}
+```
+
+2. 效果：
+
+![](attachments/动画44.gif)
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
+
 
 # 十二、Flutter 扩展
 
@@ -17432,6 +19954,7 @@ flutter packages pub run build_runner watch
 # 十六、问题整理
 
 ## 1、flutter daemon terminated 守护进程被终止
+
 ### ①、问题：
 
 - 问题：提示守护进程被终止，同时左上角选择设备的下拉框消失
