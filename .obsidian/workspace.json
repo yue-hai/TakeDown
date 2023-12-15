@@ -34,20 +34,7 @@
             }
           },
           {
-            "id": "4ed63a490682143d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/Android 基础.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "18206cfca1db51f6",
+            "id": "731f438a9d865f58",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -60,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -125,23 +112,27 @@
       "table-editor-obsidian:Advanced Tables Toolbar": true
     }
   },
-  "active": "4ed63a490682143d",
+  "active": "997a3d65263e0bf5",
   "lastOpenFiles": [
     "标题.md",
-    "Android/Android 基础.md",
-    "Android/attachments/Pasted image 20231208141804.png",
     "Flutter/Flutter 基础.md",
-    "Flutter/attachments/动画44.gif",
-    "Flutter/attachments/动画43.gif",
-    "Flutter/attachments/动画42.gif",
-    "Flutter/attachments/9-2.2ae3da70 1.gif",
-    "Flutter/attachments/Pasted image 20231207095849.png",
-    "Flutter/attachments/Pasted image 20231207095229.png",
-    "Flutter/attachments/动画41.gif",
-    "Flutter/attachments/动画40.gif",
-    "Flutter/attachments/动画39.gif",
+    "Flutter/attachments/Pasted image 20231215104352.png",
+    "Flutter/attachments/Pasted image 20231215102653.png",
+    "Flutter/attachments/Pasted image 20231215102535.png",
+    "Flutter/attachments/动画1 1.gif",
+    "Flutter/attachments/Pasted image 20231215095945.png",
+    "Flutter/attachments/Pasted image 20231215095654.png",
+    "Flutter/attachments/Pasted image 20231215095553.png",
+    "Flutter/attachments/Pasted image 20231215093430.png",
+    "Flutter/attachments/Pasted image 20231215092814.png",
+    "Flutter/attachments/Pasted image 20231214160752.png",
+    "linux/Smart/Smart 基础.md",
     "其他/软件使用/编程软件.md",
+    "Android/Android 基础.md",
     "Android/SSC 购物车.md",
+    "linux/Smart/Smart 编程.md",
+    "其他/软件使用/attachments/intellij-rainbow-brackets-6.26.zip",
+    "Android/Kotlin 基础.md",
     "python/attachments/05.scrapy.pdf",
     "Flutter/Dart 基础.md",
     "java/15、SpringCloudAlibaba.md",
@@ -150,18 +141,15 @@
     "java/attachments/Spring Cloud Alibaba.xmind",
     "未命名.canvas",
     "java/java开发规约.pdf",
-    "linux/Smart/Smart 基础.md",
     "其他/Docker.md",
     "其他/设备和工具.md",
     "linux/linux/Liunx 基础.md",
-    "linux/Smart/Smart 编程.md",
     "linux/linux/Shell 编程.md",
     "其他/attachments/y_chat-1.0-SNAPSHOT.jar",
     "其他/attachments/TEST-0.0.1-SNAPSHOT 1.jar",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.004",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.003",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.002",
-    "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.001",
     "java/【其他】.md",
     "其他/软件使用/WindTerm.md",
     "其他/软件使用/VS Code.md",
@@ -169,7 +157,6 @@
     "其他/软件使用/Office.md",
     "其他/文件处理/音频处理.md",
     "其他/软件使用/Excel.md",
-    "Android/Kotlin 基础.md",
     "其他/软件使用/浏览器.md",
     "其他/小工具.md",
     "其他/Git.md",

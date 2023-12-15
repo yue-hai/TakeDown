@@ -277,7 +277,7 @@ void _incrementCounter() {
 ```
 
 4. 构建 UI 界面的 build 方法：构建 UI 界面的逻辑在 `build` 方法中，当 `MyHomePage` 第一次创建时， `_MyHomePageState` 类会被创建，当初始化完成后，Flutter 框架会调用 widget 的 `build` 方法来构建 widget 树，最终将 widget 树渲染到设备屏幕上。所以，我们看看 `_MyHomePageState` 的 `build` 方法中都干了什么事：
-	1. `Scaffold` 是 Material 库中提供的页面脚手架，它提供了默认的导航栏、标题和包含主屏幕 widget 树（后同“组件树”或“部件树”）的 `body` 属性，组件树可以很复杂。本书后面示例中，路由默认都是通过 `Scaffold` 创建。
+	1. `Scaffold` 是 Material 库中提供的页面脚手架，它提供了默认的导航栏、标题和包含主屏幕 widget 树（后同“组件树”或“部件树”）的 `body` 属性，组件树可以很复杂。在后面示例中，路由默认都是通过 `Scaffold` 创建。
 	2. `body` 的组件树中包含了一个 `Center` 组件，`Center` 可以将其子组件树对齐到屏幕中心。
 	3. 此例中， `Center` 子组件是一个 `Column` 组件，`Column` 的作用是将其所有子组件沿屏幕垂直方向依次排列； 
 	4. 此例中 `Column` 子组件是两个 `Text`，第一个 `Text` 显示固定文本 `You have pushed the button this many times:` ，第二个Text 显示 `_counter` 状态的数值。
@@ -2418,7 +2418,7 @@ flutter:
 1. 如果我们采用的是 Flutter + 原生 的开发模式，那么可能会存 Flutter 和原生需要共享资源的情况
 2. 比如 Flutter 项目中已经有了一张图片 A，如果原生代码中也要使用 A，我们可以将 A 拷贝一份到原生项目的特定目录，这样的话虽然功能可以实现，但是最终的应用程序包会变大，因为包含了重复的资源
 3. 为了解决这个问题，Flutter 提供了一种 Flutter 和原生之间共享资源的方式
-4. 由于实现上需要涉及平台相关的原生代码，故本书不做展开，有需要可以自行查阅：[官方文档](https://flutter.cn/docs/development/ui/assets-and-images#sharing-assets-with-the-underlying-platform)
+4. 由于实现上需要涉及平台相关的原生代码，这里不做展开，有需要可以自行查阅：[官方文档](https://flutter.cn/docs/development/ui/assets-and-images#sharing-assets-with-the-underlying-platform)
 
 ## 7、
 
@@ -12842,7 +12842,7 @@ class _DialogComponentState extends State<DialogComponent> {
 
 1. 我们可以把对话框分为内部样式和外部样式两部分。
 2. 内部样式指对话框中显示的具体内容，这部分内容我们已经在上面介绍过了；外部样式包含对话框遮罩样式、打开动画等，本节主要介绍如何自定义这些外部样式。
-3. 关于动画相关内容我们将在本书第九章中详细介绍，下面内容可以先了解一下（不必深究），可以在学习完动画相关内容后再回头来看。
+3. 关于动画相关内容我们将在第十章中详细介绍，下面内容可以先了解一下（不必深究），可以在学习完动画相关内容后再回头来看。
 4. 我们已经介绍过了 `showDialog` 方法，它是 Material 组件库中提供的一个打开 Material 风格对话框的方法。那如何打开一个普通风格的对话框呢（非 Material 风格）？ Flutter 提供了一个 `showGeneralDialog` 方法，签名如下：
 
 ```dart
@@ -17398,7 +17398,7 @@ flutter packages pub run build_runner watch
 
 3. 只需启动一次观察器，然后它就会在后台运行，这是安全的
 
-### ③、使用IDE插件生成model
+### ③、使用 IDE 插件生成 model
 
 1. 目前 Android Studio(或IntelliJ) 有几个插件，可以将 json 文件转成 Model 类，但插件质量参差不齐，甚至还有一些沾染上了抄袭风波，故在此不做优先推荐，有兴趣可以自行了解
 2. 但是，我们还是要了解一下 IDE 插件和 Json_model 的优劣：
@@ -17412,6 +17412,394 @@ flutter packages pub run build_runner watch
 2. 因为这样的库需要使用运行时反射，这在 Flutter 中是禁用的。
 3. 运行时反射会干扰 Dart 的 tree shaking，使用 `_tree shaking_`，可以在 release 版中“去除”未使用的代码，这可以显著优化应用程序的大小。
 4. 由于反射会默认应用到所有代码，因此 `_tree shaking_` 会很难工作，因为在启用反射时很难知道哪些代码未被使用，因此冗余代码很难剥离，所以 Flutter 中禁用了 Dart 的反射功能，而正因如此也就无法实现动态转化 Model 的功能。
+
+## 8、FlutterJsonBeanFactory 插件
+
+> 我使用上面的 `json_serializable` 创建失败，据说是 flutter SDK 版本和依赖版本的问题，研究了一下不想弄了
+> 
+> 我搜到的解决办法，flutter SDK 版本 >= 2.12.0 < 3.0.0 才可：https://blog.csdn.net/Bearin/article/details/122085249
+
+1. idea 安装 FlutterJsonBeanFactory 插件
+
+![](attachments/Pasted%20image%2020231215092814.png)
+
+2. 获得一个 json：http://101.200.86.248:9001/hello/helloTest
+
+```json
+{
+    "msg": "ok",
+    "data": "Hello World!",
+    "code": 200
+}
+```
+
+3. 当然可以选择把这个 json 存起来，保证以后能找到
+
+![|382](attachments/Pasted%20image%2020231215093430.png)
+
+4. 在想要生成的目录上右键 -> 新建 -> JsonToDartBeanAction
+
+![|530](attachments/Pasted%20image%2020231215095553.png)
+
+5. 在弹出的窗口中输入想要生成的类名和 `json` 字符串；左下角有个 `null-able` ，如果勾选，表示我们创建的类的属性都是可空的；如果没有勾选，则生成的是不可空的
+
+![|700](attachments/Pasted%20image%2020231215095654.png)
+
+6. 点击 Make ，开始将我们输入的 Json 转换为类
+	1. 生成的类名，会将我们的输入的类名，再加上 Entity 后缀；
+	2. 会生成一个 `generated` 目录，里面包含了最终产物和中间产物；
+	3. 插件也是用了 `json_serializable` 这样的库或原理；
+
+![|543](attachments/Pasted%20image%2020231215095945.png)
+
+7. 生成的文件中：
+	1. `json_convert_content.dart` 和 `json_field.dart` 是用于 JSON 序列化和反序列化的基础类
+	2. `hello_world_entity.g.dart` 是根据提供的 JSON 数据生成的模型类的序列化和反序列化逻辑
+	3. 使用时使用 `hello_world_entity.dart` 类即可，`hello_world_entity.dart` 类内容：
+
+```dart
+import 'package:flutter_study/generated/json/base/json_field.dart';
+import 'package:flutter_study/generated/json/hello_world_entity.g.dart';
+import 'dart:convert';
+export 'package:flutter_study/generated/json/hello_world_entity.g.dart';
+
+@JsonSerializable()
+class HelloWorldEntity {
+	late String msg;
+	late String data;
+	late int code;
+
+	HelloWorldEntity();
+
+	factory HelloWorldEntity.fromJson(Map<String, dynamic> json) => $HelloWorldEntityFromJson(json);
+
+	Map<String, dynamic> toJson() => $HelloWorldEntityToJson(this);
+
+	@override
+	String toString() {
+		return jsonEncode(this);
+	}
+}
+```
+
+8. 访问接口，对返回值进行测试：
+	- 主要是这一行代码：`var helloWorldEntity = HelloWorldEntity.fromJson(response.data);`
+
+```dart
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import 'model/hello_world_entity.dart';
+
+
+class HttpDioJsonComponent extends StatefulWidget {
+  const HttpDioJsonComponent({Key? key}) : super(key: key);
+
+  @override
+  _HttpDioJsonComponentState createState() => _HttpDioJsonComponentState();
+}
+
+class _HttpDioJsonComponentState extends State<HttpDioJsonComponent> {
+  Dio _dio = Dio();
+
+  bool _loading = false;
+  String _text = "";
+
+  /// 构建 UI, context：构建上下文，即当前 Widget 的位置
+  @override
+  Widget build(BuildContext context) {
+    // Center 是一个用于将其子部件树对齐到屏幕中心的小部件
+    return Center(
+      // Column 是一个小部件，用于在垂直方向上排列其子部件
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: _loading ? null : request,
+            child: const Text("请求 月海"),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width - 50.0,
+            child: Text(_text),
+          )
+        ],
+      ),
+    );
+  }
+
+  request() async {
+    setState(() {
+      _loading = true;
+      _text = "正在请求...";
+    });
+
+    try {
+      Response response = await _dio.get("http://101.200.86.248:9001/hello/helloTest");
+      setState(() {
+        // 使用 json 类解析 json
+        var helloWorldEntity = HelloWorldEntity.fromJson(response.data);
+        _text = "是否成功：${helloWorldEntity.msg}\n"
+            "状态码：${helloWorldEntity.code}\n"
+            "返回值：${helloWorldEntity.data}";
+      });
+
+    } catch (e) {
+      _text = "请求失败：$e";
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
+
+}
+```
+
+9. 效果：
+
+![|356](attachments/动画1%201.gif)
+
+## <a id="9-9">9、使用 `shared_preferences` 包数据持久化</a>
+
+1. `pubspec.yaml` 导入依赖
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # shared_preferences 是一个用于存储轻量级键值对的插件，它包装了 Android 的 SharedPreferences 和 iOS 的 UserDefaults。
+  shared_preferences: ^2.0.8
+```
+
+2. 导入头文件
+
+```dart
+import 'package:shared_preferences/shared_preferences.dart';
+```
+
+
+3. 获取实例对象
+
+```dart
+SharedPreferences? sharedPreferences = await SharedPreferences.getInstance();
+```
+
+4. 设置持久化数据，我们可以通过 `sharedPreferences` 的实例化对象调用对应的 `set` 方法设置持久化数据
+
+```dart
+SharedPreferences? sharedPreferences;
+
+// 设置持久化数据
+void _setData() async {
+  // 实例化
+  sharedPreferences = await SharedPreferences.getInstance();
+
+  // 设置string类型
+  await sharedPreferences?.setString("name", "Jimi");
+
+  // 设置int类型
+  await sharedPreferences?.setInt("age", 18);
+
+  // 设置bool类型
+  await sharedPreferences?.setBool("isTeacher", true);
+
+  // 设置double类型
+  await sharedPreferences?.setDouble("height", 1.88);
+
+  // 设置string类型的数组
+  await sharedPreferences?.setStringList("action", ["吃饭", "睡觉", "打豆豆"]);
+
+  setState(() {});
+}
+```
+
+5. 读取持久化数据，我们可以通过 `sharedPreferences` 的实例化对象调用对应的 `get` 方法读取持久化数据
+
+```dart
+Text("名字: ${sharedPreferences?.getString("name") ?? ""}",
+     style: TextStyle(
+       color: Colors.blue,
+       fontSize: 20
+     ),
+    ),
+SizedBox(height: 20,),
+Text("年龄: ${sharedPreferences?.getInt("age") ?? ""}",
+     style: TextStyle(
+       color: Colors.red,
+       fontSize: 20
+     ),
+    ),
+SizedBox(height: 20,),
+Text("是老师吗?: ${sharedPreferences?.getBool("isTeacher") ?? ""}",
+     style: TextStyle(
+       color: Colors.orange,
+       fontSize: 20
+     ),
+    ),
+SizedBox(height: 20,),
+Text("身高: ${sharedPreferences?.getDouble("height") ?? ""}",
+     style: TextStyle(
+       color: Colors.pink,
+       fontSize: 20
+     ),
+    ),
+SizedBox(height: 20,),
+Text("我正在: ${sharedPreferences?.getStringList("action") ?? ""}",
+     style: TextStyle(
+       color: Colors.purple,
+       fontSize: 20
+     ),
+    ),
+```
+
+
+6. 完整代码
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SharedPreferencesExample extends StatefulWidget {
+  @override
+  _SharedPreferencesExampleState createState() => _SharedPreferencesExampleState();
+}
+
+class _SharedPreferencesExampleState extends State<SharedPreferencesExample> {
+
+
+  SharedPreferences? sharedPreferences;
+
+  // 设置持久化数据
+  void _setData() async {
+    // 实例化
+    sharedPreferences = await SharedPreferences.getInstance();
+
+    // 设置string类型
+    await sharedPreferences?.setString("name", "Jimi");
+
+    // 设置int类型
+    await sharedPreferences?.setInt("age", 18);
+
+    // 设置bool类型
+    await sharedPreferences?.setBool("isTeacher", true);
+
+    // 设置double类型
+    await sharedPreferences?.setDouble("height", 1.88);
+
+    // 设置string类型的数组
+    await sharedPreferences?.setStringList("action", ["吃饭", "睡觉", "打豆豆"]);
+
+    setState(() {});
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("SharedPreferences"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _setData,
+        child: Icon(Icons.add),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("名字: ${sharedPreferences?.getString("name") ?? ""}",
+                 style: TextStyle(
+                   color: Colors.blue,
+                   fontSize: 20
+                 ),
+                ),
+            SizedBox(height: 20,),
+            Text("年龄: ${sharedPreferences?.getInt("age") ?? ""}",
+                 style: TextStyle(
+                   color: Colors.red,
+                   fontSize: 20
+                 ),
+                ),
+            SizedBox(height: 20,),
+            Text("是老师吗?: ${sharedPreferences?.getBool("isTeacher") ?? ""}",
+                 style: TextStyle(
+                   color: Colors.orange,
+                   fontSize: 20
+                 ),
+                ),
+            SizedBox(height: 20,),
+            Text("身高: ${sharedPreferences?.getDouble("height") ?? ""}",
+                 style: TextStyle(
+                   color: Colors.pink,
+                   fontSize: 20
+                 ),
+                ),
+            SizedBox(height: 20,),
+            Text("我正在: ${sharedPreferences?.getStringList("action") ?? ""}",
+                 style: TextStyle(
+                   color: Colors.purple,
+                   fontSize: 20
+                 ),
+                ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+7. 效果展示
+
+![|555](attachments/Pasted%20image%2020231215104352.png)
+
+8. 获取持久化数据中所有存入的 key
+
+```dart
+dart复制代码List<String> keys = sharedPreferences?.getKeys().toList() ?? [];
+print(keys);
+
+// 控制台输出
+[name, age, isTeacher, height, action]
+```
+
+9. 判断持久化数据中是否包含某个 key
+
+```dart
+dart复制代码bool isContainKey = sharedPreferences?.containsKey("name") ?? false;
+print(isContainKey);
+
+// 控制台输出
+flutter: true
+```
+
+10. 删除持久化数据中某个 key
+
+```dart
+dart复制代码bool isRemoveKey = await sharedPreferences?.remove("name") ?? false;
+print(isRemoveKey);
+
+// 控制台输出
+flutter: true
+```
+
+
+11. 清除所有持久化数据
+
+```dart
+dart复制代码bool isClearAllKey = await sharedPreferences?.clear() ?? false;
+print(isClearAllKey);
+
+// 控制台输出
+flutter: true
+```
+
+12. 重新加载所有数据（仅重载运行时）
+
+```dart
+dart复制代码await sharedPreferences?.reload();
+```
 
 # 十、动画
 
@@ -19924,7 +20312,164 @@ class _GradientButtonRouteState extends State<GradientButtonRoute> {
 
 ![](attachments/动画44.gif)
 
-## 3、
+## 3、组合实例旋转动画：TurnBox
+
+1. 我们之前已经介绍过 `RotatedBox`，它可以旋转子组件，但是它有两个缺点：
+	1. 一是只能将其子节点以 90 度的倍数旋转；
+	2. 二是当旋转的角度发生变化时，旋转角度更新过程没有动画。
+2. 本节我们将实现一个 TurnBox 组件，它不仅可以以任意角度来旋转其子节点，而且可以在角度发生变化时执行一个动画以过渡到新状态，同时，我们可以手动指定动画速度。
+3. 实例：
+
+```dart
+import 'package:flutter/widgets.dart';
+
+class TurnBox extends StatefulWidget {
+  const TurnBox({
+    Key? key,
+    // 旋转的“圈”数,一圈为 360 度，如 0.25 圈即 90 度
+    this.turns = .0,
+    // 过渡动画执行的总时长
+    this.speed = 200,
+    required this.child
+  }) :super(key: key);
+
+  final double turns;
+  final int speed;
+  final Widget child;
+
+  @override
+  _TurnBoxState createState() => _TurnBoxState();
+}
+
+class _TurnBoxState extends State<TurnBox> with SingleTickerProviderStateMixin {
+  // _controller 用于控制动画
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    // 创建 AnimationController 对象
+    _controller = AnimationController(
+        vsync: this,
+        // lowerBound 和 upperBound 用于指定动画的边界，默认值是 0.0 和 1.0；
+        // 此处我们将其设置为无限小和无限大，这样可以让动画执行的“圈”数任意大
+        lowerBound: -double.infinity,
+        upperBound: double.infinity
+    );
+    // 通过 AnimationController 的 value 属性来指定动画的值
+    _controller.value = widget.turns;
+  }
+
+  @override
+  void dispose() {
+    // 释放动画资源
+    super.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // RotationTransition 是一个可以旋转子部件的小部件
+    return RotationTransition(
+      // 将 _animation 作为 RotationTransition 的 turns 属性
+      turns: _controller,
+      child: widget.child,
+    );
+  }
+
+  /// 当 widget 的配置发生变化时，didUpdateWidget() 会被调用。
+  @override
+  void didUpdateWidget(TurnBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 旋转角度 turns 发生变化时执行过渡动画
+    if (oldWidget.turns != widget.turns) {
+      _controller.animateTo(
+        // 动画的目标值
+        widget.turns,
+        // duration 属性用于设置动画执行的时长
+        duration: Duration(milliseconds: widget.speed),
+        // 动画的曲线
+        curve: Curves.easeOut,
+      );
+    }
+  }
+}
+```
+
+4. 创建测试类 `TurnBoxRoute` 使用 `TurnBox` 
+
+```dart
+import 'package:flutter/material.dart';
+
+import '01_TurnBox.dart';
+
+class TurnBoxRoute extends StatefulWidget {
+  const TurnBoxRoute({Key? key}) : super(key: key);
+
+  @override
+  _TurnBoxRouteState createState() => _TurnBoxRouteState();
+}
+
+class _TurnBoxRouteState extends State<TurnBoxRoute> {
+  double _turns = .0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          TurnBox(
+            turns: _turns,
+            speed: 500,
+            child: const Icon(
+              Icons.refresh,
+              size: 50,
+            ),
+          ),
+          TurnBox(
+            turns: _turns,
+            speed: 1000,
+            child: const Icon(
+              Icons.refresh,
+              size: 150.0,
+            ),
+          ),
+          ElevatedButton(
+            child: const Text("顺时针旋转1/5圈"),
+            onPressed: () {
+              setState(() {
+                _turns += .2;
+              });
+            },
+          ),
+          ElevatedButton(
+            child: const Text("逆时针旋转1/5圈"),
+            onPressed: () {
+              setState(() {
+                _turns -= .2;
+              });
+            },
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+5. 效果：
+
+![](attachments/动画46.gif)
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+### ⑥、
 
 ## 4、
 
@@ -19941,16 +20486,956 @@ class _GradientButtonRouteState extends State<GradientButtonRoute> {
 
 # 十二、Flutter 扩展
 
+## 1、包和插件
+
+### ①、包
+
+1. 第二章中已经讲过如何使用包（Package），我们知道通过包可以复用模块化代码，一个最小的 Package 包括：
+	1. 一个 `pubspec.yaml` 文件：声明了 Package 的名称、版本、作者等的元数据文件。
+	2. 一个 lib 文件夹：包括包中公开的(public)代码，最少应有一个 `<package-name>.dart` 文件
+2. Flutter 包分为两类：
+	1. Dart 包：其中一些可能包含 Flutter 的特定功能，因此对 Flutter 框架具有依赖性，这种包仅用于 Flutter，例如 fluro (opens new window)包。
+	2. 插件包：一种专用的 Dart 包，其中包含用 Dart 代码编写的 API，以及针对 Android（使用 Java 或 Kotlin）和针对 iOS（使用 OC 或 Swift）平台的特定实现，也就是说插件包括原生代码，一个具体的例子是 battery (opens new window) 插件包
+
+### ②、插件
+
+1. Flutter 本质上只是一个 UI 框架，运行在宿主平台之上，Flutter 本身是无法提供一些系统能力，比如使用蓝牙、相机、GPS 等，因此要在 Flutter 中调用这些能力就必须和原生平台进行通信。
+2. 目前 Flutter 已经支持 iOS、Android、Web、macOS、Windows、Linux 等众多平台，要调用特定平台 API 就需要写插件。插件是一种特殊的包，和纯 dart 包主要区别是插件中除了dart 代码，还包括特定平台的代码，比如 `image_picker` 插件可以在 iOS 和 Android 设备上访问相册和摄像头
+
+#### Ⅰ、插件实现原理
+
+1. 我们知道一个完整的 Flutter 应用程序实际上包括原生代码和 Flutter 代码两部分。Flutter 中提供了平台通道（platform channel）用于 Flutter和原生平台的通信，平台通道正是 Flutter 和原生之间通信的桥梁，它也是 Flutter 插件的底层基础设施。
+2. Flutter 与原生之间的通信本质上是一个远程调用（RPC），通过消息传递实现：
+	1. 应用的 Flutter 部分通过平台通道（platform channel）将调用消息发送到宿主应用。
+	2. 宿主监听平台通道，并接收该消息。然后它会调用该平台的 API，并将响应发送回 Flutter。
+3. 由于插件编写涉及具体平台的开发知识，比如 `image_picker` 插件需要开发者在 iOS 和 Android 平台上分别实现图片选取和拍摄的功能，因此需要开发者熟悉原生开发，而此处主要聚焦 Flutter ，因此不做过多介绍
+4. 不过插件的开发也并不复杂，感兴趣可以查看官方的：[插件开发示例](https://flutter.cn/docs/development/packages-and-plugins/developing-packages)
+
+#### Ⅱ、如何获取平台信息
+
+1. 有时，在 Flutter 中我们想根据宿主平台添加一些差异化的功能，因此 Flutter 中提供了一个全局变量 `defaultTargetPlatform` 来获取当前应用的平台信息，`defaultTargetPlatform` 定义在 `platform.dart` 中，它的类型是 `TargetPlatform`，这是一个枚举类，定义如下：
+
+```dart
+enum TargetPlatform {
+  android,
+  fuchsia,
+  iOS,
+  ...
+}
+```
+
+2. 可以看到目前 Flutter 只支持这三个平台。我们可以通过如下代码判断平台：
+
+```dart
+if(defaultTargetPlatform == TargetPlatform.android){
+  // 是安卓系统，do something
+  ...
+}
+```
+
+3. 由于不同平台有它们各自的交互规范，Flutter Material 库中的一些组件都针对相应的平台做了一些适配，比如路由组件 MaterialPageRoute，它在 android 和 ios 中会应用各自平台规范的切换动画。那如果我们想让我们的 APP 在所有平台都表现一致，比如希望在所有平台路由切换动画都按照 ios 台一致的左右滑动切换风格该怎么做？Flutter 中提供了一种覆盖默认平台的机制，我们可以通过显式指定 `debugDefaultTargetPlatformOverride` 全局变量的值来指定应用平台。比如：
+
+```dart
+debugDefaultTargetPlatformOverride=TargetPlatform.iOS;
+print(defaultTargetPlatform); // 会输出TargetPlatform.iOS
+```
+
+4. 上面代码即使在 Android 中运行后，Flutter APP 也会认为是当前系统是 iOS，Material 组件库中所有组件交互方式都会和 iOS 平台对齐， `defaultTargetPlatform` 的值也会变为 `TargetPlatform.iOS`
+
+#### Ⅲ、常用的插件
+
+1. Flutter 官方提供了一系列常用的插件，如访问相机/相册、本地存储、播放视频等，完整列表见：https://github.com/flutter/plugins/tree/master/packages 
+2. 除了官方维护的插件，Flutter 社区也有不少现成插件，具体可以在 https://pub.dev/ 上查找。
+
+## 2、Flutter Web
+
+### ①、简介
+
+1. Flutter 目前已经支持 macOS、Windows、Linux、Android、iOS、Web 等多个平台
+2. 这些平台中除了 Web 平台会比较特殊一些，因为除了它其余的“平台”都是操作系统，而 Web 并不是操作系统，Web 应用程序是运行在浏览器中的，而浏览器是运行在操作系统之上，因此 “平台”一词，指的是某种“运行环境”，并不等同于“操作系统”，浏览器和操作系统都是应用程序运行的环境而已。
+3. 传统的 Web 应用都是基于 Javascript + html + css 开发的，运行在浏览器之上，因此天然具备跨平台优势，而 Flutter 的目标是高性能的跨端 UI 框架，所以支持 Web 平台将有助于 Flutter 技术扩大应用场景，实现 write once, run anywhere（一次编码，到处运行）。
+4. 为此，Flutter 团队从 1.0 开始一直在尝试让 Flutter 支持 Web 平台，第一个支持 Web 平台的稳定版是 2.0 ，在 2.0 之后 Flutter 对 Web 平台的支持也一直在优化，现在也有一些公司将 Flutter 应用应用到生产环境
+
+### ②、Web 应用的特殊性
+
+1. 因为 Web 应用是在浏览器中运行的，而浏览器是运行在操作系统之上，因此 Web 应用不能直接调用操作系统 API， Web 应用能调用哪些操作系统能力取决于它的宿主-浏览器是否暴露相关的操作系统 API。而浏览器出于安全考虑，会提供一个沙箱环境——开放一些安全、可控的系统能力，同时限制一部分敏感的操作，具体表现在：
+	1. 浏览器允许 Web 应用访问网络，但有严格的“同源策略”限制。
+	2. 浏览器允许 JavaScript 读取用户手动选择本地文件（文件上传场景），但不允许 JavaScript 主动访问本地文件系统，同时在任何情况下，浏览器都不允许 JavaScript 直接往本地文件系统写文件，因此 `dart:io` 包在 Web 应用是不能用的。
+	3. 浏览器对 Web 应用访问系统硬件权限有自身策略，比如访问 wifi、gps、摄像头等。
+2. 因此，如果用 Flutter 开发 Web 应用，以上这些限制将会生效，所以会出现和其他平台不一致的情况，常见的两个场景是：不能在 Web 应用中发起非同源请求、不能在 Web 应用中直接读取文件。
+
+### ③、Web 渲染器
+
+- Flutter 中提供了两种不同的渲染器来运行和构建 Web 应用，分别是 html 渲染器和 CanvasKit 渲染器。
+
+#### Ⅰ、Html 渲染器
+
+1. 由于浏览器有一套自身的布局标准（ html + css ），Flutter 在生成 Web 应用时可以编译为符合浏览器标准的文件，包括使用 HTML，CSS，Canvas 和 SVG 元素来渲染。
+2. 使用 Html 渲染器的优点是应用体积相对较小，缺点是使用 Html 渲染器时大多数 UI 并不是 Flutter 引擎绘制的，所以可能会存在跨浏览器跨时 UI 出现不一致的情况
+
+#### Ⅱ、CanvasKit 渲染器
+
+1. 我们知道 Flutter 的优势是提供一套自绘的 UI 框架，可以保证多端 UI 的一致性。
+2. Flutter 在支持其他平台时，都是将引擎的 C++ 代码编译为相应平台的代码来实现移植的（运行在操作系统之上）。
+3. 但是在 Web 平台，Web 应用是运行在浏览器之上，而现代浏览器都实现了对 WebAssembly 的支持，简单来讲，在之前 W3C 规范中只要求浏览器能够支持 JavaScript 语言，这样的话很多其他语言的代码想在浏览器中运行就必须改写为 JavaScript，而 WebAssembly 是一种标准的、可移植的二进制文件格式规范，文件扩展名为 `.wasm`，现在浏览器都支持 WebAssembly ，这也就意味着其他语言按照 WebAssembly 规范编译的应用可以在浏览器中运行！
+4. 因此，Flutter 将引擎编译成 WebAssembly 格式，并使用 WebGL 渲染，这种渲染方式的渲染器官方称为 CanvasKit 渲染器。
+5. CanvasKit 渲染器的优点是可以保证跨端 UI 绘制的一致性，有更好的性能，以及降低不同浏览器渲染效果不一致的风险。但缺点是应用的大小会增加大约 2MB
+
+### ④、在浏览器中运行
+
+1. `--web-renderer` 可选参数值为 `auto`、`html` 或 `canvaskit`。
+	1. `auto`（默认）：自动选择渲染器。移动端浏览器选择 HTML，桌面端浏览器选择 CanvasKit。
+	2. `html` ：强制使用 HTML 渲染器。
+	3. `canvaskit`：强制使用 CanvasKit 渲染器。
+2. 此选项适用于 `run` 和 `build` 命令。例如：
+
+```dart
+flutter run -d chrome --web-renderer html
+flutter build web --web-renderer canvaskit
+```
+
+3. 如果运行/构建目标是非浏览器设备（即移动设备或桌面设备），这个选项会被忽略
+
+### ⑤、Flutter Web 使用场景
+
+1. Web 开发已有完整且强大的开发及生态体系，Flutter Web 并不适用 Web 开发的所有场景，目前 Flutter Web 主要关注以下三个应用场景：
+	1. 渐进式 Web 应用 (Progressive web apps, PWA)。
+	2. 单页应用 (Single page apps, SPA)， 一般一个应用只有一个 html 文件，只需一次加载，后续与服务端动态互传数据。
+	3. 将现有 Flutter 移动应用拓展到 Web，在两个平台共享代码。
+2. 注意：PWA 和 SPA 应用在 Web 开发中是两种基本的应用类型，Web 开发者会比较熟悉。
+3. 现在阶段，Flutter 对于富文本和瀑布流类型的 Web 页面并不是很适合，例如博客，它是典型的“以文档为中心”的模式，而不是像 Flutter 这样的 UI 框架可以提供的“以应用为中心”的服务。以文档为中心的应用通常各个页面之间相互独立，很少有关联，也就不需要跨页面的状态共享，而以应用为中心的服务，通常各个页面之间是有状态关联，不同页面组成一个完整的功能。
+4. 最后，有关如何在 Web 上使用 Flutter 的更多信息请参考：[Flutter 官方文档](https://flutter.cn/docs/web)
+
 # 十三、国际化
+
+## 1、让 App 支持多语言
+
+### ①、简介
+
+1. 如果我们的应用要支持多种语言，那么我们需要“国际化”它。这意味着我们在开发时需要为应用程序支持的每种语言环境设置“本地化”的一些值，如文本和布局。
+2. Flutter SDK 已经提供了一些组件和类来帮助我们实现国际化，下面我们来介绍一下 Flutter 中实现国际化的步骤。
+3. 接下来我们以 `MaterialApp` 类为入口的应用来说明如何支持国际化。
+4. 大多数应用程序都是通过 `MaterialApp` 为入口，但根据低级别的 `WidgetsApp` 类为入口编写的应用程序也可以使用相同的类和逻辑进行国际化。`MaterialApp` 实际上也是 `WidgetsApp` 的一个包装。
+5. 注意，“本地化的值和资源”是指我们针对不同语言准备的不同资源，这些资源一般是指文案（字符串），当然也会有一些其他的资源会根据不同语言地区而不同，比如我们需要显示一个 APP 上架地的国旗图片，那么不同 Locale 区域我们就需要提供不同的国旗图片
+
+### ②、使用 Intl 包支持国际化
+
+1. 默认情况下，Flutter SDK 中的组件仅提供美国英语本地化资源（主要是文本）。要添加对其他语言的支持，应用程序须添加 `flutter_localizations` 和 `intl` 包依赖，然后还需要在 `MaterialApp` 中进行一些配置。 要使用 `flutter_localizations` 包，首先需要添加依赖到 `pubspec.yaml` 文件中：
+
+```dart
+dependencies:
+  flutter:
+    sdk: flutter
+  # flutter_localizations 包含本地化资源，例如字符串和其他值，以便为特定于地区的用户界面提供本地化
+  flutter_localizations:
+    sdk: flutter
+
+  # intl 是一个 Dart 包，它提供了国际化和本地化的实现，包括消息和日期/时间本地化，以及双向文本翻译
+  intl: ^0.17.0
+```
+
+2. 在 `lib` 目录下创建一个 `l10n` 目录，并在其中创建语言文件 `intl_zh.arb` 和 `intl_en.arb` ，并分别在其中写入以下内容：
+
+```arb
+{
+  "greeting": "你好，世界",
+  "welcome": "欢迎"
+}
+```
+
+```arb
+{
+  "greeting": "Hello World",
+  "welcome": "welcome"
+}
+```
+
+![](attachments/Pasted%20image%2020231214135012.png)
+
+3. 执行命令：`flutter pub global run intl_utils:generate`，使得 `intl` 包根据上面的语言文件生成代码：
+	1. `intl` 目录：这个目录包含了 Dart 代码文件，用于处理应用程序的国际化（Internationalization），其中的文件包括：
+		1. `messages_all.dart`：这个文件包含了用于加载本地化消息的 `initializeMessages` 函数，以及 `Messages` 类的导出。
+		2. `messages_en.dart`：这个文件包含了英语（English）本地化消息的定义和静态方法。
+		3. `messages_zh.dart`：这个文件包含了中文（Chinese）本地化消息的定义和静态方法。
+	2. `l10n.dart` 文件：这个文件是一个便捷的导出文件，用于导出 `messages_all.dart` 中的 `initializeMessages` 函数和 `Messages` 类，以便在应用程序中使用
+
+![](attachments/Pasted%20image%2020231214135903.png)
+
+4. 修改主启动类 `main.dart` 文件中的 `MaterialApp` 组件，添加 `localizationsDelegates` 和 `supportedLocales` 属性：
+	1. 与 `MaterialApp` 类为入口的应用不同，对基于 `WidgetsApp` 类为入口的应用程序进行国际化时，不需要 `GlobalMaterialLocalizations.delegate`
+	2. `localizationsDelegates` 列表中的元素是生成本地化值集合的工厂类。
+		1. `GlobalMaterialLocalizations.delegate` 为 Material 组件库提供的本地化的字符串和其他值，它可以使 Material 组件支持多语言。
+		2. `GlobalWidgetsLocalizations.delegate` 定义组件默认的文本方向，从左到右或从右到左，这是因为有些语言的阅读习惯并不是从左到右，比如如阿拉伯语就是从右向左的。
+	3. `supportedLocales` 也接收一个 Locale 数组，表示我们的应用支持的语言列表，在本例中我们的应用只支持美国英语和中文简体两种语言
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import '13_国际化/01_让 App 支持多语言/01_LocalizationsComponent.dart';
+import 'generated/l10n.dart';
+
+
+// 入口方法
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * MaterialApp 是 Flutter 提供的一个小部件，用于创建一个包含 Material Design 样式和功能的应用程序。
+     * 它是一个顶层小部件，用于为整个应用程序提供一致的主题和样式。
+     * 在 MaterialApp 中，你可以设置应用程序的标题、主题、路由和其他全局属性
+     */
+    return MaterialApp(
+      /**
+       * localizationsDelegates 是 MaterialApp 的一个属性，用于指定应用程序支持的本地化代理。
+       * 它接受一个 List<LocalizationsDelegate> 类型的参数
+       * S.delegate：S 是一个自动生成的类，它包含了应用程序中所有的本地化资源，如字符串、图片等。
+       * GlobalMaterialLocalizations.delegate：Material 组件库的本地化代理
+       * GlobalWidgetsLocalizations.delegate：定义小部件默认的文本方向，从左到右或从右到左
+       */
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      /**
+       * supportedLocales 是 MaterialApp 的一个属性，用于指定应用程序支持的语言列表。
+       */
+      supportedLocales: S.delegate.supportedLocales,
+      /**
+       * home 是 MaterialApp 的一个属性，用于指定应用程序的主页。它接受一个 Widget 作为参数，用于定义主页的内容
+       * Scaffold 是一个用于创建基本页面布局的小部件。
+       * Scaffold 小部件提供了一个应用程序的基本布局结构，包括顶部的应用栏、底部的导航栏、抽屉菜单等。
+       * 它是一个非常常用的小部件，常用于创建具有标准 Material Design 布局的页面
+       */
+      home: const Scaffold(
+        // 设置背景颜色为白色
+        backgroundColor: Colors.white,
+        /**
+         * body: 用于定义页面的主要内容区域
+         * SafeArea 是一个小部件，作用是为其子部件提供一个安全的区域，来避免遮挡了屏幕的物理部件（如刘海屏或下方的 Home 键）
+         */
+        body: SafeArea(
+          child: LocalizationsComponent()
+        )
+      ),
+    );
+  }
+}
+```
+
+5. 创建 `01_LocalizationsComponent.dart` 类进行测试：
+
+```dart
+import 'package:flutter/material.dart';
+
+import '../../generated/l10n.dart';
+
+class LocalizationsComponent extends StatelessWidget {
+  const LocalizationsComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        // 垂直居中
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(S.current.greeting, style: const TextStyle(fontSize: 30)),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(S.current.welcome, style: const TextStyle(fontSize: 30)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+6. 效果：
+
+![](attachments/动画47.gif)
+
+### ③、获取当前区域 Locale
+
+1. `Locale` 类是用来标识用户的语言环境的，它包括语言和国家两个标志如：
+
+```dart
+const Locale('zh', 'CN') // 中文简体
+```
+
+2. 我们始终可以通过以下方式来获取应用的当前区域 `Locale`：
+
+```dart
+Locale myLocale = Localizations.localeOf(context);
+```
+
+3. `Localizations` 组件一般位于 widget 树中其他业务组件的顶部，它的作用是定义区域 `Locale` 以及设置子树依赖的本地化资源。 
+4. 如果系统的语言环境发生变化，则会使用对应语言的本地化资源
+
+### ④、监听系统语言切换
+
+1. 当我们更改系统语言设置时，APP 中的 `Localizations` 组件会重新构建，`Localizations.localeOf(context)` 获取的 Locale 就会更新，最终界面会重新 build 达到切换语言的效果。
+2. 但是这个过程是隐式完成的，我们并没有主动去监听系统语言切换，但是有时我们需要在系统语言发生改变时做一些事，比如系统语言切换为一种我们 APP 不支持的语言时，我们需要设置一个默认的语言，这时我们就需要监听 locale 改变事件。
+3. 我们可以通过 `localeResolutionCallback` 或 `localeListResolutionCallback` 回调来监听 locale 改变的事件，我们先看看 `localeResolutionCallback` 的回调函数签名：
+
+```dart
+Locale Function(Locale locale, Iterable<Locale> supportedLocales)
+```
+
+4. 参数 1 `locale` 的值为当前的当前的系统语言设置，当应用启动时或用户动态改变系统语言设置时此 `locale` 即为系统的当前 `locale`。当开发者手动指定 APP 的 `locale` 时，那么此 `locale` 参数代表开发者指定的 `locale`，此时将忽略系统 `locale` 如：
+
+```dart
+MaterialApp(
+ ...
+ locale: const Locale('en', 'US'), //手动指定locale
+ ...
+)
+```
+
+5. 上面的例子中手动指定了应用 `locale` 为美国英语，指定后即使设备当前语言是中文简体，应用中的 `locale` 也依然是美国英语。如果 `locale` 为 `null`，则表示 Flutter 未能获取到设备的 Locale 信息，所以我们在使用 `locale` 之前一定要先判空。
+6. 参数 2 `supportedLocales` 为当前应用支持的 `locale` 列表，是开发者在 `MaterialApp` 中通过 `supportedLocales` 属性注册的。
+7. 返回值是一个 `Locale`，此 Locale 为 Flutter APP 最终使用的 Locale。通常在不支持的语言区域时返回一个默认的 Locale。
+8. `localeListResolutionCallback` 和 `localeResolutionCallback` 唯一的不同就在第一个参数类型，前者接收的是一个 Locale 列表，而后者接收的是单个 Locale。
+
+```dart
+Locale Function(List<Locale> locales, Iterable<Locale> supportedLocales)
+```
+
+9. 在较新的 Android 系统中，用户可以设置一个语言列表，这样一来，支持多语言的应用就会得到这个列表，应用通常的处理方式就是按照列表的顺序依次尝试加载相应的 Locale，如果某一种语言加载成功则会停止。下图是 Android 系统中设置语言列表的截图
+
+![](attachments/Pasted%20image%2020231214152525.png)
+
+10. 在 Flutter 中，应该优先使用 `localeListResolutionCallback`，当然你不必担心 Android 系统的差异性，如果在低版本的 Android 系统中， Flutter 会自动处理这种情况，这时 Locale 列表只会包含一项
+
+### ⑤、Localization 组件
+
+1. `Localizations` 组件用于加载和查找应用当前语言下的本地化值或资源。应用程序通过 `Localizations.of(context,type)`  来引用这些对象。 如果设备的 Locale 区域设置发生更改，则 `Localizations` 组件会自动加载新区域的 `Locale` 值，然后重新 build 使用（依赖）了它们的组件
+2. 之所以会这样，是因为 `Localizations` 内部使用了 `InheritedWidget` ，我们在介绍该组件时讲过：当子组件的 build 函数引用了 `InheritedWidget` 时，会创建对 `InheritedWidget` 的隐式依赖关系。因此，当 `InheritedWidget` 发生更改时，即 `Localizations` 的 Locale 设置发生更改时，将重建所有依赖它的子组件。
+3. 本地化值由 Localizations 的 LocalizationsDelegates 列表加载 。 每个委托必须定义一个异步 load() 方法，以生成封装了一系列本地化值的对象。通常这些对象为每个本地化值定义一个方法。
+4. 在大型应用程序中，不同模块或 Package 可能会与自己的本地化值捆绑在一起。 这就是为什么要用 `Localizations` 管理对象表的原因。 要使用由 `LocalizationsDelegate` 的 `load` 方法之一产生的对象，可以指定一个 `BuildContext` 和对象的类型来找到它。
+5. 例如，Material 组件库的本地化字符串由 `MaterialLocalizations` 类定义，此类的实例由 `MaterialApp` 类提供的 `LocalizationDelegate` 创建， 它们可以如下方式获取到：
+
+```dart
+Localizations.of<MaterialLocalizations>(context, MaterialLocalizations);
+```
+
+6. 这个特殊的 `Localizations.of()` 表达式会经常使用，所以 `MaterialLocalizations` 类提供了一个便捷方法：
+
+```dart
+static MaterialLocalizations of(BuildContext context) {
+  return Localizations.of<MaterialLocalizations>(context, MaterialLocalizations);
+}
+
+// 可以直接调用便捷方法
+tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+```
+
+### ⑥、使用打包好的 LocalizationsDelegates
+
+1. 为了尽可能小而且简单，flutter 软件包中仅提供美国英语值的 `MaterialLocalizations` 和 `WidgetsLocalizations` 接口的实现。 
+2. 这些实现类分别称为 `DefaultMaterialLocalizations` 和 `DefaultWidgetsLocalizations`。
+3. `flutter_localizations` 包包含 `GlobalMaterialLocalizations` 和 `GlobalWidgetsLocalizations` 的本地化接口的多语言实现， 国际化的应用程序必须按照本节开头说明的那样为这些类指定本地化的代理类。
+4. 上述的 `GlobalMaterialLocalizations` 和 `GlobalWidgetsLocalizations` 只是 Material 组件库的本地化实现，如果我们要让自己的布局支持多语言，那么就需要实现在即的 Localizations。
+
+## 2、国际化常见问题
+
+### ①、默认语言区域不对
+
+1. 在一些非大陆行货渠道买的一些 Android 和 iOS 设备，会出现默认的 Locale 不是中文简体的情况。
+2. 这属于正常现象，但是为了防止设备获取的 Locale 与实际的地区不一致，所有的支持多语言的 APP 都必须提供一个手动选择语言的入口
+
+### ②、如何对应用标题进行国际化
+
+1. MaterialApp 有一个 t`i`tle 属性，用于指定 APP 的标题。在 Android 系统中，APP 的标题会出现在任务管理器中。所以也需要对 title 进行国际化。
+2. 但是问题是很多国际化的配置都是在 MaterialApp 上设置的，我们无法在构建 MaterialApp 时通过 `Localizations.of` 来获取本地化资源，如：
+
+```dart
+MaterialApp(
+  title: DemoLocalizations.of(context).title, //不能正常工作！
+  localizationsDelegates: [
+    // 本地化的代理类
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    DemoLocalizationsDelegate() // 设置Delegate
+  ],
+);
+```
+
+3. 上面代码运行后，`DemoLocalizations.of(context).title` 是会报错的，原因是 `Localizations.of` 会从当前的 context 沿着 widget 树向顶部查找 DemoLocalizations，但是我们在 MaterialApp 中设置完 `DemoLocalizationsDelegate` 后，实际上 `DemoLocalizations` 是在当前 context 的子树中的，所以 `DemoLocalizations.of(context)` 会返回 `null`，报错。
+4. 那么我们该如何处理这种情况呢？其实很简单，我们只需要设置一个 `onGenerateTitle` 回调即可：
+
+```dart
+MaterialApp(
+  onGenerateTitle: (context){
+    // 此时 context 在 Localizations 的子树中
+    return DemoLocalizations.of(context).title;
+  },
+  localizationsDelegates: [
+    DemoLocalizationsDelegate(),
+    ...
+  ],
+);
+```
+
+
+### ③、如何为英语系的国家指定同一个 locale
+
+1. 英语系的国家非常多，如美国、英国、澳大利亚等，这些英语系国家虽然说的都是英语，但也会有一些区别。
+2. 如果我们的 APP 只想提供一种英语（如美国英语）供所有英语系国家使用，我们可以在前面介绍的 `localeListResolutionCallback` 中来做兼容：
+
+```dart
+localeListResolutionCallback:
+    (List<Locale> locales, Iterable<Locale> supportedLocales) {
+  // 判断当前locale是否为英语系国家，如果是直接返回Locale('en', 'US')     
+}
+```
 
 # 十四、Flutter 核心原理
 
-# 十五、一个完整的 Flutter 应用
+## 1、Flutter UI 框架（Framework）
 
-2. `main` 主方法
-3. `01_底部菜单列表.dart` 弹窗方法
-4. 效果：
+### ①、什么是 UI 框架
 
+1. 在一开始，我们讲过 Flutter 从上到下分为框架层、引擎层和嵌入层三层。也说过开发者基本上都是与框架层打交道，本章将深入介绍一下 Flutter 框架层的原理，在此之前，我们先看看更广义的UI框架指的是什么？解决了什么问题？
+2. 术语 `UI 框架（UI Framework）`特指：基于一个平台，在此平台上实现一个能快速开发 GUI（图形用户接口）的框架，这里的平台主要指操作系统和浏览器。通常来讲平台只提供非常基础的图形 API，比如画线、画几何图形等，在大多数平台中，这些基础的图形 API 通常会被封装在一个 Canvas 对象中来集中管理。可以想象一下，如果没有UI 框架的封装而直接用 Canvas 来构建用户界面将会是怎样的一个体验和效率！ 所以，简单来讲， UI 框架解决的主要问题就是：<font color="#ff0000">如何基于基础的图形API（Canvas）来封装一套可以高效创建UI的框架</font>。
+3. 我们说过各个平台 UI 框架的实现原理基本是相通的，也就是说无论是 Android 还是 iOS，他们将一个用户界面展示到屏幕的流程是相似的，所以，在介绍 Flutter UI 框架之前，我们先看看平台图形处理的基本原理，这样可以对操作系统和系统底层 UI 逻辑有一个清晰的认识
+
+### ②、硬件绘图基本原理
+
+1. 提到原理，我们要从屏幕显示图像的基本原理谈起。我们知道显示器（屏幕）是由一个个物理显示单元组成，每一个单元我们可以称之为一个物理像素点，而每一个像素点可以发出多种颜色，显示器成相的原理就是在不同的物理像素点上显示不同的颜色，最终构成完整的图像。
+2. 一个像素点能发出的所有颜色总数是显示器的一个重要指标，比如我们所说的 1600 万色的屏幕就是指一个像素点可以显示出 1600 万种颜色，而显示器颜色是有 RGB 三基色组成，所以 1600 万即 2 的 24 次方，即每个基本色（R、G、B）深度扩展至 8 bit(位)，颜色深度越深，所能显示的色彩更加丰富靓丽。
+3. 为了更新显示画面，显示器是以固定的频率刷新（从 GPU 取数据），比如有一部手机屏幕的刷新频率是 60Hz。当一帧（frame）图像绘制完毕后准备绘制下一帧时，显示器会发出一个垂直同步信号（如vsync）， 60Hz 的屏幕就会一秒内发出 60 次这样的信号。而这个信号主要是用于同步 CPU、GPU 和显示器的。
+4. 一般地来说，计算机系统中，CPU、GPU 和显示器以一种特定的方式协作：CPU 将计算好的显示内容提交给 GPU，GPU 渲染后放入帧缓冲区，然后视频控制器按照同步信号从帧缓冲区取帧数据传递给显示器显示。
+5. CPU 和 GPU 的任务是各有偏重的，CPU 主要用于基本数学和逻辑计算，而 GPU 主要执行和图形处理相关的复杂的数学，如矩阵变化和几何计算，GPU 的主要作用就是确定最终输送给显示器的各个像素点的色值
+
+### ③、操作系统绘制 API 的封装
+
+1. 由于最终的图形计算和绘制都是由相应的硬件来完成，而直接操作硬件的指令通常都会有操作系统屏蔽，应用开发者通常不会直接面对硬件
+2. 操作系统屏蔽了这些底层硬件操作后会提供一些封装后的 API 供操作系统之上的应用调用，但是对于应用开发者来说，直接调用这些操作系统提供的 API 是比较复杂和低效的，因为操作系统提供的 API 往往比较基础，直接调用需要了解 API 的很多细节。
+3. 正是因为这个原因，几乎所有用于开发 GUI 程序的编程语言都会在操作系统之上再封装一层，将操作系统原生 API 封装在一个编程框架和模型中，然后定义一种简单的开发规则来开发 GUI 应用程序，而这一层抽象，正是我们所说的“UI框架”，如 Android SDK 正是封装了 Android 操作系统 API，提供了一个 `UI描述文件 XML + Java/Kotlin 操作 DOM` 的 UI 框架，而 iOS 的 UIKit 对 View 的抽象也是一样的，他们都将操作系统 API 抽象成一个基础对象（如用于 2D 图形绘制的 Canvas），然后再定义一套规则来描述 UI，如UI树结构，UI 操作的单线程原则等。
+
+### ④、Flutter UI 框架
+
+1. 我们可以看到，无论是 Android SDK 还是 iOS 的 UIKit 的职责都是相同的，它们只是语言载体和底层的系统不同而已。那么可不可以实现这么一个UI 框架：可以使用同一种编程语言开发，然后针对不同操作系统 API 抽象一个对上接口一致，对下适配不同操作系统的中间层，然后在打包编译时再使用相应的中间层代码？如果可以做到，那么我们就可以使用同一套代码编写跨平台的应用了。
+2. 而 Flutter 的原理正是如此，它提供了一套 Dart API，然后在底层通过 OpenGL 这种跨平台的绘制库（内部会调用操作系统API）实现了一套代码跨多端。由于 Dart API 也是调用操作系统 API，所以它的性能接近原生。这里有两点需要注意：
+3. 虽然 Dart 是先调用了 OpenGL，OpenGL 才会调用操作系统 API，但是这仍然是原生渲染，因为 OpenGL 只是操作系统 API 的一个封装库，它并不像 WebView 渲染那样需要 JavaScript 运行环境和 CSS 渲染器，所以不会有性能损失。
+4. Flutter 早期版本底层会调用 OpenGL 这样的跨平台库，但在 iOS 设备上苹果提供了专门的图形库 Metal，使用 Metal 可以在 iOS 上获得比 OpenGL 更好的绘图性能，因此 Flutter 后来在 iOS 上会优先调用 Metal ，只有当 Metal 不可用时才会降级到 OpenGL。不过 Flutter 底层到底是调用的哪个库，作为应用开发者是不需要关注的，我们只需要知道调用的是原生的绘图接口，可以保证高性能即可。
+5. 至此，我们已经介绍了Flutter UI 框架和操作系统交互的这一部分原理，现在需要说一些它对应用开发者定义的开发标准。其实在前面的章节中，我们已经对这个标准非常熟悉了, 简单概括就是：组合和响应式。
+6. 我们要开发一个 UI 界面，需要通过组合其他 Widget 来实现，Flutter 中，一切都是 Widget，当 UI 要发生变化时，我们不去直接修改 DOM，而是通过更新状态，让 Flutter UI 框架来根据新的状态来重新构建 UI。
+7. 讲到这里，可能发现 Flutter UI 框架和 Flutter Framework 的概念是差不多的，的确如此，之所以用“UI 框架”，是因为其他平台中可能不这么叫，我们只是为了概念统一，便于描述，不必纠结于概念本身。
+8. 在接下来的小节中，我们先详细介绍一下 `Element`、`RenderObject`，它们是组成 Flutter UI 框架的基石。最后我们再分析一下 Flutter 应用启动、更新流程。
+
+## 2、`Element`、`BuildContext` 和 `RenderObject`
+
+### ①、Element
+
+1. 在“2.2 Widget简介”一节，我们介绍了 Widget 和 Element 的关系，我们知道最终的 UI 树其实是由一个个独立的 Element 节点构成。我们也说过组件最终的 Layout、渲染都是通过 RenderObject 来完成的，从创建到渲染的大体流程是：
+	1. 根据 Widget 生成 `Element`
+	2. 然后创建相应的 `RenderObject` 并关联到 `Element.renderObject` 属性上
+	3. 最后再通过 `RenderObject` 来完成布局排列和绘制。
+2. Element 就是 Widget 在 UI 树具体位置的一个实例化对象，大多数 Element 只有唯一的 `renderObject`，但还有一些 Element 会有多个子节点，如继承自 `RenderObjectElement` 的一些类，比如 `MultiChildRenderObjectElement`。最终所有 Element 的 `RenderObject` 构成一棵树，我们称之为”Render Tree“即”渲染树“。
+3. 总结一下，我们可以认为 Flutter 的 UI 系统包含三棵树：Widget 树、Element 树、渲染树。他们的依赖关系是：Element 树根据 Widget 树生成，而渲染树又依赖于 Element 树，如图所示：
+
+![](attachments/Pasted%20image%2020231214094057.png)
+
+4. 现在我们重点看一下 Element，Element 的生命周期如下：
+	1. Framework 调用 `Widget.createElement` 创建一个 Element 实例，记为 `element`
+	2. Framework 调用 `element.mount(parentElement,newSlot)` ，`mount` 方法中首先调用 `element` 所对应 Widget 的 `createRenderObject` 方法创建与 `element` 相关联的 `RenderObject` 对象，然后调用 `element.attachRenderObject` 方法将 `element.renderObject` 添加到渲染树中插槽指定的位置（这一步不是必须的，一般发生在 Element 树结构发生变化时才需要重新添加）。插入到渲染树后的 element 就处于“active”状态，处于“active”状态后就可以显示在屏幕上了（可以隐藏）。
+	3. 当有父 Widget 的配置数据改变时，同时其 `State.build` 返回的 Widget 结构与之前不同，此时就需要重新构建对应的 Element 树。为了进行 Element 复用，在 Element 重新构建前会先尝试是否可以复用旧树上相同位置的 `element`，`element` 节点在更新前都会调用其对应 Widget 的 `canUpdate` 方法，如果返回 `true`，则复用旧 Element，旧的 Element 会使用新 Widget 配置数据更新，反之则会创建一个新的 Element。`Widget.canUpdate` 主要是判断 newWidget 与 oldWidget 的 `runtimeType` 和 `key` 是否同时相等，如果同时相等就返回 `true`，否则就会返回 `false`。根据这个原理，当我们需要强制更新一个 Widget 时，可以通过指定不同的 Key 来避免复用。
+	4. 当有祖先 Element 决定要移除 `element` 时（如 Widget 树结构发生了变化，导致 element 对应的 Widget 被移除），这时该祖先 Element 就会调用 `deactivateChild` 方法来移除它，移除后 `element.renderObject` 也会被从渲染树中移除，然后 Framework 会调用 `element.deactivate` 方法，这时 `element` 状态变为“inactive”状态。
+	5. “inactive”态的 `element` 将不会再显示到屏幕。为了避免在一次动画执行过程中反复创建、移除某个特定 `element`，“inactive”态的 `element` 在当前动画最后一帧结束前都会保留，如果在动画执行结束后它还未能重新变成“active”状态，Framework 就会调用其 `unmount` 方法将其彻底移除，这时 `element` 的状态为 defunct，它将永远不会再被插入到树中。
+	6. 如果 `element` 要重新插入到 Element 树的其他位置，如 `element` 或 `element` 的祖先拥有一个 `GlobalKey`（用于全局复用元素），那么 Framework 会先将 `element` 从现有位置移除，然后再调用其 `activate` 方法，并将其 `renderObject` 重新 attach 到渲染树。
+5. 看完 Element 生命周期，可能会有疑问，开发者会直接操作 Element 树吗？其实对于开发者来说，大多数情况下只需要关注 Widget 树就行，Flutter 架已经将对 Widget 树的操作映射到了 Element 树上，这可以极大的降低复杂度，提高开发效率。但是了解 Element 对理解整个 Flutter UI 框架是至关重要的，Flutter 正是通过 Element 这个纽带将 Widget 和 RenderObject 关联起来，了解 Element 层不仅会对 Flutter UI 框架有个清晰的认识，而且也会提高自己的抽象能力和设计能力。另外在有些时候，我们必须得直接使用 Element 对象来完成一些操作，比如获取主题 Theme 数据，具体细节将在下文介绍
+
+### ②、BuildContext
+
+#### Ⅰ、简述
+
+1. 我们已经知道，`StatelessWidget` 和 `StatefulWidget` 的 `build` 方法都会传一个 `BuildContext` 对象：
+
+```dart
+Widget build(BuildContext context) {}
+```
+
+2. 我们也知道，在很多时候我们都需要使用这个 `context` 做一些事，比如：
+
+```dart
+Theme.of(context) //获取主题
+Navigator.push(context, route) //入栈新路由
+Localizations.of(context, type) //获取Local
+context.size //获取上下文大小
+context.findRenderObject() //查找当前或最近的一个祖先RenderObject
+```
+
+3. 那么 `BuildContext` 到底是什么呢，查看其定义，发现其是一个抽象接口类：
+
+```dart
+abstract class BuildContext {
+    ...
+}
+```
+
+4. 那这个 `context` 对象对应的实现类到底是谁呢？我们顺藤摸瓜，发现 `build` 调用是发生在 `StatelessWidget` 和 `StatefulWidget` 对应的 `StatelessElement` 和 `tatefulElement` 的 build 方法中，以 `tatelessElement` 为例：
+
+```dart
+class StatelessElement extends ComponentElement {
+  ...
+  @override
+  Widget build() => widget.build(this);
+  ...
+}
+```
+
+5. 发现 `build` 递的参数是 `this`，很明显！这个 `BuildContext` 就是 `StatelessElement`。同样，我们同样发现 `StatefulWidget` 的 `context` 是 `StatefulElement`。但 `StatelessElement` 和 `StatefulElement` 本身并没有实现 `BuildContext` 接口，继续跟踪代码，发现它们间接继承自 `Element` 类，然后查看 `Element` 类定义，发现 `Element` 类果然实现了 `BuildContext` 接口:
+
+```dart
+class Element extends DiagnosticableTree implements BuildContext {
+    ...
+}
+```
+
+6. 至此真相大白，`BuildContext` 就是 `widget` 对应的 `Element`，所以我们可以通过 `context` 在 `StatelessWidget` 和 `StatefulWidget` 的 `build` 方法中直接访问 `Element` 对象。我们获取主题数据的代码 `Theme.of(context)` 内部正是调用了 Element 的 `dependOnInheritedWidgetOfExactType()` 方法。
+
+#### Ⅱ、进阶
+
+1. 我们可以看到 Element 是 Flutter UI 框架内部连接 `widget` 和 `RenderObject` 的纽带，大多数时候开发者只需要关注 widget 层即可，但是 widget 层有时候并不能完全屏蔽 Element 细节，所以 Framework 在 `StatelessWidget` 和 `StatefulWidget` 中通过 `build` 方法参数又将 `Element` 对象也传递给了开发者，这样一来，开发者便可以在需要时直接操作 `Element` 对象。那么现在提两个问题：
+	1. 如果没有 widget 层，单靠 Element 层是否可以搭建起一个可用的 UI 框架？如果可以应该是什么样子？
+	2. Flutter UI 框架能不做成响应式吗？
+2. 对于问题 1，答案当然是肯定的，因为我们之前说过 widget 树只是 Element 树的映射，我们完全可以直接通过 Element 来搭建一个 UI 框架。下面举一个例子：
+3. 我们通过纯粹的 Element 来模拟一个 `StatefulWidget` 的功能，假设有一个页面，该页面有一个按钮，按钮的文本是一个 9 位数，点击一次按钮，则对 9个 数随机排一次序，代码如下：
+
+```dart
+class HomeView extends ComponentElement{
+  HomeView(Widget widget) : super(widget);
+  String text = "123456789";
+
+  @override
+  Widget build() {
+    Color primary=Theme.of(this).primaryColor; //1
+    return GestureDetector(
+      child: Center(
+        child: TextButton(
+          child: Text(text, style: TextStyle(color: primary),),
+          onPressed: () {
+            var t = text.split("")..shuffle();
+            text = t.join();
+            markNeedsBuild(); //点击后将该Element标记为dirty，Element将会rebuild
+          },
+        ),
+      ),
+    );
+  }
+}
+```
+
+4. 上面 `build` 方法不接收参数，这一点和在 `StatelessWidget` 和 `StatefulWidget` 中 `build(BuildContext)` 方法不同。代码中需要用到 `BuildContext` 的地方直接用 `this` 代替即可，如代码注释 1 处 `Theme.of(this)` 参数直接传 `this` 即可，因为当前对象本身就是 `Element` 实例。
+5. 当 `text` 发生改变时，我们调用 `markNeedsBuild()` 方法将当前 `Element` 标记为 `dirty` 即可，标记为 `dirty` 的 `Element` 会在下一帧中重建。实际上，`State.setState()` 在内部也是调用的 `markNeedsBuild()` 方法。
+6. 上面代码中 `build` 方法返回的仍然是一个 `widget`，这是由于 Flutter 框架中已经有了 widget 这一层，并且组件库都已经是以 widget 的形式提供了，如果在 Flutter 框架中所有组件都像示例的 `HomeView` 一样以 `Element` 形式提供，那么就可以用纯 Element 来构建 UI 了，`HomeView` 的 `build` 方法返回值类型就可以是 `Element` 了。
+7. 如果我们需要将上面代码在现有 Flutter 框架中跑起来，那么还是得提供一个“适配器” ，widget 将 HomeV`i`ew 结合到现有框架中，下面 `CustomHome` 就相当于“适配器”：
+
+```dart
+class CustomHome extends Widget {
+  @override
+  Element createElement() {
+    return HomeView(this);
+  }
+}
+```
+
+8. 现在就可以将 `CustomHome` 添加到 widget 树了，我们在一个新路由页创建它，最终效果如下如图所示：
+
+![](attachments/Pasted%20image%2020231214104401.png)
+
+![](attachments/Pasted%20image%2020231214104406.png)
+
+9. 点击按钮则按钮文本会随机排序。
+10. 对于问题 2，答案当然也是肯定的，Flutter 引擎提供的 API 是原始且独立的，这个与操作系统提供的 API 类似，上层 UI 框架设计成什么样完全取决于设计者，完全可以将 UI 框架设计成 Android 风格或 iOS 风格，但这些事 Google 不会再去做，我们也没必要再去搞这一套，这是因为响应式的思想本身是很棒的，之所以提出这个问题，是因为做与不做是一回事，但知道能不能做是另一回事，这能反映出我们对知识的理解程度。
+
+### ③、RenderObject
+
+1. 在上一节我们说过每个 Element 都对应一个 RenderObject，我们可以通过 `Element.renderObject` 来获取。并且我们也说过 RenderObject 的主要职责是 Layout 和绘制，所有的 RenderObject 会组成一棵渲染树 Render Tree。本节我们将重点介绍一下 RenderObject 的作用。
+2. `RenderObject` 就是渲染树中的一个对象，它主要的作用是实现事件响应以及渲染管线中除过 `build` 的执行过程（`build` 过程由 `element` 实现），即包括：布局、绘制、层合成以及上屏，这些我们将在后面章节介绍。
+3. `RenderObject` 拥有一个 `parent` 和一个 `parentData` 属性，`parent` 指向渲染树中自己的父节点，而 `parentData` 是一个预留变量，在父组件的布局过程，会确定其所有子组件布局信息（如位置信息，即相对于父组件的偏移），而这些布局信息需要在布局阶段保存起来，因为布局信息在后续的绘制阶段还需要被使用（用于确定组件的绘制位置），而 `parentData` 属性的主要作用就是保存布局信息，比如在 `Stack` 布局中， `RenderStack` 就会将子元素的偏移数据存储在子元素的 `parentData中`（具体可以查看 `Positioned` 实现）。
+4. `RenderObject` 类本身实现了一套基础的布局和绘制协议，
+	1. 但是并没有定义子节点模型（如一个节点可以有几个子节点，没有子节点？一个？两个？或者更多？）。 
+	2. 它也没有定义坐标系统（如子节点定位是在笛卡尔坐标中还是极坐标？）
+	3. 和具体的布局协议（是通过宽高还是通过 constraint 和 size?，或者是否由父节点在子节点布局之前或之后设置子节点的大小和位置等）。
+5. 为此，Flutter 框架提供了一个 `RenderBox` 和一个 `RenderSliver` 类，它们都是继承自 `RenderObject`，布局坐标系统采用笛卡尔坐标系，屏幕的(top, left)是原点。而 Flutter 基于这两个类分别实现了基于 `RenderBox` 的盒模型布局和基于 Sliver 的按需加载模型，这个我们已经在前面章节介绍过。
+
+## 3、Flutter 启动流程和渲染管线
+
+### ①、应用启动
+
+1. Flutter 的入口在 `lib/main.dart` 的 `main()` 函数中，它是 Dart 应用程序的起点。在 Flutter 应用中，`main()` 函数最简单的实现如下：
+
+```dart
+void main() => runApp(MyApp());
+```
+
+2. 可以看 `main()` 函数只调用了一个 `runApp()` 方法，我们看看 `runApp()` 方法中都做了什么：
+
+```dart
+void runApp(Widget app) {
+  WidgetsFlutterBinding.ensureInitialized()
+    ..attachRootWidget(app)
+    ..scheduleWarmUpFrame();
+}
+```
+
+3. 参数 `app` 是一个 widget，它是 Flutter 应用启动后要展示的第一个组件。而 `WidgetsFlutterBinding` 正是绑定 widget 框架和 Flutter 引擎的桥梁，定义如下：
+
+```dart
+class WidgetsFlutterBinding extends BindingBase with GestureBinding, ServicesBinding, SchedulerBinding, PaintingBinding, SemanticsBinding, RendererBinding, WidgetsBinding {
+  static WidgetsBinding ensureInitialized() {
+    if (WidgetsBinding.instance == null)
+      WidgetsFlutterBinding();
+    return WidgetsBinding.instance;
+  }
+}
+```
+
+4. 可以看到 `WidgetsFlutterBinding` 继承自 `BindingBase` 并混入了很多 `Binding`，在介绍这些 `Binding` 之前我们先介绍一下 `Window`，下面是 `Window` 的官方解释：`The most basic interface to the host operating system's user interface.`
+5. 很明显，Window 正是 Flutter Framework 连接宿主操作系统的接口。我们看一下  Window 类的部分定义：
+
+```dart
+class Window {
+    
+  // 当前设备的DPI，即一个逻辑像素显示多少物理像素，数字越大，显示效果就越精细保真。
+  // DPI是设备屏幕的固件属性，如Nexus 6的屏幕DPI为3.5 
+  double get devicePixelRatio => _devicePixelRatio;
+  
+  // Flutter UI绘制区域的大小
+  Size get physicalSize => _physicalSize;
+
+  // 当前系统默认的语言Locale
+  Locale get locale;
+    
+  // 当前系统字体缩放比例。  
+  double get textScaleFactor => _textScaleFactor;  
+    
+  // 当绘制区域大小改变回调
+  VoidCallback get onMetricsChanged => _onMetricsChanged;  
+  // Locale发生变化回调
+  VoidCallback get onLocaleChanged => _onLocaleChanged;
+  // 系统字体缩放变化回调
+  VoidCallback get onTextScaleFactorChanged => _onTextScaleFactorChanged;
+  // 绘制前回调，一般会受显示器的垂直同步信号VSync驱动，当屏幕刷新时就会被调用
+  FrameCallback get onBeginFrame => _onBeginFrame;
+  // 绘制回调  
+  VoidCallback get onDrawFrame => _onDrawFrame;
+  // 点击或指针事件回调
+  PointerDataPacketCallback get onPointerDataPacket => _onPointerDataPacket;
+  // 调度Frame，该方法执行后，onBeginFrame和onDrawFrame将紧接着会在合适时机被调用，
+  // 此方法会直接调用Flutter engine的Window_scheduleFrame方法
+  void scheduleFrame() native 'Window_scheduleFrame';
+  // 更新应用在GPU上的渲染,此方法会直接调用Flutter engine的Window_render方法
+  void render(Scene scene) native 'Window_render';
+
+  // 发送平台消息
+  void sendPlatformMessage(String name,
+                           ByteData data,
+                           PlatformMessageResponseCallback callback) ;
+  // 平台通道消息处理回调  
+  PlatformMessageCallback get onPlatformMessage => _onPlatformMessage;
+  
+  ... //其他属性及回调
+   
+}
+```
+
+6. 可以看到 `Window` 类包含了当前设备和系统的一些信息以及 Flutter Engine 的一些回调。现在我们再回来看看 `WidgetsFlutterBinding` 混入的各种 `Binding`。通过查看这些 `Binding` 的源码，我们可以发现这些 `Binding` 中基本都是监听并处理 `Window` 对象的一些事件，然后将这些事件按照 Framework 的模型包装、抽象然后分发。可以看到 `WidgetsFlutterBinding` 正是粘连 Flutter engine 与上层 Framework 的“胶水”。
+	1. `GestureBinding`：提供了 `window.onPointerDataPacket` 回调，绑定 Framework 手势子系统，是 Framework 事件模型与底层事件的绑定入口。
+	2. `ServicesBinding`：提供了 `window.onPlatformMessage` 回调， 用于绑定平台消息通道（message channel），主要处理原生和 Flutter 通信。
+	3. `SchedulerBinding`：提供了 `window.onBeginFrame` 和 `window.onDrawFrame` 回调，监听刷新事件，绑定 ramework 绘制调度子系统。
+	4. `PaintingBinding`：绑定绘制库，主要用于处理图片缓存。
+	5. `SemanticsBinding`：语义化层与 Flutter engine 的桥梁，主要是辅助功能的底层支持。
+	6. `RendererBinding`: 提供了 `window.onMetricsChanged` 、`window.onTextScaleFactorChanged` 等回调。它是渲染树与 Flutter engine 的桥梁。
+	7. `WidgetsBinding`：提供了 `window.onLocaleChanged`、`onBuildScheduled` 等回调。它是 Flutter widget 层与 engine 的桥梁。
+7. `WidgetsFlutterBinding.ensureInitialized()` 负责初始化一个 `WidgetsBinding` 全局单例，紧接着会调用 `WidgetsBinding` 的 `attachRootWidget` 方法，该方法负责将根 Widget 添加到 RenderView 上，代码如下：
+
+```dart
+void attachRootWidget(Widget rootWidget) {
+  _renderViewElement = RenderObjectToWidgetAdapter<RenderBox>(
+    container: renderView, 
+    debugShortDescription: '[root]',
+    child: rootWidget
+  ).attachToRenderTree(buildOwner, renderViewElement);
+}
+```
+
+8. 注意，代码中的有 `renderView` 和 `renderViewElement` 两个变量，`renderView` 是一个 `RenderObject`，它是渲染树的根，而 renderViewElement 是 `renderView` 对应的 Element 对象，可见该方法主要完成了根 widget 到根 RenderObject 再到根 Element 的整个关联过程。我们看看 `attachToRenderTree` 的源码实现：
+
+```dart
+RenderObjectToWidgetElement<T> attachToRenderTree(BuildOwner owner, [RenderObjectToWidgetElement<T> element]) {
+  if (element == null) {
+    owner.lockState(() {
+      element = createElement();
+      assert(element != null);
+      element.assignOwner(owner);
+    });
+    owner.buildScope(element, () {
+      element.mount(null, null);
+    });
+  } else {
+    element._newWidget = this;
+    element.markNeedsBuild();
+  }
+  return element;
+}
+```
+
+9. 该方法负责创建根 `element`，即 `RenderObjectToWidgetElement`，并且将 element 与 widget 进行关联，即创建出 widget 树对应的 element 树。如果 element 已经创建过了，则将根 element 中关联的 widget 设为新的，由此可以看出 element 只会创建一次，后面会进行复用。那么 `BuildOwner` 是什么呢？其实它就是 widget framework 的管理类，它跟踪哪些 widget 需要重新构建。
+10. 组件树在构建（build）完毕后，回到 `runApp` 的实现中，当调用完 `attachRootWidget` 后，最后一行会调用 `WidgetsFlutterBinding` 实例的 `scheduleWarmUpFrame()` 方法，该方法的实现在 `SchedulerBinding` 中，它被调用后会立即进行一次绘制，在此次绘制结束前，该方法会锁定事件分发，也就是说在本次绘制结束完成之前 Flutter 将不会响应各种事件，这可以保证在绘制过程中不会再触发新的重绘。
+
+### ②、渲染管线
+
+#### Ⅰ、Frame
+
+1. 一次绘制过程，我们称其为一帧（frame）。我们之前说的 Flutter 可以实现 60fps（Frame Per-Second）就是指一秒钟最多可以触发 60 次重绘，FPS 值越大，界面就越流畅。这里需要说明的是 Flutter中 的 frame 概念并不等同于屏幕刷新帧（frame），因为 Flutter UI 框架的 frame 并不是每次屏幕刷新都会触发，这是因为，如果 UI 在一段时间不变，那么每次屏幕刷新都重新走一遍渲染流程是不必要的，因此，Flutter 在第一帧渲染结束后会采取一种主动请求 frame 的方式来实现只有当 UI 可能会改变时才会重新走渲染流程。
+	1. Flutter 在 window 上注册一个 `onBeginFrame` 和一个 `onDrawFrame` 回调，在 `onDrawFrame` 回调中最终会调用 `drawFrame`。
+	2. 当我们调用 `window.scheduleFrame()` 方法之后，Flutter 引擎会在合适的时机（可以认为是在屏幕下一次刷新之前，具体取决于 Flutter 引擎的实现）来调用 `onBeginFrame` 和 `onDrawFrame`。
+2. 可以看见，只有主动调用 `scheduleFrame()`，才会执行 `drawFrame`。所以，我们在 Flutter 中的提到 frame 时，如无特别说明，则是和  `drawFrame()` 的调用对应，而不是和屏幕的刷新频率对应
+
+#### Ⅱ、Flutter 调度过程 SchedulerPhase
+
+1. Flutter 应用执行过程简单来讲分为 idle 和 frame 两种状态，idle 状态代表没有 frame 处理，如果应用状态改变需要刷新 UI，则需要通过 `scheduleFrame()` 去请求新的 frame，当 frame 到来时，就进入了 frame 状态，整个 Flutter 应用生命周期就是在 idle 和 frame 两种状态间切换。
+2. frame 处理流程：当有新的 frame 到来时，具体处理过程就是依次执行四个任务队列：`transientCallbacks`、`midFrameMicrotasks`、`persistentCallbacks`、`postFrameCallbacks`，当四个任务队列执行完毕后当前 frame 结束。
+3. 综上，Flutter 将整个生命周期分为五种状态，通过 SchedulerPhase 枚举类来表示它们：
+
+```dart
+enum SchedulerPhase {
+  
+  /// 空闲状态，并没有 frame 在处理。这种状态代表页面未发生变化，并不需要重新渲染。
+  /// 如果页面发生变化，需要调用`scheduleFrame()`来请求 frame。
+  /// 注意，空闲状态只是指没有 frame 在处理，通常微任务、定时器回调或者用户事件回调都
+  /// 可能被执行，比如监听了tap事件，用户点击后我们 onTap 回调就是在idle阶段被执行的。
+  idle,
+
+  /// 执行”临时“回调任务，”临时“回调任务只能被执行一次，执行后会被移出”临时“任务队列。
+  /// 典型的代表就是动画回调会在该阶段执行。
+  transientCallbacks,
+
+  /// 在执行临时任务时可能会产生一些新的微任务，比如在执行第一个临时任务时创建了一个
+  /// Future，且这个 Future 在所有临时任务执行完毕前就已经 resolve 了，这中情况
+  /// Future 的回调将在[midFrameMicrotasks]阶段执行
+  midFrameMicrotasks,
+
+  /// 执行一些持久的任务（每一个frame都要执行的任务），比如渲染管线（构建、布局、绘制）
+  /// 就是在该任务队列中执行的.
+  persistentCallbacks,
+
+  /// 在当前 frame 在结束之前将会执行 postFrameCallbacks，通常进行一些清理工作和
+  /// 请求新的 frame。
+  postFrameCallbacks,
+}
+```
+
+4. 需要注意，我们接下来要重点介绍的渲染管线就是在 `persistentCallbacks` 中执行的
+
+#### Ⅲ、渲染管线（rendering pipeline）
+
+1. 当新的 frame 到来时，调用到 WidgetsBinding 的 `drawFrame()` 方法，我们来看看它的实现：
+
+```dart
+@override
+void drawFrame() {
+ ...//省略无关代码
+  try {
+    buildOwner.buildScope(renderViewElement); // 先执行构建
+    super.drawFrame(); //然后调用父类的 drawFrame 方法
+  } 
+}
+```
+
+2. 实际上关键的代码就两行：先重新构建（build），然后再调用父类的 `drawFrame` 方法，我们将父类的 `drawFrame方法展开后`：
+
+```dart
+void drawFrame() {
+  buildOwner!.buildScope(renderViewElement!); // 1.重新构建widget树
+  //下面是 展开 super.drawFrame() 方法
+  pipelineOwner.flushLayout(); // 2.更新布局
+  pipelineOwner.flushCompositingBits(); //3.更新“层合成”信息
+  pipelineOwner.flushPaint(); // 4.重绘
+  if (sendFramesToEngine) {
+    renderView.compositeFrame(); // 5. 上屏，会将绘制出的bit数据发送给GPU
+    ...
+  }
+}
+```
+
+3. 可以看到主要做了5件事：
+	1. 重新构建widget树。
+	2. 更新布局。
+	3. 更新“层合成”信息。
+	4. 重绘。
+	5. 上屏：将绘制的产物显示在屏幕上
+4. 我们称上面的5步为 rendering pipeline，中文翻译为 “渲染流水线” 或 “渲染管线”。而渲染管线的这 5 个步骤的具体过程便是本章重点要介绍的。下面我们以 `setState` 的执行更新的流程为例先对整个更新流程有一个大概的影响
+
+#### Ⅳ、setState 执行流
+
+1. `setState` 调用后：
+	1. 首先调用当前 element 的 `markNeedsBuild` 方法，将当前 element 标记为 dirty 。
+	2. 接着调用 `scheduleBuildFor`，将当前 element 添加到 pipelineOwner 的 dirtyElements 列表。
+	3. 最后请求一个新的 frame，随后会绘制新的 frame：`onBuildScheduled->ensureVisualUpdate->scheduleFrame()` 。当新的 frame 到来时执行渲染管线
+
+```dart
+void drawFrame() {
+  buildOwner!.buildScope(renderViewElement!); //重新构建widget树
+  pipelineOwner.flushLayout(); // 更新布局
+  pipelineOwner.flushCompositingBits(); //更新合成信息
+  pipelineOwner.flushPaint(); // 更新绘制
+  if (sendFramesToEngine) {
+    renderView.compositeFrame(); // 上屏，会将绘制出的bit数据发送给GPU
+    pipelineOwner.flushSemantics(); // this also sends the semantics to the OS.
+    _firstFrameSent = true;
+  }
+}
+```
+
+2. 重新构建 widget 树：如果 `dirtyElements` 列表不为空，则遍历该列表，调用每一个 `element` 的 `rebuild` 方法重新构建新的 widget（树），由于新的 widget (树) 使用新的状态构建，所以可能导致 widget 布局信息（占用的空间和位置）发生变化，如果发生变化，则会调用其 `renderObject` 的 `markNeedsLayout` 方法，该方法会从当前节点向父级查找，直到找到一个 `relayoutBoundary` 的节点，然后会将它添加到一个全局的 `nodesNeedingLayout` 列表中；如果直到根节点也没有找到 `relayoutBoundary`，则将根节点添加到 `nodesNeedingLayout` 列表中。
+3. 更新布局：遍历 `nodesNeedingLayout` 数组，对每一个 `renderObject` 重新布局（调用其 layout 方法），确定新的大小和偏移。`layout` 方法中会调用 `markNeedsPaint()`，该方法和 `markNeedsLayout` 方法功能类似，也会从当前节点向父级查找，直到找到一个 `isRepaintBoundary` 属性为 `true` 的父节点，然后将它添加到一个全局的 `nodesNeedingPaint` 列表中；由于根节点（RenderView）的 `isRepaintBoundary` 为 `true`，所以必会找到一个。查找过程结束后会调用 `buildOwner.requestVisualUpdate` 方法，该方法最终会调用 `scheduleFrame()`，该方法中会先判断是否已经请求过新的 frame，如果没有则请求一个新的 frame。
+4. 更新合成信息：先忽略，我们在 14.8 节专门介绍。
+5. 更新绘制：遍历 `nodesNeedingPaint` 列表，调用每一个节点的 `paint` 方法进行重绘，绘制过程会生成 Layer。需要说明一下，flutter 中绘制结果是保存在 Layer 中的，也就是说只要 Layer 不释放，那么绘制的结果就会被缓存，因此，Layer 可以跨 frame 来缓存绘制结果，避免不必要的重绘开销。Flutter 框架绘制过程中，遇到 `isRepaintBoundary` 为 `true` 的节点时，才会生成一个新的 Layer。可见 Layer 和 renderObject 不是一一对应关系，父子节点可以共享，这个我们会在随后的一个试验中来验证。当然，如果是自定义组件，我们可以在 renderObject 中手动添加任意多个 Layer，这通常用于只需一次绘制而随后不会发生变化的绘制元素的缓存场景，这个随后我们也会通过一个例子来演示。
+6. 上屏：绘制完成后，我们得到的是一棵 Layer 树，最后我们需要将 Layer 树中的绘制信息在屏幕上显示。我们知道 Flutter 是自实现的渲染引擎，因此，我们需要将绘制信息提交给 Flutter engine，而 `renderView.compositeFrame` 正是完成了这个使命。
+7. 以上，便是 `setState` 被调用到 UI 更的大概更新过程，实际的流程会更复杂一些，比如在 build 过程中是不允许再调用 `setState` 的，框架需要做一些检查。又比如在 frame 中会涉及到动画的调度、在上屏时会将所有的 Layer 添加到场景（Scene）对象后，再渲染 Scene。上面的流程读者先有个印象即可，我们将在后面的小节中详细介绍。
+
+#### Ⅴ、setState 执行时机问题
+
+##### （1）、简述
+
+1. `setState` 会触发 `build`，而 `build` 是在执行 `persistentCallbacks` 阶段执行的，因此只要不是在该阶段执行 `setState` 就绝对安全，但是这样的粒度太粗，比如在 `transientCallbacks` 和 `midFrameMicrotasks` 阶段，如果应用状态发生变化，最好的方式是只将组件标记为 `dirty`，而不用再去请求新的 frame ，因为当前 frame 还没有执行到 `persistentCallbacks`，因此后面执行到后就会在当前帧渲染管线中刷新 UI。因此，`setState` 在标记完 `dirty` 后会先判断一下调度状态，如果是 `idle` 或 执行 `postFrameCallbacks` 阶段才会去请求新的 frame :
+
+```dart
+void ensureVisualUpdate() {
+  switch (schedulerPhase) {
+    case SchedulerPhase.idle:
+    case SchedulerPhase.postFrameCallbacks:
+      scheduleFrame(); // 请求新的frame
+      return;
+    case SchedulerPhase.transientCallbacks:
+    case SchedulerPhase.midFrameMicrotasks:
+    case SchedulerPhase.persistentCallbacks: // 注意这一行
+      return;
+  }
+}
+```
+
+2. 上面的代码在大多数情况下是没有问题的，但是如果我们在 `build` 阶段又调用 `setState` 的话还是会有问题，因为如果我们在 build 阶段又调用 `setState` 的话就又会导致 `build....` 这样将将导致循环调用，因此 flutter 框架发现在 build 阶段调用 `setState` 的话就会报错，如：
+
+```dart
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, c) {
+        // build 阶段不能调用 setState, 会报错
+        setState(() {
+          ++index;
+        });
+        return Text('xx');
+      },
+    );
+  }
+```
+
+3. 运行后会报错，控制台会打印：
+
+```dart
+==== Exception caught by widgets library ====
+The following assertion was thrown building LayoutBuilder:
+setState() or markNeedsBuild() called during build.
+```
+
+4. 需要注意，如果我们直接在 build 中调用 `setState` ，代码如下：
+
+```dart
+@override
+Widget build(BuildContext context) {
+  setState(() {
+    ++index;
+  });
+  return Text('$index');
+}  
+```
+
+5. 运行后是不会报错的，原因是在执行 build 时当前组件的 `dirty` 状态（对应的 element 中）为 `true`，只有 build 执行完后才会被置为 `false`。而 `setState` 执行的时候会会先判断当前 `dirty` 值，如果为 `true` 则会直接返回，因此就不会报错。
+6. 上面我们只讨论了在 `build` 阶段调用 `setState` 会导致错误，实际上在整个构建、布局和绘制阶段都不能同步调用 `setState`，这是因为，在这些阶段调用 `setState` 都有可能请求新的 frame，都可能会导致循环调用，因此如果要在这些阶段更新应用状态时，都不能直接调用 `setState`。
+
+##### （2）、安全更新
+
+1. 现在我们知道在 `build` 阶段不能调用 `setState了`，实际上在组件的布局阶段和绘制阶段也都不能直接再同步请求重新布局或重绘，道理是相同的，那在这些阶段正确的更新方式是什么呢，我们以 `setState` 为例，可以通过如下方式：
+
+```dart
+// 在build、布局、绘制阶段安全更新
+void update(VoidCallback fn) {
+  SchedulerBinding.instance.addPostFrameCallback((_) {
+    setState(fn);
+  });
+}
+```
+
+2. 注意，`update` 函数只应该在 frame 执行 `persistentCallbacks` 时执行，其他阶段直接调用 `setState` 即可。因为 `idle` 状态会是一个特例，如果 在 `idle` 状态调用 `update` 的话，需要手动调用 `scheduleFrame()` 请求新的 frame，否则 `postFrameCallbacks` 在下一个 frame （其他组件请求的 frame ）到来之前不会被执行，因此我们可以将 `update` 修改一下：
+
+```dart
+void update(VoidCallback fn) {
+  final schedulerPhase = SchedulerBinding.instance.schedulerPhase;
+  if (schedulerPhase == SchedulerPhase.persistentCallbacks) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      setState(fn);
+    });
+  } else {
+    setState(fn);
+  }
+}
+```
+
+3. 至此，我们封装了一个可以安全更新状态的 `update` 函数。
+4. 现在我们回想一下，在第十一章 “自绘组件：CustomCheckbox” 一节中，为了执行动画，我们在绘制完成之后通过如下代码请求重绘：
+
+```dart
+ SchedulerBinding.instance.addPostFrameCallback((_) {
+   ...
+   markNeedsPaint();
+ });
+```
+
+5. 我们并没有直接调用 `markNeedsPaint()`，而原因正如上面所述
+
+### ③、总结
+
+1. 本节介绍了 Flutter App 从启动到显示到屏幕上的主流程，重点是 Flutter 的渲染流程，如图：
+
+![](attachments/Pasted%20image%2020231214124830.png)
+
+2. 需要说明的是 build 过程和 layout 过程是可以交替执行的，这个我们在介绍 LayoutBuilder 一节时已经解释过了。
+3. 我们需要对整个渲染流程有个大概印象，后面我们会详细介绍，不过在深入介绍渲染管线之前，我们得仔细的了解一下 `Element` 、`BuildContext` 和 `RenderObject` 三个类。
+
+## 4、
+
+### ①、
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+# 十五、
 # 十六、问题整理
 
 ## 1、flutter daemon terminated 守护进程被终止

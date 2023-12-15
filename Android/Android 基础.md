@@ -10573,7 +10573,55 @@ layoutManager.smoothScrollToPosition(recyclerView, null, 0)
 4. 注意，要使上述代码正常工作，确保在调用 `smoothScrollToPosition()` 方法之前已经设置了适当的布局管理器（例如 `LinearLayoutManager`）和适配器（例如 `RecyclerView.Adapter`）。
 5. 另外，请注意，根据定制的需求，可能需要自定义 `ItemAnimator` 的实现，或者使用第三方库来实现更复杂的动画效果。
 
-### ②、
+### ②、添加分割线
+
+#### Ⅰ、添加默认分割线
+
+```kotlin
+//添加Android自带的分割线
+recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+```
+
+#### Ⅱ、添加自定义分割线
+
+1. 创建 `Drawable` 形状图片
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:centerColor="#ff00ff00" //绿色
+        android:endColor="#ff0000ff"    //蓝色
+        android:startColor="#ffff0000"  //红色
+        android:type="linear" />
+    <size android:height="3dp" />
+
+</shape>
+```
+
+2. 创建 `DividerItemDecoration` 对象，引用 `Drawable` 形状图片，并设置给 `RecyclerView`
+
+```kotlin
+// 定义适配器
+private val couponAndItemAdapter by lazy { CouponAndItemAdapter() }
+// 获取 RecyclerView 对象
+val recyclerViewCouponAndItem = include_new_coupons.coupon_and_item
+
+// 设置 布局管理器
+recyclerViewCouponAndItem.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+// 创建 DividerItemDecoration 对象
+val divider = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
+// 引用 Drawable 形状图片
+divider.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.bg_button_blue_radius_5)!!)
+// 设置给 RecyclerView
+recyclerViewCouponAndItem.addItemDecoration(divider)
+
+// 设置适配器
+recyclerViewCouponAndItem.adapter = couponAndItemAdapter
+```
 
 ### ③、
 
