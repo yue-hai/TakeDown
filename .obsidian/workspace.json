@@ -34,12 +34,25 @@
             }
           },
           {
-            "id": "731f438a9d865f58",
+            "id": "46913dd127e541a2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "标题.md",
+                "file": "Android/Kotlin 基础.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "1920581d51d12114",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android/SSC 购物车.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -47,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -112,10 +125,15 @@
       "table-editor-obsidian:Advanced Tables Toolbar": true
     }
   },
-  "active": "997a3d65263e0bf5",
+  "active": "1920581d51d12114",
   "lastOpenFiles": [
-    "标题.md",
+    "Android/Kotlin 基础.md",
     "Flutter/Flutter 基础.md",
+    "Flutter/Dart 基础.md",
+    "Android/SSC 购物车.md",
+    "linux/Smart/Smart 基础.md",
+    "标题.md",
+    "python/Python 基础.md",
     "Flutter/attachments/Pasted image 20231215104352.png",
     "Flutter/attachments/Pasted image 20231215102653.png",
     "Flutter/attachments/Pasted image 20231215102535.png",
@@ -126,15 +144,11 @@
     "Flutter/attachments/Pasted image 20231215093430.png",
     "Flutter/attachments/Pasted image 20231215092814.png",
     "Flutter/attachments/Pasted image 20231214160752.png",
-    "linux/Smart/Smart 基础.md",
     "其他/软件使用/编程软件.md",
     "Android/Android 基础.md",
-    "Android/SSC 购物车.md",
     "linux/Smart/Smart 编程.md",
     "其他/软件使用/attachments/intellij-rainbow-brackets-6.26.zip",
-    "Android/Kotlin 基础.md",
     "python/attachments/05.scrapy.pdf",
-    "Flutter/Dart 基础.md",
     "java/15、SpringCloudAlibaba.md",
     "attachments/Spring.md",
     "attachments",
