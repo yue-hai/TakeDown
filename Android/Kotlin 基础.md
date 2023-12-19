@@ -1177,17 +1177,19 @@ true
 | `any(): Boolean`                           | 判断集合元素，如果集合为空，返回false, 集合中存有一个或多个元素时返回true                             |
 | `any(predicate: (T) -> Boolean): Boolean`  | 判断集合元素，如果集合为空或者没有符号条件的元素返回false, 集合中存有一个或多个元素符合条件时返回true |
 | `all(predicate: (T) -> Boolean): Boolean`  | 当且仅当该集合中所有元素都满足条件时，返回true；否则都返回false。                                     |
-| `none(): Boolean`                          | 如果集合中没有元素，则返回true，否则返回false                                                         |
+| `none(): Boolean`                          | 如果集合中没有任何元素，则返回true，否则返回false                                                     |
 | `none(predicate: (T) -> Boolean): Boolean` | 如果集合中没有符合匹配条件的元素，返回true，否则返回false                                             |
 | `count(): Int`                             | 返回集合元素个数                                                                                      |
-|`count(predicate: (T) -> Boolean): Int`|返回符合匹配条件的元素的个数|
-|`max, min`|查询最大，最小元素，空集返回null|
+| `count(predicate: (T) -> Boolean): Int`    | 返回符合匹配条件的元素的个数                                                                          |
+| `max, min`                                 | 查询最大，最小元素，空集返回null                                                                      |
+| `find(predicate: (T) -> Boolean): T?` | 查找符合给定条件的第一个元素，并返回该元素（或者返回 null）                                                                                                      |
 
 6. 过滤操作函数
 
-| 方法                 | 描述                                      |
-| -------------------- | ----------------------------------------- |
-| `take(n: Int): List` | 根据传入的参数挑出该集合前n个元素的子集合 |
+| 方法                                         | 描述                                      |
+| -------------------------------------------- | ----------------------------------------- |
+| `take(n: Int): List`                         | 根据传入的参数挑出该集合前n个元素的子集合 |
+| `filter(predicate: (T) -> Boolean): List<T>` | 过滤集合中满足给定条件的元素，并返回一个新的集合                                          |
 
 7. 映射操作符
 
