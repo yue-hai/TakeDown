@@ -10339,8 +10339,477 @@ class ImageViewerActivity: AppCompatActivity() {
 }
 ```
 
+### ②、kotlin 代码中设置并执行动画
 
-### ②、
+#### Ⅰ、介绍
+
+1. 可使用 `public static ObjectAnimator ofFloat(Object target, String propertyName, float... values)` 方法来创建动画对象
+
+```kotlin
+// 动画的起始和结束位置
+val startX = 1280f
+val endX = 0f
+
+// 设置积分倍率弹窗的初始状态
+include_animator_test.translationX = startX
+include_animator_test.visibility = View.VISIBLE
+
+// 创建位移动画对象；屏幕左上角为 0,0
+val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+// 设置动画的插值器；DecelerateInterpolator 是一个减速插值器。它会使动画在开始时较快，然后逐渐减速，给人一种减缓到达终点的效果
+translateAnimator.interpolator = DecelerateInterpolator()
+// 设置动画的持续时间
+translateAnimator.duration = 300
+
+// 启动动画
+translateAnimator.start()
+```
+
+2. 可使用 `AnimatorSet()` 来创建动画集合，使多个动画按照指定的方式进行播放：
+
+| 常用方法                                           | 介绍                                        |
+| -------------------------------------------------- | ------------------------------------------- |
+| play(Animator anim)                                | 将指定的动画添加到 AnimatorSet 中，配合 `before()` 方法可以指定顺序进行播放  |
+| playTogether(Animator... animators)                | 将多个动画同时播放。                        |
+| playSequentially(Animator... animators)            | 将多个动画按顺序播放。                      |
+| setDuration(long duration)                         | 设置动画的持续时间。                        |
+| setInterpolator(TimeInterpolator interpolator)     | 设置动画的插值器，用于控制动画的变化速率。  |
+| setStartDelay(long startDelay)                     | 设置动画的延迟开始时间。                    |
+| addListener(Animator.AnimatorListener listener)    | 添加动画监听器，用于监听动画的各个阶段。    |
+| removeListener(Animator.AnimatorListener listener) | 移除动画监听器。                            |
+| clone()                                            | 创建一个 AnimatorSet 的副本。               |
+| getChildAnimations()                               | 获取 AnimatorSet 中包含的所有动画。         |
+| getDuration()                                      | 获取动画的持续时间。                        |
+| getStartDelay()                                    | 获取动画的延迟开始时间。                    |
+| getInterpolator()                                  | 获取动画的插值器。                          |
+
+4. `AnimatorSet()` 的使用看下方的实例
+
+
+#### Ⅱ、实例
+
+1. 积分增加 icon 图标 `ic_poc_points_up`
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="632dp"
+    android:height="138dp"
+    android:viewportWidth="632"
+    android:viewportHeight="138">
+  <path
+      android:pathData="M98.28,58.24C97.21,63.72 91.75,68.62 86.19,69.11C80.54,69.6 76.94,65.49 78.02,60.01C79.11,54.45 84.46,49.64 90.11,49.15C95.67,48.66 99.37,52.68 98.28,58.24ZM91.92,58.8C92.31,56.77 90.94,55.24 88.88,55.42C86.82,55.6 84.78,57.43 84.38,59.46C83.99,61.49 85.36,63.02 87.42,62.84C89.48,62.66 91.52,60.83 91.92,58.8ZM49.04,56.39L64.46,55.04L61.77,68.73L77.01,67.39C78.17,69.12 79.89,71.57 85.63,71.07C87.78,70.88 89.02,70.42 90.45,69.86L88.35,80.55L58.94,83.12L49.51,131.16L34.09,132.51L43.52,84.47L14.11,87.04L16.94,72.65L46.35,70.08L49.04,56.39ZM13.06,132.79L3.59,122.25C7.96,118.4 16.39,110.89 21.72,92.28L35.63,92.8C29.51,115.9 20.5,125.89 13.06,132.79ZM63.42,90.37L78.4,87.24C76.7,106.22 82.11,112.78 84.89,116.09L70.53,128.2C65.84,121.58 61.57,113.27 63.42,90.37ZM144.02,77.94L134.94,124.21L118.17,125.68L125.14,90.18C120.25,93.12 109.04,99.48 94.22,104.95L89,92.04C103.72,87.1 117.87,79.18 131.41,70.36C143.15,62.65 151.32,55.16 163.1,44.07L175.09,52.56C170.63,56.86 161.29,65.84 144.02,77.94ZM214.68,57.35L203.57,72.21C195.23,66.69 186.07,63.06 177.69,60.84L187.18,47.08C198.5,49.56 207.55,53.28 214.68,57.35ZM172.39,120.59L170.36,104.45C205.54,98.51 226.18,84.98 243.31,47.98L256.48,54.04C232.68,104.38 200.11,114.08 172.39,120.59ZM280.61,35.26L297.65,33.77L293.61,54.35C306.51,57.3 321.58,62.66 332.61,68.9L320.99,85.89C313.88,80.78 299.84,73.33 290.4,70.68L282.39,111.49L265.35,112.97L280.61,35.26ZM335.24,107.99L327.34,96.62C352.51,85.56 360.26,72.56 364.14,49.65L380.46,48.22C379.7,51.68 379,54.77 377.72,59.05C389.88,52.78 394.99,44.7 396.78,41.85L337.25,47.06L340.18,32.13L419.53,25.19C412.33,47.95 401.3,60.11 384.38,70.45L376.79,62C367.88,90.29 347.2,102.26 335.24,107.99ZM438.11,63.4L424.41,67.64C424.45,62.95 424.2,54.81 421.71,45.48L434.64,41.14C437.08,47.96 437.82,55.88 438.11,63.4ZM459.48,58.24L446.28,62.17C446.35,51.49 445.52,45.83 444.26,40.12L457.01,36.67C459.71,44.94 459.56,54.67 459.48,58.24ZM425.89,100.49L420.84,88.96C452.33,78.91 462.58,69.33 475.99,35.18L490.61,37.46C481.94,57.83 469.31,87.15 425.89,100.49ZM503.21,20.82L559.7,15.88C558.06,25.13 562.27,29.71 571.91,28.61C561.69,63.18 536.83,82.97 501.62,92.65L497.06,78.64C540.4,69.3 550.1,45.01 554.51,31.52L500.18,36.27L503.21,20.82ZM583.18,14.78C582.07,20.43 576.5,25.43 570.77,25.93C565.12,26.43 561.36,22.24 562.47,16.59C563.58,10.94 569.14,5.94 574.79,5.44C580.54,4.85 584.29,9.13 583.18,14.78ZM576.9,15.33C577.34,13.12 575.91,11.42 573.58,11.63C571.33,11.82 569.09,13.84 568.65,16.05C568.2,18.34 569.74,19.95 571.98,19.75C574.31,19.55 576.45,17.62 576.9,15.33ZM613.39,9.01L629.71,7.58L618,56.43L605.72,57.51L613.39,9.01ZM603.27,63.71L618.33,62.39L615.41,77.23L600.35,78.55L603.27,63.71Z"
+      android:fillColor="#E60012"/>
+</vector>
+```
+
+2. 向右箭头 icon 图标 `ic_poc_chevron_right`
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="113dp"
+    android:height="78dp"
+    android:viewportWidth="113"
+    android:viewportHeight="78">
+  <path
+      android:pathData="M85.26,31.01L8.18,31.01C6.01,31.01 3.93,31.87 2.4,33.41C0.86,34.94 -0,37.01 -0,39.18C-0,41.35 0.86,43.42 2.4,44.96C3.93,46.49 6.01,47.35 8.18,47.35L84.88,47.35L68.51,63.92C66.98,65.47 66.12,67.57 66.12,69.75C66.12,71.93 66.98,74.03 68.51,75.58C70.04,77.12 72.12,77.99 74.29,78C76.46,78.01 78.54,77.16 80.08,75.64L110.61,45.19C111.36,44.43 111.97,43.53 112.38,42.54C112.79,41.55 113,40.49 113,39.42C113,38.35 112.79,37.29 112.38,36.3C111.97,35.31 111.36,34.41 110.61,33.65L79.28,2.39C78.13,1.25 76.68,0.47 75.09,0.16C73.5,-0.16 71.86,0 70.36,0.62C68.87,1.24 67.59,2.29 66.69,3.63C65.79,4.97 65.32,6.55 65.31,8.17C65.32,9.21 65.53,10.24 65.94,11.19C66.35,12.14 66.95,13 67.71,13.72L85.26,31.01Z"
+      android:fillColor="#ffffff"/>
+</vector>
+
+```
+
+3. 外层盒子 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 省略中间代码 -->
+
+    <include
+        android:id="@+id/include_animator_test"
+        layout="@layout/poc_animator_test_content"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+4. 动画例子 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="465dp"
+	android:gravity="center"
+	android:background="#80000000"
+	android:orientation="vertical">
+
+	<ImageView
+		android:id="@+id/content_points_up"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:layout_marginTop="@dimen/dp_40"
+		android:src="@drawable/ic_poc_points_up"/>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="start|center"
+		android:orientation="horizontal">
+		
+		<TextView
+			android:id="@+id/content_multiple_front"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintEnd_toStartOf="@+id/content_times_front"
+			android:text="1"
+			android:textSize="240sp"
+			android:textColor="@color/white"
+			android:textStyle="bold"/>
+		<TextView
+			android:id="@+id/content_times_front"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintEnd_toStartOf="@+id/content_chevron_right"
+			android:layout_marginEnd="@dimen/dp_50"
+			android:text="倍"
+			android:textSize="120sp"
+			android:textColor="@color/white"
+			android:textStyle="bold"/>
+		
+		<ImageView
+			android:id="@+id/content_chevron_right"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintStart_toStartOf="parent"
+	        app:layout_constraintEnd_toEndOf="parent"
+			android:src="@drawable/ic_poc_chevron_right"/>
+		
+		<TextView
+			android:id="@+id/content_point"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/content_chevron_right"
+			android:layout_marginStart="@dimen/dp_50"
+			android:text="ポ\nイ\nン\nト"
+			android:textSize="23sp"
+			android:textColor="#FFF200"
+			android:textStyle="bold"/>
+		<TextView
+			android:id="@+id/content_multiple_back"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintStart_toEndOf="@+id/content_point"
+			app:layout_constraintEnd_toStartOf="@+id/content_times_back"
+			android:text="2"
+			android:textSize="120sp"
+			android:textColor="#FFF200"
+			android:textStyle="bold"/>
+		<TextView
+			android:id="@+id/content_times_back"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintStart_toEndOf="@+id/content_multiple_back"
+			android:text="倍"
+			android:textSize="60sp"
+			android:textColor="#FFF200"
+			android:textStyle="bold"
+			android:textFontWeight="@integer/config_navAnimTime"/>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+    
+</LinearLayout>
+```
+
+5. kotlin 动画代码，省略上方代码，只保留了动画代码
+
+```kotlin
+// 启动动画
+private fun animateBlackBox() {
+	// 动画开始时，重置字号
+	content_multiple_front.setTextSize(TypedValue.COMPLEX_UNIT_SP, 240f)
+	content_times_front.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	content_multiple_back.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	content_times_back.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60f)
+	content_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23f)
+	// 停止动画集合
+	combinedAnimatorSet.cancel()
+	combinedAnimatorSet.clone()
+	
+	
+	// 进入动画弹回效果，按顺序播放
+	val animateEnterBounce = AnimatorSet()
+	animateEnterBounce.playSequentially(animateScoreMultiplierEnterBounceMoveRight(), animateScoreMultiplierkEnterBounceMoveLeft())
+	
+	// 字号变化动画 1，字号变化回弹的前半部分，同时播放
+	val animateFontSizeChangeOne = AnimatorSet()
+	animateFontSizeChangeOne.playTogether(animateTextShrinkFront(), animateTextEnlargeBack())
+	// 字号变化动画 2，字号变化回弹的后半部分，同时播放
+	val animateFontSizeChangeTwo = AnimatorSet()
+	animateFontSizeChangeTwo.playTogether(animateTextEnlargeFront(), animateTextShrinkBack())
+	// 字号变化动画 总，按顺序播放
+	val animateFontSizeChange = AnimatorSet()
+	animateFontSizeChange.startDelay = 500
+	animateFontSizeChange.playSequentially(animateFontSizeChangeOne, animateFontSizeChangeTwo)
+	
+	// 滑出动画，按顺序播放
+	val animateExit = AnimatorSet()
+	animateExit.playSequentially(animateScoreMultiplierExit())
+	animateExit.startDelay = 1000
+	// 滑出动画弹回效果，按顺序播放
+	val animateExitBounce = AnimatorSet()
+	animateExitBounce.playSequentially(animateScoreMultiplierExitBounceMoveRight(), animateScoreMultiplierExitBounceMoveLeft())
+	
+	// 动画集合，按顺序播放
+	combinedAnimatorSet.playSequentially(
+		// 进入动画
+		animateScoreMultiplierEnter(),
+		// 进入动画弹回效果
+		animateEnterBounce,
+		// 字号变化动画 总，按顺序播放
+		animateFontSizeChange,
+		// 滑出动画
+		animateExit,
+		// 滑出动画弹回效果
+		animateExitBounce
+	)
+	// 启动动画集合
+	combinedAnimatorSet.start()
+}
+
+// 积分倍率弹窗进入动画
+private fun animateScoreMultiplierEnter(): ObjectAnimator{
+	// 动画的起始和结束位置
+	val startX = 1280f
+	val endX = 0f
+	
+	// 设置积分倍率弹窗的初始状态
+	include_animator_test.translationX = startX
+	include_animator_test.visibility = View.VISIBLE
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+	// 设置动画的插值器
+	translateAnimator.interpolator = DecelerateInterpolator()
+	// 设置动画的持续时间
+	translateAnimator.duration = 300
+	
+	return translateAnimator
+}
+// 积分倍率弹窗进入动画，弹回效果动画，右移
+fun animateScoreMultiplierEnterBounceMoveRight(): ObjectAnimator{
+	val startX = 0f
+	val endX = 20f
+	
+	val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+	translateAnimator.interpolator = DecelerateInterpolator()
+	translateAnimator.duration = 150
+
+	return translateAnimator
+}
+// 积分倍率弹窗进入动画，弹回效果动画，左移
+fun animateScoreMultiplierkEnterBounceMoveLeft(): ObjectAnimator{
+	val startX = 20f
+	val endX = 0f
+	
+	val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+	translateAnimator.interpolator = DecelerateInterpolator()
+	translateAnimator.duration = 150
+
+	return translateAnimator
+}
+
+// 积分倍率弹窗滑出动画
+fun animateScoreMultiplierExit(): ObjectAnimator{
+	val startX = 0f
+	val endX = -1280f
+
+	val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+	translateAnimator.interpolator = DecelerateInterpolator()
+	translateAnimator.duration = 300
+
+	return translateAnimator
+}
+// 积分倍率弹窗滑出动画，弹回效果动画，右移
+fun animateScoreMultiplierExitBounceMoveRight(): ObjectAnimator{
+	val startX = -1280f
+	val endX = -1260f
+	
+	val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+	translateAnimator.interpolator = DecelerateInterpolator()
+	translateAnimator.duration = 150
+	
+	return translateAnimator
+}
+// 积分倍率弹窗滑出动画，弹回效果动画，左移
+fun animateScoreMultiplierExitBounceMoveLeft(): ObjectAnimator{
+	val startX = -1260f
+	val endX = -1280f
+	
+	val translateAnimator = ObjectAnimator.ofFloat(include_animator_test, "translationX", startX, endX)
+	translateAnimator.interpolator = DecelerateInterpolator()
+	translateAnimator.duration = 150
+	
+	return translateAnimator
+}
+
+// 前面的字变小动画，字号变化回弹的前半部分
+fun animateTextShrinkFront(): AnimatorSet{
+	val frontMultipleAnimator = ValueAnimator.ofFloat(240f, 100f)
+		.apply {
+			duration = animateFontSizeChangeOneTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_multiple_front.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val frontTimesAnimator = ValueAnimator.ofFloat(120f, 50f)
+		.apply {
+			duration = animateFontSizeChangeOneTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_times_front.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	// 字号变化动画
+	val animateTextShrinkFront = AnimatorSet()
+	animateTextShrinkFront.playTogether(frontMultipleAnimator, frontTimesAnimator)
+	
+	return animateTextShrinkFront
+}
+// 后面的字变大动画，字号变化回弹的前半部分
+fun animateTextEnlargeBack(): AnimatorSet{
+	val backMultipleAnimator = ValueAnimator.ofFloat(120f, 250f)
+		.apply {
+			duration = animateFontSizeChangeOneTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_multiple_back.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val backTimesAnimator = ValueAnimator.ofFloat(60f, 130f)
+		.apply {
+			duration = animateFontSizeChangeOneTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_times_back.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val pointAnimator = ValueAnimator.ofFloat(23f, 50f)
+		.apply {
+			duration = animateFontSizeChangeOneTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	// 字号变化动画
+	val animateTextEnlargeBack = AnimatorSet()
+	animateTextEnlargeBack.playTogether(backMultipleAnimator, backTimesAnimator, pointAnimator)
+	
+	return animateTextEnlargeBack
+}
+
+// 前面的字变大动画，字号变化回弹的后半部分
+fun animateTextEnlargeFront(): AnimatorSet{
+	val frontMultipleAnimator = ValueAnimator.ofFloat(100f, 120f)
+		.apply {
+			duration = animateFontSizeChangeTwoTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_multiple_front.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val frontTimesAnimator = ValueAnimator.ofFloat(50f, 60f)
+		.apply {
+			duration = animateFontSizeChangeTwoTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_times_front.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	// 字号变化动画
+	val animateTextShrinkFront = AnimatorSet()
+	animateTextShrinkFront.playTogether(frontMultipleAnimator, frontTimesAnimator)
+	
+	return animateTextShrinkFront
+}
+// 后面的字变小动画，字号变化回弹的后半部分
+fun animateTextShrinkBack(): AnimatorSet{
+	val backMultipleAnimator = ValueAnimator.ofFloat(250f, 240f)
+		.apply {
+			duration = animateFontSizeChangeTwoTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_multiple_back.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val backTimesAnimator = ValueAnimator.ofFloat(130f, 120f)
+		.apply {
+			duration = animateFontSizeChangeTwoTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_times_back.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val pointAnimator = ValueAnimator.ofFloat(50f, 46f)
+		.apply {
+			duration = animateFontSizeChangeTwoTime
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				content_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	// 字号变化动画
+	val animateTextEnlargeBack = AnimatorSet()
+	animateTextEnlargeBack.playTogether(backMultipleAnimator, backTimesAnimator, pointAnimator)
+	
+	return animateTextEnlargeBack
+}
+```
+
+6. 效果：
+
+![|700](attachments/动画3.gif)
 
 ### ③、
 
@@ -10420,7 +10889,28 @@ class ImageViewerActivity: AppCompatActivity() {
 
 ![](attachments/Pasted%20image%2020231208141804.png)
 
-### ④、
+### ④、svg 转安卓 xml 形状图片
+
+1. 有一个 svg 文件：[咖啡师.svg](attachments/咖啡师.svg)，我将其保存在了 D 盘根目录
+2. 在安卓项目中，右键 `res/drawable` 目录，选择新建 -> Vectro Asset
+
+![|700](attachments/Pasted%20image%2020231222090652.png)
+
+3. 在弹出来的 Asset Studio 弹窗中
+	1. 选择 Asset type 的第二项，Local file (SVG, PSD)
+	2. 选择 Path 后方的浏览按钮，在弹出的弹窗中选择 SVG 文件
+	3. 在 Nane 输入框中修改名称
+	4. 在 Size 输入框中修改尺寸
+
+![|700](attachments/Pasted%20image%2020231222091415.png)
+
+4. 修改完后，点击下一步，在新页面中点击完成
+
+![|675](attachments/Pasted%20image%2020231222091439.png)
+
+5. 此时 xml 形状图片就被添加进来了
+
+![|700](attachments/Pasted%20image%2020231222091532.png)
 
 ## 5、
 
@@ -10932,7 +11422,20 @@ genymotion:/sdcard/Download #
 |adb shell input swipe x1 y1 x2 y2|从(x1,y1)位置到(x2,y2)位置模拟滑动|
 |adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt|执行 monkey100 次随意点击测试，并记录日志到本地|
 
-## 7、
+## 7、关闭 Idea 时会自动关闭 ADB 进程的解决办法
+
+1. idea 点击文件 -> 设置 -> 构建、执行、部署 -> 调试器，进入以下页面，拉到最下面
+
+![|700](attachments/Pasted%20image%2020231222102826.png)
+
+2. 选择：`Use existing manually managed server`，因为ADB 默认使用的端口号是 `5037`，所以设置为 `5037` 即可
+3. 但是，这个选项不可以设置为 `5037` 即以下，只能设置为 `5038` 即以上（我不知道为什么会这样）
+4. 所以此处将其设置为 `5038`，然后修改 ADB 的默认端口为 `5038` 即可
+5. 打开电脑的高级系统设置，在系统变量中新建一个变量：`ANDROID_ADB_SERVER_PORT`，值设置为 `5038`
+6. 重启电脑
+7. 命令行窗口中，输入 `adb start-server`，显示 `daemon not running; starting now at tcp:5038` 即为配置完成
+
+![](attachments/Pasted%20image%2020231222103427.png)
 
 ## 8、
 

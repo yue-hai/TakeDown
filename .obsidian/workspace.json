@@ -34,25 +34,12 @@
             }
           },
           {
-            "id": "46913dd127e541a2",
+            "id": "098b327027ebb9d9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/Kotlin 基础.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1920581d51d12114",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "Android/Android 基础.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -60,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -89,6 +76,21 @@
             "state": {
               "type": "starred",
               "state": {}
+            }
+          },
+          {
+            "id": "7645db7678a31276",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
             }
           }
         ]
@@ -125,28 +127,33 @@
       "table-editor-obsidian:Advanced Tables Toolbar": true
     }
   },
-  "active": "1920581d51d12114",
+  "active": "098b327027ebb9d9",
   "lastOpenFiles": [
-    "Android/Kotlin 基础.md",
-    "Flutter/Flutter 基础.md",
-    "Flutter/Dart 基础.md",
-    "Android/SSC 购物车.md",
-    "linux/Smart/Smart 基础.md",
+    "其他/设备和工具.md",
     "标题.md",
-    "python/Python 基础.md",
-    "Flutter/attachments/Pasted image 20231215104352.png",
-    "Flutter/attachments/Pasted image 20231215102653.png",
-    "Flutter/attachments/Pasted image 20231215102535.png",
-    "Flutter/attachments/动画1 1.gif",
-    "Flutter/attachments/Pasted image 20231215095945.png",
-    "Flutter/attachments/Pasted image 20231215095654.png",
-    "Flutter/attachments/Pasted image 20231215095553.png",
-    "Flutter/attachments/Pasted image 20231215093430.png",
-    "Flutter/attachments/Pasted image 20231215092814.png",
-    "Flutter/attachments/Pasted image 20231214160752.png",
-    "其他/软件使用/编程软件.md",
+    "其他/attachments/Pasted image 20231225153514.png",
+    "其他/attachments/Pasted image 20231225153222.png",
+    "其他/attachments/Pasted image 20231225153111.png",
+    "其他/attachments/Pasted image 20231225153047.png",
+    "其他/attachments/Pasted image 20231225153003.png",
+    "其他/attachments/Pasted image 20231225151331.png",
+    "其他/attachments/Pasted image 20231225151259.png",
+    "其他/attachments/Pasted image 20231225151211.png",
+    "其他/attachments/Pasted image 20231225151000.png",
+    "其他/attachments/Pasted image 20231225150914.png",
+    "其他/Docker.md",
     "Android/Android 基础.md",
+    "linux/Smart/Smart 基础.md",
+    "Android/Kotlin 基础.md",
+    "其他/软件使用/编程软件.md",
+    "Flutter/Dart 基础.md",
+    "Flutter/Flutter 基础.md",
+    "linux/linux/Liunx 基础.md",
     "linux/Smart/Smart 编程.md",
+    "java/【其他】.md",
+    "Android/SSC 购物车.md",
+    "java/00、其他小笔记.md",
+    "python/Python 基础.md",
     "其他/软件使用/attachments/intellij-rainbow-brackets-6.26.zip",
     "python/attachments/05.scrapy.pdf",
     "java/15、SpringCloudAlibaba.md",
@@ -155,16 +162,12 @@
     "java/attachments/Spring Cloud Alibaba.xmind",
     "未命名.canvas",
     "java/java开发规约.pdf",
-    "其他/Docker.md",
-    "其他/设备和工具.md",
-    "linux/linux/Liunx 基础.md",
     "linux/linux/Shell 编程.md",
     "其他/attachments/y_chat-1.0-SNAPSHOT.jar",
     "其他/attachments/TEST-0.0.1-SNAPSHOT 1.jar",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.004",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.003",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.002",
-    "java/【其他】.md",
     "其他/软件使用/WindTerm.md",
     "其他/软件使用/VS Code.md",
     "其他/软件使用/Idea.md",
@@ -172,8 +175,6 @@
     "其他/文件处理/音频处理.md",
     "其他/软件使用/Excel.md",
     "其他/软件使用/浏览器.md",
-    "其他/小工具.md",
-    "其他/Git.md",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
     "java/未命名.canvas"
