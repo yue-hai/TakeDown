@@ -10225,7 +10225,96 @@ class SettingsFragment: Fragment() {
 ```
 
 
-### ③、
+### ③、自定义字体
+
+#### Ⅰ、使用 API 提供的默认字体
+
+1. 以下几种：
+	1. `noraml` ：普通字体,系统默认使用的字体
+	2. `sans` ：非衬线字体
+	3. `serif` ：衬线字体
+	4. `monospace` ：等宽字体
+2. xml 中 TextView 设置：
+
+```xml
+android:typeface="monospace"
+```
+
+3. java 代码 TextView 设置：
+
+```kotlin
+myText.setTypeface(Typeface.MONOSPACE);
+```
+
+#### Ⅱ、将字体文件放在 `assets` 目录中
+
+1. 将字体文件放在 `assets` 目录中
+
+![|682](attachments/Pasted%20image%2020231227152014.png)
+
+2. java 代码 TextView 设置：
+
+```kotlin
+Typeface typeface = Typeface.createFromAsset(getAssets(), "font/opposans.ttf");
+myTextView.setTypeface(typeface);
+```
+
+#### Ⅲ、将字体文件放在 `res/font` 下
+
+1. 安卓8.0后，在工程目录 `res` 下，创建一个 `font` 文件夹，把字体文件放入文件夹中，如图：
+
+![|267](attachments/Pasted%20image%2020231227152230.png)
+
+2. xml 中 TextView 设置：
+
+```xml
+android:fontFamily="@font/opposans"
+```
+
+3. java 代码 TextView 设置：
+
+```kotlin
+if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+      Typeface typeface = getResources().getFont(R.font.opposans);
+      myTextView.setTypeface(typeface);
+}
+```
+
+4. 如果想整个 activity 界面都使用此字体，旧版 AS 工程在 `res/values/styles.xml` 中，新版 AS 工程在 `res/values/themes.xml` 中加入如下style
+
+```xml
+<style name="MyFont" parent="AppTheme">
+   <item name="android:fontFamily">@font/opposans</item>
+</style>
+```
+
+5. `manifest.xml` 中
+
+```xml
+<activity
+		android:name=".MainActivity"
+		android:theme="@style/MyFont" />
+```
+
+6. 如果想整个 APP 界面都使用此字体，在 `manifest.xml` 中
+
+```xml
+    <application
+        android:theme="@style/AppTheme">
+```
+
+7. `styles.xml` 或者 `themes.xml` 中
+
+```xml
+<style name="AppTheme" parent="xxx">
+   <item name="android:fontFamily">@font/opposans</item>
+</style>
+```
+
+#### Ⅳ、
+
+#### Ⅴ、
+
 
 ### ④、
 
@@ -10912,7 +11001,305 @@ fun animateTextShrinkBack(): AnimatorSet{
 
 ![|700](attachments/Pasted%20image%2020231222091532.png)
 
-## 5、
+## 5、数据
+
+### ①、使用 `Bundle()` 传递自定义对象
+
+1. 自定义对象 `Contact` 联系人实体类
+
+```kotlin
+package com.yuehai.y_chat.bean.contact
+
+import android.os.Parcel
+import android.os.Parcelable
+
+/**
+ * @author 月海
+ * @date 2023/10/8 9:34
+ * @description 联系人实体类
+ */
+data class Contact(
+	/**
+	 * 联系人 id
+	 */
+	var contactId: String,
+	
+	/**
+	 * 联系人昵称
+	 */
+	var contactNickName: String? = "联系人昵称"
+) : Parcelable {
+	
+	/**
+	 * 构造函数，用于从Parcel中读取数据以还原对象
+	 * @param parcel 包含对象数据的 Parcel
+	 */
+	constructor(parcel: Parcel) : this(
+		parcel.readString() ?: "",
+		parcel.readString() ?: ""
+	)
+	
+	/**
+	 * 将对象数据写入 Parcel，以便进行序列化
+	 * @param parcel 用于写入数据的 Parcel
+	 * @param flags 附加标志（通常为0）
+	 */
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		parcel.writeString(contactId)
+		parcel.writeString(contactNickName)
+	}
+	
+	/**
+	 * 描述对象内容的特殊标志，通常为 0
+	 */
+	override fun describeContents(): Int {
+		return 0
+	}
+	
+	companion object CREATOR : Parcelable.Creator<Contact> {
+		/**
+		 * 从 Parcel 创建对象的静态方法
+		 * @param parcel 包含对象数据的 Parcel
+		 * @return 从 Parcel 中创建的 Contact 对象
+		 */
+		override fun createFromParcel(parcel: Parcel): Contact {
+			return Contact(parcel)
+		}
+		
+		/**
+		 * 创建指定大小的 Contact 对象数组
+		 * @param size 数组大小
+		 * @return Contact 对象数组
+		 */
+		override fun newArray(size: Int): Array<Contact?> {
+			return arrayOfNulls(size)
+		}
+	}
+}
+```
+
+2. 自定义对象 `MessagesReceive` 接收消息实体类，用于接收服务端发送的消息
+
+```kotlin
+package com.yuehai.y_chat.bean.message
+
+import android.os.Parcel
+import android.os.Parcelable
+
+/**
+ * @author 月海
+ * @date 2023/12/25 16:50
+ * @description 接收消息实体类，用于接收服务端发送的消息
+ */
+data class MessagesReceive (
+	
+	/**
+	 * 发送者 id
+	 */
+	val senderId: String,
+	
+	/**
+	 * 接收者 id
+	 */
+	val receiverId: String,
+	
+	/**
+	 * 发送时间
+	 */
+	val sendTime: String,
+	
+	/**
+	 * 消息内容
+	 */
+	val messageData: String,
+	
+	/**
+	 * 消息类型
+	 */
+	val messageType: String,
+	
+	/**
+	 * 消息是否成功发送
+	 */
+	val success: Boolean,
+	
+	/**
+	 * 接收者是否在线
+	 */
+	val online: Boolean,
+	
+	/**
+	 * 消息发送失败的原因
+	 */
+	val errorReason: String,
+	
+	/**
+	 * 是否是回执消息
+	 */
+	val isReceipt: Boolean,
+) : Parcelable {
+	/**
+	 * 构造函数，用于从Parcel中读取数据以还原对象
+	 * @param parcel 包含对象数据的 Parcel
+	 */
+	constructor(parcel: Parcel) : this(
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readByte() != 0.toByte(),
+		parcel.readByte() != 0.toByte(),
+		parcel.readString() ?: "",
+		parcel.readByte() != 0.toByte()
+	)
+	
+	/**
+	 * 将对象数据写入 Parcel，以便进行序列化
+	 * @param parcel 用于写入数据的 Parcel
+	 * @param flags 附加标志（通常为0）
+	 */
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		parcel.writeString(senderId)
+		parcel.writeString(receiverId)
+		parcel.writeString(sendTime)
+		parcel.writeString(messageData)
+		parcel.writeString(messageType)
+		parcel.writeByte(if (success) 1 else 0)
+		parcel.writeByte(if (online) 1 else 0)
+		parcel.writeString(errorReason)
+		parcel.writeByte(if (isReceipt) 1 else 0)
+	}
+	
+	/**
+	 * 描述对象内容的特殊标志，通常为 0
+	 */
+	override fun describeContents(): Int {
+		return 0
+	}
+	
+	companion object CREATOR : Parcelable.Creator<MessagesReceive> {
+		/**
+		 * 从 Parcel 创建对象的静态方法
+		 * @param parcel 包含对象数据的 Parcel
+		 * @return 从 Parcel 中创建的 MessagesReceive 对象
+		 */
+		override fun createFromParcel(parcel: Parcel): MessagesReceive {
+			return MessagesReceive(parcel)
+		}
+		
+		/**
+		 * 创建指定大小的 MessagesReceive 对象数组
+		 * @param size 数组大小
+		 * @return MessagesReceive 对象数组
+		 */
+		override fun newArray(size: Int): Array<MessagesReceive?> {
+			return arrayOfNulls(size)
+		}
+	}
+}
+```
+
+3. 自定义对象 `MessageList` 消息列表项实体类
+
+```kotlin
+package com.yuehai.y_chat.bean.message
+
+import android.os.Parcel
+import android.os.Parcelable
+import com.yuehai.y_chat.bean.contact.Contact
+
+/**
+ * @author 月海
+ * @date 2023/9/26 9:12
+ * @description 消息列表项实体类，实现 Parcelable 接口，使这个类可以被 Bundle 传递
+ */
+data class MessageList(
+	/**
+	 * 联系人信息
+	 */
+	var contact: Contact,
+	/**
+	 * 消息内容，包含发送者信息
+	 */
+	var messagesReceiveList: MutableList<MessagesReceive>,
+	
+): Parcelable {
+	/**
+	 * 构造函数，用于从Parcel中读取数据以还原对象
+	 * @param parcel 包含对象数据的 Parcel
+	 */
+	@Suppress("DEPRECATION")
+	constructor(parcel: Parcel) : this(
+		parcel.readParcelable(Contact::class.java.classLoader) ?: Contact("", ""),
+		mutableListOf<MessagesReceive>().apply {
+			parcel.readArrayList(MessagesReceive::class.java.classLoader)
+		}
+	)
+	
+	/**
+	 * 将对象数据写入 Parcel，以便进行序列化
+	 * @param parcel 用于写入数据的 Parcel
+	 * @param flags 附加标志（通常为0）
+	 */
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		parcel.writeParcelable(contact, flags)
+		parcel.writeList(messagesReceiveList)
+	}
+	
+	/**
+	 * 描述对象内容的特殊标志，通常为 0
+	 */
+	override fun describeContents(): Int {
+		return 0
+	}
+	
+	companion object CREATOR : Parcelable.Creator<MessageList> {
+		/**
+		 * 从 Parcel 创建对象的静态方法
+		 * @param parcel 包含对象数据的 Parcel
+		 * @return 从 Parcel 中创建的 MessageList 对象
+		 */
+		override fun createFromParcel(parcel: Parcel): MessageList {
+			return MessageList(parcel)
+		}
+		
+		/**
+		 * 创建指定大小的 MessageList 对象数组
+		 * @param size 数组大小
+		 * @return MessageList 对象数组
+		 */
+		override fun newArray(size: Int): Array<MessageList?> {
+			return arrayOfNulls(size)
+		}
+	}
+}
+```
+
+4. 发送消息：
+
+```kotlin
+// 创建 Bundle 对象并添加数据
+val bundle = Bundle()
+bundle.putParcelable("messagesReceiveList", messageListData.value!![position])
+findNavController.navigate(R.id.action_chat_home_to_message_details, bundle)
+```
+
+5. 接收消息
+
+```kotlin
+val messagesReceiveList = arguments?.getParcelable<MessageList>("messagesReceiveList")
+```
+
+6. 1
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
 
 ## 6、
 

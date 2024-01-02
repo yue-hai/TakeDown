@@ -34,6 +34,19 @@
             }
           },
           {
+            "id": "dc15386e2e69edf3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android/Kotlin 基础.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "098b327027ebb9d9",
             "type": "leaf",
             "state": {
@@ -45,9 +58,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "71466ce9b470723c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "标题.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -84,7 +110,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": " ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -129,29 +155,32 @@
   },
   "active": "098b327027ebb9d9",
   "lastOpenFiles": [
-    "其他/设备和工具.md",
     "标题.md",
+    "Android/Android 基础.md",
+    "其他/设备和工具.md",
+    "Android/SSC 购物车.md",
+    "其他/Docker.md",
+    "其他/游戏/七日杀服务器.md",
+    "linux/linux/Shell 编程.md",
+    "Android/attachments/Pasted image 20231227152230.png",
+    "Android/attachments/Pasted image 20231227152014.png",
+    "Android/Kotlin 基础.md",
+    "Flutter/Dart 基础.md",
+    "其他/attachments/Pasted image 20231226140038.png",
+    "其他/attachments/Pasted image 20231226135801.png",
+    "其他/attachments/clashpremium-linux-amd64",
+    "其他/attachments/Pasted image 20231226134647.png",
+    "其他/软件使用/编程软件.md",
+    "Flutter/Flutter 基础.md",
+    "其他/attachments/Pasted image 20231226102848.png",
     "其他/attachments/Pasted image 20231225153514.png",
     "其他/attachments/Pasted image 20231225153222.png",
     "其他/attachments/Pasted image 20231225153111.png",
     "其他/attachments/Pasted image 20231225153047.png",
-    "其他/attachments/Pasted image 20231225153003.png",
-    "其他/attachments/Pasted image 20231225151331.png",
-    "其他/attachments/Pasted image 20231225151259.png",
-    "其他/attachments/Pasted image 20231225151211.png",
-    "其他/attachments/Pasted image 20231225151000.png",
-    "其他/attachments/Pasted image 20231225150914.png",
-    "其他/Docker.md",
-    "Android/Android 基础.md",
     "linux/Smart/Smart 基础.md",
-    "Android/Kotlin 基础.md",
-    "其他/软件使用/编程软件.md",
-    "Flutter/Dart 基础.md",
-    "Flutter/Flutter 基础.md",
     "linux/linux/Liunx 基础.md",
     "linux/Smart/Smart 编程.md",
     "java/【其他】.md",
-    "Android/SSC 购物车.md",
     "java/00、其他小笔记.md",
     "python/Python 基础.md",
     "其他/软件使用/attachments/intellij-rainbow-brackets-6.26.zip",
@@ -162,12 +191,10 @@
     "java/attachments/Spring Cloud Alibaba.xmind",
     "未命名.canvas",
     "java/java开发规约.pdf",
-    "linux/linux/Shell 编程.md",
     "其他/attachments/y_chat-1.0-SNAPSHOT.jar",
     "其他/attachments/TEST-0.0.1-SNAPSHOT 1.jar",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.004",
     "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.003",
-    "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.002",
     "其他/软件使用/WindTerm.md",
     "其他/软件使用/VS Code.md",
     "其他/软件使用/Idea.md",
