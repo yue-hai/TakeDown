@@ -11500,7 +11500,651 @@ recyclerViewCouponAndItem.addItemDecoration(divider)
 recyclerViewCouponAndItem.adapter = couponAndItemAdapter
 ```
 
-### ③、
+### ③、使用 DiffUtil 高效刷新 recyclerView 列表
+
+1. 使实体类实现 `equals` 和 `hashCode` 方法，用于比较对象是否相同
+
+```kotlin
+package com.yuehai.y_chat.bean.contact
+
+/**
+ * @author 月海
+ * @date 2023/10/8 9:34
+ * @description 联系人实体类
+ */
+data class Contact(
+	/**
+	 * 联系人 id
+	 */
+	var contactId: String,
+	
+	/**
+	 * 联系人昵称
+	 */
+	var contactNickName: String? = "联系人昵称"
+) {
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+		
+		other as Contact
+		
+		if (contactId != other.contactId) return false
+		if (contactNickName != other.contactNickName) return false
+		
+		return true
+	}
+	
+	override fun hashCode(): Int {
+		var result = contactId.hashCode()
+		result = 31 * result + (contactNickName?.hashCode() ?: 0)
+		return result
+	}
+}
+```
+
+```kotlin
+package com.yuehai.y_chat.bean.message
+
+import android.os.Parcel
+import android.os.Parcelable
+
+/**
+ * @author 月海
+ * @date 2023/12/25 16:50
+ * @description 接收消息实体类，用于接收服务端发送的消息
+ * 实现 Parcelable 接口，用于在 Fragment 之间传递对象
+ */
+data class MessagesReceive (
+	
+	/**
+	 * 发送者 id
+	 */
+	val senderId: String,
+	
+	/**
+	 * 接收者 id
+	 */
+	val receiverId: String,
+	
+	/**
+	 * 发送时间
+	 */
+	val sendTime: String,
+	
+	/**
+	 * 消息内容
+	 */
+	val messageData: String,
+	
+	/**
+	 * 消息类型
+	 */
+	val messageType: String,
+	
+	/**
+	 * 消息是否成功发送
+	 */
+	val success: Boolean,
+	
+	/**
+	 * 接收者是否在线
+	 */
+	val online: Boolean,
+	
+	/**
+	 * 消息发送失败的原因
+	 */
+	val errorReason: String,
+	
+	/**
+	 * 是否是回执消息
+	 */
+	val isReceipt: Boolean,
+): Parcelable {
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+		
+		other as MessagesReceive
+		
+		if (senderId != other.senderId) return false
+		if (receiverId != other.receiverId) return false
+		if (sendTime != other.sendTime) return false
+		if (messageData != other.messageData) return false
+		if (messageType != other.messageType) return false
+		if (success != other.success) return false
+		if (online != other.online) return false
+		if (errorReason != other.errorReason) return false
+		if (isReceipt != other.isReceipt) return false
+		
+		return true
+	}
+	
+	override fun hashCode(): Int {
+		var result = senderId.hashCode()
+		result = 31 * result + receiverId.hashCode()
+		result = 31 * result + sendTime.hashCode()
+		result = 31 * result + messageData.hashCode()
+		result = 31 * result + messageType.hashCode()
+		result = 31 * result + success.hashCode()
+		result = 31 * result + online.hashCode()
+		result = 31 * result + errorReason.hashCode()
+		result = 31 * result + isReceipt.hashCode()
+		return result
+	}
+	
+	/**
+	 * 构造函数，用于从 Parcel 中读取数据以还原对象
+	 * @param parcel 包含对象数据的 Parcel
+	 */
+	constructor(parcel: Parcel) : this(
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readString() ?: "",
+		parcel.readByte() != 0.toByte(),
+		parcel.readByte() != 0.toByte(),
+		parcel.readString() ?: "",
+		parcel.readByte() != 0.toByte()
+	)
+	
+	/**
+	 * 将对象数据写入 Parcel，以便进行序列化
+	 * @param parcel 用于写入数据的 Parcel
+	 * @param flags 附加标志（通常为0）
+	 */
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		parcel.writeString(senderId)
+		parcel.writeString(receiverId)
+		parcel.writeString(sendTime)
+		parcel.writeString(messageData)
+		parcel.writeString(messageType)
+		parcel.writeByte(if (success) 1 else 0)
+		parcel.writeByte(if (online) 1 else 0)
+		parcel.writeString(errorReason)
+		parcel.writeByte(if (isReceipt) 1 else 0)
+	}
+	
+	/**
+	 * 描述对象内容的特殊标志，通常为 0
+	 */
+	override fun describeContents(): Int {
+		return 0
+	}
+	
+	companion object CREATOR : Parcelable.Creator<MessagesReceive> {
+		/**
+		 * 从 Parcel 创建对象的静态方法
+		 * @param parcel 包含对象数据的 Parcel
+		 * @return 从 Parcel 中创建的 MessagesReceive 对象
+		 */
+		override fun createFromParcel(parcel: Parcel): MessagesReceive {
+			return MessagesReceive(parcel)
+		}
+		
+		/**
+		 * 创建指定大小的 MessagesReceive 对象数组
+		 * @param size 数组大小
+		 * @return MessagesReceive 对象数组
+		 */
+		override fun newArray(size: Int): Array<MessagesReceive?> {
+			return arrayOfNulls(size)
+		}
+	}
+}
+```
+
+```kotlin
+package com.yuehai.y_chat.bean.message
+
+import androidx.recyclerview.widget.DiffUtil
+import com.yuehai.y_chat.bean.contact.Contact
+
+/**
+ * @author 月海
+ * @date 2023/9/26 9:12
+ * @description 消息列表项实体类，实现 Parcelable 接口，使这个类可以被 Bundle 传递
+ */
+data class MessageList(
+	/**
+	 * 联系人信息
+	 */
+	var contact: Contact,
+	/**
+	 * 消息内容，包含发送者信息
+	 */
+	var messagesReceiveList: MutableList<MessagesReceive>,
+	
+) {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+		
+		other as MessageList
+		
+		if (contact != other.contact) return false
+		if (messagesReceiveList != other.messagesReceiveList) return false
+		
+		return true
+	}
+	
+	override fun hashCode(): Int {
+		var result = contact.hashCode()
+		result = 31 * result + messagesReceiveList.hashCode()
+		return result
+	}
+}
+```
+
+2. 在最外面的实体类 `MessageList` 中<font color="#ff0000">创建伴生对象，用于 DiffUtil 的比较</font>
+
+```kotlin
+package com.yuehai.y_chat.bean.message
+
+import androidx.recyclerview.widget.DiffUtil
+import com.yuehai.y_chat.bean.contact.Contact
+
+/**
+ * @author 月海
+ * @date 2023/9/26 9:12
+ * @description 消息列表项实体类，实现 Parcelable 接口，使这个类可以被 Bundle 传递
+ */
+data class MessageList(
+	/**
+	 * 联系人信息
+	 */
+	var contact: Contact,
+	/**
+	 * 消息内容，包含发送者信息
+	 */
+	var messagesReceiveList: MutableList<MessagesReceive>,
+	
+) {
+	/**
+	 * 伴生对象；伴生对象是一个类的对象，可以访问类的私有属性和方法
+	 * 伴生对象的成员类似于 Java 中的静态成员，其生命周期伴随类始终
+	 * 此处用于 DiffUtil 的比较
+	 */
+	companion object {
+		/**
+		 * DiffUtil 的回调，用于计算新旧列表的差异。
+		 * 主要用于 RecyclerView.Adapter 中的数据更新。
+		 */
+		val DIFF_CALLBACK: DiffUtil.ItemCallback<MessageList> = object : DiffUtil.ItemCallback<MessageList>() {
+			/**
+			 * 这个方法用于判断两个数据项是否代表同一个对象
+			 * 通常，可以直接通过比较两个数据项是否相等来判断它们是否代表同一个对象
+			 */
+			override fun areItemsTheSame(oldItem: MessageList, newItem: MessageList): Boolean {
+				// 比较两个 MessageList 是否代表同一个联系人（通过 contactId 判断）
+				return oldItem.contact.contactId == newItem.contact.contactId
+			}
+			
+			/**
+			 * 这个方法用于判断两个数据项是否具有相同的内容
+			 * 通常，可以直接通过比较两个数据项是否相等来判断它们是否具有相同的内容
+			 */
+			override fun areContentsTheSame(oldItem: MessageList, newItem: MessageList): Boolean {
+				// 比较两个 MessageList 是否具有相同的内容
+				return oldItem == newItem
+			}
+		}
+	}
+	
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+		
+		other as MessageList
+		
+		if (contact != other.contact) return false
+		if (messagesReceiveList != other.messagesReceiveList) return false
+		
+		return true
+	}
+	
+	override fun hashCode(): Int {
+		var result = contact.hashCode()
+		result = 31 * result + messagesReceiveList.hashCode()
+		return result
+	}
+}
+```
+
+3. `messageListData` 观察者对象的创建：
+
+```kotlin
+/**
+ * 聊天消息列表，MessageList 页面所显示的有聊天记录的联系人列表
+ * MutableLiveData：可变的 LiveData，可以通过 setValue(T) 和 postValue(T) 方法来更新 LiveData 实例的值
+ */
+val messageListData: MutableLiveData<MutableList<MessageList>> = MutableLiveData()
+```
+
+4. 更改 `messageListData` 观察者对象中的数据，并通知其观察者数据已改变
+
+```kotlin
+/**
+ * 向消息列表中添加消息
+ * @param messagesReceive 接收到的消息
+ */
+fun addMessageToMessageList(messagesReceive: MessagesReceive) {
+	// 获取当前的数据列表
+	val currentList = messageListData.value ?: mutableListOf()
+	
+	// 查找消息列表中是否已经存在该联系人
+	val existingContact = currentList.find { it.contact.contactId == messagesReceive.senderId }
+	
+	// 如果消息列表中已经存在该联系人，则将消息添加到该联系人的消息列表中，否则创建一个新的消息列表项
+	if (existingContact != null) {
+		// 将消息添加到该联系人的消息列表中
+		existingContact.messagesReceiveList.add(messagesReceive)
+		
+		// 从原来的位置删除
+		currentList.remove(existingContact)
+		// 添加到集合最后
+		currentList.add(existingContact)
+	} else {
+		// 创建一个新的消息列表项，添加到集合最后
+		currentList.add(
+			MessageList(
+				Contact(messagesReceive.senderId, "${messagesReceive.senderId} 昵称"),
+				mutableListOf(messagesReceive)
+			)
+		)
+	}
+	// 通知观察者数据已更新
+	messageListData.postValue(currentList)
+}
+```
+
+5. `fragment_chat_home_message_list.xml` 聊天列表布局
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 消息列表 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		style="@style/fragment_chat_home_message_list">
+	
+	<!-- 消息列表 -->
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/home_message_list"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:listitem="@layout/fragment_chat_home_message_list_item"/>
+
+</LinearLayout>
+```
+
+6. `MessageListFragment.kt` 聊天列表代码
+
+```kotlin
+package com.yuehai.y_chat.ui.chatHome.messageList
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.yuehai.y_chat.R
+import com.yuehai.y_chat.bean.WebSocketConnect.messageListData
+import com.yuehai.y_chat.utils.RecyclerViewUtil
+
+/**
+ * @author 月海
+ * @date 2023/9/25 13:48
+ * @description 消息列表
+ */
+class MessageListFragment: Fragment() {
+	
+	/**
+	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+	 *
+	 * LayoutInflater inflater：作用类似于 findViewById()
+	 *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
+	 *      LayoutInflater inflater() 用来找 res/layout/ 下的 xml 布局文件
+	 * ViewGroup container：表示容器，View 放在里面
+	 * Bundle savedInstanceState：保存当前的状态，在活动的生命周期中，只要离开了可见阶段，活动很可能就会被进程终止，这种机制能保存当时的状态
+	 */
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		// 加载 Fragment 布局
+		val view = inflater.inflate(R.layout.fragment_chat_home_message_list , container, false)
+		
+		// 获取控件对象
+		val messageList = view.findViewById<RecyclerView>(R.id.home_message_list)
+		/**
+		 * 创建线性布局管理器
+		 *
+		 * 第一个参数 context 表示上下文
+		 * 第二个参数 LinearLayoutManager.VERTICAL 表示布局方向为垂直方向
+		 * 第三个参数 false 表示是否反转布局
+		 */
+		val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+		// 设置反向显示布局，即索引大的在上面，索引小的在下面
+		layoutManager.reverseLayout = true
+		// 设置布局管理器
+		messageList.layoutManager = layoutManager
+		// 设置适配器
+		messageList.adapter = MessageListItemAdapter(requireContext(), findNavController())
+		// 观察 messageListData，当数据发生变化时，刷新显示区域
+		messageListData.observe(viewLifecycleOwner) { RecyclerViewUtil.refreshDisplayArea(messageList) }
+		
+		return view
+	}
+	
+}
+```
+
+7. `fragment_chat_home_message_list_item.xml`  聊天列表项适配器布局
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 消息列表项 -->
+<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/home_message_list_item"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/dp_70"
+		android:padding="@dimen/dp_10"
+		android:clickable="true"
+		android:focusable="true"
+		style="@style/fragment_chat_home_message_list_item">
+	
+		<!-- 头像 -->
+		<ImageView
+				android:id="@+id/home_message_list_item_avatar"
+				android:layout_width="@dimen/dp_50"
+				android:layout_height="@dimen/dp_50"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				android:layout_marginEnd="@dimen/dp_10"
+				android:src="@drawable/bg_rectangle_light_gray_2"
+				android:contentDescription="@string/chat_home_message_list_item_avatar"/>
+		
+		<!-- 昵称、时间、消息内容 -->
+		<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/home_message_list_item_avatar"
+				app:layout_constraintEnd_toEndOf="parent"
+				android:layout_gravity="center"
+				android:layout_marginStart="@dimen/dp_10"
+				android:orientation="vertical">
+			
+			<!-- 昵称、时间 -->
+			<androidx.constraintlayout.widget.ConstraintLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+				
+				<!-- 昵称 -->
+				<TextView
+						android:id="@+id/home_message_list_item_nick_name"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						app:layout_constraintTop_toTopOf="parent"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintEnd_toStartOf="@+id/home_message_list_item_date"
+						android:paddingEnd="@dimen/dp_10"
+						android:textSize="@dimen/sp_20"
+						android:lines="1"
+						android:ellipsize="end"
+						tools:ignore="RtlSymmetry"/>
+				
+				<!-- 时间 -->
+				<TextView
+						android:id="@+id/home_message_list_item_date"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintEnd_toEndOf="parent"
+						android:textSize="@dimen/sp_15"/>
+			</androidx.constraintlayout.widget.ConstraintLayout>
+			
+			<!-- 消息内容 -->
+			<TextView
+					android:id="@+id/home_message_list_item_message"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="@dimen/sp_15"
+					android:lines="1"
+					android:ellipsize="end"/>
+			
+		</LinearLayout>
+	
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+8. `MessageListItemAdapter.kt`  聊天列表项适配器代码，<font color="#ff0000">重点：实现</font> `: ListAdapter<MessageList, MessageListItemAdapterHolder>(MessageList.DIFF_CALLBACK)`
+
+```kotlin
+package com.yuehai.y_chat.ui.chatHome.messageList
+
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.NavController
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.yuehai.y_chat.R
+import com.yuehai.y_chat.bean.WebSocketConnect.messageListData
+import com.yuehai.y_chat.bean.message.MessageList
+
+
+/**
+ * @author 月海
+ * @date 2023/9/26 8:46
+ * @description 消息列表项适配器
+ */
+class MessageListItemAdapter(
+	// 上下文环境
+	private var context: Context,
+	// NavController 导航对象
+	private var findNavController: NavController
+): ListAdapter<MessageList, MessageListItemAdapterHolder>(MessageList.DIFF_CALLBACK) {
+	/**
+	 * onCreateViewHolder() 用于创建新的 ViewHolder 对象，当 RecyclerView 需要新的 ViewHolder 时，会调用此方法。
+	 * 该方法会创建并初始化 ViewHolder 及其关联的视图，但不会填充视图的内容，因为此时 ViewHolder 尚未绑定到具体数据。
+	 * 该方法的返回值是一个 ViewHolder 对象。在该方法中，需要创建一个新的 View 对象，并将其包装在一个新的 ViewHolder 对象中。
+	 */
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageListItemAdapterHolder {
+		return MessageListItemAdapterHolder(LayoutInflater.from(context).inflate(R.layout.fragment_chat_home_message_list_item, parent, false))
+	}
+	
+	/**
+	 * getItemCount() 用于获取数据集中的元素数量。当 RecyclerView 需要知道列表中有多少项时，会调用此方法。
+	 * 该方法的返回值是一个整数，表示数据集中的元素数量。
+	 */
+	override fun getItemCount(): Int {
+		return messageListData.value?.size ?: 0
+	}
+	
+	/**
+	 * onBindViewHolder() 用于将数据与 ViewHolder 对象关联起来。当 RecyclerView 需要新的数据绑定到 ViewHolder 时，会调用此方法。
+	 * 该方法会提取适当的数据，并使用该数据填充 ViewHolder 的布局。
+	 * 该方法的第一个参数是一个 ViewHolder 对象，第二个参数是该 ViewHolder 在列表中的位置。在该方法中，您需要使用适当的数据填充视图。
+	 */
+	override fun onBindViewHolder(holder: MessageListItemAdapterHolder, position: Int) {
+		// 获取 ViewHolder 对象
+		
+		// 获取消息内容列表中的最后一项所在的索引
+		val lastMessageIndex = messageListData.value!![position].messagesReceiveList.size - 1
+		
+		// 头像
+		holder.itemAvatar.setImageResource(R.drawable.software_icon)
+		// 昵称
+		holder.itemNickName.text = messageListData.value?.get(position)?.contact?.contactNickName
+		// 时间
+		holder.itemDate.text = messageListData.value?.get(position)?.messagesReceiveList?.get(lastMessageIndex)?.sendTime
+		// 消息内容
+		holder.itemMessage.text = messageListData.value?.get(position)?.messagesReceiveList?.get(lastMessageIndex)?.messageData
+		
+		// item 的单击事件，跳转至消息详情页面
+		holder.item.setOnClickListener {
+			// 创建 Bundle 对象并添加数据
+			val bundle = Bundle()
+			// 当前联系人所在消息列表的索引
+			bundle.putInt("position", position)
+			// 当前联系人的信息
+			bundle.putString("contactId", messageListData.value?.get(position)?.contact?.contactId)
+			findNavController.navigate(R.id.action_chat_home_to_message_details, bundle)
+		}
+	}
+
+}
+
+/**
+ * ImageViewerAdapter 对应的 holder 对象
+ */
+class MessageListItemAdapterHolder(view: View) : RecyclerView.ViewHolder(view) {
+	// 根布局
+	var item: ConstraintLayout
+	// 头像
+	var itemAvatar: ImageView
+	// 昵称
+	var itemNickName: TextView
+	// 时间
+	var itemDate: TextView
+	// 消息
+	var itemMessage: TextView
+	
+	init {
+		item = view.findViewById(R.id.home_message_list_item)
+		itemAvatar = view.findViewById(R.id.home_message_list_item_avatar)
+		itemNickName = view.findViewById(R.id.home_message_list_item_nick_name)
+		itemDate = view.findViewById(R.id.home_message_list_item_date)
+		itemMessage = view.findViewById(R.id.home_message_list_item_message)
+	}
+}
+```
+
+9. 此时更新 `messageListData` 即可刷新列表
+
+### ④、
+
+### ⑤、
+
+### ⑥、
 
 ## 3、
 
