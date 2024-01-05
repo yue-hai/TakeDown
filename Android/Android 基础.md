@@ -12140,7 +12140,33 @@ class MessageListItemAdapterHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 9. 此时更新 `messageListData` 即可刷新列表
 
-### ④、
+### ④、RecyclerView 刷新方法
+
+```kotlin
+// 刷新所有
+public final void notifyDataSetChanged();
+
+// position数据发生了改变，那调用这个方法，就会回调对应position的onBindViewHolder()方法了
+public final void notifyItemChanged(int position);
+
+// 刷新从positionStart开始itemCount数量的item了（这里的刷新指回调onBindViewHolder()方法）
+public final void notifyItemRangeChanged(int positionStart, int itemCount);
+
+// 在第position位置被插入了一条数据的时候可以使用这个方法刷新，注意这个方法调用后会有插入的动画，这个动画可以使用默认的，也可以自己定义
+public final void notifyItemInserted(int position);
+
+// 从fromPosition移动到toPosition为止的时候可以使用这个方法刷新
+public final void notifyItemMoved(int fromPosition, int toPosition);
+
+// 批量添加
+public final void notifyItemRangeInserted(int positionStart, int itemCount);
+
+// 第position个被删除的时候刷新，同样会有动画
+public final void notifyItemRemoved(int position);
+
+// 批量删除
+public final void notifyItemRangeRemoved(int positionStart, int itemCount);
+```
 
 ### ⑤、
 
