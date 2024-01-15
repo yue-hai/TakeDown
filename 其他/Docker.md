@@ -4788,15 +4788,15 @@ mysql> SHOW VARIABLES LIKE 'character%';
 mysql> 
 ```
 
-## 3、安装 openJdk 17
+## 3、安装 openJdk 21
 
-1. 拉取镜像：`docker pull openjdk:17.0.2`
+1. 拉取镜像：`docker pull openjdk:21`
 2. 创建映射目录，上传 jar 程序
 
 ![|484](attachments/Pasted%20image%2020231130084700.png)
 
 3. 启动容器：
-	1. -d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
 	3. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该 jar 程序
 
@@ -4805,7 +4805,7 @@ docker run -d \
 -p 9001:9001 \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
---name code-java-test openjdk:17 \
+--name code-java-test openjdk:21 \
 java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 ```
 
@@ -4865,7 +4865,7 @@ docker run -d \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --name code-java \
-openjdk:17 \
+openjdk:21 \
 /container/path/run_jar.sh
 ```
 
@@ -4895,7 +4895,7 @@ services:
     # 容器名称
     container_name: code-java
     # 指定使用的镜像
-    image: openjdk:17
+    image: openjdk:21
     # 映射的端口号；可指定多组
     ports:
       - "9001:9001"

@@ -10902,7 +10902,258 @@ fun animateTextShrinkBack(): AnimatorSet{
 
 ### ③、
 
-### ④、
+### ④、SpringAnimation 弹簧动画库
+
+> 1. 可设置位置、阻尼、刚度，不可设置时间；
+> 2. 效果为围绕结束位置进行幅度逐渐变小的震荡
+> 
+> 
+
+#### Ⅰ、简介
+
+1. 平常，我们使用最多的应该是用 ObjectAnimatior 来构建我们需要的动画对象，然后通过不断变化的值给相应的属性赋值实现动画效果，这种效果是相对比较呆板的。想象一下，一个球自由落体到地上，它的真实情况时怎么样的？又或者是拽住弹簧的一段，然后拉拽弹簧后松手，效果是怎么样的？效果应该是加速度正反不断的变化，速度也不断变化，最终会回归到初始稳定状态。如果我们用 ObjectAnimatior 怎么实现？
+2. 可能的话，我们的动画应该是基于真实的物理系统去实现的，以至于动画看起来更加的真实自然。举个例子，当物体变化的时候，它应该是保持有动力的，并且会要很平滑的过渡到下一个变化。
+3. 弹性动画，可以说，弹性动画得以实现，主要是依赖于 `SpringForce`，`SpringForce` 有两个很重要的属性，一个是 `damping`(阻尼) 和 `stiffness`(刚度)，通过改变这两个属性的值，弹性动画可以有不同的表现。
+
+#### Ⅱ、使用 SpringAnimation
+
+1. 添加 dynamicanimation 依赖
+
+```gradle
+dependencies {
+	  implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0
+}
+```
+
+3. 创建 SpringForce 实现弹性效果，参数 0f 表示动画结束时的值
+
+```kotlin
+// 创建 SpringForce 实现弹性效果，参数 0f 表示动画结束时的值
+val springForce = SpringForce(0f)
+// 设置弹性效果的阻尼比，数值越小，弹性效果越明显，即回弹幅度越大
+springForce.dampingRatio = SpringForce.DAMPING_RATIO_HIGH_BOUNCY
+// 设置弹性效果的刚度，数值越大，弹性效果越明显，即回弹越快
+springForce.stiffness = SpringForce.STIFFNESS_HIGH
+```
+
+4. 构建一个 SpringAnimation 实例，并给其设置 SpringForce
+
+```kotlin
+// 创建动画对象，设置弹性效果
+val iconAnimation = SpringAnimation(include_animator_test, DynamicAnimation.TRANSLATION_X).setSpring(springForce)
+// 设置动画的初始值
+iconAnimation!!.setStartValue(1280f)
+```
+
+5. 启动动画，有两种方式可以 start 动画：
+	1. `iconAnimation.start()`：若是 iconAnimation 的 springForce 对象设置了 finalPosition 参数（SpringForce(0f) 中的 0f 即 finalPosition 参数），直接调用这个方法启动即可
+	2. `iconAnimation.animateToFinalPosition(value)`：若是 iconAnimation 的 springForce 对象没设置 finalPosition 参数，调用这个方法传入该参数启动
+
+#### Ⅲ、参数介绍
+
+1. `finalPosition`：结束时的位置
+2. `dampingRatio`：设置弹性效果的阻尼比，数值越小，弹性效果越明显，即回弹幅度越大
+	1. 阻尼是指振动系统在振动中，由于外界作用或系统本身固有的原因引起的振动幅度逐渐下降的特性。
+	2. 通过阻尼，我们可以定义我们的动画振动衰减的一个频率
+	3. 取值效果和内置常量：
+
+| 取值 | 取值效果         | 内置常量                  | 内置常量值 |
+| ---- | ---------------- | ------------------------- | ---------- |
+|>1|迅速回到平衡位置|DAMPING_RATIO_HIGH_BOUNCY|0.2|
+| =1    | 在较短的时间内回到平衡位置 | DAMPING_RATIO_MEDIUM_BOUNCY | 0.5        |
+|<1|多次来回振动然后回到平衡位置|DAMPING_RATIO_LOW_BOUNCY|0.75|
+|0|永远振动，回不到最终位置|DAMPING_RATIO_NO_BOUNCY|1|
+
+3. `stiffness`：设置弹性效果的刚度，数值越大，弹性效果越明显，即回弹越快
+	1. 刚度是指材料或结构在受力时抵抗弹性变形的能力。
+	2. 想象有一根比较软的弹簧和一根比较硬的弹簧，同时拉拽两个弹簧到相同长度，哪个更费力些，当然是那根比较硬的弹簧。
+	3. 系统也为我们内置了四个常量：
+
+| 内置常量           | 内置常量值 |
+| ------------------ | ---------- |
+| STIFFNESS_HIGH     | 10000f     |
+| STIFFNESS_MEDIUM   | 1500f      |
+| STIFFNESS_LOW      | 200f       |
+| STIFFNESS_VERY_LOW | 50f        |
+
+#### Ⅳ、取值效果
+
+1. 阻尼：0.2，刚度：10000f
+
+```kotlin
+private var iconAnimation: SpringAnimation? = null
+
+// 取消之前的动画
+iconAnimation?.cancel()
+
+// 创建 SpringForce 实现弹性效果，参数 0f 表示动画结束时的值
+val springForce = SpringForce(0f)
+// 设置弹性效果的阻尼比，数值越小，弹性效果越明显，即回弹幅度越大
+springForce.dampingRatio = SpringForce.DAMPING_RATIO_HIGH_BOUNCY
+// 设置弹性效果的刚度，数值越大，弹性效果越明显，即回弹越快
+springForce.stiffness = SpringForce.STIFFNESS_HIGH
+
+// 创建动画对象，设置弹性效果
+iconAnimation = SpringAnimation(include_animator_test, DynamicAnimation.TRANSLATION_X).setSpring(springForce)
+// 设置动画的初始值
+iconAnimation!!.setStartValue(1280f)
+
+// 启动动画
+iconAnimation!!.start()
+```
+
+![](attachments/1、020-10000.gif)
+
+2. 阻尼：0.75，刚度：200f
+
+![](attachments/2、075-200.gif)
+
+3. 阻尼：0.5，刚度：200f
+
+![](attachments/3、050-200.gif)
+
+### ⑤、Interpolator 插值器
+
+> 在上面的 ② 中，有使用 DecelerateInterpolator() 插值器
+
+#### Ⅰ、介绍
+
+1. `Interpolator` 被用于定义动画的变化速率。也可以说是加速度。系统自带了一些插值器如下：
+
+| 插值器                          | 效果                                                                           |
+| ------------------------------- | ------------------------------------------------------------------------------ |
+| AccelerateDecelerateInterolator | 先加速后减速                                                                   |
+| AccelerateInterpolator          | 加速                                                                           |
+| DecelerateInterpolator          | 减速                                                                           |
+| AnticipateInterpolator          | 先向相反方向改变一段再加速播放                                                 |
+| AnticipateOvershootInterpolator | 先向相反方向改变，再加速播放，会超出目标值然后缓慢移动至目标值，类似于弹簧回弹 |
+| BounceInterpolator              | 快到目标值时值会跳跃                                                           |
+| CycleIinterpolator              | 动画循环一定次数，值的改变为一正弦函数：`Math.sin(2 * mCycles * Math.PIinput)`            |
+| LinearInterpolator              | 线性均匀改变                                                                   |
+| OvershottInterpolator           | 最后超出目标值然后缓慢改变到目标值                                             |
+| TimeInterpolator                | 一个允许自定义Interpolator的接口，以上都实现了该接口                           |
+
+2. 都是通过：`valueAnimator.setInterpolator(new LinearInterpolator());` 设置即可。
+3. 当没有为动画设置插值器时，系统默认会帮你设置加减速插值器 `AccelerateDecelerateInterpolator`
+4. 来看下使用了插值器的效果是什么样的，此效果是设置了 `BounceInterpolator` 的样子，在临近消失时有弹跳效果：
+
+![](attachments/动画1.gif)
+
+5. 来看下 `BounceInterpolator` 的源码：
+
+```kotlin
+/**
+ * An interpolator where the change bounces at the end.
+ */
+public class BounceInterpolator extends BaseInterpolator implements NativeInterpolatorFactory {
+    public BounceInterpolator() {
+    }
+
+    @SuppressWarnings({"UnusedDeclaration"})
+    public BounceInterpolator(Context context, AttributeSet attrs) {
+    }
+
+    private static float bounce(float t) {
+        return t * t * 8.0f;
+    }
+
+    public float getInterpolation(float t) {
+        t *= 1.1226f;
+        if (t < 0.3535f) return bounce(t);
+        else if (t < 0.7408f) return bounce(t - 0.54719f) + 0.7f;
+        else if (t < 0.9644f) return bounce(t - 0.8526f) + 0.9f;
+        else return bounce(t - 1.0435f) + 0.95f;
+    }
+
+    /** @hide */
+    @Override
+    public long createNativeInterpolator() {
+        return NativeInterpolatorFactoryHelper.createBounceInterpolator();
+    }
+}
+```
+
+6. 代码不是很多，很多都是写在 `getInterpolation` 方法里了。其实我们只关注 `getInterpolation(float input)` 这个方法，`getInterpolation()` 方法接收一个 input 参数，input 参数是系统根据设置的动画持续时间计算出来的，取值范围是 `[0,1]`，从 0 匀速增加到1 。再来看下 `LinearInterpolator`（线性插值器） 的源码：
+
+```kotlin
+/**
+ * An interpolator where the rate of change is constant
+ */
+public class LinearInterpolator extends BaseInterpolator implements NativeInterpolatorFactory {
+
+    public LinearInterpolator() {
+    }
+
+    public LinearInterpolator(Context context, AttributeSet attrs) {
+    }
+
+    public float getInterpolation(float input) {
+        return input;
+    }
+
+    /** @hide */
+    @Override
+    public long createNativeInterpolator() {
+        return NativeInterpolatorFactoryHelper.createLinearInterpolator();
+    }
+}
+```
+
+7. `LinearInterpolator` 的 `getInterpolation (float input)` 方法是直接把 `input` 参数作为返回值返回了！
+8. 由于 input 参数是从 0 匀速增加到 1 的，所以自然就是线性插值器了。所以上面的 `BounceInterpolator` 插值器就是直接操作的 `getInterpolation()` 返回 `input` 实现的弹跳效果。
+
+#### Ⅱ、自定义实现插值器
+
+1. 系统自带了一些插值器无法传入参数，所以大部分情况下无法高度还原样式
+2. 要自定义插值器需要实现  接口
+3. 例子如下，此处实现的是控件划入后震动一次，幅度为 20dp，总时间为 400ms，前200ms 平滑移动，后200ms 震动：
+
+```kotlin
+package jp.retailai.raicart.ui.shopping
+
+import android.view.animation.Interpolator
+import kotlin.math.sin
+
+/**
+ * @author 月海
+ * @date 2024/1/11 15:05
+ * @description
+ */
+class MyBounceInterpolator: Interpolator {
+	override fun getInterpolation(time: Float): Float {
+		val smoothDuration = 120f
+		val bounceDuration = 280f
+		
+		return when {
+			time < smoothDuration / 400f -> {
+				// 在前 200ms 内线性移动
+				time / (smoothDuration / 400f)
+			}
+			time < (smoothDuration + bounceDuration) / 400f -> {
+				// 在后 200ms 内应用弹簧震动效果
+				val normalizedTime = (time - smoothDuration / 400f) / (bounceDuration / 400f)
+				1 - sin(normalizedTime * Math.PI).toFloat() * 0.02f // 调整震动幅度
+			}
+			else -> {
+				// 动画结束后保持最终状态
+				1f
+			}
+		}
+	}
+}
+```
+
+4. 如果想将震动幅度从原来的 0.05f 减小到 0.02f，只需在相应的代码行进行修改：
+
+```kotlin
+1 - sin(normalizedTime * Math.PI).toFloat() * 0.02f // 调整震动幅度
+```
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
 
 ## 4、形状图片
 

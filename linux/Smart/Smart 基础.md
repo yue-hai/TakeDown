@@ -10893,7 +10893,7 @@ Row:1 do: HIDESHEET 2
 
 ##### （1）、一般使用
 
-- 隐藏第 2 页的第 2 行
+- 隐藏第 2 页的第 2 列
 
 ```shell
 [trial@smartedu excel]$ mkExcel -t /home/trial/SYS/cuichangjian/excel/test.xlsx -o /home/trial/SYS/cuichangjian/excel/06.xlsx -S <(echo HIDECOL 2 2)
