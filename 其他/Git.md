@@ -1291,19 +1291,19 @@ excludesfile = C:/Users/asus/git.ignore
 2. 选择 gitlab 远程连接，进行 push
 3. 推送、拉取、克隆等与 gitee 相同
 
-## 5、问题总结
+# 十三、问题总结
 
-### ①、无法推送
+## 1、无法推送
 
-#### Ⅰ、idea 提示：
+### ①、idea 提示：
 
 ![](attachments/Pasted%20image%2020230724130829.png)
 
-#### Ⅱ、原因
+### ②、原因
 
 git 设置的用户名和邮箱与 gitlab 上的不同
 
-#### Ⅲ、解决
+### ③、解决
 
 1. 查看设置的用户名和邮箱：`git config --global --list | grep user`
 
@@ -1315,7 +1315,19 @@ git 设置的用户名和邮箱与 gitlab 上的不同
 
 ![](attachments/Pasted%20image%2020230724131005.png)
 
-### ②、本地自建仓库推送到新建 git
+### ④、使用 TortoiseGit 解决
+
+1. 首先下载 TortoiseGit：https://tortoisegit.org/
+2. 安装
+3. 打开设置
+
+![|700](attachments/Pasted%20image%2020240117085304.png)
+
+4. 点击 git，修改 Email 即可
+
+![|700](attachments/Pasted%20image%2020240117085415.png)
+
+## 2、本地自建仓库推送到新建 git
 
 1. 提交
 
@@ -1340,8 +1352,45 @@ git 设置的用户名和邮箱与 gitlab 上的不同
 ![](attachments/Pasted%20image%2020230329103321.png)
 
 6. 完成，可以推送 master 分支，此时可删除新建的分支
+7. <font color="#ff0000">直接将远程 master 合并到本地 master 应该也可以</font>
 
-### ③、
+## 3、本地回滚提交
 
-### ④、
+1. 右键点击想要回滚到的提交，复制其修订号
+
+![](attachments/Pasted%20image%2020240117090128.png)
+
+2. 打开 git bash，输入：`git reset --hard 修订号`，回车
+
+```shell
+10222148@EQDN-10222148-1 MINGW64 /d/新建文件夹/笔记/【笔记】 (master)
+$ git reset --hard 1f205e82454e25184f7b23bdc574bb7714c41447
+HEAD is now at 1f205e8 Merge remote-tracking branch 'origin/master'
+```
+
+3. 本地回滚完成，再看 idea
+
+![|700](attachments/Pasted%20image%2020240117090803.png)
+
+## 4、远程回滚提交
+
+> 如果不仅本地提交了，还推送到远程了该怎么办？
+
+1. 执行上面的 `3、本地回滚提交`
+2. 在 git bash 中执行：`git push --force origin <branch_name>`，回车
+	1.  `<branch_name>` 是正在工作的分支名
+	2. 也即需要回滚的分支名
+3. 查看 github 提交历史，远程回滚完成
+
+![|700](attachments/Pasted%20image%2020240117091249.png)
+
+4. 请注意，强制推送会重写远程仓库的历史，并且对于其他协作者来说可能会造成问题。在进行强制推送之前，请确保：
+	1. 已经和团队中的其他成员沟通了这个操作的影响。
+	2. 没有其他人正在基于这些将要被重写的提交工作。
+	3. 确信这是撤销推送的唯一或最好的方法。
+5. 在某些情况下，更好的做法可能是创建一个新的提交来撤销之前提交的更改，然后正常推送这个新的提交。这样做不会重写历史，但会保留原始提交并添加一个新的“撤销”提交。
+
+## 5、
+
+## 6、
 
