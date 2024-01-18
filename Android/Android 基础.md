@@ -11497,7 +11497,7 @@ private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): V
 > 2. 划入时倍率文字并不是和蒙版一起从右侧滑入
 > 3. 而是倍率文字本来就在页面中，只不过不显示；蒙版滑入时，被蒙版覆盖的倍率文字才会显示出来，滑出时同理
 > 4. 具体的样式请看下面的效果图
-> 5. 字体文件：[ShinGoPro-Heavy.otf](attachments/ShinGoPro-Heavy.otf)
+> 5. 字体文件：[NotoSansCJKjp-Black.ttf](attachments/NotoSansCJKjp-Black.ttf)
 
 1. 积分增加 icon 图标 `ic_poc_points_up`
 
@@ -11899,11 +11899,11 @@ private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): V
 
 7. 效果：
 
-![|700](attachments/动画7.gif)
+![|700](attachments/动画11.gif)
 
 8. 滑入和滑出部分慢放效果：
 
-![|700](attachments/动画10.gif)
+![|700](attachments/动画12.gif)
 
 ### ④、SpringAnimation 弹簧动画库
 
