@@ -111,7 +111,9 @@ yum -y install glibc.i686 libstdc++.i686
 yum install mono-complete
 ```
 
-4. 下载 dotnet 6.0.0：https://dotnet.microsoft.com/en-us/download/dotnet/6.0；建议 Windows 下载后上传到 linux，因为 linux 下载太慢了
+4. 下载 dotnet 6.0.0：https://dotnet.microsoft.com/en-us/download/dotnet/6.0；
+	1. 建议 Windows 下载后上传到 linux，因为 linux 下载太慢了
+	2. 愿意等待的话，启动 tModLoader 服务器时会自动下载
 
 ![](attachments/Pasted%20image%2020230517084849.png)
 
