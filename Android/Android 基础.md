@@ -10900,14 +10900,1015 @@ fun animateTextShrinkBack(): AnimatorSet{
 
 ![|700](attachments/动画3.gif)
 
-### ③、
+#### Ⅲ、上面动画的简化板
+
+> 1. `ObjectAnimator.ofFloat()` 和 `ValueAnimator.ofFloat()` 都可以传递多个参数
+> 2. 所以回弹效果不用分开写，向方法中传入多个参数即可
+> 3. 动画效果略有修改
+> 4. 字体文件：[NotoSansCJKjp-Black.ttf](attachments/NotoSansCJKjp-Black.ttf)
+
+1. 积分增加 icon 图标 `ic_poc_points_up`，同上
+2. 向右箭头 icon 图标 `ic_poc_chevron_right`，同上
+3. 外层盒子 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 省略中间代码 -->
+
+    <include
+        android:id="@+id/include_animator_points_up"
+        layout="@layout/poc_animator_points_up"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+    
+    <include
+        android:id="@+id/include_animator_multiple_change"
+        layout="@layout/poc_animator_multiple_change"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+4. 蒙版及积分增加 icon 图标 `include_animator_points_up`  xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="465dp"
+	android:gravity="center|top"
+	android:background="#80000000"
+	android:orientation="vertical">
+
+	<ImageView
+		android:id="@+id/content_points_up"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:layout_marginTop="@dimen/dp_25"
+		android:src="@drawable/ic_poc_points_up"/>
+	
+</LinearLayout>
+```
+
+5. 倍率变化文字 `include_animator_multiple_change` xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="465dp"
+	android:paddingTop="@dimen/dp_158"
+	android:gravity="start|center">
+
+		<TextView
+			android:id="@+id/multiple_change_front_number"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			android:layout_marginStart="@dimen/dp_340"
+			android:text="1"
+			android:textSize="240sp"
+			android:textColor="@color/white"
+			android:includeFontPadding="false"/>
+		<TextView
+			android:id="@+id/multiple_change_front_times"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintStart_toEndOf="@+id/multiple_change_front_number"
+			android:layout_marginEnd="@dimen/dp_50"
+			android:text="倍"
+			android:textSize="120sp"
+			android:textColor="@color/white"
+			android:includeFontPadding="false"/>
+		
+		<ImageView
+			android:id="@+id/multiple_change_chevron_right"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+	        app:layout_constraintBottom_toBottomOf="parent"
+	        app:layout_constraintStart_toStartOf="parent"
+			android:layout_marginStart="640dp"
+			android:src="@drawable/ic_poc_chevron_right"/>
+		
+		<LinearLayout
+			android:id="@+id/multiple_change_later"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			android:gravity="center"
+			android:layout_marginStart="835dp">
+			<TextView
+				android:id="@+id/multiple_change_later_point"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="ポ\nイ\nン\nト"
+				android:textSize="23sp"
+				android:textColor="#FFF200"
+				android:includeFontPadding="false"/>
+			<TextView
+				android:id="@+id/multiple_change_later_number"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="2"
+				android:textSize="120sp"
+				android:textColor="#FFF200"
+				android:includeFontPadding="false"/>
+			<TextView
+				android:id="@+id/multiple_change_later_times"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="倍"
+				android:textSize="60sp"
+				android:textColor="#FFF200"
+				android:includeFontPadding="false"/>
+		</LinearLayout>
+	
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+6. kotlin 动画代码，省略上方代码，只保留了动画代码
+
+```kotlin
+// 创建动画集合
+private val combinedAnimatorSet = AnimatorSet()
+
+
+// 页面初始化时，设置积分倍数动画
+setPointsMultiplierAnimation()
+// 页面初始化时，设置字体
+val fromAsset = Typeface.createFromAsset(requireContext().assets, "fonts/NotoSansCJK-Black.otf")
+multiple_change_front_number.typeface = fromAsset
+multiple_change_front_times.typeface = fromAsset
+multiple_change_later_point.typeface = fromAsset
+multiple_change_later_number.typeface = fromAsset
+multiple_change_later_times.typeface = fromAsset
+
+// 在某个点击事件中，初始化属性并执行动画
+var pocPointNum = multiple_change_front_number.text.toString().toInt() + 1
+if (pocPointNum >= 6){
+    pocPointNum = 1
+}
+initializeAndStartAnimation(pocPointNum.toString(), (pocPointNum + 1).toString())
+
+
+// 设置积分倍率变化的动画
+private fun setPointsMultiplierAnimation() {
+	// 滑入动画，同时播放；积分变大蒙版弹窗进入动画、积分倍率数字弹窗进入动画
+	val animateUpEnter = AnimatorSet()
+	animateUpEnter.playTogether(animatePointsUpEnter(), animateScoreMultiplierEnter())
+	
+	// 字号变化动画 + 箭头和后面的字移动动画，同时播放
+	val animateFontSizeChange = AnimatorSet()
+	animateFontSizeChange.startDelay = 350
+	animateFontSizeChange.playTogether(
+		// 前面的字变小动画
+		animateTextShrinkFront(),
+		// 后面的字变大动画
+		animateTextEnlargeLater(),
+		// 箭头和后面的字移动动画
+		animateChevronAndTextMove()
+	)
+	
+	// 滑出动画，同时播放；积分变大蒙版弹窗滑出动画、积分倍率数字弹窗滑出动画
+	val animateExit = AnimatorSet()
+	animateExit.startDelay = 1350
+	animateExit.playTogether(animatePointsUpExit(), animateScoreMultiplierExit())
+	
+	// 动画集合，按顺序播放：进入动画、字号变化动画、滑出动画
+	combinedAnimatorSet.playSequentially(animateUpEnter, animateFontSizeChange, animateExit)
+}
+
+// 重置动画属性并启动动画
+private fun initializeAndStartAnimation(startPoints: String, endPoints: String){
+	// 停止动画集合
+	combinedAnimatorSet.cancel()
+	
+	// 动画开始时，重置字号
+	multiple_change_front_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, 240f)
+	multiple_change_front_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	multiple_change_later_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23f)
+	multiple_change_later_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	multiple_change_later_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60f)
+	// 动画开始时，重置控件位置
+	multiple_change_chevron_right.translationX = 0f
+	multiple_change_later.translationX = 0f
+	
+	// 动画开始时，设置积分倍率数字
+	multiple_change_front_number.text = startPoints
+	multiple_change_later_number.text = endPoints
+	
+	// 启动动画集合
+	combinedAnimatorSet.start()
+}
+
+// 积分变大蒙版弹窗进入动画
+private fun animatePointsUpEnter(): ObjectAnimator{
+	// 使用 PropertyValuesHolder.ofKeyframe 方法创建 PropertyValuesHolder
+	val translateProperty = PropertyValuesHolder.ofKeyframe(
+		View.TRANSLATION_X,
+		Keyframe.ofFloat(0f, 1280f),
+		Keyframe.ofFloat(0.39f, 0f),
+		Keyframe.ofFloat(0.75f, 20f),
+		Keyframe.ofFloat(1f, 0f),
+	)
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofPropertyValuesHolder(include_animator_points_up, translateProperty)
+	// 设置动画的插值器
+	translateAnimator.interpolator = DecelerateInterpolator()
+	// 设置动画的持续时间
+	translateAnimator.duration = 600
+	
+	return translateAnimator
+}
+// 积分倍率数字弹窗进入动画
+private fun animateScoreMultiplierEnter(): ObjectAnimator{
+	// 使用 PropertyValuesHolder.ofKeyframe 方法创建 PropertyValuesHolder
+	val translateProperty = PropertyValuesHolder.ofKeyframe(
+		View.TRANSLATION_X,
+		Keyframe.ofFloat(0f, 1280f),
+		Keyframe.ofFloat(0.39f, 0f),
+		Keyframe.ofFloat(0.75f, 5f),
+		Keyframe.ofFloat(1f, 0f),
+	)
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofPropertyValuesHolder(include_animator_multiple_change, translateProperty)
+	// 设置动画的插值器
+	translateAnimator.interpolator = DecelerateInterpolator()
+	// 设置动画的持续时间
+	translateAnimator.duration = 600
+	
+	return translateAnimator
+}
+
+// 积分变大蒙版弹窗滑出动画
+private fun animatePointsUpExit(): ObjectAnimator{
+	// 使用 PropertyValuesHolder.ofKeyframe 方法创建 PropertyValuesHolder
+	val translateProperty = PropertyValuesHolder.ofKeyframe(
+		View.TRANSLATION_X,
+		Keyframe.ofFloat(0f, 0f),
+		Keyframe.ofFloat(0.227f, -1260f),
+		Keyframe.ofFloat(0.318f, -1150f),
+		Keyframe.ofFloat(0.523f, -1280f),
+		Keyframe.ofFloat(0.614f, -1265f),
+		Keyframe.ofFloat(0.864f, -1280f),
+		Keyframe.ofFloat(0.932f, -1278f),
+		Keyframe.ofFloat(1f, -1280f),
+	)
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofPropertyValuesHolder(include_animator_points_up, translateProperty)
+	// 设置动画的插值器
+	translateAnimator.interpolator = DecelerateInterpolator()
+	// 设置动画的持续时间
+	translateAnimator.duration = 733
+	
+	return translateAnimator
+}
+// 积分变大蒙版弹窗滑出动画
+private fun animateScoreMultiplierExit(): ObjectAnimator{
+	// 使用 PropertyValuesHolder.ofKeyframe 方法创建 PropertyValuesHolder
+	val translateProperty = PropertyValuesHolder.ofKeyframe(
+		View.TRANSLATION_X,
+		Keyframe.ofFloat(0f, 0f),
+		Keyframe.ofFloat(1f, -1280f),
+	)
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofPropertyValuesHolder(include_animator_multiple_change, translateProperty)
+	// 设置动画的插值器
+	translateAnimator.interpolator = DecelerateInterpolator()
+	// 设置动画的持续时间
+	translateAnimator.duration = 166
+	
+	return translateAnimator
+}
+
+// 前面的字变小动画
+private fun animateTextShrinkFront(): AnimatorSet{
+	val frontNumberAnimator = ValueAnimator.ofFloat(240f, 105f, 120f)
+		.apply {
+			duration = 416
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				multiple_change_front_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val frontTimesAnimator = ValueAnimator.ofFloat(120f, 52.5f, 60f)
+		.apply {
+			duration = 416
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				multiple_change_front_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	// 字号变化动画
+	val animateTextShrinkFront = AnimatorSet()
+	animateTextShrinkFront.playTogether(frontNumberAnimator, frontTimesAnimator)
+	
+	return animateTextShrinkFront
+}
+// 后面的字变大动画
+private fun animateTextEnlargeLater(): AnimatorSet{
+	val pointAnimator = ValueAnimator.ofFloat(23f, 49f, 46f)
+		.apply {
+			duration = 416
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				multiple_change_later_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val laterNumberAnimator = ValueAnimator.ofFloat(120f, 255f, 240f)
+		.apply {
+			duration = 416
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				multiple_change_later_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	val laterTimesAnimator = ValueAnimator.ofFloat(60f, 127.5f, 120f)
+		.apply {
+			duration = 416
+			addUpdateListener {
+				val value = it.animatedValue as Float
+				multiple_change_later_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, value)
+			}
+		}
+	
+	// 字号变化动画
+	val animateTextEnlargeLater = AnimatorSet()
+	animateTextEnlargeLater.playTogether(pointAnimator, laterNumberAnimator, laterTimesAnimator)
+	
+	return animateTextEnlargeLater
+}
+
+// 箭头和后面的字左移动画
+private fun animateChevronAndTextMove(): AnimatorSet{
+	val chevronStartX = 0f
+	val chevronEndX = -103f
+	val chevronAnimator = ObjectAnimator.ofFloat(multiple_change_chevron_right, View.TRANSLATION_X, chevronStartX, chevronEndX - 10, chevronEndX)
+	chevronAnimator.duration = 416
+	
+	val contentStartX = 0f
+	val contentEndX = -152f
+	val contentAnimator = ObjectAnimator.ofFloat(multiple_change_later, View.TRANSLATION_X, contentStartX, contentEndX - 10, contentEndX)
+	contentAnimator.duration = 416
+	
+	// 箭头和后面的字左移动画
+	val animateChevronAndTextMove = AnimatorSet()
+	animateChevronAndTextMove.playTogether(chevronAnimator, contentAnimator)
+	
+	return animateChevronAndTextMove
+}
+```
+
+7. 效果：
+
+![](attachments/动画9.gif)
+
+#### Ⅳ、上面动画的更加简化板
+
+> 1. 可以发现上面的方法都很相似
+> 2. 所以我们可以把共通的部分抽取出来，做成一个方法
+> 3. 字体文件：[NotoSansCJKjp-Black.ttf](attachments/NotoSansCJKjp-Black.ttf)
+
+1. 积分增加 icon 图标 `ic_poc_points_up`，同上
+2. 向右箭头 icon 图标 `ic_poc_chevron_right`，同上
+3. 外层盒子 xml 布局文件，同上
+4. 蒙版及积分增加 icon 图标 `include_animator_points_up`  xml 布局文件，同上
+5. 倍率变化文字 `include_animator_multiple_change` xml 布局文件，同上
+6. kotlin 动画代码，省略上方代码，只保留了动画代码
+
+```kotlin
+// 创建动画集合
+private val combinedAnimatorSet = AnimatorSet()
+
+
+// 页面初始化时，设置积分倍数动画
+setPointsMultiplierAnimation()
+// 页面初始化时，设置字体
+val fromAsset = Typeface.createFromAsset(requireContext().assets, "fonts/NotoSansCJK-Black.otf")
+multiple_change_front_number.typeface = fromAsset
+multiple_change_front_times.typeface = fromAsset
+multiple_change_later_point.typeface = fromAsset
+multiple_change_later_number.typeface = fromAsset
+multiple_change_later_times.typeface = fromAsset
+
+// 在某个点击事件中，初始化属性并执行动画
+var pocPointNum = multiple_change_front_number.text.toString().toInt() + 1
+if (pocPointNum >= 6){
+    pocPointNum = 1
+}
+initializeAndStartAnimation(pocPointNum.toString(), (pocPointNum + 1).toString())
+
+
+// 设置积分倍率变化的动画
+private fun setPointsMultiplierAnimation() {
+	// 积分变大蒙版弹窗进入动画
+	val animatePointsUpEnter = animatePointViewMove(include_animator_points_up, 600, mapOf(
+		0f to 1280f,
+		0.39f to 0f,
+		0.75f to 20f,
+		1f to 0f
+	), DecelerateInterpolator())
+	// 积分倍率数字弹窗进入动画
+	val animateScoreMultiplierEnter = animatePointViewMove(include_animator_multiple_change, 600, mapOf(
+		0f to 1280f,
+		0.39f to 0f,
+		0.75f to 5f,
+		1f to 0f
+	), DecelerateInterpolator())
+	// 积分变大蒙版弹窗滑出动画
+	val animatePointsUpExit = animatePointViewMove(include_animator_points_up, 733, mapOf(
+		0f to 0f,
+		0.227f to -1260f,
+		0.318f to -1150f,
+		0.523f to -1280f,
+		0.614f to -1265f,
+		0.864f to -1280f,
+		0.932f to -1278f,
+		1f to -1280f
+	), DecelerateInterpolator())
+	// 积分倍率数字弹窗滑出动画
+	val animateScoreMultiplierExit = animatePointViewMove(include_animator_multiple_change, 166, mapOf(
+		0f to 0f,
+		1f to -1280f
+	), DecelerateInterpolator())
+	
+	// 箭头，左移
+	val animateChevronRightFrontMove = animatePointViewMove(multiple_change_chevron_right, 416, mapOf(
+		0f to 0f,
+		0.5f to -113f,
+		1f to -103f
+	))
+	// 后面的积分倍率数字，左移
+	val animateScoreMultiplierTextLaterMove = animatePointViewMove(multiple_change_later, 416, mapOf(
+		0f to 0f,
+		0.5f to -162f,
+		1f to -152f
+	))
+	
+	// 滑入动画，同时播放；积分变大蒙版弹窗进入动画、积分倍率数字弹窗进入动画
+	val animateUpEnter = AnimatorSet()
+	animateUpEnter.playTogether(animatePointsUpEnter, animateScoreMultiplierEnter)
+	
+	// 字号变化动画 + 箭头和后面的字移动动画，同时播放
+	val animateFontSizeChange = AnimatorSet()
+	animateFontSizeChange.startDelay = 350
+	animateFontSizeChange.playTogether(
+		// 前面的字变小动画
+		animateTextSizeChange(multiple_change_front_number, 240f, 105f, 120f),
+		animateTextSizeChange(multiple_change_front_times, 120f, 52.5f, 60f),
+		// 后面的字变大动画
+		animateTextSizeChange(multiple_change_later_point, 23f, 49f, 46f),
+		animateTextSizeChange(multiple_change_later_number, 120f, 255f, 240f),
+		animateTextSizeChange(multiple_change_later_times, 60f, 127.5f, 120f),
+		// 箭头，左移
+		animateChevronRightFrontMove,
+		// 后面的积分倍率数字，左移
+		animateScoreMultiplierTextLaterMove
+	)
+	
+	// 滑出动画，同时播放；积分变大蒙版弹窗滑出动画、积分倍率数字弹窗滑出动画
+	val animateExit = AnimatorSet()
+	animateExit.startDelay = 1350
+	animateExit.playTogether(animatePointsUpExit, animateScoreMultiplierExit)
+	
+	// 动画集合，按顺序播放：进入动画、字号变化动画、滑出动画
+	combinedAnimatorSet.playSequentially(animateUpEnter, animateFontSizeChange, animateExit)
+}
+
+// 重置动画属性并启动动画
+private fun initializeAndStartAnimation(startPoints: String, endPoints: String){
+	// 停止动画集合
+	combinedAnimatorSet.cancel()
+	
+	// 动画开始时，重置字号
+	multiple_change_front_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, 240f)
+	multiple_change_front_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	multiple_change_later_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23f)
+	multiple_change_later_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	multiple_change_later_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60f)
+	// 动画开始时，重置控件位置
+	multiple_change_chevron_right.translationX = 0f
+	multiple_change_later.translationX = 0f
+	
+	// 动画开始时，设置积分倍率数字
+	multiple_change_front_number.text = startPoints
+	multiple_change_later_number.text = endPoints
+	
+	// 启动动画集合
+	combinedAnimatorSet.start()
+}
+
+// 控件移动动画
+private fun animatePointViewMove(
+	// 移动的视图对象
+	view: View,
+	// 动画持续时间，单位为毫秒
+	duration: Long,
+	// 关键帧和对应的位置
+	keyframePositions: Map<Float, Float>,
+	// 插值器，默认为加速减速插值器
+	interpolator: TimeInterpolator = AccelerateDecelerateInterpolator()
+): ObjectAnimator{
+	// 创建一个关键帧的列表
+	val keyframes = keyframePositions.map { (fraction, value) ->
+		// 创建每个关键帧
+		Keyframe.ofFloat(fraction, value)
+	}
+	
+	// 使用 PropertyValuesHolder.ofKeyframe 方法创建 PropertyValuesHolder
+	val translateProperty = PropertyValuesHolder.ofKeyframe(View.TRANSLATION_X, *keyframes.toTypedArray())
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofPropertyValuesHolder(view, translateProperty)
+	// 设置动画的插值器
+	translateAnimator.interpolator = interpolator
+	// 设置动画的持续时间
+	translateAnimator.duration = duration
+	
+	return translateAnimator
+}
+
+// TextView 文字大小变化动画
+private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): ValueAnimator{
+	// 创建文字大小变化的动画对象
+	val frontMultipleAnimator = ValueAnimator.ofFloat(*textSize)
+	// 设置动画持续时间，单位为毫秒
+	frontMultipleAnimator.duration = 416
+	// 添加动画更新监听器
+	frontMultipleAnimator.addUpdateListener {
+		// 在动画更新时设置 TextView 的文字大小
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, it.animatedValue as Float)
+	}
+	
+	return frontMultipleAnimator
+}
+```
+
+7. 效果：
+
+![](attachments/动画9.gif)
+
+### ③、自定义 ConstraintLayout 动态剪切控件
+
+> 1. 需求更改：
+> 2. 划入时倍率文字并不是和蒙版一起从右侧滑入
+> 3. 而是倍率文字本来就在页面中，只不过不显示；蒙版滑入时，被蒙版覆盖的倍率文字才会显示出来，滑出时同理
+> 4. 具体的样式请看下面的效果图
+> 5. 字体文件：[ShinGoPro-Heavy.otf](attachments/ShinGoPro-Heavy.otf)
+
+1. 积分增加 icon 图标 `ic_poc_points_up`
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="632dp"
+    android:height="138dp"
+    android:viewportWidth="632"
+    android:viewportHeight="138">
+  <path
+      android:pathData="M98.28,58.24C97.21,63.72 91.75,68.62 86.19,69.11C80.54,69.6 76.94,65.49 78.02,60.01C79.11,54.45 84.46,49.64 90.11,49.15C95.67,48.66 99.37,52.68 98.28,58.24ZM91.92,58.8C92.31,56.77 90.94,55.24 88.88,55.42C86.82,55.6 84.78,57.43 84.38,59.46C83.99,61.49 85.36,63.02 87.42,62.84C89.48,62.66 91.52,60.83 91.92,58.8ZM49.04,56.39L64.46,55.04L61.77,68.73L77.01,67.39C78.17,69.12 79.89,71.57 85.63,71.07C87.78,70.88 89.02,70.42 90.45,69.86L88.35,80.55L58.94,83.12L49.51,131.16L34.09,132.51L43.52,84.47L14.11,87.04L16.94,72.65L46.35,70.08L49.04,56.39ZM13.06,132.79L3.59,122.25C7.96,118.4 16.39,110.89 21.72,92.28L35.63,92.8C29.51,115.9 20.5,125.89 13.06,132.79ZM63.42,90.37L78.4,87.24C76.7,106.22 82.11,112.78 84.89,116.09L70.53,128.2C65.84,121.58 61.57,113.27 63.42,90.37ZM144.02,77.94L134.94,124.21L118.17,125.68L125.14,90.18C120.25,93.12 109.04,99.48 94.22,104.95L89,92.04C103.72,87.1 117.87,79.18 131.41,70.36C143.15,62.65 151.32,55.16 163.1,44.07L175.09,52.56C170.63,56.86 161.29,65.84 144.02,77.94ZM214.68,57.35L203.57,72.21C195.23,66.69 186.07,63.06 177.69,60.84L187.18,47.08C198.5,49.56 207.55,53.28 214.68,57.35ZM172.39,120.59L170.36,104.45C205.54,98.51 226.18,84.98 243.31,47.98L256.48,54.04C232.68,104.38 200.11,114.08 172.39,120.59ZM280.61,35.26L297.65,33.77L293.61,54.35C306.51,57.3 321.58,62.66 332.61,68.9L320.99,85.89C313.88,80.78 299.84,73.33 290.4,70.68L282.39,111.49L265.35,112.97L280.61,35.26ZM335.24,107.99L327.34,96.62C352.51,85.56 360.26,72.56 364.14,49.65L380.46,48.22C379.7,51.68 379,54.77 377.72,59.05C389.88,52.78 394.99,44.7 396.78,41.85L337.25,47.06L340.18,32.13L419.53,25.19C412.33,47.95 401.3,60.11 384.38,70.45L376.79,62C367.88,90.29 347.2,102.26 335.24,107.99ZM438.11,63.4L424.41,67.64C424.45,62.95 424.2,54.81 421.71,45.48L434.64,41.14C437.08,47.96 437.82,55.88 438.11,63.4ZM459.48,58.24L446.28,62.17C446.35,51.49 445.52,45.83 444.26,40.12L457.01,36.67C459.71,44.94 459.56,54.67 459.48,58.24ZM425.89,100.49L420.84,88.96C452.33,78.91 462.58,69.33 475.99,35.18L490.61,37.46C481.94,57.83 469.31,87.15 425.89,100.49ZM503.21,20.82L559.7,15.88C558.06,25.13 562.27,29.71 571.91,28.61C561.69,63.18 536.83,82.97 501.62,92.65L497.06,78.64C540.4,69.3 550.1,45.01 554.51,31.52L500.18,36.27L503.21,20.82ZM583.18,14.78C582.07,20.43 576.5,25.43 570.77,25.93C565.12,26.43 561.36,22.24 562.47,16.59C563.58,10.94 569.14,5.94 574.79,5.44C580.54,4.85 584.29,9.13 583.18,14.78ZM576.9,15.33C577.34,13.12 575.91,11.42 573.58,11.63C571.33,11.82 569.09,13.84 568.65,16.05C568.2,18.34 569.74,19.95 571.98,19.75C574.31,19.55 576.45,17.62 576.9,15.33ZM613.39,9.01L629.71,7.58L618,56.43L605.72,57.51L613.39,9.01ZM603.27,63.71L618.33,62.39L615.41,77.23L600.35,78.55L603.27,63.71Z"
+      android:fillColor="#E60012"/>
+</vector>
+```
+
+2. 向右箭头 icon 图标 `ic_poc_chevron_right`
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="113dp"
+    android:height="78dp"
+    android:viewportWidth="113"
+    android:viewportHeight="78">
+  <path
+      android:pathData="M85.26,31.01L8.18,31.01C6.01,31.01 3.93,31.87 2.4,33.41C0.86,34.94 -0,37.01 -0,39.18C-0,41.35 0.86,43.42 2.4,44.96C3.93,46.49 6.01,47.35 8.18,47.35L84.88,47.35L68.51,63.92C66.98,65.47 66.12,67.57 66.12,69.75C66.12,71.93 66.98,74.03 68.51,75.58C70.04,77.12 72.12,77.99 74.29,78C76.46,78.01 78.54,77.16 80.08,75.64L110.61,45.19C111.36,44.43 111.97,43.53 112.38,42.54C112.79,41.55 113,40.49 113,39.42C113,38.35 112.79,37.29 112.38,36.3C111.97,35.31 111.36,34.41 110.61,33.65L79.28,2.39C78.13,1.25 76.68,0.47 75.09,0.16C73.5,-0.16 71.86,0 70.36,0.62C68.87,1.24 67.59,2.29 66.69,3.63C65.79,4.97 65.32,6.55 65.31,8.17C65.32,9.21 65.53,10.24 65.94,11.19C66.35,12.14 66.95,13 67.71,13.72L85.26,31.01Z"
+      android:fillColor="#ffffff"/>
+</vector>
+
+```
+
+3. 外层盒子 xml 布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 省略中间代码 -->
+
+    <View
+        android:id="@+id/poc_magnification_change_mask"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:background="#B2000000"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+    
+    <include
+        android:id="@+id/poc_include_magnification_change_content"
+        layout="@layout/poc_include_magnification_change_content"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+4. 自定义 `ClippedContentView` 类，实现 `ConstraintLayout` 类，实现 `onDraw` 方法
+
+```kotlin
+package jp.retailai.raicart.ui.shopping
+
+import android.content.Context
+import android.graphics.Canvas
+import android.util.AttributeSet
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
+
+// ClippedContentView 类定义，它是 ConstraintLayout 的一个子类。
+class ClippedContentView @JvmOverloads constructor(
+	// 上下文
+	context: Context,
+	// 属性集，可用于从 XML 布局文件中获取属性
+	attrs: AttributeSet? = null,
+	// 默认样式属性
+	defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr) {
+	// clipRectLeft 变量，用于存储裁剪区域的左边界位置，默认值为 1280f
+	private var clipRectLeft: Float = 1280f
+	// clipRectRight 变量，用于存储裁剪区域的右边界位置，默认值为 1280f
+	private var clipRectRight: Float = 1280f
+	
+	// setClipLeft 方法，用于设置裁剪区域的左右边界，并刷新视图
+	fun setClipLeft(left: Float, right: Float) {
+		// 更新左边界
+		clipRectLeft = left
+		// 更新右边界
+		clipRectRight = right
+		// 刷新视图，导致 onDraw 方法被调用
+		invalidate()
+	}
+	
+	// onDraw 方法，用于绘制视图内容
+	override fun onDraw(canvas: Canvas) {
+		// 设置画布的裁剪区域，只有在这个矩形区域内的内容才会被绘制
+		canvas.clipRect(clipRectLeft, 0f, clipRectRight, 465f)
+		// 调用父类的 onDraw 方法，进行默认的绘制处理
+		super.onDraw(canvas)
+	}
+}
+```
+
+5. 倍率变化文字 `poc_include_magnification_change_content` xml 布局文件，注意此处需要给 `ClippedContentView` 控件一个背景：`android:background="#00FFFFFF"`，不然没有那种剪切的效果，导致控件会一直显示
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<jp.retailai.raicart.ui.shopping.ClippedContentView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="465dp"
+	android:gravity="center"
+	android:background="#00FFFFFF"
+	android:orientation="vertical">
+<LinearLayout
+	android:layout_width="match_parent"
+	android:layout_height="465dp"
+	android:gravity="center"
+	android:orientation="vertical">
+	
+	<ImageView
+		android:id="@+id/content_points_up"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/dp_25"
+		android:src="@drawable/poc_icon_points_up"/>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<LinearLayout
+			android:id="@+id/multiple_change_front"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			android:layout_marginStart="@dimen/dp_211"
+			android:gravity="center"
+			android:orientation="horizontal">
+			
+			<TextView
+				android:id="@+id/multiple_change_front_number"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="1"
+				android:textSize="240sp"
+				android:textColor="@color/white"
+				android:includeFontPadding="false"/>
+			<TextView
+				android:id="@+id/multiple_change_front_times"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="倍"
+				android:textSize="120sp"
+				android:textColor="@color/white"
+				android:includeFontPadding="false"/>
+		</LinearLayout>
+		
+		<ImageView
+			android:id="@+id/multiple_change_chevron_right"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			android:layout_marginStart="535dp"
+			android:src="@drawable/poc_icon_chevron_right"/>
+		
+		<LinearLayout
+			android:id="@+id/multiple_change_later"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			android:gravity="center"
+			android:layout_marginStart="732dp">
+			<TextView
+				android:id="@+id/multiple_change_later_point"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="ポ\nイ\nン\nト"
+				android:textSize="23sp"
+				android:textColor="#FFF200"
+				android:includeFontPadding="false"/>
+			<TextView
+				android:id="@+id/multiple_change_later_number"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="2"
+				android:textSize="120sp"
+				android:textColor="#FFF200"
+				android:includeFontPadding="false"/>
+			<TextView
+				android:id="@+id/multiple_change_later_times"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="倍"
+				android:textSize="60sp"
+				android:textColor="#FFF200"
+				android:includeFontPadding="false"/>
+		</LinearLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
+</jp.retailai.raicart.ui.shopping.ClippedContentView>
+```
+
+6. kotlin 动画代码，省略上方代码，只保留了动画代码
+
+```kotlin
+// 创建动画集合
+private val combinedAnimatorSet = AnimatorSet()
+
+
+// 页面初始化时，设置积分倍数动画
+setPointsMultiplierAnimation()
+// 页面初始化时，设置字体
+val fromAsset = Typeface.createFromAsset(requireContext().assets, "fonts/ShinGoPro-Heavy.otf")
+multiple_change_front_number.typeface = fromAsset
+multiple_change_front_times.typeface = fromAsset
+multiple_change_later_point.typeface = fromAsset
+multiple_change_later_number.typeface = fromAsset
+multiple_change_later_times.typeface = fromAsset
+
+// 在某个点击事件中，初始化属性并执行动画
+var pocPointNum = multiple_change_front_number.text.toString().toInt() + 1
+if (pocPointNum >= 6){
+    pocPointNum = 1
+}
+initializeAndStartAnimation(pocPointNum.toString(), (pocPointNum + 1).toString())
+
+
+// 私有函数 setPointsMultiplierAnimation，用于设置积分倍率变化的动画效果
+private fun setPointsMultiplierAnimation(){
+	// 积分变大蒙版弹窗进入动画，设置 DecelerateInterpolator 减速插值器，使动画在开始时变化较快，结束时变化较慢
+	val animatePointsUpEnter = animatePointViewMove(poc_magnification_change_mask, 350, mapOf(
+		0f to 1280f,
+		0.619f to 16f,
+		0.81f to 195f,
+		1f to 0f
+	), DecelerateInterpolator())
+	// 积分倍率数字弹窗进入动画
+	val animateScoreMultiplierEnter = animatePointViewMove(poc_include_magnification_change_content, 350, mapOf(
+		0f to 80f,
+		0.619f to 0f,
+		0.81f to 20f,
+		1f to 0f
+	), DecelerateInterpolator())
+	
+	// 积分变大蒙版弹窗滑出动画
+	val animatePointsUpExit = animatePointViewMove(poc_magnification_change_mask, 333, mapOf(
+		0f to 0f,
+		0.6f to -1190f,
+		0.9f to -1080f,
+		1f to -1280f
+	), DecelerateInterpolator())
+	
+	// 积分倍率数字，前面的，右移
+	val animateScoreMultiplierTextFrontMove = animatePointViewMove(multiple_change_front, 267, mapOf(
+		0f to 0f,
+		1f to 62f
+	))
+	// 积分倍率数字，后面的，左移
+	val animateScoreMultiplierTextLaterMove = animatePointViewMove(multiple_change_later, 267, mapOf(
+		0f to 0f,
+		1f to -62f
+	))
+	
+	// 滑入动画，同时播放；积分变大蒙版弹窗进入动画、积分倍率数字弹窗进入动画
+	val animateUpEnter = AnimatorSet()
+	animateUpEnter.playTogether(animatePointsUpEnter, animateScoreMultiplierEnter)
+	// 为积分变大蒙版进入动画添加一个 AnimatorUpdateListener，用于更新 ClippedContentView 的剪裁位置
+	animatePointsUpEnter.addUpdateListener { animation ->
+		// 获取当前动画的值，这个值应该是遮罩视图的 translationX 属性值
+		val animatedValue = animation.animatedValue as Float
+		// 获取 ClippedContentView 的实例
+		val clippedView = poc_include_magnification_change_content as? ClippedContentView
+		// 更新 ClippedContentView 的剪裁位置
+		clippedView?.setClipLeft(animatedValue, 1280f)
+	}
+	
+	// 字号变化动画 + 箭头和后面的字移动动画，同时播放
+	val animateFontSizeChange = AnimatorSet()
+	// 设置动画开始前的延迟时间，单位为毫秒
+	animateFontSizeChange.startDelay = 783
+	animateFontSizeChange.playTogether(
+		// 前面的字变小动画
+		animateTextSizeChange(multiple_change_front_number, 240f, 120f),
+		animateTextSizeChange(multiple_change_front_times, 120f, 60f),
+		// 后面的字变大动画
+		animateTextSizeChange(multiple_change_later_point, 23f, 46f),
+		animateTextSizeChange(multiple_change_later_number, 120f, 240f),
+		animateTextSizeChange(multiple_change_later_times, 60f, 120f),
+		// 积分倍率数字，前面的，右移
+		animateScoreMultiplierTextFrontMove,
+		// 积分倍率数字，后面的，左移
+		animateScoreMultiplierTextLaterMove
+	)
+	
+	// 设置动画开始前的延迟时间，单位为毫秒
+	animatePointsUpExit.startDelay = 2150
+	// 为积分变大蒙版滑出动画添加一个 AnimatorUpdateListener，用于更新 ClippedContentView 的剪裁位置
+	animatePointsUpExit.addUpdateListener { animation ->
+		// 获取当前动画的值，这个值应该是遮罩视图的 translationX 属性值
+		val animatedValue = animation.animatedValue as Float
+		// 获取 ClippedContentView 的实例
+		val clippedView = poc_include_magnification_change_content as? ClippedContentView
+		// 更新 ClippedContentView 的剪裁位置
+		clippedView?.setClipLeft(0f, 1280f + animatedValue)
+	}
+	
+	// 动画集合，按顺序播放：进入动画、字号变化动画、滑出动画
+	combinedAnimatorSet.playSequentially(animateUpEnter, animateFontSizeChange, animatePointsUpExit)
+}
+
+// 重置动画属性
+private fun initializeAndStartAnimation(startPoints: String, endPoints: String) {
+	// 停止动画集合
+	combinedAnimatorSet.cancel()
+	
+	// 动画开始时，重置字号
+	multiple_change_front_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, 240f)
+	multiple_change_front_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	multiple_change_later_point.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23f)
+	multiple_change_later_number.setTextSize(TypedValue.COMPLEX_UNIT_SP, 120f)
+	multiple_change_later_times.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60f)
+	// 动画开始时，重置控件位置
+	poc_magnification_change_mask.translationX = 1280f
+	multiple_change_front.translationX = 0f
+	multiple_change_later.translationX = 0f
+	
+	// 动画开始时，设置积分倍率数字
+	multiple_change_front_number.text = startPoints
+	multiple_change_later_number.text = endPoints
+	
+	// 启动动画集合
+	combinedAnimatorSet.start()
+}
+
+// 控件移动动画
+private fun animatePointViewMove(
+	// 移动的视图对象
+	view: View,
+	// 动画持续时间，单位为毫秒
+	duration: Long,
+	// 关键帧和对应的位置
+	keyframePositions: Map<Float, Float>,
+	// 插值器，默认为加速减速插值器
+	interpolator: TimeInterpolator = AccelerateDecelerateInterpolator()
+): ObjectAnimator{
+	// 创建一个关键帧的列表
+	val keyframes = keyframePositions.map { (fraction, value) ->
+		// 创建每个关键帧
+		Keyframe.ofFloat(fraction, value)
+	}
+	
+	// 使用 PropertyValuesHolder.ofKeyframe 方法创建 PropertyValuesHolder
+	val translateProperty = PropertyValuesHolder.ofKeyframe(View.TRANSLATION_X, *keyframes.toTypedArray())
+	
+	// 创建位移动画对象；屏幕左上角为 0,0
+	val translateAnimator = ObjectAnimator.ofPropertyValuesHolder(view, translateProperty)
+	// 设置动画的插值器
+	translateAnimator.interpolator = interpolator
+	// 设置动画的持续时间
+	translateAnimator.duration = duration
+	
+	return translateAnimator
+}
+
+// TextView 文字大小变化动画
+private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): ValueAnimator {
+	// 创建文字大小变化的动画对象
+	val frontMultipleAnimator = ValueAnimator.ofFloat(*textSize)
+	// 设置动画持续时间，单位为毫秒
+	frontMultipleAnimator.duration = 267
+	// 添加动画更新监听器
+	frontMultipleAnimator.addUpdateListener {
+		// 在动画更新时设置 TextView 的文字大小
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, it.animatedValue as Float)
+	}
+	
+	return frontMultipleAnimator
+}
+```
+
+7. 效果：
+
+![|700](attachments/动画7.gif)
+
+8. 滑入和滑出部分慢放效果：
+
+![|700](attachments/动画10.gif)
 
 ### ④、SpringAnimation 弹簧动画库
 
 > 1. 可设置位置、阻尼、刚度，不可设置时间；
 > 2. 效果为围绕结束位置进行幅度逐渐变小的震荡
-> 
-> 
 
 #### Ⅰ、简介
 
