@@ -115,6 +115,11 @@ yum install mono-complete
 
 ![](attachments/Pasted%20image%2020230517084849.png)
 
+5. 分卷压缩包下载：
+	1. [dotnet-sdk-6.0.418-linux-x64.zip.001](attachments/)
+	2. [dotnet-sdk-6.0.418-linux-x64.zip.002](attachments/dotnet-sdk-6.0.418-linux-x64.zip.002)
+	3. [dotnet-sdk-6.0.418-linux-x64.zip.003](attachments/dotnet-sdk-6.0.418-linux-x64.zip.003)
+
 # 五、创建用户，授予权限，下载服务器，上传 dotnet
 
 1. 创建用户 tmodloader，根据提示设置密码：
@@ -126,11 +131,7 @@ adduser tmodloader
 2. 登录普通用户 tmodloader，根据输入密码，然后进入根目录
 
 ```
-su tmodloader
-```
-
-```bash
-cd ~
+su tmodloader & cd ~
 ```
 
 3. 在根目录下创建 download 目录
@@ -145,7 +146,9 @@ mkdir -p download
 cd download
 ```
 
-5. 下载 tModLoader；也可以本地下载后上传到 linux：Github 地址：https://github.com/tModLoader/tModLoader/releases
+5. 下载 tModLoader；也可以本地下载后上传到 linux：
+	1. Github 地址：https://github.com/tModLoader/tModLoader/releases
+	2. `1.4.4-refs/heads/preview Version Update: v2023.12.2.5` 版本下载：[tModLoader-v2023.12.2.5.zip](attachments/tModLoader-v2023.12.2.5.zip)
 
 ```bash
 wget https://github.com/tModLoader/tModLoader/releases/download/v2022.09.47.49/tModLoader.zip
@@ -157,13 +160,13 @@ wget https://github.com/tModLoader/tModLoader/releases/download/v2022.09.47.49/t
 mkdir -p /home/tmodloader/v2022.09.47.49
 ```
 
-6. 将下载好的压缩包解压到 v2022.09.47.49 目录
+7. 将下载好的压缩包解压到 v2022.09.47.49 目录
 
 ```bash
 unzip tModLoader.zip -d /home/tmodloader/v2022.09.47.49
 ```
 
-7. 创建 dotnet 目录并进入，然后将之前下载的 dotnet 6.0.0 上传到此目录
+8. 创建 dotnet 目录并进入，然后将之前下载的 dotnet 6.0.0 上传到此目录
 
 ```bash
 mkdir -p /home/tmodloader/v2022.09.47.49/dotnet/6.0.0/
@@ -173,7 +176,7 @@ mkdir -p /home/tmodloader/v2022.09.47.49/dotnet/6.0.0/
 cd /home/tmodloader/v2022.09.47.49/dotnet/6.0.0/
 ```
 
-8. 解压 dotnet
+9. 解压 dotnet
 
 ```bash
 tar -zxvf dotnet-sdk-6.0.408-linux-x64.tar.gz
