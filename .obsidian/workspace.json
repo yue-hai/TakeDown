@@ -8,32 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7f51366bb41337e0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Flutter/Dart 基础.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "997a3d65263e0bf5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Flutter/Flutter 基础.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "dc15386e2e69edf3",
             "type": "leaf",
             "state": {
@@ -71,9 +45,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "17fdef47ece9c9aa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -123,7 +110,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 216.5
+    "width": 223.5
   },
   "right": {
     "id": "e39dcbf669ddf36e",
@@ -150,57 +137,58 @@
   "left-ribbon": {
     "hiddenItems": {
       "command-palette:打开命令面板": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": true
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d404310e0972976b",
+  "active": "17fdef47ece9c9aa",
   "lastOpenFiles": [
+    "其他/游戏/饥荒联机版服务器搭建.md",
+    "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
+    "linux/linux/Liunx 基础.md",
+    "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
     "标题.md",
-    "Android/Android 基础.md",
+    "Android/SSC 购物车.md",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.004",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.003",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.002",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.001",
+    "其他/游戏/attachments/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip",
     "Android/Kotlin 基础.md",
     "其他/游戏/七日杀服务器.md",
-    "其他/软件使用/编程软件.md",
     "其他/设备和工具.md",
-    "其他/attachments/n2n_client_windows_3.12_Pack_2.zip",
-    "其他/attachments/Pasted image 20231231183418.png",
-    "其他/attachments/Pasted image 20231231183334.png",
-    "其他/attachments/Pasted image 20231231182622.png",
-    "Android/SSC 购物车.md",
+    "其他/游戏/attachments/Pasted image 20240124094251.png",
+    "其他/游戏/attachments/Pasted image 20240124094029.png",
+    "其他/游戏/attachments/Pasted image 20240124093923.png",
+    "其他/游戏/attachments/Pasted image 20240124090540.png",
+    "其他/游戏/attachments/Pasted image 20240124090250.png",
+    "attachments/Pasted image 20240124090028.png.md",
+    "attachments/Pasted image 20240124085852.png.md",
+    "attachments",
+    "其他/游戏/attachments/Pasted image 20240124093648.png",
+    "其他/游戏/attachments/Pasted image 20240124093536.png",
+    "其他/游戏/attachments/Pasted image 20240124093423.png",
+    "其他/游戏/attachments/Pasted image 20240124093158.png",
+    "其他/游戏/attachments/Pasted image 20240124093336.png",
+    "Android/Android 基础.md",
     "其他/Docker.md",
-    "linux/linux/Shell 编程.md",
-    "Android/attachments/Pasted image 20231227152230.png",
-    "Android/attachments/Pasted image 20231227152014.png",
     "Flutter/Dart 基础.md",
-    "其他/attachments/Pasted image 20231226140038.png",
-    "其他/attachments/Pasted image 20231226135801.png",
-    "其他/attachments/clashpremium-linux-amd64",
-    "其他/attachments/Pasted image 20231226134647.png",
     "Flutter/Flutter 基础.md",
-    "其他/attachments/Pasted image 20231226102848.png",
-    "其他/attachments/Pasted image 20231225153514.png",
+    "其他/游戏/attachments/tModLoader-v2023.12.2.5.zip",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.zip.003",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.zip.002",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.zip.001",
+    "其他/软件使用/编程软件.md",
+    "linux/linux/Shell 编程.md",
     "linux/Smart/Smart 基础.md",
-    "linux/linux/Liunx 基础.md",
     "linux/Smart/Smart 编程.md",
     "java/【其他】.md",
     "java/00、其他小笔记.md",
     "python/Python 基础.md",
-    "其他/软件使用/attachments/intellij-rainbow-brackets-6.26.zip",
-    "python/attachments/05.scrapy.pdf",
     "java/15、SpringCloudAlibaba.md",
     "attachments/Spring.md",
-    "attachments",
-    "java/attachments/Spring Cloud Alibaba.xmind",
     "未命名.canvas",
-    "java/java开发规约.pdf",
-    "其他/attachments/y_chat-1.0-SNAPSHOT.jar",
-    "其他/attachments/TEST-0.0.1-SNAPSHOT 1.jar",
-    "其他/软件使用/attachments/Postman-win64-9.12.2-Setup.zip.004",
     "其他/软件使用/WindTerm.md",
     "其他/软件使用/VS Code.md",
-    "其他/软件使用/Idea.md",
-    "其他/软件使用/Office.md",
-    "其他/文件处理/音频处理.md",
-    "其他/软件使用/Excel.md",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
     "java/未命名.canvas"
