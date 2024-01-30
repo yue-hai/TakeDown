@@ -2,7 +2,7 @@
 
 ## 1、项目结构
 
-```
+```shell
 java/jp/retailai/raicart
 ├── base
 ├── bean

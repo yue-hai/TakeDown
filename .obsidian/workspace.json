@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/SSC 购物车.md",
+                "file": "其他/游戏/幻兽帕鲁服务器.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -47,12 +47,12 @@
             }
           },
           {
-            "id": "17fdef47ece9c9aa",
+            "id": "2a0829a12b0e801a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
+                "file": "标题.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -60,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -140,44 +140,45 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "17fdef47ece9c9aa",
+  "active": "d404310e0972976b",
   "lastOpenFiles": [
-    "其他/游戏/饥荒联机版服务器搭建.md",
-    "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
-    "linux/linux/Liunx 基础.md",
-    "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
     "标题.md",
+    "其他/游戏/幻兽帕鲁服务器.md",
+    "linux/linux/Liunx 基础.md",
+    "其他/游戏/七日杀服务器.md",
+    "其他/游戏/饥荒联机版服务器搭建.md",
     "Android/SSC 购物车.md",
+    "其他/游戏/泰拉瑞亚 tModLoader 的服务器搭建.md",
+    "其他/游戏/泰拉瑞亚 TShock 的服务器搭建.md",
+    "其他/软件使用/编程软件.md",
+    "其他/软件使用/attachments/Pasted image 20240130150415.png",
+    "其他/软件使用/attachments/Pasted image 20240130150253.png",
+    "其他/软件使用/attachments/Pasted image 20240130145640.png",
+    "其他/软件使用/attachments/Pasted image 20240130145606.png",
+    "其他/软件使用/attachments/jihuo-tool-2023.3.2-自动.zip",
+    "其他/软件使用/attachments/jihuo-tool-2023.3.2-手动.zip",
+    "其他/软件使用/attachments/Pasted image 20240130142802.png",
+    "其他/软件使用/attachments/Pasted image 20240130142621.png",
+    "其他/软件使用/attachments/Pasted image 20240130142508.png",
+    "其他/软件使用/attachments/Pasted image 20240130141404.png",
+    "其他/软件使用/attachments/Pasted image 20240130140955.png",
+    "其他/软件使用/attachments/jihuo-tool-2023.3.zip",
+    "其他/软件使用/attachments/jihuo-tool-2099.zip",
+    "其他/软件使用/attachments/WindTerm_2.6.0.zip",
+    "其他/设备和工具.md",
     "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.004",
     "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.003",
     "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.002",
     "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.001",
     "其他/游戏/attachments/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip",
     "Android/Kotlin 基础.md",
-    "其他/游戏/七日杀服务器.md",
-    "其他/设备和工具.md",
     "其他/游戏/attachments/Pasted image 20240124094251.png",
-    "其他/游戏/attachments/Pasted image 20240124094029.png",
-    "其他/游戏/attachments/Pasted image 20240124093923.png",
-    "其他/游戏/attachments/Pasted image 20240124090540.png",
-    "其他/游戏/attachments/Pasted image 20240124090250.png",
     "attachments/Pasted image 20240124090028.png.md",
     "attachments/Pasted image 20240124085852.png.md",
-    "attachments",
-    "其他/游戏/attachments/Pasted image 20240124093648.png",
-    "其他/游戏/attachments/Pasted image 20240124093536.png",
-    "其他/游戏/attachments/Pasted image 20240124093423.png",
-    "其他/游戏/attachments/Pasted image 20240124093158.png",
-    "其他/游戏/attachments/Pasted image 20240124093336.png",
     "Android/Android 基础.md",
     "其他/Docker.md",
     "Flutter/Dart 基础.md",
     "Flutter/Flutter 基础.md",
-    "其他/游戏/attachments/tModLoader-v2023.12.2.5.zip",
-    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.zip.003",
-    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.zip.002",
-    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.zip.001",
-    "其他/软件使用/编程软件.md",
     "linux/linux/Shell 编程.md",
     "linux/Smart/Smart 基础.md",
     "linux/Smart/Smart 编程.md",
@@ -188,7 +189,6 @@
     "attachments/Spring.md",
     "未命名.canvas",
     "其他/软件使用/WindTerm.md",
-    "其他/软件使用/VS Code.md",
     "未命名 1.canvas",
     "java/Spring/SpringCloud/未命名.canvas",
     "java/未命名.canvas"

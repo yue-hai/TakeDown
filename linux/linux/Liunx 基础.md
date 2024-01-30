@@ -2903,9 +2903,74 @@ Please ask your administrator.
 apt install dos2unix
 ```
 
-## 2、
+## 2、转换换行符格式 2
 
-## 3、
+1. 上面是使用 dos2unix 转换的，也可以直接使用 `sed` 命令进行替换：
+
+```shell
+sed -i 's/\r$//' run_jar.sh
+```
+
+## 3、定时任务
+
+1. 首先编写需要定时执行的脚本 `/home/steam/Steam/steamapps/common/PalServer/yuehai_restart.sh`：
+
+```shell
+#!/bin/bash
+
+# 设定脚本所在路径
+path="/home/steam/Steam/steamapps/common/PalServer"
+# 获取当前时间
+current_time=$(date "+%Y-%m-%d %H:%M:%S")
+
+# 使用 expect 关闭 PalServer 进程并重新启动
+expect -c "
+    # 连接到 screen 会话
+    # spawn 命令用于启动一个新的进程，然后使用一系列的 expect 和 send 命令来与这个进程进行交互
+    spawn screen -r PalWorld
+
+    # 等待 10 秒钟
+    sleep 10
+
+    # 发送 Ctrl+C
+    send \"\x03\"
+
+    # 等待 20 秒钟以确保前一个任务已停止
+    sleep 20
+
+    # 执行 ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD
+    send \"${path}/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r\"
+
+    # 再等待 10 秒
+    sleep 10
+
+    # 退出 screen 会话（分离），Ctrl+A 紧接着 D
+	send "\x01"
+	send "D"
+
+    # 结束 expect 脚本
+    expect eof
+"
+
+# 向 yuehai_restart.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器 1 已重启完成" >> ${path}/yuehai_restart.log
+
+echo "【${current_time}】帕鲁服务器 1 已重启完成"
+```
+
+2. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+3. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天凌晨 1 点执行命令：
+
+```shell
+0 1 * * * /home/steam/Steam/steamapps/common/PalServer/yuehai_restart.sh
+```
+
+4. 在 cron 表达式中，参数用于指定定时任务的执行时间。一个标准的 cron 表达式由五个或六个字段组成，每个字段代表不同的时间单位：
+	1. 分钟（Minute）：0 ~ 59，代表一小时中的哪一分钟执行任务。
+	2. 小时（Hour）：0 ~ 23，代表一天中的哪一个小时执行任务。0 代表午夜，23 代表晚上 11 点。
+	3. 日（Day of the Month）：范围：1 ~ 31，代表一个月中的哪一天执行任务。
+	4. 月（Month）：1 ~ 12 或使用月份名称的缩写（例如，1代表一月，2代表二月，等等），代表一年中的哪一个月份执行任务。
+	5. 星期几（Day of the Week）：0 ~ 7 或使用星期名称的缩写（0和7都代表星期日，1代表星期一，等等）代表一周中的哪一天执行任务。
 
 ## 4、
 
