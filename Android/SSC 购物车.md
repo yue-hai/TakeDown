@@ -244,7 +244,17 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ![|775](attachments/Pasted%20image%2020231019101503.png)
 
-## 10、
+## 10、购物页弹窗
+
+1. 扫描商品 1 后，弹出弹窗，再扫描商品 2（）
+	1. 商品数量弹窗：关闭
+	2. coupon 弹窗：
+		1. 若是商品 2 没有 coupon：不关闭
+		2. 若是商品 2 有 coupon：关闭之前的 coupon 弹窗，然后弹出商品 2 的 coupon 弹窗
+	3. 防范提示弹窗：关闭
+	4. 药品提示弹窗：关闭
+
+## 11、
 
 # 二、一些问题
 
