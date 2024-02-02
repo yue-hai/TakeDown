@@ -45,9 +45,35 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "f739754ca93f233f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "linux/Liunx 基础.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "71efb992d9ab44a3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "标题.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -135,14 +161,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "8a7dd669ff7132ea",
+  "active": "f739754ca93f233f",
   "lastOpenFiles": [
-    "Android/Android 基础.md",
-    "Android/SSC 购物车.md",
-    "其他/游戏/幻兽帕鲁服务器.md",
-    "编程相关/编程软件.md",
     "标题.md",
     "linux/Liunx 基础.md",
+    "Android/SSC 购物车.md",
+    "Android/attachments/Pasted image 20240202151314.png",
+    "Android/Android 基础.md",
+    "其他/游戏/幻兽帕鲁服务器.md",
+    "编程相关/编程软件.md",
     "编程相关/attachments/Pasted image 20240202135127.png",
     "编程相关/attachments",
     "其他/设备和工具.md",
@@ -175,7 +202,6 @@
     "其他/软件使用/attachments/Pasted image 20240130142621.png",
     "其他/软件使用/attachments/Pasted image 20240130142508.png",
     "其他/软件使用/attachments/Pasted image 20240130141404.png",
-    "其他/软件使用/attachments/Pasted image 20240130140955.png",
     "其他/软件使用/attachments/jihuo-tool-2023.3.zip",
     "其他/软件使用/attachments/jihuo-tool-2099.zip",
     "其他/软件使用/attachments/WindTerm_2.6.0.zip",
