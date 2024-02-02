@@ -146,7 +146,7 @@ Thu Jul 24 10:08:46 CST 2014
    4. `–conf`： 在创建用户时使用指定的configuration文件。
    5. `–force-badname`： 默认在创建用户时会进行/etc/adduser.conf中的正则表达式检查用户名是否合法，如果想使用弱检查，则使用这个选项，如果不想检查，可以将/etc/adduser.conf中相关选项屏蔽。如：
 
-![](attachments/Pasted%20image%2020230725150747.png)
+![](./attachments/Pasted%20image%2020230725150747.png)
 
 ### ②、`useradd`
 
@@ -269,7 +269,7 @@ tail 命令可用于查看文件的结尾部分的内容，有一个常用的参
 
 ### ②、参数
 
-![image.png](attachments/2023-07-25-13--14-19-774--HCn3-mVRxk9Yhg.png)
+![image.png](./attachments/2023-07-25-13--14-19-774--HCn3-mVRxk9Yhg.png)
 
 ## 5、移动文件/更改文件名：`mv`
 
@@ -332,7 +332,7 @@ tail 命令可用于查看文件的结尾部分的内容，有一个常用的参
 1. Linux chmod（英文全拼：change mode）命令是控制用户对文件的权限的命令
 2. Linux/Unix 的文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）
 
-![](attachments/Pasted%20image%2020230725151003.png)
+![](./attachments/Pasted%20image%2020230725151003.png)
 
 ### ②、语法
 
@@ -348,7 +348,7 @@ tail 命令可用于查看文件的结尾部分的内容，有一个常用的参
 
 只有文件所有者和超级用户可以修改文件或目录的权限。可以使用**绝对模式**（八进制数字模式），**符号模式**指定文件的权限
 
-![](attachments/Pasted%20image%2020230726092132.png)
+![](./attachments/Pasted%20image%2020230726092132.png)
 
 ### ④、绝对模式（八进制数字模式）
 
@@ -546,7 +546,7 @@ a.c
 
 ### ②、vim 键盘图
 
-![](attachments/Pasted%20image%2020230726092146.png)
+![](./attachments/Pasted%20image%2020230726092146.png)
 
 ### ③、vi/vim 的使用
 
@@ -589,7 +589,7 @@ a.c
 
 ### ④、vi/vim 工作模式
 
-![](attachments/Pasted%20image%2020230725151303.png)
+![](./attachments/Pasted%20image%2020230725151303.png)
 
 ### ⑤、按键：复制粘贴、搜索替换等
 
@@ -2026,7 +2026,7 @@ AWK 是一种处理文本文件的语言，是一个强大的文本分析工具
 
 ##### （2）、`printf`
 
-![image.png](attachments/2023-07-25-13--14-20-483--AQvHkjA-3psrAw.png)
+![image.png](./attachments/2023-07-25-13--14-20-483--AQvHkjA-3psrAw.png)
 
 
 - 10 进制的整数
@@ -2918,44 +2918,34 @@ sed -i 's/\r$//' run_jar.sh
 ```shell
 #!/bin/bash
 
-# 设定脚本所在路径
+# screen 会话名称，每个会话中可能有多个窗口
+screen_name="PalWorld"
+# 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
 # 获取当前时间
 current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
-# 使用 expect 关闭 PalServer 进程并重新启动
-expect -c "
-    # 连接到 screen 会话
-    # spawn 命令用于启动一个新的进程，然后使用一系列的 expect 和 send 命令来与这个进程进行交互
-    spawn screen -r PalWorld
+# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒
+# -x：附加到指定的会话。
+# -S $screen_name：指定要操作的会话名称。
+# -p 0：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口。
+# -X stuff：在选定的窗口中发送字符。
+screen -x -S $screen_name -p 0 -X stuff $'\x03'
+sleep 10
+screen -x -S $screen_name -p 0 -X stuff $'\x03'
+sleep 5
 
-    # 等待 10 秒钟
-    sleep 10
+# 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键。同时等待 20 秒，确保 PalServer 启动完成
+screen -x -S $screen_name -p 0 -X stuff "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
+sleep 20
 
-    # 发送 Ctrl+C
-    send \"\x03\"
+# 分离会话，模拟按下 Ctrl + C + D 组合键；等待 2 秒
+screen -x -S $screen_name -p 0 -X stuff $'\x01'
+screen -x -S $screen_name -p 0 -X stuff "D"
+sleep 2
 
-    # 等待 20 秒钟以确保前一个任务已停止
-    sleep 20
-
-    # 执行 ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD
-    send \"${path}/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r\"
-
-    # 再等待 10 秒
-    sleep 10
-
-    # 退出 screen 会话（分离），Ctrl+A 紧接着 D
-	send "\x01"
-	send "D"
-
-    # 结束 expect 脚本
-    expect eof
-"
-
-# 向 yuehai_restart.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器 1 已重启完成" >> ${path}/yuehai_restart.log
-
-echo "【${current_time}】帕鲁服务器 1 已重启完成"
+# 向 yuehai_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器重启已完成" >> $path/yuehai_server.log
 ```
 
 2. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
