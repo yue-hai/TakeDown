@@ -4816,7 +4816,7 @@ java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 ## 4、使用 shell 脚本执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT%201.jar](attachments/TEST-0.0.1-SNAPSHOT%201.jar)
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
 	2. springboot 实现的 WebSockets 包：[y_chat-1.0-SNAPSHOT.jar](attachments/y_chat-1.0-SNAPSHOT.jar)
 2. 创建映射目录，并将这两个 jar 包上传上去：
 	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
@@ -4872,7 +4872,7 @@ openjdk:21 \
 ## 5、使用 Docker-compose 容器编排执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT%201.jar](attachments/TEST-0.0.1-SNAPSHOT%201.jar)
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
 	2. springboot 实现的 WebSockets 包：[y_chat-1.0-SNAPSHOT.jar](attachments/y_chat-1.0-SNAPSHOT.jar)
 2. 创建映射目录，并将这两个 jar 包上传上去：
 	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`

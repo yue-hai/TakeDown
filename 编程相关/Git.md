@@ -2,7 +2,7 @@
 > 
 > 高速下载地址：[https://registry.npmmirror.com/binary.html?path=git-for-windows/](https://registry.npmmirror.com/binary.html?path=git-for-windows/)
 > 
-> 尚硅谷技术课程系列之Git V2.0.pdf：![](attachments/尚硅谷技术课程系列之Git%20V2.0.pdf)
+> 尚硅谷技术课程系列之Git V2.0.pdf：[尚硅谷技术课程系列之Git%20V2.0.pdf](attachments/尚硅谷技术课程系列之Git%20V2.0.pdf)
 
 # 一、Git 概述
 
