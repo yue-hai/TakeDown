@@ -184,27 +184,27 @@
             {
               "type": "file",
               "ctime": 1706839344253,
-              "path": "前端/三件套/HTML5 新特性.md"
+              "path": "Web/三件套/HTML5 新特性.md"
             },
             {
               "type": "file",
               "ctime": 1706839330040,
-              "path": "前端/三件套/CSS.md"
+              "path": "Web/三件套/CSS.md"
             },
             {
               "type": "file",
               "ctime": 1706839350860,
-              "path": "前端/三件套/JavaScript.md"
+              "path": "Web/三件套/JavaScript.md"
             },
             {
               "type": "file",
               "ctime": 1706839338078,
-              "path": "前端/三件套/ES6-11 - JavaScript 新特性.md"
+              "path": "Web/三件套/ES6-11 - JavaScript 新特性.md"
             },
             {
               "type": "file",
               "ctime": 1706839358802,
-              "path": "前端/三件套/Promise 从入门到自定义.md"
+              "path": "Web/三件套/Promise 从入门到自定义.md"
             }
           ],
           "title": "三件套"
@@ -216,27 +216,27 @@
             {
               "type": "file",
               "ctime": 1706839426612,
-              "path": "前端/JS 框架/jQuery.md"
+              "path": "Web/JS 框架/jQuery.md"
             },
             {
               "type": "file",
               "ctime": 1706839412934,
-              "path": "前端/JS 框架/Ajax.md"
+              "path": "Web/JS 框架/Ajax.md"
             },
             {
               "type": "file",
               "ctime": 1706839419398,
-              "path": "前端/JS 框架/Axios.md"
+              "path": "Web/JS 框架/Axios.md"
             },
             {
               "type": "file",
               "ctime": 1706839434601,
-              "path": "前端/JS 框架/Vue2.md"
+              "path": "Web/JS 框架/Vue2.md"
             },
             {
               "type": "file",
               "ctime": 1706839441563,
-              "path": "前端/JS 框架/Vue3.md"
+              "path": "Web/JS 框架/Vue3.md"
             }
           ],
           "title": "JS 框架"
@@ -248,12 +248,12 @@
             {
               "type": "file",
               "ctime": 1706839464261,
-              "path": "前端/UI 组件库/Bootstrap 快速入门.md"
+              "path": "Web/UI 组件库/Bootstrap 快速入门.md"
             },
             {
               "type": "file",
               "ctime": 1706839457902,
-              "path": "前端/UI 组件库/Ant Design Vue.md"
+              "path": "Web/UI 组件库/Ant Design Vue.md"
             }
           ],
           "title": "UI 组件库"
@@ -261,7 +261,7 @@
         {
           "type": "file",
           "ctime": 1706839471364,
-          "path": "前端/【其他】.md"
+          "path": "Web/【其他】.md"
         }
       ],
       "title": "web"

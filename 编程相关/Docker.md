@@ -4230,6 +4230,9 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 > 文档：[https://docs.portainer.io/start/install/server/docker/linux](https://docs.portainer.io/start/install/server/docker/linux)
 > 
 > 简介：Portainer 是一款轻量级的应用，它提供了图形化界面，用于方便地管理 Docker 环境，包括单机环境和集群环境
+> 
+> 1. 使用过一段时间之后，感觉宿主机端口最好不要使用 `9000` 端口，他偶尔会和其他指令或应用的端口冲突
+> 2. 建议使用 `9443`
 
 ## 1、下载使用
 
@@ -4297,14 +4300,14 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 
 ```shell
 docker run -d \
--p 9000:9000 \
+-p 9443:9000 \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v portainer_data:/data \
 -v /home/docker/docker/Portainer/:/public \
 portainer/portainer:2.16.2
 ```
 
-6. 浏览器进入：http://43.138.106.181:9000
+6. 浏览器进入：http://43.138.106.181:9443
 
 ![image.png|700](attachments/2023-07-25-12--42-56-731--Hj_PmTQ6bgb7og.png)
 
@@ -4320,12 +4323,12 @@ portainer/portainer:2.16.2
 ```shell
 docker run -d --restart=always \
 --name="portainer" \
--p 9000:9000 \
+-p 9443:9000 \
 -v /var/run/docker.sock:/var/run/docker.sock \
 6053537/portainer-ce
 ```
 
-4. 访问：http://101.200.86.248:9000/
+4. 访问：http://101.200.86.248:9443/
 
 ![|675](attachments/Pasted%20image%2020231117132407.png)
 

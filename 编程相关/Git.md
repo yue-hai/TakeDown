@@ -1390,7 +1390,33 @@ HEAD is now at 1f205e8 Merge remote-tracking branch 'origin/master'
 	3. 确信这是撤销推送的唯一或最好的方法。
 5. 在某些情况下，更好的做法可能是创建一个新的提交来撤销之前提交的更改，然后正常推送这个新的提交。这样做不会重写历史，但会保留原始提交并添加一个新的“撤销”提交。
 
-## 5、
+## 5、开了 vpn，idea 推送到 github 还是失败
+
+### ①、问题
+
+1. 浏览器可以访问 `github.com`，但是 idea 或者 gitbash 推送失败
+
+### ②、原因
+
+1. 并不是所有软件或工具的网络请求都会走系统代理，有些应用的网络请求可能绕过代理，直接与网络通信。
+
+### ③、解决
+
+1. 我们要设置 gitbash 的代理：
+
+```bash
+git config --global http.proxy http://127.0.0.1:7890 
+git config --global https.proxy http://127.0.0.1:7890
+```
+
+2. 这样设置完就可以使用 gitbash 提交了
+3. 上面的端口为 vpn 所使用的端口，如我使用的软件 Clash 的端口为 7890
+
+![|700](attachments/Pasted%20image%2020231009092901.png)
 
 ## 6、
+
+## 7、
+
+## 8、
 
