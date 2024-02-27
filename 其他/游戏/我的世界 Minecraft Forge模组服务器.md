@@ -1,0 +1,495 @@
+# 一、购买服务器
+
+1. ~~推荐阿里云学生机~~
+2. 阿里云新用户优惠网址：https://www.aliyun.com/minisite/goods
+3. 选择轻量型服务器，1 核 2G 就可以，2 核 2G 更好
+    - 地域：随意
+    - 镜像类型：系统镜像
+    - 系统镜像：Ubuntu 22.04（或 Ubuntu 的其他版本）
+4. 付款
+
+# 二、设置服务器
+
+## 1、重置密码
+
+1. 进入云服务器 ECS 后，点击实例 ID
+
+![|700](attachments/Pasted%20image%2020240124093536.png)
+
+2. 点击实例 ID 后，会进入实例详情，点击重置密码
+
+![|700](attachments/Pasted%20image%2020240124093423.png)
+
+3. 输入想要设置的密码，点击确定
+
+![|700](attachments/Pasted%20image%2020240124093648.png)
+
+## 2、在云服务器网站中进行防火墙设置
+
+1. 在实例详情中，点击安全组。然后点击管理规则
+
+![|700](attachments/Pasted%20image%2020240124093923.png)
+
+2. 进入后点击手动添加，下方会出现设置
+	1. 授权策略：`允许`
+	2. 优先级：`1`；1 为最高优先级
+	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
+	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `25565`
+	5. 授权对象：`0.0.0.0/0`
+	6. 描述：随意
+	7. 操作：上面的都设置好后，点击保存
+
+![|600](attachments/Pasted%20image%2020240124094029.png)
+
+5. 在云服务器网站中进行防火墙设置完成
+
+## 3、在命令行中进行防火墙设置
+
+1. 在概览中点击远程连接
+
+![|700](attachments/Pasted%20image%2020240124092751.png)
+
+2. 在弹出来的窗口中点击通过 Workbench 远程连接
+
+![|675](attachments/Pasted%20image%2020240124092854.png)
+
+3. 可以选择密码认证，然后输入刚才设置的密码；也可以选择进士 SSH 密钥认证；点击确定进行连接
+
+![|700](attachments/Pasted%20image%2020240124094251.png)
+
+3. 连接成功后，执行以下命令开放端口：
+
+```shell
+sudo ufw allow from any to any port 25565 proto
+```
+
+# 三、设置 SWAP 分区
+
+> 1. 由于 ECS 云服务器镜像安装好像是没有给系统分配软件交换分区 Swap 的，所以这里我们需要手动分配一下，以免我们的游戏在挂机在服务器途中突然关闭。
+> 2. 这里提一下 vi 编辑器的基本用法：进入文本后按键盘上的 `i` 键开始编辑，按 `esc` 退出编辑，上下左右移动光标，输入 `:wq` 保存并退出。
+> 3. 有 nano 也可以使用 nano，ctrl + S 保存，ctrl + X 退出
+
+1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
+
+```shell
+free –m
+```
+
+2. 删除原来的 Swap 分区
+
+```shell
+swapoff –a
+```
+
+3. 新增 SWAP 分区（一般是物理内存的 2 倍）
+
+```shell
+dd if=/dev/zero of=/root/swapfile bs=1M count=8192
+```
+
+4. 格式化交换分区文件
+
+```shell
+mkswap /root/swapfile
+```
+
+5. 启用 swap 分区文件
+
+```shell
+swapon /root/swapfile
+```
+
+6. 添加开机启动，打开 fstab
+
+```shell
+vi /etc/fstab
+```
+
+7. 在众多的文本最后添加一行
+
+```shell
+/root/swapfile swap swap defaults 0 0
+```
+
+8. 退出编辑，按一下 <font color="#dd0000">Esc</font>，然后退出
+
+```shell
+:wq
+```
+
+9. 重启下是否生效
+
+```shell
+reboot
+```
+
+10. 重启后输入指令查看下SWAP是否增加
+
+```shell
+free -m
+```
+
+# 四、创建用户，下载游戏服务器
+
+1. 创建用户 steam，根据提示设置密码：
+
+```shell
+adduser steam
+```
+
+2. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
+
+```shell
+su steam & cd ~
+```
+
+3. 在根目录下创建 `game/Minecraft-forge` 目录，仅是为了方便管理
+
+```shell
+mkdir -p game/Minecraft-forge
+```
+
+4. 进入 `game/Minecraft-forge` 文件夹
+
+```shell
+cd game/Minecraft-forge
+```
+
+5. 下载指定版本的 Forge；此处以 `1.20.1` 版本进行演示
+	1. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](attachments/forge-1.20.1-47.2.0-installer.jar)
+
+![|675](attachments/Pasted%20image%2020240227103945.png)
+
+![|675](attachments/Pasted%20image%2020240227104008.png)
+
+6. 将上面下载的文件上传到 `/home/steam/game/Minecraft-forge` 目录中，此时该目录只有 `forge-1.20.1-47.2.0-installer.jar` 这一个文件
+7. 赋予权限：
+
+```shell
+chmod 755 forge-1.20.1-47.2.0-installer.jar
+```
+
+# 五、环境配置
+
+1. 安装远程管理工具 screen，需使用 root 用户
+
+```shell
+apt install -y screen
+```
+
+2. 使用包管理器安装 java，需使用 root 用户：
+
+```shell
+# 更新包索引：
+sudo apt update
+
+# 安装特定版本的 OpenJDK，例如 OpenJDK 8：
+sudo apt install openjdk-8-jdk
+
+# 安装特定版本的 OpenJDK，例如 OpenJDK 11：
+sudo apt install openjdk-11-jdk
+
+# 安装特定版本的 OpenJDK，例如 OpenJDK 17：
+sudo apt install openjdk-17-jdk
+```
+
+3. 手动配置 java 环境：
+	1. 下载想要使用的版本，此处使用 java 21：
+		1. jdk 21 下载：[jdk-21_linux-x64_bin.tar.gz](attachments/jdk-21_linux-x64_bin.tar.gz)
+	2. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
+	3. 解压缩：`tar -zxvf jdk-21_linux-x64_bin.tar.gz`
+	4. 打开 `~/.bashrc` 文件进行编辑：`nano ~/.bashrc`
+	5. 在文件末尾，添加环境变量配置：`export PATH=/home/steam/IDE/Java/JDK/jdk-21.0.2/bin:$PATH`
+	6. 保存并关闭文件后，执行以下命令使变更生效：`source ~/.bashrc`
+4. 查看配置是否生效：
+
+```shell
+java -version
+```
+
+5. 输出以下内容即为配置成功
+
+```shell
+steam@yan:~/IDE/Java$ java -version
+java version "21.0.2" 2024-01-16 LTS
+Java(TM) SE Runtime Environment (build 21.0.2+13-LTS-58)
+Java HotSpot(TM) 64-Bit Server VM (build 21.0.2+13-LTS-58, mixed mode, sharing)
+```
+
+6. mc 游戏版本和 java 版本的对应关系：
+
+| 游戏版本 | java 版本 |
+| ---- | ---- |
+| 1.7.10 ~ 1.16.5 | java 8 及以上 |
+| 1.17 | java 16 及以上 |
+| 1.18 ~ 1.19 | java 17 及以上 |
+
+# 六、启动游戏服务器
+
+1. 进入 `/home/steam/game/Minecraft-forge` 目录
+
+```shell
+cd /home/steam/game/Minecraft-forge
+```
+
+2. 执行文件，下载和安装 forge 环境：
+
+```shell
+java -jar forge-1.20.1-47.2.0-installer.jar --installServer
+```
+
+3. 最好开启代理，不然很可能下载失败；可以多试几次，最后出现 `successfully` 字样则成功
+4. 刷新目录，我们发现会多出了一些文件和目录，此时启动服务器：
+
+```shell
+./run.sh
+```
+
+5. 首次启动会失败，配置文件目录下会生成一个 `eula.txt` 文件，用 nano 打开：`nano eula.txt`
+
+```shell
+# 将
+eula=false
+
+# 修改为：表示同意许可协议
+eula=true
+```
+
+6. 再次启动服务器：
+
+```shell
+./run.sh
+```
+
+7. 此时服务器启动完成，即可通过客户端尝试加入；但是此时有正版验证，也不可使用 `littleskin` 皮肤站
+8. 若想关闭正版验证，则首先按 `ctrl + c` 关闭服务器
+9. 打开主配置文件 `server.properties`：`nano server.properties`：
+
+```shell
+# 将
+online-mode=true
+
+# 修改为：表示关闭正版验证
+online-mode=false
+```
+
+10. 此时没有购买正版的玩家，使用离线登录可以加入此服务器
+
+# 七、使用 `littleskin` 皮肤站
+
+> 在 Minecraft 服务端使用 authlib-injector 的[参考文档与下载地址](https://github.com/yushijinhun/authlib-injector/wiki/%E5%9C%A8-Minecraft-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BD%BF%E7%94%A8-authlib-injector)，
+> 
+> 我使用的皮肤站：https://littleskin.cn
+
+1. 下载 `authlib-injector`，将其上传至 `/home/steam/game/Minecraft-forge/plugins/` 中
+	1. authlib-injector-1.2.5 下载：[authlib-injector-1.2.5.jar](attachments/authlib-injector-1.2.5.jar)
+2. 进入 `/home/steam/game/Minecraft-forge` 目录
+
+```shell
+cd /home/steam/game/Minecraft-forge
+```
+
+3. 打开主配置文件 `server.properties`：`nano server.properties`：
+
+```shell
+# 将
+online-mode=false
+
+# 修改为：
+online-mode=true
+```
+
+4. 修改启动脚本：`nano run.sh`
+
+```shell
+#!/usr/bin/env sh
+# Forge requires a configured set of both JVM and program arguments.
+# Add custom JVM arguments to the user_jvm_args.txt
+# Add custom program arguments {such as nogui} to this file in the next line before the "$@" or
+#  pass them to this script directly
+
+# 游戏服务器路径
+path="/home/steam/game/Minecraft-forge/plugins/authlib-injector-1.2.5.jar"
+# 认证服务器
+url="https://littleskin.cn/api/yggdrasil"
+
+# java @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.2.0/unix_args.txt "$@"
+java -javaagent:$path=$url  @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.2.0/unix_args.txt "$@"
+```
+
+5. 此时重新启动服务器即可；当然还需要客户端同样加载 `authlib-injector`，这个后面说
+
+# 八、使用 screen 后台运行服务器
+
+1. 进入服务器目录
+
+```shell
+cd /home/steam/game/Minecraft-forge
+```
+
+2. 输入命令创建终端，ttr为终端名称，可任意更改，输入完毕后会进入一个新的页面
+
+```shell
+screen -S mc-forge
+```
+
+3. 执行脚本，启动服务器；按 `Ctrl + a + d` 可退出终端：
+
+```shell
+/home/steam/game/Minecraft-forge/run.sh
+```
+
+4. 此时会有大量输出，待出现类似以下内容时，即为启动成功：
+
+```shell
+[11:23:13] [Server thread/INFO] [immersiveengineering/]: Couldn't fully analyze 1 netherite_space_suit, missing knowledge for {1 netherite_chestplate=1.0}
+[11:23:13] [Server thread/INFO] [immersiveengineering/]: Finished recipe profiler for Arc Recycling, took 614 milliseconds
+[11:23:13] [Server thread/WARN] [ModernFix/]: Dedicated server took 91.154 seconds to load
+[11:23:16] [Server thread/WARN] [minecraft/MinecraftServer]: Can't keep up! Is the server overloaded? Running 2034ms or 40 ticks behind
+> 
+```
+
+5. 获取 screen 列表，会有一个 <font color="#dd0000">XXX.mc-forge</font> 的进程
+
+```shell
+screen -ls
+```
+
+6. 输入进程名字即可进入终端
+
+```shell
+screen -r XXX.mc-forge
+```
+
+7. 结束进程
+
+```shell
+screen -S XXX.mc-forge -X quit
+```
+
+# 九、文件和参数说明
+
+## 1、重要路径和文件
+
+### ①、重要文件
+
+1. 授权确认文件：`~/game/Minecraft-forge/eula.txt`
+2. 主配置文件：`~/game/Minecraft-forge/server.properties`
+3. linux 服务器启动文件：`~/game/Minecraft-forge/run.sh`
+4. 服务器 jvm 参数配置文件：`~/game/Minecraft-forge/user_jvm_args.txt`
+5. 用于存储被封禁的IP地址列表：`~/game/Minecraft/banned-ips.json`
+6. 记录被封禁的玩家名单：`~/game/Minecraft/banned-players.json`
+7. 服务器管理员（OP）列表：`~/game/Minecraft/ops.json`
+8. 白名单文件，当服务器启用白名单时，只有列在此文件中的玩家才能加入：`~/game/Minecraft/whitelist.json`
+9. 缓存最近登录过服务器的玩家信息，用于快速验证玩家身份：`~/game/Minecraft/usercache.json`
+
+### ②、重要路径
+
+1. 世界和人物存档目录：`~/game/Minecraft/world/`
+2. 存放服务器的日志文件：`~/game/Minecraft/logs/`
+3. 当服务器发生崩溃时，崩溃报告将会保存在这个目录下：`~/game/Minecraft/crash-reports/`
+4. mod 目录：`~/game/Minecraft/mods/`
+5. 一些插件或模组可能会在这个目录下生成配置文件，用于自定义插件或模组的行为：`~/game/Minecraft/config/`
+
+## 2、主配置文件 `~/game/Minecraft-forge/server.properties` 参数说明
+
+```shell
+# Minecraft服务器属性
+#Mon Feb 26 21:23:30 CST 2024
+allow-flight=false                 # 是否允许玩家在服务器上飞行，设置为false时，使用飞行模式的非创造模式玩家将被踢出服务器。
+allow-nether=true                  # 是否允许玩家进入下界。
+broadcast-console-to-ops=true      # 是否将控制台消息广播给在线的OP（服务器管理员）。
+broadcast-rcon-to-ops=true         # 是否将远程控制台（RCON）命令的输出广播给OP。
+difficulty=easy                    # 设置游戏难度，可选值有peaceful、easy、normal和hard。
+enable-command-block=true         # 是否启用命令方块。
+enable-jmx-monitoring=false        # 是否启用JMX监控，用于远程监测服务器性能。
+enable-query=false                 # 是否开启GameSpy4协议服务器监听器，用于获取服务器信息。
+enable-rcon=false                  # 是否启用远程控制台（RCON）功能。
+enable-status=true                 # 是否允许客户端获取服务器状态（如MOTD、服务器版本等）。
+enforce-secure-profile=true        # 是否强制玩家使用安全的游戏配置文件。
+enforce-whitelist=false            # 是否强制使用白名单，只有白名单上的玩家才能加入服务器。
+entity-broadcast-range-percentage=100 # 实体广播范围的百分比，用于调整实体对其他玩家的可见距离。
+force-gamemode=false               # 是否强制玩家进入服务器时使用默认的游戏模式。
+function-permission-level=2        # 设置使用函数命令所需的权限等级。
+gamemode=survival                  # 设置服务器的默认游戏模式，可选值有survival、creative、adventure、spectator。
+generate-structures=true           # 是否生成结构（如村庄、要塞等）。
+generator-settings={}              # 自定义世界生成设置。
+hardcore=false                     # 是否开启极限模式，玩家死亡后将被封禁。
+hide-online-players=false          # 是否隐藏在线玩家列表。
+initial-disabled-packs=            # 禁用的数据包列表。
+initial-enabled-packs=vanilla      # 启用的数据包列表，默认为vanilla。
+level-name=world                   # 服务器世界的名称。
+level-seed=                        # 世界生成的种子值。
+level-type=minecraft\:normal       # 世界类型，normal为普通世界。
+max-chained-neighbor-updates=1000000 # 最大链式邻居更新数，用于防止更新过程中的性能问题。
+max-players=20                     # 服务器允许连接的最大玩家数。
+max-tick-time=60000                # 最大单个tick时间（单位：微秒），超过这个时间服务器将停止。
+max-world-size=29999984            # 世界的最大尺寸，单位为方块。
+motd=A Minecraft Server            # 服务器的消息，显示在玩家的服务器列表中。
+network-compression-threshold=256  # 数据包压缩阈值，小于该大小的数据包将不被压缩。
+online-mode=true                   # 是否开启在线模式，验证玩家登录状态。
+op-permission-level=4              # OP的权限等级。
+player-idle-timeout=0              # 玩家空闲超时时间，设置为0则不会踢出空闲玩家。
+prevent-proxy-connections=false    # 是否防止代理连接。
+pvp=true                           # 是否允许玩家间PVP。
+query.port=25565                   # GameSpy4协议查询端口。
+rate-limit=0                       # 数据包发送速率限制，0为无限制。
+rcon.password=                     # 远程控制台（RCON）的密码。
+rcon.port=25575                    # 远程控制台（RCON）的端口。
+require-resource-pack=false        # 是否要求玩家下载资源包。
+resource-pack=                     # 服务器资源包的URL。
+resource-pack-prompt=              # 资源包的提示信息。
+resource-pack-sha1=                # 资源包的SHA1校验和。
+server-ip=                         # 服务器IP地址，留空则监听所有IP。
+server-port=25565                  # 服务器端口。
+simulation-distance=10             # 世界模拟距离，影响世界中活动的区块范围。
+spawn-animals=true                 # 是否生成动物。
+spawn-monsters=true                # 是否生成怪物。
+spawn-npcs=true                    # 是否生成村民。
+spawn-protection=16                # 出生点保护半径，设置为0则禁用出生点保护。
+sync-chunk-writes=true             # 是否同步区块写入，提高数据完整性。
+text-filtering-config=             # 文本过滤配置。
+use-native-transport=true          # 是否使用原生传输模式（Linux上的epoll）。
+view-distance=10                   # 玩家的视距，决定了玩家能看到多远的区块。
+white-list=false                   # 是否启用白名单。
+```
+
+## 3、服务器 jvm 参数配置文件：`~/game/Minecraft-forge/user_jvm_args.txt`
+
+1. 此文件可用于设置服务器启动时的 jvm 参数，如最大内存、最小内存等
+2. 必须以参数的方式进行设置，如：`-Xmx16G`
+3. 不可写入代码，如变量等
+
+```shell
+# Xmx and Xms set the maximum and minimum RAM usage, respectively.
+# They can take any number, followed by an M or a G.
+# M means Megabyte, G means Gigabyte.
+# For example, to set the maximum to 3GB: -Xmx3G
+# To set the minimum to 2.5GB: -Xms2500M
+
+# A good default for a modded server is 4GB.
+# Uncomment the next line to set it.
+-Xmx16G
+```
+
+## 4、
+
+# 十、服务器添加 mod
+
+# 十一、管理服务器
+
+## 1、指令
+
+## 2、远程控制台（RCON）使用
+
+# 十二、客户端启动器
+
+## 1、官方启动器
+
+## 2、第三方
+
+- 具体请看：[我的世界 Minecraft 原版服务器](我的世界%20Minecraft%20原版服务器.md) 中的第三方客户端启动器
+
+## 3、
+
+## 4、

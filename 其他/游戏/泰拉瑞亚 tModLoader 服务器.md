@@ -34,7 +34,7 @@
 	1. 授权策略：`允许`
 	2. 优先级：`1`；1 为最高优先级
 	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，则输入游戏的端口号 `7777`
+	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `7777`
 	5. 授权对象：`0.0.0.0/0`
 	6. 描述：随意
 	7. 操作：上面的都设置好后，点击保存
@@ -190,28 +190,28 @@ mkdir -p game/tModLoader
 cd game/tModLoader
 ```
 
-5. 下载 tModLoader；也可以本地下载后上传到 linux：
-	1. Github 地址：https://github.com/tModLoader/tModLoader/releases
-	2. tModLoaderv2023.12.2.5 版本下载：[tModLoader-v2023.12.2.5.zip](attachments/tModLoader-v2023.12.2.5.zip)
-	3. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
+5. 下载 tModLoader，Github 地址：https://github.com/tModLoader/tModLoader/releases
 
 ```shell
 wget https://github.com/tModLoader/tModLoader/releases/download/v2023.12.2.5/tModLoader.zip
 ```
 
-6. 创建与 tModLoader 版本对应的目录，仅是为了方便管理
+6. 也可以本地下载后上传到 linux：
+	1. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
+	2. tModLoaderv2023.12.2.5 版本下载：[tModLoader-v2023.12.2.5.zip](attachments/tModLoader-v2023.12.2.5.zip)
+7. 创建与 tModLoader 版本对应的目录，仅是为了方便管理
 
 ```shell
 mkdir -p v2023.12.2.5
 ```
 
-7. 将下载好的压缩包解压到 `v2023.12.2.5` 目录
+8. 将下载好的压缩包解压到 `v2023.12.2.5` 目录
 
 ```shell
 unzip tModLoader.zip -d /home/steam/game/tModLoader/v2023.12.2.5
 ```
 
-8. 创建 dotnet 目录并进入，然后将之前下载的 dotnet 6.0.0 上传到此目录；若是愿意等待的话，启动 tModLoader 服务器时会自动下载，8、9 步不用执行
+9. 创建 dotnet 目录并进入，然后将之前下载的 dotnet 6.0.0 上传到此目录；若是愿意等待的话，启动 tModLoader 服务器时会自动下载，8、9 步不用执行
 
 ```shell
 mkdir -p /home/steam/game/tModLoader/v2023.12.2.5/dotnet/6.0.0/
@@ -221,7 +221,7 @@ mkdir -p /home/steam/game/tModLoader/v2023.12.2.5/dotnet/6.0.0/
 cd /home/steam/game/tModLoader/v2023.12.2.5/dotnet/6.0.0/
 ```
 
-9. 解压 dotnet
+10. 解压 dotnet
 
 ```shell
 tar -zxvf dotnet-sdk-6.0.418-linux-x64.tar.gz
@@ -238,7 +238,7 @@ cd /home/steam/game/tModLoader/v2023.12.2.5
 2. 将启动脚本设置为可执行
 
 ```shell
-chmod u+x start-tModLoaderServer.sh
+chmod 755 start-tModLoaderServer.sh
 ```
 
 2. 执行服务器启动脚本；若有提示输入 `n` ：不使用 steam 服务
@@ -261,16 +261,7 @@ Choose World:
 
 4. MOD 及地图目录已自动创建，关闭服务器，按 `Ctrl + z`
 
-# 七、几个重要路径和文件
-
-1. MOD 目录：`/home/steam/.local/share/Terraria/tModLoader/Mods/`，将 mod 文件上传到此目录即可
-2. 地图目录：`/home/steam/.local/share/Terraria/tModLoader/Worlds/`，将地图文件上传到此目录即可，上传的地图文件需授予读写权限：
-
-```shell
-chmod 755 /home/steam/.local/share/Terraria/tModLoader/Worlds/*
-```
-
-# 八、使用 screen 后台运行泰拉瑞亚服务器
+# 七、使用 screen 后台运行服务器
 
 1. 输入命令创建终端，ttr为终端名称，可任意更改，输入完毕后会进入一个新的页面
 
@@ -449,7 +440,7 @@ Type 'help' for a list of commands.
 
 17. 按 `Ctrl + a + d` 可退出终端
 
-# 九、服务器查看关闭等
+# 八、服务器查看关闭等
 
 1. 获取 screen 列表，会有一个 <font color="#dd0000">XXX.ttr</font> 的进程
 
@@ -469,3 +460,19 @@ screen -r XXX.ttr
 screen -S XXX.ttr -X quit
 ```
 
+# 九、文件和参数说明
+
+## 1、重要路径和文件
+
+### ①、重要文件
+
+### ②、重要路径
+
+1. MOD 目录：`~/.local/share/Terraria/tModLoader/Mods/`，将 mod 文件上传到此目录即可
+2. 地图目录：`~/.local/share/Terraria/tModLoader/Worlds/`，将地图文件上传到此目录即可，上传的地图文件需授予读写权限：
+
+```shell
+chmod 755 /home/steam/.local/share/Terraria/tModLoader/Worlds/*
+```
+
+## 2、参数说明

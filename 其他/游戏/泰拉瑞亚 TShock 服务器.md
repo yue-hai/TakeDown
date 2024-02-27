@@ -34,7 +34,7 @@
 	1. 授权策略：`允许`
 	2. 优先级：`1`；1 为最高优先级
 	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，则输入游戏的端口号 `7777`
+	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `7777`
 	5. 授权对象：`0.0.0.0/0`
 	6. 描述：随意
 	7. 操作：上面的都设置好后，点击保存
@@ -190,37 +190,36 @@ mkdir -p game/TShock
 cd game/TShock
 ```
 
-5. 下载最新版本 5.2 的 TShock
-	1. Github 地址：https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip
-	1. 建议 Windows 下载后上传到 linux
-	2. TShock 压缩包下载：[TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release](attachments/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip)
-	3. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
+5. 下载最新版本 5.2 的 TShock，Github 地址：https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip
 
 ```shell
 wget https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip
 ```
 
-6. 创建与 TShock 版本对应的目录，仅是为了方便管理
+6. 也可以本地下载后上传到 linux：
+	1. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
+	2. TShock 压缩包下载：[TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release](attachments/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip)
+7. 创建与 TShock 版本对应的目录，仅是为了方便管理
 
 ```shell
 mkdir -p v5.2.0
 ```
 
-7. 将下载好的压缩包解压到 `v5.2.0` 目录，会得到打包文件 `TShock-Beta-linux-x64-Release.tar`
+8. 将下载好的压缩包解压到 `v5.2.0` 目录，会得到打包文件 `TShock-Beta-linux-x64-Release.tar`
 
 ```shell
 unzip TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip -d /home/steam/game/TShock/v5.2.0/
 ```
 
-8. 继续解压文件 `TShock-Beta-linux-x64-Release.tar`
+9. 继续解压文件 `TShock-Beta-linux-x64-Release.tar`
 
 ```shell
 tar -xvf TShock-Beta-linux-x64-Release.tar
 ```
 
-9. 将之前下载的 dotnet 6.0.0 上传到此目录；若是愿意等待的话，一会会自动下载
-10. 运行 `TShock.Installer` 文件，安装 dotnet 环境
-11. 下载成功后，会显示此页面：
+10. 将之前下载的 dotnet 6.0.0 上传到此目录；若是愿意等待的话，一会会自动下载
+11. 运行 `TShock.Installer` 文件，安装 dotnet 环境
+12. 下载成功后，会显示此页面：
 
 ```shell
 TShock was improperly shut down. Please use the exit command in the future to prevent this.
