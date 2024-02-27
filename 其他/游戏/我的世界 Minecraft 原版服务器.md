@@ -177,13 +177,17 @@ chmod 755 paper-1.20.1-196.jar
 
 # 五、环境配置
 
+## 1、安装远程管理工具 screen
+
 1. 安装远程管理工具 screen，需使用 root 用户
 
 ```shell
 apt install -y screen
 ```
 
-2. 使用包管理器安装 java，需使用 root 用户：
+## 2、使用包管理器安装 java
+
+1. 使用包管理器安装 java，需使用 root 用户：
 
 ```shell
 # 更新包索引：
@@ -199,14 +203,47 @@ sudo apt install openjdk-11-jdk
 sudo apt install openjdk-17-jdk
 ```
 
-3. 手动配置 java 环境：
-	1. 下载想要使用的版本，此处使用 java 21：
-		1. jdk 21 下载：[jdk-21_linux-x64_bin.tar.gz](attachments/jdk-21_linux-x64_bin.tar.gz)
-	2. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
-	3. 解压缩：`tar -zxvf jdk-21_linux-x64_bin.tar.gz`
-	4. 打开 `~/.bashrc` 文件进行编辑：`nano ~/.bashrc`
-	5. 在文件末尾，添加环境变量配置：`export PATH=/home/steam/IDE/Java/JDK/jdk-21.0.2/bin:$PATH`
-	6. 保存并关闭文件后，执行以下命令使变更生效：`source ~/.bashrc`
+## 3、手动配置 java 环境
+
+### ①、从 oracle 下载
+
+1. 下载地址：https://www.oracle.com/cn/java/technologies/downloads/
+2. 下载想要使用的版本，此处使用 java 21，选择 `x64 Compressed Archive`：
+
+![|700](attachments/Pasted%20image%2020240227141724.png)
+
+3. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
+4. 解压缩：`tar -zxvf jdk-21_linux-x64_bin.tar.gz`
+
+### ②、本地下载
+
+1. java 21 分卷压缩包下载：
+	1. [jdk-21_linux-x64_bin.zip.001](attachments/jdk-21_linux-x64_bin.zip.001)
+	2. [jdk-21_linux-x64_bin.zip.002](attachments/jdk-21_linux-x64_bin.zip.002)
+	3. [jdk-21_linux-x64_bin.zip.003](attachments/jdk-21_linux-x64_bin.zip.003)
+2. 解压缩后重新压缩为单个 zip 文件 `jdk-21_linux-x64_bin.zip`，传到服务器目录：`/home/steam/IDE/Java/JDK/`
+3. 解压缩：`unzip jdk-21_linux-x64_bin.zip`
+
+## 4、配置 jdk 环境变量
+
+1. 打开 `~/.bashrc` 文件进行编辑
+
+```shell
+nano ~/.bashrc
+```
+
+2. 在文件末尾，添加环境变量配置：
+
+```shell
+export PATH=/home/steam/IDE/Java/JDK/jdk-21.0.2/bin:$PATH
+```
+
+3. 保存并关闭文件后，执行以下命令使变更生效：
+
+```shell
+source ~/.bashrc
+```
+
 4. 查看配置是否生效：
 
 ```shell
@@ -222,7 +259,7 @@ Java(TM) SE Runtime Environment (build 21.0.2+13-LTS-58)
 Java HotSpot(TM) 64-Bit Server VM (build 21.0.2+13-LTS-58, mixed mode, sharing)
 ```
 
-6. 游戏版本和 java 版本的对应关系：
+## 5、游戏版本和 java 版本的对应关系：
 
 | 游戏版本 | java 版本 |
 | ---- | ---- |
