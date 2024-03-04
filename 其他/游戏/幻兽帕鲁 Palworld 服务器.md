@@ -33,8 +33,8 @@
 2. 进入后点击手动添加，下方会出现设置
 	1. 授权策略：`允许`
 	2. 优先级：`1`；1 为最高优先级
-	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `8211`
+	3. 协议类型：~~`自定义 TCP`~~，<font color="#ff0000">0.1.5.1 之后变成 UDP 了</font>（所以最好这两个都开，万一以后又变了），或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
+	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 ~~TCP~~（<font color="#ff0000">0.1.5.1 之后需选择 UDP</font>），<font color="#ff0000">则输入游戏的端口号</font> `8211`
 	5. 授权对象：`0.0.0.0/0`
 	6. 描述：随意
 	7. 操作：上面的都设置好后，点击保存
@@ -257,10 +257,23 @@ screen -S PalWorld -X quit
 
 ### ③、自动重启脚本
 
-1. 在 `/home/steam/Steam/steamapps/common/PalServer` 中创建文件：
-	1. 创建脚本文件：`touch yuehai_restart.sh`
-	2. 创建日志文件：`touch yuehai_server.log`
-2. 自动重启脚本代码：`nano yuehai_restart.sh`
+1. 进入游戏服务器目录：
+   
+```shell
+cd /home/steam/Steam/steamapps/common/PalServer
+```
+
+2. 在其中创建文件：
+
+```shell
+# 创建脚本文件：
+touch pal_server_restart.sh
+
+# 创建日志文件：
+touch pal_server.log
+```
+
+3. 编写自动重启脚本代码：`nano pal_server_restart.sh`
 
 ```shell
 #!/bin/bash
@@ -295,31 +308,32 @@ send_command $'\x03' 5
 # 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
-# 向 yuehai_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器重启已完成" >> $path/yuehai_server.log
+# 向 pal_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器重启已完成" >> $path/pal_server.log
 ```
 
-3. 设置脚本权限：
+4. 设置脚本权限：
 
 ```shell
-chmod 755 yuehai_restart.sh
+chmod 755 pal_server_restart.sh
 ```
 
-4. 设置定时执行：
-5. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
-6. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天凌晨 1 点执行命令：
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天凌晨 1 点执行命令：
 
 ```shell
 # 帕鲁服务器重启，晚上 1 点
-00 1 * * * /home/steam/Steam/steamapps/common/PalServer/yuehai_restart.sh
+00 1 * * * /home/steam/Steam/steamapps/common/PalServer/pal_server_restart.sh
 ```
 
-7. 在 cron 表达式中，参数用于指定定时任务的执行时间。一个标准的 cron 表达式由五个或六个字段组成，每个字段代表不同的时间单位：
+8. 在 cron 表达式中，参数用于指定定时任务的执行时间。一个标准的 cron 表达式由五个或六个字段组成，每个字段代表不同的时间单位：
 	1. 分钟（Minute）：0 ~ 59，代表一小时中的哪一分钟执行任务。
 	2. 小时（Hour）：0 ~ 23，代表一天中的哪一个小时执行任务。0 代表午夜，23 代表晚上 11 点。
 	3. 日（Day of the Month）：范围：1 ~ 31，代表一个月中的哪一天执行任务。
 	4. 月（Month）：1 ~ 12 或使用月份名称的缩写（例如，1代表一月，2代表二月，等等），代表一年中的哪一个月份执行任务。
 	5. 星期几（Day of the Week）：0 ~ 7 或使用星期名称的缩写（0和7都代表星期日，1代表星期一，等等）代表一周中的哪一天执行任务。
+9. 在编辑完 `crontab` 后，保存并退出编辑器，`crontab` 会自动安装新的计划任务。可以通过 `crontab -l` 命令查看当前的 `crontab` 任务列表，以确认任务已正确设置
 
 ### ④、自动关服脚本
 
@@ -328,10 +342,23 @@ chmod 755 yuehai_restart.sh
 > 3. 只有在玩的时间段内开启，其他时间关闭
 > 4. 这里设定的关服时间是晚上 1 点，开服时间是 早上 9:30
 
-1. 在 `/home/steam/Steam/steamapps/common/PalServer` 中创建文件：
-	1. 创建脚本文件：`touch yuehai_close.sh`
-	2. 创建日志文件：`touch yuehai_server.log`
-2. 自动关服脚本代码：`nano yuehai_close.sh`
+1. 进入游戏服务器目录：
+   
+```shell
+cd /home/steam/Steam/steamapps/common/PalServer
+```
+
+2. 在其中创建文件：
+
+```shell
+# 创建脚本文件：
+touch pal_server_close.sh
+
+# 创建日志文件：
+touch pal_server.log
+```
+
+3. 编写自动关服脚本代码：`nano pal_server_close.sh`
 
 ```shell
 #!/bin/bash
@@ -363,31 +390,45 @@ send_command() {
 send_command $'\x03' 20
 send_command $'\x03'
 
-# 向 yuehai_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器已关闭" >> $path/yuehai_server.log
+# 向 pal_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器已关闭" >> $path/pal_server.log
+echo "" >> $path/pal_server.log
 ```
 
-3. 设置脚本权限：
+4. 设置脚本权限：
 
 ```shell
-chmod 755 yuehai_close.sh
+chmod 755 pal_server_close.sh
 ```
 
-4. 设置定时执行：
-5. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
-6. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天凌晨 1 点执行命令：
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天凌晨 1 点执行命令：
 
 ```shell
 # 帕鲁服务器关闭，晚上 1 点
-00 1 * * * /home/steam/Steam/steamapps/common/PalServer/yuehai_close.sh
+00 1 * * * /home/steam/Steam/steamapps/common/PalServer/pal_server_close.sh
 ```
 
 ### ⑤、自动开服脚本
 
-1. 在 `/home/steam/Steam/steamapps/common/PalServer` 中创建文件：
-	1. 创建脚本文件：`touch yuehai_start.sh`
-	2. 创建日志文件：`touch yuehai_server.log`
-2. 自动开服脚本代码：`nano yuehai_start.sh`
+1. 进入游戏服务器目录：
+   
+```shell
+cd /home/steam/Steam/steamapps/common/PalServer
+```
+
+2. 在其中创建文件：
+
+```shell
+# 创建脚本文件：
+touch pal_server_start.sh
+
+# 创建日志文件：
+touch pal_server.log
+```
+
+3. 编写开服脚本代码：`nano pal_server_start.sh`
 
 ```shell
 #!/bin/bash
@@ -422,23 +463,23 @@ send_command $'\x03' 5
 # 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
-# 向 yuehai_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器已启动" >> $path/yuehai_server.log
+# 向 pal_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器已启动" >> $path/pal_server.log
 ```
 
-3. 设置脚本权限：
+4. 设置脚本权限：
 
 ```shell
-chmod 755 yuehai_start.sh
+chmod 755 pal_server_start.sh
 ```
 
-4. 设置定时执行：
-5. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
-6. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天 9:30 执行命令：
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令。比如要在每天 9:30 执行命令：
 
 ```shell
 # 帕鲁服务器启动，早上 9 点 30
-30 9 * * * /home/steam/Steam/steamapps/common/PalServer/yuehai_start.sh
+30 9 * * * /home/steam/Steam/steamapps/common/PalServer/pal_server_start.sh
 ```
 
 # 七、文件和参数说明

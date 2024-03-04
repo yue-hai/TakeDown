@@ -346,17 +346,27 @@ online-mode=true
 #  pass them to this script directly
 
 # 游戏服务器路径
-path="/home/steam/game/Minecraft-forge/plugins/authlib-injector-1.2.5.jar"
+path="/home/steam/game/Minecraft-forge"
+
+# authlib-injector 路径
+authlib_injector_path="$path/plugins/authlib-injector-1.2.5.jar"
 # 认证服务器
 url="https://littleskin.cn/api/yggdrasil"
 
+# 指定 user_jvm_args.txt 的绝对路径
+jvm_args_path="$path/user_jvm_args.txt"
+# 指定 unix_args.txt 的绝对路径
+unix_args_path="$path/libraries/net/minecraftforge/forge/1.20.1-47.2.0/unix_args.txt"
+
 # java @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.2.0/unix_args.txt "$@"
-java -javaagent:$path=$url  @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.2.0/unix_args.txt "$@"
+java -javaagent:$authlib_injector_path=$url  @"$jvm_args_path" @"$unix_args_path" "$@"
 ```
 
 5. 此时重新启动服务器即可；当然还需要客户端同样加载 `authlib-injector`，这个后面说
 
 # 八、使用 screen 后台运行服务器
+
+### ①、启动服务器
 
 1. 进入服务器目录
 
@@ -402,6 +412,171 @@ screen -r XXX.mc-forge
 
 ```shell
 screen -S XXX.mc-forge -X quit
+```
+
+### ②、自动关服脚本
+
+1. 进入游戏服务器目录：
+   
+```shell
+cd /home/steam/game/Minecraft-forge/
+```
+
+2. 在其中创建文件：
+
+```shell
+# 创建脚本文件：
+touch minecraft_server_close.sh
+
+# 创建日志文件：
+touch minecraft_server.log
+```
+
+3. 编写自动关服脚本代码：`nano minecraft_server_close.sh`
+
+```shell
+#!/bin/bash
+
+# screen 会话名称，每个会话中可能有多个窗口
+screen_name="mc-forge"
+# 脚本所在路径
+path="/home/steam/game/Minecraft-forge"
+# 获取当前时间
+current_time=$(date "+%Y-%m-%d %H:%M:%S")
+
+# 定义发送命令并可选地休眠的函数
+# $1 是要发送的命令
+# $2 是可选的休眠时间
+send_command() {
+    # -x：附加到指定的会话。
+    # -S $screen_name：指定要操作的会话名称。
+    # -p 0：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口；如果只有一个窗口，那这就是第一个
+    # -X stuff：在选定的窗口中发送字符。
+    screen -x -S $screen_name -p 0 -X stuff "$1"
+
+    # 如果提供了休眠时间，则进行休眠
+    if [ ! -z "$2" ]; then 
+        sleep $2
+    fi
+}
+
+# 发送指令，保存服务器世界状态到硬盘，并模拟按下回车键；等待 20 秒；防止服务器正在运行
+send_command "save-all\r" 20
+# 发送指令，关闭服务器，并模拟按下回车键；等待 20 秒；防止服务器正在运行
+send_command "stop\r" 20
+
+# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒；执行两次
+send_command $'\x03' 20
+send_command $'\x03'
+
+# 向 minecraft_server.log 文件中追加日志
+echo "【${current_time}】我的世界 Minecraft forge 服务器已关闭" >> $path/minecraft_server.log
+echo "" >> $path/minecraft_server.log
+```
+
+4. 设置脚本权限：
+
+```shell
+chmod 755 minecraft_server_close.sh
+```
+
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令：
+
+```shell
+# 我的世界 Minecraft forge 服务器关闭，每天 23 点
+0 23 * * * /home/steam/game/Minecraft-forge/minecraft_server_close.sh
+```
+
+8. 在 cron 表达式中，参数用于指定定时任务的执行时间。一个标准的 cron 表达式由五个或六个字段组成，每个字段代表不同的时间单位：
+	1. 分钟（Minute）：0 ~ 59，代表一小时中的哪一分钟执行任务。
+	2. 小时（Hour）：0 ~ 23，代表一天中的哪一个小时执行任务。0 代表午夜，23 代表晚上 11 点。
+	3. 日（Day of the Month）：范围：1 ~ 31，代表一个月中的哪一天执行任务。
+	4. 月（Month）：1 ~ 12 或使用月份名称的缩写（例如，1代表一月，2代表二月，等等），代表一年中的哪一个月份执行任务。
+	5. 星期几（Day of the Week）：0 ~ 7 或使用星期名称的缩写（0和7都代表星期日，1代表星期一，等等）代表一周中的哪一天执行任务。
+9. 在编辑完 `crontab` 后，保存并退出编辑器，`crontab` 会自动安装新的计划任务。可以通过 `crontab -l` 命令查看当前的 `crontab` 任务列表，以确认任务已正确设置
+
+### ③、自动开服脚本
+
+1. 进入游戏服务器目录：
+   
+```shell
+cd /home/steam/game/Minecraft-forge/
+```
+
+2. 在其中创建文件：
+
+```shell
+# 创建脚本文件：
+touch minecraft_server_start.sh
+
+# 创建日志文件：
+touch minecraft_server.log
+```
+
+3. 编写自动关服脚本代码：`nano minecraft_server_start.sh`
+
+```shell
+#!/bin/bash
+
+# screen 会话名称，每个会话中可能有多个窗口
+screen_name="mc-forge"
+# 脚本所在路径
+path="/home/steam/game/Minecraft-forge"
+# 获取当前时间
+current_time=$(date "+%Y-%m-%d %H:%M:%S")
+
+# 定义发送命令并可选地休眠的函数
+# $1 是要发送的命令
+# $2 是可选的休眠时间
+send_command() {
+    # -x：附加到指定的会话。
+    # -S $screen_name：指定要操作的会话名称。
+    # -p 0：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口；如果只有一个窗口，那这就是第一个
+    # -X stuff：在选定的窗口中发送字符。
+    screen -x -S $screen_name -p 0 -X stuff "$1"
+
+    # 如果提供了休眠时间，则进行休眠
+    if [ ! -z "$2" ]; then 
+        sleep $2
+    fi
+}
+
+# 发送指令，保存服务器世界状态到硬盘，并模拟按下回车键；等待 20 秒
+send_command "save-all\r" 20
+# 发送指令，关闭服务器，并模拟按下回车键；等待 20 秒
+send_command "stop\r" 20
+
+# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒；执行两次
+send_command $'\x03' 20
+send_command $'\x03' 5
+
+# 进入游戏服务器目录，不在此目录执行启动脚本会导致报错
+send_command "cd $path\r" 5
+
+# 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
+send_command "$path/run.sh\r"
+
+# 向 minecraft_server.log 文件中追加日志
+echo "【${current_time}】我的世界 Minecraft forge 服务器已启动" >> $path/minecraft_server.log
+```
+
+4. 设置脚本权限：
+
+```shell
+chmod 755 minecraft_server_start.sh
+```
+
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令：
+
+```shell
+# 我的世界 Minecraft forge 服务器开启，周一至周五，每天 19 点
+0 19 * * 1-5 /home/steam/game/Minecraft-forge/minecraft_server_start.sh
+# 我的世界 Minecraft forge 服务器开启，周六和周日，每天 10 点
+0 10 * * 6,0 /home/steam/game/Minecraft-forge/minecraft_server_start.sh
 ```
 
 # 九、文件和参数说明
