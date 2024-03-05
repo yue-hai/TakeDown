@@ -732,7 +732,9 @@ enable-rcon=false
 
 ## 1、官方启动器
 
-## 2、第三方
+> 官方网站：https://www.minecraft.net/
+
+## 2、第三方启动器
 
 ### ①、HMCL Hello Minecraft Launcher v3 启动器
 
@@ -825,12 +827,35 @@ enable-rcon=false
 
 ![|625](attachments/Pasted%20image%2020240227102420.png)
 
-## 3、
+## 3、HMCL 启动器使用
 
-## 4、
+### ①、下载
 
-# 十一、
+1. 下载地址：https://hmcl.huangyuhui.net/download/
+2. 下载最新版本即可
+3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](attachments/HMCL-3.5.5.exe)
 
-# 十二、
+### ②、登录 `littleskin` 皮肤站
 
-# 十三、
+1. 在皮肤站账册账号，使用皮肤：https://littleskin.cn
+2. HMCL 启动器中点击设置
+
+![|700](attachments/Pasted%20image%2020240305194424.png)
+
+3. 进入设置页后，点击下载，取消自动选择下载源，选择 BMCLAPI
+
+![|700](attachments/Pasted%20image%2020240305194522.png)
+
+4. 然后将按钮拖动至启动器，登录即可
+
+![](attachments/Pasted%20image%2020240305194713.png)
+
+### ③、使用启动器下载游戏本体
+
+1. 点击版本列表
+
+![|700](attachments/Pasted%20image%2020240305200733.png)
+
+2. 点击安装新游戏版本，下载指定版本的游戏即可
+
+![|700](attachments/Pasted%20image%2020240305200811.png)

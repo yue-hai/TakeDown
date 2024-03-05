@@ -688,6 +688,23 @@ white-list=false                   # 是否启用白名单。
 
 # 十、服务器添加 mod
 
+> 首先在客户端下载和安装 mod，具体说明在十二节
+
+1. 客户端点击游戏版本：
+
+![|700](attachments/Pasted%20image%2020240305211640.png)
+
+2. 然后点击 MOD 文件夹，会打开一个文件夹
+
+![|700](attachments/Pasted%20image%2020240305211741.png)
+
+3. 将其中的所有文件上传至游戏服务器根目录中的 `mods` 目录，启动服务器即可
+
+![|700](attachments/Pasted%20image%2020240305211909.png)
+
+4. 若是启动时报错，可能是因为这些 mod 中有客户端专属，而服务器不能安装的 mod，根据提示删除即可
+	1. 比如 `All the Mods 9 - ATM9` 整合包中的 `oculus-mc1.20.1-1.6.15a.jar` mod
+
 # 十一、管理服务器
 
 ## 1、指令
@@ -698,10 +715,170 @@ white-list=false                   # 是否启用白名单。
 
 ## 1、官方启动器
 
+> 官方网站：https://www.minecraft.net/
+
 ## 2、第三方
 
-- 具体请看：[我的世界 Minecraft 原版服务器](我的世界%20Minecraft%20原版服务器.md) 中的第三方客户端启动器
+### ①、HMCL Hello Minecraft Launcher v3 启动器
 
-## 3、
+1. 下载地址：https://hmcl.huangyuhui.net/download/
+2. 该启动器目前是国内最知名的我的世界启动器，三年来累计使用超过3亿次，适用于 win/mac/Linux
+3. HMCL 启动器特点：
+	1. 支持离线模式和正版登录
+	2. 支持 Forge，Optifine 和 LiteLoader 自动安装
+	3. 自动下载游戏缺失库和资源
+	4. 支持mod管理
+	5. 支持界面主题定制、整合包制作
 
-## 4、
+![|525](attachments/Pasted%20image%2020240227102057.png)
+
+### ②、PCL2 Plain Craft Launcher 2 启动器
+
+1. 下载地址：https://afdian.net/p/0164034c016c11ebafcb52540025c377
+2. 一款使用快捷，方便的可视化我的世界启动器。
+3. PCL2启动器特点：
+	1. 精美动画，扁平界面
+	2. 极速，多下载源
+	3. Forge安装
+	4. 自定义主题
+
+![|700](attachments/Pasted%20image%2020240227102113.png)
+
+### ③、BMCLNG 启动器
+
+1. 下载地址：https://www.bangbang93.com/category/5/bmcl
+2. 支持自动下载原版客户端
+3. 支持一键下载Forge客户端，可以选择Forge版本并且自动下载
+4. 本启动器支持Mojang每周快照下载
+5. 每周快照也可盗版启动
+6. 可以启动1.7.2并且支持1.7的新版验证方式
+7. 如果FML不做大的修改（不过我觉得只要FML能用正版启动器起，我的启动器就能跑），可以一直保持兼容
+8. 可导入旧版客户端
+9. 自定义JVM Argument功能，以支持诸如Optifine之类的mod
+10. Mojang推送了第一个编译起的全部版本，BMCL全部支持
+11. 带有第二下载源。不怕碰到官方下载源被限流
+
+![|475](attachments/Pasted%20image%2020240227102125.png)
+
+![|472](attachments/Pasted%20image%2020240227102132.png)
+
+![|468](attachments/Pasted%20image%2020240227102139.png)
+
+### ④、BakaXL 启动器
+
+1. 下载地址：https://www.minecraftzw.com/20070.html
+2. BakaXL 3.1 满载超过 200 项新增及改进的功能，
+3. 不论您在与他人建立联系、管理游戏资源，还是在探索Minecraft世界时，都可以让您的体验更进一步。
+4. 出彩的新功能
+5. 主题系统
+6. 凭证用户档案
+7. 多维视差
+8. 在 BakaXL 大厅中与好友一同联机
+9. 将您的风格分享给世界，不光配色和背景要有型，背景音乐也得给安排上。
+10. 这个主题系统，没有那么多麻烦。使用、创建及分享BakaXL的主题并无任何门槛，也无需任何额外支出或版本即可享受全部功能。任何人都可以创建属于自己的BakaXL主题，并分享给自己的好友。因为我们相信，好东西应该人人都有份。
+
+![|642](attachments/Pasted%20image%2020240227102204.png)
+
+![|650](attachments/Pasted%20image%2020240227102211.png)
+
+![|650](attachments/Pasted%20image%2020240227102219.png)
+
+### ⑤、燕子启动器
+
+1. 下载地址：https://www.minecraftzw.com/20067.html
+2. 全方位自定义，支持一键启动,多账号的全新我的世界启动器
+3. 追求编程热爱
+4. 燕子启动器-新一代Minecraft启动器，使用Module-Launcher启动引擎，简洁高效快速。目前支持离线、正版、统一通行证、Authlib-injector等第三方登陆认证且支持快速配置、判断游戏文件丢失并进行快速补全下载。支持多账号管理、版本隔离、自定义公告，自定义计划等一系列人性化功能。
+5. 全局自定义
+6. 软件界面由使用者自己决定，怎么好看就怎么改！并且还支持GIF动态壁纸。
+7. 一键生成软件
+8. 此功能可一键生成附属软件，下一次畅玩游戏时只需双击生成的软件即可。
+9. 三个“多”：支持多账号，多版本，多验证，让你游戏体验无烦恼！
+
+![|650](attachments/Pasted%20image%2020240227102329.png)
+
+![|650](attachments/Pasted%20image%2020240227102339.png)
+
+### ⑥、MSS2 启动器
+
+1. 下载地址：https://www.minecraftzw.com/20062.html
+2. MSS2启动器可以让玩家轻松创建你自己的MC服务器，让MC开服不在会是难题，变得轻而易举
+
+![|625](attachments/Pasted%20image%2020240227102408.png)
+
+![|625](attachments/Pasted%20image%2020240227102413.png)
+
+![|625](attachments/Pasted%20image%2020240227102420.png)
+
+
+## 3、HMCL 启动器使用
+
+
+### ①、下载
+
+1. 下载地址：https://hmcl.huangyuhui.net/download/
+2. 下载最新版本即可
+3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](attachments/HMCL-3.5.5.exe)
+
+### ②、登录 `littleskin` 皮肤站
+
+1. 在皮肤站账册账号，使用皮肤：https://littleskin.cn
+2. HMCL 启动器中点击设置
+
+![|700](attachments/Pasted%20image%2020240305194424.png)
+
+3. 进入设置页后，点击下载，取消自动选择下载源，选择 BMCLAPI
+
+![|700](attachments/Pasted%20image%2020240305194522.png)
+
+4. 然后将按钮拖动至启动器，登录即可
+
+![](attachments/Pasted%20image%2020240305194713.png)
+
+### ③、使用启动器下载游戏本体
+
+1. 点击版本列表
+
+![|700](attachments/Pasted%20image%2020240305200733.png)
+
+2. 点击安装新游戏版本，下载指定版本的游戏即可
+
+![|700](attachments/Pasted%20image%2020240305200811.png)
+
+### ④、使用启动器下载整合包
+
+1. 点击版本列表
+
+![|700](attachments/Pasted%20image%2020240305200733.png)
+
+2. 点击安装新游戏版本，下载指定版本的游戏即
+
+![|700](attachments/Pasted%20image%2020240305200811.png)
+
+3. 选择整合包
+
+![](attachments/Pasted%20image%2020240305202013.png)
+
+4. 可以搜索指定的整合包，点击整合包进入
+
+![|700](attachments/Pasted%20image%2020240305202403.png)
+
+5. 选择对应游戏本体版本的整合包，然后点击下载
+
+![|700](attachments/Pasted%20image%2020240305202456.png)
+
+6. 下载完成后，点击返回，选择安装整合包
+
+![|700](attachments/Pasted%20image%2020240305202744.png)
+
+7. 导入本地整合包，然后选择刚才下载的整合包
+
+![|700](attachments/Pasted%20image%2020240305202911.png)
+
+8. 点击安装
+
+![|700](attachments/Pasted%20image%2020240305202955.png)
+
+9. 安装完选中即可
+
+![|700](attachments/Pasted%20image%2020240305204819.png)
