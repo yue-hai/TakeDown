@@ -4819,44 +4819,52 @@ java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 ## 4、使用 shell 脚本执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
-	2. springboot 实现的 WebSockets 包：[y_chat-1.0-SNAPSHOT.jar](attachments/y_chat-1.0-SNAPSHOT.jar)
-2. 创建映射目录，并将这两个 jar 包上传上去：
-	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
-	2. `/home/docker/docker/volumes/openjdk/jar/yuehai-chat-WebSocket-stomp-server/`
-
-![|700](attachments/Pasted%20image%2020231130112952.png)
-
-![|700](attachments/Pasted%20image%2020231130113019.png)
-
+	1. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
+	2. y_chat 的 springboot 后台服务器：[y-chat-back-server-1.0-SNAPSHOT.jar](attachments/y-chat-back-server-1.0-SNAPSHOT.jar)
+	3. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
+2. 创建映射目录，并将这三个 jar 包上传到只当目录：
+	1. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
+	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/`
+	3. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
 3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `run_jar.sh` 文件，并写入下面的内容：
 
 ```shell
 #!/bin/bash
 
-# 映射目录所在的路径
+# 容器内映射目录所在的路径
 main_path="/container/path"
 
-# 定义变量：测试 jar 所在路径
-test_path="${main_path}/jar/00_TEST"
-# 清空 log 文件
-cat /dev/null > ${test_path}/test.log
-# 后台执行 jar，并将输出日志写入文件
-java -jar ${test_path}/TEST-0.0.1-SNAPSHOT.jar > ${test_path}/test.log 2>&1 &
+start_app() {
+    local app_path=$1 # 程序所在的路径
+    local app_name=$2 # 程序的名称
+    local log_name=$3 # 程序日志的名称
+    local background=$4  # 用于判断是否需要在后台运行
 
-# 定义变量：y_char WebSocket 服务 jar 所在路径
-y_char_ws_path="${main_path}/jar/yuehai-chat-WebSocket-stomp-server"
-# 清空 log 文件
-cat /dev/null > ${y_char_ws_path}/y_char_ws.log
-# 执行 jar，并将输出日志写入文件
-java -jar ${y_char_ws_path}/y_chat-1.0-SNAPSHOT.jar > ${y_char_ws_path}/y_char_ws.log 2>&1
+    # yes 便是需要在后台运行
+    if [ "$background" == "yes" ]; then
+        java -jar "${app_path}/${app_name}" > "${app_path}/${log_name}" 2>&1 &
+    else
+        java -jar "${app_path}/${app_name}" > "${app_path}/${log_name}" 2>&1
+    fi
+}
 
-# 检查是否成功启动
-if [ $? -eq 0 ]; then
-  echo "Jar启动成功"
-else
-  echo "Jar启动失败"
-fi
+# y-chat WebSocket 服务器 (后台)
+start_app "${main_path}/jar/y-chat-WebSocket-server" \
+          "y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar" \
+          "y_chat_ws.log" \
+          "yes"
+
+# y-chat springboot 后台服务器 (后台)
+start_app "${main_path}/jar/y-chat-back-server" \
+          "y-chat-back-server-1.0-SNAPSHOT.jar" \
+          "y_chat_back.log" \
+          "yes"
+
+# 测试 (前台)
+start_app "${main_path}/jar/00_TEST" \
+          "TEST-0.0.1-SNAPSHOT.jar" \
+          "test.log" \
+          "no"
 ```
 
 4. 启动容器：
@@ -4865,6 +4873,7 @@ fi
 docker run -d \
 -p 9001:9001 \
 -p 9002:9002 \
+-p 9003:9003 \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --name code-java \
@@ -4872,19 +4881,23 @@ openjdk:21 \
 /container/path/run_jar.sh
 ```
 
+5. 访问测试：
+6. y-chat WebSocket 服务器：
+	1. 测试网站：http://wstool.jackxiang.com/
+	2. 服务地址：ws://www.yue-hai.top:9001/connect/2
+7. y-chat springboot 后台服务器：http://www.yue-hai.top:9002/test/getUserAll
+8. 测试：http://www.yue-hai.top:9003/hello/helloTest
+
 ## 5、使用 Docker-compose 容器编排执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
-	2. springboot 实现的 WebSockets 包：[y_chat-1.0-SNAPSHOT.jar](attachments/y_chat-1.0-SNAPSHOT.jar)
-2. 创建映射目录，并将这两个 jar 包上传上去：
-	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
-	2. `/home/docker/docker/volumes/openjdk/jar/yuehai-chat-WebSocket-stomp-server/`
-
-![|700](attachments/Pasted%20image%2020231130112952.png)
-
-![|700](attachments/Pasted%20image%2020231130113019.png)
-
+	1. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
+	2. y_chat 的 springboot 后台服务器：[y-chat-back-server-1.0-SNAPSHOT.jar](attachments/y-chat-back-server-1.0-SNAPSHOT.jar)
+	3. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
+2. 创建映射目录，并将这三个 jar 包上传到只当目录：
+	1. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
+	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/`
+	3. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
 3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `docker-compose.yml` 文件，并写入下面的内容：
 
 ```yaml
@@ -4903,19 +4916,27 @@ services:
     ports:
       - "9001:9001"
       - "9002:9002"
+      - "9003:9003"
     # 映射挂载的目录；可指定多组
     volumes: 
       - "/home/docker/docker/volumes/openjdk/:/container/path"
     # 设置全局变量；可指定多组
     environment:
+      # 9001
+      - y_char_ws_path=/container/path/jar/yuehai-chat-WebSocket-server
+      - y_char_ws_name=y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar
+      # 9002
+      - y_char_back_server_path=/container/path/jar/y-chat-back-server
+      - y_char_back_server_name=y-chat-back-server-1.0-SNAPSHOT.jar
+      # 9003
       - test_path=/container/path/jar/00_TEST
-      - y_char_ws_path=/container/path/jar/yuehai-chat-WebSocket-stomp-server
     # 容器启动时执行的命令，该命令只能指定一行，不过可以使用 sh -c 来变相实现多行
     # 变量引用使用 $$ de 原因是为了转义特殊字符，以确保变量在命令字符串中被正确地解析而不是被Compose文件本身解析
     command: >
       sh -c "
-        java -jar $${test_path}/TEST-0.0.1-SNAPSHOT.jar > $${test_path}/test.log 2>&1 &&
-        java -jar $${y_char_ws_path}/y_chat-1.0-SNAPSHOT.jar > $${y_char_ws_path}/y_char_ws.log 2>&1
+        java -jar $${y_char_ws_path}/$${y_char_ws_name} > $${y_char_ws_path}/y_char_ws.log 2>&1 &
+        java -jar $${y_char_back_server_path}/$${y_char_back_server_name} > $${y_char_back_server_path}/y_char_back.log 2>&1 &
+        java -jar $${test_path}/TEST-0.0.1-SNAPSHOT.jar > $${test_path}/test.log 2>&1
       "
 ```
 
@@ -4929,6 +4950,12 @@ docker@yuehai:~/docker/volumes/openjdk$
 ```
 
 5. 如果嫌 `docker-compose.yml` 文件中的 `command` 属性的命令写起来太繁琐，也可以直接在 `command` 属性中调用上面的 `run_jar.sh` 脚本
+6. 访问测试：
+7. y-chat WebSocket 服务器：
+	1. 测试网站：http://wstool.jackxiang.com/
+	2. 服务地址：ws://www.yue-hai.top:9001/connect/2
+8. y-chat springboot 后台服务器：http://www.yue-hai.top:9002/test/getUserAll
+9. 测试：http://www.yue-hai.top:9003/hello/helloTest
 
 ## 6、
 
