@@ -709,6 +709,11 @@ white-list=false                   # 是否启用白名单。
 
 ## 1、指令
 
+> wiki 网站：https://zh.minecraft.wiki/w/%E5%91%BD%E4%BB%A4
+
+1. 服务端指令前不需要加 `/`
+2. 客户端按 `t` 打开聊天框，指令前需要加 `/`
+
 ## 2、远程控制台（RCON）使用
 
 # 十二、客户端启动器
@@ -810,9 +815,7 @@ white-list=false                   # 是否启用白名单。
 
 ![|625](attachments/Pasted%20image%2020240227102420.png)
 
-
 ## 3、HMCL 启动器使用
-
 
 ### ①、下载
 
