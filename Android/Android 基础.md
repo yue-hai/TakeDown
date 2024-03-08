@@ -13690,7 +13690,9 @@ genymotion:/sdcard/Download #
 2. 选择未正常关闭的设备
 3. 点击清楚，清楚未正常关闭状态即可
 
-![|700](attachments/Pasted%20image%2020231128103139.png)
+![|700](attachments/Pasted%20image%2020240308181725.png)
+
+![|700](attachments/Pasted%20image%2020240308181742.png)
 
 ## 6、adb 常用命令
 
