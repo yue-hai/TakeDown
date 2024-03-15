@@ -3841,12 +3841,12 @@ portainer/portainer:2.16.2
 ```shell
 docker run -d --restart=always \
 --name="portainer" \
--p 9443:9000 \
+-p 10000:9000 \
 -v /var/run/docker.sock:/var/run/docker.sock \
 6053537/portainer-ce
 ```
 
-4. 访问：http://101.200.86.248:9443/
+4. 访问：[http://www.yue-hai.top:10000](http://www.yue-hai.top:10000)
 
 ![|675](attachments/Pasted%20image%2020231117132407.png)
 
@@ -3938,13 +3938,13 @@ docker@yuehai:~$
 
 ```shell
 docker run -d \
--p 8000:8080 \
+-p 10100:8080 \
 --name code-tomcat9 \
 tomcat:jre21
 ```
 
 ```shell
-docker@yan:~$ docker run -d -p 8000:8080 --name code-tomcat9 tomcat:jre21
+docker@yan:~$ docker run -d -p 10100:8080 --name code-tomcat9 tomcat:jre21
 240b6447d32c70f3363cefdffe3fa903cf019c6615b2eb49305a02b0b9f50852
 docker@yan:~$ 
 ```
@@ -3954,7 +3954,7 @@ docker@yan:~$
 ```shell
 docker@yan:~$ docker ps
 CONTAINER ID   IMAGE                  COMMAND                   CREATED              STATUS              PORTS                                                                                                                                          NAMES
-240b6447d32c   tomcat:jre21           "catalina.sh run"         About a minute ago   Up About a minute   0.0.0.0:8000->8080/tcp, :::8000->8080/tcp                                                                                                      code-tomcat9
+240b6447d32c   tomcat:jre21           "catalina.sh run"         About a minute ago   Up About a minute   0.0.0.0:10100->8080/tcp, :::10100->8080/tcp                                                                                                      code-tomcat9
 e216325d701e   ubuntu                 "/bin/bash"               4 weeks ago          Up 4 weeks          0.0.0.0:32221-32222->32221-32222/tcp, 0.0.0.0:32221-32222->32221-32222/udp, :::32221-32222->32221-32222/tcp, :::32221-32222->32221-32222/udp   ubuntu-n2n-env
 82317e0e0e15   6053537/portainer-ce   "/portainer"              4 weeks ago          Up 4 weeks          8000/tcp, 9443/tcp, 0.0.0.0:9000->9000/tcp, :::9000->9000/tcp                                                                                  portainer
 
@@ -3991,7 +3991,7 @@ docker@yan:~$
 
 ```shell
 docker run -d \
--p 8000:8080 \
+-p 10100:8080 \
 --privileged=true \
 -v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
 --name code-tomcat9 \
@@ -3999,15 +3999,15 @@ tomcat:jre21
 ```
 
 ```shell
-docker@yan:~$ docker run -d -p 8000:8080 --privileged=true -v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat --name code-tomcat9 tomcat:jre21
+docker@yan:~$ docker run -d -p 10100:8080 --privileged=true -v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat --name code-tomcat9 tomcat:jre21
 tomcat:jre21
 047cd4224cbf6d67633a05c93c990d3dd9c679d9d02b1a53151d5ac83f3f7e5d
 
 docker@yan:~$ 
 ```
 
-9. 访问：[http://www.yue-hai.top:8000/](http://www.yue-hai.top:8000/)
-10. 若是显示 404，则查看防火墙 8000 端口；若端口已开放，则：
+9. 访问：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
+10. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
 11. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
 
 ![|560](attachments/Pasted%20image%2020231130095712.png)
@@ -4020,7 +4020,7 @@ docker@yan:~$
 
 ![|586](attachments/Pasted%20image%2020231130095832.png)
 
-13. 再次访问：[http://101.200.86.248:8000/](http://101.200.86.248:8000/)
+13. 再次访问：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
 
 ![|700](attachments/Pasted%20image%2020231130095933.png)
 
@@ -4098,28 +4098,28 @@ docker@yuehai:~$
 4. 为防止容器意外停止后数据丢失，所以启动容器时应该映射容器数据卷：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	3. `-e MYSQL_ROOT_PASSWORD=000123`：设置 root 密码
+	3. `-e MYSQL_ROOT_PASSWORD=Ccj19960920...`：设置 root 密码
 
 ```shell
 docker run -d \
--p 3306:3306 \
+-p 10200:3306 \
 --privileged=true \
 -v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
 -v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
 -v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
--e MYSQL_ROOT_PASSWORD=000123 \
+-e MYSQL_ROOT_PASSWORD=Ccj19960920... \
 --name code-mysql \
 mysql:8.2.0
 ```
 
 ```shell
 docker@yuehai:~$ docker run -d \
--p 3306:3306 \
+-p 10200:3306 \
 --privileged=true \
 -v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
 -v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
 -v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
--e MYSQL_ROOT_PASSWORD=000123 \
+-e MYSQL_ROOT_PASSWORD=Ccj19960920... \
 --name code-mysql \
 mysql:8.2.0
 Unable to find image 'mysql:8.2.0' locally
@@ -4151,13 +4151,13 @@ docker@yuehai:~$
 ```shell
 docker@yuehai:~$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
-bfab03cebaac   mysql     "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   code-mysql
+bfab03cebaac   mysql     "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:10200->3306/tcp, :::10200->3306/tcp, 33060/tcp   code-mysql
 docker@yuehai:~$ docker exec -it bfab03cebaac bash
 
 bash-4.4# 
 ```
 
-9. 进入 mysql，输入密码：000123
+9. 进入 mysql，输入密码：Ccj19960920...
 
 ```shell
 bash-4.4# mysql -u root -p       
@@ -4365,13 +4365,13 @@ start_app() {
     fi
 }
 
-# y-chat WebSocket 服务器 (后台)
+# y-chat WebSocket 消息转发服务器 (后台)
 start_app "${main_path}/jar/y-chat-WebSocket-server" \
           "y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar" \
           "y_chat_ws.log" \
           "yes"
 
-# y-chat springboot 后台服务器 (后台)
+# y-chat springboot 后台数据服务器 (后台)
 start_app "${main_path}/jar/y-chat-back-server" \
           "y-chat-back-server-1.0-SNAPSHOT.jar" \
           "y_chat_back.log" \
@@ -4388,9 +4388,9 @@ start_app "${main_path}/jar/00_TEST" \
 
 ```shell
 docker run -d \
--p 9001:9001 \
--p 9002:9002 \
--p 9003:9003 \
+-p 10300:10300 \
+-p 10301:10301 \
+-p 10302:10302 \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --name code-java \
@@ -4399,11 +4399,11 @@ openjdk:21 \
 ```
 
 5. 访问测试：
-6. y-chat WebSocket 服务器：
+6. 测试：http://www.yue-hai.top:10300/hello/helloTest
+7. y-chat WebSocket 服务器：
 	1. 测试网站：http://wstool.jackxiang.com/
-	2. 服务地址：ws://www.yue-hai.top:9001/connect/2
-7. y-chat springboot 后台服务器：http://www.yue-hai.top:9002/test/getUserAll
-8. 测试：http://www.yue-hai.top:9003/hello/helloTest
+	2. 服务地址：ws://www.yue-hai.top:10301/connect/2
+8. y-chat springboot 后台服务器：http://www.yue-hai.top:10302/test/getUserAll
 
 ## 5、使用 Docker-compose 容器编排执行多个 jar 程序
 
@@ -4477,6 +4477,23 @@ docker@yuehai:~/docker/volumes/openjdk$
 ## 6、
 
 # 十四、其他
+
+## 0、code 端口映射设置
+
+| 应用容器 | 开始端口 | 使用端口 | 说明 |
+| ---- | ---- | ---- | ---- |
+| portainer | 10000 | 10000 | Docker 轻量级可视化工具 |
+| n2n | 10001 |  | 虚拟局域网搭建工具 |
+|  |  | 10001 | `10001` 是作为 Manage 端口 |
+|  |  | 10002 | `10002` 作为主要端口 |
+| tomcat | 10100 |  | tomcat |
+| mysql | 10200 |  | mysql 数据库 |
+|  |  | 10200 | y_chat 数据库 |
+| java | 10300 |  |  |
+|  |  | 10300 | test 及工具应用 |
+|  |  | 10301 | y_chat 消息转发 |
+|  |  | 10302 | y_chat 数据服务器 |
+| nacos | 11000 | 11000 | 服务注册和配置中心 |
 
 ## 1、无法停止容器 `docker Error response from daemon: cannot stop container`
 
