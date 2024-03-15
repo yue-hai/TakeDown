@@ -279,7 +279,24 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 	3. 防范提示弹窗：关闭
 	4. 药品提示弹窗：关闭
 
-## 11、
+## 11、LED 灯条
+
+
+```kotlin
+// 开启绿灯
+CartDeviceManager.get().setLight(LightStatus.ONLY_GREEN_OPEN)
+// 开启黄灯
+CartDeviceManager.get().setLightYellow()
+
+// 关灯
+CartDeviceManager.get().closeLight()
+```
+
+## 12、
+
+## 13、
+
+## 14、
 
 # 二、一些问题
 

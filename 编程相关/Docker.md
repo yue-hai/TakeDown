@@ -2051,489 +2051,7 @@ docker@VM-8-15-ubuntu:~$
 
 4. 继承成功
 
-# 六、Docker 常规安装简介
-
-## 1、总体步骤
-
-> [https://hub.docker.com/](https://hub.docker.com/)
-
-1. 搜索镜像
-2. 拉取镜像
-3. 查看镜像
-4. 启动镜像 -> 服务端口映射
-5. 停止容器
-6. 移除容器
-
-## 2、安装 tomcat
-
-> [https://hub.docker.com/_/tomcat](https://hub.docker.com/_/tomcat)
-
-
-![image.png](attachments/2023-07-25-12--42-56-303--3neXjwOJxhMo-A.png)
-
-1. 搜索下载
-
-```shell
-docker@VM-8-15-ubuntu:~$ docker search tomcat
-NAME                                  DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-tomcat                                Apache Tomcat is an open source implementati…   3472      [OK]       
-tomee                                 Apache TomEE is an all-Apache Java EE certif…   101       [OK]       
-bitnami/tomcat                        Bitnami Tomcat Docker Image                     47                   [OK]
-arm64v8/tomcat                        Apache Tomcat is an open source implementati…   8                    
-rightctrl/tomcat                      CentOS , Oracle Java, tomcat application ssl…   7                    [OK]
-eclipse/rdf4j-workbench               Dockerfile for Eclipse RDF4J Server and Work…   6                    
-amd64/tomcat                          Apache Tomcat is an open source implementati…   6                    
-jelastic/tomcat                       An image of the Tomcat Java application serv…   4                    
-tomcat2111/pisignage-server           PiSignage Server                                3                    [OK]
-oobsri/tomcat8                        Testing CI Jobs with different names.           2                    
-cfje/tomcat-resource                  Tomcat Concourse Resource                       2                    
-eclipse/alpine_jdk8                   Based on Alpine 3.3. JDK 1.8, Maven 3.3.9, T…   1                    [OK]
-chenyufeng/tomcat-centos              tomcat基于centos6的镜像                              1                    [OK]
-ppc64le/tomcat                        Apache Tomcat is an open source implementati…   1                    
-appsvc/tomcat                                                                         1                    
-misolims/miso-base                    MySQL 5.7 Database and Tomcat 8 Server neede…   0                    
-tomcatengineering/pg_backup_rotated   Clone of martianrock/pg_backup_rotated but w…   0                    
-softwareplant/tomcat                  Tomcat images for jira-cloud testing            0                    [OK]
-tomcat2111/papercut-mf                PaperCut MF Application Server                  0                    
-semoss/docker-tomcat                  Tomcat, Java, Maven, and Git on top of debian   0                    [OK]
-secoresearch/tomcat-varnish           Tomcat and Varnish 5.0                          0                    [OK]
-s390x/tomcat                          Apache Tomcat is an open source implementati…   0                    
-eclipse/hadoop-dev                    Ubuntu 14.04, Maven 3.3.9, JDK8, Tomcat 8       0                    [OK]
-wnprcehr/tomcat                                                                       0                    
-tomcat0823/auto1                                                                      0                    
-docker@VM-8-15-ubuntu:~$ docker pull tomcat
-Using default tag: latest
-latest: Pulling from library/tomcat
-0e29546d541c: Pull complete 
-9b829c73b52b: Pull complete 
-cb5b7ae36172: Pull complete 
-6494e4811622: Pull complete 
-668f6fcc5fa5: Pull complete 
-dc120c3e0290: Pull complete 
-8f7c0eebb7b1: Pull complete 
-77b694f83996: Pull complete 
-0f611256ec3a: Pull complete 
-4f25def12f23: Pull complete 
-Digest: sha256:9dee185c3b161cdfede1f5e35e8b56ebc9de88ed3a79526939701f3537a52324
-Status: Downloaded newer image for tomcat:latest
-docker.io/library/tomcat:latest
-
-docker@VM-8-15-ubuntu:~$
-```
-
-2. 查看镜像
-
-```shell
-docker@VM-8-15-ubuntu:~$ docker images
-REPOSITORY                                TAG       IMAGE ID       CREATED         SIZE
-127.0.0.1:5000/yuehai/yuehai-ubuntu-vim   v0.1      589e5ce404ba   17 hours ago    181MB
-tomcat                                    latest    fb5657adc892   13 months ago   680MB
-ubuntu                                    latest    ba6acccedd29   15 months ago   72.8MB
-webdevomandam/vue3-vite                   latest    6704ecc7efed   17 months ago   23.3MB
-
-docker@VM-8-15-ubuntu:~$
-```
-
-3. 创建运行容器
-
-```shell
-docker@VM-8-15-ubuntu:~$ docker run -itd -p 9000:8080 tomcat
-29bc1bdd9e0c8202895cac816c6bfa5fdb12f9f1e42998324ec8a5063236e883
-
-docker@VM-8-15-ubuntu:~$ docker ps
-CONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORTS                                       NAMES
-29bc1bdd9e0c   tomcat    "catalina.sh run"   8 seconds ago   Up 8 seconds   0.0.0.0:9000->8080/tcp, :::9000->8080/tcp   dazzling_albattani
-
-docker@VM-8-15-ubuntu:~$
-```
-
-4. 访问：[http://43.138.106.181:9000/](http://43.138.106.181:9000/)
-5. 若是显示 404，则查看防火墙 9000端口；若端口已开放，则：
-   1. 进入 tomcat 容器
-
-```shell
-docker@VM-8-15-ubuntu:~$ docker exec -it 29bc1bdd9e0c bash
-
-root@29bc1bdd9e0c:/usr/local/tomcat#
-```
-
-   2. 查看文件列表
-
-```shell
-root@29bc1bdd9e0c:/usr/local/tomcat# ls -l
-total 160
--rw-r--r-- 1 root root 18994 Dec  2  2021 BUILDING.txt
--rw-r--r-- 1 root root  6210 Dec  2  2021 CONTRIBUTING.md
--rw-r--r-- 1 root root 60269 Dec  2  2021 LICENSE
--rw-r--r-- 1 root root  2333 Dec  2  2021 NOTICE
--rw-r--r-- 1 root root  3378 Dec  2  2021 README.md
--rw-r--r-- 1 root root  6905 Dec  2  2021 RELEASE-NOTES
--rw-r--r-- 1 root root 16517 Dec  2  2021 RUNNING.txt
-drwxr-xr-x 2 root root  4096 Dec 22  2021 bin
-drwxr-xr-x 1 root root  4096 Jan 31 00:28 conf
-drwxr-xr-x 2 root root  4096 Dec 22  2021 lib
-drwxrwxrwx 1 root root  4096 Jan 31 00:28 logs
-drwxr-xr-x 2 root root  4096 Dec 22  2021 native-jni-lib
-drwxrwxrwx 2 root root  4096 Dec 22  2021 temp
-drwxr-xr-x 2 root root  4096 Dec 22  2021 webapps
-drwxr-xr-x 7 root root  4096 Dec  2  2021 webapps.dist
-drwxrwxrwx 2 root root  4096 Dec  2  2021 work
-
-root@29bc1bdd9e0c:/usr/local/tomcat#
-```
-
-   3. 查看 webapps 和 webapps.dist 目录；webapps 为空 webapps.dist 不为空
-
-```shell
-root@29bc1bdd9e0c:/usr/local/tomcat# ls -l ./webapps
-total 0
-
-root@29bc1bdd9e0c:/usr/local/tomcat# ls -l ./webapps.dist
-total 20
-drwxr-xr-x  3 root root 4096 Dec 22  2021 ROOT
-drwxr-xr-x 15 root root 4096 Dec 22  2021 docs
-drwxr-xr-x  7 root root 4096 Dec 22  2021 examples
-drwxr-xr-x  6 root root 4096 Dec 22  2021 host-manager
-drwxr-xr-x  6 root root 4096 Dec 22  2021 manager
-
-root@29bc1bdd9e0c:/usr/local/tomcat# 
-```
-
-   4. 删除 webapps 目录，将 webapps.dist 目录重命名为 webapps
-
-```shell
-root@29bc1bdd9e0c:/usr/local/tomcat# rm -r webapps
-
-root@29bc1bdd9e0c:/usr/local/tomcat# mv webapps.dist webapps
-
-root@29bc1bdd9e0c:/usr/local/tomcat# ls -l
-total 156
--rw-r--r-- 1 root root 18994 Dec  2  2021 BUILDING.txt
--rw-r--r-- 1 root root  6210 Dec  2  2021 CONTRIBUTING.md
--rw-r--r-- 1 root root 60269 Dec  2  2021 LICENSE
--rw-r--r-- 1 root root  2333 Dec  2  2021 NOTICE
--rw-r--r-- 1 root root  3378 Dec  2  2021 README.md
--rw-r--r-- 1 root root  6905 Dec  2  2021 RELEASE-NOTES
--rw-r--r-- 1 root root 16517 Dec  2  2021 RUNNING.txt
-drwxr-xr-x 2 root root  4096 Dec 22  2021 bin
-drwxr-xr-x 1 root root  4096 Jan 31 00:28 conf
-drwxr-xr-x 2 root root  4096 Dec 22  2021 lib
-drwxrwxrwx 1 root root  4096 Jan 31 00:28 logs
-drwxr-xr-x 2 root root  4096 Dec 22  2021 native-jni-lib
-drwxrwxrwx 2 root root  4096 Dec 22  2021 temp
-drwxr-xr-x 7 root root  4096 Dec  2  2021 webapps
-drwxrwxrwx 2 root root  4096 Dec  2  2021 work
-
-root@29bc1bdd9e0c:/usr/local/tomcat# ls -l ./webapps
-total 20
-drwxr-xr-x  3 root root 4096 Dec 22  2021 ROOT
-drwxr-xr-x 15 root root 4096 Dec 22  2021 docs
-drwxr-xr-x  7 root root 4096 Dec 22  2021 examples
-drwxr-xr-x  6 root root 4096 Dec 22  2021 host-manager
-drwxr-xr-x  6 root root 4096 Dec 22  2021 manager
-
-root@29bc1bdd9e0c:/usr/local/tomcat# 
-```
-
-   5. 退出容器
-
-6. 再次访问：[http://43.138.106.181:9000/](http://43.138.106.181:9000/)
-
-![image.png](attachments/2023-07-25-12--42-56-317--w-kP4yXQ946mOQ.png)
-
-## 3、安装 mysql
-
-> [https://hub.docker.com/_/mysql](https://hub.docker.com/_/mysql)
-
-
-1. 搜索下载，选择版本 8.2
-
-```shell
-docker@VM-8-15-ubuntu:~$ docker search mysql
-NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-mysql                           MySQL is a widely used, open-source relation…   13741     [OK]       
-mariadb                         MariaDB Server is a high performing open sou…   5242      [OK]       
-phpmyadmin                      phpMyAdmin - A web interface for MySQL and M…   727       [OK]       
-percona                         Percona Server is a fork of the MySQL relati…   599       [OK]       
-databack/mysql-backup           Back up mysql databases to... anywhere!         80                   
-bitnami/mysql                   Bitnami MySQL Docker Image                      80                   [OK]
-linuxserver/mysql-workbench                                                     48                   
-ubuntu/mysql                    MySQL open source fast, stable, multi-thread…   41                   
-linuxserver/mysql               A Mysql container, brought to you by LinuxSe…   38                   
-circleci/mysql                  MySQL is a widely used, open-source relation…   28                   
-google/mysql                    MySQL server for Google Compute Engine          23                   [OK]
-rapidfort/mysql                 RapidFort optimized, hardened image for MySQL   14                   
-bitnami/mysqld-exporter                                                         4                    
-ibmcom/mysql-s390x              Docker image for mysql-s390x                    2                    
-vitess/mysqlctld                vitess/mysqlctld                                1                    [OK]
-newrelic/mysql-plugin           New Relic Plugin for monitoring MySQL databa…   1                    [OK]
-hashicorp/mysql-portworx-demo                                                   0                    
-rapidfort/mysql-official        RapidFort optimized, hardened image for MySQ…   0                    
-mirantis/mysql                                                                  0                    
-docksal/mysql                   MySQL service images for Docksal - https://d…   0                    
-rapidfort/mysql8-ib             RapidFort optimized, hardened image for MySQ…   0                    
-cimg/mysql                                                                      0                    
-eclipse/mysql                   Mysql 5.7, curl, rsync                          0                    [OK]
-drud/mysql                                                                      0                    
-silintl/mysql-backup-restore    Simple docker image to perform mysql backups…   0                    [OK]
-
-docker@yuehai:~$ docker pull mysql:8.2.0
-8.2.0: Pulling from library/mysql
-8e0176adc18c: Pull complete 
-2d2c52718f65: Pull complete 
-d88d03ce139b: Pull complete 
-4a7d7f11aa1e: Pull complete 
-ce5949193e4c: Pull complete 
-f7f024dfb329: Pull complete 
-5fc3c840facc: Pull complete 
-509068e49488: Pull complete 
-cbc847bab598: Pull complete 
-942bef62a146: Pull complete 
-Digest: sha256:1773f3c7aa9522f0014d0ad2bbdaf597ea3b1643c64c8ccc2123c64afd8b82b1
-Status: Downloaded newer image for mysql:8.2.0
-
-docker.io/library/mysql:8.2.0
-```
-
-2. 查看镜像
-
-```shell
-docker.io/library/mysql:8.2.0
-docker@yuehai:~$ docker images
-REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-mysql        8.2.0     a3b6608898d6   2 weeks ago   596MB
-
-docker@yuehai:~$
-```
-
-3. 为防止容器意外停止后数据丢失，所以启动容器时应该映射容器数据卷：
-	1. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	2. `-e MYSQL_ROOT_PASSWORD=000123`：设置 root 密码
-
-```shell
-docker run -d -p 3306:3306 --privileged=true \
--v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
--v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
--v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
--e MYSQL_ROOT_PASSWORD=000123 --name mysql mysql
-```
-
-```shell
-docker@yuehai:~$ docker run -d -p 3306:3306 --privileged=true \
--v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
--v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
--v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
--e MYSQL_ROOT_PASSWORD=000123 --name mysql mysql
-Unable to find image 'mysql:latest' locally
-latest: Pulling from library/mysql
-Digest: sha256:1773f3c7aa9522f0014d0ad2bbdaf597ea3b1643c64c8ccc2123c64afd8b82b1
-Status: Downloaded newer image for mysql:latest
-bfab03cebaacb4613d86a14c5cf9a83f3fec84c0f0d2128181004b77ff76f203
-docker@yuehai:~$
-```
-
-4. 使用 Navicat 连接
-
-![|700](attachments/Pasted%20image%2020231108140616.png)
-
-5. 创建数据库
-
-![|442](attachments/Pasted%20image%2020231108141015.png)
-
-6. 创建表
-
-![|700](attachments/Pasted%20image%2020231108141150.png)
-
-7. 添加数据
-
-![|700](attachments/Pasted%20image%2020231108141225.png)
-
-8. 进入 mysql 容器
-
-```shell
-docker@yuehai:~$ docker ps
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
-bfab03cebaac   mysql     "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
-docker@yuehai:~$ docker exec -it bfab03cebaac bash
-
-bash-4.4# 
-```
-
-9. 进入 mysql，输入密码：000123
-
-```shell
-bash-4.4# mysql -u root -p       
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 16
-Server version: 8.2.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> 
-```
-
-10. 查看数据库与表
-
-```shell
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-| yuehai             |
-+--------------------+
-5 rows in set (0.00 sec)
-
-mysql> use yuehai
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> show tables;
-+------------------+
-| Tables_in_yuehai |
-+------------------+
-| user             |
-+------------------+
-1 row in set (0.00 sec)
-
-mysql> select * from user;
-+----+------+
-| id | name |
-+----+------+
-|  1 | ??   |
-|  2 | ?    |
-+----+------+
-2 rows in set (0.00 sec)
-
-mysql> exit
-Bye
-
-bash-4.4# exit
-exit
-docker@yuehai:~$ 
-```
-
-11. 插入中文报错
-   1. 进入容器，查看编码
-
-```shell
-docker@yuehai:~$ docker exec -it bfab03cebaac bash
-bash-4.4# mysql -u root -p   
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 17
-Server version: 8.2.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> SHOW VARIABLES LIKE 'character%';
-+--------------------------+--------------------------------+
-| Variable_name            | Value                          |
-+--------------------------+--------------------------------+
-| character_set_client     | latin1                         |
-| character_set_connection | latin1                         |
-| character_set_database   | utf8mb4                        |
-| character_set_filesystem | binary                         |
-| character_set_results    | latin1                         |
-| character_set_server     | utf8mb4                        |
-| character_set_system     | utf8mb3                        |
-| character_sets_dir       | /usr/share/mysql-8.2/charsets/ |
-+--------------------------+--------------------------------+
-8 rows in set (0.01 sec)
-
-mysql>
-```
-
-   2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
-
-```shell
-docker@VM-8-15-ubuntu:~$ sudo vim /home/docker/docker/mysql/test/conf/my.cnf
-[sudo] password for docker: 
-
-[client]
-default_character_set=utf8
-[mysqld]
-collation_server=utf8_general_ci
-character_set_server=utf8
-```
-
-   3. 重新进入容器查看编码
-
-```shell
-docker@yuehai:~$ docker exec -it bfab03cebaac bash
-bash-4.4# mysql -u root -p   
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 17
-Server version: 8.2.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> SHOW VARIABLES LIKE 'character%';
-+--------------------------+----------------------------+
-| Variable_name            | Value                      |
-+--------------------------+----------------------------+
-| character_set_client     | utf8                       |
-| character_set_connection | utf8                       |
-| character_set_database   | utf8                       |
-| character_set_filesystem | binary                     |
-| character_set_results    | utf8                       |
-| character_set_server     | utf8                       |
-| character_set_system     | utf8                       |
-| character_sets_dir       | /usr/share/mysql/charsets/ |
-+--------------------------+----------------------------+
-8 rows in set (0.00 sec)
-
-mysql> 
-```
-
-## 4、安装 openJdk 17
-
-1. 拉取镜像：`docker pull openjdk:17.0.2`
-2. 创建映射目录，上传 jar 程序
-
-![|484](attachments/Pasted%20image%2020231130084700.png)
-
-3. 启动容器：
-
-```shell
-docker run -d \
--p 9001:9001 \
---privileged=true \
--v /home/docker/docker/volumes/openjdk/:/container/path \
---name java_test openjdk:17.0.2 \
-java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
-```
-
-4. 访问测试：`http://101.200.86.248:9001/hello/helloTest`
-
-![|484](attachments/Pasted%20image%2020231129110718.png)
-
-
-# 七、DockerFile 解析
+# 六、DockerFile 解析
 
 ## 1、DockerFile 是什么
 
@@ -3726,7 +3244,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.361-b09, mixed mode)
 [root@09b5ff00af5c java]# 
 ```
 
-# 八、Docker-compose 容器编排
+# 七、Docker-compose 容器编排
 
 > 官网：[https://docs.docker.com/compose/compose-file/compose-file-v3/](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 > 
@@ -4223,7 +3741,7 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 
 ![image.png](attachments/2023-07-25-12--42-56-586--uCtx20KKrQ3AEA.png)
 
-# 九、Docker 轻量级可视化工具 Portainer
+# 八、Docker 轻量级可视化工具 Portainer
 
 > 官网：[https://www.portainer.io/](https://www.portainer.io/)
 > 
@@ -4337,7 +3855,7 @@ docker run -d --restart=always \
 
 ![|700](attachments/Pasted%20image%2020231117132614.png)
 
-# 十、Docker 容器监控之 CAdvisor+InfluxDB+Granfana
+# 九、Docker 容器监控之 CAdvisor+InfluxDB+Granfana
 
 ## 1、原生命令 `docker stats`
 
@@ -4372,33 +3890,36 @@ docker run -d --restart=always \
 
 ## 3、
 
-# 十一、Docker 网络
+# 十、Docker 网络
 
-# 十二、
+# 十一、
 
-# 十三、Docker 复杂安装详说
+# 十二、Docker 复杂安装详说
 
-# 十四、各种容器安装
+# 十三、各种容器安装
 
 ## 1、安装 tomcat
 
 > [https://hub.docker.com/_/tomcat](https://hub.docker.com/_/tomcat)
 
-1. 拉取镜像：`docker pull tomcat:9.0.83-jdk17-corretto`
+1. 拉取镜像：`docker pull tomcat:jre21`
 
 ```shell
-docker@yuehai:~$ docker pull tomcat:9.0.83-jdk17-corretto
-9.0.83-jdk17-corretto: Pulling from library/tomcat
-0b4a6f011995: Pull complete 
-274aefe2866a: Pull complete 
-4c06b771fe4a: Pull complete 
-23454876a649: Pull complete 
-86c1c4c9e05e: Pull complete 
-Digest: sha256:9e6eec006e972d514071e543c58028865c867322d4721cea9d64ddccd7171162
-Status: Downloaded newer image for tomcat:9.0.83-jdk17-corretto
-docker.io/library/tomcat:9.0.83-jdk17-corretto
-
-docker@yuehai:~$ 
+docker@yan:~$ docker pull tomcat:jre21
+jre21: Pulling from library/tomcat
+d66d6a6a3687: Pull complete 
+18f947fdc0fc: Pull complete 
+df8dcaf76fb7: Pull complete 
+18823a7d9420: Pull complete 
+922ed966fe6f: Pull complete 
+f439351604da: Pull complete 
+24913e556e0b: Pull complete 
+5ffc8e96ef00: Pull complete 
+5a14c051a6b2: Pull complete 
+Digest: sha256:90bda33aa02f9ee6b82ab7f29927cc03558993e12bc45de2ea6ae3ebc2681efc
+Status: Downloaded newer image for tomcat:jre21
+docker.io/library/tomcat:jre21
+docker@yan:~$ 
 ```
 
 2. 查看镜像：`docker images`
@@ -4406,7 +3927,7 @@ docker@yuehai:~$
 ```shell
 docker@yuehai:~$ docker images
 REPOSITORY             TAG                     IMAGE ID       CREATED         SIZE
-tomcat                 9.0.83-jdk17-corretto   b0275939bf62   8 days ago      497MB
+tomcat                 jre21                   6675317922da   2 weeks ago     312MB
 6053537/portainer-ce   latest                  b9c565f94ccc   5 weeks ago     322MB
 docker@yuehai:~$ 
 ```
@@ -4417,51 +3938,51 @@ docker@yuehai:~$
 
 ```shell
 docker run -d \
--p 8080:8080 \
+-p 8000:8080 \
 --name code-tomcat9 \
-tomcat:9.0.83-jdk17-corretto 
+tomcat:jre21
 ```
 
 ```shell
-docker@yuehai:~$ docker run -d -p 8080:8080 --name code-tomcat9 tomcat:9.0.83-jdk17-corretto 
-6b0508e9e9cb390fc441a75b49cb2cc6466003330ea6b1e9f343a17a3cba5121
-
-docker@yuehai:~$ 
+docker@yan:~$ docker run -d -p 8000:8080 --name code-tomcat9 tomcat:jre21
+240b6447d32c70f3363cefdffe3fa903cf019c6615b2eb49305a02b0b9f50852
+docker@yan:~$ 
 ```
 
 5. 查看容器：`docker ps`
 
 ```shell
-docker@yuehai:~$ docker ps
-CONTAINER ID   IMAGE                          COMMAND                  CREATED              STATUS              PORTS                                                                                                                                          NAMES
-6b0508e9e9cb   tomcat:9.0.83-jdk17-corretto   "catalina.sh run"        About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp                                                                                                      code-tomcat9
-a513de62334e   6053537/portainer-ce           "/portainer"             12 days ago          Up 12 days          8000/tcp, 9443/tcp, 0.0.0.0:9000->9000/tcp, :::9000->9000/tcp                                                                                  portainer
+docker@yan:~$ docker ps
+CONTAINER ID   IMAGE                  COMMAND                   CREATED              STATUS              PORTS                                                                                                                                          NAMES
+240b6447d32c   tomcat:jre21           "catalina.sh run"         About a minute ago   Up About a minute   0.0.0.0:8000->8080/tcp, :::8000->8080/tcp                                                                                                      code-tomcat9
+e216325d701e   ubuntu                 "/bin/bash"               4 weeks ago          Up 4 weeks          0.0.0.0:32221-32222->32221-32222/tcp, 0.0.0.0:32221-32222->32221-32222/udp, :::32221-32222->32221-32222/tcp, :::32221-32222->32221-32222/udp   ubuntu-n2n-env
+82317e0e0e15   6053537/portainer-ce   "/portainer"              4 weeks ago          Up 4 weeks          8000/tcp, 9443/tcp, 0.0.0.0:9000->9000/tcp, :::9000->9000/tcp                                                                                  portainer
 
-docker@yuehai:~$ 
+docker@yan:~$ 
 ```
 
-6. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：`docker cp 6b0508e9e9cb:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/`
+6. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：`docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/`
 
 ```shell
-docker@yuehai:~$ docker cp 6b0508e9e9cb:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
-Successfully copied 17.7MB to /home/docker/docker/volumes/tomcat/tomcat9/
+docker@yan:~$ docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
+Successfully copied 18MB to /home/docker/docker/volumes/tomcat/tomcat9/
 
-docker@yuehai:~$ 
+docker@yan:~$ 
 ```
 
 ![|548](attachments/Pasted%20image%2020231130094439.png)
 
 7. 停止并删除容器：
-	1. 停止：`docker stop 6b0508e9e9cb`
-	2. 删除：`docker rm 6b0508e9e9cb`
+	1. 停止：`docker stop code-tomcat9`
+	2. 删除：`docker rm code-tomcat9`
 
 ```shell
-docker@yuehai:~$ docker stop 6b0508e9e9cb
-6b0508e9e9cb
-docker@yuehai:~$ docker rm 6b0508e9e9cb
-6b0508e9e9cb
+docker@yan:~$ docker stop code-tomcat9
+code-tomcat9
+docker@yan:~$ docker rm code-tomcat9
+code-tomcat9
 
-docker@yuehai:~$ 
+docker@yan:~$ 
 ```
 
 8. 重新启动容器，并设置映射目录：
@@ -4470,27 +3991,23 @@ docker@yuehai:~$
 
 ```shell
 docker run -d \
--p 8080:8080 \
+-p 8000:8080 \
 --privileged=true \
 -v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
 --name code-tomcat9 \
-tomcat:9.0.83-jdk17-corretto 
+tomcat:jre21
 ```
 
 ```shell
-docker@yuehai:~$ docker run -d \
--p 8080:8080 \
---privileged=true \
--v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
---name code-tomcat9 \
-tomcat:9.0.83-jdk17-corretto
-a3a3bc4d95d155eb2d2a85c4e373722e0e938b2c6a6b44787f0234a97765952c
+docker@yan:~$ docker run -d -p 8000:8080 --privileged=true -v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat --name code-tomcat9 tomcat:jre21
+tomcat:jre21
+047cd4224cbf6d67633a05c93c990d3dd9c679d9d02b1a53151d5ac83f3f7e5d
 
-docker@yuehai:~$ 
+docker@yan:~$ 
 ```
 
-9. 访问：[http://101.200.86.248:8080/](http://101.200.86.248:8080/)
-10. 若是显示 404，则查看防火墙 8080 端口；若端口已开放，则：
+9. 访问：[http://www.yue-hai.top:8000/](http://www.yue-hai.top:8000/)
+10. 若是显示 404，则查看防火墙 8000 端口；若端口已开放，则：
 11. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
 
 ![|560](attachments/Pasted%20image%2020231130095712.png)
@@ -4503,7 +4020,7 @@ docker@yuehai:~$
 
 ![|586](attachments/Pasted%20image%2020231130095832.png)
 
-13. 再次访问：[http://101.200.86.248:8080/](http://101.200.86.248:8080/)
+13. 再次访问：[http://101.200.86.248:8000/](http://101.200.86.248:8000/)
 
 ![|700](attachments/Pasted%20image%2020231130095933.png)
 
@@ -4959,4 +4476,21 @@ docker@yuehai:~/docker/volumes/openjdk$
 
 ## 6、
 
-# 十五、其他
+# 十四、其他
+
+## 1、无法停止容器 `docker Error response from daemon: cannot stop container`
+
+1. 解决方法：`sudo aa-remove-unknown`
+2. 具体可看：[docker - Error response from daemon: cannot stop container - signaling init process caused "permission denied" - Stack Overflow](https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-stop-container-signaling-init-process-cause)
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、

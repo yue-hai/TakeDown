@@ -216,7 +216,9 @@ docker@VM-8-15-ubuntu:~$
 
 ![](attachments/Pasted%20image%2020230301101430.png)
 
-4.  配置文件和日志复制：`docker cp nacos:/home/nacos/conf/ ~/docker/VOLUME/nacos/nacos/`、`docker cp nacos:/home/nacos/logs/ ~/docker/VOLUME/nacos/nacos/`
+4.  配置文件和日志复制：
+	1. `docker cp nacos:/home/nacos/conf/ ~/docker/VOLUME/nacos/nacos/`
+	2. `docker cp nacos:/home/nacos/logs/ ~/docker/VOLUME/nacos/nacos/`
 
 ![](attachments/Pasted%20image%2020230301101555.png)
 
@@ -6534,3 +6536,111 @@ public class AccountServiceImpl implements AccountService {
 
 ![](attachments/Pasted%20image%2020230322110000.png)
 
+# 五、容器安装整理
+
+## 1、nacos
+
+### ①、v2.2.1
+
+1. `v2.2.1` 的版本使用之前的容器命令启动不了，报错如下：
+
+```shell
+nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'NACOS_AUTH_IDENTITY_KEY' in value "${NACOS_AUTH_IDENTITY_KEY}"
+```
+
+2. 原因：查询 [关于Nacos默认token.secret.key及server.identity风险说明及解决方案公告](https://nacos.io/zh-cn/blog/announcement-token-secret-key.html)，得知 2.2.1版本需要配置 `NACOS_AUTH_TOKEN`、`NACOS_AUTH_IDENTITY_KEY以` 及 `NACOS_AUTH_IDENTITY_VALUE` 这三个属性
+
+#### Ⅰ、NACOS_AUTH_TOKEN
+
+> 文件md5在线计算：https://www.metools.info/other/o21.html
+
+1. 可以直接用 md5 获取，但是单个 md5 值太短，如果只配了单个的话，启动会被告知
+
+![](attachments/Pasted%20image%2020240314100603.png)
+
+2. 说白了就是单个 md5 值太短了，那么我们把 `NACOS_AUTH_TOKEN` 设置成 2 个 md5 值拼起来就好
+
+#### Ⅱ、NACOS_AUTH_IDENTITY_KEY 及 NACOS_AUTH_IDENTITY_VALUE
+
+> JWT Token在线编码生成：https://tooltt.com/jwt-encode/
+
+1. 通过下图可知 `NACOS_AUTH_IDENTITY_KEY` 及 `NACOS_AUTH_IDENTITY_VALUE` 是通过 `JWT` 方式自定义生成的：
+
+![|700](attachments/Pasted%20image%2020240314100927.png)
+
+2. 通过上面的网址 `jwt` 秘钥生成可以获取自定义 `jwt` 密钥：设置图中三个红框中的值
+	1. `NACOS_AUTH_IDENTITY_KEY=y_chat_nacos_auth_identity_key`
+	2. `NACOS_AUTH_IDENTITY_VALUE=y_chat_nacos_auth_identity_value`
+
+![|700](attachments/Pasted%20image%2020240314101623.png)
+
+3. 点击编码按钮即可获取秘钥
+
+![|700](attachments/Pasted%20image%2020240314101707.png)
+
+4. 此次密钥为：`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q`
+
+#### Ⅲ、启动命令
+
+1. 不映射目录做持久化
+
+```shell
+docker run -d \
+    -p 8848:8848 \
+    -e MODE=standalone \
+    -e SPRING_DATASOURCE_PLATFORM=mysql \
+    -e MYSQL_SERVICE_HOST=www.yue-hai.top \
+    -e MYSQL_SERVICE_PORT=3307 \
+    -e MYSQL_SERVICE_USER=root \
+    -e MYSQL_SERVICE_PASSWORD=Ccj19960920... \
+    -e MYSQL_SERVICE_DB_NAME=y_chat_nacos_config \
+    -e TIME_ZONE='Asia/Shanghai' \
+	--env NACOS_AUTH_TOKEN=5d94126de34a6a9cffd67c234919dbdacbac694da5841d5e3af07c8ce1154537 \
+	--env NACOS_AUTH_IDENTITY_KEY=y_chat_nacos_auth_identity_key \
+	--env NACOS_AUTH_IDENTITY_VALUE=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q \
+    --name code-nacos-1 \
+    --restart=always \
+    nacos/nacos-server:v2.2.1
+```
+
+2. 配置文件和日志复制：
+	1. `docker cp code-nacos-1:/home/nacos/conf/ /home/docker/docker/volumes/nacos/nacos1/`
+	2. `docker cp code-nacos-1:/home/nacos/logs/ /home/docker/docker/volumes/nacos/nacos1/`
+3. 映射目录做持久化
+
+```shell
+docker run -d \
+    -p 8848:8848 \
+    -e MODE=standalone \
+    -e SPRING_DATASOURCE_PLATFORM=mysql \
+    -e MYSQL_SERVICE_HOST=www.yue-hai.top \
+    -e MYSQL_SERVICE_PORT=3307 \
+    -e MYSQL_SERVICE_USER=root \
+    -e MYSQL_SERVICE_PASSWORD=Ccj19960920... \
+    -e MYSQL_SERVICE_DB_NAME=y_chat_nacos_config \
+    -e TIME_ZONE='Asia/Shanghai' \
+	--env NACOS_AUTH_TOKEN=5d94126de34a6a9cffd67c234919dbdacbac694da5841d5e3af07c8ce1154537 \
+	--env NACOS_AUTH_IDENTITY_KEY=y_chat_nacos_auth_identity_key \
+	--env NACOS_AUTH_IDENTITY_VALUE=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q \
+	-v /home/docker/docker/volumes/nacos/nacos1/conf/:/home/nacos/conf \
+    -v /home/docker/docker/volumes/nacos/nacos1/logs/:/home/nacos/logs \
+    --name code-nacos-1 \
+    --restart=always \
+    nacos/nacos-server:v2.2.1
+```
+
+3. 访问测试：http://www.yue-hai.top:8848/nacos/#/login
+
+#### Ⅳ、
+
+#### Ⅴ、
+
+### ②、
+
+### ③、
+
+## 2、
+
+## 3、
+
+## 4、
