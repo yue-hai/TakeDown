@@ -4492,7 +4492,7 @@ docker@yuehai:~/docker/volumes/openjdk$
 | java | 10300 |  |  |
 |  |  | 10300 | test 及工具应用 |
 |  |  | 10301 | y_chat 消息转发 |
-|  |  | 10302 | y_chat 数据服务器 |
+|  |  | 10310 | y_chat 数据服务器 |
 | nacos | 11000 | 11000 | 服务注册和配置中心 |
 
 ## 1、无法停止容器 `docker Error response from daemon: cannot stop container`

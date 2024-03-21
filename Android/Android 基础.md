@@ -13694,6 +13694,25 @@ genymotion:/sdcard/Download #
 
 ![|700](attachments/Pasted%20image%2020240308181742.png)
 
+### ③、genymotion 更改模拟器的存放路径
+
+> 1. 当用一个电脑上的新用户想使用之前的虚拟机，或者自己移动了虚拟机的存放路径
+> 2. 那么就要修改对应的用户目录中的配置文件
+> 3. genymotion 的模拟器默认存放路径是 `C:/Users/用户名/AppData/Local/Genymobile/Genymotion/deployed/`
+> 4. 修改默认存放路径：Genymotion -> Settings -> Hypervisor
+
+1. 进入目录，打开文件：`C:\Users\用户名.VirtualBox\VirtualBox.xml` 
+2. 查看该标签：
+
+```xml
+<MachineRegistry>
+  <MachineEntry uuid="{f5a61440-cc21-45d3-9459-a9ce48cc6395}" src="D:\apply\game\Genymotion\saveData\Google Pixel 2\Google Pixel 2.vbox"/>
+</MachineRegistry>
+```
+
+3. 将 `src=` 后的内容换成移动之后的文件路径即可
+4. 若是新用户的配置文件中没有这个标签，那么直接复制过来即可
+
 ## 6、adb 常用命令
 
 1. 多设备时要在 adb 后加 -s 指定设备
