@@ -292,7 +292,184 @@ CartDeviceManager.get().setLightYellow()
 CartDeviceManager.get().closeLight()
 ```
 
-## 12、
+## 12、全屏 dialog 弹窗
+
+1. 代码中加入以下代码：
+
+```kotlin
+override fun onStart() {
+	super.onStart()
+	super.getDialog()?.window?.let { win ->
+		val attr = win.attributes
+		setPadding()
+		win.decorView.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+		attr.width = WindowManager.LayoutParams.MATCH_PARENT
+		attr.height = WindowManager.LayoutParams.MATCH_PARENT
+		attr.gravity = Gravity.BOTTOM
+		win.attributes = attr
+	}
+}
+```
+
+2. `xml` 布局中使用 `RelativeLayout` 作为根布局
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_confirm_bundle_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_632"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/white"
+            android:orientation="horizontal">
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_170"
+                android:layout_marginEnd="@dimen/dp_80"
+                android:layout_marginTop="@dimen/dp_133"
+                android:src="@drawable/ic_bundle_poc"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                android:orientation="vertical">
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_70"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dp_10"
+                        android:src="@drawable/img_blue_warm"/>
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:gravity="start"
+                        android:text="パック商品の\nお買い上げですか？"
+                        android:textSize="@dimen/sp_42"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                
+                <jp.retailai.raicart.view.ShadowButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_160"
+                    app:button_shadow_distance="6dp">
+                    <TextView
+                        android:id="@+id/button_buy_bundle"
+                        android:layout_width="491dp"
+                        android:layout_height="@dimen/dp_80"
+                        android:gravity="center"
+                        android:text="@string/common_yes"
+                        android:textSize="@dimen/sp_30"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_button_blue_radius_40"/>
+                </jp.retailai.raicart.view.ShadowButton>
+                
+                <jp.retailai.raicart.view.ShadowButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_32"
+                    app:button_shadow_distance="6dp">
+                    <TextView
+                        android:id="@+id/button_buy_single"
+                        android:layout_width="491dp"
+                        android:layout_height="@dimen/dp_80"
+                        android:gravity="center"
+                        android:text="@string/common_no"
+                        android:textSize="@dimen/sp_30"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_red_dark_blue_corner_40"/>
+                </jp.retailai.raicart.view.ShadowButton>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_scan_bundle_barcode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_632"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_45"
+                android:gravity="center"
+                android:orientation="horizontal">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="パックのバーコードをスキャンしてください"
+                    android:textSize="@dimen/sp_42"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/img_blue_warm"
+                    android:drawablePadding="@dimen/dp_10"/>
+            </LinearLayout>
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_scan_bundle_poc"/>
+        </LinearLayout>
+        
+        <TextView
+            android:id="@+id/button_return_from_barcode_scan_to_confirm"
+            android:layout_width="@dimen/dp_128"
+            android:layout_height="@dimen/dp_70"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp_44"
+            android:layout_marginTop="684dp"
+            android:paddingStart="@dimen/dp_21"
+            android:gravity="center_vertical"
+            android:text="@string/common_back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_arrow_dropleft"
+            android:drawablePadding="@dimen/dp_6"
+            android:background="@drawable/bg_button_blue_corner_35" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</RelativeLayout>
+```
 
 ## 13、
 
