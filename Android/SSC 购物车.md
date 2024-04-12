@@ -241,7 +241,345 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 5. 再执行：`Java -jar signapk.jar platform.x509.pem platform.pk8 app-staging.apk app-staging-signed.apk`
 6. 完成后会有 staging 包：app-staging-signed.apk
 
-## 9、postman 调用后端接口
+## 9、
+## 10、
+
+# 二、一些问题
+
+## 1、关于构建和 gradle 版本
+
+1. 截至 3.10，该项目使用的 gradle 版本为 6.7.1
+2. 设置 -> 构建工具 -> gradle
+
+![](attachments/Pasted%20image%2020230427110736.png)
+
+3. 项目结构 -> Project
+
+![](attachments/Pasted%20image%2020230427110805.png)
+
+## 2、melopan 配置导入
+
+1. 配置项在 melopan 上进行配置
+
+![|700](attachments/Pasted%20image%2020230905132049.png)
+
+2. 配置导入代码文件：`java/jp/retailai/raicart/MainViewModel.kt`
+3. 其中方法：`getCartConfig`
+4. 通过属性名，如 `add_item_popup_time` 进行属性的赋值
+
+```Kotlin
+/**
+ * 通过远程获取数据，此处获取的的是新增物品的弹窗关闭时间
+ * 这些时间是在别处配置的，启动时会通过网络获取这些时间并赋值给相应变量
+ */
+"add_item_popup_time" -> {
+	Constant.add_item_popup_time = element.value
+}
+```
+
+## 3、日志获取 （以 1041 车为例）
+
+> 1. staging 或者 release 的那种包，oplog 必须得第二天在服务器上取 log，本地的没有权限取到
+> 2. 凌晨 1点~5点 之间随机时间点进行上传。关机则不会进行上传；
+> 3. 访问 [ダッシュボード | Retail AI, inc (raicart.io)](https://sandbox-console.raicart.io/ja/admin/dashboard) 进行下载
+
+### ①、在购物车本地获取
+
+#### Ⅰ、debug log
+
+1. 连接设备后在本地查看 debug 日志，路径：`/sdcard/DebugLog/xxx.log`
+2. 但是 3.9 之后的版本本地 debug 是加密的，若是想拿到不加密的可以让设备进入 stanby 页面，会自动上传 debug，等待上传后在 melopan 或 firebase 上获取
+3. 若是在 melopan 或 firebase 上无法获取，可使用下面的脚本来解密：
+
+```python
+import os.path
+import base64
+import json
+import subprocess
+
+from Crypto.Cipher import AES
+
+from Crypto.Util.Padding import unpad
+
+"""
+关于 Crypto 包报错的解决方法：
+
+可能是由于 Python 包管理器 pip 在下载和安装包时默认将大小写敏感的文件名保持一致，
+因此在安装 Crypto 库时，会将文件名保持为"crypto"，而 Python 的模块导入是大小写敏感的，
+因此需要手动将文件名改为大写的"Crypto"才能正常运行。
+"""
+
+
+""" 对SSC的【全部是密文的日志文件】或者【含有明文和密文的日志文件(可能由于版本更新导致)】进行解码
+
+1. 按行读取
+2. 使用 Base64 对行文本进行解密，得到 json 文本
+3. 解析 json 文本，拿到 iv 字段的值并进行 Base64 解密得到16位的字符串
+4. 对 aeskey 进行 Base64 解码，得到明文
+5. 从 json 字符串中拿到 value 字段，将 value 字段的最后两位 \u003d 转换成 =（代码中会自动处理）
+6. 使用 aes-256-cbc 算法、aeskey 的明文，iv 的明文，对 value 的字符串进行解码，即可得到原文。
+   
+上述是在 melonpan 中进行的一个处理，由于我们已经知道了本番的 aes_key 和 iv_key 的明文，所以代码中直接使用了，没有解码的过程。
+
+解码完成后会自动打开结果目录。
+"""
+
+FILEBROWSER_PATH = os.path.join(os.getenv('WINDIR'), 'explorer.exe')
+
+
+def open_explorer(target_path):
+    path = os.path.normpath(target_path)
+    if os.path.isdir(path):
+        subprocess.run([FILEBROWSER_PATH, path])
+    elif os.path.isfile(path):
+        subprocess.run([FILEBROWSER_PATH, '/select,', os.path.normpath(path)])
+
+
+keys = {
+    "staging": {
+        "aes_key": "************************************",
+        "iv_key": "************************************",
+        "aes_key_clear_bytes": b"************************************",
+        "iv_key_clear_bytes": b"************************************",
+        "start_text": "************************************"
+    },
+    "release": {
+        "aes_key": "************************************",
+        "iv_key": "************************************",
+        "aes_key_clear_bytes": b"************************************",
+        "iv_key_clear_bytes": b"************************************",
+        "start_text": "************************************"
+    }
+}
+
+
+class DecodingLogs:
+
+    def __init__(self, is_staging=True) -> None:
+        key = "staging" if is_staging else "release"
+        self.AES_KEY = keys.get(key).get("aes_key")
+        self.IV_KEY = keys.get(key).get("iv_key")
+
+        self.AES_KEY_CLEAR_BYTES = keys.get(key).get("aes_key_clear_bytes")
+        self.IV_KEY_CLEAR_BYTES = keys.get(key).get("iv_key_clear_bytes")
+
+        self.START_TEXT = keys.get(key).get("start_text")
+
+    def decoding_dir(self, src_dir, dst_dir):
+        """解码路径中的所有日志文件
+
+        Args:
+            src_dir (str): 源文件目录
+            dst_dir (str): 解码后放置文件的目录
+        """
+        filenames = os.listdir(src_dir)
+        if len(filenames) <= 0:
+            print("该目录下无任何文件")
+            return
+
+        os.makedirs(dst_dir, exist_ok=True)
+
+        for filename in filenames:
+            file = os.path.join(src_dir, filename)
+            dst_filename = "{0}-{1}".format("output", filename)
+            dst_file = os.path.join(dst_dir, dst_filename)
+            self.decoding_log(file, dst_file)
+
+        open_explorer(dst_dir)
+
+    def decoding_log(self, src_file, dst_file):
+        """解码日志
+
+        Args:
+            src_file (str): 源文件
+            dst_file (str): 解码后生成的文件
+            is_staging (bool, optional): 是否为测试环境，默认为测试环境. Defaults to True.
+        """
+        if not os.path.exists(src_file):
+            print("文件不存在。")
+            return
+
+        if os.path.exists(dst_file):
+            os.remove(dst_file)
+
+        with open(dst_file, "a", encoding="utf8") as writer:
+
+            with open(src_file, "r", encoding="utf8") as reader:
+                # 读取行
+                lines = reader.readlines()
+                for line in lines:
+                    line = line.strip()
+
+                    text = self.decoding_line(line)
+                    writer.write(text)
+
+        open_explorer(dst_file)
+
+    def decoding_line(self, line):
+        """解码单行文本
+
+        Args:
+            line (str): 当行文本
+
+        Returns:
+            str: 解码后的文本
+        """
+        aes = AES.new(self.AES_KEY_CLEAR_BYTES, mode=AES.MODE_CBC, iv=self.IV_KEY_CLEAR_BYTES)
+
+        if not line.startswith(self.START_TEXT):
+            return line
+
+        if line.endswith(','):
+            line = line[:-1]
+
+        line += ("=" * (4 - len(line) % 4))
+        line_json_text = base64.b64decode(line).decode("utf-8")
+        line_json_data = json.loads("{0}".format(line_json_text))
+        real_value = line_json_data["value"].strip()
+
+        data = base64.b64decode(real_value)
+        res = aes.decrypt(data)
+        res = unpad(res, 16)
+        clear_text = res.decode("utf8")
+
+        return clear_text.replace("\r\n", "\n")
+
+
+if __name__ == "__main__":
+    # 使用方式
+    src_file = r""
+    dst_file = r""
+    # 本番环境日志 解码文件
+    release_decoding = DecodingLogs(False)
+    release_decoding.decoding_log(src_file, dst_file)
+
+    src_dir = r""
+    dst_dir = r""
+    # 测试环境日志 解码目录
+    staging_decoding = DecodingLogs()
+    staging_decoding.decoding_dir(src_dir, dst_dir)
+
+```
+
+#### Ⅱ、op log
+
+1. 连接设备后在本地获取 sqLite 数据库，路径：`/data/data/jp.retailai.raicart/databases/cart_database`
+2. 获取 `cart_database` 数据库文件后，将其拖入 Idea 或其他数据库管理软件中
+3. 其中的 `OperationLog` 表即为 oplog 表
+
+### ②、在 melopan 上获取
+
+#### Ⅰ、debug log
+
+1. 访问 [ダッシュボード | Retail AI, inc (raicart.io)](https://sandbox-console.raicart.io/ja/admin/dashboard)
+2. 点击：小売企業 -> 企業
+
+![](attachments/Pasted%20image%2020240403132610.png)
+
+3. 选择最后一项：Trial Holdings, Inc
+
+![|700](attachments/Pasted%20image%2020240403132823.png)
+
+4. 点击：子会社
+
+![|700](attachments/Pasted%20image%2020240403132909.png)
+
+5. 选择：Trial Company, Inc
+
+![|700](attachments/Pasted%20image%2020240403132944.png)
+
+6. 选择：SSC
+
+![|700](attachments/Pasted%20image%2020240403133033.png)
+
+7. 进入后，选择 `0027 - 新宮テスト環境` 环境、`Android` 系统，输入车号，点击搜索
+
+![](attachments/Pasted%20image%2020240403133129.png)
+
+8. 搜索到结果后，点击：タウンロード
+
+![|700](attachments/Pasted%20image%2020240403133622.png)
+
+9. 选择日期，然后选择 `デバッグ` ，点击下载即可操作ログ
+
+![|700](attachments/Pasted%20image%2020240403133811.png)
+
+#### Ⅱ、op log
+
+1. 在上面的第 9 步中， 选择日期，然后选择 `操作ログ` ，点击下载即可
+
+### ③、在 firebase 中获取
+
+#### Ⅰ、debug log
+
+1. 进入 firebase 上的购物车项目：https://console.firebase.google.com/u/1/project/ssc-raicart-android-develop
+2. 点击右侧 storage
+
+![|700](attachments/Pasted%20image%2020240403112344.png)
+
+3. 然后依次选择：`debugLogs/ -> 1 -> 1 -> 3 -> 1041`
+4. 下载指定日期的日志即可
+
+#### Ⅱ、op log
+
+1. 进入 firebase 上的购物车项目：https://console.firebase.google.com/u/1/project/ssc-raicart-android-develop
+2. 点击右侧 storage
+3. 然后依次选择：`operationLogs/ -> 1 -> 1 -> 3 -> 1041`
+4. 下载指定日期的日志即可
+
+## 4、开启设备 adb 
+
+> 确认设备安装的 app 版本高于等于 3.9
+
+1. 进入 melopan 的 SSC 中：https://sandbox-console.raicart.io/
+
+![|800](attachments/Pasted%20image%2020230911160354.png)
+
+2. 点击对应购物车的 `Enable ADB` 按钮
+
+![|675](attachments/Pasted%20image%2020230911160507.png)
+
+3. 修改弹窗中的 `Duration`，值为开启 `ADB` 功能的时间
+
+![|700](attachments/Pasted%20image%2020230911162443.png)
+
+4. 点击弹出的弹窗中的 `Enable` 按钮
+
+![|700](attachments/Pasted%20image%2020230911160548.png)
+
+5. 等待完成，变为 `disable ADB` 即为完成
+
+![|725](attachments/Pasted%20image%2020230911160658.png)
+
+## 5、sct 无法进入的解决办法
+
+1. 卸载 `MicrosoftEdgeWebView2RuntimeInstallerX64` 然后重新安装
+2. 若是无法卸载，则进入远程桌面：
+3. 连接地址：`172.20.3.11:33896`，`administrator`、`admin1234`
+4. 连接地址：`172.20.3.11:33892`，`administrator`、`admin1234`
+
+## 6、1041 melopan 自动升级配置
+
+1. 进入 melopan 的 SSC 中：https://sandbox-console.raicart.io/
+2. 点击：デプロイ（部署）
+
+![|700](attachments/Pasted%20image%2020240403134755.png)
+
+3. 点击：新規作成
+
+![|700](attachments/Pasted%20image%2020240403135030.png)
+
+4. 进入页面后：
+	1. 选择环境：0027 - 新宮テスト環境
+	2. 选择系统：Android
+	3. 选择要安装的版本
+	4. 选中 `デプロイ中` 立即部署
+	5. 选择要安装的车号
+	6. 点击 `新規作成` 实行部署，会返回部署列表
+
+![](attachments/Pasted%20image%2020240403135137.png)
+
+## 7、postman 调用后端接口
 
 1. 首先访问这个接口获取 Token： (POST) `https://sandbox.raicart.io/v1/user/4u/c/signin`
 2. 请求头参数：
@@ -269,17 +607,16 @@ review 已提交：https://github.com/retail-ai-inc/raicart/pull/273
 
 ![|775](attachments/Pasted%20image%2020231019101503.png)
 
-## 10、购物页弹窗
+## 8、
 
-1. 扫描商品 1 后，弹出弹窗，再扫描商品 2（）
-	1. 商品数量弹窗：关闭
-	2. coupon 弹窗：
-		1. 若是商品 2 没有 coupon：不关闭
-		2. 若是商品 2 有 coupon：关闭之前的 coupon 弹窗，然后弹出商品 2 的 coupon 弹窗
-	3. 防范提示弹窗：关闭
-	4. 药品提示弹窗：关闭
+## 9、
 
-## 11、LED 灯条
+## 10、
+
+# 三、项目代码
+
+
+## 1、LED 灯条
 
 
 ```kotlin
@@ -292,7 +629,7 @@ CartDeviceManager.get().setLightYellow()
 CartDeviceManager.get().closeLight()
 ```
 
-## 12、全屏 dialog 弹窗
+## 2、全屏 dialog 弹窗
 
 1. 代码中加入以下代码：
 
@@ -471,133 +808,13 @@ override fun onStart() {
 </RelativeLayout>
 ```
 
-## 13、
+## 3、
 
-## 14、
+## 4、
 
-# 二、一些问题
+## 5、
 
-## 1、如何找到指定页面
-
-1. 先看看项目结构
-2. 进入 `res/navigation/nav_graph.xml` 导航碎片页面
-3. 根据相应碎片名称可知其场景，各场景中有其使用的 `action`
-4. `action` 的 `app:destination` 属性对应 `fragment` 的 `id`
-5.  `fragment` 的 `android:name` 对应其本身的代码逻辑页面
-6. 代码逻辑页面的 `layoutId` 方法对应了 `xml` 布局文件
-
-```Kotlin
-override fun layoutId(): Int {
-	return R.layout.fragment_end
-}
-```
-
-7. 若是 `res/navigation/nav_graph.xml` 导航碎片页面中没有，可根据页面出现的时机，和代码逻辑、项目结构，去指定的代码文件中查找
-8. 比如新增商品弹窗应该是在 `java/jp/retailai/raicart/ui/shopping/ShoppingFragment.kt` 中定义的，根据代码逻辑可知是这个属性
-
-```Kotlin
-/**
- * 新增商品弹窗
- */
-private var itemAddCartDialog: AddItemAnimationDialog? = null
-```
-
-9. 这样就从这里进入 `AddItemAnimationDialog` 类，然后根据 `getLayout` 方法进入 `fragment_dialog_success` 布局文件
-
-## 2、关于构建和 gradle 版本
-
-1. 截至 3.10，该项目使用的 gradle 版本为 6.7.1
-2. 设置 -> 构建工具 -> gradle
-
-![](attachments/Pasted%20image%2020230427110736.png)
-
-3. 项目结构 -> Project
-
-![](attachments/Pasted%20image%2020230427110805.png)
-
-
-## 3、melopan 配置导入
-
-1. 配置项在 melopan 上进行配置
-
-![|700](attachments/Pasted%20image%2020230905132049.png)
-
-2. 配置导入代码文件：`java/jp/retailai/raicart/MainViewModel.kt`
-3. 其中方法：`getCartConfig`
-4. 通过属性名，如 `add_item_popup_time` 进行属性的赋值
-
-```Kotlin
-/**
- * 通过远程获取数据，此处获取的的是新增物品的弹窗关闭时间
- * 这些时间是在别处配置的，启动时会通过网络获取这些时间并赋值给相应变量
- */
-"add_item_popup_time" -> {
-	Constant.add_item_popup_time = element.value
-}
-```
-
-
-## 4、日志的查看
-
-1. staging 或者 release 那种 signed 的包，必须得第二天在服务器上取 log，本地的没有权限取到
-	1. 凌晨 1点~5点 之间随机时间点进行上传。关机则不会进行上传；
-	2. 访问 [ダッシュボード | Retail AI, inc (raicart.io)](https://sandbox-console.raicart.io/ja/admin/dashboard) 进行下载
-2. 连接设备后在本地查看 debug 日志，路径：`/sdcard/DebugLog/xxx.log`
-
-![](attachments/Pasted%20image%2020230504150017.png)
-
-## 5、adb 链接经常断开
-
-> https://sandbox-console.raicart.io/
-
-1. 进入 melopan 的 SSC 中
-
-![|800](attachments/Pasted%20image%2020230911160354.png)
-
-2. 点击对应购物车的 `Enable ADB` 按钮
-
-![|675](attachments/Pasted%20image%2020230911160507.png)
-
-3. 修改弹窗中的 `Duration`，值为开启 `ADB` 功能的时间
-
-![|700](attachments/Pasted%20image%2020230911162443.png)
-
-4. 点击弹出的弹窗中的 `Enable` 按钮
-
-![|700](attachments/Pasted%20image%2020230911160548.png)
-
-5. 等待完成，变为 `disable ADB` 即为完成
-
-![|725](attachments/Pasted%20image%2020230911160658.png)
-
-## 6、3.9 之后的版本 debug 日志乱码
-
-> https://sandbox-console.raicart.io/
-
-1. 当软件进入 standby 页面之后会自动上传  debug 日志
-2. 所以稍等几分钟，从 melopan 上下载  debug 日志即可
-
-## 7、sct 无法进入的解决办法
-
-1. 卸载 `MicrosoftEdgeWebView2RuntimeInstallerX64` 然后重新安装
-2. 若是无法卸载，则进入远程桌面：
-3. 连接地址：`172.20.3.11:33896`，`administrator`、`admin1234`
-4. 连接地址：`172.20.3.11:33892`，`administrator`、`admin1234`
-
-## 8、1041 melopan 自动升级
-
-1. 早的一个自动升级设置：
-
-![|700](attachments/Pasted%20image%2020240205100733.png)
-
-2. 1
-3. 1
-4. 1
-5. 1
-
-## 9、
-
-# 三、poc 笔记
+# 四、poc 笔记
 
 ## 1、1979 推荐商品地图
 
@@ -714,38 +931,6 @@ or:
 
 ## 5、
 
-# 四、
-
-## 1、
-
-## 2、
-
-## 3、
-
-## 4、
-
-## 5、
-
-## 6、
-
-## 7、
-
-## 8、
-
-## 9、
-
-# 五、
-
-## 1、
-
-## 2、
-
-## 3、
-
-## 4、
-
-## 5、
-
 ## 6、
 
 ## 7、
@@ -803,6 +988,7 @@ or:
 #### Ⅸ、
 
 #### Ⅹ、
+
 
 
 
