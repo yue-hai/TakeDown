@@ -2925,27 +2925,31 @@ path="/home/steam/Steam/steamapps/common/PalServer"
 # 获取当前时间
 current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
-# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒
-# -x：附加到指定的会话。
-# -S $screen_name：指定要操作的会话名称。
-# -p 0：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口。
-# -X stuff：在选定的窗口中发送字符。
-screen -x -S $screen_name -p 0 -X stuff $'\x03'
-sleep 10
-screen -x -S $screen_name -p 0 -X stuff $'\x03'
-sleep 5
+# 定义发送命令并可选地休眠的函数
+# $1 是要发送的命令
+# $2 是可选的休眠时间
+send_command() {
+    # -x：附加到指定的会话。
+    # -S $screen_name：指定要操作的会话名称。
+    # -p 0：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口；如果只有一个窗口，那这就是第一个
+    # -X stuff：在选定的窗口中发送字符。
+    screen -x -S $screen_name -p 0 -X stuff "$1"
 
-# 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键。同时等待 20 秒，确保 PalServer 启动完成
-screen -x -S $screen_name -p 0 -X stuff "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
-sleep 20
+    # 如果提供了休眠时间，则进行休眠
+    if [ ! -z "$2" ]; then 
+        sleep $2
+    fi
+}
 
-# 分离会话，模拟按下 Ctrl + C + D 组合键；等待 2 秒
-screen -x -S $screen_name -p 0 -X stuff $'\x01'
-screen -x -S $screen_name -p 0 -X stuff "D"
-sleep 2
+# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒；执行两次
+send_command $'\x03' 20
+send_command $'\x03' 5
 
-# 向 yuehai_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器重启已完成" >> $path/yuehai_server.log
+# 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
+send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
+
+# 向 pal_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器重启已完成" >> $path/pal_server.log
 ```
 
 2. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
