@@ -4463,6 +4463,7 @@ docker run -d \
 -e NACOS_USERNAME="nacos" \
 -e NACOS_PASSWORD="nacos" \
 -e NACOS_GROUP="DEFAULT_GROUP" \
+-e NACOS_FILE_EXTENSION="yml" \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --name code-java \
@@ -4518,6 +4519,7 @@ services:
 	  - NACOS_USERNAME="nacos"
 	  - NACOS_PASSWORD="nacos"
 	  - NACOS_GROUP="DEFAULT_GROUP"
+	  - NACOS_FILE_EXTENSION="yml"
       # 10301 y-chat WebSocket 消息转发服务器 (后台)
       - y_char_ws_app=/container/path/jar/yuehai-chat-WebSocket-server/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar
       - y_char_ws_log=/container/path/jar/yuehai-chat-WebSocket-server/y_char_ws.log
