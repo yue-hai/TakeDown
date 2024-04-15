@@ -6881,7 +6881,7 @@ INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
 ## 2、sentinel
 
 ```shell
-docker run -d -p 11000:8858 --name code-sentinel-1 bladex/sentinel-dashboard:1.8.6
+docker run -d -p 11000:8858 --name code-sentinel-1 bladex/sentinel-dashboard:1.8.7
 ```
 
 ## 3、
