@@ -3898,11 +3898,48 @@ docker run -d --restart=always \
 
 # 十三、各种容器安装
 
+## 0、停止容器脚本
+
+```shell
+#!/bin/bash
+
+# 定义一个函数来停止容器
+stop_container() {
+    # 从函数参数获取容器名称；local 关键字用于将变量限制在函数内部
+    local container_name=$1
+    # 输出一条消息，指示正在停止容器
+    echo "正在停止容器中 $container_name ..."
+
+    # 使用 docker stop 命令停止容器
+    docker stop $container_name
+
+    # 检查停止操作的状态
+    if [ $? -eq 0 ]; then
+        # 如果停止操作成功，则将停止成功的消息输出到 stop_containers.log 文件
+        echo "$(date): docker 容器停止成功：$container_name " >> stop_containers.log
+    else
+        # 如果停止操作失败，则将停止失败的消息输出到 stop_containers.log 文件
+        echo "$(date): docker 容器停止失败：$container_name " >> stop_containers.log
+    fi
+}
+
+# 停止 code-tomcat9 容器
+stop_container code-tomcat9
+# 停止 code-nacos-1 容器
+stop_container code-nacos-1
+```
+
 ## 1、安装 tomcat
 
 > [https://hub.docker.com/_/tomcat](https://hub.docker.com/_/tomcat)
 
-1. 拉取镜像：`docker pull tomcat:jre21`
+### ①、首次创建容器
+
+1. 拉取镜像：
+
+```shell
+docker pull tomcat:jre21
+```
 
 ```shell
 docker@yan:~$ docker pull tomcat:jre21
@@ -3922,7 +3959,11 @@ docker.io/library/tomcat:jre21
 docker@yan:~$ 
 ```
 
-2. 查看镜像：`docker images`
+2. 查看镜像：
+
+```shell
+docker images
+```
 
 ```shell
 docker@yuehai:~$ docker images
@@ -3949,7 +3990,11 @@ docker@yan:~$ docker run -d -p 10100:8080 --name code-tomcat9 tomcat:jre21
 docker@yan:~$ 
 ```
 
-5. 查看容器：`docker ps`
+5. 查看容器：
+
+```shell
+docker ps
+```
 
 ```shell
 docker@yan:~$ docker ps
@@ -3961,7 +4006,13 @@ e216325d701e   ubuntu                 "/bin/bash"               4 weeks ago     
 docker@yan:~$ 
 ```
 
-6. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：`docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/`
+### ②、复制数据，并设置映射目录
+
+1. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：
+
+```shell
+docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
+```
 
 ```shell
 docker@yan:~$ docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
@@ -3972,9 +4023,15 @@ docker@yan:~$
 
 ![|548](attachments/Pasted%20image%2020231130094439.png)
 
-7. 停止并删除容器：
-	1. 停止：`docker stop code-tomcat9`
-	2. 删除：`docker rm code-tomcat9`
+2. 停止并删除容器：
+
+```shell
+# 停止：
+docker stop code-tomcat9
+
+# 删除：
+docker rm code-tomcat9
+```
 
 ```shell
 docker@yan:~$ docker stop code-tomcat9
@@ -3985,7 +4042,7 @@ code-tomcat9
 docker@yan:~$ 
 ```
 
-8. 重新启动容器，并设置映射目录：
+3. 重新启动容器，并设置映射目录：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
 
@@ -4006,27 +4063,32 @@ tomcat:jre21
 docker@yan:~$ 
 ```
 
-9. 访问：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
-10. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
-11. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
+4. 访问测试：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
+
+### ③、显示 404 的解决方法
+
+1. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
+2. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
 
 ![|560](attachments/Pasted%20image%2020231130095712.png)
 
 ![|589](attachments/Pasted%20image%2020231130095734.png)
 
-12. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
+3. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
 
 ![|594](attachments/Pasted%20image%2020231130095842.png)
 
 ![|586](attachments/Pasted%20image%2020231130095832.png)
 
-13. 再次访问：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
+4. 再次访问：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
 
 ![|700](attachments/Pasted%20image%2020231130095933.png)
 
 ## 2、安装 mysql
 
 > [https://hub.docker.com/_/mysql](https://hub.docker.com/_/mysql)
+
+### ①、创建容器，并设置映射目录
 
 1. 搜索镜像：`docker search mysql`
 
@@ -4087,7 +4149,6 @@ docker@yuehai:~$
 3. 查看镜像
 
 ```shell
-docker.io/library/mysql:8.2.0
 docker@yuehai:~$ docker images
 REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
 mysql        8.2.0     a3b6608898d6   2 weeks ago   596MB
@@ -4095,7 +4156,11 @@ mysql        8.2.0     a3b6608898d6   2 weeks ago   596MB
 docker@yuehai:~$
 ```
 
-4. 为防止容器意外停止后数据丢失，所以启动容器时应该映射容器数据卷：
+4. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/home/docker/docker/volumes/mysql/conf/`
+	2. 数据目录：`/home/docker/docker/volumes/mysql/data/`
+	3. 日志目录：`/home/docker/docker/volumes/mysql/log/`
+5. 启动容器时映射容器数据卷：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
 	3. `-e MYSQL_ROOT_PASSWORD=Ccj19960920...`：设置 root 密码
@@ -4130,23 +4195,25 @@ Status: Downloaded newer image for mysql:8.2.0
 docker@yuehai:~$ 
 ```
 
-4. 使用 Navicat 连接
+6. 使用 Navicat 连接
 
 ![|700](attachments/Pasted%20image%2020231108140616.png)
 
-5. 创建数据库
+### ②、测试连接以及创建数据库与表
+
+1. 创建数据库
 
 ![|442](attachments/Pasted%20image%2020231108141015.png)
 
-6. 创建表
+2. 创建表
 
 ![|700](attachments/Pasted%20image%2020231108141150.png)
 
-7. 添加数据
+3. 添加数据
 
 ![|700](attachments/Pasted%20image%2020231108141225.png)
 
-8. 进入 mysql 容器
+4. 进入 mysql 容器
 
 ```shell
 docker@yuehai:~$ docker ps
@@ -4157,7 +4224,7 @@ docker@yuehai:~$ docker exec -it bfab03cebaac bash
 bash-4.4# 
 ```
 
-9. 进入 mysql，输入密码：Ccj19960920...
+5. 进入 mysql，输入密码：Ccj19960920...
 
 ```shell
 bash-4.4# mysql -u root -p       
@@ -4177,7 +4244,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> 
 ```
 
-10. 查看数据库与表
+6. 查看数据库与表
 
 ```shell
 mysql> show databases;
@@ -4222,8 +4289,9 @@ exit
 docker@yuehai:~$ 
 ```
 
-11. 插入中文报错
-   1. 进入容器，查看编码
+### ③、插入中文报错
+
+1. 进入容器，查看编码
 
 ```shell
 docker@yuehai:~$ docker exec -it bfab03cebaac bash
@@ -4259,7 +4327,7 @@ mysql> SHOW VARIABLES LIKE 'character%';
 mysql>
 ```
 
-   2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
+2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
 
 ```shell
 docker@VM-8-15-ubuntu:~$ sudo vim /home/docker/docker/mysql/test/conf/my.cnf
@@ -4272,7 +4340,7 @@ collation_server=utf8_general_ci
 character_set_server=utf8
 ```
 
-   3. 重新进入容器查看编码
+3. 重新进入容器查看编码
 
 ```shell
 docker@yuehai:~$ docker exec -it bfab03cebaac bash
@@ -4311,38 +4379,39 @@ mysql>
 ## 3、安装 openJdk 21
 
 1. 拉取镜像：`docker pull openjdk:21`
-2. 创建映射目录，上传 jar 程序
+2. 创建映射目录：`/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+3. 上传 jar 程序：springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
 
 ![|484](attachments/Pasted%20image%2020231130084700.png)
 
-3. 启动容器：
+4. 启动容器：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	3. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该 jar 程序
+	3. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该命令
 
 ```shell
 docker run -d \
--p 9001:9001 \
+-p 10300:10300 \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --name code-java-test openjdk:21 \
 java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 ```
 
-4. 访问测试：[http://101.200.86.248:9001/hello/helloTest](http://101.200.86.248:9001/hello/helloTest)
+5. 访问测试：[http://www.yue-hai.top:10300/hello/helloTest](http://www.yue-hai.top:10300/hello/helloTest)
 
-![|484](attachments/Pasted%20image%2020231129110718.png)
+![](attachments/Pasted%20image%2020240415094614.png)
 
 ## 4、使用 shell 脚本执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
-	2. y_chat 的 springboot 后台服务器：[y-chat-back-server-1.0-SNAPSHOT.jar](attachments/y-chat-back-server-1.0-SNAPSHOT.jar)
-	3. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
+	2. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
+	3. y_chat 的 springboot 后台服务器 user 模块：[user-1.0-SNAPSHOT.jar](attachments/user-1.0-SNAPSHOT.jar)
 2. 创建映射目录，并将这三个 jar 包上传到只当目录：
-	1. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
-	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/`
-	3. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
+	3. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/user/`
 3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `run_jar.sh` 文件，并写入下面的内容：
 
 ```shell
@@ -4365,19 +4434,19 @@ start_app() {
     fi
 }
 
-# y-chat WebSocket 消息转发服务器 (后台)
+# 10301 y-chat WebSocket 消息转发服务器 (后台)
 start_app "${main_path}/jar/y-chat-WebSocket-server" \
           "y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar" \
           "y_chat_ws.log" \
           "yes"
 
-# y-chat springboot 后台数据服务器 (后台)
-start_app "${main_path}/jar/y-chat-back-server" \
-          "y-chat-back-server-1.0-SNAPSHOT.jar" \
-          "y_chat_back.log" \
+# 10310 user y-chat springboot 后台数据服务器 (后台)
+start_app "${main_path}/jar/y-chat-back-server/user" \
+          "user-1.0-SNAPSHOT.jar" \
+          "user.log" \
           "yes"
 
-# 测试 (前台)
+# 10300 测试 (前台)
 start_app "${main_path}/jar/00_TEST" \
           "TEST-0.0.1-SNAPSHOT.jar" \
           "test.log" \
@@ -4388,9 +4457,12 @@ start_app "${main_path}/jar/00_TEST" \
 
 ```shell
 docker run -d \
--p 10300:10300 \
--p 10301:10301 \
--p 10302:10302 \
+-p 10300-10400:10300-10400 \
+-e NACOS_SERVER_ADDR="101.200.86.248:15000" \
+-e NACOS_NAMESPACE="37a69759-5ff4-4ee4-83fb-5e3d45a5e9c2" \
+-e NACOS_USERNAME="nacos" \
+-e NACOS_PASSWORD="nacos" \
+-e NACOS_GROUP="DEFAULT_GROUP" \
 --privileged=true \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --name code-java \
@@ -4399,22 +4471,22 @@ openjdk:21 \
 ```
 
 5. 访问测试：
-6. 测试：http://www.yue-hai.top:10300/hello/helloTest
+6. 测试：[http://www.yue-hai.top:10300/hello/helloTest](http://www.yue-hai.top:10300/hello/helloTest)
 7. y-chat WebSocket 服务器：
-	1. 测试网站：http://wstool.jackxiang.com/
+	1. 测试网站：[http://wstool.jackxiang.com/](http://wstool.jackxiang.com/)
 	2. 服务地址：ws://www.yue-hai.top:10301/connect/2
-8. y-chat springboot 后台服务器：http://www.yue-hai.top:10302/test/getUserAll
+8. y-chat springboot 后台服务器：[http://www.yue-hai.top:10310/test/getUserAll](http://www.yue-hai.top:10310/test/getUserAll)
 
 ## 5、使用 Docker-compose 容器编排执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
-	2. y_chat 的 springboot 后台服务器：[y-chat-back-server-1.0-SNAPSHOT.jar](attachments/y-chat-back-server-1.0-SNAPSHOT.jar)
-	3. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](attachments/TEST-0.0.1-SNAPSHOT.jar)
+	2. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
+	3. y_chat 的 springboot 后台服务器 user 模块：[user-1.0-SNAPSHOT.jar](attachments/user-1.0-SNAPSHOT.jar)
 2. 创建映射目录，并将这三个 jar 包上传到只当目录：
-	1. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
-	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/`
-	3. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
+	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
+	3. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/user/`
 3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `docker-compose.yml` 文件，并写入下面的内容：
 
 ```yaml
@@ -4431,29 +4503,37 @@ services:
     image: openjdk:21
     # 映射的端口号；可指定多组
     ports:
-      - "9001:9001"
-      - "9002:9002"
-      - "9003:9003"
+      - "10300:10300"
+      - "10301:10301"
+      - "10310:10310"
+      - "10311:10311"
     # 映射挂载的目录；可指定多组
     volumes: 
       - "/home/docker/docker/volumes/openjdk/:/container/path"
     # 设置全局变量；可指定多组
     environment:
-      # 9001
-      - y_char_ws_path=/container/path/jar/yuehai-chat-WebSocket-server
-      - y_char_ws_name=y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar
-      # 9002
-      - y_char_back_server_path=/container/path/jar/y-chat-back-server
-      - y_char_back_server_name=y-chat-back-server-1.0-SNAPSHOT.jar
-      # 9003
-      - test_path=/container/path/jar/00_TEST
+      # 10310 user y-chat springboot 后台数据服务器所需变量
+	  - NACOS_SERVER_ADDR="101.200.86.248:15000"
+	  - NACOS_NAMESPACE="37a69759-5ff4-4ee4-83fb-5e3d45a5e9c2"
+	  - NACOS_USERNAME="nacos"
+	  - NACOS_PASSWORD="nacos"
+	  - NACOS_GROUP="DEFAULT_GROUP"
+      # 10301 y-chat WebSocket 消息转发服务器 (后台)
+      - y_char_ws_app=/container/path/jar/yuehai-chat-WebSocket-server/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar
+      - y_char_ws_log=/container/path/jar/yuehai-chat-WebSocket-server/y_char_ws.log
+      # 10310、10311 user y-chat springboot 后台数据服务器 (后台)
+      - y_char_back_server_user_app=/container/path/jar/y-chat-back-server/user/user-1.0-SNAPSHOT.jar
+      - y_char_back_server_user_log=/container/path/jar/y-chat-back-server/user/user.log
+      # 10300 测试 (前台)
+      - test_app=/container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
+      - test_log=/container/path/jar/00_TEST/test.log
     # 容器启动时执行的命令，该命令只能指定一行，不过可以使用 sh -c 来变相实现多行
-    # 变量引用使用 $$ de 原因是为了转义特殊字符，以确保变量在命令字符串中被正确地解析而不是被Compose文件本身解析
+    # 变量引用使用 $$ 的原因是为了转义特殊字符，以确保变量在命令字符串中被正确地解析而不是被 Compose 文件本身解析
     command: >
       sh -c "
-        java -jar $${y_char_ws_path}/$${y_char_ws_name} > $${y_char_ws_path}/y_char_ws.log 2>&1 &
-        java -jar $${y_char_back_server_path}/$${y_char_back_server_name} > $${y_char_back_server_path}/y_char_back.log 2>&1 &
-        java -jar $${test_path}/TEST-0.0.1-SNAPSHOT.jar > $${test_path}/test.log 2>&1
+        java -jar $${y_char_ws_app} > $${y_char_ws_log} 2>&1 &
+        java -jar $${y_char_back_server_user_app} > $${y_char_back_server_user_log} 2>&1 &
+        java -jar $${test_app} > $${test_log} 2>&1
       "
 ```
 
@@ -4468,11 +4548,11 @@ docker@yuehai:~/docker/volumes/openjdk$
 
 5. 如果嫌 `docker-compose.yml` 文件中的 `command` 属性的命令写起来太繁琐，也可以直接在 `command` 属性中调用上面的 `run_jar.sh` 脚本
 6. 访问测试：
-7. y-chat WebSocket 服务器：
-	1. 测试网站：http://wstool.jackxiang.com/
-	2. 服务地址：ws://www.yue-hai.top:9001/connect/2
-8. y-chat springboot 后台服务器：http://www.yue-hai.top:9002/test/getUserAll
-9. 测试：http://www.yue-hai.top:9003/hello/helloTest
+7. 测试：[http://www.yue-hai.top:10300/hello/helloTest](http://www.yue-hai.top:10300/hello/helloTest)
+8. y-chat WebSocket 服务器：
+	1. 测试网站：[http://wstool.jackxiang.com/](http://wstool.jackxiang.com/)
+	2. 服务地址：ws://www.yue-hai.top:10301/connect/2
+9. y-chat springboot 后台服务器：[http://www.yue-hai.top:10310/test/getUserAll](http://www.yue-hai.top:10310/test/getUserAll)
 
 ## 6、
 
