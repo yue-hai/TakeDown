@@ -282,8 +282,6 @@ touch pal_server.log
 screen_name="PalWorld"
 # 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -309,7 +307,7 @@ send_command $'\x03' 5
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
 # 向 pal_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器重启已完成" >> $path/pal_server.log
+echo "$(date)：帕鲁服务器重启已完成" >> $path/pal_server.log
 ```
 
 4. 设置脚本权限：
@@ -367,8 +365,6 @@ touch pal_server.log
 screen_name="PalWorld"
 # 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -391,7 +387,7 @@ send_command $'\x03' 20
 send_command $'\x03'
 
 # 向 pal_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器已关闭" >> $path/pal_server.log
+echo "$(date)：帕鲁服务器已关闭" >> $path/pal_server.log
 echo "" >> $path/pal_server.log
 ```
 
@@ -437,8 +433,6 @@ touch pal_server.log
 screen_name="PalWorld"
 # 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -464,7 +458,7 @@ send_command $'\x03' 5
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
 # 向 pal_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器已启动" >> $path/pal_server.log
+echo "$(date)：帕鲁服务器已启动" >> $path/pal_server.log
 ```
 
 4. 设置脚本权限：

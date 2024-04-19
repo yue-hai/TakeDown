@@ -6538,6 +6538,37 @@ public class AccountServiceImpl implements AccountService {
 
 # 五、容器安装整理
 
+## 0、停止容器脚本
+
+```shell
+#!/bin/bash
+
+# 定义一个函数来停止容器
+stop_container() {
+    # 从函数参数获取容器名称；local 关键字用于将变量限制在函数内部
+    local container_name=$1
+    # 输出一条消息，指示正在停止容器
+    echo "正在停止容器中 $container_name ..."
+
+    # 使用 docker stop 命令停止容器
+    docker stop $container_name
+
+    # 检查停止操作的状态
+    if [ $? -eq 0 ]; then
+        # 如果停止操作成功，则将停止成功的消息输出到 stop_containers.log 文件
+        echo "$(date): docker 容器停止成功：$container_name " >> stop_containers.log
+    else
+        # 如果停止操作失败，则将停止失败的消息输出到 stop_containers.log 文件
+        echo "$(date): docker 容器停止失败：$container_name " >> stop_containers.log
+    fi
+}
+
+# 停止 code-sentinel-1 容器
+stop_container code-sentinel-1
+# 停止 code-redis-1 容器
+stop_container code-nacos-1
+```
+
 ## 1、nacos
 
 ### ①、v2.2.1
@@ -6588,7 +6619,45 @@ nested exception is java.lang.IllegalArgumentException: Could not resolve placeh
 
 4. 此次密钥为：`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q`
 
-#### Ⅲ、启动命令
+#### Ⅲ、创建配置文件
+
+1. 创建文件：`touch /home/docker/docker/volumes/nacos/nacos1/app-config/application.properties`
+2. 输入以下内容：`nano /home/docker/docker/volumes/nacos/nacos1/app-config/application.properties`
+3. 记得修改对应的配置信息
+
+```shell                                           
+### 如果使用 MySQL 作为数据源：
+spring.datasource.platform=mysql
+ 
+### 数据源数量:
+db.num=1
+ 
+### 数据源连接信息:
+### characterEncoding=utf8：设置字符编码为 UTF-8，确保数据在数据库和应用程序之间传输时正确处理 Unicode 字符。
+### connectTimeout=10000：设置建立数据库连接的超时时间，单位是毫秒。这里设置为 10000 毫秒（10 秒），如果在这段时间内无法建立连接，将抛出超时异常。
+### socketTimeout=30000：设置套接字读取数据的超时时间，单位是毫秒。这里设置为 30000 毫秒（30 秒），用于控制等待数据的最长时间。
+### autoReconnect=true：当数据库连接意外中断时，设置为 true 将自动尝试重新连接。
+### useUnicode=true：设置为 true 表示使用 Unicode 字符集。通常与 characterEncoding 参数配合使用，确保应用程序可以正确处理国际字符。
+### useSSL=false：设置为 false 表示不使用 SSL 加密连接数据库。这在内部网络环境中可以减少加密解密的性能开销。
+### serverTimezone=UTC：设置数据库服务器的时区为 UTC。这有助于解决服务器和客户端时区不一致时可能出现的时间相关问题。
+### allowPublicKeyRetrieval=true：设置为 true 允许客户端从服务器获取公钥，这通常用于安全的密码验证。
+db.url.0=jdbc:mysql://www.yue-hai.top:10200/y_chat_nacos_config?characterEncoding=utf8&connectTimeout=10000&socketTimeout=30000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+### 鉴权配置，不加的话启动会报错
+nacos.core.auth.plugin.nacos.token.secret.key=5d94126de34a6a9cffd67c234919dbdacbac694da5841d5e3af07c8ce1154537
+# 启用或禁用 Nacos 的认证功能。设置为 true 时，Nacos 将开启用户认证
+nacos.core.auth.enabled=true
+
+# 设置认证服务的标识键（identity key）。这是一个自定义的键，用于在进行服务之间的认证或通信时标识请求的来源或类别
+nacos.core.auth.server.identity.key=y_chat_nacos_auth_identity_key
+# 对应于上面的 identity key，这是该键的值。它的内容也是自定义的，用于与 identity key 配合使用，形成一个键值对，标识特定的服务或请求类型
+nacos.core.auth.server.identity.value=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q
+
+# 控制是否启用基于用户代理（User-Agent）的白名单认证。当设置为 true 时，Nacos 会根据预定义的用户代理白名单来认证请求，允许在白名单中的用户代理绕过正常的用户认证
+#nacos.core.auth.enable.userAgentAuthWhite=false
+```
+
+#### Ⅳ、启动命令
 
 1. 不映射目录做持久化
 
@@ -6599,16 +6668,7 @@ docker run -d \
 	-p 16001:9849 \
 	-p 14000:7848 \
     -e MODE=standalone \
-    -e SPRING_DATASOURCE_PLATFORM=mysql \
-    -e MYSQL_SERVICE_HOST=www.yue-hai.top \
-    -e MYSQL_SERVICE_PORT=10200 \
-    -e MYSQL_SERVICE_USER=root \
-    -e MYSQL_SERVICE_PASSWORD=Ccj19960920... \
-    -e MYSQL_SERVICE_DB_NAME=y_chat_nacos_config \
-    -e TIME_ZONE='Asia/Shanghai' \
-	--env NACOS_AUTH_TOKEN=5d94126de34a6a9cffd67c234919dbdacbac694da5841d5e3af07c8ce1154537 \
-	--env NACOS_AUTH_IDENTITY_KEY=y_chat_nacos_auth_identity_key \
-	--env NACOS_AUTH_IDENTITY_VALUE=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q \
+	-v /home/docker/docker/volumes/nacos/nacos1/app-config/application.properties:/home/nacos/conf/application.properties \
     --name code-nacos-1 \
     --restart=always \
     nacos/nacos-server:v2.2.1
@@ -6617,6 +6677,7 @@ docker run -d \
 2. 配置文件和日志复制：
 	1. `docker cp code-nacos-1:/home/nacos/conf/ /home/docker/docker/volumes/nacos/nacos1/`
 	2. `docker cp code-nacos-1:/home/nacos/logs/ /home/docker/docker/volumes/nacos/nacos1/`
+	3. `docker cp code-nacos-1:/home/nacos/data/ /home/docker/docker/volumes/nacos/nacos1/`
 3. 映射目录做持久化
 
 ```shell
@@ -6626,18 +6687,9 @@ docker run -d \
 	-p 16001:9849 \
 	-p 14000:7848 \
     -e MODE=standalone \
-    -e SPRING_DATASOURCE_PLATFORM=mysql \
-    -e MYSQL_SERVICE_HOST=www.yue-hai.top \
-    -e MYSQL_SERVICE_PORT=10200 \
-    -e MYSQL_SERVICE_USER=root \
-    -e MYSQL_SERVICE_PASSWORD=Ccj19960920... \
-    -e MYSQL_SERVICE_DB_NAME=y_chat_nacos_config \
-    -e TIME_ZONE='Asia/Shanghai' \
-	--env NACOS_AUTH_TOKEN=5d94126de34a6a9cffd67c234919dbdacbac694da5841d5e3af07c8ce1154537 \
-	--env NACOS_AUTH_IDENTITY_KEY=y_chat_nacos_auth_identity_key \
-	--env NACOS_AUTH_IDENTITY_VALUE=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q \
 	-v /home/docker/docker/volumes/nacos/nacos1/conf/:/home/nacos/conf \
     -v /home/docker/docker/volumes/nacos/nacos1/logs/:/home/nacos/logs \
+    -v /home/docker/docker/volumes/nacos/nacos1/data/:/home/nacos/data \
     --name code-nacos-1 \
     --restart=always \
     nacos/nacos-server:v2.2.1
@@ -6645,7 +6697,7 @@ docker run -d \
 
 3. 访问测试：[http://www.yue-hai.top:11000/nacos/#/login](http://www.yue-hai.top:11000/nacos/#/login)
 
-#### Ⅳ、对应的数据表
+#### Ⅴ、对应的数据表
 
 ```sql
 /*
@@ -6870,9 +6922,6 @@ INSERT INTO users (username, password, enabled) VALUES ('nacos', '$2a$10$EuWPZHz
 
 INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
 ```
-
-
-#### Ⅴ、
 
 ### ②、
 

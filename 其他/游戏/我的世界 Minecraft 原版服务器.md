@@ -485,8 +485,6 @@ touch minecraft_server.log
 screen_name="mc"
 # 脚本所在路径
 path="/home/steam/game/Minecraft"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -514,7 +512,7 @@ send_command $'\x03' 20
 send_command $'\x03'
 
 # 向 minecraft_server.log 文件中追加日志
-echo "【${current_time}】我的世界 Minecraft 服务器已关闭" >> $path/minecraft_server.log
+echo "$(date)：我的世界 Minecraft 服务器已关闭" >> $path/minecraft_server.log
 echo "" >> $path/minecraft_server.log
 ```
 
@@ -568,8 +566,6 @@ touch minecraft_server.log
 screen_name="mc"
 # 脚本所在路径
 path="/home/steam/game/Minecraft"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -603,7 +599,7 @@ send_command "cd $path\r" 5
 send_command "$path/start_server\r"
 
 # 向 minecraft_server.log 文件中追加日志
-echo "【${current_time}】我的世界 Minecraft 服务器已启动" >> $path/minecraft_server.log
+echo "$(date)：我的世界 Minecraft 服务器已启动" >> $path/minecraft_server.log
 ```
 
 4. 设置脚本权限：

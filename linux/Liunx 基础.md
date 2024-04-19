@@ -2922,8 +2922,6 @@ sed -i 's/\r$//' run_jar.sh
 screen_name="PalWorld"
 # 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -2949,7 +2947,7 @@ send_command $'\x03' 5
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
 # 向 pal_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器重启已完成" >> $path/pal_server.log
+echo "$(date)：帕鲁服务器重启已完成" >> $path/pal_server.log
 ```
 
 2. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
@@ -3162,8 +3160,6 @@ screen -S [pid/Name] -X quit
 screen_name="PalWorld-2"
 # 脚本所在路径
 path="/home/steam/game/PalServer"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒
 # -x：附加到指定的会话。
@@ -3185,7 +3181,7 @@ screen -x -S $screen_name -p 0 -X stuff "D"
 sleep 2
 
 # 向 yuehai_server.log 文件中追加日志
-echo "【${current_time}】帕鲁服务器 1 已启动" >> $path/yuehai_server.log
+echo "$(date)：帕鲁服务器 1 已启动" >> $path/yuehai_server.log
 ```
 
 2. 具体参数的含义如下：
