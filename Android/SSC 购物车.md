@@ -1,58 +1,22 @@
 # 一、项目整理
 
-## 1、项目结构
+1. `UniCloudWAN` 软件：
+	1. 客户 ID：913880004
+	2. 账号：10222148
+	3. 密码：chTRE@chanG532Cu
 
-```shell
-java/jp/retailai/raicart
-├── base
-├── bean
-│	└── operationLog
-│	└── scale
-├── deployer
-│	└── battery
-│	└── camera
-│	└── installation
-│	└── logger
-├── event
-├── guide
-├── network
-├── room
-├── ui
-│	└── bag
-│	└── base
-│	└── cancel
-│	└── common
-│	└── couponlist
-│	└── employee
-│	└── end
-│	└── login
-│	└── management
-│	└── nobarcode
-│	└── payment
-│	└── pin
-│	└── pop
-│	└── register
-│	└── scanreminder
-│	└── shopping
-│	└── standby
-├── utils
-├── view
-	
-res
-├── anim
-├── drawable
-├── drawable-v24
-├── layout
-├── mipmap-anydpi-v26
-├── mipmap-hdpi
-├── mipmap-mdpi
-├── mipmap-xhdpi
-├── mipmap-xxhdpi
-├── mipmap-xxxhdpi
-├── navigation
-├── raw
-├── values
-├── values-en-rUS
+## 1、查看绑定的布局
+
+1. Fragment 中查看：
+
+```kotlin
+layoutId()
+```
+
+2. dialog 中查看：
+
+```kotlin
+getLayout()
 ```
 
 ## 2、可用的购物车

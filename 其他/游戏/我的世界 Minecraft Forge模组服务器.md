@@ -513,7 +513,7 @@ touch minecraft_server_start.sh
 touch minecraft_server.log
 ```
 
-3. 编写自动关服脚本代码：`nano minecraft_server_start.sh`
+3. 编写自动开服脚本代码：`nano minecraft_server_start.sh`
 
 ```shell
 #!/bin/bash
