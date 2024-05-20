@@ -13721,36 +13721,36 @@ genymotion:/sdcard/Download #
 	2. https://android-doc.github.io/tools/help/shell.html#shellcommands
 3. 关于ADB更多的用法可以参考：https://github.com/mzlogin/awesome-adb
 
-| 命令 | 描述 |  |
-| ---- | ---- | ---- |
-| adb shell svc wifi disable/enable | 关闭wifi/开启wifi |  |
-| adb devices | 查看当前连接的设备 |  |
-| adb shell media volume --show --stream 3 --get | 获取当前多媒体音量大小 |  |
-| adb disconnect xxx.xxx.xxx.xxx | 断开指定的wifi设备连接 |  |
-| adb shell media volume --show --stream 3 --set 1 | 设定当前多媒体音量大小 |  |
-| adb disconnect | 断开所有wifi连接设备 |  |
-| adb shell setprop service.adb.tcp.port 5555 | 设置adb服务端口为5555， 打开adb网络调试功能 |  |
-| adb connect device_ip_address[:5555] | 利用ip连接新的android设备，需要在同一网络环境下 |  |
-| adb get-state | 获取连接状态，有3种：device，offline，unknown |  |
-| adb start-server | 启动adb服务 |  |
-| adb kill-server | 关闭adb服务 |  |
-| adb uninstall package | 卸载程序，package是包名 |  |
-| adb install xxx.apk | 安装程序 |  |
-| adb shell am start -n package/package.MainActivity | 启动程序，package是包名 |  |
-| adb shell am force-stop package | 强制结束程序，package是包名 |  |
-| adb pull /sdcard/DebugLog/20220805.log C:\Users\10153702\Desktop | 将设备里的文件拉取到本地 |  |
-| adb push C:\Users\10153702\Desktop\20220805.log /sdcard/DebugLog/20220805.log | 将本地文件上传到设备里 |  |
-| adb shell dumpsys package jp.retailai.raicart | 查看应用相关信息 |  |
-| adb shell dumpsys meminfo jp.retailai.raicart | 查看应用占用内存情况 |  |
-| adb shell dumpsys cpuinfo | findstr jp.retailai.raicart | 查看应用cpu占用情况 |
-| adb shell input keyevent 66 | 模拟按回车键 |  |
-| adb shell input keyevent 3 | 模拟按HOME键 |  |
-| adb shell input text 2960000000012 | 输入字符串 |  |
-| adb shell input keyevent 26 | 灭/亮屏 |  |
-| adb shell input keyevent 82 | 解锁屏幕 |  |
-| adb shell input tap x y | 按照(x,y)位置模拟点击 |  |
-| adb shell input swipe x1 y1 x2 y2 | 从(x1,y1)位置到(x2,y2)位置模拟滑动 |  |
-| adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt | 执行 monkey100 次随意点击测试，并记录日志到本地 |  |
+| 命令                                                                                    | 描述                                |             |
+| ------------------------------------------------------------------------------------- | --------------------------------- | ----------- |
+| adb shell svc wifi disable/enable                                                     | 关闭wifi/开启wifi                     |             |
+| adb devices                                                                           | 查看当前连接的设备                         |             |
+| adb shell media volume --show --stream 3 --get                                        | 获取当前多媒体音量大小                       |             |
+| adb disconnect xxx.xxx.xxx.xxx                                                        | 断开指定的wifi设备连接                     |             |
+| adb shell media volume --show --stream 3 --set 1                                      | 设定当前多媒体音量大小                       |             |
+| adb disconnect                                                                        | 断开所有wifi连接设备                      |             |
+| adb shell setprop service.adb.tcp.port 5555                                           | 设置adb服务端口为5555， 打开adb网络调试功能       |             |
+| adb connect device_ip_address[:5555]                                                  | 利用ip连接新的android设备，需要在同一网络环境下      |             |
+| adb get-state                                                                         | 获取连接状态，有3种：device，offline，unknown |             |
+| adb start-server                                                                      | 启动adb服务                           |             |
+| adb kill-server                                                                       | 关闭adb服务                           |             |
+| adb uninstall package                                                                 | 卸载程序，package是包名                   |             |
+| adb install xxx.apk                                                                   | 安装程序                              |             |
+| adb shell am start -n package/package.MainActivity                                    | 启动程序，package是包名                   |             |
+| adb shell am force-stop package                                                       | 强制结束程序，package是包名                 |             |
+| adb pull /sdcard/DebugLog/20220805.log C:\Users\10153702\Desktop                      | 将设备里的文件拉取到本地                      |             |
+| adb push C:\Users\10153702\Desktop\20220805.log /sdcard/DebugLog/20220805.log         | 将本地文件上传到设备里                       |             |
+| adb shell dumpsys package jp.retailai.raicart                                         | 查看应用相关信息                          |             |
+| adb shell dumpsys meminfo jp.retailai.raicart                                         | 查看应用占用内存情况                        |             |
+| adb shell dumpsys cpuinfo                                                             | findstr jp.retailai.raicart       | 查看应用cpu占用情况 |
+| adb shell input keyevent 66                                                           | 模拟按回车键                            |             |
+| adb shell input keyevent 3                                                            | 模拟按HOME键                          |             |
+| adb shell input text 2960000000012                                                    | 输入字符串                             |             |
+| adb shell input keyevent 26                                                           | 灭/亮屏                              |             |
+| adb shell input keyevent 82                                                           | 解锁屏幕                              |             |
+| adb shell input tap x y                                                               | 按照(x,y)位置模拟点击                     |             |
+| adb shell input swipe x1 y1 x2 y2                                                     | 从(x1,y1)位置到(x2,y2)位置模拟滑动          |             |
+| adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt | 执行 monkey100 次随意点击测试，并记录日志到本地     |             |
 
 ## 7、关闭 Idea 时会自动关闭 ADB 进程的解决办法
 
