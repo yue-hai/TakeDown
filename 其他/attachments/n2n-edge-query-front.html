@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <!-- 设置页面标题 -->
+    <title>查询 n2n edge 节点列表</title>
+    <!-- 引入 CSS 文件 -->
+    <link rel="stylesheet" href="n2n-edge-query-front-css.css">
+</head>
+<body>
+    <div class="button-container">
+        <button onclick="fetchDate()">更新数据</button>
+    </div>
+    <hr>
+    
+    <!-- 时间戳信息 -->
+    <p class="table-title">时间戳信息</p>
+    <table id="timestampsTable">
+        <thead>
+            <tr>
+                <th>节点启动时间</th>
+                <th>最后一次转发的时间</th>
+                <th>最后一次注册的时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 数据行将在这里动态添加 -->
+        </tbody>
+    </table>
+    <hr>
+    
+    <!-- 数据包统计信息 -->
+    <p class="table-title">数据包统计信息</p>
+    <table id="packetstatsTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>转发</th>
+                <th>广播</th>
+                <th>注册</th>
+                <th>错误记录</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>发送的数据包数量</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>接收的数据包数量</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>否定应答的数据包数量</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    
+    <!-- 小组信息，展示正在使用的小组列表 -->
+    <p class="table-title">小组信息，展示正在使用的小组列表</p>
+    <table id="communitiesTable">
+        <thead>
+            <tr>
+                <th>小组名称列表：</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 数据行将在这里动态添加 -->
+        </tbody>
+    </table>
+    <hr>
+    
+    <!-- edge 节点信息，展示正在使用的 ip 列表 -->
+    <p class="table-title">edge 节点信息，展示正在使用的 ip 列表</p>
+    <table id="edgesTable">
+        <thead>
+            <tr>
+                <th>虚拟网 ip</th>
+                <th>所在小组</th>
+                <th>最后在线时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 数据行将在这里动态添加 -->
+        </tbody>
+    </table>
+    <hr>
+    
+</body>
+
+<script>
+    // 自动获取当前页面的协议和主机部分，构建基本的 API URL：http://localhost:10003/
+    const url = `${window.location.origin}/`;
+    // 设置节点类型
+    const nodetype = "edge";
+    
+    // 获取数据，并更新页面上的表格
+    function fetchDate() {
+        // 时间戳信息
+        fetch(url + nodetype + '/timestamps')
+            .then(response => response.json())
+            .then(data => setTimestampsTable(data));
+
+        // 数据包统计信息
+        fetch(url + nodetype + '/packetstats')
+            .then(response => response.json())
+            .then(data => setPacketStatsTable(data));
+
+        // 小组信息
+        fetch(url + nodetype + '/communities')
+            .then(response => response.json())
+            .then(data => setCommunitiesTable(data));
+
+        // edge 节点信息
+        fetch(url + nodetype + '/edges')
+            .then(response => response.json())
+            .then(data => setEdgesTable(data));
+    }
+
+    // 页面加载完成后，立即执行一次刷新任务
+    fetchDate();
+    
+    // 通过接收的时间戳信息，动态生成表格
+    function setTimestampsTable(timestamps) {
+        // 获取表格的 tbody 元素
+        const tbody = document.getElementById('timestampsTable').getElementsByTagName('tbody')[0];
+        // 清空表格以便新的数据插入
+        tbody.innerHTML = '';
+        
+        // 遍历所有时间戳，生成表格行
+        timestamps.forEach(timestamp => {
+            // 创建新的表格行
+            let row = tbody.insertRow();
+            // 插入单元格
+            row.insertCell(0).textContent = new Date(timestamp.start_time * 1000).toLocaleString();
+            row.insertCell(1).textContent = new Date(timestamp.last_fwd * 1000).toLocaleString();
+            row.insertCell(2).textContent = new Date(timestamp.last_reg_super * 1000).toLocaleString();
+        });
+    }
+    
+    // 通过接收的数据包统计信息，动态生成表格
+    function setPacketStatsTable(packetstats) {
+        // 获取表格的 tbody 元素
+        const tbody = document.getElementById('packetstatsTable').getElementsByTagName('tbody')[0];
+        
+        // 遍历 tbody 的每个单元格，除第一个单元格（表头）外，清空其内容
+        for (let row of tbody.rows) {
+            for (let i = 1; i < row.cells.length; i++) {
+                // 清空除表头外的数据
+                row.cells[i].textContent = '';
+            }
+        }
+        
+        // 遍历所有数据包统计信息，生成表格行
+        packetstats.forEach(packetstat => {
+            // 根据 packetstat.type 定位对应的列
+            let colIndex;
+            switch (packetstat.type) {
+                case 'forward': colIndex = 1; break;
+                case 'broadcast': colIndex = 2; break;
+                case 'reg_super': colIndex = 3; break;
+                case 'errors': colIndex = 4; break;
+                default: return; // 未知类型，跳过
+            }
+            
+            // 判断 packetstat 中是否存在 tx_pkt、rx_pkt、nak 字段
+            if ('tx_pkt' in packetstat) {
+                // 第 1 行: 发送的数据包数量，插入到对应的列
+                tbody.rows[0].cells[colIndex].textContent = packetstat.tx_pkt;
+            }
+            if ('rx_pkt' in packetstat) {
+                // 第 2 行: 接收的数据包数量，插入到对应的列
+                tbody.rows[1].cells[colIndex].textContent = packetstat.rx_pkt;
+            }
+            if ('nak' in packetstat) {
+                // 第 3 行: 否定应答的数据包数量，插入到对应的列
+                tbody.rows[2].cells[colIndex].textContent = packetstat.nak;
+            }
+            
+        });
+    }
+    
+    // 通过接收的小组信息，动态生成表格
+    function setCommunitiesTable(communities) {
+        // 获取表格的 tbody 元素
+        const tbody = document.getElementById('communitiesTable').getElementsByTagName('tbody')[0];
+        // 清空表格以便新的数据插入
+        tbody.innerHTML = '';
+        
+        // 判断群组信息的第一个元素的小组名称是否为 '-/-'，如果是则删除
+        if (communities[0].community === '-/-') {
+            // 删除 communities 中的第一个元素
+            communities.shift();
+        }
+        
+        // 遍历所有群组，生成表格行
+        communities.forEach(community => {
+            // 创建新的表格行
+            let row = tbody.insertRow();
+            // 插入单元格
+            row.insertCell(0).textContent = community.community;
+        });
+    }
+    
+    // 通过接收的 edge 节点信息，动态生成表格
+    function setEdgesTable(edges) {
+        // 获取表格的 tbody 元素
+        const tbody = document.getElementById('edgesTable').getElementsByTagName('tbody')[0];
+        // 清空表格以便新的数据插入
+        tbody.innerHTML = '';
+        // 调用排序函数，按 IP 地址排序
+        edges.sort(sortByIpAddress);
+
+        // 遍历所有 edge 节点，生成表格行
+        edges.forEach(edge => {
+            // 创建新的表格行
+            let row = tbody.insertRow();
+            // 插入单元格
+            row.insertCell(0).textContent = edge.ip4addr;
+            row.insertCell(1).textContent = edge.community;
+            row.insertCell(2).textContent = new Date(edge.last_seen * 1000).toLocaleString()
+        });
+    }
+    
+    // 将 IP 地址转换为数字，用于排序
+    function convertIpToInteger(ipAddress) {
+        // 移除 CIDR 部分，只取 IP 地址部分
+        const ipSegments = ipAddress.split("/")[0].split('.');
+        // 将 IP 地址的每个部分转换为数字，然后合并成一个整数
+        return ipSegments.reduce((accumulator, segment) => accumulator * 256 + parseInt(segment, 10), 0);
+    }
+    
+    // 根据 IP 地址对对象进行排序的比较函数
+    function sortByIpAddress(entry1, entry2) {
+        const ipNumber1 = convertIpToInteger(entry1.ip4addr);
+        const ipNumber2 = convertIpToInteger(entry2.ip4addr);
+        return ipNumber1 - ipNumber2;
+    }
+    
+</script>
+
+</html>

@@ -323,7 +323,7 @@ ServerModCollectionSetup("序号2")
 cd "/home/steam/Steam/steamapps/common/Don't Starve Together Dedicated Server/bin64/"
 ```
 
-2. 启动地表层服务器；按 `Ctrl+a+d` 可退出终端
+2. 启动地表层服务器；按 `Ctrl + a + d` 可退出终端
 
 ```shell
 screen -S dstserver_master
@@ -331,7 +331,7 @@ screen -S dstserver_master
 ./master_start.sh
 ```
 
-3. 启动洞穴层服务器；按 `Ctrl+a+d` 可退出终端
+3. 启动洞穴层服务器；按 `Ctrl + a + d` 可退出终端
  
 ```shell
 screen -S dstserver_caves

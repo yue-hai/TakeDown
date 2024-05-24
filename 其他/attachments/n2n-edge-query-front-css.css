@@ -1,0 +1,89 @@
+body {
+    font-family: 'Arial', sans-serif; /* 设置字体 */
+    background-color: #d9d8d4; /* 背景颜色 */
+    margin: 20px; /* 外边距 */
+    font-size: 14px; /* 字体大小 */
+}
+
+/* 按钮容器样式 */
+.button-container {
+    text-align: center; /* 按钮居中显示 */
+    margin: 20px 0; /* 上下外边距 */
+}
+
+/* 刷新按钮样式 */
+button {
+    background-color: #336699; /* 深蓝色背景，与表头颜色一致 */
+    color: white; /* 文字颜色为白色 */
+    border: none; /* 无边框 */
+    padding: 10px 20px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    border-radius: 5px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬停时显示指针 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 轻微阴影效果 */
+    transition: background-color 0.3s; /* 背景色变化的过渡效果 */
+}
+
+/* 鼠标悬停在按钮上时的样式 */
+button:hover {
+    background-color: #4a8ec2; /* 深蓝色变为稍浅的蓝色 */
+}
+
+/* 焦点状态下的按钮样式 */
+button:focus {
+    outline: none; /* 移除焦点轮廓 */
+    background-color: #5a9ed6; /* 焦点状态下的背景色 */
+}
+
+/* 提示文字样式 */
+.table-title {
+    text-align: center; /* 文字居中显示 */
+    color: #336699; /* 深蓝色，与表头颜色一致 */
+    font-size: 18px; /* 字体大小 */
+    font-weight: bold; /* 加粗 */
+    margin: 20px 0; /* 上下外边距，确保足够的空间 */
+}
+
+/* 通用表格样式，应用于所有表格 */
+table {
+    width: 90%; /* 控制表格宽度 */
+    max-width: 770px; /* 设置最大宽度为 1200px */
+    margin: 10px auto; /* 居中显示，并提供上下边距 */
+    border-collapse: collapse; /* 边框合并为单一边框 */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1); /* 添加阴影效果 */
+    background-color: #fff; /* 白色背景 */
+    border-radius: 8px; /* 圆角边框 */
+    overflow: hidden; /* 隐藏溢出的内容 */
+}
+
+/* 表格头部通用样式 */
+table thead {
+    background-color: #336699; /* 深蓝色背景 */
+    color: #ffffff; /* 白色文字 */
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.2); /* 文字阴影效果 */
+}
+
+/* 表格头部单元格样式 */
+table th {
+    padding: 14px 18px; /* 内边距 */
+    text-align: left; /* 左对齐文本 */
+    font-weight: bold; /* 字体加粗 */
+    letter-spacing: 0.5px; /* 字母间距 */
+}
+
+/* 表格体单元格样式 */
+table td {
+    padding: 10px 18px; /* 内边距 */
+    border-top: 1px solid #ddd; /* 上边框 */
+    color: #333; /* 文字颜色 */
+}
+
+/* 隔行变色，仅应用于表格体，即 tbody */
+table tbody tr:nth-child(even) {
+    background-color: #e0e0e0; /* 偶数行背景颜色 */
+}
+
+/* 鼠标悬停行样式，仅应用于表格体，即 tbody */
+table tbody tr:hover {
+    background-color: #e8f4f8; /* 鼠标悬停时背景颜色 */
+}
