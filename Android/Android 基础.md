@@ -12647,9 +12647,10 @@ val messagesReceiveList = arguments?.getParcelable<MessageList>("messagesReceive
     android:lineSpacingMultiplier="1.5" />
 ```
 
-### ②、指定 `TextView` 最大行数
+### ②、指定 `TextView` 行数
 
-1. 可使用 `android:lines` 属性来设置最大显示行数，超出的部分不再显示
+1. 可使用 `android:lines` 属性来设置占用行数，会占用指定的空间，超出的部分不再显示
+2. 可使用 `android:maxLines` 属性来设置最大显示行数，超出的部分不再显示
 
 ```xml
 <TextView
@@ -12663,7 +12664,28 @@ val messagesReceiveList = arguments?.getParcelable<MessageList>("messagesReceive
 
 2. `android:ellipsize="end"` 表示若内容超出，则在内容末尾 `end` 添加省略号（`...`）
 
-### ③、
+### ③、清除 `TextView` 字体周边空白
+
+1. 在设置界面布局的时候，设计师会给一张标注了尺寸的 UI 设计图，如果在 UI 中包含了 `TextView` 空间的话，会发现即使完全按照标注的尺寸来做，最终的显示效果和设计图还是有差异。
+2. 打开开发者模式中的布局边界，再观察 APP 的界面可以发现，在 `TextView` 中字体与 `TextView` 的边界是有一定的距离的，在 720px 的图中大概有 2px 的边界留白。就是这些默认的留白导致 UI 出现偏差。
+3. 在 `TextView` 提供的属性设置里面，有这样一条属性：`android:includeFontPadding`，用来设置文本框是否包含顶部和底部留白（左右两侧默认没有留白），将其设置为 false，TextView 就会取消 2px 的留白。这样就避免了 TextView 导 UI 出现差异
+
+```xml
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="25"
+    android:textSize="46sp"
+    android:textColor="@color/dark_blue"
+    android:textStyle="bold"
+    android:includeFontPadding="false"/>
+```
+
+### ④、
+
+### ⑤、
+
+### ⑥、
 
 ## 2、recyclerView 列表
 
