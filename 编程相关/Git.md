@@ -1435,7 +1435,14 @@ git config --global https.proxy http://127.0.0.1:7890
 
 ![|700](attachments/Pasted%20image%2020231009092901.png)
 
-## 6、
+## 6、idea 提交时不想看到指定的目录或文件
+
+1. 在提交中右键目录或文件
+2. 选择：`添加到 .gitignore`
+3. 然后选择：`.git/info/exclude` 即可，点击后会打开 `.git/info/exclude` 文件，同时会添加刚才选择的目录或文件到文件中
+4. 若是想指定某目录下的文件全部都不显示，可以在 `.git/info/exclude` 文件中加入通配符：`/目录名/*`
+
+![](attachments/Pasted%20image%2020240614133946.png)
 
 ## 7、
 
