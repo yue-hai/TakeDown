@@ -2,10 +2,24 @@
 
 ## 1、mysql 重置自增主键
 
-1. `TRUNCATE TABLE 表明`
+1. `TRUNCATE TABLE 表名`
 2. 清空表
 
-## 2、MySQL 免安装版 Windows 安装
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
+
+# 二、MySQL 的安装
+
+## 1、windows
+
+### ①、MySQL 免安装版
 
 1. 下载 MySQL 免安装版：https://dev.mysql.com/downloads/mysql/
 
@@ -72,7 +86,7 @@ net start mysql
 net stop mysql
 ```
 
-## 3、MySQL 修改密码
+### ②、MySQL 修改密码
 
 1. 首先需要启动 MySQL 服务：`net start mysql`
 2. 登陆：`mysql -u root -p 刚才记录的密码`
@@ -80,7 +94,7 @@ net stop mysql
 
 ![|683](attachments/Pasted%20image%2020231101132335.png)
 
-4. 修改密码：
+4. 修改 root 密码：
 
 ```cmd
 ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
@@ -88,7 +102,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
 
 5. 密码修改成功后退出 mysql：`exit;`
 
-## 4、MySQL 设置允许外部连接访问
+### ③、MySQL 设置允许外部连接访问
 
 1. 查询 mysql 用户权限
 
@@ -96,9 +110,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
 select host, user from user;
 ```
 
-![|700](attachments/Pasted%20image%2020231101132912.png)
-
-2. 设置 mysql 允许外部连接访问
+2. 设置 mysql root 用户允许外部连接访问
 
 ```sql
 update user set Host='%' where User='root';
@@ -110,25 +122,199 @@ update user set Host='%' where User='root';
 select host, user from user;
 ```
 
-![](attachments/Pasted%20image%2020231101133013.png)
-
 4. 刷新
 
 ```sql
 flush privileges;
 ```
 
+5. 此时即可远程连接
+
+![](attachments/Pasted%20image%2020231101133013.png)
+
+## 2、linux
+
+### ①、ubuntu 安装
+
+1. 更新系统包列表：
+
+```shell
+sudo apt update
+```
+
+2. 查看可用版本：
+
+```shell
+apt-cache madison mysql-server
+```
+
+3. 安装特定版本：
+
+```shell
+sudo apt install mysql-server=8.0.37-0ubuntu0.20.04.3
+```
+
+4. 安装默认最新的稳定版：
+
+```shell
+sudo apt install mysql-server
+```
+
+5. 运行安全配置脚本，该脚本会设置密码策略和移除匿名用户等：
+
+```shell
+sudo mysql_secure_installation
+```
+
+6. 检查 MySQL 服务状态：
+
+```shell
+sudo systemctl status mysql.service
+```
+
+7. 如果服务没有运行，可以使用以下命令启动它：
+
+```shell
+sudo systemctl start mysql
+```
+
+8. 登录 MySQL 数据库，回车之后输入在 `mysql_secure_installation` 过程中设置的密码：
+
+```shell
+sudo mysql -u root -p
+```
+
+9. 之前没有设置密码，可以直接以 root 用户登录：
+
+```shell
+sudo mysql
+```
+
+10. 退出 MySQL：
+
+```shell
+exit
+```
+
+### ②、更改密码
+
+1. 直接以 root 用户登录：
+
+```shell
+sudo mysql
+```
+
+2. 设置或更改密码：
+	1. `localhost` 表示只能在本地登录，若是要允许 MySQL 用户从任何主机连接，需要修改该用户的主机部分从 `localhost` 到 `%`：`RENAME USER 'root'@'localhost' TO 'root'@'%';`
+	2. `root` 用户最好设置为强密码
+
+```shell
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+```
+
+3. 使密码更改立即生效：
+
+```shell
+FLUSH PRIVILEGES;
+```
+
+4. 退出 MySQL：
+
+```shell
+exit
+```
+
+5. 验证新设置的密码是否生效，可以尝试使用新密码再次登录：
+
+```shell
+mysql -u root -p
+```
+
+### ③、创建新用户
+
+1. 创建新用户：
+	1. `yan` 是新用户的用户名
+	2. `%` 表示这个用户可以从任何主机连接
+	3. `new_password` 是这个用户的密码。
+
+```shell
+CREATE USER 'yan'@'%' IDENTIFIED BY 'new_password';
+```
+
+2. 授权对特定数据库的完全控制权，假设希望这个新用户能够访问名为 `example_db` 的数据库，可以使用以下命令授予相应权限：
+	1. `GRANT` 命令可以针对尚未存在的数据库设置权限。
+	2. 这意味着可以先为用户授予权限，之后再创建数据库。
+	3. 这在多用户环境中非常有用，允许管理员事先设置权限策略。
+
+```shell
+GRANT ALL PRIVILEGES ON example_db.* TO 'yan'@'%';
+```
+
+3. 授予创建数据库的权限，`.` 表示对所有数据库和所有表的操作权限，但这里仅限于创建操作：
+
+```shell
+GRANT CREATE ON *.* TO 'yan'@'%';
+```
+
+4. 使权限更改立即生效：
+
+```shell
+FLUSH PRIVILEGES;
+```
+
+5. 删除用户：
+
+```shell
+DROP USER 'yan'@'%';
+```
+
+6. 使权限更改立即生效：
+
+```shell
+FLUSH PRIVILEGES;
+```
+
+7. 查看所有用户及其关联的主机：
+
+```shell
+SELECT User, Host FROM mysql.user;
+```
+
+8. 退出 MySQL：
+
+```shell
+exit
+```
+
+### ④、配置允许远程连接
+
+1. MySQL 默认配置通常只允许本地连接。需要编辑 MySQL 的配置文件 `my.cnf`（或 `my.ini`，取决于系统），确保 `bind-address` 参数被设置为允许远程连接（例如，设置为 `0.0.0.0` 允许从任何地址连接，或者特定的服务器 IP 地址）。
+2. 在 Ubuntu 上，这个配置文件通常位于 `/etc/mysql/mysql.conf.d/mysqld.cnf`：
+
+```shell
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+3. 找到 `bind-address` 项，更改为：
+
+```shell
+bind-address = 0.0.0.0
+```
+
+4. 保存文件并退出编辑器。
+5. 修改配置后，需要重启 MySQL 服务以使更改生效：
+
+```shell
+sudo systemctl restart mysql.service
+```
+
+## 3、
+
+## 4、
+
 ## 5、
 
 ## 6、
-
-## 7、
-
-## 8、
-
-## 9、
-
-# 二、
 
 # 三、
 
