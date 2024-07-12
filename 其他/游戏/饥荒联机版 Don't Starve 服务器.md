@@ -426,7 +426,7 @@ send_command "c_shutdown(true)\r" 30
 send_command $'\x03' 20
 send_command $'\x03' 20
 
-# 向 dstserver_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：饥荒 主世界 服务器已关闭" >> "$path/dstserver_server.log"
 
 # 洞穴启动：发送指令，保存并关闭服务器，并模拟按下回车键；等待 30 秒
@@ -435,7 +435,7 @@ send_command "c_shutdown(true)\r" 30 $screen_name_caves
 send_command $'\x03' 20 $screen_name_caves
 send_command $'\x03' 20 $screen_name_caves
 
-# 向 dstserver_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：饥荒 洞穴 服务器已关闭" >> "$path/dstserver_server.log"
 echo "" >> "$path/dstserver_server.log"
 ```
@@ -528,7 +528,7 @@ send_command "cd \"$path\"\r" 5
 # 发送启动命令，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "\"$path/master_start.sh\"\r" 20
 
-# 向 dstserver_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：饥荒 主世界 服务器已启动" >> "$path/dstserver_server.log"
 
 # 洞穴启动：发送指令，保存并关闭服务器，并模拟按下回车键；等待 30 秒
@@ -541,7 +541,7 @@ send_command "cd \"$path\"\r" 5 $screen_name_caves
 # 发送启动命令，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "\"$path/cave_start.sh\"\r" 20 $screen_name_caves
 
-# 向 dstserver_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：饥荒 洞穴 服务器已启动" >> "$path/dstserver_server.log"
 ```
 

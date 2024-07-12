@@ -467,7 +467,7 @@ send_command "stop\r" 20
 send_command $'\x03' 20
 send_command $'\x03'
 
-# 向 minecraft_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：我的世界 Minecraft forge 服务器已关闭" >> $path/minecraft_server.log
 echo "" >> $path/minecraft_server.log
 ```
@@ -551,10 +551,10 @@ send_command $'\x03' 5
 # 进入游戏服务器目录，不在此目录执行启动脚本会导致报错
 send_command "cd $path\r" 5
 
-# 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
+# 发送启动服务器命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保服务器启动完成
 send_command "$path/run.sh\r"
 
-# 向 minecraft_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：我的世界 Minecraft forge 服务器已启动" >> $path/minecraft_server.log
 ```
 

@@ -306,7 +306,7 @@ send_command $'\x03' 5
 # 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
-# 向 pal_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：帕鲁服务器重启已完成" >> $path/pal_server.log
 ```
 
@@ -386,7 +386,7 @@ send_command() {
 send_command $'\x03' 20
 send_command $'\x03'
 
-# 向 pal_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：帕鲁服务器已关闭" >> $path/pal_server.log
 echo "" >> $path/pal_server.log
 ```
@@ -457,7 +457,7 @@ send_command $'\x03' 5
 # 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
-# 向 pal_server.log 文件中追加日志
+# 向日志文件中追加内容
 echo "$(date)：帕鲁服务器已启动" >> $path/pal_server.log
 ```
 
