@@ -458,7 +458,71 @@ screen -r XXX.mc
 screen -S XXX.mc -X quit
 ```
 
-### ②、自动关服脚本
+### ②、自动备份存档脚本
+
+1. 进入游戏服务器目录：
+   
+```shell
+cd /home/steam/game/Minecraft/
+```
+
+2. 在其中创建文件：
+
+```shell
+# 创建备份存档脚本文件：
+touch minecraft_server_backup.sh
+
+# 创建日志文件：
+touch minecraft_server.log
+```
+
+3. 编写自动关服脚本代码：`nano minecraft_server_backup.sh`
+
+```shell
+#!/bin/bash
+
+# 脚本所在路径
+path="/home/steam/game/Minecraft"
+# 获取当前时间
+current_time=$(date "+%Y-%m-%d_%H%M%S")
+
+# 设置备份的目录
+backup_dir="$path/world"
+# 设置备份存放的目录
+backup_storage_dir="$path/backup"
+# 生成备份文件的名称，包含日期
+backup_filename="backup_$current_time.tar.gz"
+
+# 检查备份存放目录是否存在，不存在则创建
+if [ ! -d "$backup_storage_dir" ]; then
+    mkdir -p "$backup_storage_dir"
+    echo "【${current_time}】创建备份目录 $backup_storage_dir" >> $path/minecraft_server.log
+fi
+
+# 进入备份目录
+cd "$backup_dir"
+# 打包并压缩指定目录
+tar -czf "$backup_storage_dir/$backup_filename" .
+# 删除一周前的备份
+# find "$backup_storage_dir"：指定了 find 命令开始搜索的目录路径，即备份文件存放的目录
+# -name "backup_*.tar.gz"：这个选项让 find 命令查找名称匹配模式 backup_*.tar.gz 的文件
+# -type f：指定 find 只应查找类型为普通文件的条目。它排除了目录、链接或其他特殊类型的文件，确保只处理实际的备份文件
+# -mtime +7：这个选项基于文件的修改时间来过滤搜索结果。mtime 是文件内容最后修改的时间。+7 表示选择那些最后修改时间在七天前或更早的文件
+# -exec rm {} \;：这是一个执行动作，指示 find 命令对每个找到的文件执行 rm（删除）命令。在 find 命令中，{} 用作匹配文件的占位符，而 \; 是该 -exec 动作的结束标志
+find "$backup_storage_dir" -name "backup_*.tar.gz" -type f -mtime +7 -exec rm {} \;
+
+# 向 minecraft_server.log 文件中追加日志
+echo "【${current_time}】我的世界 Minecraft 备份存档和清理一周前备份已完成" >> $path/minecraft_server.log
+echo "" >> $path/minecraft_server.log
+```
+
+4. 设置脚本权限：
+
+```shell
+chmod 755 minecraft_server_backup.sh
+```
+
+### ③、自动关服脚本
 
 1. 进入游戏服务器目录：
    
@@ -471,9 +535,6 @@ cd /home/steam/game/Minecraft/
 ```shell
 # 创建脚本文件：
 touch minecraft_server_close.sh
-
-# 创建日志文件：
-touch minecraft_server.log
 ```
 
 3. 编写自动关服脚本代码：`nano minecraft_server_close.sh`
@@ -513,7 +574,9 @@ send_command $'\x03'
 
 # 向日志文件中追加内容
 echo "$(date)：我的世界 Minecraft 服务器已关闭" >> $path/minecraft_server.log
-echo "" >> $path/minecraft_server.log
+
+# 执行备份脚本
+$path/minecraft_server_backup.sh
 ```
 
 4. 设置脚本权限：
@@ -539,7 +602,7 @@ chmod 755 minecraft_server_close.sh
 	5. 星期几（Day of the Week）：0 ~ 7 或使用星期名称的缩写（0和7都代表星期日，1代表星期一，等等）代表一周中的哪一天执行任务。
 9. 在编辑完 `crontab` 后，保存并退出编辑器，`crontab` 会自动安装新的计划任务。可以通过 `crontab -l` 命令查看当前的 `crontab` 任务列表，以确认任务已正确设置
 
-### ③、自动开服脚本
+### ④、自动开服脚本
 
 1. 进入游戏服务器目录：
    
@@ -552,9 +615,6 @@ cd /home/steam/game/Minecraft/
 ```shell
 # 创建脚本文件：
 touch minecraft_server_start.sh
-
-# 创建日志文件：
-touch minecraft_server.log
 ```
 
 3. 编写自动关服脚本代码：`nano minecraft_server_start.sh`
@@ -599,6 +659,7 @@ send_command "cd $path\r" 5
 send_command "$path/start_server\r"
 
 # 向日志文件中追加内容
+echo "----------------------------------------------------------------" >> $path/minecraft_server.log
 echo "$(date)：我的世界 Minecraft 服务器已启动" >> $path/minecraft_server.log
 ```
 
