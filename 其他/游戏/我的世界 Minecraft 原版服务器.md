@@ -179,7 +179,13 @@ chmod 755 paper-1.20.1-196.jar
 
 ## 1、安装远程管理工具 screen
 
-1. 安装远程管理工具 screen，需使用 root 用户
+1. 更新软件源
+
+```shell
+sudo apt update
+```
+
+2. 安装远程管理工具 screen，需使用 root 用户
 
 ```shell
 apt install -y screen

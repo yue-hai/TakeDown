@@ -131,13 +131,19 @@ free -m
 
 # 四、环境配置
 
-1. 安装远程管理工具 screen
+1. 更新软件源
+
+```shell
+sudo apt update
+```
+
+2. 安装远程管理工具 screen
 
 ```shell
 apt install -y screen
 ```
 
-2. 安装 SteamCmd 运行所需环境
+3. 安装 SteamCmd 运行所需环境
 
 ```shell
 # 这些操作要在 root 中进行，根据你的系统选择不同指令。
@@ -152,13 +158,13 @@ yum -y install glibc libstdc++
 yum -y install glibc.i686 libstdc++.i686
 ```
 
-3. 下载 dotnet 6.0.0，泰拉联机依赖 dotnet
+4. 下载 dotnet 6.0.0，泰拉联机依赖 dotnet
 	1. 建议 Windows 下载后上传到 linux，因为 linux 下载太慢了：https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 	2. 愿意等待的话，启动 tModLoader 服务器时会自动下载
 
 ![](attachments/Pasted%20image%2020230517084849.png)
 
-4. dotnet 6.0.418 分卷压缩包下载：
+5. dotnet 6.0.418 分卷压缩包下载：
 	1. [dotnet-sdk-6.0.418-linux-x64.zip.001](attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.001)
 	2. [dotnet-sdk-6.0.418-linux-x64.zip.002](attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.002)
 	3. [dotnet-sdk-6.0.418-linux-x64.zip.003](attachments/dotnet-sdk-6.0.418-linux-x64.tar.zip.003)
