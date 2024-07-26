@@ -60,7 +60,7 @@
 3. 连接成功后，执行以下命令开放端口：
 
 ```shell
-sudo ufw allow from any to any port 8211 proto tcp
+sudo ufw allow from any to any port 8211
 ```
 
 # 三、设置 SWAP 分区
@@ -72,13 +72,13 @@ sudo ufw allow from any to any port 8211 proto tcp
 1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
 
 ```shell
-free –m
+free -m
 ```
 
 2. 删除原来的 Swap 分区
 
 ```shell
-swapoff –a
+swapoff -a
 ```
 
 3. 新增 SWAP 分区（一般是物理内存的 2 倍）
@@ -365,6 +365,8 @@ touch pal_server.log
 screen_name="PalWorld"
 # 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
+# 获取当前时间
+current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -386,8 +388,8 @@ send_command() {
 send_command $'\x03' 20
 send_command $'\x03'
 
-# 向日志文件中追加内容
-echo "$(date)：帕鲁服务器已关闭" >> $path/pal_server.log
+# 向 pal_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器已关闭" >> $path/pal_server.log
 echo "" >> $path/pal_server.log
 ```
 
@@ -433,6 +435,8 @@ touch pal_server.log
 screen_name="PalWorld"
 # 脚本所在路径
 path="/home/steam/Steam/steamapps/common/PalServer"
+# 获取当前时间
+current_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -457,8 +461,8 @@ send_command $'\x03' 5
 # 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
 send_command "$path/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDSD\r"
 
-# 向日志文件中追加内容
-echo "$(date)：帕鲁服务器已启动" >> $path/pal_server.log
+# 向 pal_server.log 文件中追加日志
+echo "【${current_time}】帕鲁服务器已启动" >> $path/pal_server.log
 ```
 
 4. 设置脚本权限：
@@ -490,71 +494,70 @@ chmod 755 pal_server_start.sh
 
 ## 2、主配置文件 `PalWorldSettings.ini` 参数说明
 
-
-| 参数                                                      | 说明                                                                                                                                                                              |
-| --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Difficulty=3,                                             | 难度：1、2、3整数<br>简单、普通、困难，影响怪物血量之类的数值                                                                                                                       |
-| DayTimeSpeedRate=1.000000,                                | 白天流逝速度 0.1~5 之间                                                                                                                                                             |
-| NightTimeSpeedRate=1.000000,                              | 夜晚流逝速度 0.1~5 之间                                                                                                                                                             |
-| ExpRate=3.000000,                                         | 经验倍率 0.1~3 之间                                                                                                                                                                 |
-| PalCaptureRate=2.000000,                                  | 帕鲁捕捉概率倍率，0.5~2 之间                                                                                                                                                       |
-| PalSpawnNumRate=2.000000,                                 | 帕鲁出现数量倍率，0.5~3 之间，比如 2，boss 也会出现 2 个。                                                                                                                             |
-| PalDamageRateAttack=1.000000,                             | 全部帕鲁攻击伤害（友方帕鲁和野怪帕鲁同时生效）<br>倍率 0.1~5 之间，越高伤害越高，自行抉择                                                                                               |
-| PalDamageRateDefense=1.000000,                            | 全部帕鲁承受伤害（友方帕鲁和野怪帕鲁同时生效）<br>倍率 0.1~5 之间，越低越抗揍，自行抉择                                                                                                 |
-| PlayerDamageRateAttack=2.0000000,                         | 玩家攻击伤害倍率 0.1~5 之间，越高输出越高                                                                                                                                           |
-| PlayerDamageRateDefense=0.1000000,                        | 玩家承受伤害倍率 0.1~5 之间，越低越抗揍                                                                                                                                             |
-| PlayerStomachDecreaceRate=0.1000000,                      | 玩家饱食度降低倍率 0.1~5 之间，越低越耐饿                                                                                                                                           |
-| PlayerStaminaDecreaceRate=0.1000000,                      | 玩家耐力降低倍率 0.1~5 之间，数值越低 耐力降低越慢                                                                                                                                  |
-| PlayerAutoHPRegeneRate=5.000000,                          | 玩家生命值恢复倍率 0.1~5 之间，数值越高自动回复越快                                                                                                                                 |
-| PlayerAutoHpRegeneRateInSleep=5.000000,                   | 玩家睡眠生命值恢复倍率 0.1~5 之间，数值越高睡觉回血越快                                                                                                                             |
-| PalStomachDecreaceRate=0.1000000,                         | 帕鲁饱食度降低倍率 0.1~5 之间，越低越耐饿                                                                                                                                           |
-| PalStaminaDecreaceRate=0.1000000,                         | 帕鲁耐力降低倍率 0.1~5 之间，数值越低 耐力降低越慢                                                                                                                                  |
-| PalAutoHPRegeneRate=5.000000,                             | 帕鲁生命值恢复倍率 0.1~5 之间，数值越高自动回复越快                                                                                                                                 |
-| PalAutoHpRegeneRateInSleep=5.000000,                      | 帕鲁睡眠时生命值恢复倍率 0.1~5 之间，数值越高自动回复越快                                                                                                                           |
-| BuildObjectDamageRate=1.000000,                           | 对建筑物伤害倍率 0.5~3 之间，建议调低，调高了会不小心拆掉自己的房子                                                                                                                 |
-| BuildObjectDeteriorationDamageRate=0.1000000,             | 建筑物劣化速度倍率 0~10 之间，建议调 0，建筑不会自己损坏。                                                                                                                           |
-| CollectionDropRate=3.000000,                              | 可采集物品掉落倍率 0.5~3 之间，调高了树木和矿物获取一次性获取更多                                                                                                                   |
-| CollectionObjectHpRate=0.5000000,                         | 可采集物品生命值倍率 0.5~3 之间，调低可以加快挖矿速度                                                                                                                               |
-| CollectionObjectRespawnSpeedRate=0.5000000,               | 可采集物品刷新间隔，0.5~3 之间，调低可加快野矿刷新速度                                                                                                                             |
-| EnemyDropItemRate=3.000000,                               | 道具掉落量倍率，0.5~3 之间<br>如果调到 3，比如击杀掉黑市商人，默认掉一把钥匙，会变成三把，金币掉落量也会三倍。                                                                        |
-| DeathPenalty=None,                                        | 死亡惩罚：None 不掉落，Item 只掉物品不掉装备，ItemAndEquipment 掉物品和装备，All 全都掉<br>建议 None 提高游戏舒适性，不然每次死都得跑尸                                                   |
-| bEnablePlayerToPlayerDamage=False,                        | 启用玩家对玩家伤害功能，True 或者 False                                                                                                                                             |
-| bEnableFriendlyFire=True,                                 | 该参数意义待定，实测不是友伤（同一工会的，这个参数为False或者True都不会友伤），也不是火焰伤害。                                                 |
-| bEnableInvaderEnemy=True,                                 | 是会发生袭击事件（野怪入侵基地），True 是开启，改为 False 关闭。                                                                                                                     |
-| bActiveUNKO=False,                                        | UNKO 应该是日语指代的粪便，个人理解是否开启帕鲁粪便吧好像，建议 False 不动；                                                                                                         |
-| bEnableAimAssistPad=True,                                 | 启用平板辅助瞄准 True 是开启，False 关闭                                                                                                                                             |
-| bEnableAimAssistKeyboard=False,                           | 启用键盘辅助瞄准 True 是开启，False 关闭                                                                                                                                             |
-| DropItemMaxNum=5000,                                      | 世界内掉落物品数量上限，指代野外可以捡到的东西数量上限，数量多了吃服务器性能。默认是 3000，上限 5000，看自己需要修改                                                                |
-| DropItemMaxNum_UNKO=100,                                  | 帕鲁屎掉落上限？不确定。可以不管                                                                                                                                                  |
-| BaseCampMaxNum=128,                                       | 大本营最大数，128 默认即可，多人游戏时如果有多个工会，会限制所有工会加起来的营地上限。                                                                                             |
-| BaseCampWorkerMaxNum=20,                                  | 可分派至据点工作的帕鲁数量上限，1~20 之间整数。默认 15。<br>01-28 更新：实测该参数目前不生效，既不是营地可指派帕鲁上限，也不是玩家可扔出干活的帕鲁上限） |
-| DropItemAliveMaxHours=2.000000,                           | 掉落物品存在最大时长，默认 1，上限不确定                                                                                                                                           |
-| bAutoResetGuildNoOnlinePlayers=False,                     | 自动重置没有在线玩家的公会，默认 False 即可。                                                                                                                                       |
-| AutoResetGuildTimeNoOnlinePlayers=72.000000,              | 无在线玩家时自动重置生成时间，默认 72 即可。                                                                                                                                        |
-| GuildPlayerMaxNum=20,                                     | 公会成员最大数量，默认 20 即可                                                                                                                                                      |
-| PalEggDefaultHatchingTime=0.0000000,                      | 帕鲁蛋默认孵化时间，默认 72 是小时，调成0即可没有孵化时间。<br>0.1~72 之间可以自己输入                                                                                                   |
-| WorkSpeedRate=3.000000,                                   | 工作速率，影响流水线物品生产速度，默认 1，建议 3                                                                                                                                    |
-| bIsMultiplay=False,                                       | 多人游戏，默认 false，如果是局域网创建服务器玩家不影响，False 即可。                                                                                                                |
-| bIsPvP=False,                                             | PVP 是否开启                                                                                                                                                                       |
-| bCanPickupOtherGuildDeathPenaltyDrop=False,               | 可拾取其他公会的死亡掉落物，默认 False 即可                                                                                                                                         |
-| bEnableNonLoginPenalty=True,                              | 启用不登录惩罚，应该指代的是无人在线时是否会出现袭击事件，默认 True 应该也没影响，担心出问题的可以改 False                                                                         |
-| bEnableFastTravel=True,                                   | 启用快速旅行，默认 True 即可                                                                                                                                                        |
-| bIsStartLocationSelectByMap=True,                         | 通过地图选择起始位置默认 True 即可，如果改为 False 则全部出生在初始台地                                                                                                               |
-| bExistPlayerAfterLogout=False,                            | 注销后玩家仍然存在，就是是否删注销玩家的档，跟朋友一起玩的默认 False 即可                                                                                                           |
-| bEnableDefenseOtherGuildPlayer=False,                     | 启用防御其他公会玩家功能，默认 False 即可。                                                                                                                                         |
-| CoopPlayerMaxNum=4,                                       | 邀请码服务器玩家最大人数                                                                                                                                                          |
-| ServerPlayerMaxNum=32,                                    | 服务器玩家最大人数                                                                                                                                                                |
-| ServerName="Default Palworld Server",                     | 服务器名称                                                                                                                                                                        |
-| ServerDescription="",                                     | 服务器简介                                                                                                                                                                        |
-| AdminPassword="",                                         | 管理员密码                                                                                                                                                                        |
-| ServerPassword="",                                        | 服务器密码                                                                                                                                                                        |
-| PublicPort=8211,                                          | 服务器对外端口                                                                                                                                                                    |
-| PublicIP="",                                              | 服务器 IP                                                                                                                                                                          |
-| RCONEnabled=False,                                        | 启用 RCON                                                                                                                                                                         |
-| RCONPort=25575,                                           | RCON 端口                                                                                                                                                                          |
-| Region="",                                                | 地区                                                                                                                                                                              |
-| bUseAuth=True,                                            | 使用授权                                                                                                                                                                          |
-| BanListURL="https://api.palworldgame.com/api/banlist.txt" | 封禁玩家名单（需外网）                                                                                                                                                            |
+| 参数                                                        | 说明                                                                                       |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Difficulty=3,                                             | 难度：1、2、3整数<br>简单、普通、困难，影响怪物血量之类的数值                                                       |
+| DayTimeSpeedRate=1.000000,                                | 白天流逝速度 0.1~5 之间                                                                          |
+| NightTimeSpeedRate=1.000000,                              | 夜晚流逝速度 0.1~5 之间                                                                          |
+| ExpRate=3.000000,                                         | 经验倍率 0.1~3 之间                                                                            |
+| PalCaptureRate=2.000000,                                  | 帕鲁捕捉概率倍率，0.5~2 之间                                                                        |
+| PalSpawnNumRate=2.000000,                                 | 帕鲁出现数量倍率，0.5~3 之间，比如 2，boss 也会出现 2 个。                                                    |
+| PalDamageRateAttack=1.000000,                             | 全部帕鲁攻击伤害（友方帕鲁和野怪帕鲁同时生效）<br>倍率 0.1~5 之间，越高伤害越高，自行抉择                                       |
+| PalDamageRateDefense=1.000000,                            | 全部帕鲁承受伤害（友方帕鲁和野怪帕鲁同时生效）<br>倍率 0.1~5 之间，越低越抗揍，自行抉择                                        |
+| PlayerDamageRateAttack=2.0000000,                         | 玩家攻击伤害倍率 0.1~5 之间，越高输出越高                                                                 |
+| PlayerDamageRateDefense=0.1000000,                        | 玩家承受伤害倍率 0.1~5 之间，越低越抗揍                                                                  |
+| PlayerStomachDecreaceRate=0.1000000,                      | 玩家饱食度降低倍率 0.1~5 之间，越低越耐饿                                                                 |
+| PlayerStaminaDecreaceRate=0.1000000,                      | 玩家耐力降低倍率 0.1~5 之间，数值越低 耐力降低越慢                                                            |
+| PlayerAutoHPRegeneRate=5.000000,                          | 玩家生命值恢复倍率 0.1~5 之间，数值越高自动回复越快                                                            |
+| PlayerAutoHpRegeneRateInSleep=5.000000,                   | 玩家睡眠生命值恢复倍率 0.1~5 之间，数值越高睡觉回血越快                                                          |
+| PalStomachDecreaceRate=0.1000000,                         | 帕鲁饱食度降低倍率 0.1~5 之间，越低越耐饿                                                                 |
+| PalStaminaDecreaceRate=0.1000000,                         | 帕鲁耐力降低倍率 0.1~5 之间，数值越低 耐力降低越慢                                                            |
+| PalAutoHPRegeneRate=5.000000,                             | 帕鲁生命值恢复倍率 0.1~5 之间，数值越高自动回复越快                                                            |
+| PalAutoHpRegeneRateInSleep=5.000000,                      | 帕鲁睡眠时生命值恢复倍率 0.1~5 之间，数值越高自动回复越快                                                         |
+| BuildObjectDamageRate=1.000000,                           | 对建筑物伤害倍率 0.5~3 之间，建议调低，调高了会不小心拆掉自己的房子                                                    |
+| BuildObjectDeteriorationDamageRate=0.1000000,             | 建筑物劣化速度倍率 0~10 之间，建议调 0，建筑不会自己损坏。                                                        |
+| CollectionDropRate=3.000000,                              | 可采集物品掉落倍率 0.5~3 之间，调高了树木和矿物获取一次性获取更多                                                     |
+| CollectionObjectHpRate=0.5000000,                         | 可采集物品生命值倍率 0.5~3 之间，调低可以加快挖矿速度                                                           |
+| CollectionObjectRespawnSpeedRate=0.5000000,               | 可采集物品刷新间隔，0.5~3 之间，调低可加快野矿刷新速度                                                           |
+| EnemyDropItemRate=3.000000,                               | 道具掉落量倍率，0.5~3 之间<br>如果调到 3，比如击杀掉黑市商人，默认掉一把钥匙，会变成三把，金币掉落量也会三倍。                            |
+| DeathPenalty=None,                                        | 死亡惩罚：None 不掉落，Item 只掉物品不掉装备，ItemAndEquipment 掉物品和装备，All 全都掉<br>建议 None 提高游戏舒适性，不然每次死都得跑尸 |
+| bEnablePlayerToPlayerDamage=False,                        | 启用玩家对玩家伤害功能，True 或者 False                                                                |
+| bEnableFriendlyFire=True,                                 | 该参数意义待定，实测不是友伤（同一工会的，这个参数为False或者True都不会友伤），也不是火焰伤害。                                     |
+| bEnableInvaderEnemy=True,                                 | 是会发生袭击事件（野怪入侵基地），True 是开启，改为 False 关闭。                                                   |
+| bActiveUNKO=False,                                        | UNKO 应该是日语指代的粪便，个人理解是否开启帕鲁粪便吧好像，建议 False 不动；                                             |
+| bEnableAimAssistPad=True,                                 | 启用平板辅助瞄准 True 是开启，False 关闭                                                               |
+| bEnableAimAssistKeyboard=False,                           | 启用键盘辅助瞄准 True 是开启，False 关闭                                                               |
+| DropItemMaxNum=5000,                                      | 世界内掉落物品数量上限，指代野外可以捡到的东西数量上限，数量多了吃服务器性能。默认是 3000，上限 5000，看自己需要修改                          |
+| DropItemMaxNum_UNKO=100,                                  | 帕鲁屎掉落上限？不确定。可以不管                                                                         |
+| BaseCampMaxNum=128,                                       | 大本营最大数，128 默认即可，多人游戏时如果有多个工会，会限制所有工会加起来的营地上限。                                            |
+| BaseCampWorkerMaxNum=20,                                  | 可分派至据点工作的帕鲁数量上限，1~20 之间整数。默认 15。<br>01-28 更新：实测该参数目前不生效，既不是营地可指派帕鲁上限，也不是玩家可扔出干活的帕鲁上限）    |
+| DropItemAliveMaxHours=2.000000,                           | 掉落物品存在最大时长，默认 1，上限不确定                                                                    |
+| bAutoResetGuildNoOnlinePlayers=False,                     | 自动重置没有在线玩家的公会，默认 False 即可。                                                               |
+| AutoResetGuildTimeNoOnlinePlayers=72.000000,              | 无在线玩家时自动重置生成时间，默认 72 即可。                                                                 |
+| GuildPlayerMaxNum=20,                                     | 公会成员最大数量，默认 20 即可                                                                        |
+| PalEggDefaultHatchingTime=0.0000000,                      | 帕鲁蛋默认孵化时间，默认 72 是小时，调成0即可没有孵化时间。<br>0.1~72 之间可以自己输入                                      |
+| WorkSpeedRate=3.000000,                                   | 工作速率，影响流水线物品生产速度，默认 1，建议 3                                                               |
+| bIsMultiplay=False,                                       | 多人游戏，默认 false，如果是局域网创建服务器玩家不影响，False 即可。                                                 |
+| bIsPvP=False,                                             | PVP 是否开启                                                                                 |
+| bCanPickupOtherGuildDeathPenaltyDrop=False,               | 可拾取其他公会的死亡掉落物，默认 False 即可                                                                |
+| bEnableNonLoginPenalty=True,                              | 启用不登录惩罚，应该指代的是无人在线时是否会出现袭击事件，默认 True 应该也没影响，担心出问题的可以改 False                              |
+| bEnableFastTravel=True,                                   | 启用快速旅行，默认 True 即可                                                                        |
+| bIsStartLocationSelectByMap=True,                         | 通过地图选择起始位置默认 True 即可，如果改为 False 则全部出生在初始台地                                               |
+| bExistPlayerAfterLogout=False,                            | 注销后玩家仍然存在，就是是否删注销玩家的档，跟朋友一起玩的默认 False 即可                                                 |
+| bEnableDefenseOtherGuildPlayer=False,                     | 启用防御其他公会玩家功能，默认 False 即可。                                                                |
+| CoopPlayerMaxNum=4,                                       | 邀请码服务器玩家最大人数                                                                             |
+| ServerPlayerMaxNum=32,                                    | 服务器玩家最大人数                                                                                |
+| ServerName="Default Palworld Server",                     | 服务器名称                                                                                    |
+| ServerDescription="",                                     | 服务器简介                                                                                    |
+| AdminPassword="",                                         | 管理员密码                                                                                    |
+| ServerPassword="",                                        | 服务器密码                                                                                    |
+| PublicPort=8211,                                          | 服务器对外端口                                                                                  |
+| PublicIP="",                                              | 服务器 IP                                                                                   |
+| RCONEnabled=False,                                        | 启用 RCON                                                                                  |
+| RCONPort=25575,                                           | RCON 端口                                                                                  |
+| Region="",                                                | 地区                                                                                       |
+| bUseAuth=True,                                            | 使用授权                                                                                     |
+| BanListURL="https://api.palworldgame.com/api/banlist.txt" | 封禁玩家名单（需外网）                                                                              |
 
 # 八、管理服务器
 

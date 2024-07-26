@@ -72,13 +72,13 @@ sudo ufw allow from any to any port 25565 proto
 1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
 
 ```shell
-free –m
+free -m
 ```
 
 2. 删除原来的 Swap 分区
 
 ```shell
-swapoff –a
+swapoff -a
 ```
 
 3. 新增 SWAP 分区（一般是物理内存的 2 倍）

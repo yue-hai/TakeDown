@@ -4574,7 +4574,7 @@ docker@yuehai:~/docker/volumes/openjdk$
 | mysql     | 10200 |                                     | mysql 数据库             |
 |           |       | 10200                               | y_chat 数据库            |
 | java      | 10300 |                                     |                       |
-|           |       | 10300                               | test 及工具应用            |
+|           |       | 10300                               | yuehai-tool 工具应用      |
 |           |       | 10301                               | y_chat 消息转发           |
 |           |       | 10310                               | y_chat 数据服务器          |
 | nacos     | 15000 | 15000、<br>16000、<br>16001、<br>14000 | 服务注册和配置中心             |

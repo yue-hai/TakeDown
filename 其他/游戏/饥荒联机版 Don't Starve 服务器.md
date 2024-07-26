@@ -74,13 +74,13 @@ sudo ufw allow from any to any port 10999 proto tcp
 1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
 
 ```shell
-free –m
+free -m
 ```
 
 2. 删除原来的 Swap 分区
 
 ```shell
-swapoff –a
+swapoff -a
 ```
 
 3. 新增 SWAP 分区（一般是物理内存的 2 倍）
@@ -227,38 +227,20 @@ ln -s /usr/lib/libcurl.so.4 /home/steam/dstserver/bin/lib32/libcurl-gnutls.so.4
 cd "/home/steam/Steam/steamapps/common/Don't Starve Together Dedicated Server/bin64/"
 ```
 
-3. 创建地表层（主世界）服务器启动脚本
+3. 启动地表层（主世界）服务器；因为服务器虽然启动但还未配置所以显示未正常启动，之后等待一两分钟后按下 `Ctrl + C` 关闭服务器
    
 ```shell
-echo "./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Master" > master_start.sh
+./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Master
 ```
 
-4. 创建洞穴层服务器启动脚本
+4. 启动洞穴层服务器；因为服务器虽然启动但还未配置所以显示未正常启动，之后等待一两分钟后按下 `Ctrl + C` 关闭服务器
  
 ```shell
-echo "./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Caves" > cave_start.sh
+./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Caves
 ```
 
-5. 给予 master_start.sh 和 cave_start.sh 执行权限
-
-```shell
-chmod 755 master_start.sh cave_start.sh
-```
-
-6. 启动主世界服务器；因为服务器启动但还未配置所以显示未正常启动，之后按下 `Ctrl + C` 正常关闭服务器
-
-```shell
-./master_start.sh
-```
-
-7. 启动洞穴服务器；因为服务器启动但还未配置所以显示未正常启动，之后按下 `Ctrl + C` 正常关闭服务器
-   
-```shell
-./cave_start.sh
-```
-
-8. 经过上述服务器初次启动，在 ```/home/steam/.klei/DoNotStarveTogether/Cluster_1/``` 文件夹下就会自动生成默认的配置文件，这个配置文件就是我们饥荒服务器的配置文件了
-9. 接下来有两种方式：
+5. 经过上述服务器初次启动，在 ```/home/steam/.klei/DoNotStarveTogether/Cluster_1/``` 文件夹下就会自动生成默认的配置文件，这个配置文件就是我们饥荒服务器的配置文件了
+6. 接下来有两种方式：
 	1. 一种是自己修改配置，这种要求比较高
 	2. 另一种就是现在自己电脑上创建一个服务器，然后将配置文件复制到 Linux 服务器上
 	3. 推荐使用第二种，简单，准确，这里也只描述第二种
@@ -328,7 +310,7 @@ cd "/home/steam/Steam/steamapps/common/Don't Starve Together Dedicated Server/bi
 ```shell
 screen -S dstserver_master
 
-./master_start.sh
+./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Master
 ```
 
 3. 启动洞穴层服务器；按 `Ctrl + a + d` 可退出终端
@@ -336,7 +318,7 @@ screen -S dstserver_master
 ```shell
 screen -S dstserver_caves
 
-./cave_start.sh
+./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Caves
 ```
 
 4. 获取 screen 列表，会有一个 `XXX.dstserver_master` 和 `XXX.dstserver_caves` 的进程
@@ -526,7 +508,7 @@ send_command $'\x03' 5
 # 进入游戏服务器目录
 send_command "cd \"$path\"\r" 5
 # 发送启动命令，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
-send_command "\"$path/master_start.sh\"\r" 20
+send_command "./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Master\r" 20
 
 # 向日志文件中追加内容
 echo "$(date)：饥荒 主世界 服务器已启动" >> "$path/dstserver_server.log"
@@ -539,7 +521,7 @@ send_command $'\x03' 5 $screen_name_caves
 # 进入游戏服务器目录
 send_command "cd \"$path\"\r" 5 $screen_name_caves
 # 发送启动命令，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
-send_command "\"$path/cave_start.sh\"\r" 20 $screen_name_caves
+send_command "./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster Cluster_1 -shard Caves\r" 20 $screen_name_caves
 
 # 向日志文件中追加内容
 echo "$(date)：饥荒 洞穴 服务器已启动" >> "$path/dstserver_server.log"
