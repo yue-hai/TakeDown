@@ -12553,7 +12553,128 @@ val messagesReceiveList = arguments?.getParcelable<MessageList>("messagesReceive
 
 ### ⑤、
 
-## 6、
+## 6、网络请求
+
+### ①、使用 logging-interceptor 追踪网络请求
+
+1. 引入依赖
+
+```gradle
+implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+```
+
+2. 创建 Retrofit 实例时添加拦截器
+
+```kotlin
+package com.yuehai.chat.network.config
+
+import com.yuehai.chat.network.config.GsonFactory.createGson
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+/**
+ * Retrofit 客户端，用于创建 Retrofit 实例
+ * @author 月海
+ * @date 2024/4/29 16:52
+ * @description Retrofit 客户端，用于创建 Retrofit 实例
+ */
+object RetrofitClient {
+    
+    /**
+     * 通过传入的 URL 创建 Retrofit 实例
+     * @param baseUrl 基础 URL
+     * @param apiClass Api 接口类
+     * @return Api 接口类的实例
+     */
+    fun <T> create(baseUrl: String, apiClass: Class<T>): T {
+        // 创建日志拦截器实例，并设置日志级别
+        val logging = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+
+        // 创建 OkHttpClient 实例，并添加拦截器
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
+        // Retrofit.Builder() 用于创建 Retrofit 实例
+        val retrofit = Retrofit.Builder()
+            // 设置 URL
+            .baseUrl(baseUrl)
+            // 设置 OkHttpClient 实例，用于网络请求
+            .client(client)
+            // 添加 Gson 转换器
+            .addConverterFactory(GsonConverterFactory.create(createGson()))
+            // 创建 Retrofit 实例
+            .build()
+        
+        // 创建并返回 Api 接口类的实例
+        return retrofit.create(apiClass)
+    }
+    
+}
+```
+
+3. 调用接口时使用上面的 `RetrofitClient` 调用即可
+
+```kotlin
+/**
+ * 授权接口服务，用于处理授权相关的网络请求
+ * @author 月海
+ * @date 2024/4/29 16:35
+ * @description 封装 AuthApi 的调用，确保所有网络请求在 IO 线程中执行
+ */
+object AuthApiService {
+    
+    /**
+     * 使用 USER URL 创建的 AuthApi 实例
+     */
+    private val authApi = RetrofitClient.create(BaseApiServiceUrl.USER.url, AuthApi::class.java)
+    
+    /**
+     * 用户注册，接收具体的用户信息，构造请求数据后调用 AuthApi 的注册接口，并返回响应对象
+     * @param nickName 用户昵称
+     * @param password 用户密码
+     * @param email 用户邮箱
+     * @param phoneNumber 用户手机号
+     * @return 响应对象：用户 ID
+     * <p></p>
+     * withContext(Dispatchers.IO)：withContext 函数用于切换协程的上下文，将协程的执行环境切换到 IO 线程中
+     * Dispatchers.IO 是一个预定义的调度器，专门用于执行 I/O 密集型任务，如文件操作、网络调用等。
+     */
+    suspend fun submitRegisterRequest(nickName: String, password: String, email: String, phoneNumber: String): Response<JsonResult<Int>> = withContext(Dispatchers.IO) {
+        /**
+         * 构造注册请求数据
+         */
+        val registrationData = mapOf(
+            "nickName" to nickName,
+            "password" to password,
+            "email" to email,
+            "phoneNumber" to phoneNumber
+        )
+        
+        try {
+            // 调用 AuthApi 的注册接口
+            authApi.register(createGsonRequestBody(registrationData))
+        } catch (e: Exception) {
+            // 打印并处理异常
+            e.printStackTrace()
+            handleError(e, "发送注册请求失败")
+        }
+    }
+}
+```
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
 
 ## 7、
 

@@ -161,6 +161,11 @@ sudo apt install mysql-server
 ```
 
 5. 运行安全配置脚本，该脚本会设置密码策略和移除匿名用户等：
+	1. 设置密码验证组件：这个组件可以检查密码强度，确保只有足够安全的密码可以被设置
+	2. 删除匿名用户：默认情况下，MySQL安装后会存在匿名用户，允许任何人无需登录即可连接数据库。这主要是为了测试和简化安装过程
+	3. 限制 root 用户只能从 localhost 连接：通常，为了安全考虑，应该只允许 root 用户从本地机器（localhost）连接，这可以防止远程尝试猜测root密码
+	4. 删除测试数据库：MySQL 默认会创建一个名为 test 的数据库，任何人都可以访问。这同样主要是为了测试目的
+	5. 重新加载权限表：为了让之前做的所有更改立即生效，系统提示你是否重新加载权限表
 
 ```shell
 sudo mysql_secure_installation
@@ -178,22 +183,27 @@ sudo systemctl status mysql.service
 sudo systemctl start mysql
 ```
 
-8. 登录 MySQL 数据库，回车之后输入在 `mysql_secure_installation` 过程中设置的密码：
+8. 直接以 root 用户登录：
 
 ```shell
 sudo mysql -u root -p
 ```
 
-9. 之前没有设置密码，可以直接以 root 用户登录：
-
 ```shell
-sudo mysql
-```
+yan@yuehai:~/apply$ sudo mysql -u root -p
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.39-0ubuntu0.20.04.1 (Ubuntu)
 
-10. 退出 MySQL：
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
 
-```shell
-exit
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
 ```
 
 ### ②、更改密码
@@ -204,17 +214,15 @@ exit
 sudo mysql
 ```
 
-2. 设置或更改密码：
-	1. `localhost` 表示只能在本地登录，若是要允许 MySQL 用户从任何主机连接，需要修改该用户的主机部分从 `localhost` 到 `%`：`RENAME USER 'root'@'localhost' TO 'root'@'%';`
-	2. `root` 用户最好设置为强密码
+2. 更改 root 用户的认证方式，以便能够使用密码进行认证：
 
-```shell
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的密码';
 ```
 
-3. 使密码更改立即生效：
+3. 重新加载权限表，使更改立即生效
 
-```shell
+```sql
 FLUSH PRIVILEGES;
 ```
 
@@ -224,7 +232,7 @@ FLUSH PRIVILEGES;
 exit
 ```
 
-5. 验证新设置的密码是否生效，可以尝试使用新密码再次登录：
+5. 使用非 root 用户登录，输入刚才修改的密码：
 
 ```shell
 mysql -u root -p

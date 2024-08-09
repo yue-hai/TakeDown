@@ -1398,9 +1398,14 @@ HEAD is now at 1f205e8 Merge remote-tracking branch 'origin/master'
 > 如果不仅本地提交了，还推送到远程了该怎么办？
 
 1. 执行上面的 `3、本地回滚提交`
-2. 在 git bash 中执行：`git push --force origin <branch_name>`，回车
-	1.  `<branch_name>` 是正在工作的分支名
-	2. 也即需要回滚的分支名
+2. 在 git bash 中执行：
+	1.  `<提交哈希>` 是想要回滚到的提交记录，具体请看下图
+	2. `<分支名>` 即想要回滚的分支，如 `master`
+
+```shell
+git push --force origin <提交哈希>:<分支名>
+```
+
 3. 查看 github 提交历史，远程回滚完成
 
 ![|700](attachments/Pasted%20image%2020240117091249.png)
