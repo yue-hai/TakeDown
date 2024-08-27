@@ -1,0 +1,11 @@
+{
+  "accentColor": "",
+  "baseFontSize": 18,
+  "cssTheme": "Things",
+  "enabledCssSnippets": [
+    "月海自己的配置"
+  ],
+  "baseFontSizeAction": false,
+  "theme": "obsidian",
+  "translucency": false
+}

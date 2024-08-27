@@ -1,0 +1,23 @@
+{
+  "promptDelete": false,
+  "attachmentFolderPath": "./attachments",
+  "readableLineLength": false,
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "spellcheckLanguages": null,
+  "spellcheck": true,
+  "newFileLocation": "root",
+  "userIgnoreFilters": null,
+  "alwaysUpdateLinks": true,
+  "autoConvertHtml": false,
+  "showLineNumber": true,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A3",
+    "landscape": false,
+    "margin": "1",
+    "downscalePercent": 100
+  },
+  "vimMode": false,
+  "showInlineTitle": true
+}

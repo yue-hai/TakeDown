@@ -1,0 +1,159 @@
+{
+  "main": {
+    "id": "cd48afec41af8c70",
+    "type": "split",
+    "children": [
+      {
+        "id": "0b3d14831b1395eb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ef3c11811a392481",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b22dbd8204e137c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "4f03728d26dca1d7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d15106a04089845",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2c960a24d23e051f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "ced252e80acf5b12",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "7645db7678a31276",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 212.5
+  },
+  "right": {
+    "id": "e39dcbf669ddf36e",
+    "type": "split",
+    "children": [
+      {
+        "id": "f817262bba866211",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4e8e535d3f00991f",
+            "type": "leaf",
+            "state": {
+              "type": "quiet-outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 329.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "ef3c11811a392481",
+  "lastOpenFiles": [
+    "编程相关/Git.md",
+    "java/【其他】.md",
+    "java/13、Redis.md",
+    "Android/Android 基础.md",
+    "公司/创迹/SSC/SSC 购物车.md",
+    "java/JUC 并发编程.md",
+    "java/17、数据结构与算法.md",
+    "java/16、设计模式.md",
+    "java/15、SpringCloudAlibaba.md",
+    "java/14、SpringCloud.md",
+    "其他/设备和工具.md",
+    "java/11、SpringBoot2.md",
+    "java/10、SSM整合开发.md",
+    "Android/Kotlin 基础.md",
+    "java/document/java开发规约.pdf",
+    "java/document",
+    "java/新建文件夹",
+    "其他/游戏/泰拉瑞亚 TShock 服务器.md",
+    "其他/游戏/泰拉瑞亚 tModLoader 服务器.md",
+    "linux/Smart/Smart 基础.md",
+    "java/08、SpringMVC.md",
+    "编程相关/编程软件.md",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar.gz",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar/dotnet-sdk-6.0.418-linux-x64.tar.gz",
+    "其他/游戏/attachments/dotnet-sdk-6.0.418-linux-x64.tar",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin.zip",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/jdk-21_linux-x64_bin.zip",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/README",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/release",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/java.smartcardio/pcsclite.md",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/jdk.localedata/thaidict.md",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/jdk.localedata/cldr.md",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/java.xml/bcel.md",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/jdk.javadoc/jqueryUI.md",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/jdk.javadoc/jquery.md",
+    "其他/游戏/attachments/jdk-21_linux-x64_bin/legal/jdk.internal.opt/jopt-simple.md",
+    "java/attachments/Pasted image 20240821112347.png",
+    "java/attachments/Pasted image 20240821112234.png",
+    "java/attachments/Pasted image 20240821112116.png",
+    "java/attachments/Pasted image 20240821110830.png",
+    "java/attachments/Pasted image 20240821110823.png",
+    "java/attachments/Pasted image 20240821110627.png",
+    "java/attachments/Pasted image 20240821105605.png",
+    "java/attachments/Pasted image 20240820150941.png",
+    "java/attachments/Pasted image 20240820111823.png",
+    "java/attachments/Pasted image 20240820100041.png",
+    "未命名.canvas",
+    "未命名 1.canvas",
+    "java/Spring/SpringCloud/未命名.canvas",
+    "java/未命名.canvas"
+  ]
+}
