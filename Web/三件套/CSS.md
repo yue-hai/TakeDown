@@ -13,7 +13,7 @@ css (Cascading Style Sheets 的缩写)，翻译为“层叠样式表”或者“
 
 ## 3、书写 CSS 的语法规则
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2FPasted%20image%2020230728130239.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2FPasted%20image%2020230728130239.png)
 
 1. CSS 代码是由选择器和一对括号组成
 2. 大括号里面是由一条一条的声明语句组成
@@ -25,13 +25,13 @@ css (Cascading Style Sheets 的缩写)，翻译为“层叠样式表”或者“
 
 ## 二、css 代码的书写方式
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-533--QBnsXiZftgLhNQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-533--QBnsXiZftgLhNQ.png)
 
 ### 1、嵌入式
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-564--Pe6_SmXJno_S2w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-564--Pe6_SmXJno_S2w.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-578--efGHRJ2zibyaxQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-578--efGHRJ2zibyaxQ.png)
 
 ```html
 <!DOCTYPE html>
@@ -63,9 +63,9 @@ css (Cascading Style Sheets 的缩写)，翻译为“层叠样式表”或者“
 
 ### 2、外链式
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-617--Z5KipvSI2dBOqA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-617--Z5KipvSI2dBOqA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-628--P6wOto620npXSA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-628--P6wOto620npXSA.png)
 
 ```css
 p{
@@ -96,74 +96,74 @@ p{
 </html>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-769--D5ww1344N8sBRg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-769--D5ww1344N8sBRg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-869--YJ1xyNcyz2rdng.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-22-869--YJ1xyNcyz2rdng.png)
 
 ### 3、行内式
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-023--Jafik_FT7cVWow.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-023--Jafik_FT7cVWow.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-121--fEYAYb1sjLbSNg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-121--fEYAYb1sjLbSNg.png)
 
 ### 4、总结
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-280--I6HfsoFvYmdIqw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-280--I6HfsoFvYmdIqw.png)
 
 ## 三、注释
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-487--TP5Sk_HFO-A4mg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-487--TP5Sk_HFO-A4mg.png)
 
 ## 四、基本选择器
 
 ### 1、什么是选择器
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-613---F0T39vucXVFYw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-613---F0T39vucXVFYw.png)
 
 ### 2、基本选择器
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-779--6sjtEcTPVWtoYw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-779--6sjtEcTPVWtoYw.png)
 
 ### 3、一个标签内可以携带多个类名
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-926--9mR1fiwblp5uzQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-23-926--9mR1fiwblp5uzQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-063--ToLbSoUWuSNi7w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-063--ToLbSoUWuSNi7w.png)
 
 ## 五、属性
 ### 1、尺寸样式属性
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-218--6uUZrItyZR-eWw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-218--6uUZrItyZR-eWw.png)
 
 ### 2、文本属性
 
 - 一般用 span 标签将问题引起来
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-344--IlvQyBhgRqnIeA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-344--IlvQyBhgRqnIeA.png)
 
 ### 3、字体属性
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-564--elhtsDwrxl6Fgw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-564--elhtsDwrxl6Fgw.png)
 
 ## 六、复合元素选择器
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-699--IJqABvlRaTMvhA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-699--IJqABvlRaTMvhA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-830--rGMmjdqMBhgAYQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-24-830--rGMmjdqMBhgAYQ.png)
 
 ## 七、列表样式属性
 
 - 这里的列表指的是：无序列表和有序列表
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-005--PU_PAVBBoXQ80A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-005--PU_PAVBBoXQ80A.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-176--WmoyhmIIVwMZRw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-176--WmoyhmIIVwMZRw.png)
 
 ## 八、伪类选择器
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-445--iTv-9hlsnKIAkg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-445--iTv-9hlsnKIAkg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-632--_h2XY8FcS9ALlA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-632--_h2XY8FcS9ALlA.png)
 
 - 顺序为：link -> visited -> hover-> active
 
@@ -208,7 +208,7 @@ p{
 
 ## 九、属性选择器
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-778--337ZbymmmhunXg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-778--337ZbymmmhunXg.png)
 
 ```html
 <!DOCTYPE html>
@@ -265,35 +265,35 @@ p{
 2. html 标签中，如果内层元素与外层元素的样式相同时，外层元素的样式会被内层元素所覆盖。
 3. 并不是所有的样式都能被继承；只有文本与字体样式样式属性能够被继承，其他的样式属性都不可以。
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-993--t8OcuWexfGqkNw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-25-993--t8OcuWexfGqkNw.png)
 
 ### 2、优先级
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-125--ApcIoaUxjm4u7Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-125--ApcIoaUxjm4u7Q.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-319--rlQzu3SMQ-gu1w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-319--rlQzu3SMQ-gu1w.png)
 
 ### 3、!important属性
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-433--6oKYvvkmb1QRAw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-433--6oKYvvkmb1QRAw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-544--cRnefTZhu_WdgA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-544--cRnefTZhu_WdgA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-649--JZhi1tcinDvGxg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-649--JZhi1tcinDvGxg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-853--cZ0RMKECPRDDGA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-26-853--cZ0RMKECPRDDGA.png)
 
 ## 十一、背景样式属性
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-060--Y9UActCZWaEYog.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-060--Y9UActCZWaEYog.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-224--wZzL-rVrBbPyYg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-224--wZzL-rVrBbPyYg.png)
 
 ## 十二、标准文档流
 
 ### 1、什么是标准文档流
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-411--N7lqSm3UYjG6MQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-411--N7lqSm3UYjG6MQ.png)
 
 ### 2、标准文档流要注意的事项
 
@@ -301,55 +301,55 @@ p{
 
 - 如何解决这个问题：放在同一行
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-543--2rLzOg4_hiOS9w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-543--2rLzOg4_hiOS9w.png)
 
 #### ②、高矮不齐，底部对齐
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-894--W7zrNQbEv5pW_Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-27-894--W7zrNQbEv5pW_Q.png)
 
 ## 十三、浮动
 
 ### 1、浮动
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-102--i4ygrxyoklJT_A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-102--i4ygrxyoklJT_A.png)
 
 ### 2、清除浮动
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-335--wo3WwX_AwL_ThA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-335--wo3WwX_AwL_ThA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-485--I350cG0AEB-kdg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-485--I350cG0AEB-kdg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-657--ELYyuXTKpbUDJw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-657--ELYyuXTKpbUDJw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-817--H-4W1KEX3dh6Vg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-28-817--H-4W1KEX3dh6Vg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-031--Q113cCzQkCT-xA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-031--Q113cCzQkCT-xA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-137--2EjBtNTAfJ7J-w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-137--2EjBtNTAfJ7J-w.png)
 
 ## 十四、 盒子模型
 ### 1、什么是盒子
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-302--HFXGFwQRIh2gnA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-302--HFXGFwQRIh2gnA.png)
 
 ### 2、盒子的大小
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-576--CG--3ZdJB_IJtA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-576--CG--3ZdJB_IJtA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-747--VXBFPPqNw_PtzQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-747--VXBFPPqNw_PtzQ.png)
 
 ## 十五、盒子属性
 ### 1、pasdding - 内填充
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-915--oo_F9M8Zm5nOgw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-29-915--oo_F9M8Zm5nOgw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-130--KZ5EVorc8BQCbw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-130--KZ5EVorc8BQCbw.png)
 
 ### 2、margin - 外边距
 
 #### ①、margin 介绍
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-311--YKEIp9OicHAMlQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-311--YKEIp9OicHAMlQ.png)
 
 #### ②、margin 塌陷现象
 
@@ -357,26 +357,26 @@ p{
 
 1. 在标准的文档流中，竖直方向的 margin 值不会叠加，他会取较大的值
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-579--Sx9dWZs26OBnaw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-579--Sx9dWZs26OBnaw.png)
 
 2. 横着方向是没有 margin 塌陷现象的
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-750--49JlGV6iSkeGGw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-750--49JlGV6iSkeGGw.png)
 
 3. 浮动元素他也是没有 margin 塌陷现象的
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-937--QgRnX1A0Zec7CA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-30-937--QgRnX1A0Zec7CA.png)
 
 #### ③、margin 居中
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-113--k0LM_QW1ptedSQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-113--k0LM_QW1ptedSQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-237--a2hV8AFILi3_fw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-237--a2hV8AFILi3_fw.png)
 
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-371--k7LAgETXuXAj6w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-371--k7LAgETXuXAj6w.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-601--Qt677ibZefqCsA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-601--Qt677ibZefqCsA.png)
 
 ### 3、善于使用父元素的 padding 而不使用子元素的 margin
 
@@ -392,95 +392,95 @@ p{
 
 #### 1、问题：单独设置嵌套的里面盒子的外边距，会使其父元素生效
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-804--oemrbQwLfBn2xw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-804--oemrbQwLfBn2xw.png)
 
 - 要解决这个问题，有两个方法可以解决：
    - 1、给其父元素设置一个边框线（不常用）
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-979--7dhcHHigxwhWCA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-31-979--7dhcHHigxwhWCA.png)
 
    - 2、不要使用子元素的 margin 二十使用其父元素的 padding
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-186--cYUrWcTFWM91YA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-186--cYUrWcTFWM91YA.png)
 
 - 说明：margin 这个属性他本意是用于描述兄弟与兄弟之间的关系，不是用于描述父子元素之间的关系的。如果是父子元素的关系，就最好给其父元素使用 padding 属性
 
 ### 3、border - 边框
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-507--gqV3CFS6HgWNNg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-507--gqV3CFS6HgWNNg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-594--qXZ1FV782ZUymw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-594--qXZ1FV782ZUymw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-794--iPRqVEHy7oidXA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-794--iPRqVEHy7oidXA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-990--7YxCFzLygKQYcg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-32-990--7YxCFzLygKQYcg.png)
 
 ### 4、display - 显示
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-220--I7L5SDxk-2eeoQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-220--I7L5SDxk-2eeoQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-390--cETeSIXEN7JDuA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-390--cETeSIXEN7JDuA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-546--G_v6EdVIfbNu-g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-546--G_v6EdVIfbNu-g.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-648--Lg8Q3Yib2OwM1Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-648--Lg8Q3Yib2OwM1Q.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-826--Utppgh1VTdS8Sg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-826--Utppgh1VTdS8Sg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-983--6qtPIW9y1Ta3lw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-33-983--6qtPIW9y1Ta3lw.png)
 
 ### 5、position - 定位
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-161--aLKasYcI8lWntg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-161--aLKasYcI8lWntg.png)
 
 #### ①、fixed - 固定定位
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-316--uBUjsH0VuZ38eA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-316--uBUjsH0VuZ38eA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-485--52RVphIeJC862g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-485--52RVphIeJC862g.png)
 
 #### ②、relatvie - 相对定位
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-660--yMADjhagD5uNIQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-660--yMADjhagD5uNIQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-805--6UNMQ3ie7G9k2g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-34-805--6UNMQ3ie7G9k2g.png)
 
 #### ③、absolute - 绝对定位
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-020--BYBjz2TLMqMSfQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-020--BYBjz2TLMqMSfQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-201--EFUt-ZJr6OF3nQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-201--EFUt-ZJr6OF3nQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-368--SKo1dl5S5ar7lg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-368--SKo1dl5S5ar7lg.png)
 
 - 在父元素中设置一个相对定位
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-613--RejV83u37Rt9Aw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-613--RejV83u37Rt9Aw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-728--uSPycXjFCNEnRg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-728--uSPycXjFCNEnRg.png)
 
 - 在父元素的父元素中设置一个相对定位
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-918--hWojrSyyoxvQbw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-35-918--hWojrSyyoxvQbw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-007--hdEK7-Mf8SsNzw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-007--hdEK7-Mf8SsNzw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-171--63L9Ov38JR6iNQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-171--63L9Ov38JR6iNQ.png)
 
 - 案例
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-310--UEqef9RDjoIS6Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-310--UEqef9RDjoIS6Q.png)
 
 ### 8、z-index - 竖轴
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-481--AIZ6niTSwbWZ3g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-481--AIZ6niTSwbWZ3g.png)
 
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-743--mykxRfPrtSgOhg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-743--mykxRfPrtSgOhg.png)
 
 - 都设置 z-index 属性
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-921--SCWeGoDJ2oGSKg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-36-921--SCWeGoDJ2oGSKg.png)
 
 ## CSS 3
 
@@ -490,7 +490,7 @@ p{
 
 ### 1、结构伪类
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-191--TPIFYl0D6BMM7A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-191--TPIFYl0D6BMM7A.png)
 
 ```html
 <!DOCTYPE html>
@@ -558,11 +558,11 @@ p{
 | collapse | 如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性。 |
 | inherit | 规定应该从父元素继承 border-collapse 属性的值。 |
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-326--g0qs-XXrK35OnQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-326--g0qs-XXrK35OnQ.png)
 
 ### 3、伪元素
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-458--TvnKBPsOFz6RXg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-458--TvnKBPsOFz6RXg.png)
 
 ```html
 <!DOCTYPE html>
@@ -622,32 +622,32 @@ p{
 
 ### 4、文本阴影
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-669--PqSHu15lvTuHTA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-669--PqSHu15lvTuHTA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-908--AFj-haMSZRvVYw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-37-908--AFj-haMSZRvVYw.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-017--MOfEvV9XZIthUw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-017--MOfEvV9XZIthUw.png)
 
 
 - 设置多组阴影
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-144--NGJg4rh3-JFPTQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-144--NGJg4rh3-JFPTQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-243--M2vF1u8jj73NDQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-243--M2vF1u8jj73NDQ.png)
 
 ### 5、盒子阴影
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-389--y1y6RzLQlUoKaQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-389--y1y6RzLQlUoKaQ.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-572--Co3qgWEwQgBNQg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-572--Co3qgWEwQgBNQg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-647--Rw_-_duBxCxv-w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-647--Rw_-_duBxCxv-w.png)
 
 - 给图片设置阴影
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-917--e7UQN9vYrU_7_g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-38-917--e7UQN9vYrU_7_g.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-021--QLtjo_RZmnBj0g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-021--QLtjo_RZmnBj0g.png)
 
 ### 6、圆角矩形
 
@@ -656,7 +656,7 @@ p{
 
 #### 1、圆角矩形
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-225--Uoh0XKi2GKwzmg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-225--Uoh0XKi2GKwzmg.png)
 
 ```html
 <!DOCTYPE html>
@@ -708,13 +708,13 @@ p{
 
 #### 4、实心的上半部分是圆
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-332--ZhzuvIbnUsme0A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-332--ZhzuvIbnUsme0A.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-438--wYBNG-VIQVXG3g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-438--wYBNG-VIQVXG3g.png)
 
 ### 7、透明度
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-553--sOy8jE1Ge9-y6Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-553--sOy8jE1Ge9-y6Q.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-653--JQKCWxOzwbhzUw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--07-39-653--JQKCWxOzwbhzUw.png)
 

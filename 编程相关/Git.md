@@ -2,7 +2,7 @@
 > 
 > 高速下载地址：[https://registry.npmmirror.com/binary.html?path=git-for-windows/](https://registry.npmmirror.com/binary.html?path=git-for-windows/)
 > 
-> 尚硅谷技术课程系列之Git V2.0.pdf：[尚硅谷技术课程系列之Git%20V2.0.pdf](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F尚硅谷技术课程系列之Git%20V2.0.pdf)
+> 尚硅谷技术课程系列之Git V2.0.pdf：[尚硅谷技术课程系列之Git%20V2.0.pdf](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F尚硅谷技术课程系列之Git%20V2.0.pdf)
 
 # 一、Git 概述
 
@@ -15,13 +15,13 @@
 1. 版本控制是一种记录文件内容变化，以便将来查阅特定版本修订情况的系统。
 2. 版本控制其实最重要的是可以记录文件修改历史记录，从而让用户能够查看历史版本，方便版本切换。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105234.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105234.png)
 
 ## 2、为什么需要版本控制
 
 - 个人开发过渡到团队协作
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105251.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105251.png)
 
 ## 3、版本控制工具
 
@@ -32,7 +32,7 @@
 3. 这种做法带来了许多好处，每个人都可以在一定程度上看到项目中的其他人正在做些什么。而管理员也可以轻松掌控每个开发者的权限，并且管理一个集中化的版本控制系统，要远比在各个客户端上维护本地数据库来得轻松容易。
 4. 事分两面，有好有坏。这么做显而易见的缺点是中央服务器的单点故障。如果服务器宕机一小时，那么在这一小时内，谁都无法提交更新，也就无法协同工作
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105353.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105353.png)
 
 ### ②、分布式版本控制工具
 
@@ -42,15 +42,15 @@
    1. 服务器断网的情况下也可以进行开发（因为版本控制是在本地进行的）
    2. 每个客户端保存的也都是整个完整的项目（包含历史记录，更加安全）
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105418.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105418.png)
 
 ## 4、Git 简史
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105447.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105447.png)
 
 ## 5、Git 工作机制
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105510.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105510.png)
 
 ## 6、 Git 和代码托管中心
 
@@ -74,67 +74,67 @@
 
 1. 查看 GNU 协议，可以直接点击下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105545.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105545.png)
 
 2. 选择 Git 安装位置，要求是非中文并且没有空格的目录，然后下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105558.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105558.png)
 
 3. Git 选项配置，推荐默认设置，然后下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105611.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105611.png)
 
 4. Git 安装目录名，不用修改，直接点击下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105624.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105624.png)
 
 5. Git 的默认编辑器，建议使用默认的 Vim 编辑器，然后点击下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105637.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105637.png)
 
 6. 默认分支名设置，选择让 Git 决定，分支名默认为 master，下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105652.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105652.png)
 
 7.  修改 Git 的环境变量，选第一个，不修改环境变量，只在 Git Bash 里使用 Git  
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105718.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105718.png)
 
 8. 选择后台客户端连接协议，选默认值 OpenSSL，然后下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105741.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105741.png)
 
 9. 配置 Git 文件的行末换行符，Windows 使用 CRLF，Linux 使用 LF，选择第一个自动转换，然后继续下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105813.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105813.png)
 
 10. 选择 Git 终端类型，选择默认的 Git Bash 终端，然后继续下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105826.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105826.png)
 
 11.  选择 Git pull 合并的模式，选择默认，然后下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105841.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105841.png)
 
 12. 选择 Git 的凭据管理器，选择默认的跨平台的凭据管理器，然后下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105856.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105856.png)
 
 13. 其他配置，选择默认设置，然后下一步
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105909.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105909.png)
 
 14. 实验室功能，技术还不成熟，有已知的 bug，不要勾选，然后点击右下角的 Install 按钮，开始安装 Git
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105926.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105926.png)
 
 15. 点击 Finsh 按钮，Git 安装成功
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105938.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105938.png)
 
 16. 右键任意位置，在右键菜单里选择 Git Bash Here 即可打开 Git Bash 命令行终端
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105951.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724105951.png)
 
 17. 在 Git Bash 终端里输入 git --version 查看 git 版本，如图所示，说明 Git 安装成功
 
@@ -142,7 +142,7 @@
 git --version
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110003.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110003.png)
 
 # 三、Git 常用命令
 
@@ -202,19 +202,19 @@ git config --global user.email yuehai.com
 
 1. 进行需要使用 git 管理的项目
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110225.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110225.png)
 
 2. 右键鼠标，选择 Git Bash Here
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110237.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110237.png)
 
 3. 输入命令：`git init`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110255.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110255.png)
 
 4. 完成后会在该目录生成 `.git` 目录，此时初始化完成
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110309.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110309.png)
 
 ## 3、查看本地库状态：`git status`
 
@@ -222,9 +222,9 @@ git config --global user.email yuehai.com
 
 ### ①、首次查看（工作区没有任何文件）
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110354.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110354.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110406.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110406.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -244,11 +244,11 @@ $
 
 1. 创建文件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110426.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110426.png)
 
 2. 提示 hello.txt 只存在于工作区，并没有被追踪
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110440.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110440.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -274,7 +274,7 @@ $
 
 ### ①、将工作区的文件添加到暂存区
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110531.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110531.png)
 
 ```shell
 git add hello.txt
@@ -282,7 +282,7 @@ git add hello.txt
 
 ### ②、再次查看本地库状态（检测到暂存区有新文件）
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110545.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110545.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -307,7 +307,7 @@ $
 
 1. 这只是删除了暂存区的文件，并没有删除本地文件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110602.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110602.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -320,7 +320,7 @@ $
 
 2. 删除后再查看本地库状态
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110616.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110616.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -358,7 +358,7 @@ $
 
 ### ①、将暂存区的文件提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110804.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110804.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -374,7 +374,7 @@ $
 
 ### ②、查看状态（没有文件需要提交）
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110818.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110818.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -393,7 +393,7 @@ $
 
 `git reflog`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110831.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110831.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -409,7 +409,7 @@ $
 
 `git log`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110846.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110846.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -429,25 +429,25 @@ $
 
 ### ①、修改文件（hello.txt）
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110902.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110902.png)
 
 ### ②、查看状态（检测到工作区有文件被修改）
 
 `git status`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110920.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110920.png)
 
 ### ③、将修改的文件再次添加暂存区
 
 `git add hello.txt`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110933.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110933.png)
 
 ### ④、查看状态（工作区的修改添加到了暂存区）
 
 `git status`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110945.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110945.png)
 
 ## 8、历史版本切换
 
@@ -455,7 +455,7 @@ $
 
 ### ①、查看历史版本
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110959.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724110959.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -486,7 +486,7 @@ $
 
 - `git reset --hard 版本号`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111048.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111048.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -506,7 +506,7 @@ $
 
 - 本地的文件变了
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111108.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111108.png)
 
 ### ③、查看是否成功回溯版本
 
@@ -514,11 +514,11 @@ $
 
 ### ④、Git 切换版本，底层其实是移动的 HEAD 指针
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111133.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111133.png)
 
 # 四、Git 分支操作
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111147.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111147.png)
 
 ## 1、什么是分支
 
@@ -526,7 +526,7 @@ $
 2. 使用分支意味着程序员可以把自己的工作从开发主线上分离开来，开发自己分支的时候，不会影响主线分支的运行。
 3. 对于初学者而言，分支可以简单理解为副本，一个分支就是一个单独的副本。（分支底层其实也是指针的引用）
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111224.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111224.png)
 
 ## 2、分支的好处
 
@@ -547,7 +547,7 @@ $
 - `git branch 分支名`
 - `*` 代表当前所在的分区
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111418.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111418.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -563,7 +563,7 @@ $
 
 - `git branch 分支名`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111442.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111442.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -583,11 +583,11 @@ $
 
 1. 修改文件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111506.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111506.png)
 
 2. 提交到暂存区，然后提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111522.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111522.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -615,7 +615,7 @@ $
 
 3. 再次查看状态
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111537.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111537.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -634,7 +634,7 @@ $
 
 1. 查看分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111559.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111559.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -649,7 +649,7 @@ $
 
 2. 切换分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111642.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111642.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -663,7 +663,7 @@ $
 
 3. 切换后发现文件被改变
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111658.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111658.png)
 
 ### ⑤、合并分支
 
@@ -671,7 +671,7 @@ $
 
 - `git merge 分支名`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111735.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111735.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (yuehai01)
@@ -701,7 +701,7 @@ $
 
 1. 修改 master 的文件，并提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111754.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111754.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -727,7 +727,7 @@ $
 
 2. 修改 yuehai01 的文件，并提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111811.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111811.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master)
@@ -748,7 +748,7 @@ $
 
 3. 切换到 master 分支，然后合并 yuehai01 分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111909.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111909.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (yuehai01)
@@ -768,11 +768,11 @@ $
 
 4. 此时的 hello.txt 文件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111922.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111922.png)
 
 5. 查看本地库状态
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111938.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724111938.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master|MERGING)
@@ -797,15 +797,15 @@ $
 
 1. 打开有冲突的文件：特殊符号：<<<<<<< HEAD 当前分支的代码 ======= 合并过来的代码 >>>>>>> yuehai01
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112021.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112021.png)
 
 2. 手动选择要保留的内容；选择保留 master 分支的内容
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112037.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112037.png)
 
 3. 修改完文件后，将其提交到本地库，注意此时不要指定文件名
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112051.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112051.png)
 
 ```shell
 10222148@EQDP-10222148 MINGW64 /d/Idea/save/java/gitTest (master|MERGING)
@@ -827,17 +827,17 @@ $
 3. HEAD 如果执行 yuehai01（ hot-fix  ），那么我们现在就在 yuehai01（ hot-fix  ） 分支上。
 4. 所以切换分支的本质就是移动 HEAD 指针。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112209.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112209.png)
 
 # 五、Git 团队协作机制
 
 ## 1、团队内协作
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112228.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112228.png)
 
 ## 2、跨团队协作
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112244.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112244.png)
 
 # 六、GitHub 操作
 
@@ -849,15 +849,15 @@ $
 
 ### ①、Eclipse 特定文件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112320.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112320.png)
 
 ### ②、IDEA 特定文件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112335.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112335.png)
 
 ### ③、Maven 工程的 target 目录
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112350.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112350.png)
 
 ### ④、为什么要忽略他们？
 
@@ -912,15 +912,15 @@ excludesfile = C:/Users/asus/git.ignore
 
 ## 2、定位 Git 程序
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112426.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112426.png)
 
 ## 3、初始化本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112440.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112440.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112454.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112454.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112516.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112516.png)
 
 ## 4、添加到暂存区
 
@@ -928,125 +928,125 @@ excludesfile = C:/Users/asus/git.ignore
 
 1. 刚初始化本地库后 pom 文件是红色的
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112535.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112535.png)
 
 2. 右键项目，git --> add，将整个项目添加到暂存区，pom 文件就会变为绿色
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112550.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112550.png)
 
 3. 添加完成
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112605.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112605.png)
 
 ### ②、自动添加到暂存区
 
 1. 创建文件后，idea 会询问是否自动添加到暂存区，可以选择确定
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112622.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112622.png)
 
 ## 5、提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112635.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112635.png)
 
 ## 6、切换版本
 
 1. 修改一下代码
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112700.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112700.png)
 
 2. 再次提交
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112718.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112718.png)
 
 3. 查看版本
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112752.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112752.png)
 
 4. 切换版本；右键要切换的版本，选择 Checkout Revision
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112818.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112818.png)
 
 5. 切换到了之前的版本
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112845.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112845.png)
 
 6. 切换会 master 版本
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112913.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112913.png)
 
 ## 7、创建分支
 
 1. 点击 `git --> log --> 选择版本 --> 右键 --> 新分支`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112938.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724112938.png)
 
 2. 输入分支名称
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724113005.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724113005.png)
 
 3. 创建完后会自动切换到该分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724113021.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724113021.png)
 
 ## 8、切换分支
 
 1. 在 `git --> log` 中选择要切换的分支，右键选择检出即可切换
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123323.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123323.png)
 
 2. 也可以左键点击右下角的分支名，在弹出来的弹窗中选择分支进行切换
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123340.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123340.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123359.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123359.png)
 
 3. 切换完毕后的样子
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123413.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123413.png)
 
 ## 9、合并分支
 
 1. 修改 yuehai 分支的代码，提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123430.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123430.png)
 
 2. 切换到 master 分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123446.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123446.png)
 
 3. 右键选择要合并的分支，选择合并到当前分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123501.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123501.png)
 
 4. 合并后的结果
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123515.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123515.png)
 
 ## 10、解决冲突
 
 1. 切换到 yuehai 分支，修改一下代码，提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123533.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123533.png)
 
 2. 切换到 master 分支，修改一下代码，提交到本地库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123545.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123545.png)
 
 3. 右键要合并的分支，选择合并到当前分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123559.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123559.png)
 
 4. 提示代码有冲突
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123612.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123612.png)
 
 5. 点击合并，可以看到冲突的代码
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123627.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123627.png)
 
 6. 也可以不点击合并，直接选择使用哪个分支的代码
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123645.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123645.png)
 
 # 八、IDEA 集成 GitHub
 
@@ -1061,37 +1061,37 @@ excludesfile = C:/Users/asus/git.ignore
 
 1. 进入码云官网地址：[https://gitee.com/](https://gitee.com/)，点击注册 Gitee
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123710.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123710.png)
 
 2. 输入个人信息，进行注册即可
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123724.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123724.png)
 
 3. 帐号注册成功以后，直接登录
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123737.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123737.png)
 
 4. 登录以后，就可以看到码云官网首页了
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123749.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123749.png)
 
 ## 3、码云创建远程库
 
 1. 点击首页右上角的加号，选择下面的新建仓库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123806.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123806.png)
 
 2. 填写仓库名称，路径，创建时只能选择私有库，如需创建公开仓库，请在创建仓库后通过「仓库设置」修改为公开；点击创建按钮
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123821.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123821.png)
 
 3. 远程库创建好以后，就可以看到 HTTPS 和 SSH 的链接
 
 - `git@gitee.com:yuehaiyan/git-test.git`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123840.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123840.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123857.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123857.png)
 
 # 十、IDEA 集成码云
 
@@ -1100,11 +1100,11 @@ excludesfile = C:/Users/asus/git.ignore
 1. Idea 默认不带码云插件，我们第一步要安装 Gitee 插件。
 2. 点击设置
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123914.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123914.png)
 
 3. 点击插件，在 Idea 插件商店搜索 Gitee，然后点击右侧的 Install 按钮
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123928.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123928.png)
 
 ## 2、IDEA 安装码云插件 - 官网
 
@@ -1113,66 +1113,66 @@ excludesfile = C:/Users/asus/git.ignore
 3. gitee 插件：[https://plugins.jetbrains.com/plugin/11491-gitee](https://plugins.jetbrains.com/plugin/11491-gitee)
 4. 点击安装
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123944.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123944.png)
 
 5. idea 中会弹出弹窗，点击确定
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123958.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724123958.png)
 
 6. 当然也可能下载失败
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124011.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124011.png)
 
 ## 3、IDEA 安装码云插件 - 离线下载
 
 1. gitee 插件：[https://plugins.jetbrains.com/plugin/11491-gitee](https://plugins.jetbrains.com/plugin/11491-gitee)
 2. 点击 Versions
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124032.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124032.png)
 
 3. 根据 idea 的版本号下载安装包
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124054.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124054.png)
 
 4. 下载完成后，在 idea 中点击设置 --> 插件 --> 设置 --> 从磁盘安装插件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124106.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124106.png)
 
 5. 选择下载的安装包即可
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124119.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124119.png)
 
 ## 4、码云登录
 
 1. 先在 gitee 中绑定一个邮箱
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124420.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124420.png)
 
 2. 在 idea 中使用该邮箱登录
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124431.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124431.png)
 
 3. 登录成功
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124445.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124445.png)
 
 ## 5、分享工程到码云
 
 1. 工具栏 VCS  --> 导入到版本控制  --> Share Project on Gitee
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124500.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124500.png)
 
 2. 在弹出来的弹窗中填入信息
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124551.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124551.png)
 
 3. 成功的话会在右下角弹出来一个弹窗
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124604.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124604.png)
 
 4. 在 gitee 中也会出现这个库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124640.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124640.png)
 
 ## 6、push 推送本地库到远程库
 
@@ -1182,23 +1182,23 @@ excludesfile = C:/Users/asus/git.ignore
 
 1. 更换分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124811.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124811.png)
 
 2. 右键点击项目，可以将当前分支的内容 push 到 GitHub 的远程仓库中
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124827.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124827.png)
 
 3. 点击推送
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124839.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124839.png)
 
 4. 推送成功
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124852.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124852.png)
 
 5. git 上的项目就更新了
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124905.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124905.png)
 
 ## 7、pull 拉取远程库到本地库
 
@@ -1206,25 +1206,25 @@ excludesfile = C:/Users/asus/git.ignore
 
 1. 右键点击项目，可以将远程仓库的内容 pull 到本地仓库
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124957.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724124957.png)
 
 2. 选择分支，点击拉取
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125010.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125010.png)
 
 ## 8、clone 克隆远程库到本地
 
 1. 工具栏 VCS --> Git --> Clone 
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125521.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125521.png)
 
 2. 输入远程仓库的地址，点击克隆
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125543.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125543.png)
 
 3. 克隆完成
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125621.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125621.png)
 
 # 十一、自建代码托管平台-GitLab
 
@@ -1258,29 +1258,29 @@ excludesfile = C:/Users/asus/git.ignore
 
 ## 1、安装 GitLab 插件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125724.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125724.png)
 
 ## 2、设置 GitLab 插件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125746.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125746.png)
 
 ## 3、GitLab 拉取项目
 
 1. VCS -> 从版本控制中获取
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125821.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125821.png)
 
 2. 弹出一个弹窗
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125834.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125834.png)
 
 3. 在 gitlab 中复制项目连接
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125851.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125851.png)
 
 4. 在 idea 中弹出来的弹窗中输入复制的网址
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125903.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724125903.png)
 
 5. 点击克隆
 6. 输入 gitlab 的账号密码
@@ -1297,7 +1297,7 @@ excludesfile = C:/Users/asus/git.ignore
 
 ### ①、idea 提示：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724130829.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724130829.png)
 
 ### ②、原因
 
@@ -1307,13 +1307,13 @@ git 设置的用户名和邮箱与 gitlab 上的不同
 
 1. 查看设置的用户名和邮箱：`git config --global --list | grep user`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724130953.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724130953.png)
 
 2. 清空所有用户名和密码（cmd 以管理员身份运行）：git config --system --unset credential.helper
 3. 修改用户名：`git config --global user.name "用户名"`
 4. 修改邮箱：`git config --global user.email "邮箱"`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724131005.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230724131005.png)
 
 ### ④、使用 TortoiseGit 解决
 
@@ -1321,35 +1321,35 @@ git 设置的用户名和邮箱与 gitlab 上的不同
 2. 安装
 3. 打开设置
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117085304.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117085304.png)
 
 4. 点击 git，修改 Email 即可
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117085415.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117085415.png)
 
 ## 2、本地自建仓库推送到新建 git
 
 1. 提交
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329101938.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329101938.png)
 
 2. 推送，此时推送应该是被拒
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329103017.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329103017.png)
 
 3. 日志中多了远程选项，选中远程，点击提取所有远程
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329102203.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329102203.png)
 
 4. 右键远程分支，新建分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329102252.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329102252.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329102327.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329102327.png)
 
 5. 签出到 master 分支，右键新建的分支，选择将 master 变基到新分支
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329103321.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020230329103321.png)
 
 6. 完成，可以推送 master 分支，此时可删除新建的分支
 7. <font color="#ff0000">直接将远程 master 合并到本地 master 应该也可以</font>
@@ -1379,7 +1379,7 @@ git 设置的用户名和邮箱与 gitlab 上的不同
 5. 截图示例：
 6. 右键点击想要回滚到的提交，复制其修订号
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117090128.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117090128.png)
 
 7. 打开 git bash，输入：`git reset --hard 修订号`，回车
 
@@ -1391,7 +1391,7 @@ HEAD is now at 1f205e8 Merge remote-tracking branch 'origin/master'
 
 8. 本地回滚完成，再看 idea
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117090803.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117090803.png)
 
 ## 4、远程回滚（撤销）提交
 
@@ -1408,7 +1408,7 @@ git push --force origin <提交哈希>:<分支名>
 
 3. 查看 github 提交历史，远程回滚完成
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117091249.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240117091249.png)
 
 4. 请注意，强制推送会重写远程仓库的历史，并且对于其他协作者来说可能会造成问题。在进行强制推送之前，请确保：
 	1. 已经和团队中的其他成员沟通了这个操作的影响。
@@ -1438,7 +1438,7 @@ git config --global https.proxy http://127.0.0.1:7890
 2. 这样设置完就可以使用 gitbash 提交了
 3. 上面的端口为 vpn 所使用的端口，如我使用的软件 Clash 的端口为 7890
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231009092901.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231009092901.png)
 
 ## 6、idea 提交时不想看到指定的目录或文件
 
@@ -1447,15 +1447,15 @@ git config --global https.proxy http://127.0.0.1:7890
 3. 然后选择：`.git/info/exclude` 即可，点击后会打开 `.git/info/exclude` 文件，同时会添加刚才选择的目录或文件到文件中
 4. 若是想指定某目录下的文件全部都不显示，可以在 `.git/info/exclude` 文件中加入通配符：`/目录名/*`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240614133946.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240614133946.png)
 
 ## 7、同时推送到 GitHub 和 gitee 上
 
 1. 首先在 GitHub 和 gitee 上分别创建两个仓库
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819084416.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819084416.png)
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819084359.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819084359.png)
 
 2. 从 GitHub 或者 gitee 上将 test 仓库拉取到本地(这里选择克隆 GitHub 的 test 仓库)
 3. 查看仓库：
@@ -1515,11 +1515,11 @@ PS D:\Idea\save\TakeDown\.idea>
 
 8. 进入 idea 查看：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819085100.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819085100.png)
 
 9. 此时推送时就可以选择推送到哪里：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819085124.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240819085124.png)
 
 ## 8、将文件或目录加入忽略列表
 

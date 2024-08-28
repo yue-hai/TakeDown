@@ -10,31 +10,31 @@
 > 
 > 版本对应说明：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
 > 
-> [Spring Cloud Alibaba.xmind](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FSpring%20Cloud%20Alibaba.xmind)
+> [Spring Cloud Alibaba.xmind](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FSpring%20Cloud%20Alibaba.xmind)
 > 
-> ![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230323101342.png)
+> ![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230323101342.png)
 
 ## 1、为什么会出现 SpringCloud Alibaba
 <font color="#c00000">Spring Cloud Netflix 项目进入维护模式</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301095557.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301095557.png)
 
 1.  什么是维护模式：将模块置于维护模式，意味着 Spring Cloud 团队将不会再向模块添加新功能。我们将修复 block 级别的 bug 以及安全问题，我们也会考虑并审查社区的小型 pull request。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301095456.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301095456.png)
 
 2.  进入维护模式意味着什么呢：
 	1.  Spring Cloud Netflix 将不再开发新的组件：我们都知道 Spring Cloud 版本迭代算是比较快的，因而出现了很多重大 ISSUE 都还来不及 Fix 就又推另一个 Release 了。进入维护模式意思就是目前一直以后一段时间 Spring Cloud Netflix 提供的服务和功能就这么多了，不在开发新的组件和功能了。以后将以维护和 Merge分支Full Request为主
 	2.  新组件功能将以其他替代平代替的方式实现
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301095846.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301095846.png)
 
 ## 2、SpringCloud alibaba 带来了什么
 ### ①、是什么
 
 -   诞生：2018.10.31，Spring Cloud Alibaba 正式入驻了 Spring Cloud 官方孵化器，并在 Maven 中央库发布了第一个版本。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301100546.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301100546.png)
 
 ### ②、能干嘛
 1.  服务限流降级：默认支持 Servlet、Feign、RestTemplate、Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。
@@ -45,7 +45,7 @@
 6.  分布式任务调度：提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有 Worker（schedulerx-client）上执行。
 ### ③、怎么用
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301100615.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301100615.png)
 
 ### ④、组件版本对应关系
 
@@ -129,7 +129,7 @@
 
 据说 Nacos 在阿里巴巴内部有超过 10 万的实例运行，已经过了类似双十一等各种大型流量的考验
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301101226.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301101226.png)
 
 ## 2、安装并运行单机版 Nacos
 > 依然是使用 docker，默认账户密码都为：nacos
@@ -215,13 +215,13 @@ docker@VM-8-15-ubuntu:~$
 
 3.  创建文件夹：`/home/docker/docker/VOLUME/nacos/`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301101430.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301101430.png)
 
 4.  配置文件和日志复制：
 	1. `docker cp nacos:/home/nacos/conf/ ~/docker/VOLUME/nacos/nacos/`
 	2. `docker cp nacos:/home/nacos/logs/ ~/docker/VOLUME/nacos/nacos/`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301101555.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301101555.png)
 
 5.  单机版部署：
 	1. `-e MODE=standalone`：以单机模式启动
@@ -313,11 +313,11 @@ docker@VM-8-15-ubuntu:~$
 
 6.  访问：[http://43.138.106.181:8848/nacos/#/login](http://43.138.106.181:8848/nacos/#/login)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301105146.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301105146.png)
 
 7.  输入账号密码 nacos 登录
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301105211.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301105211.png)
 
 ## 3、Nacos 作为服务注册中心演示
 官网文档：[https://spring-cloud-alibaba-group.github.io/github-pages/greenwich/spring-cloud-alibaba.html#_spring_cloud_alibaba_nacos_config](https://spring-cloud-alibaba-group.github.io/github-pages/greenwich/spring-cloud-alibaba.html#_spring_cloud_alibaba_nacos_config)
@@ -325,7 +325,7 @@ docker@VM-8-15-ubuntu:~$
 
 1.  新建模块 cloudalibaba-provider-payment9001
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301111239.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301111239.png)
 
 2.  修改父 pom.xml，增加依赖 `spring-cloud-alibaba-dependencies` （之前好像就加上了）
 
@@ -581,24 +581,24 @@ public class PaymentNacos9001Controller {
 
 7.  启动 9001 之前，查看控制台：[http://43.138.106.181:8848/nacos/#/serviceManagement?dataId=&group=&appName=&namespace=](http://43.138.106.181:8848/nacos/#/serviceManagement?dataId=&group=&appName=&namespace=)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301105945.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301105945.png)
 
 8.  启动项目，查看控制台：[http://43.138.106.181:8848/nacos/#/serviceManagement?dataId=&group=&appName=&namespace=](http://43.138.106.181:8848/nacos/#/serviceManagement?dataId=&group=&appName=&namespace=)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301110012.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301110012.png)
 
 9.  参照 9001 新建 9002
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301112205.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301112205.png)
 
 10. 启动两个模块
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301123726.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301123726.png)
 ### ②、基于 Nacos 的服务消费者
 
 1. 新建模块 cloudalibaba-consumer-nacos-order83
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301124753.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301124753.png)
 
 2. 修改 pom.xml
 
@@ -762,17 +762,17 @@ public class OrderNacos83Controller {
 
 6. 访问测试：http://localhost:83/getPayment，多次刷新端口号会发生变化，可知<font color="#c00000">负载均衡已启用</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301134603.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301134603.png)
 ### ③、服务注册中心对比
 #### Ⅰ、Nacos 全景图
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301134845.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301134845.png)
 
 #### Ⅱ、Nacos 和 CAP
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301135007.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301135007.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301135023.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301135023.png)
 
 #### Ⅲ、Nacos 支持AP和CP模式的切换
 1. <font color="#c00000">C是所有节点在同一时间看到的数据是一致的；而A的定义是所有的请求都会收到响应。</font> 
@@ -785,7 +785,7 @@ public class OrderNacos83Controller {
 #### Ⅰ、创建模块
 1. 新建模块 cloudalibaba-config-nacos-client3377
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301140738.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301140738.png)
 
 2. 修改 pom.xml
 
@@ -935,7 +935,7 @@ public class ConfigClientController {
 > 最后公式：<font color="#c00000">`<font color="#c00000">${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}</font>`</font>
 1. 新增对应配置：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301144452.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301144452.png)
 
 2. 输入配置 DataID：`nacos-config-client-dev.yaml`
 3. 输入配置内容：
@@ -967,18 +967,18 @@ mybatis-plus:
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301144823.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301144823.png)
 
 4. 历史配置：Nacos 会记录配置文件的历史版本默认保留 30 天，此外还有一键回滚功能，回滚操作将会触发配置更新
 5. 回滚：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301145024.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301145024.png)
 #### Ⅲ、测试
 1. 查看 Data ID 是否对应
 2. 启动 3377
 3. 访问测试：http://localhost:3377/getConfig
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301145759.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301145759.png)
 
 4. 自带动态刷新：修改下 Nacos 中的 yaml 配置文件，再次调用查看配置的接口，就会发现配置已经刷新
 ### ②、分类配置
@@ -995,16 +995,16 @@ mybatis-plus:
 	3. 那怎么对这些微服务配置进行管理呢？
 #### Ⅱ、Nacos 的图形化管理界面
 1. 配置管理：
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301153705.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301153705.png)
 
 2. 命名空间 Namespace：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301153747.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301153747.png)
 #### Ⅲ、Namespace + Group + DataID 三者关系？为什么这么设计？
 1.  是什么：类似 Java 里面的 package 名和类名；最外层的 namespace 是可以用于区分部署环境的，Group 和 DataID 逻辑上区分两个目标对象。
 2. 三者情况：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301154303.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301154303.png)
 
 3. 默认情况：Namespace=public，Group=DEFAULT_GROUP，默认 Cluster 是 DEFAULT
 	1. Nacos 默认的命名空间是 public，Namespace 主要用来实现隔离。
@@ -1022,7 +1022,7 @@ mybatis-plus:
 	1. 新建 dev 配置 DataID（之前配过了）
 	2. 新建 test 配置 DataID：`nacos-config-client-test.yaml`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301160629.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301160629.png)
 
 3. 配置 application.yml 文件的 spring.profile.active 属性就能进行多环境下配置文件的读取
 
@@ -1040,15 +1040,15 @@ spring:
 
 4. 重新启动，访问测试：http://localhost:3377/getConfig
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301161103.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301161103.png)
 ##### （2）、Group 方案
 1. 新建两个 Group，分别为：`DEV_GROUP`、`TEST_GROUP`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301162046.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301162046.png)
 
 2. 两个新的配置文件创建
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301162228.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301162228.png)
 
 3. bootstrap.yml 配置
 
@@ -1095,27 +1095,27 @@ spring:
 
 5. 重启项目，访问测试：http://localhost:3377/getConfig
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163047.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163047.png)
 ##### （3）、Namespace 方案
 1. 新建 dev/test 的 Namespace
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163329.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163329.png)
 
 2. 创建完成之后
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163405.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163405.png)
 
 3. 回到服务管理-服务列表查看
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163442.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301163442.png)
 
 4. 新建配置 nacos-config-client-info.yaml
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301165958.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301165958.png)
 
 5. 创建完成
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301165156.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230301165156.png)
 
 6. bootstrap.yml 配置
 
@@ -1164,7 +1164,7 @@ spring:
 
 8. 重启项目，访问测试：http://localhost:3377/getConfig
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302085924.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302085924.png)
 
 ## 5、Nacos 集群和持久化配置（重要）
 ### ①、官网说明
@@ -1177,11 +1177,11 @@ spring:
 4. http://SLB:port/openAPI 挂载SLB模式(内网SLB，不可暴露到公网，以免带来安全风险)，直连SLB即可，下面挂server真实ip，可读性不好。
 5. http://nacos.com:port/openAPI 域名 + SLB模式(内网SLB，不可暴露到公网，以免带来安全风险)，可读性好，而且换ip方便，推荐模式
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302091737.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302091737.png)
 
 #### Ⅱ、上图官网翻译，真实情况
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302091758.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302091758.png)
 
 #### Ⅲ、说明
 
@@ -1437,7 +1437,7 @@ INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
 
 3. 创建 mysql 挂载目录：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302105504.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302105504.png)
 
 4. 启动 mysql 容器：`docker run -d -p 3306:3306 --privileged=true -v /home/docker/docker/VOLUME/mysql/log:/var/log/mysql -v /home/docker/docker/VOLUME/mysql/data:/var/lib/mysql -v /home/docker/docker/VOLUME/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql`
 
@@ -1455,15 +1455,15 @@ docker@VM-8-15-ubuntu:~$
 
 5. 使用 DataGrip 连接 mysql
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303085001.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303085001.png)
 
 6. 创建数据库：nacos-config
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302111311.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302111311.png)
 
 7. 执行刚才的 sql 脚本，查看生成的表
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302111524.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302111524.png)
 
 8. 启动 nacos 容器，添加 mysql 参数：
 	1. `MODE=standalone`：以单机模式启动
@@ -1521,15 +1521,15 @@ docker@VM-8-15-ubuntu:~$
 
 9. 访问 nacos：http://43.138.106.181:8848/nacos
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302134154.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302134154.png)
 
 10. 添加一个配置：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302134528.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302134528.png)
 
 11. 查看数据库：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302134728.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230302134728.png)
 
 ### ③、1 个 MySQL + 3 个 Nacos + 1 个 Nginx 集群生产环境配置
 > 3 个或以上的 nacos 节点才能构成集群
@@ -1659,13 +1659,13 @@ docker run -d \
 
 2. 访问测试：http://43.138.106.181:8848/nacos、http://43.138.106.181:8849/nacos、http://43.138.106.181:8850/nacos
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303091257.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303091257.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303091322.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303091322.png)
 #### Ⅲ、1 个 Nginx
 1. 创建 `/home/docker/docker/VOLUME/nginx-nacos/` 目录，并进入：`cd /home/docker/docker/VOLUME/nginx-nacos/`，并在其中创建 `conf` 目录
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303101659.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303101659.png)
 
 2. 在 `conf` 目录中创建文件 default.conf：
 
@@ -1741,11 +1741,11 @@ docker@VM-8-15-ubuntu:~/docker/VOLUME/nginx-nacos$
 
 6. 访问测试：http://43.138.106.181:4000/nacos/#/login
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303102410.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303102410.png)
 
 7. 登录进入，添加配置：`nacos-config-client-info.yaml`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303102703.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303102703.png)
 
 #### Ⅳ、修改代码，连接集群
 1. 修改 bootstrap.yml 文件，地址修改为 nginx 的地址
@@ -1827,11 +1827,11 @@ public class ConfigClientController {
 
 3. 启动项目，访问测试：http://localhost:3377/getConfig
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303103120.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303103120.png)
 
 ### ④、高可用小总结
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303103235.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230303103235.png)
 
 # 三、Sentinel 实现熔断与限流
 
@@ -1846,7 +1846,7 @@ public class ConfigClientController {
 1. 是什么：类似 Hystrix，服务降级断路器，但是有自带的 web 界面
 2. 能干嘛：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230313154914.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230313154914.png)
 
 3. 怎么用：https://spring-cloud-alibaba-group.github.io/github-pages/greenwich/spring-cloud-alibaba.html#_spring_cloud_alibaba_sentinel
 4. 服务使用中的各种问题：
@@ -1939,11 +1939,11 @@ docker@VM-8-15-ubuntu:~$
 
 3. 访问：http://43.138.106.181:8849
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314091152.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314091152.png)
 
 4. 登录，账号密码都为 sentinel
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314162843.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314162843.png)
 
 ## 3、初始化演示工程
 
@@ -1953,9 +1953,9 @@ docker@VM-8-15-ubuntu:~$
 
 1. 我这里换了单机版 nacos
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110239.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110239.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110811.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110811.png)
 
 2. 修改模块 cloudalibaba-config-nacos-client3377 的配置文件 bootstrap.yml
 
@@ -2025,13 +2025,13 @@ public class ConfigClientController {
 
 4. 访问测试：http://localhost:3377/getConfig
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110837.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110837.png)
 
 ### ②、新建模块 cloudalibaba-sentinel-server8401
 
 1. 新建模块 cloudalibaba-sentinel-server8401
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110943.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314110943.png)
 
 2. 修改 pom.xml
 
@@ -2183,7 +2183,7 @@ public class FlowLimitController {
 6. 启动微服务 nacos 与 sentinel
 7. 查看 sentienl 控制台（此时没有本项目显示），访问一下接口：http://localhost:8401/testA，再次查看 sentienl 控制台
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314170038.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230314170038.png)
 
 8. 虽然这里显示我的项目机器，但是监控什么的是没有的，因为项目是在内网运行的，所以项目可以访问到 sentinel，但是 sentinel 访问不到这个项目，我的解决办法是吧项目打个包部署到服务器上
 
@@ -2302,7 +2302,7 @@ management:
 
 3. 在 maven 中打包
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315092747.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315092747.png)
 
 4. 将打包后的 jar 包改名为 cloudalibaba-sentinel-server8401.jar，并上传到服务器的 /home/docker/docker/VOLUME/java/jar/ 目录下
 5. 启动 docker 容器：`docker run -d --name java-cloud-sentinel -p 12000:8401 -p 12001:12001 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 java -jar /usr/src/myapp/cloudalibaba-sentinel-server8401.jar`
@@ -2356,12 +2356,12 @@ docker@VM-8-15-ubuntu:~$
 
 6. 再次进入 sentinel 控制台查看：http://43.138.106.181:8849/#/dashboard/app/cloudalibaba-sentinel-server
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315093513.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315093513.png)
 
 7. 多次请求服务接口：http://43.138.106.181:12000/testA
 8. 查看 sentinel 控制台实时监控：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315093624.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315093624.png)
 
 ## 4、流控规则
 
@@ -2382,7 +2382,7 @@ docker@VM-8-15-ubuntu:~$
 	2. Warm Up：根据 codeFactor (冷加载因子，默认3)的值，从阈值 /codeFactor，经过预热时长，才达到设置的 QPS 阈值
 	3. 排队等待：匀速排队，让请求以匀速的速度通过，阈值类型必须设置为 QPS，否则无效
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315095838.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315095838.png)
 
 ### ②、流控模式
 
@@ -2391,7 +2391,7 @@ docker@VM-8-15-ubuntu:~$
 1. 默认模式
 2. 下图表示 1 秒钟内查询 1 次就是 OK，若超过次数 1，就直接：快速失败，报默认错误，抛异常：Blocked by Sentinel (flow limiting)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315100635.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315100635.png)
 
 3. 思考：直接调用默认报错信息，技术方面OK，但是是否应该有我们自己的后续处理？类似有个 fallback 的兜底方法？
 
@@ -2403,7 +2403,7 @@ docker@VM-8-15-ubuntu:~$
 	3. B 惹事，A 挂了
 2. 配置 A：当关联资源 /testB 的 qps 阀值超过 1 时，就限流 /testA 的 Rest 访问地址，<font color="#ff0000">当关联资源（/testB）到阈值后限制配置好的资源名（/testA）</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315101857.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315101857.png)
 
 3. 模拟并发密集访问 testB，运行后发现 testA 挂了（testB 还是好的）
 
@@ -2412,7 +2412,7 @@ docker@VM-8-15-ubuntu:~$
 1. 只针对从指定链路访问到本资源的请求做统计，判断是否超过阈值。
 2. 假设有讲个请求：`test1/common`、`test2/common`，只希望统计 `test1/common` 从 test1 到 common 的请求，可以这样设置：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315103524.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315103524.png)
 
 ### ③、流控效果
 
@@ -2425,7 +2425,7 @@ docker@VM-8-15-ubuntu:~$
 
 1. 公式：默认 coldFactor 为 3，即请求 QPS 从 threshold（阈值） / 3 开始，经预热时长逐渐升至设定的 QPS 阈值。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315112115.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315112115.png)
 
 2. 官网：限流/冷启动：https://github.com/alibaba/Sentinel/wiki/%E9%99%90%E6%B5%81---%E5%86%B7%E5%90%AF%E5%8A%A8
 3. 应用场景：如：秒杀系统在开启的瞬间，会有很多流量上来，很有可能把系统打死，预热方式就是把为了保护系统，可慢慢的把流量放进来，慢慢的把阀值增长到设置的阀值。
@@ -2435,11 +2435,11 @@ docker@VM-8-15-ubuntu:~$
 1. 匀速排队，让请求以均匀的速度通过，阀值类型必须设成 QPS，否则无效。
 2. 设置含义：/testA 每秒 1 次请求，超过的话就排队等待，等待的超时时间为 20000 毫秒。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315123536.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315123536.png)
 
 3. 官网：https://github.com/alibaba/Sentinel/wiki/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315123613.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315123613.png)
 
 ## 5、降级规则
 
@@ -2461,7 +2461,7 @@ docker@VM-8-15-ubuntu:~$
 5. 当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出 DegradeException）。
 6. Sentinel 的断路器是<font color="#ff0000">没有</font><font color="#0070c0">半开</font>状态的：半开的状态系统自动去检测是否请求有异常，没有异常就关闭断路器恢复使用，有异常则继续打开断路器不可用。具体可以参考 Hystrix
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315124805.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315124805.png)
 
 ### ②、熔断策略
 
@@ -2471,28 +2471,28 @@ docker@VM-8-15-ubuntu:~$
 2. 当资源的响应时间超过<font color="#0070c0">最大 RT</font>（以 ms 为单位，最大 RT 即最大响应时间）之后，资源进入准降级状态。如果接下来 1s 内<font color="#0070c0">持续进入 5 个请求</font>（最小请求数），它们的 RT 都持续超过这个阈值，那么在接下来的<font color="#0070c0">熔断时长</font>之内，就会对这个方法进行服务熔断。
 3.  1s 内持续进入的请求数 = 最小请求数 / 比例阈值
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315131125.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315131125.png)
 
 4. 注意 Sentinel 默认统计的 RT 上限是 4900 ms，超出此阈值的都会算作 4900 ms，若需要变更此上限可以通过启动配置项 `-Dcsp.sentinel.statistic.max. rt=xxx` 来配置。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315125654.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315125654.png)
 
 #### Ⅱ、异常比例
 
 1. 当资源的每秒请求数大于等于<font color="#0070c0">最小请求数</font>，并且异常总数占通过量的比例超过<font color="#0070c0">比例阈值</font>时，资源进入熔断状态
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315131815.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315131815.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315131828.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315131828.png)
 
 #### Ⅲ、异常数
 
 1. 当资源近<font color="#ff0000"> 1 分钟</font>的异常数目超过阈值（异常数）之后会进行服务熔断。
 2. 注意由于统计熔断时长是分钟级别的，若熔断时长小于 60s，则结束熔断状态后仍可能再次进入熔断状态，故<font color="#ff0000">熔断时长一定要大于等于60秒</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315132007.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315132007.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315132023.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315132023.png)
 
 ## 6、热点规则
 
@@ -2547,7 +2547,7 @@ docker@VM-8-15-ubuntu:~$
 2. 将项目打包，部署到服务器：`docker run -d --name java-cloud-sentinel -p 12000:8401 -p 12001:12001 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 java -jar /usr/src/myapp/cloudalibaba-sentinel-server8401.jar`
 3. 访问测试：http://43.138.106.181:12000/testHotKey?p1=%E6%9C%88%E6%B5%B7&p2=%E8%A8%80
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315151550.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315151550.png)
 
 ### ③、sentinel 配置
 
@@ -2557,33 +2557,33 @@ docker@VM-8-15-ubuntu:~$
 4. 单机阀值以及统计窗口时长表示在此窗口时间超过阀值就限流。
 5. 下图就是第一个参数有值的话，1 秒的 QPS 为 2，超过就限流，限流后调用 `dealHandler_testHotKey` 支持方法。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152123.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152123.png)
 
 ### ④、测试
 
 1. 两个参数都传，正常访问：http://43.138.106.181:12000/testHotKey?p1=%E6%9C%88%E6%B5%B7&p2=%E8%A8%80
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152608.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152608.png)
 
 2. 两个参数都传，1 秒内访问超过 2 次：：http://43.138.106.181:12000/testHotKey?p1=%E6%9C%88%E6%B5%B7&p2=%E8%A8%80
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152513.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152513.png)
 
 3. 只传第一个参数，正常访问：http://43.138.106.181:12000/testHotKey?p1=%E6%9C%88%E6%B5%B7
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152706.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152706.png)
 
 4. 只传第一个参数，1 秒内访问超过 2 次：http://43.138.106.181:12000/testHotKey?p1=%E6%9C%88%E6%B5%B7
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152807.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152807.png)
 
 5. 只传第二个参数，正常访问：http://43.138.106.181:12000/testHotKey?p2=%E6%9C%88%E6%B5%B7
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152849.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152849.png)
 
 6. 只传第二个参数，1 秒内访问超过 2 次，不会被限流：http://43.138.106.181:12000/testHotKey?p2=%E6%9C%88%E6%B5%B7
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152855.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315152855.png)
 
 ### ⑤、参数例外项
 
@@ -2592,7 +2592,7 @@ docker@VM-8-15-ubuntu:~$
 3. 热点参数的注意点，<font color="#ff0000">参数必须是基本类型或者 String</font>
 4. 配置：点击高级选项，设置<font color="#0070c0">参数值</font>和<font color="#0070c0">限流阈值</font>后，点击<font color="#ff0000">添加</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315145841.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315145841.png)
 
 5. 再次测试：http://43.138.106.181:12000/testHotKey?p1=%E8%A8%80
 
@@ -2615,7 +2615,7 @@ docker@VM-8-15-ubuntu:~$
 	4. 入口 QPS：当单台机器上所有入口流量的 QPS 达到阈值即触发系统保护。
 	5. CPU usage（1.5.0+ 版本）：当系统 CPU 使用率超过阈值即触发系统保护（取值范围 0.0-1.0），比较灵敏。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315154107.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315154107.png)
 
 ## 8、`@SentinelResource` 注解
 
@@ -2669,20 +2669,20 @@ public class RateLimitController {
 2. 打包部署到服务器：`docker run -d --name java-cloud-sentinel -p 12000:8401 -p 12001:12001 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 java -jar /usr/src/myapp/cloudalibaba-sentinel-server8401.jar`
 3. 配置流控规则：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162115.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162115.png)
 
 4. 流控规则配置和代码关系
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162442.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162442.png)
 
 5. 1 秒钟内查询次数大于 1，就会执行我们自定义限流：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162613.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162613.png)
 
 6. <font color="#ff0000">此时关闭微服务 8401</font>
 7. Sentinel 控制台里的流控规则消失了
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162802.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315162802.png)
 
 ### ②、按照 Url 地址限流 + 后续处理
 
@@ -2728,11 +2728,11 @@ public class RateLimitController {
 3. 打包部署到服务器：`docker run -d --name java-cloud-sentinel -p 12000:8401 -p 12001:12001 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 java -jar /usr/src/myapp/cloudalibaba-sentinel-server8401.jar`
 4. 配置流控规则：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315163545.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315163545.png)
 
 5. 1 秒钟内查询次数大于 1，就会执行 Sentinel 自带默认的限流处理信息
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315163659.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315163659.png)
 
 ### ③、上面兜底方案面临的问题
 
@@ -2745,7 +2745,7 @@ public class RateLimitController {
 
 1. 创建 CustomerBlockHandler 类用于自定义限流处理逻辑，在其中创建静态方法
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315164723.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230315164723.png)
 
 ```java
 package com.yuehai.myHandeler;
@@ -2794,21 +2794,21 @@ public class CustomerBlockHandler {
 3. 打包部署到服务器：`docker run -d --name java-cloud-sentinel -p 12000:8401 -p 12001:12001 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 java -jar /usr/src/myapp/cloudalibaba-sentinel-server8401.jar`
 4. 配置流控规则：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316082921.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316082921.png)
 
 5. 1 秒钟内查询次数大于 1，就会执行自定义限流处理信息：http://43.138.106.181:12000/rateLimit/customerBlockHandler
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316083108.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316083108.png)
 
 6. 配置联系：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316083634.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316083634.png)
 
 ## 9、服务熔断功能
 
 > sentinel 整合 ribbon + openFeign + fallback
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316094720.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316094720.png)
 
 ### ①、负载均衡服务调用 Ribbon 系列
 
@@ -2967,11 +2967,11 @@ public class PaymentController {
 
 6. 访问测试：http://localhost:9003/paymentSQL/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316093646.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316093646.png)
 
 7. 访问测试：http://localhost:9004/paymentSQL/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316093700.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316093700.png)
 
 #### Ⅱ、消费者 84
 
@@ -2979,7 +2979,7 @@ public class PaymentController {
 
 1. 新建模块 cloudalibaba-consumer-nacos-order84
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316093851.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316093851.png)
 
 2. 修改 pom.xml
 
@@ -3193,11 +3193,11 @@ public class CircleBreakerController {
 
 2. 正常访问：http://localhost:84/consumer/fallback/1，刷新后端口号会改变，说明负载均衡已启用
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316103509.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316103509.png)
 
 3. 错误访问：http://localhost:84/consumer/fallback/5
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316103535.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316103535.png)
 
 4. 本例 sentinel 无配置
 
@@ -3269,11 +3269,11 @@ public class CircleBreakerController {
 
 2. 正常访问：http://localhost:84/consumer/fallback/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316105605.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316105605.png)
 
 3. 错误访问：http://localhost:84/consumer/fallback/5
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316105533.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316105533.png)
 
 4. 本例 sentinel 无配置
 
@@ -3376,7 +3376,7 @@ java -jar /usr/src/myapp/order84.jar > /usr/src/myapp/order84.log
 
 3. 将三个项目打包改名，并上传到服务器：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316152851.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316152851.png)
 
 4. 启动容器：`docker run -d --name java-cloud-sentinel-order -p 12002:84 -p 12003:12003 -p 12004:9003 -p 12005:9004 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 bash /usr/src/myapp/start_cloud.sh`
 
@@ -3396,27 +3396,27 @@ docker@VM-8-15-ubuntu:~/docker/VOLUME/java/jar$
 
 5. 访问 9003，映射到了 12004：http://43.138.106.181:12004/paymentSQL/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153155.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153155.png)
 
 6. 访问 9004，映射到了 12005：http://43.138.106.181:12005/paymentSQL/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153210.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153210.png)
 
 7. 正常访问 84，映射到了 12002：http://43.138.106.181:12002/consumer/fallback/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153441.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153441.png)
 
 8. 错误访问 84，映射到了 12002：http://43.138.106.181:12002/consumer/fallback/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153537.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316153537.png)
 
 9. 配置 sentinel 降级规则：1 秒内异常超过 2 次后，断路器打开，断电跳闸 70 秒，系统被保护
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316154006.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316154006.png)
 
 10. 1 秒内进行两次错误请求：http://43.138.106.181:12002/consumer/fallback/5，成功熔断，调用 `blockHandler` 方法
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316154106.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316154106.png)
 
 ##### （5）、`@SentinelResource` 配置 `fallback` 和  `blockHandler`
 
@@ -3519,7 +3519,7 @@ java -jar order84.jar > order84.log
 
 3. 将三个项目打包改名，并上传到服务器：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316152851.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316152851.png)
 
 4. 启动容器：`docker run -d --name java-cloud-sentinel-order -p 12002:84 -p 12003:12003 -p 12004:9003 -p 12005:9004 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 bash /usr/src/myapp/start_cloud.sh`
 
@@ -3539,19 +3539,19 @@ docker@VM-8-15-ubuntu:~$
 
 5. 配置 sentinel 流控规则：1 秒内访问超过 2 次后，进行限流
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316155918.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316155918.png)
 
 6. 配置 sentinel 降级规则：1 秒内异常超过 2 次后，断路器打开，断电跳闸 70 秒，系统被保护
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316155953.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316155953.png)
 
 7. 正常访问，1 秒内访问超过 2 次后，进行限流：http://43.138.106.181:12002/consumer/fallback/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316160058.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316160058.png)
 
 8. 错误访问，1 秒内异常超过 2 次后，断路器打开，断电跳闸 70 秒，系统被保护：http://43.138.106.181:12002/consumer/fallback/4
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316160152.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316160152.png)
 
 ### ②、服务接口调用 Feign 系列
 
@@ -3822,7 +3822,7 @@ java -jar order84.jar > order84.log
 
 9. 将三个项目打包改名，并上传到服务器：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316152851.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230316152851.png)
 
 10. 启动容器：`docker run -d --name java-cloud-sentinel-order -p 12002:84 -p 12003:12003 -p 12004:9003 -p 12005:9004 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 bash /usr/src/myapp/start_cloud.sh`
 
@@ -3842,7 +3842,7 @@ docker@VM-8-15-ubuntu:~$
 
 11. 访问 84 端口：http://43.138.106.181:12002/consumer/fallback/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317082817.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317082817.png)
 
 12. 关闭 9003 和 9004 的项目进程
 
@@ -3864,13 +3864,13 @@ root@f5ab4d502e71:/#
 
 13. 再次访问 84 端口：http://43.138.106.181:12002/consumer/fallback/1
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317083622.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317083622.png)
 
 14. 可以看到 84 端口已自动降级，即使没有服务可调用也不会被耗死
 
 ### ③、熔断框架比较
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317083655.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317083655.png)
 
 ## 10、规则持久化
 
@@ -4172,32 +4172,32 @@ management:
 ]
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317091759.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317091759.png)
 
 6. 打包部署，启动 docker 容器：`docker run -d --name java-cloud-sentinel -p 12000:8401 -p 12001:12001 -v /home/docker/docker/VOLUME/java/jar/:/usr/src/myapp openjdk:8 java -jar /usr/src/myapp/cloudalibaba-sentinel-server8401.jar`
 7. 访问 8401 ：http://43.138.106.181:12000/rateLimit/byUrl
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110114.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110114.png)
 
 8. 访问 sentinel，发现自带流控规则：http://43.138.106.181:8849/#/dashboard/flow/cloudalibaba-sentinel-server
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317105814.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317105814.png)
 
 9. 多次刷新 8401 接口，触发降级规则：http://43.138.106.181:12000/rateLimit/byUrl
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110338.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110338.png)
 
 10. 停止 8401，再看 sentinel，流控规则没有了
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110511.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110511.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110627.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110627.png)
 
 11. 重启 8401，再看 sentinel，流控规则又出现了
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110719.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110719.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110748.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317110748.png)
 
 # 四、Seata 处理分布式事务
 
@@ -4223,7 +4223,7 @@ management:
 3. 2019 年 1 月份蚂蚁金服和阿里巴巴共同开源的分布式事务解决方案
 4. Simple Extensible Autonomous Transaction Architecture，简单可扩展自治事务框架
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317153544.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317153544.png)
 
 ### ②、能干嘛
 
@@ -4241,7 +4241,7 @@ management:
 4. TM 向 TC 发起针对 XID 的全局提交或回滚决议；
 5. TC 调度 XID 下管辖的全部分支事务完成提交或回滚请求。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317153959.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317153959.png)
 
 ### ④、怎么用
 
@@ -4249,7 +4249,7 @@ management:
 2. 全局 `@GlobalTransactional`
 3. SEATA 的分布式交易解决方案：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317155344.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317155344.png)
 
 ## 3、下载安装
 
@@ -4274,7 +4274,7 @@ management:
 4. 删除容器重新创建：`docker run -d -p 3306:3306 --privileged=true -v ~/docker/VOLUME/mysql/mysql/log:/var/log/mysql -v ~/docker/VOLUME/mysql/mysql/data:/var/lib/mysql -v ~/docker/VOLUME/mysql/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=000123 --name yuehai-mysql mysql:latest`
 5. 连接测试：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321091050.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321091050.png)
 
 ### ②、部署 nacos
 
@@ -4542,7 +4542,7 @@ docker run -d \
 
 6. 访问测试：http://43.138.106.181:8848/nacos/
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321094625.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321094625.png)
 
 ### ③、部署 seata
 
@@ -4631,7 +4631,7 @@ docker@VM-8-15-ubuntu:~$
 
 3. 拷贝配置文件到宿主机：`docker cp yuehai-seata-server:/seata-server/resources/ ~/docker/VOLUME/seata/`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317165527.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230317165527.png)
 
 4. 修改配置文件：application.yml
 
@@ -4750,7 +4750,7 @@ service.vgroupMapping.storage_tx_group=default
 service.vgroupMapping.account_tx_group=default
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230323103921.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230323103921.png)
 
 6. 进入 mysql，创建数据库 seata，并执行以下 sql：
 	1. 下载完整版 seata：http://seata.io/zh-cn/blog/download.html
@@ -4856,9 +4856,9 @@ docker@VM-8-15-ubuntu:~$
 
 7. 进入 nacos 服务管理查看：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320102154.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320102154.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320102216.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320102216.png)
 
 ## 4、订单/库存/账户业务数据库准备
 
@@ -4886,7 +4886,7 @@ CREATE DATABASE seata_storage;
 CREATE DATABASE seata_account;
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320103049.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320103049.png)
 
 ### ③、按照上述 3 库分别建对应业务表
 
@@ -4931,7 +4931,7 @@ CREATE TABLE t_account (
 INSERT INTO seata_account.t_account(`id`, `user_id`, `total`, `used`, `residue`)  VALUES ('1', '1', '1000', '0', '1000');
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320103609.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320103609.png)
 
 ### ④、按照上述 3 库分别建对应的回滚日志表
 
@@ -4956,7 +4956,7 @@ CREATE TABLE IF NOT EXISTS `undo_log`
   DEFAULT CHARSET = utf8mb4 COMMENT ='AT transaction mode undo table';
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320104611.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230320104611.png)
 
 ## 5、订单/库存/账户业务微服务准备
 
@@ -5295,7 +5295,7 @@ public class JsonResult extends HashMap<String, Object> implements Serializable 
 
 1. 新建模块 seata-storage-service2002
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321135316.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321135316.png)
 
 2. 修改 pom.xml
 
@@ -5582,26 +5582,26 @@ public class Application {
 
 10. 查看数据库数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321143206.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321143206.png)
 
 11. 启动项目，访问接口：http://localhost:2002/storage/decrease?productId=1&count=2
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321143223.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321143223.png)
 
 13. 再次查看数据库数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321143252.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230321143252.png)
 
 14. 将数据修改回去
 15. 查看 nacos
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090326.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090326.png)
 
 ### ④、新建账户模块 seata-account-service2003
 
 1. 新建模块 seata-account-service2003
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322083018.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322083018.png)
 
 2. 修改 pom.xml
 
@@ -5905,26 +5905,26 @@ public class Application {
 
 10. 查看数据库数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322085641.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322085641.png)
 
 11. 启动项目，访问接口：http://localhost:2003/account/decrease?userId=1&money=2
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090122.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090122.png)
 
 13. 再次查看数据库数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090134.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090134.png)
 
 14. 将数据修改回去
 15. 查看 nacos
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090243.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090243.png)
 
 ### ⑤、新建订单模块 seata-order-service2001
 
 1. 新建模块 seata-order-service2001
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090637.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322090637.png)
 
 2. 修改 pom.xml
 
@@ -6324,23 +6324,23 @@ public class Application {
 
 12. 查看数据库数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322093521.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322093521.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322093859.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322093859.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322093504.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322093504.png)
 
 13. 启动项目，访问接口：http://localhost:2001/order/create?userId=1&productId=1&count=2&money=4
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094422.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094422.png)
 
 14. 再次查看数据库数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094444.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094444.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094455.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094455.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094530.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322094530.png)
 
 ### ⑥、模拟报错，查看事务是否正常
 
@@ -6472,17 +6472,17 @@ public class AccountServiceImpl implements AccountService {
 
 3. 重启三个项目，访问测试：http://localhost:2001/order/create?userId=1&productId=1&count=2&money=4，报错
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322102150.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322102150.png)
 
 4. 查看数据库，发现数据没有发生改变，分布式事务启用成功
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322102415.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322102415.png)
 
 ## 6、一部分补充
 
 ### ①、再看 TC/TM/RM 三大组件
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322104936.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322104936.png)
 
 ### ②、分布式事务的执行流程
 
@@ -6515,14 +6515,14 @@ public class AccountServiceImpl implements AccountService {
 3. 其保存成“after image”，最后生成行锁。
 4. 以上操作全部在一个数据库事务内完成，这样保证了一阶段操作的原子性。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322105816.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322105816.png)
 
 #### Ⅲ、二阶段提交
 
 1. 二阶段如果是顺利提交的话
 2. 因为“业务 SQL”在一阶段已经提交至数据库，所以 Seata 框架只需将一阶段保存的快照数据和行锁删掉，完成数据清理即可。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322105901.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322105901.png)
 
 #### Ⅳ、二阶段回滚
 
@@ -6531,11 +6531,11 @@ public class AccountServiceImpl implements AccountService {
 2. 回滚方式便是用“before image”还原业务数据；但在还原前要首先要校验脏写，对比“数据库当前业务数据”和 “after image”，
 3. 如果两份数据完全一致就说明没有脏写，可以还原业务数据，如果不一致就说明有脏写，出现脏写就需要转人工处理。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322105944.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322105944.png)
 
 ### ④、补充
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322110000.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230322110000.png)
 
 # 五、容器安装整理
 
@@ -6596,7 +6596,7 @@ nested exception is java.lang.IllegalArgumentException: Could not resolve placeh
 
 1. 可以直接用 md5 获取，但是单个 md5 值太短，如果只配了单个的话，启动会被告知
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314100603.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314100603.png)
 
 2. 说白了就是单个 md5 值太短了，那么我们把 `NACOS_AUTH_TOKEN` 设置成 2 个 md5 值拼起来就好
 
@@ -6606,17 +6606,17 @@ nested exception is java.lang.IllegalArgumentException: Could not resolve placeh
 
 1. 通过下图可知 `NACOS_AUTH_IDENTITY_KEY` 及 `NACOS_AUTH_IDENTITY_VALUE` 是通过 `JWT` 方式自定义生成的：
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314100927.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314100927.png)
 
 2. 通过上面的网址 `jwt` 秘钥生成可以获取自定义 `jwt` 密钥：设置图中三个红框中的值
 	1. `NACOS_AUTH_IDENTITY_KEY=y_chat_nacos_auth_identity_key`
 	2. `NACOS_AUTH_IDENTITY_VALUE=y_chat_nacos_auth_identity_value`
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314101623.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314101623.png)
 
 3. 点击编码按钮即可获取秘钥
 
-![|700](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314101707.png)
+![|700](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020240314101707.png)
 
 4. 此次密钥为：`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV9rZXkiOiJ5X2NoYXRfbmFjb3NfYXV0aF9pZGVudGl0eV92YWx1ZSJ9XSwiaWF0IjoxNzEwMzgyNjEzLCJleHAiOjI1MjQ0OTI3OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ybcX8tnTigKG1rGDUQ7ckTGowtepxDuRYhfGi0koT0Q`
 

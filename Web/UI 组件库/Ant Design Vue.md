@@ -4,7 +4,7 @@
 
 `yarn add ant-design-vue`
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2FPasted%20image%2020230725130116.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2FPasted%20image%2020230725130116.png)
 
 ## 2、修改 main.ts
 

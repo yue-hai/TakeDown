@@ -8,11 +8,11 @@
 
 - Hibernate
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F01、Hibernate.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F01、Hibernate.png)
 
 - MyBatis
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F02、MyBatis.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F02、MyBatis.png)
 
 
 ## 1、MyBatis历史
@@ -40,15 +40,15 @@
 
 - 主页
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F03、去哪里找MyBatis-1.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F03、去哪里找MyBatis-1.png)
 
 - 官方文档
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F04、去哪里找MyBatis-2.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F04、去哪里找MyBatis-2.png)
 
 - 下载
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F05、去哪里找MyBatis-3.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F05、去哪里找MyBatis-3.png)
 
 # 二、MyBatis-HelloWorld
 
@@ -74,15 +74,15 @@
 
 3. 往数据库中添加数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F06、往数据库中添加数据.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F06、往数据库中添加数据.png)
 
 4. 项目结构
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F07、项目结构.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F07、项目结构.png)
 
 5. 导入 jar 包
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F08、导入jar包.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F08、导入jar包.png)
 
 6. 创建日志所需的 log4j.xml 配置文件
 
@@ -254,11 +254,11 @@
 
 1. 项目结构
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F09、项目结构2.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F09、项目结构2.png)
 
 2. 导入 jar 包
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F08、导入jar包.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F08、导入jar包.png)
 
 3. 创建日志所需的 log4j.xml 配置文件
 
@@ -541,7 +541,7 @@
 
 - 这是 MyBatis 中极为重要的调整设置，它们会改变 MyBatis 的运行时行为。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F10、settings设置.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F10、settings设置.png)
 
 - mybatis-config.xml 全局配置文件
 
@@ -709,7 +709,7 @@
 4. 从 MyBatis3.4.5 开始，MyBatis 默认支持 JSR-310（日期和时间 API）
 5. MyBatis3.4 以前手动注册的方式：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F11、MyBatis3.4以前手动注册的方式.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F11、MyBatis3.4以前手动注册的方式.png)
 
 
 ## 6、自定义类型处理器
@@ -984,7 +984,7 @@ public interface EmployeeMapper {
 
 4. 使用<font color="blue">注册接口</font>或<font color="blue">批量注册</font>方式，需要将 sql 映射文件和接口文件放到同一个目录下，但是这样会导致条理不清晰，所以可以在资源目录建一个与 dao 包目录相同的目录。这样看起来目录不同，但是编译以后，因为目录相同，会便宜到同一个目录中，与放到同一个目录效果一样
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F12、批量注册.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F12、批量注册.png)
 
 # 四、MyBatis-映射文件
 
@@ -1002,7 +1002,7 @@ public interface EmployeeMapper {
 
 ## 1、insert、update、delete元素
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F13、insert、update、delete元素.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F13、insert、update、delete元素.png)
 
 - MyBatis 允许增删改指定定义以下类型返回值：Integer、Long、Boolean、void
 - 我们需要手动提交数据
@@ -1014,7 +1014,7 @@ public interface EmployeeMapper {
 
 1. 项目结构
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F14、04_mapper项目结构.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F14、04_mapper项目结构.png)
 
 2. mybatis-config.xml 全局配置文件
 
@@ -1207,7 +1207,7 @@ public class MyBatisTest {
 
 ## 2、主键生成方式
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F15、selectKey.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F15、selectKey.png)
 
 - 若数据库<font color="red">支持自动生成主键</font>的字段（比如 MySQL 和 SQL Server），则可以设置 <font color="blue">useGeneratedKeys="true"</font> ，然后再把 <font color="blue">keyProperty</font> 设置到目标属性上。
 
@@ -1624,7 +1624,7 @@ select * from tbl_employee order by ${f_name} ${order}
     }
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F16、select元素.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F16、select元素.png)
 
 ## 6、自动映射（全局setting与resultMap）
 
@@ -1739,7 +1739,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 - id 和 result 映射一个单独列的值到<font color="red">简单数据类型</font>(字符串,整型,双精度浮点数,日期等)的属性或字段。
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F18、id&result.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F18、id&result.png)
 
 1. 对 mybatis 数据库的修改
 
@@ -1760,7 +1760,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 2. 添加数据
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F17、添加数据.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F17、添加数据.png)
 
 3. 员工实体类 Employee
 
@@ -3467,7 +3467,7 @@ select * from tbl_employee order by ${f_name} ${order}
    - key:hashCode+查询的SqlId+编写的sql查询语句+参数
 4. 在 mybatis3.1 之后, 可以配置本地缓存的作用域. 在 mybatis.xml 中配置
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F19、一级缓存配置.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F19、一级缓存配置.png)
 
 ## 2、一级缓存演示
 
@@ -4053,17 +4053,17 @@ select * from tbl_employee order by ${f_name} ${order}
 
 ## 7、缓存原理图解
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F20、缓存原理图解.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F20、缓存原理图解.png)
 
 # 七、第三方缓存的整合（ehcache）
 
 1. 新建工程及结构
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F22、新建工程及结构.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F22、新建工程及结构.png)
 
 2. <font color="red">导入整合 ehcache 所需的 jar 包</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F21、第三方缓存的整合（ehcache）.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F21、第三方缓存的整合（ehcache）.png)
 
 3. 在资源文件夹中创建 ehcache 所需的配置文件
 
@@ -4372,17 +4372,17 @@ select * from tbl_employee order by ${f_name} ${order}
 
 11. 配置的 ehcache 缓存文件夹：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F23、配置的ehcache缓存文件夹.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F23、配置的ehcache缓存文件夹.png)
 
 12. <font color="red">MyBatis 整合第三方缓存的流程图解</font>
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F24、MyBatis整合第三方缓存的流程图解.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F24、MyBatis整合第三方缓存的流程图解.png)
 
 # 八、MyBatis-Spring整合
 1. 查看不同MyBatis版本整合Spring时使用的适配包；
    - http://www.mybatis.org/spring/
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F25、查看不同MyBatis版本整合Spring时使用的适配包.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F25、查看不同MyBatis版本整合Spring时使用的适配包.png)
 
 2. 下载整合适配包：
    - https://github.com/mybatis/spring/releases
@@ -4396,7 +4396,7 @@ select * from tbl_employee order by ${f_name} ${order}
 1. 创建 maven 工程
 2. 项目结构：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F26、MyBatis-Spring整合项目结构.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F26、MyBatis-Spring整合项目结构.png)
 
 3. 导入依赖，pom.xml：
 
@@ -4993,7 +4993,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 ## 2、工程结构
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F27、逆向工程结构.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F27、逆向工程结构.png)
 
 ## 3、MBG配置文件
 
@@ -5143,39 +5143,39 @@ select * from tbl_employee order by ${f_name} ${order}
 
 - MyBatis分层架构
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F28、MyBatis分层架构.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F28、MyBatis分层架构.png)
 
 - MyBatis工作原理
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F29、MyBatis工作原理.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F29、MyBatis工作原理.png)
 
 ## 1、SqlSessionFactory 的初始化
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F30、根据配置文件创建SQLSessionFactory.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F30、根据配置文件创建SQLSessionFactory.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F31、SqlSessionFactory的初始化1.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F31、SqlSessionFactory的初始化1.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F32、SqlSessionFactory的初始化2.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F32、SqlSessionFactory的初始化2.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F33、SqlSessionFactory的初始化3.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F33、SqlSessionFactory的初始化3.png)
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F34、SqlSessionFactory的初始化4.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F34、SqlSessionFactory的初始化4.png)
 
 ## 2、openSession 获取 sqlSession 对象
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F35、openSession获取sqlSession对象.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F35、openSession获取sqlSession对象.png)
 
 ## 3、getMapper 获取到接口的代理对象
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F36、getMapper获取到接口的代理对象.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F36、getMapper获取到接口的代理对象.png)
 
 ## 4、查询流程的总结
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F37、查询流程的总结.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F37、查询流程的总结.png)
 
 ## 5、MyBatis 原理总结
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F38、MyBatis原理总结.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F38、MyBatis原理总结.png)
 
 # 十一、MyBatis-插件开发
 
@@ -5376,7 +5376,7 @@ select * from tbl_employee order by ${f_name} ${order}
 2. plugin：生成动态代理对象，可以使用MyBatis提供的Plugin类的wrap方法
 3. setProperties：注入插件配置时设置的属性
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F39、Interceptor接口.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F39、Interceptor接口.png)
 
 ## 4、多个插件的运行流程
 
@@ -5541,7 +5541,7 @@ select * from tbl_employee order by ${f_name} ${order}
     Process finished with exit code 0
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F40、多个插件的运行流程.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F40、多个插件的运行流程.png)
 
 ## 5、开发插件
 
@@ -5717,7 +5717,7 @@ select * from tbl_employee order by ${f_name} ${order}
     Process finished with exit code 0
 ```
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F41、开发插件.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F41、开发插件.png)
 
 # 十二、扩展
 
@@ -6112,7 +6112,7 @@ select * from tbl_employee order by ${f_name} ${order}
 1. MyBatis对存储过程的游标提供了一个JdbcType=CURSOR的支持，可以智能的把游标读取到的数据，映射到我们声明的结果集中
 2. 调用实例：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F42、游标处理调用实例.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F42、游标处理调用实例.png)
 
 3. 数据库链接参数配置
 
@@ -6159,7 +6159,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 6. sql 语句
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F43、sql语句.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F43、sql语句.png)
 
 ## 4、自定义 TypeHandler 处理枚举枚举
 
@@ -6268,7 +6268,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 3. 修改数据库 tbl_employee 表，添加 empStatus 字段
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F44、修改数据库tbl_employee表，添加empStatus字段.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F44、修改数据库tbl_employee表，添加empStatus字段.png)
 
 ### 1、使用 EnumOrdinalTypeHandler 枚举类型处理器
 
@@ -6357,7 +6357,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 5. 数据库保存的结果：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F45、数据库保存的结果.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F45、数据库保存的结果.png)
 
 1. 默认 mybatis 在处理枚举对象的时候保存的是枚举的名字：EnumTypeHandler，这里在全局配置文件里配置了类型处理器：EnumOrdinalTypeHandler，改为了保存索引
 
@@ -6481,7 +6481,7 @@ select * from tbl_employee order by ${f_name} ${order}
 
 5. 数据库保存的结果：
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F46、数据库保存的结果2.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2F46、数据库保存的结果2.png)
 
 ## 3、也可以在处理某个字段的时候告诉 MyBatis 用什么类型处理器
 

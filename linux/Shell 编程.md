@@ -57,7 +57,7 @@ lrwxrwxrwx 1 root root       4 Aug  8  2013 sh -> bash
 Shell是一个命令行解释器，它接收应用程序/用户命令，然后调用操作系统内核。
 Shell还是一个功能相当强大的编程语言，易编写、易调试、灵活性强。
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-51-641--MvWnDbptiggiig.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-51-641--MvWnDbptiggiig.png)
 
 # 二、Shell 脚本入门
 
@@ -299,7 +299,7 @@ tmpid=502
 
 1. 变量是和当前 shell 绑定的，在新 shell 中不存在之前 shell 自定义的变量（和之前使用 `.` 执行脚本一样）
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-52-264--ARXCXDLbAoMVkA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-52-264--ARXCXDLbAoMVkA.png)
 
 
 2. 更改变量的值：`变量名=值`
@@ -340,7 +340,7 @@ tmpid=502
    1. 相对绝对路径：`./脚本名`：在子 bash 中运行，即要提升为全局变量才可以调用父脚本的变量
    2. 在脚本的路径前加上 "." 或者 source：在父脚本中直接运行，不会运行子 bash，也就不用提升为全局变量
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-52-338--j2iKM5kslEJD_A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-52-338--j2iKM5kslEJD_A.png)
 
 #### Ⅳ、撤销变量
 

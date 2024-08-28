@@ -20,7 +20,7 @@
 
 ### 4、Ajax 如何工作
 
-![](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725125338.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725125338.png)
 
 ### 5、AJax 基于因特网标准
 
@@ -57,11 +57,11 @@ Ajax 的全称：Asynchronous JavaScript and XML，就是使用 JS 代码获取�
 
 #### ③、服务器图例
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-09-002--VEQgeOGUYweTkg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-09-002--VEQgeOGUYweTkg.png)
 
 #### ④、客户端图例
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-09-832--tirMjXms1VE6Eg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-09-832--tirMjXms1VE6Eg.png)
 
 - 服务器与客户端在硬件上并没有明显的划分，配置很差的个人电脑依然可以当作服务器使用，只不过这台服务器的速度慢一些而已
 
@@ -95,7 +95,7 @@ Ajax 的全称：Asynchronous JavaScript and XML，就是使用 JS 代码获取�
 2. 比如：www.baidu.com、www.qq.come
 3. 查看本机的 IP： ipconfig
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-059--7A3TKDcw9aMkSg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-059--7A3TKDcw9aMkSg.png)
 
 #### ③、DNS 域名解析服务器
 
@@ -103,7 +103,7 @@ Ajax 的全称：Asynchronous JavaScript and XML，就是使用 JS 代码获取�
 2. 访问服务器的流程：本机 hosts 文件 --> DNS 服务器 --> 服务器
 3. 本机 host 文件的路径为：C:\Windows\System32\drivers\etc\HOSTS
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-163--lXxDa9eO03QVlA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-163--lXxDa9eO03QVlA.png)
 
 #### ④、端口
 
@@ -150,11 +150,11 @@ Wamp指的是：windows、apache、mysql、php几个服务器软件的缩写
 
 1. 配置访问权限： 默认情况下，apache 提供的网页服务只允许 localhost 和 127.0.0.1 进行访问，我们需要对配置文件进行修改。配置文件位于：C:\wamp\bin\apache\Apache2.4.4\conf\httpd.conf ，将 268 行的 Deny from all 改为 Allow from alle
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-321--GDdfGKZpHof_iA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-321--GDdfGKZpHof_iA.png)
 
 2. 网站根路径的配置，默认情况下，网站的根路径为 C:\wamp\www， 在此目录下的文件才可以以服务的方式提供给别人看，如果你不想使用这个目录，也可以进行修改。修改C:\wamp\bin\apache\Apache2.4.4\confhttpd.conf 文件，将 DocumentRoot 进行修改，如下图：
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-570--fD8lbTCQsp9OjQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-570--fD8lbTCQsp9OjQ.png)
 
 ### 5、虚拟主机的配置
 
@@ -243,7 +243,7 @@ Wamp指的是：windows、apache、mysql、php几个服务器软件的缩写
 ?>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-674--7mtq90Cb5HY3mA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-674--7mtq90Cb5HY3mA.png)
 
 #### ②、数组的下标索引自定义
 
@@ -259,7 +259,7 @@ Wamp指的是：windows、apache、mysql、php几个服务器软件的缩写
 ?>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-773--EytLfo_Gq8xGZg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-773--EytLfo_Gq8xGZg.png)
 
 #### ③、二维数组
 
@@ -279,7 +279,7 @@ Wamp指的是：windows、apache、mysql、php几个服务器软件的缩写
 ?>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-872--f-2HZe_4j4vQdw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-872--f-2HZe_4j4vQdw.png)
 
 ##### Ⅱ、二维数组转 JSON
 
@@ -297,7 +297,7 @@ Wamp指的是：windows、apache、mysql、php几个服务器软件的缩写
 ?>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-994--oSS0VbY2dc3EYQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-10-994--oSS0VbY2dc3EYQ.png)
 
 #### ④、数组遍历
 
@@ -729,11 +729,11 @@ Ajax 简单的来说，就是一个异步的 javascript 请求，用来获取后
 js 中的异步的实现的原理是单线程加事件队列，js 的代码执行是单线程的，所谓的单线程的含义是 js 的代码是从上往下按顺序依次执行的，一定是上一行代码执行完再执行下一行代码
 事件队列可以认为是一个容器，这个容器中存储一些回调函数。这些回调函数只有在 js 代码全部执行完成之后，才有可能会去调用，因为 js 是单线程的，一次只能做一件事情
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-080--JBIL0uDy_Hpp3g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-080--JBIL0uDy_Hpp3g.png)
 
 - xhr.onreadystatechange 图解
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-339---mZF07aKbYPTtQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-339---mZF07aKbYPTtQ.png)
 
 ### 5、数据格式的讲解
 #### ①、什么是数据格式
@@ -742,7 +742,7 @@ js 中的异步的实现的原理是单线程加事件队列，js 的代码执�
 
 - 如：
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-429--yIR_OQD_S-46kw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-429--yIR_OQD_S-46kw.png)
 
 #### ②、XML 数据格式
 
@@ -751,7 +751,7 @@ js 中的异步的实现的原理是单线程加事件队列，js 的代码执�
 Xml 数据格式是将数据以标签的方式进行组装，必须以 `<?xml version="1.0"encoding="utf-8" ?>` 开头，标签必须成对出现，也就是有开始标签就一定要有结束标签。
 Xml 是一个通用的标准，任何人都知道该如何解析它。例如：
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-540--nnXQIM-yaFSonQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-540--nnXQIM-yaFSonQ.png)
 
 #### ③、JSON 格式
 
@@ -759,7 +759,7 @@ Xml 是一个通用的标准，任何人都知道该如何解析它。例如：
 
 Json 数据格式类似于 js 中的对象方式，通过 key-value 的形式组装，是一个通用的标准，任何人都知道如何解析它
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-660--nwkYtE3q2W-PhQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-660--nwkYtE3q2W-PhQ.png)
 
 ### 6、解析 xml 数据格式
 ```html
@@ -1289,11 +1289,11 @@ $.ajax() 的使用是传入一个对象，有些参数不传递的话，也具�
 jQuery.中对于网络请求，还有其他一些方法，但是本质.上都是对 XMLHttpRequest 的封装，如：`$.get()` 和 `$.post()`
 看这两个方法很容易就知道 `$.get` 是针对 get 请求的，`$.post ` 针对的是 post 请求，调用方法如下：
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-828--_tmSC4fAVK3jEg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-828--_tmSC4fAVK3jEg.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-936--qk4bTZDSA3srEA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-11-936--qk4bTZDSA3srEA.png)
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-049--Xm5md5Tk1o_-CA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-049--Xm5md5Tk1o_-CA.png)
 
 ## 七、跨域
 
@@ -1304,11 +1304,11 @@ jQuery.中对于网络请求，还有其他一些方法，但是本质.上都是
 下面举一个例子，来看看什么叫做同源：
 比如有一个页面，它的地址为 [http://www.example.com/dir/page.html](http://www.example.com/dir/page.html) 这个网址，在这个网址中，要去获取服务器的数据，获职数据的地址如下所示，在下面的地址中，有的是同源，有的是非同源。
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-132--VKuHMl-jlNza-A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-132--VKuHMl-jlNza-A.png)
 
 所谓的同源就是协议、端口、域名三者都完全一样，如果我们使用 ajax 来请求非同源路径下的数据，那么将会报如下错误：
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-302--k5eQUyYZ9hcawg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-302--k5eQUyYZ9hcawg.png)
 
 ---
 
@@ -1541,7 +1541,7 @@ foo("123");
 </html>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-468--d7j-5BEBjQTVag.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-468--d7j-5BEBjQTVag.png)
 
 ### 6、百度提示词案例
 
@@ -1598,7 +1598,7 @@ foo("123");
 </html>
 ```
 
-![image.png](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-597--DyU3xIcQMKldfw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-12-597--DyU3xIcQMKldfw.png)
 
 ### 7、使用 JQuery 获取跨域数据
 
@@ -1674,7 +1674,7 @@ foo("123");
 
 > Github 下载：[https://aui.github.io/art-template/zh-cn/docs/installation.html](https://aui.github.io/art-template/zh-cn/docs/installation.html)
 > 
-> [art-template-web.js](http://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fart-template-web.js)
+> [art-template-web.js](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fart-template-web.js)
 
 ```html
 <!DOCTYPE html>
