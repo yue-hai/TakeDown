@@ -79,7 +79,7 @@ exit
 
 ### ②、需求
 
-[课题1（DWH数据清洗）.xlsx](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2FSmart%2Fattachments%2F课题1（DWH数据清洗）.xlsx)
+[课题1（DWH数据清洗）.xlsx](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F课题1（DWH数据清洗）.xlsx)
 
 ### ③、步骤
 
@@ -96,7 +96,7 @@ exit
 
 ### ④、脚本：`CHUPDATE_HIBETU_CHOKUEI.DAYDWH.URE`
 
-[课题1（DWH数据清洗）.zip](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2FSmart%2Fattachments%2F课题1（DWH数据清洗）.zip)
+[课题1（DWH数据清洗）.zip](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F课题1（DWH数据清洗）.zip)
 
 ```shell
 #!/bin/bash -xv
@@ -337,7 +337,7 @@ exit 0
 
 ### ②、需求
 
-[课题2_(DWH_LV4)数据做成.xlsx](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4)数据做成.xlsx)
+[课题2_(DWH_LV4)数据做成.xlsx](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4)数据做成.xlsx)
 
 ### ③、步骤
 
@@ -359,7 +359,7 @@ exit 0
 
 ### ④、脚本：`CHUPDATE_HIBETU_URE.DAYDM.YOSAN`
 
-[课题2_(DWH_LV4%20数据做成).zip](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4%20数据做成).zip)
+[课题2_(DWH_LV4%20数据做成).zip](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4%20数据做成).zip)
 
 ```shell
 #!/bin/bash -xv
@@ -588,9 +588,9 @@ exit 0
 
 # 三、学习课题 2：DWH_LV4 数据做成
 
-[课题2_(DWH_LV4)数据做成.xlsx](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4)数据做成.xlsx)
+[课题2_(DWH_LV4)数据做成.xlsx](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4)数据做成.xlsx)
 
-[课题2_(DWH_LV4%20数据做成).zip](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4%20数据做成).zip)
+[课题2_(DWH_LV4%20数据做成).zip](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F课题2_(DWH_LV4%20数据做成).zip)
 
 ## 1、日别
 

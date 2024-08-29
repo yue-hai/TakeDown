@@ -2,7 +2,7 @@
 > 
 > [B 站尚硅谷 vue3 视频](https://www.bilibili.com/video/BV1Zy4y1K7SH)
 > 
-> [vue3快速上手.md](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fvue3快速上手.md)
+> [vue3快速上手.md](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fvue3快速上手.md)
 
 # 一、Vue3 简介
 
@@ -98,7 +98,7 @@ export default {
 
 3. 工程结构
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725125500.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725125500.png)
 
 ## 2、使用 vite 创建
 
@@ -111,9 +111,9 @@ export default {
    3. 真正的按需编译，不再等待整个应用编译完成。
 5. 传统构建 与 vite构建对比图
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725124852.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725124852.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725124900.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230725124900.png)
 
 ```bash
 ## 创建工程
@@ -150,7 +150,7 @@ npm install
 npm run dev
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-149--QzNcMeyS2cO3Ig.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-149--QzNcMeyS2cO3Ig.png)
 
 # 三、常用组合式 Composition API
 
@@ -431,15 +431,15 @@ proxy.name = 'tom'
    2. `context`：上下文对象
       1. `attrs`：值为对象，包含：组件外部传递过来，但没有在 props 配置中声明的属性，相当于 `this.$attrs`。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-617--mV2cK_8I0AedBQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-617--mV2cK_8I0AedBQ.png)
 
       2. `emit`：分发自定义事件的函数，相当于 `this.$emit`。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-631--2f2t6MlpcZtoUg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-631--2f2t6MlpcZtoUg.png)
 
       3. `slots`：收到的插槽内容，相当于 `this.$slots`。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-642--_5dIAMrOsRKu3A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-642--_5dIAMrOsRKu3A.png)
 
 ---
 
@@ -729,7 +729,7 @@ export default {
 
 ### ①、vue2.x 的生命周期
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230726143217.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230726143217.png)
 
 ### ②、vue3.0 的生命周期
 
@@ -870,7 +870,7 @@ export default {
 
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230726143534.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230726143534.png)
 
 ## 9、自定义 `hook` 函数
 
@@ -1248,7 +1248,7 @@ export default {
 
 ## 5、`provide` 与 `inject`
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230726143721.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020230726143721.png)
 
 1. 作用：实现祖与后代组件间通信
 2. 套路：父组件有一个 `provide` 选项来提供数据，后代组件有一个 `inject` 选项来开始使用这些数据
@@ -1454,17 +1454,17 @@ export default {
 
 使用传统 OptionsAPI 中，新增或者修改一个需求，就需要分别在 `data`、`methods`、`computed` 里修改 。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Ff84e4e2c02424d9a99862ade0a2e4114~tplv-k3u1fbpfcp-watermark.gif)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Ff84e4e2c02424d9a99862ade0a2e4114~tplv-k3u1fbpfcp-watermark.gif)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fe5ac7e20d1784887a826f6360768a368~tplv-k3u1fbpfcp-watermark.gif)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fe5ac7e20d1784887a826f6360768a368~tplv-k3u1fbpfcp-watermark.gif)
 
 ## 2、Composition API 的优势
 
 我们可以更加优雅的组织我们的代码，函数。让相关功能的代码更加有序的组织在一起。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fbc0be8211fc54b6c941c036791ba4efe~tplv-k3u1fbpfcp-watermark.gif)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2Fbc0be8211fc54b6c941c036791ba4efe~tplv-k3u1fbpfcp-watermark.gif)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.gif)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.gif)
 
 # 六、新的组件
 
@@ -1822,7 +1822,7 @@ Vue.directive('focus', {
 1. 进入网站，选择矢量图
 2. 点击下载，可下载 SVG 文件或者 SVG 代码
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-657--91ZQUe9R8oEEzg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-657--91ZQUe9R8oEEzg.png)
 
 ### ①、直接使用
 
@@ -2035,7 +2035,7 @@ Vue.directive('focus', {
 
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-684--OVWnWW2tEZ3agg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-684--OVWnWW2tEZ3agg.png)
 
 ---
 
@@ -2265,7 +2265,7 @@ module.exports = defineConfig({
 
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-702--2oHxwv9uw-5Mtg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-702--2oHxwv9uw-5Mtg.png)
 
 4. 修改文件 main.js
 
@@ -2286,7 +2286,7 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-742--vsgChq3cI8Qqiw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-742--vsgChq3cI8Qqiw.png)
 
 5. 在目录 components 中创建目录 SvgIcon ，在其中创建组件 baseSvgIcon.vue
 
@@ -2362,7 +2362,7 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-776--Ui2g4H5cufv-EA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-776--Ui2g4H5cufv-EA.png)
 
 ## 2、使用 axios
 
@@ -2458,7 +2458,7 @@ module.exports = defineConfig({
 
 5. 结果
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-811--tCvWd6v948M0Jg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--51-14-811--tCvWd6v948M0Jg.png)
 
 ## 3、vue3 vite 使用 pinia
 

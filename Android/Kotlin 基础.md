@@ -18,16 +18,16 @@
 1. https://gradle.org/releases/ ，我使用的版本是 6.9.4，下载二进制压缩包
 2. 解压到随意目录
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412081122.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412081122.png)
 
 3. 右键点击此电脑，点击属性 -> 高级系统配置 -> 环境变量 -> 新建变量名：`GRADLE_HOME`
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412081307.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412081307.png)
 
 4. 点击 path -> 编辑 -> 新建：`%GRADLE_HOME%\bin`
 5. cmd 中 输入指令查看：`gradle -v`
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412081639.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412081639.png)
 
 6. 上面的版本不重要，重要的是项目中使用的版本：`gradle/wrapper/gradle-wrapper.properties`
 
@@ -48,19 +48,19 @@ zipStorePath=wrapper/dists
 1. 下载 Android SDK
 2. 选择模板 -> Phone and Tablet -> Empty Activity
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411125712.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411125712.png)
 
 3. 填写项目信息，语言选择 Java
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411130003.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411130003.png)
 
 4. 安装组件，创建项目
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411130522.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411130522.png)
 
 5. 右键点击此电脑，点击属性 -> 高级系统配置 -> 环境变量 -> 新建变量名：`ANDROID_HOME`
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412083241.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412083241.png)
 
 6. 点击 path -> 编辑 -> 新建：
 	1. `%ANDROID_HOME%\tools`
@@ -68,60 +68,60 @@ zipStorePath=wrapper/dists
 	3. `%ANDROID_HOME%\build-tools\33.0.2`
 7. cmd 中 输入指令查看：`android -h`
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412083652.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412083652.png)
 
 ## 4、IDEA Android SDK 配置
 
 1. idea 设置 -> 外观与行为 -> 系统设置 -> Android SDK，选择和之前下载的 SDK 对应的版本，点击应用进行下载
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412083946.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412083946.png)
 
 2. 没有报错即可，点击完成，然后点击应用确定
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412084212.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412084212.png)
 
 ## 5、IDEA gradle 配置
 
 1. idea 设置 -> 构建、执行、部署 -> 构建工具 -> Gradle
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412084422.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412084422.png)
 
 ## 6、项目结构配置
 
 1. 点击设置 -> 项目结构
 2. 点击 SDK，将安卓 SDK 的 Build target 的版本改为 28，java 版本改为 11
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412084803.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412084803.png)
 
 3. 选择项目，选择刚才配置的 SDK
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412084903.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412084903.png)
 
 ## 7、创建内置模拟器
 
 1. 点击右侧 Device Manager
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411132603.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411132603.png)
 
 2. 点击 Create device
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411132803.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411132803.png)
 
 3. 选择安卓参数，点击右侧 Clone Device
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412090555.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412090555.png)
 
 4. 选择一个主题，点击完成，然后点击下一步
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412090708.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412090708.png)
 
 5. 下载镜像，选择安卓 9，下载完成后点击下一步，然后点击完成
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230412090846.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230412090846.png)
 
 6. 启动模拟器
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411134030.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411134030.png)
 
 7. 要是还不行，报错：
 
@@ -145,7 +145,7 @@ Failed to launch an application on all devices
 1. App 开发主要有两大技术路线，分别是原生开发和混合开发。
 2. Android 的官方编程语言包括 `Java` 和 `Kotlin`。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230411134942.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230411134942.png)
 
 3. 除此之外还有 `c++(NDK)` 和 `xml` 等
 
@@ -1647,9 +1647,9 @@ mSectionMetaData?.apply{
 
 ## 10、`let`、`with`、`run`、`apply`、`also` 函数区别
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230413211225.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230413211225.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230413211232.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230413211232.png)
 
 # 六、`Kotlin` 类和对象
 
@@ -2758,7 +2758,7 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
 7. 引入依赖，打开 app 目录下的 `build.gradle` 文件，在 中添加依赖：
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FAndroid%2Fattachments%2FPasted%20image%2020230416140807.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230416140807.png)
 
 ```Kotlin
 plugins {

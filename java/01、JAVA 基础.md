@@ -54,7 +54,7 @@
    2. 相比较串行的流，并行的流可以很大程度上提高程序的执行效率。
    3. Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。Stream API 可以声明性地通过 parallel() 与 sequential() 在并行流与顺序流之间进行切换
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092210.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092210.png)
 
 ## 1、Lambda 表达式
 
@@ -69,9 +69,9 @@
 2. 左侧：指定了 Lambda 表达式需要的参数列表
 3. 右侧：指定了 Lambda 体，是抽象方法的实现逻辑，也即Lambda 表达式要执行的功能。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092303.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092303.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092326.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092326.png)
 
 ### ③、类型推断
 
@@ -79,13 +79,13 @@
 2. Lambda 表达式中无需指定类型，程序依然可以编译，这是因为 javac 根据程序的上下文，在后台推断出了参数的类型。
 3. Lambda 表达式的类型依赖于上下文环境，是由编译器推断出来的。这就是所谓的“类型推断”。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092355.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092355.png)
 
 ### ④、例子
 
 1. 语法格式一：无参，无返回值
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092408.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092408.png)
 
 ```java
 /**
@@ -114,11 +114,11 @@ public void test01(){
 
 2. 语法格式二：Lambda 需要一个参数，但是没有返回值。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092422.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092422.png)
 
 3. 语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”（由 2 更加简化而来）
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092436.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092436.png)
 
 ```java
 /**
@@ -154,7 +154,7 @@ public void test02(){
 
 4. 语法格式四：Lambda 若只需要一个参数时，参数的小括号可以省略
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092455.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092455.png)
 
 ```java
 /**
@@ -189,7 +189,7 @@ public void test04(){
 
 5. 语法格式五：Lambda 需要两个或以上的参数，多条执行语句，并且可以有返回值
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092509.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092509.png)
 
 ```java
 /**
@@ -222,7 +222,7 @@ public void test05(){
 
 6. 语法格式六：当Lambda 体只有一条语句时，return 与大括号若有，都可以省略（可由 3 更加简化而来）
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092523.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092523.png)
 
 ```java
 /**
@@ -295,7 +295,7 @@ public interface Runnable {
 }
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092549.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092549.png)
 
 ### ④、自定义函数式接口
 
@@ -330,7 +330,7 @@ public void test01(){
 }
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092606.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092606.png)
 
 #### Ⅱ、`Predicate<T>` 断定型接口
 
@@ -379,13 +379,13 @@ public void test02(){
 }
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092641.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092641.png)
 
 ### ⑤、作为参数传递 Lambda 表达式
 
 作为参数传递 Lambda 表达式：为了将 Lambda 表达式作为参数传递，接收Lambda 表达式的参数类型必须是与该 Lambda 表达式兼容的函数式接口的类型
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726092720.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726092720.png)
 
 ### ⑥、Java 内置四大核心函数式接口
 
@@ -894,7 +894,7 @@ public class ArrayReference_01 {
 2. 中间操作：一个中间操作链，对数据源的数据进行处理
 3. 终止操作(终端操作)：一旦执行终止操作，就执行中间操作链，并产生结果。之后，不会再被使用
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726093332.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726093332.png)
 
 ### ⑤、创建 Stream
 
@@ -1776,7 +1776,7 @@ public class _02_Instant {
 
 - 时间戳是指格林威治时间 1970 年 01 月 01 日 00 时 00 分 00 秒(北京时间 1970 年 01 月 01 日 08 时 00 分 00 秒)起至现在的总秒数。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2FPasted%20image%2020230726093207.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020230726093207.png)
 
 ### ⑤、格式化与解析日期或时间 `DateTimeFormatter`
 

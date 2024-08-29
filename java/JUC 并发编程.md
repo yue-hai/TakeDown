@@ -1,6 +1,6 @@
 ## 零、思维导图
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Fjava%2Fattachments%2Fdiagram.jpg)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2Fdiagram.jpg)
 
 ## 一、
 

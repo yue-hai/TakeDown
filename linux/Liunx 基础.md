@@ -146,7 +146,7 @@ Thu Jul 24 10:08:46 CST 2014
    4. `–conf`： 在创建用户时使用指定的configuration文件。
    5. `–force-badname`： 默认在创建用户时会进行/etc/adduser.conf中的正则表达式检查用户名是否合法，如果想使用弱检查，则使用这个选项，如果不想检查，可以将/etc/adduser.conf中相关选项屏蔽。如：
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2FPasted%20image%2020230725150747.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2FPasted%20image%2020230725150747.png)
 
 ### ②、`useradd`
 
@@ -269,7 +269,7 @@ tail 命令可用于查看文件的结尾部分的内容，有一个常用的参
 
 ### ②、参数
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-19-774--HCn3-mVRxk9Yhg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2F2023-07-25-13--14-19-774--HCn3-mVRxk9Yhg.png)
 
 ## 5、移动文件/更改文件名：`mv`
 
@@ -332,7 +332,7 @@ tail 命令可用于查看文件的结尾部分的内容，有一个常用的参
 1. Linux chmod（英文全拼：change mode）命令是控制用户对文件的权限的命令
 2. Linux/Unix 的文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2FPasted%20image%2020230725151003.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2FPasted%20image%2020230725151003.png)
 
 ### ②、语法
 
@@ -348,7 +348,7 @@ tail 命令可用于查看文件的结尾部分的内容，有一个常用的参
 
 只有文件所有者和超级用户可以修改文件或目录的权限。可以使用**绝对模式**（八进制数字模式），**符号模式**指定文件的权限
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2FPasted%20image%2020230726092132.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2FPasted%20image%2020230726092132.png)
 
 ### ④、绝对模式（八进制数字模式）
 
@@ -546,7 +546,7 @@ a.c
 
 ### ②、vim 键盘图
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2FPasted%20image%2020230726092146.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2FPasted%20image%2020230726092146.png)
 
 ### ③、vi/vim 的使用
 
@@ -589,7 +589,7 @@ a.c
 
 ### ④、vi/vim 工作模式
 
-![](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2FPasted%20image%2020230725151303.png)
+![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2FPasted%20image%2020230725151303.png)
 
 ### ⑤、按键：复制粘贴、搜索替换等
 
@@ -2026,7 +2026,7 @@ AWK 是一种处理文本文件的语言，是一个强大的文本分析工具
 
 ##### （2）、`printf`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2Flinux%2Fattachments%2F2023-07-25-13--14-20-483--AQvHkjA-3psrAw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2Fattachments%2F2023-07-25-13--14-20-483--AQvHkjA-3psrAw.png)
 
 
 - 10 进制的整数

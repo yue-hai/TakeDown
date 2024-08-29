@@ -9,7 +9,7 @@
 
 ## 2、Bootstrap 下载
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-22-527--X1LKe_6ImuqFuA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-22-527--X1LKe_6ImuqFuA.png)
 
 - 或者通过网络引入：
 
@@ -82,7 +82,7 @@ Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。�
 
 - Bootstrap 中可通过这种方式来更改样式
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-002--HzTU2QwVK2gK9g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-002--HzTU2QwVK2gK9g.png)
 
 ## 4、栅格系统
 
@@ -196,7 +196,7 @@ Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。�
 
 HTML 中的所有标题标签，`<h1>` 到 `<h6>` 均可使用。另外，还提供了 .h1 到 .h6 类，为的是给内联（inline）属性的文本赋予标题的样式。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-185--vOsT-OqvmJfFxA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-185--vOsT-OqvmJfFxA.png)
 
 ```html
 <h1>h1. Bootstrap heading</h1>
@@ -211,7 +211,7 @@ HTML 中的所有标题标签，`<h1>` 到 `<h6>` 均可使用。另外，还提
 
 在标题内还可以包含 `<small>` 标签或赋予 .small 类的元素，可以用来标记副标题。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-275--kz6oeVMfj5GDlw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-275--kz6oeVMfj5GDlw.png)
 
 ```html
 <h1>h1. Bootstrap heading <small>Secondary text</small></h1>
@@ -228,13 +228,13 @@ HTML 中的所有标题标签，`<h1>` 到 `<h6>` 均可使用。另外，还提
 
 Bootstrap 将全局 font-size 设置为 **14px**，line-height 设置为 **1.428**。这些属性直接赋予 `<body>` 元素和所有段落元素。另外，`<p>` （段落）元素还被设置了等于 1/2 行高（即 10px）的底部外边距（margin）。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-377--RybQuOLkNYvgsQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-377--RybQuOLkNYvgsQ.png)
 
 #### Ⅱ、中心内容
 
 通过添加 .lead 类可以让段落突出显示。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-520--bbnpt9R7V4WHHQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-520--bbnpt9R7V4WHHQ.png)
 
 #### Ⅲ、使用 Less 工具构建
 
@@ -249,7 +249,7 @@ Bootstrap 将全局 font-size 设置为 **14px**，line-height 设置为 **1.428
 
 由于文本在另一个上下文中的相关性，要突出显示一系列文本，请使用标记 `<mark>`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-639--J0NH2mExJU8iKw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-639--J0NH2mExJU8iKw.png)
 
 ```html
 You can use the mark tag to <mark>highlight</mark> text.
@@ -259,7 +259,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 对于被删除的文本使用 `<del>` 标签
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-749--r764iGPwJgeLqQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-749--r764iGPwJgeLqQ.png)
 
 ```html
 <del>This line of text is meant to be treated as deleted text.</del>
@@ -269,7 +269,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 对于没用的文本使用 `<s>` 标签
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-862--POFu4QCGZHwIYQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-862--POFu4QCGZHwIYQ.png)
 
 ```html
 <s>This line of text is meant to be treated as no longer accurate.</s>
@@ -279,7 +279,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 额外插入的文本使用 `<ins>` 标签。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-989--YmG6tWU40QSWbg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-23-989--YmG6tWU40QSWbg.png)
 
 ```html
 <ins>This line of text is meant to be treated as an addition to the document.</ins>
@@ -290,7 +290,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 为文本添加下划线，使用 `<u>` 标签
 利用 HTML 自带的表示强调意味的标签来为文本增添少量样式
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-115--KSYUTUuCWi3Sjw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-115--KSYUTUuCWi3Sjw.png)
 
 ```html
 <u>This line of text will render as underlined</u>
@@ -301,7 +301,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 对于不需要强调的inline或block类型的文本，使用 `<small>` 标签包裹，其内的文本将被设置为父容器字体大小的 85%。标题元素中嵌套的 `<small>` 元素被设置不同的 font-size 。
 你还可以为行内元素赋予 .small 类以代替任何 `<small>` 元素
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-223--Q_VzU3EYI4CvLQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-223--Q_VzU3EYI4CvLQ.png)
 
 ```html
 <small>This line of text is meant to be treated as fine print.</small>
@@ -311,7 +311,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 通过增加 font-weight 值强调一段文本
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-381--N1VrpwSpHaqiXw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-381--N1VrpwSpHaqiXw.png)
 
 ```html
 <strong>rendered as bold text</strong>
@@ -321,7 +321,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 用斜体强调一段文本
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-448--VRaLAsYNNWtzPQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-448--VRaLAsYNNWtzPQ.png)
 
 ```html
 <em>rendered as italicized text</em>
@@ -335,7 +335,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 通过文本对齐类，可以简单方便的将文字重新对齐
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-647--fnsCfDaZ2gR56Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-647--fnsCfDaZ2gR56Q.png)
 
 ```html
 <p class="text-left">Left aligned text.</p>
@@ -349,7 +349,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 通过这几个类可以改变文本的大小写
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-747--kHXV2rIbyPX17A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-747--kHXV2rIbyPX17A.png)
 
 ```html
 <p class="text-lowercase">Lowercased text.</p>
@@ -363,7 +363,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 #### Ⅰ、基本缩略语
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-827--mjzFSvZZBk0vWQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-827--mjzFSvZZBk0vWQ.png)
 
 ```html
 <abbr title="attribute">attr</abbr>
@@ -371,7 +371,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 #### Ⅱ、首字母缩略语
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-923--5h7garKWr4NUjg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-24-923--5h7garKWr4NUjg.png)
 
 ```html
 <abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
@@ -381,7 +381,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 让联系信息以最接近日常使用的格式呈现。在每行结尾添加 `<br>` 可以保留需要的样式
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-098--tDuVkMAde8AgnQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-098--tDuVkMAde8AgnQ.png)
 
 ```html
 <address>
@@ -405,7 +405,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 将任何 HTML 元素包裹在 `<blockquote>` 中即可表现为引用样式。对于直接引用，我们建议用 `<p>` 标签
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-199--o3L3_OLG81PRsQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-199--o3L3_OLG81PRsQ.png)
 
 ```html
 <blockquote>
@@ -421,7 +421,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 添加 `<footer>` 用于标明引用来源。来源的名称可以包裹进 `<cite>` 标签中
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-356--md1e-DPTwcoutQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-356--md1e-DPTwcoutQ.png)
 
 ```html
 <blockquote>
@@ -434,7 +434,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 通过赋予 .blockquote-reverse 类可以让引用呈现内容右对齐的效果
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-478--1Q3OACVNjZUx3Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-478--1Q3OACVNjZUx3Q.png)
 
 ```html
 <blockquote class="blockquote-reverse">
@@ -448,7 +448,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 排列顺序_无关紧要_的一列元素
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-565--3PbawPo9J2LSRw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-565--3PbawPo9J2LSRw.png)
 
 ```html
 <ul>
@@ -460,7 +460,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 顺序_至关重要_的一组元素
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-634--S18fB0zL_XW_QA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-634--S18fB0zL_XW_QA.png)
 
 ```html
 <ol>
@@ -472,7 +472,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 移除了默认的 list-style 样式和左侧外边距的一组元素（只针对直接子元素）。**这是针对直接子元素的**，也就是说，你需要对所有嵌套的列表都添加这个类才能具有同样的样式
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-774--ir3NAbxapoz3Zw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-774--ir3NAbxapoz3Zw.png)
 
 ```html
 <ul class="list-unstyled">
@@ -484,7 +484,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 通过设置 display: inline-block; 并添加少量的内补（padding），将所有元素放置于同一行
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-894--zsNMvEQCDdCigw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-25-894--zsNMvEQCDdCigw.png)
 
 ```html
 <ul class="list-inline">
@@ -496,7 +496,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 带有描述的短语列表
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-008--Azc-MbNzUId9Rw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-008--Azc-MbNzUId9Rw.png)
 
 ```html
 <dl>
@@ -509,7 +509,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 .dl-horizontal 可以让 `<dl>` 内的短语及其描述排在一行。开始是像 `<dl>` 的默认样式堆叠在一起，随着导航条逐渐展开而排列在一行
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-116--fZjogoWbxExTcQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-116--fZjogoWbxExTcQ.png)
 
 ```html
 <dl class="dl-horizontal">
@@ -528,7 +528,7 @@ You can use the mark tag to <mark>highlight</mark> text.
 
 通过 `<code>` 标签包裹内联样式的代码片段
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-293--0Z1CqXybd_iKpQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-293--0Z1CqXybd_iKpQ.png)
 
 ```html
 For example, <code>&lt;section&gt;</code> should be wrapped as inline.
@@ -538,7 +538,7 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 
 通过 `<kbd>` 标签标记用户通过键盘输入的内容
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-369--AYT1RFP8p0G9yg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-369--AYT1RFP8p0G9yg.png)
 
 ```html
 To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
@@ -549,7 +549,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 多行代码可以使用 `<pre>` 标签。为了正确的展示代码，注意将尖括号做转义处理
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-548--FK9t1pl6ePq4_A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-548--FK9t1pl6ePq4_A.png)
 
 ```html
 <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
@@ -559,7 +559,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 通过 `<var>` 标签标记变量
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-672--AdONh2rxURF0UA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-672--AdONh2rxURF0UA.png)
 
 ```html
 <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
@@ -569,7 +569,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 通过 `<samp>` 标签来标记程序输出的内容
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-781--IJ2gh_YZ54htxA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-26-781--IJ2gh_YZ54htxA.png)
 
 ```html
 <samp>This text is meant to be treated as sample output from a computer program.</samp>
@@ -581,7 +581,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 为任意 `<table>` 标签添加 `.table` 类可以为其赋予基本的样式 — 少量的内补（padding）和水平方向的分隔线。这种方式看起来很多余！？但是我们觉得，表格元素使用的很广泛，如果我们为其赋予默认样式可能会影响例如日历和日期选择之类的插件，所以我们选择将此样式独立出来
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-023--6orNbvbKvyRhDw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-023--6orNbvbKvyRhDw.png)
 
 ```html
 <table class="table">
@@ -594,7 +594,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 通过 .table-striped 类可以给 `<tbody>` 之内的每一行增加斑马条纹样式
 跨浏览器兼容性：条纹状表格是依赖 :nth-child CSS 选择器实现的，而这一功能不被 Internet Explorer 8 支持
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-154--jMWHc7flGd3IsA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-154--jMWHc7flGd3IsA.png)
 
 ```html
 <table class="table table-striped">
@@ -606,7 +606,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 添加 .table-bordered 类为表格和其中的每个单元格增加边框
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-262--y4R3LdEsdO4FlA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-262--y4R3LdEsdO4FlA.png)
 
 ```html
 <table class="table table-bordered">
@@ -618,7 +618,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 通过添加 .table-hover 类可以让 `<tbody>` 中的每一行对鼠标悬停状态作出响应
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-470--hl18c6PSdCt9RA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-470--hl18c6PSdCt9RA.png)
 
 ```html
 <table class="table table-hover">
@@ -630,7 +630,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 
 通过添加 .table-condensed 类可以让表格更加紧凑，单元格中的内补（padding）均会减半
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-587--iaXpqfklMCHLmg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-587--iaXpqfklMCHLmg.png)
 
 ```html
 <table class="table table-condensed">
@@ -651,7 +651,7 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 | .warning | 标识警告或需要用户注意 |
 | .danger | 标识危险或潜在的带来负面影响的动作 |
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-674--aVInyaVXkTUHlg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-674--aVInyaVXkTUHlg.png)
 
 ```html
 <!-- On rows -->
@@ -679,11 +679,11 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 
 - 小于 768px 宽度
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-795--I7tutf2yxMWHCg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-795--I7tutf2yxMWHCg.png)
 
 - 大于 768px 宽度
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-961--lvmpaYPV_SsGnA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-27-961--lvmpaYPV_SsGnA.png)
 
 ```html
 <div class="table-responsive">
@@ -700,7 +700,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 单独的表单控件会被自动赋予一些全局样式。所有设置了 .form-control 类的 `<input>`、`<textarea>` 和 `<select>` 元素都将被默认设置宽度属性为 width: 100%;。 将 label 元素和前面提到的控件包裹在 .form-group 中可以获得最好的排列
 不要将表单组和输入框组混合使用：不要将表单组直接和[输入框组](https://v3.bootcss.com/components/#input-groups)混合使用。建议将输入框组嵌套到表单组中使用
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-069--5YCa652hTjBlZA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-069--5YCa652hTjBlZA.png)
 
 ```html
 <form>
@@ -734,7 +734,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 
 > 一定要添加 label 标签：如果你没有为每个输入控件设置 label 标签，屏幕阅读器将无法正确识别。对于这些内联表单，你可以通过为 label 设置 .sr-only 类将其隐藏。还有一些辅助技术提供label标签的替代方案，比如 aria-label、aria-labelledby 或 title 属性。如果这些都不存在，屏幕阅读器可能会采取使用 placeholder 属性，如果存在的话，使用占位符来替代其他的标记，但要注意，这种方法是不妥当的
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-144--MLCjlahlLAbRTw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-144--MLCjlahlLAbRTw.png)
 
 ```html
 <form class="form-inline">
@@ -750,7 +750,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 </form>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-229--AZg7thhZ_uXpiw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-229--AZg7thhZ_uXpiw.png)
 
 ```html
 <form class="form-inline">
@@ -771,7 +771,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 </form>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-326--FxWSQrA-E_t22Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-326--FxWSQrA-E_t22Q.png)
 
 ```html
 <form class="form-inline">
@@ -791,7 +791,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 
 通过为表单添加 .form-horizontal 类，并联合使用 Bootstrap 预置的栅格类，可以将 label 标签和控件组水平并排布局。这样做将改变 .form-group 的行为，使其表现为栅格系统中的行（row），因此就无需再额外添加 .row 了
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-424--K0FKr1jZ0cwwcQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-424--K0FKr1jZ0cwwcQ.png)
 
 ```html
 <form class="form-horizontal">
@@ -836,7 +836,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 
 > 输入控件组：如需在文本输入域 `<input>` 前面或后面添加文本内容或按钮控件，请参考[输入控件组](https://v3.bootcss.com/components/#input-groups)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-517--yMgdy8Z7u7nYyA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-517--yMgdy8Z7u7nYyA.png)
 
 ```html
 <input type="text" class="form-control" placeholder="Text input">
@@ -846,7 +846,7 @@ Firefox 和 fieldset 元素：Firefox 浏览器对 fieldset 元素设置了一�
 
 支持多行文本的表单控件。可根据需要改变 rows 属性
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-622--tDAuJP-X-wmPMA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-622--tDAuJP-X-wmPMA.png)
 
 ```html
 <textarea class="form-control" rows="3"></textarea>
@@ -859,7 +859,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 ##### （1）、默认外观（堆叠在一起）
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-697--fXvMW-DFHlSqWg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-697--fXvMW-DFHlSqWg.png)
 
 ```html
 <div class="checkbox">
@@ -899,7 +899,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 通过将 .checkbox-inline 或 .radio-inline 类应用到一系列的多选框（checkbox）或单选框（radio）控件上，可以使这些控件排列在一行
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-839--FmD_IvzKp1OmgA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-839--FmD_IvzKp1OmgA.png)
 
 ```html
 <label class="checkbox-inline">
@@ -927,7 +927,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 如果需要 `<label>` 内没有文字，输入框（input）正是你所期望的。 **目前只适用于非内联的 checkbox 和 radio。** 请记住，仍然需要为使用辅助技术的用户提供某种形式的 label（例如，使用 aria-label）
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-949--cPfy_nX_BITnvQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-28-949--cPfy_nX_BITnvQ.png)
 
 ```html
 <div class="checkbox">
@@ -945,7 +945,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 #### Ⅳ、下拉列表（select）
 注意，很多原生选择菜单 - 即在 Safari 和 Chrome 中 - 的圆角是无法通过修改 border-radius 属性来改变的
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-074--PuYkAEUOuiOKKQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-074--PuYkAEUOuiOKKQ.png)
 
 ```html
 <select class="form-control">
@@ -961,7 +961,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 对于标记了 multiple 属性的 `<select>` 控件来说，默认显示多选项
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-170--h-jKbgmvL_LGCw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-170--h-jKbgmvL_LGCw.png)
 
 ```html
 <select multiple class="form-control">
@@ -977,7 +977,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 如果需要在表单中将一行纯文本和 label 元素放置于同一行，为 `<p>` 元素添加 .form-control-static 类即可
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-297--LNtsiOGY3dULFA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-297--LNtsiOGY3dULFA.png)
 
 ```html
 <form class="form-horizontal">
@@ -998,7 +998,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 ---
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-389--JEljYt6A4zoJgw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-389--JEljYt6A4zoJgw.png)
 
 ```html
 <form class="form-inline">
@@ -1018,7 +1018,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 我们将某些表单控件的默认 outline 样式移除，然后对 :focus 状态赋予 box-shadow 属性
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-508--izUM-wBLd7gWLQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-508--izUM-wBLd7gWLQ.png)
 
 > 演示:focus 状态：在本文档中，我们为上面实例中的输入框赋予了自定义的样式，用于演示 .form-control 元素的 :focus 状态
 
@@ -1026,7 +1026,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 为输入框设置 disabled 属性可以禁止其与用户有任何交互（焦点、输入等）。被禁用的输入框颜色更浅，并且还添加了 not-allowed 鼠标状态
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-606--D5pOsI53ACHARw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-606--D5pOsI53ACHARw.png)
 
 ```html
 <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
@@ -1041,7 +1041,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 > 跨浏览器兼容性：虽然 Bootstrap 会将这些样式应用到所有浏览器上，Internet Explorer 11 及以下浏览器中的 `<fieldset>` 元素并不完全支持 disabled 属性。因此建议在这些浏览器上通过 JavaScript 代码来禁用 `<fieldset>`
 
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-750--nrIrRWJdcOR6LQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-750--nrIrRWJdcOR6LQ.png)
 
 ```html
 <form>
@@ -1070,7 +1070,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 为输入框设置 readonly 属性可以禁止用户修改输入框中的内容。处于只读状态的输入框颜色更浅（就像被禁用的输入框一样），但是仍然保留标准的鼠标状态
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-842--Tlaj92FLJr8f9Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-29-842--Tlaj92FLJr8f9Q.png)
 
 ```html
 <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
@@ -1082,7 +1082,7 @@ Disabled checkboxes and radios are supported, but to provide a "not-allowed" cur
 
 > 将帮助文本与表单控件关联：帮助文本应该使用 aria describedby 属性与表单控件显式关联。这将确保辅助技术（如屏幕阅读器）在用户聚焦或进入控件时会宣布此帮助文本
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-060--w7tc_MTmyw4RGw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-060--w7tc_MTmyw4RGw.png)
 
 ```html
 <label for="inputHelpBlock">Input with help text</label>
@@ -1099,7 +1099,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 > 为了确保所有用户都能获取正确信息，Bootstrap 还提供了另一种提示方式。例如，你可以在表单控件的 `<label>` 标签上以文本的形式显示提示信息（就像下面代码中所展示的）；包含一个 [Glyphicon 字体图标](https://v3.bootcss.com/components/#glyphicons) （还有赋予 .sr-only 类的文本信息 - 参考[Glyphicon 字体图标实例](https://v3.bootcss.com/components/#glyphicons-examples)）；或者提供一个额外的 [辅助信息](https://v3.bootcss.com/css/#forms-help-text) 块。另外，对于使用辅助设备的用户，无效的表单控件还可以赋予一个 aria-invalid="true" 属性
 
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-202--u9b6SAGOA0YhJg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-202--u9b6SAGOA0YhJg.png)
 
 ```html
 <div class="form-group has-success">
@@ -1152,7 +1152,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 > 虽然下面的例子已经提到各自表单控件本身的 `<label>` 文本的验证状态，上述技术（使用 .sr-only 文本 和 aria-describedby) ）已经包括了需要说明的目的
 
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-342--OHGfh_hHlUWGaw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-342--OHGfh_hHlUWGaw.png)
 
 ```html
 <div class="form-group has-success has-feedback">
@@ -1186,7 +1186,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 #### Ⅱ、为水平排列的表单和内联表单设置可选的图标
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-434--h6lYKsoQ8o6Yag.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-434--h6lYKsoQ8o6Yag.png)
 
 ```html
 <form class="form-horizontal">
@@ -1214,7 +1214,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 ---
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-519--Ehfp2MCJtKs-9Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-519--Ehfp2MCJtKs-9Q.png)
 
 ```html
 <form class="form-inline">
@@ -1242,7 +1242,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 如果你使用 .sr-only 类来隐藏表单控件的 `<label>` （而不是使用其它标签选项，如 aria-label 属性）， 一旦它被添加，Bootstrap 会自动调整图标的位置
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-612--m_IApRZ0FkFnAA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-612--m_IApRZ0FkFnAA.png)
 
 ```html
 <div class="form-group has-success has-feedback">
@@ -1270,7 +1270,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 创建大一些或小一些的表单控件以匹配按钮尺寸
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-774--A3v3olXZWSmG-Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-774--A3v3olXZWSmG-Q.png)
 
 ```html
 <input class="form-control input-lg" type="text" placeholder=".input-lg">
@@ -1286,7 +1286,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 通过添加 .form-group-lg 或 .form-group-sm 类，为 .form-horizontal 包裹的 label 元素和表单控件快速设置尺寸
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-876--hQ4MruIOciJjHA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-876--hQ4MruIOciJjHA.png)
 
 ```html
 <form class="form-horizontal">
@@ -1309,7 +1309,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 用栅格系统中的列（column）包裹输入框或其任何父元素，都可很容易的为其设置宽度
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-989--_axRdACbt-tSLA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-30-989--_axRdACbt-tSLA.png)
 
 ```html
 <div class="row">
@@ -1339,7 +1339,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 > 
 > 另外，我们还发现了 [Firefox <30 版本的浏览器上出现的一个 bug](https://bugzilla.mozilla.org/show_bug.cgi?id=697451)，其表现是：阻止我们为基于 <input> 元素所创建的按钮设置 line-height 属性，这就导致在 Firefox 浏览器上不能完全和其他按钮保持一致的高度
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-051--l96o9EJGcVHNRw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-051--l96o9EJGcVHNRw.png)
 
 ```html
 <a class="btn btn-default" href="#" role="button">Link</a>
@@ -1354,7 +1354,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 > 向辅助技术传达意义：为按钮添加不同的颜色只是一种视觉上的信息表达方式，但是，对于使用辅助技术 -- 例如屏幕阅读器 -- 的用户来说，颜色是不可见的。建议，确保通过颜色表达的信息或者通过内容自身表达出来（按钮上的文字），或者通过其他方式 -- 例如通过 .sr-only 类隐藏的额外文本 -- 表达出来
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-223--H5P2m5EKRqy0BQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-223--H5P2m5EKRqy0BQ.png)
 
 ```html
 <!-- Standard button -->
@@ -1383,7 +1383,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 需要让按钮具有不同尺寸吗？使用 .btn-lg、.btn-sm 或 .btn-xs 就可以获得不同尺寸的按钮
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-320--mN8ON5us1yOOqQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-320--mN8ON5us1yOOqQ.png)
 
 ```html
 <p>
@@ -1408,7 +1408,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 通过给按钮添加 .btn-block 类可以将其拉伸至父元素100%的宽度，而且按钮也变为了块级（block）元素
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-486--V52VLB38VLvtqQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-486--V52VLB38VLvtqQ.png)
 
 ```html
 <button type="button" class="btn btn-primary btn-lg btn-block">（块级元素）Block level button</button>
@@ -1423,7 +1423,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 由于 :active 是伪状态，因此无需额外添加，但是在需要让其表现出同样外观的时候可以添加 .active 类
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-614--C5i-YAlZI5Q-Pw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-614--C5i-YAlZI5Q-Pw.png)
 
 ```html
 <button type="button" class="btn btn-primary btn-lg active">Primary button</button>
@@ -1434,7 +1434,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 可以为基于 `<a>` 元素创建的按钮添加 .active 类
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-695---BNuNefYWMjwvg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-695---BNuNefYWMjwvg.png)
 
 ```html
 <a href="#" class="btn btn-primary btn-lg active" role="button">Primary link</a>
@@ -1451,7 +1451,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 > 跨浏览器兼容性：如果为 `<button>` 元素添加 disabled 属性，Internet Explorer 9 及更低版本的浏览器将会把按钮中的文本绘制为灰色，并带有恶心的阴影，目前我们还没有解决办法
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-838--2GP5q38iyOcWag.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-838--2GP5q38iyOcWag.png)
 
 ```html
 <button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
@@ -1465,7 +1465,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 > 链接的原始功能不受影响：上面提到的类只是通过设置 pointer-events: none 来禁止 `<a>` 元素作为链接的原始功能，但是，这一 CSS 属性并没有被标准化，并且 Opera 18 及更低版本的浏览器并没有完全支持这一属性，同样，Internet Explorer 11 也不支持。此外，即使在支持指针事件的浏览器中：无，键盘导航仍然不受影响，这意味着有视力的键盘用户和辅助技术用户仍然能够激活这些链接。 因此，为了安全起见，建议通过 JavaScript 代码来禁止链接的原始功能
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-935--iQ6pqrljRk79gQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-31-935--iQ6pqrljRk79gQ.png)
 
 ```html
 <a href="#" class="btn btn-primary btn-lg disabled" role="button">Primary link</a>
@@ -1491,7 +1491,7 @@ Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状�
 
 > 跨浏览器兼容性：请时刻牢记：Internet Explorer 8 不支持 CSS3 中的圆角属性
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?fullFilePath=%2Fhome%2Fyan%2F%E6%A1%8C%E9%9D%A2%2F%E5%86%85%E5%AD%98%2F%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99%2FTakeDown%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-32-012--9RaH0xCGi86-uw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2F2023-07-25-13--03-32-012--9RaH0xCGi86-uw.png)
 
 ```html
 <img src="..." alt="..." class="img-rounded">
