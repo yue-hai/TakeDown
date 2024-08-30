@@ -4560,26 +4560,6 @@ docker@yuehai:~/docker/volumes/openjdk$
 
 # 十四、其他
 
-## 0、code 端口映射设置
-
-| 应用容器      | 开始端口  | 使用端口                                | 说明                    |
-| --------- | ----- | ----------------------------------- | --------------------- |
-| portainer | 10000 | 10000                               | Docker 轻量级可视化工具       |
-| n2n       | 10001 |                                     | 虚拟局域网搭建工具             |
-|           |       | 10001                               | `10001` 是作为 Manage 端口 |
-|           |       | 10002                               | `10002` 作为主要端口        |
-|           |       | 10003                               | `10003` 查看在线列表        |
-| V2Ray     | 10004 |                                     | V2Ray vpn             |
-| tomcat    | 10100 |                                     | tomcat                |
-| mysql     | 10200 |                                     | mysql 数据库             |
-|           |       | 10200                               | y_chat 数据库            |
-| java      | 10300 |                                     |                       |
-|           |       | 10300                               | yuehai-tool 工具应用      |
-|           |       | 10301                               | y_chat 消息转发           |
-|           |       | 10310                               | y_chat 数据服务器          |
-| nacos     | 15000 | 15000、<br>16000、<br>16001、<br>14000 | 服务注册和配置中心             |
-| sentinel  | 11000 | 11000                               | 服务熔断与限流               |
-
 ## 1、无法停止容器 `docker Error response from daemon: cannot stop container`
 
 1. 解决方法：`sudo aa-remove-unknown`
