@@ -12675,16 +12675,11 @@ object AuthApiService {
 
 ### ⑤、
 
+## 7、控件
 
-## 7、
+### ①、其他
 
-## 8、
-
-# 十二、控件补充
-
-## 1、其他
-
-### ①、布局时使用负数参数
+#### Ⅰ、布局时使用负数参数
 
 1. 可使用 `translationX` 和 `translationY` 来设置控件的位置
 2. `translationX`：水平偏移
@@ -12716,7 +12711,7 @@ object AuthApiService {
 
 ![|668](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231026102417.png)
 
-### ②、在代码中动态修改控件的宽高
+#### Ⅱ、在代码中动态修改控件的宽高
 
 1. android 的 view 中有 `setPadding`，但是没有直接的 `setMargin` 方法，如果要在代码中设置 `Margin` 可以通过设置 view 里面的 `LayoutParams` 设置
 2. 而这个 `LayoutParams` 是根据该 view 在不同的 `GroupView` 而不同的，具体取决于父布局的类型和需要修改的具体布局参数。
@@ -12740,13 +12735,11 @@ object AuthApiService {
 12. 1
 13. 1
 
+#### Ⅲ、
 
+### ②、TextView 文本
 
-### ③、
-
-## 2、TextView 文本
-
-### ①、`TextView` 行间距设置
+#### Ⅰ、`TextView` 行间距设置
 
 1. 可以使用 `android:lineSpacingExtra` 属性来设置行间距的额外空间；在下面的示例中，使用 `android:lineSpacingExtra` 属性来设置行间距的额外空间为 `8dp`。这样就会在每一行的底部增加 `8dp` 的额外空间，从而实现行间距的效果。也可以设置为负数
 
@@ -12768,7 +12761,7 @@ object AuthApiService {
     android:lineSpacingMultiplier="1.5" />
 ```
 
-### ②、指定 `TextView` 行数
+#### Ⅱ、指定 `TextView` 行数
 
 1. 可使用 `android:lines` 属性来设置占用行数，会占用指定的空间，超出的部分不再显示
 2. 可使用 `android:maxLines` 属性来设置最大显示行数，超出的部分不再显示
@@ -12785,7 +12778,7 @@ object AuthApiService {
 
 2. `android:ellipsize="end"` 表示若内容超出，则在内容末尾 `end` 添加省略号（`...`）
 
-### ③、清除 `TextView` 字体周边空白
+#### Ⅲ、清除 `TextView` 字体周边空白
 
 1. 在设置界面布局的时候，设计师会给一张标注了尺寸的 UI 设计图，如果在 UI 中包含了 `TextView` 空间的话，会发现即使完全按照标注的尺寸来做，最终的显示效果和设计图还是有差异。
 2. 打开开发者模式中的布局边界，再观察 APP 的界面可以发现，在 `TextView` 中字体与 `TextView` 的边界是有一定的距离的，在 720px 的图中大概有 2px 的边界留白。就是这些默认的留白导致 UI 出现偏差。
@@ -12802,15 +12795,13 @@ object AuthApiService {
     android:includeFontPadding="false"/>
 ```
 
-### ④、
+#### Ⅳ、
 
-### ⑤、
+#### Ⅴ、
 
-### ⑥、
+### ③、recyclerView 列表
 
-## 2、recyclerView 列表
-
-### ①、`recyclerView` 滚动到指定位置时的动画
+#### Ⅰ、`recyclerView` 滚动到指定位置时的动画
 
 - `LinearLayoutManager` 是用于在 RecyclerView 中管理线性布局的布局管理器。它本身并没有提供滚动动画的功能。但可以通过结合使用 `RecyclerView` 的 `smoothScrollToPosition()` 方法和 `RecyclerView.ItemAnimator` 来实现滚动时的动画效果。
 
@@ -12845,16 +12836,16 @@ layoutManager.smoothScrollToPosition(recyclerView, null, 0)
 4. 注意，要使上述代码正常工作，确保在调用 `smoothScrollToPosition()` 方法之前已经设置了适当的布局管理器（例如 `LinearLayoutManager`）和适配器（例如 `RecyclerView.Adapter`）。
 5. 另外，请注意，根据定制的需求，可能需要自定义 `ItemAnimator` 的实现，或者使用第三方库来实现更复杂的动画效果。
 
-### ②、添加分割线
+#### Ⅱ、添加分割线
 
-#### Ⅰ、添加默认分割线
+##### （1）、添加默认分割线
 
 ```kotlin
 //添加Android自带的分割线
 recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 ```
 
-#### Ⅱ、添加自定义分割线
+##### （2）、添加自定义分割线
 
 1. 创建 `Drawable` 形状图片
 
@@ -12895,7 +12886,7 @@ recyclerViewCouponAndItem.addItemDecoration(divider)
 recyclerViewCouponAndItem.adapter = couponAndItemAdapter
 ```
 
-### ③、使用 DiffUtil 高效刷新 recyclerView 列表
+#### Ⅲ、使用 DiffUtil 高效刷新 recyclerView 列表
 
 1. 使实体类实现 `equals` 和 `hashCode` 方法，用于比较对象是否相同
 
@@ -13535,7 +13526,7 @@ class MessageListItemAdapterHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 9. 此时更新 `messageListData` 即可刷新列表
 
-### ④、RecyclerView 刷新方法
+#### Ⅳ、RecyclerView 刷新方法
 
 ```kotlin
 // 刷新所有
@@ -13563,25 +13554,15 @@ public final void notifyItemRemoved(int position);
 public final void notifyItemRangeRemoved(int positionStart, int itemCount);
 ```
 
+### ④、
+
 ### ⑤、
 
 ### ⑥、
 
-## 3、
-
-## 4、
-
-## 5、
-
-## 6、
-
-## 7、
-
 ## 8、
 
-## 9、
-
-# 十三、错误总结
+# 十二、错误总结
 
 ## 1、module java.base does not "opens java.io"
 
@@ -13614,9 +13595,11 @@ org.gradle.jvmargs=-Xmx1536M \
 
 ## 5、
 
-# 十四、工具
+# 十三、其他补充记录
 
-## 1、开源投屏工具：`scrcpy`
+## 1、工具
+
+### ①、开源投屏工具：`scrcpy`
 
 1. 下载解压：https://github.com/Genymobile/scrcpy/releases
 2. 鼠标键盘操作：`https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md`
@@ -13628,26 +13611,26 @@ org.gradle.jvmargs=-Xmx1536M \
 5. 断开所有 wifi 连接设备：`adb disconnect`
 6. 断开指定的 wifi 设备连接：`adb disconnect xxx.xxx.xxx.xxx`
 
-### ①、USB 连接
+#### Ⅰ、USB 连接
 
 1. usb 连接手机
 2. 打开 cmd，进入解压目录
 3. 输入 `adb devices`，查看已连接设备
 4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
 
-### ②、网络连接设备
+#### Ⅱ、网络连接设备
 
 1. 打开 cmd，进入解压目录
 2. 输入 `adb connect IP:端口号` 连接设备
 3. 输入 `adb devices`，查看已连接设备
 4. 若是已连接设备只有一个，则输入 `scrcpy` 直接进行连接
 
-### ③、连接多个设备
+#### Ⅲ、连接多个设备
 
 1. 输入 `adb devices`，查看已连接设备
 2. 若是已连接设备不只有一个，则输入 `scrcpy -s [ip或者设备号]` 进行连接
 
-### ④、播放手机的声音
+#### Ⅳ、播放手机的声音
 
 1. scrcpy 是无法实现该功能的，但可以通过 sndcpy 播放手机的声音
 2. 首先，下载 sndcpy：https://github.com/rom1v/sndcpy#get-the-app
@@ -13663,7 +13646,7 @@ org.gradle.jvmargs=-Xmx1536M \
 9. 以上面的方式连接 scrcpy 即可
 10. 该程序的原理是通过在手机端安装 sndcpyapp，拦截手机端的声音，再通过 adb 转发到 PC 端，再通过 VLC 播放器播放声音
 
-### ⑤、常用快捷键
+#### Ⅴ、常用快捷键
 
 - 在 Windows 中，MOD 一般代表 Alt 键
 
@@ -13688,14 +13671,14 @@ org.gradle.jvmargs=-Xmx1536M \
 | 拖放APK文件 | 从计算机安装APK |
 | 拖放非APK文件 | 将文件推送到设备 |
 
-### ⑥、几大类模拟器的地址和端口号
+#### Ⅵ、几大类模拟器的地址和端口号
 
 1. 网易mumu模拟器：adb connect 127.0.0.1:7555
 2. 夜神模拟器：adb connect 127.0.0.1:62001
 3. 蓝叠模拟器：adb connect 127.0.0.1:5555
 4. 雷电模拟器：adb connect 127.0.0.1:5555
 
-## 2、安卓手机当电脑摄像头 DroidCam
+### ②、安卓手机当电脑摄像头 DroidCam
 
 > 电脑软件下载网址：https://www.dev47apps.com/
 > 
@@ -13706,17 +13689,17 @@ org.gradle.jvmargs=-Xmx1536M \
 1. 电脑与手机端分别安装软件
 2. 手机端进入下方页面，记录端口号
 
-![|450](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F4A13FF6FFC900441630FD400F9D43B98.jpg)
+![|250](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F4A13FF6FFC900441630FD400F9D43B98.jpg)
 
 3. 电脑端打开 DroidCamApp 软件，选择 USB 连接，选择自己的手机，填入端口号，点击 `Start` 进行连接
 
-![|415](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420084259.png)
+![|240](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420084259.png)
 
 4. 连接成功后：
 
-![|365](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420084501.png)
+![|315](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420084501.png)
 
-## 3、连接手机使其作为外放音响 1 SoundWire
+### ③、连接手机使其作为外放音响 1 SoundWire（不推荐）
 
 > 电脑端：[SoundWire_Server_setup7-8-10.zip](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FSoundWire_Server_setup7-8-10.zip)
 > 
@@ -13727,18 +13710,18 @@ org.gradle.jvmargs=-Xmx1536M \
 1. 电脑手机下载安装上面的软件
 2. 电脑端打开软件，防火墙点击允许
 
-![|568](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141708.png)
+![|418](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141708.png)
 
 3. 在 Input Select 选择输出音频，选一个未使用的
 4. 之后再到Windows音量中修改输出设备，选择你在软件中勾选的输出源
 
-![|563](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141752.png)
+![|413](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141752.png)
 
 5. 手机端在中间的方框中输入本地 IP，回车键即可连接
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141820.png)
+![|325](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141820.png)
 
-## 4、连接手机使其作为外放音响 2 SyncAudio
+### ④、连接手机使其作为外放音响 2 SyncAudio
 
 > 电脑端下载：[SyncAudio(同步听) 1.0.3.7z](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FSyncAudio%28%E5%90%8C%E6%AD%A5%E5%90%AC%29%201.0.3.7z)
 
@@ -13746,11 +13729,17 @@ org.gradle.jvmargs=-Xmx1536M \
 2. 使用手机任意软件扫描二维码即可
 3. 推荐使用微信等不会被经常杀掉后台的软件
 
-## 5、genymotion 模拟器
+### ⑤、
+
+### ⑥、
+
+## 2、模拟器
+
+### ①、genymotion 模拟器
 
 > 官网：https://www.genymotion.com/
 
-### ①、安装软件失败
+#### Ⅰ、安装软件失败
 
 > 官网解释：Genymotion 模拟器使用的是 x86 架构，在第三方市场上的应用有部分不采用 x86 这么一种架构，所以在编译的时候不通过，报 “APP not installed”
 > 
@@ -13807,27 +13796,27 @@ genymotion:/sdcard/Download #
 
 6. 但是我试了安卓 8 和安卓 9 ，都不行，不知道为啥
 
-### ②、genymotion 无法启动虚拟设备
+#### Ⅱ、genymotion 无法启动虚拟设备
 
-#### Ⅰ、问题
+##### （1）、问题
 
 - 无法启动，报错：
 
 ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152707.png)
 
-#### Ⅱ、原因 1：虚拟网卡问题
+##### （2）、原因 1：虚拟网卡问题
 
 2. 原因：Genymotion 运行虚拟机是依靠 VirtualBox，但是，启动 Genymotion 虚拟机后，VirtualBox 会创建一个网络连接，问题出现在这里：网络连接未启动
 3. 解决方案：
 4. 在 Windows 下打开控制面板，按照路径：控制面板 --> 网络和 Internet --> 网络和共享中心 --> 更改适配器选项
 
-![|725](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152919.png)
+![|675](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152919.png)
 
 5. 将被 `VirtualBox Host-Only Nerwork` 创建的所有连接关闭，然后打开最大的那个即可
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152956.png)
+![|675](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152956.png)
 
-#### Ⅲ、原因 2：未正常关闭
+##### （3）、原因 2：未正常关闭
 
 1. 打开软件 `Oracle VM VirtualBox`
 2. 选择未正常关闭的设备
@@ -13837,7 +13826,7 @@ genymotion:/sdcard/Download #
 
 ![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020240308181742.png)
 
-### ③、genymotion 更改模拟器的存放路径
+#### Ⅲ、genymotion 更改模拟器的存放路径
 
 > 1. 当用一个电脑上的新用户想使用之前的虚拟机，或者自己移动了虚拟机的存放路径
 > 2. 那么就要修改对应的用户目录中的配置文件
@@ -13856,7 +13845,15 @@ genymotion:/sdcard/Download #
 3. 将 `src=` 后的内容换成移动之后的文件路径即可
 4. 若是新用户的配置文件中没有这个标签，那么直接复制过来即可
 
-## 6、adb 常用命令
+### ②、
+
+### ③、
+
+### ④、
+
+## 3、adb 问题整理
+
+### ①、adb 常用命令
 
 1. 多设备时要在 adb 后加 -s 指定设备
 2. 官网：
@@ -13895,7 +13892,63 @@ genymotion:/sdcard/Download #
 | adb shell input swipe x1 y1 x2 y2                                                     | 从(x1,y1)位置到(x2,y2)位置模拟滑动          |             |
 | adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt | 执行 monkey100 次随意点击测试，并记录日志到本地     |             |
 
-## 7、关闭 Idea 时会自动关闭 ADB 进程的解决办法
+### ②、手机开启无线调试功能
+
+> 华为 mate20 pro 测试可用
+
+1. 进入手机的开发者选项，勾选：USB 调试
+2. 勾选：“仅充电”模式下允许 ADB 调试
+
+![|261](attachments/Pasted%20image%2020240903083653.png)
+
+3. 连接电脑，手机弹窗选择：传输文件
+4. 使用 ADB 连接输入命令：
+
+```shell
+adb tcpip 5555
+```
+
+5. 如果出现以下输出，则表明开启端口成功
+
+```shell
+restarting in TCP mode port: 5555
+```
+
+6. 此时电脑端输入以下命令远程连接手机：
+
+```shell
+adb connect 手机ip:端口号
+```
+
+7. 出现以下输出，则表明连接成功
+
+```shell
+* daemon not running; starting now at tcp:5038
+* daemon started successfully
+connected to 172.20.5.148:5555
+```
+
+8. 查看当前连接的设备：
+
+```shell
+adb devices
+```
+
+9. 断开指定的wifi设备连接：
+
+```shell
+adb disconnect 手机ip:端口号
+```
+
+10. 不过这个方法有个问题，就是一旦设备重启，就要重头操作一遍。所以要尽量保持手机开机
+
+### ③、
+
+### ④、
+
+## 4、idea 问题整理
+
+### ①、关闭 Idea 时会自动关闭 ADB 进程的解决办法
 
 1. idea 点击文件 -> 设置 -> 构建、执行、部署 -> 调试器，进入以下页面，拉到最下面
 
@@ -13910,6 +13963,15 @@ genymotion:/sdcard/Download #
 
 ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222103427.png)
 
-## 8、
+### ②、
 
-## 9、
+### ③、
+
+### ④、
+
+## 5、
+
+## 6、
+
+
+
