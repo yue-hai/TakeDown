@@ -2871,11 +2871,211 @@ export default defineConfig({
 </script>
 ```
 
-## 7、
+## 7、npm 整理
 
-## 8、
+### ①、阿里镜像的安装
 
-## 9、
+> 阿里镜像通知网站：https://developer.aliyun.com/mirror/NPM
+
+#### Ⅰ、方法一（建议使用方法二）
+
+1. 使用阿里定制的 cnpm 命令行工具代替默认的 npm，输入以下代码
+
+```shell
+npm install -g cnpm --registry=http://registry.npmmirror.com
+```
+
+2. 检查是否安装成功：
+
+```shell
+cnpm -v
+```
+
+3. 安装成功之后，以后安装依赖包的方式和 npm 的是一样的，只是 npm 的命令换成是 cnpm 就可以了。
+
+#### Ⅱ、方法二
+
+1. 单次使用：
+
+```shell
+npm install --registry=http://registry.npmmirror.com
+```
+
+2. 永久替换：
+3. 在开发 react-native 的时候，不要使用 cnpm，cnpm 安装的模块路径比较奇怪，packager 不能正常识别
+4. 所以，为了方便开发，我们最好是直接永久使用淘宝的镜像源
+5. 直接命令行的设置：
+
+```shell
+npm config set registry http://registry.npmmirror.com
+```
+
+6. 手动修改设置：
+
+```shell
+ 1.打开 .npmrc 文件（C:\Program Files\nodejs\node_modules\npm\npmrc，没有的话可以使用 git 命令行建一个( touch .npmrc)，用 cmd 命令建会报错）
+ 2.增加 registry=http://registry.npmmirror.com  即可。
+```
+
+7. 如果需要恢复成原来的官方地址只需要执行如下命令:
+
+```shell
+npm config set registry https://registry.npmjs.org
+```
+
+8. 检测是否安装成功：
+
+```shell
+npm config get registry
+```
+
+### ②、
+
+### ③、
+
+### ④、
+
+## 8、常见的 Vue 项目目录结构示例
+
+### ①、使用 vue-cli 创建的项目
+
+```shell
+├── public/
+│   ├── index.html          # 主 HTML 文件
+│   ├── favicon.ico         # 网站图标
+│   └── ...                 # 其他静态资源
+├── src/
+│   ├── assets/             # 静态资源（图片、字体、样式等）
+│   │   ├── images/         # 图片资源
+│   │   ├── styles/         # 全局样式文件
+│   │   └── ...             # 其他资源文件
+│   ├── components/         # 全局组件
+│   │   ├── Header.vue      # 头部组件
+│   │   ├── Footer.vue      # 底部组件
+│   │   └── ...             # 其他组件
+│   ├── views/              # 页面级组件（对应路由）
+│   │   ├── Home.vue        # 主页
+│   │   ├── About.vue       # 关于页面
+│   │   └── ...             # 其他页面
+│   ├── router/             # 路由配置文件
+│   │   └── index.js        # 路由入口文件
+│   ├── store/              # Vuex 状态管理（如有使用 Vuex）
+│   │   └── index.js        # 状态管理入口文件
+│   ├── App.vue             # 根组件
+│   ├── main.js             # 入口 JS 文件
+│   └── ...                 # 其他配置和工具文件
+├── tests/                  # 测试文件
+│   ├── unit/               # 单元测试
+│   ├── e2e/                # 端到端测试
+│   └── ...                 # 其他测试相关文件
+├── dist/                   # 构建输出目录（生产环境）
+├── node_modules/           # 依赖包目录
+├── .gitignore              # Git 忽略文件配置
+├── package.json            # 项目元数据和依赖
+├── README.md               # 项目说明文档
+└── vue.config.js           # Vue CLI 配置文件
+```
+
+1. `public/`：存放公共文件，这些文件不会被 Webpack 处理，直接被复制到构建输出目录下。`index.html` 是项目的主 HTML 文件，`favicon.ico` 是浏览器标签上的图标。
+2. `src/`：源代码目录，存放所有与业务逻辑相关的代码。
+	1. `assets/`：存放静态资源，如图片、字体、全局样式等。可以在项目中通过相对路径引用这些资源。
+	2. `components/`：存放 Vue 组件，这些组件通常是可复用的小块 UI 元素，可以在不同的页面或其他组件中引入和使用。
+	3. `views/`：存放页面级的组件，这些组件通常与路由相对应，每个 Vue 组件代表应用中的一个页面。
+	4. `router/`：存放路由相关的代码，index.js 是路由的入口文件，负责配置应用的路由规则。
+	5. `store/`：存放 Vuex 状态管理相关的文件（如果使用 Vuex），用于集中管理应用的全局状态。
+	6. `App.vue`：根组件，整个应用的结构通常都在这里定义。
+	7. `main.js`：应用的入口文件，在这里初始化 Vue 实例，并将其挂载到 DOM 中。
+3. `tests/`：测试目录，用于存放单元测试和端到端测试文件。
+4. `dist/`：构建输出目录，生产环境下编译后的文件会输出到这里。
+5. `node_modules/`：存放所有通过 npm 安装的项目依赖包。
+6. `.gitignore`：Git 忽略文件配置，用于指定不需要纳入版本控制的文件和目录。
+7. `package.json`：项目的元数据文件，记录项目名称、版本、依赖关系、脚本等信息。
+8. `README.md`：项目的说明文档，通常用来描述项目的功能、安装步骤、使用方法等。
+9. `vue.config.js`：Vue CLI 的配置文件，用于自定义 Webpack 配置、开发服务器设置等。
+10. 这种目录结构清晰且模块化，有助于开发和维护 Vue 项目。如果项目需求较为复杂，可以根据实际情况进一步细化目录结构。例如，添加 `services/` 目录来存放与 API 交互的代码，或创建 `mixins/` 目录来存放可复用的 Vue mixins。
+
+### ②、使用 vite 创建的项目
+
+```shell
+├── public/
+│   ├── favicon.ico         # 网站图标
+│   └── ...                 # 其他静态资源，如robots.txt等
+├── src/
+│   ├── assets/             # 静态资源（图片、字体、样式等）
+│   │   ├── images/         # 图片资源
+│   │   ├── styles/         # 全局样式文件（如main.css）
+│   │   └── ...             # 其他资源文件
+│   ├── components/         # 全局复用组件
+│   │   ├── HeaderComponent.vue # 头部组件
+│   │   ├── FooterComponent.vue # 底部组件
+│   │   └── ...             # 其他组件
+│   ├── views/              # 页面级组件，通常对应路由
+│   │   ├── HomeView.vue    # 主页组件
+│   │   ├── AboutView.vue   # 关于页面组件
+│   │   └── ...             # 其他页面
+│   ├── router/             # 路由配置
+│   │   └── index.js        # 路由定义，使用Vue Router
+│   ├── store/              # 状态管理（如使用Vuex或Pinia）
+│   │   └── index.js        # 状态管理定义
+│   ├── App.vue             # 应用根组件
+│   ├── main.js             # 应用入口文件
+│   └── ...                 # 其他配置和工具脚本
+├── tests/                  # 测试文件夹
+│   ├── unit/               # 单元测试
+│   ├── e2e/                # 端到端测试
+│   └── ...                 # 其他测试文件
+├── index.html              # 主 HTML 文件（Vite 通常将此文件放在根目录）
+├── vite.config.js          # Vite 配置文件
+├── package.json            # 项目依赖和脚本
+├── README.md               # 项目文档
+└── .gitignore              # Git 忽略文件配置
+```
+
+1. **静态资源**：位于 `public` 文件夹中的资源将会被直接复制到最终的构建目录中而不会经过 Vite 处理，适合放置 `favicon.ico` 和一些不需要处理的静态文件。而 `src/assets/` 目录则用于放置需要经过 Vite 处理的资源如 LESS、SASS 文件或 JavaScript 中引用的图片
+2. **碎片页面/组件**：通常放在 `src/views/` 目录下，每个文件代表一个路由的视图
+3. **导航代码**：放在 `src/router/` 目录中，这里存放 Vue Router 的路由配置
+4. **全局样式**：可以放在 `src/assets/styles/` 目录下，通过在 `main.js` 或单独的组件中引入使用
+5. **配置文件**：`vite.config.js` 是 Vite 的配置文件，位于项目根目录，用于配置插件、优化等
+6. 这样的结构有利于维护一个清晰、模块化的项目架构，适应现代 web 开发的需要
+7. 使用 Vite 创建的 Vue 项目结构通常会与 Vue CLI 创建的项目结构类似，但有一些细微的差异，主要是因为 Vite 是一个更现代化的开发工具，更倾向于使用原生 ES 模块，并且在配置和构建方面更为轻量
+
+## 9、vue 的部署
+
+### ①、直接部署生产环境（非打包）
+
+1. 将生产代码复制到服务器，即除了 `.git`、`.idea`、`node_modules` 等非代码目录外
+2. 在服务器项目的根目录，执行命令，安装依赖
+
+```shell
+npm install
+```
+
+3. 启动开发服务器：
+
+```shell
+npm run build
+```
+
+4. 直接访问即可
+
+### ②、打包后部署到服务器
+
+1. 
+
+### ③、
+
+### ④、
+
+## 10、
+
+## 11、
+
+## 12、
+
+## 13、
+## 14、
+## 15、
+
 
 
 
