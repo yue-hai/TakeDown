@@ -3060,11 +3060,149 @@ npm run build
 
 ### ②、打包后部署到服务器
 
-1. 
+1. 在项目根目录执行打包命令，执行完毕后，项目根目录会生成 `dist` 目录
 
-### ③、
+```shell
+npm run build
+```
 
-### ④、
+2. 将 `dist` 目录中的所有文件上传到服务器
+3. 然后使用后台服务端（比如 java 服务端）或者 nginx  来返回 `index.html` 文件和其他资源
+
+### ③、vue 打包部署后页面空白，也没有报错
+
+#### Ⅰ、原因
+
+- 路由的 history 模式为 html5 模式： `createWebHistory("/")` 导致的
+
+#### Ⅱ、解决办法 1
+
+- 路由的 history 模式改为 `createWebHashHistory()`
+
+```shell
+// 创建并导出一个新的路由实例
+export default createRouter({
+    // 使用 hash 模式的路由历史；hash 模式使用 URL 中的 hash 部分（#）来作为路由地址
+    history: createWebHashHistory(),
+    // 定义路由规则；通过展开运算符 ... 将导入的路由合并到当前的路由配置中
+    routes: []
+})
+```
+
+#### Ⅲ、解决办法 2
+
+> vue 官网的说明：https://router.vuejs.org/zh/guide/essentials/history-mode.html
+
+1. 配置 `vue.config.js` 中的 publicPath
+
+```js
+module.exports = {
+  // 根目录
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+};
+```
+
+2. 配置 vue-router
+
+```js
+const router = createRouter({
+  //根目录
+  history: createWebHistory("/"),
+  routes
+})
+```
+
+3. 配置 nginx 的 server
+
+```nginx
+location / {
+    root   /opt/app/fontend;
+    index index.html index.htm;
+    try_files  $uri $uri/ /index.html;
+}
+```
+
+4. 把打包后生成的 css、js、html 等文件放入服务器中的 /opt/app/fontend 目录下，访问对应 ip:端口 即可看到页面。
+
+### ④、打包后图片等资源文件没有被打包
+
+#### Ⅰ、原因
+
+1. vite 官方默认的配置，如果资源文件在 assets 文件夹打包后会把图片名加上 hash值，但是直接通过 `:src="imgSrc"` 方式引入并不会在打包的时候解析，导致开发环境可以正常引入，打包后却不能显示的问题
+2. 这里我们先看看vite官方文档的解释：https://vitejs.bootcss.com/guide/assets.html
+3. 我们看到实际上我们不希望资源文件被 wbpack 编译可以把图片放到 public 目录会更省事，不管是开发环境还是生产环境，可以始终以根目录保持图片路径的一致，这点跟 webpack 是一致的
+
+![|675](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2FPasted%20image%2020240905131130.png)
+
+4. 看到这里，也许问题就解决了，如果在 vite 确实需要将静态文件放在 assets，我们再往下看：
+5. 这里我们先假设：
+	1. 静态文件目录：`src/assets/images/`
+	2. 我们的目标静态文件在 `src/assets/images/home/home_icon.png`
+6. 尝试过 require 动态引入， 发现报错：require is not defind，这是因为 require 是属于 Webpack 的方法
+
+```vue
+<img :src="require('@/assets/images/home/home_icon.png')" />
+```
+
+#### Ⅱ、第一种方式（适用于处理单个链接的资源文件）
+
+1. 先将图片使用 `import` 引入，在通过 `:src` 使用
+
+```vue
+import homeIcon from '@/assets/images/home/home_icon.png'
+
+<img :src="homeIcon" />
+```
+
+2. 若是文件很多，一个个的引入太麻烦
+
+#### Ⅲ、第二种方式（适用于处理多个链接的资源文件）
+
+> 推荐，这种方式传入的变量可以动态传入文件路径！！
+
+1. 工具文件目录： `src/utils/resourceReader.js`
+
+```js
+/**
+ * 获取图片资源
+ * @param path 图片路径
+ * @returns {string} 图片资源路径
+ */
+export const readImage = (path) => {
+    /**
+     * new URL() 方法用于创建一个新的 URL 对象，该对象表示指定的绝对或相对 URL
+     * import.meta.url 属性返回当前模块的绝对 URL，模块是指当前文件
+     * href 属性返回完整的 URL，包括主机名、端口号、路径等
+     * 通过 new URL() 方法将图片路径转换为绝对路径，然后返回
+     */
+    return new URL(`../assets/images/${path}`, import.meta.url).href;
+};
+```
+
+2. 使用方式：
+
+```vue
+<template>
+    <!-- 使用返回的图片资源路径，显示图片 -->
+    <img :src="imgPath" alt="">
+</template>
+
+<script setup>
+    /**
+     * 此处代码块用于获取由路由传递的导航标签数据，展示主页导航卡片
+     * 引入资源读取工具
+     */
+    import { readImage } from '@/utils/resourceReader.js';
+    // 图片文件的路径
+    const path = "home/月球.svg"
+    // 调用方法，返回图片资源路径
+    const imgPath = readImage(path);
+</script>
+```
+
+### ⑤、
+
+### ⑥、
 
 ## 10、
 
