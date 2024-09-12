@@ -13899,7 +13899,7 @@ genymotion:/sdcard/Download #
 1. 进入手机的开发者选项，勾选：USB 调试
 2. 勾选：“仅充电”模式下允许 ADB 调试
 
-![|261](attachments/Pasted%20image%2020240903083653.png)
+![|261](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020240903083653.png)
 
 3. 连接电脑，手机弹窗选择：传输文件
 4. 使用 ADB 连接输入命令：
