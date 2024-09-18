@@ -4,23 +4,23 @@
 
 ### 1、javaScript 编程语言
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-364--V9JYFnZ0WfDq_A.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-364--V9JYFnZ0WfDq_A.png)
 
 ### 2、发展历史及学习概要 
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-816--Wr5TU3zOg21eLQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-816--Wr5TU3zOg21eLQ.png)
 
 ### 3、ECMAScript 与 JavaScript
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-957--OLK9zpr-8cTXpA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-957--OLK9zpr-8cTXpA.png)
 
 ### 4、JavaScript 和 HTML、CSS
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-967--5ksPUV7xxRUy9w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-967--5ksPUV7xxRUy9w.png)
 
 ### 5、JS 学习概括
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-977--7vJM90leGExPhA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-17-977--7vJM90leGExPhA.png)
 
 ## 二、JavaScript 入门
 
@@ -64,9 +64,9 @@ alert(789);
 
 #### ①、什么是变量
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-012--QBuOTH6Q3wLgEA.png) 
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-012--QBuOTH6Q3wLgEA.png) 
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-024--N47yt38w8azucg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-024--N47yt38w8azucg.png)
 
 #### ②、变量命名规则
 
@@ -109,7 +109,7 @@ var str2 = "\"月海\"";
 
 #### ④、转义字符
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-166--HFWA2fiex9KP5g.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-166--HFWA2fiex9KP5g.png)
 
 ### 2、其他数据类型
 
@@ -144,22 +144,22 @@ console.log(typeof i);
 
 - 这样打印时就会显示变量的数据类型
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-316--SJQdvVrbVSWVfw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-316--SJQdvVrbVSWVfw.png)
 
 #### ②、在谷歌浏览器中快速查看数据类型
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-441--vZG1dTQ23OIEwg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-441--vZG1dTQ23OIEwg.png)
 
 ```javascript
 /* 控制台打印数据类型 */
 console.log("月海",22,null,undefined,true)
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-654--BDf8hibAGzPdhA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-654--BDf8hibAGzPdhA.png)
 
 ### 4、注释
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-730--mj6AYDlWNeaxMg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-730--mj6AYDlWNeaxMg.png)
 
 ### 5、其他类型转为字符串
 
@@ -172,7 +172,7 @@ var s = i.toString();
 console.log(typeof s);
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-849--oqHhWK-xSsv73w.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-849--oqHhWK-xSsv73w.png)
 
 #### ②、String()
 
@@ -182,7 +182,7 @@ var i = 5;
 console.log(typeof String(i));
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-854--fjrjvZScyF5sgQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-854--fjrjvZScyF5sgQ.png)
 
 #### ③、字符串拼接
 
@@ -193,7 +193,7 @@ var str = i + "";
 console.log(typeof str);
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-881--sJws5p1OzRioaw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-881--sJws5p1OzRioaw.png)
 
 ### 6、数值类型转换
 
@@ -210,15 +210,15 @@ var undef = Number(undefined);
 console.log(str1,str2,str3,bool,nu,undef);
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-888--kazYx65_FZdtQA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-888--kazYx65_FZdtQA.png)
 
 #### ②、parseInt()
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-980--HBMGwKONW1RcAA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-18-980--HBMGwKONW1RcAA.png)
 
 #### ③、parseFloat()
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-099--4uMM1SGuEJTzUw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-099--4uMM1SGuEJTzUw.png)
 
 ### 7、布尔类型转换
 
@@ -247,14 +247,14 @@ console.log(i,j);
 console.log(k,l);
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-354--a2liDWQQky_mug.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-354--a2liDWQQky_mug.png)
 
 ## 四、操作符
 
 1. 表达式：值和操作符，运算会有一个结果
 2. 同时，表达式中的每个数值及部分表达式，又称为：
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-423--0mJrg0eruVULXA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-423--0mJrg0eruVULXA.png)
 
 ### 1、算数操作符
 
@@ -358,7 +358,7 @@ console.log(a == b);
 
 ### 6、运算符的优先级
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-507--1OOHMP1in24kzg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-507--1OOHMP1in24kzg.png)
 
 ## 五、流程控制
 
@@ -548,9 +548,9 @@ var myCars=["Saab","Volvo","BMW"];
 
 #### ③、多维数组
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-612--RnwYF4b8IAw4WA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-612--RnwYF4b8IAw4WA.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-763--RF3yVwnm7uwdkw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-763--RF3yVwnm7uwdkw.png)
 
 ### 2、获取数组元素
 
@@ -576,7 +576,7 @@ console.log(length);
     console.log(myCars[1]);
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-879--7oe2a8duz5XaAw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-19-879--7oe2a8duz5XaAw.png)
 
 ### 3、遍历数组元素
 
@@ -877,7 +877,7 @@ function f1(a,b){
 var sum = f1(1,2)
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-055--yR8gbndFVc7vmQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-055--yR8gbndFVc7vmQ.png)
 
 ## 八、作用域与 JS 代码的运行
 
@@ -888,7 +888,7 @@ var sum = f1(1,2)
 
 ### 1、全局变量和局部变量
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-153--kkzplb4jQF9qiQ.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-153--kkzplb4jQF9qiQ.png)
 
 ### 2、变量提升及代码执行阶段
 
@@ -922,9 +922,9 @@ console.log(a);
 
 ### 3、作用域链
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-279--YFlO048C96qA2Q.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-279--YFlO048C96qA2Q.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-437--zxQMgh8EVEpDMw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-437--zxQMgh8EVEpDMw.png)
 
 ## 九、对象（Object）
 
@@ -932,14 +932,14 @@ console.log(a);
 
 - 万物皆对象
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-522--4F_t6rrVCA-9ow.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-522--4F_t6rrVCA-9ow.png)
 
 ### 2、JavaScript 中的对象
 
 - **事务的特性在对象中用属性来表示**
 - **事务的行为在对象中用方法来表示**
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-678--ku4xuptHpOZXxg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-678--ku4xuptHpOZXxg.png)
 
 ### 3、对象的声明
 
@@ -1063,7 +1063,7 @@ for...in：for...in 不仅可以遍历对象，还可以遍历数组
     }
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-811--TIrdxWgZhNQWNA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-811--TIrdxWgZhNQWNA.png)
 
 #### ②、对象的删除
 
@@ -1093,7 +1093,7 @@ for...in：for...in 不仅可以遍历对象，还可以遍历数组
     console.log(obj);
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-900--5MZmRJpRB0QVgg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-20-900--5MZmRJpRB0QVgg.png)
 
 ### 7、包装对象
 
@@ -1584,7 +1584,7 @@ JavaScript 全局属性和方法可用于创建Javascript对象
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-21-012--U4w_R1pyVS4gaw.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-21-012--U4w_R1pyVS4gaw.png)
 
 ## 2、过滤方法 `filter`
 
@@ -1806,9 +1806,9 @@ JavaScript 全局属性和方法可用于创建Javascript对象
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-21-108--12HYOyxCAzUMqg.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-21-108--12HYOyxCAzUMqg.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-21-121--fieBYVJNgI-QFA.png)
+![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-21-121--fieBYVJNgI-QFA.png)
 
 
 

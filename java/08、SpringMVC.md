@@ -39,13 +39,13 @@
 
 1. 创建maven工程
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F01、创建maven工程.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F01、创建maven工程.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、创建maven工程2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、创建maven工程2.png)
 
 2. 添加 web 模块
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、添加web模块.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、添加web模块.png)
 
 3. 打包方式：war
 
@@ -102,7 +102,7 @@
 
 - 注：由于 Maven 的传递性，我们不必将所有需要的包全部配置依赖，而是配置最顶端的依赖，其他靠传递性导入。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、添加依赖.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、添加依赖.png)
 
 ## 3、配置web.xml
 
@@ -177,7 +177,7 @@
 
 3. 创建 sprngmvc 配置文件
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F05、创建springmvc配置文件.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F05、创建springmvc配置文件.png)
 
 4. 注：< url-pattern >标签中使用/和/*的区别：
 
@@ -267,7 +267,7 @@
 
 - 当前项目结构
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F06、项目结构.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F06、项目结构.png)
 
 1. 实现对首页的访问
 
@@ -967,7 +967,7 @@ public class TestController {
 
 - 解决获取请求参数的乱码问题，可以使用SpringMVC提供的编码过滤器CharacterEncodingFilter，但是必须在web.xml中进行注册
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、解决get获取请求参数的乱码问题.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、解决get获取请求参数的乱码问题.png)
 
 ```xml
     <!--配置springMVC的编码过滤器-->
@@ -1181,7 +1181,7 @@ public class TestController {
 
 - ModelMap的接口与实现类
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、ModelMap的接口与实现类.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、ModelMap的接口与实现类.png)
 
 ## 7、向session域共享数据
 
@@ -1303,7 +1303,7 @@ success.html<br/>
 </html>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、ThymeleafView.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、ThymeleafView.png)
 
 
 ## 2、转发视图
@@ -1338,7 +1338,7 @@ success.html<br/>
     <a th:href="@{/testForward}">测试转发视图Forward</a>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、转发视图.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、转发视图.png)
 
 ## 3、重定向视图
 
@@ -1373,7 +1373,7 @@ success.html<br/>
     <a th:href="@{/testRedirect}">测试重定向视图testRedirect</a>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、重定向视图.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、重定向视图.png)
 
 ## 4、视图控制器view-controller
 
@@ -1668,7 +1668,7 @@ success.html<br/>
 
 3. 配置 web 模块
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、配置web模块.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、配置web模块.png)
 
 4. 配置 web.xml 文件
 
@@ -2010,7 +2010,7 @@ success.html<br/>
 
 1. 引入的 vue.js 的位置
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、引入的vue.js的位置.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、引入的vue.js的位置.png)
 
 2. 在 springMVC 配置文件中开放对静态资源的访问
 
@@ -2438,7 +2438,7 @@ success.html<br/>
 
 1. 导入 vue.js 与 axios.js 文件
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、导入vue.js与axios.js文件.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、导入vue.js与axios.js文件.png)
 
 2. HttpController 控制器中的方法
 
@@ -2511,7 +2511,7 @@ success.html<br/>
 
 5. 输出结果
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F15、测试通过@ResponseBody处理ajax请求.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F15、测试通过@ResponseBody处理ajax请求.png)
 
 
 ## 6、@RestController注解（常用）
@@ -2608,7 +2608,7 @@ success.html<br/>
 
 5. 输出结果
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F16、下载.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F16、下载.png)
 
 
 ## 2、文件上传
@@ -2863,7 +2863,7 @@ success.html<br/>
 
 6. 结果
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F17、错误结果.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F17、错误结果.png)
 
 
 ## 2、基于注解的异常处理
@@ -3138,7 +3138,7 @@ success.html<br/>
 
 - DispatcherServlet 本质上是一个 Servlet，所以天然的遵循 Servlet 的生命周期。所以宏观上是 Servlet 生命周期来进行调度。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F18、DispatcherServlet（前端控制器）初始化过程.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F18、DispatcherServlet（前端控制器）初始化过程.png)
 
 1. 初始化 WebApplicationContext，所在类：org.springframework.web.servlet.FrameworkServlet
 
@@ -3537,15 +3537,15 @@ success.html<br/>
 
 1. 如果没配置，则控制台报映射查找不到，客户端展示404错误
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F19、控制台报映射查找不到，客户端展示404错误.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F19、控制台报映射查找不到，客户端展示404错误.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F20、控制台报映射查找不到，客户端展示404错误2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F20、控制台报映射查找不到，客户端展示404错误2.png)
 
 2.  如果有配置，则访问目标资源（一般为静态资源，如：JS,CSS,HTML），找不到客户端也会展示404错误
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F21、访问目标资源，找不到客户端也会展示404错误.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F21、访问目标资源，找不到客户端也会展示404错误.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F22、访问目标资源，找不到客户端也会展示404错误2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F22、访问目标资源，找不到客户端也会展示404错误2.png)
 
 ### (2)、存在则执行下面的流程
 

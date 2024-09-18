@@ -4,7 +4,7 @@
 
 ### (1)、Spring 的能力
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F01、Spring的能力.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F01、Spring的能力.png)
 
 ### (2)、Spring 的生态
 - https://spring.io/projects/spring-boot
@@ -22,7 +22,7 @@
 
 1. 响应式编程
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、响应式编程.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、响应式编程.png)
 
 2. 内部源码设计
 - 基于Java8的一些新特性，如：接口默认实现。重新设计源码架构。
@@ -91,18 +91,18 @@
 - ......
 2. 上云的解决
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、上云的解决.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、上云的解决.png)
 
 ## 4、如何学习 SpringBoot
 
 - 官网文档架构，2020-02-09当前最新怎顶板为 2.6.3
 - https://docs.spring.io/spring-boot/docs/current/reference/html/
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、官网文档架构.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、官网文档架构.png)
 
 - 查看版本新特性：https://github.com/spring-projects/spring-boot/wiki#release-notes
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F05、查看版本新特性.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F05、查看版本新特性.png)
 
 # 二、SpringBoot2 入门
 
@@ -148,9 +148,9 @@
 
 1. 创建 maven 工程，父项目
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F06、创建maven工程.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F06、创建maven工程.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、创建maven工程2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、创建maven工程2.png)
 
 - 在 pom.xml 文件中引入 spring-boot 的父项目
 
@@ -181,7 +181,7 @@
 
 2. 创建新模块，项目结构：
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、创建新模块.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、创建新模块.png)
 
 3. 引入依赖
 
@@ -255,7 +255,7 @@
 6. 测试：直接运行main方法
 7. 访问请求地址：http://localhost:8080/hello
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、访问请求地址.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、访问请求地址.png)
 
 8. 简化配置，官方配置文件说明文档地址：https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties
 
@@ -280,23 +280,23 @@
 
     1. 把项目打成 jar 包
 
-    ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、把项目打成jar包.png)
+    ![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、把项目打成jar包.png)
 
     3. 执行完成 jar 包会生成在项目根目录下的 target 目录中
 
-    ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、执行完成jar包会生成在项目根目录下的target目录中.png)
+    ![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、执行完成jar包会生成在项目根目录下的target目录中.png)
 
     4. 直接在目录地址前输入cmd进入命令行
 
-    ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、直接在目录地址前输入cmd进入命令行.png)
+    ![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、直接在目录地址前输入cmd进入命令行.png)
 
     5. 进入命令行之后，输入命令：java -jar 01_SpringBoot_HelloWorld-1.0-SNAPSHOT.jar，即可启动服务
     
-    ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、输入命令.png)
+    ![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、输入命令.png)
     
     6. 注意点：在属性中取消掉 cmd 的快速编辑模式
 
-    ![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、取消掉cmd的快速编辑模式.png)
+    ![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、取消掉cmd的快速编辑模式.png)
 
 # 三、了解自动配置原理
 
@@ -597,7 +597,7 @@
 
 - 条件装配：满足 @Conditional 指定的条件，则进行组件注入
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F15、条件装配.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F15、条件装配.png)
 
 1. 配置类 MyConfig
 
@@ -906,7 +906,7 @@
 
 4. 访问页面
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F16、配置绑定.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F16、配置绑定.png)
 
 
 #### ③、@EnableConfigurationProperties + @ConfigurationProperties
@@ -977,7 +977,7 @@
 
 4. 访问页面
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F17、配置绑定2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F17、配置绑定2.png)
 
 
 ## 3、自动配置原理入门
@@ -1038,7 +1038,7 @@
 
 2. idea 中搜索安装 lombok 插件
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F18、idea中搜索安装lombok插件.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F18、idea中搜索安装lombok插件.png)
 
 3. lombok 在实体类中的使用
 
@@ -1110,15 +1110,15 @@
 
 #### ①、使用 Spring Initailizr 创建项目
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F19、SpringInitailizr.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F19、SpringInitailizr.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F20、SpringInitailizr2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F20、SpringInitailizr2.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F21、SpringInitailizr3.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F21、SpringInitailizr3.png)
 
 #### ②、自动创建的项目结构
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F22、自动创建的项目结构.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F22、自动创建的项目结构.png)
 
 #### ③、自动依赖引入
 
@@ -1373,7 +1373,7 @@
 
 5. 访问页面
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F23、访问页面.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F23、访问页面.png)
 
 
 ## 2、配置提示
@@ -1418,7 +1418,7 @@
 
 3. 配置文件中测试
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F24、配置提示.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F24、配置提示.png)
 
 # 五、Web开发
 
@@ -1466,7 +1466,7 @@
 
 - 使用 Spring Initailizr 创建项目
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F25、配置web项目.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F25、配置web项目.png)
 
 #### ①、静态资源访问
 
@@ -1522,7 +1522,7 @@
 5. 访问地址：http://localhost:8080/webjars/jquery/3.5.1/jquery.js ，后面地址要按照依赖里面的包路径
 6. webjar 引入 jquery 后的目录结构
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F26、webjar引入jquery后的目录结构.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F26、webjar引入jquery后的目录结构.png)
 
 #### ②、欢迎页支持
 
@@ -1571,7 +1571,7 @@
 
 - 效果
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F27、自定义Favicon结果.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F27、自定义Favicon结果.png)
 
 #### ④、静态资源配置原理
 
@@ -2076,7 +2076,7 @@
 
 #### ⑥、属性优先级
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F28、属性优先级.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F28、属性优先级.png)
 
 ### (3)、thymeleaf使用
 
@@ -2172,15 +2172,15 @@
 
 - 引入 Starter：thymeleaf、web-starter、devtools、lombok
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F29、项目创建.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F29、项目创建.png)
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F30、项目创建2.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F30、项目创建2.png)
 
 #### ②、静态资源处理
 
 - 自动配置好，我们只需要把所有静态资源放到 static 文件夹下
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F31、放入静态资源.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F31、放入静态资源.png)
 
 #### ③、路径构建
 
@@ -2469,13 +2469,13 @@
 6. **前面的步骤有任何异常都会直接倒序触发** afterCompletion
 7. 页面成功渲染完成以后，也会倒序触发 afterCompletion
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F32、拦截器执行顺序.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F32、拦截器执行顺序.png)
 
 ## 7、文件上传
 
 - 文件上传表单
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F33、文件上传表单.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F33、文件上传表单.png)
 
 ### (1)、页面表单
 
@@ -2593,7 +2593,7 @@
 4. 要完全替换默认行为，可以实现 ErrorController 并注册该类型的 Bean 定义，或添加 ErrorAttributes 类型的组件以使用现有机制但替换其内容。
 5. 静态资源目录下的 error 目录下的 4xx，5xx 页面会被自动解析；
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F34、错误页面.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F34、错误页面.png)
 
 ### (2)、定制错误处理逻辑（源码解析）
 
@@ -2696,7 +2696,7 @@
    2. B：/my/1
 2. 如上面两个请求地址，若用户请求为 /my/1 ，则进入 B 请求，若用户请求为 /my/2 ，则进入 A 请求
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F35、Web原生组件注入.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F35、Web原生组件注入.png)
 
 ### (2)、使用 RegistrationBean
 
@@ -2848,7 +2848,7 @@
     </dependency>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F36、导入JDBC场景.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F36、导入JDBC场景.png)
 
 ---
 
@@ -3056,7 +3056,7 @@
 
 - Stat Index
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F37、StatViewServlet.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F37、StatViewServlet.png)
 
 
 #### ③、StatFilter
@@ -3193,7 +3193,7 @@
     </dependency>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F38、引入MtBatis场景.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F38、引入MtBatis场景.png)
 
 
 ### (1)、配置模式
@@ -3363,7 +3363,7 @@
 
 8. 访问请求
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F39、访问请求.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F39、访问请求.png)
 
 ---
 - 在配置类上注解 @MapperScan("com.yuehai.sql.mapper")，括号内为 mapper 接口文件夹，其他的接口就可以不用标注 @Mapper 注解
@@ -3437,7 +3437,7 @@ public class MyDataSourceConfig {
     </dependency>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F41、Redis自动配置.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F41、Redis自动配置.png)
 
 ---
 
@@ -3509,7 +3509,7 @@ public class MyDataSourceConfig {
 5. <font color="blue">JUnit Jupiter</font>: JUnit Jupiter 提供了 JUnit5 的新的编程模型，是 JUnit5 新特性的核心。内部 包含了一个测试引擎，用于在 Junit Platform 上运行。
 6. <font color="orange">JUnit Vintage</font>: 由于 JUint 已经发展多年，为了照顾老的项目，JUnit Vintage 提供了兼容 JUnit4.x、Junit3.x 的测试引擎。
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F40、JUnit5组成.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F40、JUnit5组成.png)
 
 - JUnit 5 的依赖
 
@@ -3622,7 +3622,7 @@ public class MyDataSourceConfig {
     }
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F42、@DisplayName.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F42、@DisplayName.png)
 
 ### (2)、@BeforeEach、@AfterEach、@BeforeAll、@AfterAll
 
@@ -3867,7 +3867,7 @@ public class MyDataSourceConfig {
 
 - 断言失败消息，若前面的断言失败，则后面的代码都不会执行
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F43、断言失败消息.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F43、断言失败消息.png)
 
 ### (2)、数组断言
 
@@ -3909,7 +3909,7 @@ public class MyDataSourceConfig {
     }
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F44、组合断言.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F44、组合断言.png)
 
 ### (4)、异常断言
 
@@ -3980,7 +3980,7 @@ public class MyDataSourceConfig {
 
 - 结果：
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F45、前置条件.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F45、前置条件.png)
 
 ## 5、嵌套测试
 
@@ -4151,7 +4151,7 @@ public class MyDataSourceConfig {
 
 ### (2)、1.x与2.x的不同
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F46、1.x与2.x的不同.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F46、1.x与2.x的不同.png)
 
 ### (3)、如何使用
 
@@ -4381,7 +4381,7 @@ public class MyDataSourceConfig {
 
 1. 创建新项目，选中 web 项目即可
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F47、可视化.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F47、可视化.png)
 
 2. 引入依赖
 
@@ -4450,7 +4450,7 @@ public class MyDataSourceConfig {
 8. 启动监控项目 06_customer-starter
 9. 访问监控项目 06_customer-starter 的地址：http://localhost:8888/
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F48、访问监控项目06_customer-starter.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F48、访问监控项目06_customer-starter.png)
 
 10. 在其中可进行各种详细操作
 
@@ -4482,11 +4482,11 @@ public class MyDataSourceConfig {
 
 1. 创建项目，引入 web 场景
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F49、Profile功能.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F49、Profile功能.png)
 
 2. 项目结构
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F50、项目结构.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F50、项目结构.png)
 
 3. 默认配置文件
 
@@ -4536,7 +4536,7 @@ public class MyDataSourceConfig {
 
 7. 访问结果：
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F51、访问结果.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F51、访问结果.png)
 
 ### (2)、@Profile 条件装配功能
 
@@ -4632,7 +4632,7 @@ public class MyDataSourceConfig {
 
 8. 结果：
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F52、条件装配访问结果.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F52、条件装配访问结果.png)
 
 ### (3)、profile 分组
 
@@ -4696,7 +4696,7 @@ public class MyDataSourceConfig {
 
 - starter-pom 引入 autoconfigurer 包
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F53、starter-pom引入autoconfigurer包.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F53、starter-pom引入autoconfigurer包.png)
 
 - autoconfigure包中配置使用 <font color="red">META-INF/spring.factories</font> 中 EnableAutoConfiguration 的值，使得项目启动加载指定的自动配置类
 - 编写自动配置类 xxxAutoConfiguration -> xxxxProperties
@@ -5153,7 +5153,7 @@ public class ChatWebSocketServer {
 
 7. 连接测试：http://wstool.jackxiang.com/
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020231009151843.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2FPasted%20image%2020231009151843.png)
 
 8. 服务地址：`ws://127.0.0.1:8001/y_chat/1`
 9. 消息内容：

@@ -14,21 +14,21 @@
 
 1. 进入云服务器 ECS 后，点击实例 ID
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093536.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093536.png)
 
 2. 点击实例 ID 后，会进入实例详情，点击重置密码
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093423.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093423.png)
 
 3. 输入想要设置的密码，点击确定
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093648.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093648.png)
 
 ## 2、在云服务器网站中进行防火墙设置
 
 1. 在实例详情中，点击安全组。然后点击管理规则
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093923.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093923.png)
 
 2. 进入后点击手动添加，下方会出现设置
 	1. 授权策略：`允许`
@@ -39,7 +39,7 @@
 	6. 描述：随意
 	7. 操作：上面的都设置好后，点击保存
 
-![|600](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094029.png)
+![|600](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094029.png)
 
 5. 在云服务器网站中进行防火墙设置完成
 
@@ -47,15 +47,15 @@
 
 1. 在概览中点击远程连接
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092751.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092751.png)
 
 2. 在弹出来的窗口中点击通过 Workbench 远程连接
 
-![|675](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092854.png)
+![|675](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092854.png)
 
 3. 可以选择密码认证，然后输入刚才设置的密码；也可以选择进士 SSH 密钥认证；点击确定进行连接
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094251.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094251.png)
 
 3. 连接成功后，执行以下命令开放端口：
 
@@ -162,9 +162,9 @@ yum -y install glibc.i686 libstdc++.i686
 	1. 建议 Windows 下载后上传到 linux，因为 linux 下载太慢了：https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 	2. 愿意等待的话，启动 tModLoader 服务器时会自动下载
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020230517084849.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020230517084849.png)
 
-5. dotnet 6.0.418 压缩包下载：[dotnet-sdk-6.0.418-linux-x64.tar.gz](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fdotnet-sdk-6.0.418-linux-x64.tar.gz)
+5. dotnet 6.0.418 压缩包下载：[dotnet-sdk-6.0.418-linux-x64.tar.gz](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fdotnet-sdk-6.0.418-linux-x64.tar.gz)
 
 # 五、创建用户，下载游戏服务器
 
@@ -200,7 +200,7 @@ wget https://github.com/tModLoader/tModLoader/releases/download/v2023.12.2.5/tMo
 
 6. 也可以本地下载后上传到 linux：
 	1. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
-	2. tModLoaderv2023.12.2.5 版本下载：[tModLoader-v2023.12.2.5.zip](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FtModLoader-v2023.12.2.5.zip)
+	2. tModLoaderv2023.12.2.5 版本下载：[tModLoader-v2023.12.2.5.zip](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FtModLoader-v2023.12.2.5.zip)
 7. 创建与 tModLoader 版本对应的目录，仅是为了方便管理
 
 ```shell

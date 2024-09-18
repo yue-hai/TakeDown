@@ -23,7 +23,7 @@
 
 1. 下载 MySQL 免安装版：https://dev.mysql.com/downloads/mysql/
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101130323.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101130323.png)
 
 2. 将下载的压缩包解压至目录，如：`D:\Java\SQL\MySqlmysql-8.2.0`
 3. 配置初始化文件 `my.ini`：解压后的目录并没有 `my.ini` 文件，需要手动创建
@@ -72,7 +72,7 @@ mysqld --initialize --console
 
 5. 记录下初始化的密码
 
-![|875](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101130921.png)
+![|875](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101130921.png)
 
 6. 安装 mysql 服务：`mysqld --install`
 7. 出现 `Service successfully installed` 代表安装成功了
@@ -92,7 +92,7 @@ net stop mysql
 2. 登陆：`mysql -u root -p 刚才记录的密码`
 3. 出现 `mysql>` 的时候就可以去改密码了
 
-![|683](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101132335.png)
+![|683](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101132335.png)
 
 4. 修改 root 密码：
 
@@ -130,7 +130,7 @@ flush privileges;
 
 5. 此时即可远程连接
 
-![](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101133013.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FSQL%2Fattachments%2FPasted%20image%2020231101133013.png)
 
 ## 2、linux
 

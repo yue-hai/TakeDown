@@ -22,11 +22,11 @@
 1. 打开文档后，点击查找，然后点击特殊格式
 2. 比如：查找一个任意数字和三个段落标记：
 
-![|700](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%2Fattachments%2FPasted%20image%2020240315100518.png)
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%2Fattachments%2FPasted%20image%2020240315100518.png)
 
 3. 符号表示为：`^#^p^p^p`
 
-![|312](https://www.yue-hai.top:10300/file/downloadFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%2Fattachments%2FPasted%20image%2020240315100600.png)
+![|312](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%2Fattachments%2FPasted%20image%2020240315100600.png)
 
 ## 2、
 
