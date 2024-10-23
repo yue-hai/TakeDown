@@ -13963,7 +13963,20 @@ adb disconnect 手机ip:端口号
 
 ![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222103427.png)
 
-### ②、
+### ②、idea 打开安卓 xml 布局文件时会卡死
+
+#### Ⅰ、问题
+
+1. idea 打开安卓 xml 布局文件时会卡死，要很久才能自己回复
+2. 此时 idea 页面冻结，什么也点不了，只能任务管理器关闭进程
+
+#### Ⅱ、解决
+
+1. 点击文件 -> 设置，搜索 Emmet
+2. 取消勾选 `启用 XML/HTML Emmett (E)`
+
+![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020241023085809.png)
+
 
 ### ③、
 
