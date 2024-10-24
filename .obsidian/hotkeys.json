@@ -16,5 +16,43 @@
       ],
       "key": "D"
     }
-  ]
+  ],
+  "app:open-help": [],
+  "gpt3-notes:create-gpt3-note": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "\\"
+    }
+  ],
+  "copilot:generate-glossary-prompt": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "\\"
+    }
+  ],
+  "obsidian-textgenerator-plugin:insert-generated-text-From-template": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "\\"
+    }
+  ],
+  "obsidian-textgenerator-plugin:set-llm": [
+    {
+      "modifiers": [],
+      "key": "F1"
+    }
+  ],
+  "obsidian-textgenerator-plugin:set-model": [
+    {
+      "modifiers": [],
+      "key": "F2"
+    }
+  ],
+  "workspace:edit-file-title": []
 }
