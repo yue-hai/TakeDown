@@ -4565,7 +4565,116 @@ docker@yuehai:~/docker/volumes/openjdk$
 1. 解决方法：`sudo aa-remove-unknown`
 2. 具体可看：[docker - Error response from daemon: cannot stop container - signaling init process caused "permission denied" - Stack Overflow](https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-stop-container-signaling-init-process-cause)
 
-## 2、
+## 2、无法搜索、拉取镜像
+
+### ①、错误
+
+1. 机器就算开了梯子，设置了代理，但是还是无法搜索、拉取镜像
+2. 报错：
+
+```shell
+# 拉取镜像时：
+Unable to find image 'cnk3x/xunlei:latest' locally
+docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers).
+See 'docker run --help'.
+```
+
+```shell
+# 搜索镜像时：
+Error response from daemon: Get "https://index.docker.io/v1/search?q=cnk3x%2Fxunlei&n=25": dial tcp 104.244.43.104:443: i/o timeout
+```
+
+### ②、原因
+
+1. 两种可能：
+2. 配置的国内镜像源的原因
+3. 代理的原因：docker 有自己的代理配置，和机器的代理设置不共享，要需要给 docker 设置单独的代理配置
+
+### ③、解决
+
+#### Ⅰ、国内镜像源的原因
+
+1. 编辑镜像源配置文件：
+
+```shell
+nano /etc/docker/daemon.json
+```
+
+2. 修改为以下配置：
+
+```shell
+ {
+  "registry-mirrors": [
+          "https://ox288s4f.mirror.aliyuncs.com",
+          "https://registry.docker-cn.com",
+          "http://hub-mirror.c.163.com",
+          "https://mirror.ccs.tencentyun.com"
+  ]
+}
+```
+
+3. 重新加载配置文件：
+
+```shell
+sudo systemctl daemon-reload
+```
+
+4. 重启 docker 
+
+```shell
+sudo systemctl restart docker
+```
+
+5. 重试，还不行继续下面的操作
+
+#### Ⅱ、代理的原因
+
+1. 如果服务器是通过代理的方式进行上网，则需要格外的配置 docker 代理，即修改 docker 的配置文件
+2. docker 拉取镜像的时候，不走系统配置的代理环境，所以需要单独配置它的代理文件
+3. 检查docker代理配置的俩个命令：
+
+```shell
+# 查看代理配置
+systemctl show --property=Environment docker
+```
+
+4. 若显示 Environment 为空，则进行配置：
+5. 创建配置文件所在的目录：
+
+```shell
+sudo mkdir -p /etc/systemd/system/docker.service.d
+```
+
+6. 创建或者修改配置文件，修改为下面的内容：
+	1. 因为我里用 clash 开的代理，htpp 是默认的 7890，https 也是 7890
+	2. 如果是使用的其他代理软件、其他端口，请对应修改
+
+```shell
+nano /etc/systemd/system/docker.service.d/http-proxy.conf
+```
+
+```shell
+[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:7890"
+Environment="HTTPS_PROXY=http://127.0.0.1:7890"
+```
+
+7. 重新加载配置文件：
+
+```shell
+sudo systemctl daemon-reload
+```
+
+8. 重启 docker 
+
+```shell
+sudo systemctl restart docker
+```
+
+
+9. 重试
+
+### ④、
 
 ## 3、
 
