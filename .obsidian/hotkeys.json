@@ -34,14 +34,6 @@
       "key": "\\"
     }
   ],
-  "obsidian-textgenerator-plugin:insert-generated-text-From-template": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "\\"
-    }
-  ],
   "obsidian-textgenerator-plugin:set-llm": [
     {
       "modifiers": [],
@@ -54,5 +46,15 @@
       "key": "F2"
     }
   ],
-  "workspace:edit-file-title": []
+  "workspace:edit-file-title": [],
+  "workspace:close": [],
+  "workspace:new-tab": [],
+  "obsidian-textgenerator-plugin:insert-generated-text-From-template": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "\\"
+    }
+  ]
 }
