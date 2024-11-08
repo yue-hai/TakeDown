@@ -187,77 +187,113 @@ docker@VM-8-15-ubuntu:~$
 ## 4、Ubuntu Docker 安装步骤
 
 > Ubuntu Docker 安装：[https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository](https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository)
-
-1. 创建 docker用户：`adduser docker`，回车后数据密码，之后一直回车
-2. 将 docker 用户添加到 sudoers 文件，从而使其具有管理员权限：
-	1. 使用 `sudo` 命令和 vi 或 nano 文本编辑器打开 sudoers 文件。例如使用 nano 打开：`sudo visudo`
-	2. 在文件的最后添加一行，表示 docker 用户可以执行所有的 sudo 命令，而无需输入密码：`docker ALL=(ALL:ALL) NOPASSWD: ALL`
-	3. 按下 `Ctrl + X` 组合键，这将提示是否要保存更改。
-	4. 按下 `Y` 键，表示确认要保存文件。
-	5. 按下 `Enter` 键，确认文件名并退出编辑器
-3. 切换到 docker 用户：`su docker`
-4. 更新软件包索引，并且安装必要的依赖软件：`sudo apt update`
-5. 添加一个新的 HTTPS 软件源：`sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
-6. 使用 curl 导入源仓库的 GPG key：`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-7. 将 Docker APT 软件源添加到系统：`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
-8. 现在，Docker 软件源被启用了，可以安装软件源中任何可用的 Docker 版本
-9. 想要安装 Docker 最新版本，运行下面的命令
-
+  
+1. 添加 Docker 的官方 GPG 密钥：
+ 
 ```shell
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io
+# 更新软件包索引
+sudo apt-get update
+
+# 安装必要的软件包
+sudo apt-get install ca-certificates curl
+# 创建一个名为 /etc/apt/keyrings 的目录，用于存放 Docker 的 GPG 密钥
+sudo install -m 0755 -d /etc/apt/keyrings
+# 使用 curl 从 Docker 官方站点下载 GPG 密钥文件，并将其保存到 /etc/apt/keyrings/docker.asc
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+# 修改 GPG 密钥文件的权限，确保所有用户都可以读取这个文件
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
-10. 想要安装指定版本：
-	1. 首先列出 Docker 软件源中所有可用的版本：`apt list -a docker-ce`
-	2. 可用的 Docker 版本将会在第二列显示，如：`docker-ce/jammy 5:24.0.6-1~ubuntu.22.04~jammy amd64`
-	3. 通过在软件包名后面添加版本 `=<VERSION>` 来安装指定版本：`sudo apt install docker-ce=<VERSION> docker-ce-cli=<VERSION> containerd.io=<VERSION>`
-	4. 如：`sudo apt install docker-ce=5:24.0.6-1~ubuntu.22.04~jammy docker-ce-cli=5:24.0.6-1~ubuntu.22.04~jammy containerd.io=5:24.0.6-1~ubuntu.22.04~jammy`
-11. 一旦安装完成，Docker 服务将会自动启动。可以输入下面的命令，验证它：`sudo systemctl status docker`
-12. 输出将会类似下面这样：
+2. 将 Docker 存储库添加到系统的 APT 源列表中：
 
 ```shell
-docker@yuehai:~$ sudo systemctl status docker
+# 将 Docker 存储库添加到系统的 APT 源列表中
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 再次更新软件包索引
+sudo apt-get update
+```
+
+3. 安装最新版本：
+
+```shell
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+3. 通过运行 hello-world 镜像来验证 Docker Engine 安装是否成功：
+
+```shell
+sudo docker run hello-world
+```
+
+4. 一旦安装完成，Docker 服务将会自动启动。可以输入下面的命令，验证它：
+
+```shell
+sudo systemctl status docker
+```
+
+5. 输出将会类似下面这样：
+
+```shell
+root@yuehai:~# sudo systemctl status docker
 ● docker.service - Docker Application Container Engine
      Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-     Active: active (running) since Wed 2023-11-08 13:12:22 CST; 17min ago
+     Active: active (running) since Thu 2024-11-07 12:59:04 CST; 3min 23s ago
 TriggeredBy: ● docker.socket
        Docs: https://docs.docker.com
-   Main PID: 6183 (dockerd)
-      Tasks: 11
-     Memory: 26.7M
-        CPU: 333ms
+   Main PID: 43894 (dockerd)
+      Tasks: 9
+     Memory: 36.9M
+        CPU: 381ms
      CGroup: /system.slice/docker.service
-             └─6183 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+             └─43894 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-Nov 08 13:12:21 yuehai systemd[1]: Starting Docker Application Container Engine...
-Nov 08 13:12:21 yuehai dockerd[6183]: time="2023-11-08T13:12:21.775394646+08:00" level=info msg>
-Nov 08 13:12:21 yuehai dockerd[6183]: time="2023-11-08T13:12:21.776046773+08:00" level=info msg>
-Nov 08 13:12:21 yuehai dockerd[6183]: time="2023-11-08T13:12:21.951129911+08:00" level=info msg>
-Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.198380951+08:00" level=info msg>
-Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.222961469+08:00" level=info msg>
-Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.223110052+08:00" level=info msg>
-Nov 08 13:12:22 yuehai dockerd[6183]: time="2023-11-08T13:12:22.257473359+08:00" level=info msg>
-Nov 08 13:12:22 yuehai systemd[1]: Started Docker Application Container Engine.
-lines 1-21/21 (END)
-docker@yuehai:~$ 
+Nov 07 12:59:04 yuehai dockerd[43894]: time="2024-11-07T12:59:04.495521002+08:00" level=info msg="Loading conta>
+Nov 07 12:59:04 yuehai dockerd[43894]: time="2024-11-07T12:59:04.516508229+08:00" level=warning msg="WARNING: b>
+Nov 07 12:59:04 yuehai dockerd[43894]: time="2024-11-07T12:59:04.516535567+08:00" level=warning msg="WARNING: b>
+Nov 07 12:59:04 yuehai dockerd[43894]: time="2024-11-07T12:59:04.516557451+08:00" level=info msg="Docker daemon>
+Nov 07 12:59:04 yuehai dockerd[43894]: time="2024-11-07T12:59:04.516676131+08:00" level=info msg="Daemon has co>
+Nov 07 12:59:04 yuehai dockerd[43894]: time="2024-11-07T12:59:04.562565302+08:00" level=info msg="API listen on>
+Nov 07 12:59:04 yuehai systemd[1]: Started Docker Application Container Engine.
+Nov 07 12:59:28 yuehai dockerd[43894]: time="2024-11-07T12:59:28.689764563+08:00" level=warning msg="Error gett>
+Nov 07 12:59:28 yuehai dockerd[43894]: time="2024-11-07T12:59:28.689834866+08:00" level=info msg="Attempting ne>
+Nov 07 12:59:28 yuehai dockerd[43894]: time="2024-11-07T12:59:28.694079980+08:00" level=error msg="Handler for >
+lines 1-22/22 (END)
 ```
 
-13. 当一个新的 Docker 发布时，可以使用标准的 `sudo apt update && sudo apt upgrade` 流程来升级 Docker 软件包
-14. 如果想阻止 Docker 自动更新，锁住它的版本：`sudo apt-mark hold docker-ce`
+6. 当一个新的 Docker 发布时，可以使用标准的 `sudo apt update && sudo apt upgrade` 流程来升级 Docker 软件包
+7. 如果想阻止 Docker 自动更新，锁住它的版本：`sudo apt-mark hold docker-ce`
 
 ## 5、将用户添加到 docker 组
 
-1. 如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：`sudo usermod -aG docker 用户名`
-2. 查看 docker：`docker version`
-3. 启动 docker：`systemctl start docker`
-4. 关闭 docker：`systemctl stop docker`
-5. 测试：`docker run hello-world`
+1. 创建 docker 用户，回车后数据密码，之后一直回车：
+
+```shell
+# 创建 docker 用户
+adduser docker
+
+# 如果提示 docker 组已经存在，使用 --ingroup 参数：创建一个新用户，不自动创建与用户名同名的用户组
+sudo adduser --ingroup docker docker
+```
+
+2. 如果非 root 用户要使用 docker（比如 `docker` 用户），则应考虑使用类似以下方式将用户添加到 docker 组：`sudo usermod -aG docker 用户名`
+
+```shell
+sudo usermod -aG docker docker
+```
+
+3. 查看 docker：`docker version`
+4. 启动 docker：`systemctl start docker`
+5. 关闭 docker：`systemctl stop docker`
+6. 测试：`docker run hello-world`
 
 ![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-756--5mlEv7rc6mEhoA.png)
 
-6. 输出这段提示以后，hello world就会停止运行，容器自动终止
-7. run 干了什么
+7. 输出这段提示以后，hello world就会停止运行，容器自动终止
+8. run 干了什么
 
 ![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-767--5c9JEykQ9y4Dmg.png)
 
@@ -3837,12 +3873,16 @@ portainer/portainer:2.16.2
 ![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117131957.png)
 
 3. 安装：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `-p`：指定端口映射
+	3. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
 
 ```shell
-docker run -d --restart=always \
---name="portainer" \
+docker run -d \
 -p 10000:9000 \
 -v /var/run/docker.sock:/var/run/docker.sock \
+--restart=unless-stopped \
+--name="portainer-ce" \
 6053537/portainer-ce
 ```
 
