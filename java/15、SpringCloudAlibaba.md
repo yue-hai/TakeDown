@@ -6687,7 +6687,6 @@ docker cp code-nacos-1:/home/nacos/logs/ /home/docker/docker/volumes/nacos/nacos
 docker cp code-nacos-1:/home/nacos/data/ /home/docker/docker/volumes/nacos/nacos1/
 ```
 
-
 3. 停止并删除刚才启动的 nacos 容器：
 
 ```shell
