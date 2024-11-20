@@ -260,7 +260,7 @@
 </script>
 ```
 
-![](attachments/017、Dom对象和jQuery对象互转.png)
+![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F017、Dom对象和jQuery对象互转.png)
 
 # <font color="red">五、jQuery 选择器（重点）</font>
 
