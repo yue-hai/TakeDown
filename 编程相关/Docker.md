@@ -4643,7 +4643,7 @@ nano /etc/docker/daemon.json
 2. 修改为以下配置：
 
 ```shell
- {
+{
   "registry-mirrors": [
           "https://ox288s4f.mirror.aliyuncs.com",
           "https://registry.docker-cn.com",
