@@ -13554,7 +13554,19 @@ public final void notifyItemRemoved(int position);
 public final void notifyItemRangeRemoved(int positionStart, int itemCount);
 ```
 
-### ④、
+### ④、Button 按钮
+
+#### Ⅰ、Button 按钮背景
+
+1. 使用 Android Studio 4.1 之后的版本进行开发时，创建的项目默认的主题都是 `Theme.MaterialComponents.DayNight.DarkActionBar`。所有 Button 都是 Material 类型的 Button，默认使用主题色。即 `app/src/main/res/values/themes.xml` 中定义的颜色
+2. 若是想自定义背景，可以使用 `android.widget.Button`
+
+```shell
+<android.widget.Button
+        android:id="@+id/btn_1"
+```
+
+#### Ⅱ、
 
 ### ⑤、
 

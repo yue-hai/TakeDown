@@ -2363,6 +2363,7 @@ docker@VM-8-15-ubuntu:~/docker/MyDockerFile$ vim DockerFile
 docker@VM-8-15-ubuntu:~/docker/MyDockerFile$ 
 
 ```
+
 ```dockerfile
 # 指定当前新镜像是基于 centos 镜像的，指定版本为 7
 FROM centos:7
