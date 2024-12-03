@@ -12253,6 +12253,20 @@ class MyBounceInterpolator: Interpolator {
 
 ![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222091532.png)
 
+### ⑤、figma 导出图片对应的安卓资源文件夹
+
+1. `mipmap-mdpi`：1x 图片
+2. `mipmap-hdpi`：1.5x 图片
+3. `mipmap-xhdpi`：2x 图片
+4. `mipmap-xxhdpi`：3x 图片
+5. `mipmap-xxxhdpi`：4x 图片
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
+
 ## 5、数据
 
 ### ①、使用 `Bundle()` 传递自定义对象
