@@ -270,25 +270,31 @@ GRANT CREATE ON *.* TO 'yan'@'%';
 FLUSH PRIVILEGES;
 ```
 
-5. 删除用户：
+5. 查看是否修改成功：
+
+```shell
+SHOW GRANTS FOR 'yan'@'%';
+```
+
+6. 删除用户：
 
 ```shell
 DROP USER 'yan'@'%';
 ```
 
-6. 使权限更改立即生效：
+7. 使权限更改立即生效：
 
 ```shell
 FLUSH PRIVILEGES;
 ```
 
-7. 查看所有用户及其关联的主机：
+8. 查看所有用户及其关联的主机：
 
 ```shell
 SELECT User, Host FROM mysql.user;
 ```
 
-8. 退出 MySQL：
+9. 退出 MySQL：
 
 ```shell
 exit

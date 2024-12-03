@@ -3868,7 +3868,7 @@ portainer/portainer:2.16.2
 
 ## 3、直接安装 Portainer 汉化版本
 
-1. 简单直接一步到位。使用的是国内热心大佬上传到 Docker Hub 的二次编译汉化版 Portainer，安装好之后直接使用，弊端就是跟不上原版Portainer的更新节奏。虽说如此，它一般和最新版 Portainer 差距不大，所以使用起来几乎没什么差别。
+1. 简单直接一步到位。使用的是国内热心大佬上传到 Docker Hub 的二次编译汉化版 Portainer，安装好之后直接使用，弊端就是跟不上原版 Portainer 的更新节奏。虽说如此，它一般和最新版 Portainer 差距不大，所以使用起来几乎没什么差别。
 2. `6053537/portainer-ce`
 
 ![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117131957.png)
@@ -4209,11 +4209,11 @@ docker@yuehai:~$
 ```shell
 docker run -d \
 -p 10200:3306 \
---privileged=true \
+-e MYSQL_ROOT_PASSWORD=Ccj19960920... \
 -v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
 -v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
 -v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
--e MYSQL_ROOT_PASSWORD=Ccj19960920... \
+--privileged=true \
 --name code-mysql \
 mysql:8.2.0
 ```
@@ -4711,7 +4711,6 @@ sudo systemctl daemon-reload
 ```shell
 sudo systemctl restart docker
 ```
-
 
 9. 重试
 
