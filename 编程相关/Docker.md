@@ -182,7 +182,7 @@ docker@VM-8-15-ubuntu:~$
 
 ![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-690--jq5nZSsGTuTidw.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-703--XL7HGwI9oVMkAw.png)
+![image.png|693](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-703--XL7HGwI9oVMkAw.png)
 
 ## 4、Ubuntu Docker 安装步骤
 
@@ -4201,10 +4201,43 @@ docker@yuehai:~$
 	1. 配置目录：`/home/docker/docker/volumes/mysql/conf/`
 	2. 数据目录：`/home/docker/docker/volumes/mysql/data/`
 	3. 日志目录：`/home/docker/docker/volumes/mysql/log/`
-5. 启动容器时映射容器数据卷：
+5. 在 `/home/docker/docker/volumes/mysql/conf/` 目录下创建配置文件  `my.cnf`，并填入以下配置：
+
+```shell
+cd /home/docker/docker/volumes/mysql/conf/
+
+nano my.cnf
+```
+
+```shell
+[client]
+#设置客户端默认字符集utf8mb4
+default-character-set=utf8mb4
+[mysql]
+#设置服务器默认字符集为utf8mb4
+default-character-set=utf8mb4
+[mysqld]
+#配置服务器的服务号，具备日后需要集群做准备
+server-id = 1
+#开启MySQL数据库的二进制日志，用于记录用户对数据库的操作SQL语句，具备日后需要集群做准备
+log-bin=mysql-bin
+#设置清理超过30天的日志，以免日志堆积造过多成服务器内存爆满。2592000秒等于30天的秒数
+binlog_expire_logs_seconds = 2592000
+#解决MySQL8.0版本GROUP BY问题
+sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+#允许最大的连接数
+max_connections=1000
+# 禁用符号链接以防止各种安全风险
+symbolic-links=0
+# 设置东八区时区
+default-time_zone = '+8:00'
+```
+
+6. 启动容器时映射容器数据卷：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	3. `-e MYSQL_ROOT_PASSWORD=Ccj19960920...`：设置 root 密码
+	2. `-e MYSQL_ROOT_PASSWORD=Ccj19960920...`：设置 root 密码
+	3. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
 
 ```shell
 docker run -d \
@@ -4212,8 +4245,9 @@ docker run -d \
 -e MYSQL_ROOT_PASSWORD=Ccj19960920... \
 -v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
 -v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
--v /home/docker/docker/volumes/mysql/conf:/etc/mysql/conf.d \
+-v /home/docker/docker/volumes/mysql/conf/my.cnf:/etc/mysql/my.cnf \
 --privileged=true \
+--restart=unless-stopped \
 --name code-mysql \
 mysql:8.2.0
 ```
@@ -4236,7 +4270,7 @@ Status: Downloaded newer image for mysql:8.2.0
 docker@yuehai:~$ 
 ```
 
-6. 使用 Navicat 连接
+7. 使用 Navicat 连接
 
 ![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108140616.png)
 
