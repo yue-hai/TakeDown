@@ -1,10 +1,10 @@
 # 一、B/S 软件的结构
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F001、BS软件的结构.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F001、BS软件的结构.png)
 
 # 二、前端的开发流程
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F002、前端的开发流程.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F002、前端的开发流程.png)
 
 # 三、网页的组成部分
 
@@ -21,23 +21,23 @@
 
 1. 创建一个 web 工程（静态的 web 工程）
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F003、创建一个web工程（静态的web工程）.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F003、创建一个web工程（静态的web工程）.png)
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F004、创建一个web工程（静态的web工程）2.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F004、创建一个web工程（静态的web工程）2.png)
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F005、创建一个web工程（静态的web工程）3.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F005、创建一个web工程（静态的web工程）3.png)
 
 2. 在工程下创建 html 页面
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F006、在工程下创建html页面.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F006、在工程下创建html页面.png)
 
 3. 选择浏览器执行页面
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F007、选择浏览器执行页面.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F007、选择浏览器执行页面.png)
 
 4. 第一个 html 示例：
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F008、第一个html示例.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F008、第一个html示例.png)
 
 5. 注：<font color="red">Java 文件是需要先编译，再由 java 虚拟机跑起来。但 HTML 文件它不需要编译，直接由浏览器进行解析执行。</font>
 
@@ -113,7 +113,7 @@ onclick="alert('你好！');"
 <p>月海</p>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F009、HTML标签介绍.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F009、HTML标签介绍.png)
 
 ## 4、标签的语法
 
@@ -203,9 +203,9 @@ onclick="alert('你好！');"
 我是&lt;br&gt;标&nbsp;&nbsp;&nbsp;&nbsp;签<br/>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F010、常用特殊字符表.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F010、常用特殊字符表.png)
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F011、其他特殊字符表.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F011、其他特殊字符表.png)
 
 ## 3、标题标签
 
@@ -348,7 +348,7 @@ onclick="alert('你好！');"
 </table>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F012、表格标签.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F012、表格标签.png)
 
 ## 8、跨行跨列表格
 
@@ -402,7 +402,7 @@ onclick="alert('你好！');"
 </table>
 ```
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F013、跨行跨列表格.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F013、跨行跨列表格.png)
 
 ## 9、了解 iframe 框架标签 (内嵌窗口)
 
@@ -427,7 +427,7 @@ onclick="alert('你好！');"
 
 1. 什么是表单：表单就是 html 页面中，用来收集用户信息的所有元素集合.然后把这些信息发送给服务器
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F014、表单标签.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F014、表单标签.png)
 
 2. 表单的显示：
 
@@ -669,7 +669,7 @@ onclick="alert('你好！');"
 
 ## 2、CSS 语法规则
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F015、CSS语法规则.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7%2Fattachments%2F015、CSS语法规则.png)
 
 1. <font color="red">选择器：</font>浏览器根据“选择器”决定受 CSS 样式影响的 HTML 元素（标签）。
 2. <font color="red">属性 (property) </font>是你要改变的样式名，并且每个属性都有一个值。属性和值被冒号分开，并由花括号包围，这样就组成了一个完整的样式声明（declaration），例如：p {color: blue}

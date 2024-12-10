@@ -1,6 +1,6 @@
 > [B 站尚硅谷 Axios 视频](https://www.bilibili.com/video/BV1wr4y1K7tq/?p=11&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
 > 
-> [尚硅谷_axios从入门到源码分析.pdf](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F尚硅谷_axios从入门到源码分析.pdf)
+> [尚硅谷_axios从入门到源码分析.pdf](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F尚硅谷_axios从入门到源码分析.pdf)
 
 # 一、axios 是什么
 
@@ -38,7 +38,7 @@
 | `axios.all(promises)` | 用于批量执行多个异步请求 |
 | `axios.spread()` | 用来指定接收所有成功数据的回调函数的方法 |
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-24-333--Glh19rd1KkQD4w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-24-333--Glh19rd1KkQD4w.png)
 
 # 四、axios 使用
 
@@ -192,7 +192,7 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-24-779--cTYyktwzJliSug.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-24-779--cTYyktwzJliSug.png)
 
 ## 2、axiosCRUD方法：`get、post、delete、put`
 
@@ -270,11 +270,11 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-24-910--upuOqhQ-dyqdFw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-24-910--upuOqhQ-dyqdFw.png)
 
 ## 3、响应结果介绍
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-024--oz-pKgvU1EhFTg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-024--oz-pKgvU1EhFTg.png)
 
 ## 4、axios 配置对象 `config`
 
@@ -378,7 +378,7 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-237--YG4chGY2yShOqw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-237--YG4chGY2yShOqw.png)
 
 ## 6、axios 创建实例对象发送请求：`axios.create([config])`
 
@@ -429,7 +429,7 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-396--D6MopAtSXL1DFA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-396--D6MopAtSXL1DFA.png)
 
 ## 7、拦截器：`axios.interceptors`
 
@@ -528,7 +528,7 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-527--cS72XtK8mCLGCw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-527--cS72XtK8mCLGCw.png)
 
 ## 8、取消请求：`axios.CancelToken()`
 
@@ -600,9 +600,9 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-649---D7LAAe6z-83lw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-649---D7LAAe6z-83lw.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-771--WYMz_yxVjsonyg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-771--WYMz_yxVjsonyg.png)
 
 ---
 
@@ -677,9 +677,9 @@ public class AxiosController {
 </html>
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-912--cuQ3mZ1qOcc5LQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-25-912--cuQ3mZ1qOcc5LQ.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-26-009--IsNLqt21PgVXmA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FJS%20%E6%A1%86%E6%9E%B6%2Fattachments%2F2023-07-25-12--50-26-009--IsNLqt21PgVXmA.png)
 
 # 五、
 # 六、

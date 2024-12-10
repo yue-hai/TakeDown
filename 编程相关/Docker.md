@@ -1,6 +1,6 @@
 > [https://www.bilibili.com/video/BV1gr4y1U7CY](https://www.bilibili.com/video/BV1gr4y1U7CY)
 > 
-> [Docker2022.docx](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FDocker2022.docx)
+> [Docker2022.docx](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FDocker2022.docx)
 
 # 一、Docker 简介
 
@@ -11,7 +11,7 @@
 3. 答案就是使用容器。Docker之所以发展如此迅速，也是因为它对此给出了一个标准化的解决方案-----系统平滑移植，容器虚拟化技术。
 4. 环境配置相当麻烦，换一台机器，就要重来一次，费力费时。很多人想到，能不能从根本上解决问题，软件可以带环境安装？也就是说，安装的时候，把原始环境一模一样地复制过来。开发人员利用 Docker 可以消除协作编码时“在我的机器上可正常工作”的问题。
 
- ![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-54-941--qYVcwgsYMPP9_Q.png)
+ ![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-54-941--qYVcwgsYMPP9_Q.png)
 
 5. 之前在服务器配置一个应用的运行环境，要安装各种软件，就拿尚硅谷电商项目的环境来说，Java/RabbitMQ/MySQL/JDBC驱动包等。安装和配置这些东西有多麻烦就不说了，它还不能跨平台。假如我们是在 Windows 上安装的这些环境，到了 Linux 又得重新装。况且就算不跨操作系统，换另一台同样操作系统的服务器，要移植应用也是非常麻烦的。
 6. 传统上认为，软件编码开发/测试结束后，所产出的成果即是程序或是能够编译执行的二进制字节码等(java为例)。而为了让这些程序可以顺利执行，开发团队也得准备完整的部署文件，让维运团队得以部署应用程式，开发需要清楚的告诉运维部署团队，用的全部配置文件+所有软件环境。不过，即便如此，仍然常常发生部署失败的状况。Docker的出现使得Docker得以打破过去「程序即应用」的观念。透过镜像(images)将作业系统核心除外，运作应用程式所需要的系统环境，由下而上打包，达到应用程式跨平台间的无缝接轨运作。
@@ -21,7 +21,7 @@
 1. Docker 是基于 Go 语言实现的云开源项目。
 2. Docker 的主要目标是“Build，Ship and Run Any App,Anywhere”，也就是通过对应用组件的封装、分发、部署、运行等生命周期的管理，使用户的APP（可以是一个WEB应用或数据库应用等等）及其运行环境能够做到“一次镜像，处处运行”。
 
- ![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-389--s7CFyZXxaQjCQg.png)
+ ![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-389--s7CFyZXxaQjCQg.png)
 
 3. Linux容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。将应用打成镜像，通过镜像成为运行在Docker容器上面的实例，而 Docker容器在任何操作系统上都是一致的，这就实现了跨平台、跨服务器。只需要一次配置好环境，换到别的机子上就可以一键部署好，大大简化了操作
 4. 解决了运行环境和配置问题的软件容器， 方便做持续集成并有助于整体发布的容器虚拟化技术
@@ -30,9 +30,9 @@
 
 ### ①、容器发展简史
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-411--bsLIxHzb5ApRLQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-411--bsLIxHzb5ApRLQ.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-430--S5PhAew7b5onLQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-430--S5PhAew7b5onLQ.png)
 
 ### ②、传统虚拟机技术
 
@@ -42,9 +42,9 @@
 | Win10 | VMWare | Centos7 | 各种cpu、内存网络额配置+各种软件 | 虚拟机实例 |
 | --- | --- | --- | --- | --- |
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-463--Hsss7NYFVVYV6Q.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-463--Hsss7NYFVVYV6Q.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-479--dZsQIIEg-erEHw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-479--dZsQIIEg-erEHw.png)
 
 - 虚拟机的缺点：
 1. 资源占用多
@@ -58,13 +58,13 @@
 3. Linux 容器是与系统其他部分隔离开的一系列进程，从另一个镜像运行，并由该镜像提供支持进程所需的全部文件。容器提供的镜像包含了应用的所有依赖项，因而在从开发到测试再到生产的整个过程中，它都具有可移植性和一致性。
 4. Linux 容器不是模拟一个完整的操作系统而是对进程进行隔离。有了容器，就可以将软件运行所需的所有资源打包到一个隔离的容器中。容器与虚拟机不同，不需要捆绑一整套操作系统，只需要软件工作所需的库资源和设置。系统因此而变得高效轻量并保证部署在任何环境中的软件都能始终如一地运行。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-497--ClK2kw-a-jp2YQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-497--ClK2kw-a-jp2YQ.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-513--8OqIPPXTIE8Uow.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-513--8OqIPPXTIE8Uow.png)
 
 ### ④、对比
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-524--EPKoEEksVp_Y9A.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-524--EPKoEEksVp_Y9A.png)
 
 - 比较了 Docker 和传统虚拟化方式的不同之处：
 1. 传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；
@@ -86,20 +86,20 @@
    5. 更高效的计算资源利用：Docker是内核级虚拟化，其不像传统的虚拟化技术一样需要额外的Hypervisor支持，所以在一台物理机上可以运行很多个容器实例，可大大提升物理服务器的CPU和内存的利用率。
    6. Docker 应用场景：
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-540--0AhOQVwDqBZeIw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-540--0AhOQVwDqBZeIw.png)
 
 3. 哪些企业在使用
    1. 新浪
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-564--_kZs9aGMRUT9Wg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-564--_kZs9aGMRUT9Wg.png)
 
    2. 美团
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-586--eDNctxftQXFPLA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-586--eDNctxftQXFPLA.png)
 
    3. 蘑菇街
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-629--UWP0Uvw_rLWBcQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-629--UWP0Uvw_rLWBcQ.png)
 
    4. ...
 
@@ -115,7 +115,7 @@
 
 ## 1、前提说明
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-666--70VVdU_QzRKrAQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-666--70VVdU_QzRKrAQ.png)
 
 ### ①、前提条件
 
@@ -142,7 +142,7 @@ docker@VM-8-15-ubuntu:~$
 2. 它也相当于是一个 root 文件系统。比如官方镜像 centos:7 就包含了完整的一套 centos:7 最小系统的 root 文件系统。
 3. 相当于容器的“源代码”，docker 镜像文件类似于 Java 的类模板，而 docker 容器实例类似于 java 中 new 出来的实例对象。
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-679--HGw7pQCFgfnoJg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-679--HGw7pQCFgfnoJg.png)
 
 ### ②、容器(container)
 
@@ -180,9 +180,9 @@ docker@VM-8-15-ubuntu:~$
 
 - Docker 是一个 C/S 模式的架构，后端是一个松耦合架构，众多模块各司其职
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-690--jq5nZSsGTuTidw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-690--jq5nZSsGTuTidw.png)
 
-![image.png|693](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-703--XL7HGwI9oVMkAw.png)
+![image.png|693](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-703--XL7HGwI9oVMkAw.png)
 
 ## 4、Ubuntu Docker 安装步骤
 
@@ -290,21 +290,21 @@ sudo usermod -aG docker docker
 5. 关闭 docker：`systemctl stop docker`
 6. 测试：`docker run hello-world`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-756--5mlEv7rc6mEhoA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-756--5mlEv7rc6mEhoA.png)
 
 7. 输出这段提示以后，hello world就会停止运行，容器自动终止
 8. run 干了什么
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-767--5c9JEykQ9y4Dmg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-767--5c9JEykQ9y4Dmg.png)
 
 ## 6、阿里云镜像加速
 
 - 需注册账号
 - [https://cr.console.aliyun.com/](https://cr.console.aliyun.com/)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-780--37QMi-ZlHNr9MA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-780--37QMi-ZlHNr9MA.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-798--xzE-ij_j-Me2sA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-798--xzE-ij_j-Me2sA.png)
 
 ```shell
 sudo mkdir -p /etc/docker
@@ -323,9 +323,9 @@ sudo systemctl restart docker
 1. docker 有着比虚拟机更少的抽象层：由于 docker 不需要 Hypervisor(虚拟机) 实现硬件资源虚拟化，运行在 docker 容器上的程序直接使用的都是实际物理机的硬件资源。因此在CPU、内存利用率上 docker 将会在效率上有明显优势。
 2. docker 利用的是宿主机的内核，而不需要加载操作系统 OS 内核：当新建一个容器时，docker 不需要和虚拟机一样重新加载一个操作系统内核。进而避免引寻、加载操作系统内核返回等比较费时费资源的过程，当新建一个虚拟机时，虚拟机软件需要加载 OS，返回新建过程是分钟级别的。而 docker 由于直接利用宿主机的操作系统,则省略了返回过程，因此新建一个 docker 容器只需要几秒钟
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-810--WNpRlVNfCGLZ6w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-810--WNpRlVNfCGLZ6w.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-835--yh1rhpFp5_8qpw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-835--yh1rhpFp5_8qpw.png)
 
 # 三、Docker 常用命令
 
@@ -341,13 +341,13 @@ sudo systemctl restart docker
 8. 登录：`docker login -u 用户名 -p 密码`
 9. 退出登录：`docker logout`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-858--ma7h6aaKYv2BKQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-858--ma7h6aaKYv2BKQ.png)
 
 ## 2、镜像命令
 
 ### ①、`docker images [参数]` 列出本地主机上的镜像
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-867--R_t0L0LkyJnSjw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-867--R_t0L0LkyJnSjw.png)
 
 - 各个选项说明：
   
@@ -365,7 +365,7 @@ sudo systemctl restart docker
 
 ### ②、`docker search [参数] 镜像名/ID` 搜索镜像
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-912--7m6f0y1Br0n4HA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-912--7m6f0y1Br0n4HA.png)
 
 - 各个选项说明：
   
@@ -454,21 +454,21 @@ docker@VM-8-15-ubuntu:~$
 2. 删除多个：`docker rmi -f 镜像名1:TAG 镜像名2:TAG`
 3. 删除全部：`docker rmi -f $(docker images -qa)`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-922--66ubiBCmUmGB9Q.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-922--66ubiBCmUmGB9Q.png)
 
 - 参数说明：`-f`：强制删除；若镜像已被使用则不可以被删除，使用此参数可以强制删除
 
 ### ⑤、`docker system df`  查看镜像/容器/数据卷所占的空间
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-930--BK1ZufKAf6AZGw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-930--BK1ZufKAf6AZGw.png)
 
 ## 3、容器命令
 
 - 有镜像才能创建容器， 这是根本前提(下载一个 CentOS 或者 ubuntu 镜像演示)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-935--kaS2B-Jndd3jdA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-935--kaS2B-Jndd3jdA.png)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-944--Ne9wsP8sB48giw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-944--Ne9wsP8sB48giw.png)
 
 ### ①、新建并启动容器 `docker run [参数] 镜像名` 
 
@@ -501,7 +501,7 @@ docker@VM-8-15-ubuntu:~$
 
 ### ③、列出当前所有正在运行的容器 `docker ps [参数]` 
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-957--b3atknSGYJq_Pw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-957--b3atknSGYJq_Pw.png)
 
 - 参数 OPTIONS 说明：
 
@@ -533,11 +533,11 @@ docker@VM-8-15-ubuntu:~$
 
 ### ⑦、查看容器日志 `docker logs 容器ID`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-964--O1fWiVcKyCkJRg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-964--O1fWiVcKyCkJRg.png)
 
 ### ⑧、查看容器内运行的进程 `docker top 容器ID`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-975--tdPfDXkhj8Suew.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-975--tdPfDXkhj8Suew.png)
 
 ### ⑨、查看容器内部细节 `docker inspect 容器ID`
 
@@ -921,7 +921,7 @@ docker@VM-8-15-ubuntu:~$
 
 ### ⑬、小总结
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-982--9IbQ4ZXbp3OB_w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-55-982--9IbQ4ZXbp3OB_w.png)
 
 - 常用命令
 
@@ -978,7 +978,7 @@ docker@VM-8-15-ubuntu:~$
 
 以我们的 pull 为例，在下载的过程中我们可以看到 docker 的镜像好像是在一层一层的在下载
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-004--2m2JEsa2lLFp3A.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-004--2m2JEsa2lLFp3A.png)
 
 ### ③、UnionFS（联合文件系统）
 
@@ -986,7 +986,7 @@ docker@VM-8-15-ubuntu:~$
 2. Union 文件系统是 Docker 镜像的基础。镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的应用镜像。
 3. 特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-011--FgUS5EIx7Aioug.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-011--FgUS5EIx7Aioug.png)
 
 ### ④、Docker镜像加载原理
 
@@ -994,7 +994,7 @@ docker@VM-8-15-ubuntu:~$
 2. bootfs(boot file system)主要包含 bootloader（根加载） 和 kernel（linux 内核）；bootloader 主要是引导加载 kernel，Linux 刚启动时会加载 bootfs 文件系统，在 Docker 镜像的最底层是引导文件系统 bootfs。这一层与我们典型的 Linux/Unix 系统是一样的，包含 boot 加载器和内核。当 boot 加载完成之后整个内核就都在内存中了，此时内存的使用权已由 bootfs 转交给内核，此时系统也会卸载 bootfs。
 3. rootfs (root file system) ，在 bootfs 之上。包含的就是典型 Linux 系统中的 /dev、/proc、/bin、/etc 等标准目录和文件。rootfs 就是各种不同的操作系统发行版，比如Ubuntu，Centos 等等
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-082--76qtjyOu24q9Lw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-082--76qtjyOu24q9Lw.png)
 
 4. 平时我们安装进虚拟机的 CentOS 都是好几个G，为什么 docker 这里才 200M：对于一个精简的 OS，rootfs 可以很小，只需要包括最基本的命令、工具和程序库就可以了，因为底层直接用 Host 的 kernel，自己只需要提供 rootfs 就行了。由此可见对于不同的 linux 发行版，bootfs 基本是一致的，rootfs 会有差别，因此不同的发行版可以公用 bootfs
 
@@ -1009,7 +1009,7 @@ docker@VM-8-15-ubuntu:~$
 2. 当容器启动时，一个新的可写层被加载到镜像的顶部。 这一层通常被称作“容器层”，“容器层”之下的都叫“镜像层”
 3. 所有对容器的改动，无论添加、删除、还是修改文件都只会发生在容器层中。只有容器层是可写的，容器层下面的所有镜像层都是只读的
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-125--zYkro27taBBn4g.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-125--zYkro27taBBn4g.png)
 
 ## 2、制作镜像 `docker commit -m="提交的描述信息" -a="作者" 容器ID 要创建的目标镜像名:[版本号]`
 
@@ -1204,32 +1204,32 @@ docker@VM-8-15-ubuntu:~$
 1. Docker 中的镜像分层，支持通过扩展现有镜像，创建新的镜像。类似 Java 继承于一个 Base 基础类，自己再按需扩展。
 2. 新镜像是从 base 镜像一层一层叠加生成的。每安装一个软件，就在现有镜像的基础上增加一层
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-188--m1hLGV6eyDeNJA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-188--m1hLGV6eyDeNJA.png)
 
 ## 4、本地镜像发布到阿里云
 > [https://cr.console.aliyun.com/cn-hangzhou/instances](https://cr.console.aliyun.com/cn-hangzhou/instances)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-208--svG0bCBl3ry9xg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-208--svG0bCBl3ry9xg.png)
 
 1. 阿里云开发者平台；控制台 -> 菜单 -> 容器镜像服务
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-224--antudd3qvXoPPg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-224--antudd3qvXoPPg.png)
 
 2. 点击进入个人实例
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-243--jeNGKTTGAsDCVA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-243--jeNGKTTGAsDCVA.png)
 
 3. 仓库管理 -> 镜像仓库 -> 创建镜像仓库
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-253--zbVaC_XineQ6mg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-253--zbVaC_XineQ6mg.png)
 
 4. 选择本地仓库
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-266--SCbveU35apn8Gw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-266--SCbveU35apn8Gw.png)
 
 5. 操作指南
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-271--n80xym8chHMcKQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-271--n80xym8chHMcKQ.png)
 
 6. 登录阿里云镜像仓库 `$ docker login --username=烟花烬头丶丶 registry.cn-hangzhou.aliyuncs.com`
 
@@ -1278,7 +1278,7 @@ docker@VM-8-15-ubuntu:~$
 
 9. 发布完成
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-284--CubX2a6bBsO6Hg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-284--CubX2a6bBsO6Hg.png)
 
 10. 从阿里云拉取镜像：`$ docker pull registry.cn-hangzhou.aliyuncs.com/yue-hai/yuehai:[镜像版本号]`
 
@@ -1620,7 +1620,7 @@ docker@VM-8-15-ubuntu:~$
 5. 在宿主机目录内创建文件，容器内也会同步变化（映射）；容器停止，在宿主机目录中修改，容器重启后也会同步修改（映射）
 6. 查看数据卷是否挂载成功：`docker inspect 容器ID`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-292--1He0ENToLwI28Q.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-292--1He0ENToLwI28Q.png)
 
 ```shell
 docker@VM-8-15-ubuntu:~$ docker ps
@@ -1881,7 +1881,7 @@ docker@VM-8-15-ubuntu:~$
 
 3. 查看数据卷是否挂载成功：`docker inspect 容器ID`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-297--C6wcjhokFrCZ0g.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-297--C6wcjhokFrCZ0g.png)
 
 ```shell
 docker@VM-8-15-ubuntu:~$ docker ps
@@ -2091,7 +2091,7 @@ docker@VM-8-15-ubuntu:~$
 
 ## 1、DockerFile 是什么
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-379--3K3iuQdzSIK6CA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-379--3K3iuQdzSIK6CA.png)
 
 1. 官网：[https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
 2. 简介：Dockerfile 是用来构建 Docker 镜像的文本文件，是由一条条构建镜像所需的指令和参数构成的脚本
@@ -2127,7 +2127,7 @@ docker@VM-8-15-ubuntu:~$
 
 Dockerfile 面向开发，Docker 镜像成为交付标准，Docker 容器则涉及部署与运维，三者缺一不可，合力充当 Docker 体系的基石
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-412--YHFEoen9zU-sJQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-412--YHFEoen9zU-sJQ.png)
 
 ---
 
@@ -2297,7 +2297,7 @@ EXPOSE 8080
 CMD ["catalina.sh", "run"]
 ```
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-432--pPJCSdBDHZzF3w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-432--pPJCSdBDHZzF3w.png)
 
 | 指令 | 说明 |
 | --- | --- |
@@ -2334,7 +2334,7 @@ CMD ["/etc/nginx/nginx.conf"]
 
 1. 下载 jdk：[https://www.oracle.com/java/technologies/downloads/#java8](https://www.oracle.com/java/technologies/downloads/#java8)
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-443--nu-ckAqQJcClWg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-443--nu-ckAqQJcClWg.png)
 
 2. 创建目录：`/home/docker/docker/MyDockerFile/`，将 jdk 上传到此目录
 3. 查看镜像：`docker images`
@@ -2930,7 +2930,7 @@ docker@VM-8-15-ubuntu:~/docker/MyDockerFile$
 
 1. 创建 Spring Boot 项目
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-458--DWtoCfSGHScgiA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-458--DWtoCfSGHScgiA.png)
 
 
 2. `yml` 配置文件中修改端口号
@@ -2942,15 +2942,15 @@ server:
 
 3. 启动项目，测试是否可访问
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-463--392SZE1YppZV4w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-463--392SZE1YppZV4w.png)
 
 4. 将项目打成 jar 包
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-469--GNdk7QRWkYJn_g.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-469--GNdk7QRWkYJn_g.png)
 
 5. 将生成的 `Boot1-0.0.1-SNAPSHOT.jar` 上传到服务器 `/home/docker/docker/MyDockerFile/` 目录下
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-485--CZAMfYhWH_zxJA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-485--CZAMfYhWH_zxJA.png)
 
 6. 修改 `Dockerfile` 文件，注意 jdk 版本
 
@@ -3208,7 +3208,7 @@ docker@VM-8-15-ubuntu:~/docker/MyDockerFile$
 
 11. 浏览器访问测试
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-492--NDG_jziILinmOg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-492--NDG_jziILinmOg.png)
 
 12. 进入容器，查看 jar 存放目录及 java 版本
 
@@ -3439,15 +3439,15 @@ services:
 
 1. 将项目打成 jar 包
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-500--D9vGvYY2pppk1g.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-500--D9vGvYY2pppk1g.png)
 
 2. 在 `/home/docker/docker/docker-compose/` 目录下创建 `java`目录
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-522--TLasoVlNIXAKMg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-522--TLasoVlNIXAKMg.png)
 
 3. 进入 `java`目录，放好 jdk、jar
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-527--1h67DA_-bhVyRw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-527--1h67DA_-bhVyRw.png)
 
 4. 编写 `dockerfile` 文件
 
@@ -3548,22 +3548,22 @@ docker@VM-8-15-ubuntu:~$
 
 9. 浏览器访问：`[http://43.138.106.181:9000/Test/get](http://43.138.106.181:9000/Test/get)`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-532--efCVbPkhsYAbmg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-532--efCVbPkhsYAbmg.png)
 
 ### ②、测试 vue dockerfile 编写是否正确
 
 1. 将 vue 项目打包：`npm run build`，生成 dist 文件夹
 2. 在 `/home/docker/docker/docker-compose/` 目录下创建 `nginx`目录
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-540--lBh0cDKs2s9uBQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-540--lBh0cDKs2s9uBQ.png)
 
 3. 进入 `nginx`目录，放好 vue 编译后的文件夹 dist，并创建 conf 文件夹
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-546--NRo29vBnXvkZzQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-546--NRo29vBnXvkZzQ.png)
 
 4. 进入 `conf`文件夹，创建 `default.conf` 文件，并输入以下内容
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-553--JkSYWXX259nd4g.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-553--JkSYWXX259nd4g.png)
 
 ```shell
 server {
@@ -3683,7 +3683,7 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose/nginx$
 
 10. 浏览器访问：`[http://43.138.106.181:3000/](http://43.138.106.181:3000/)`
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-559--rCvzVloYRlcROQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-559--rCvzVloYRlcROQ.png)
 
 ### ③、docker-compose 编排案例
 
@@ -3768,15 +3768,15 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 
 5. 浏览器访问前端，此处前端也可调用后端
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-569--pjyaWz9Vt9_vwQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-569--pjyaWz9Vt9_vwQ.png)
 
 6. 浏览器访问后端
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-577--t6m4ZU87KQ87IQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-577--t6m4ZU87KQ87IQ.png)
 
 7. 访问数据库
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-586--uCtx20KKrQ3AEA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-586--uCtx20KKrQ3AEA.png)
 
 # 八、Docker 轻量级可视化工具 Portainer
 
@@ -3808,25 +3808,25 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 3. 浏览器访问：`[https://43.138.106.181:9443/](https://43.138.106.181:9443/)`
 4. 第一次登录需创建 admin 用户，密码随意
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-595--mkxZtyoetRgipg.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-595--mkxZtyoetRgipg.png)
 
 5. 选择本地 docker 环境
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-604--ZJDXYXqSEtc1Kw.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-604--ZJDXYXqSEtc1Kw.png)
 
 6. 点击 local 进入本地环境
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-630--3wuBAZoxqNvlkA.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-630--3wuBAZoxqNvlkA.png)
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-644--u2Iairr6LVbD_A.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-644--u2Iairr6LVbD_A.png)
 
 7. 进入容器，可对其进行重启、运行、停止等操作
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-665--LA5z0B8wZ6VOgw.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-665--LA5z0B8wZ6VOgw.png)
 
 8. 进入镜像，可进行拉取、删除、构建、导入导出等操作
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-686--Xa6op1q9uM2cSQ.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-686--Xa6op1q9uM2cSQ.png)
 
 9. 等
 
@@ -3834,21 +3834,21 @@ docker@VM-8-15-ubuntu:~/docker/docker-compose$
 
 > 汉化包下载网站：https://imnks.com/3406.html
 > 
-> 1.24.2 版本：[Portainer-ce-1.24.2.zip](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPortainer-ce-1.24.2.zip)
+> 1.24.2 版本：[Portainer-ce-1.24.2.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPortainer-ce-1.24.2.zip)
 > 
-> 2.16.2 版本：[Portainer-ce-2.16.2.zip](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPortainer-ce-2.16.2.zip)
+> 2.16.2 版本：[Portainer-ce-2.16.2.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPortainer-ce-2.16.2.zip)
 > 
-> 2.9.1 版本：[Portainer-ce-2.9.1.zip](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPortainer-ce-2.9.1.zip)
+> 2.9.1 版本：[Portainer-ce-2.9.1.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPortainer-ce-2.9.1.zip)
 > 
 > <font color="#ff0000">需要安装与下载的汉化包版本相同的 Portainer 镜像</font>
 
 1. 创建目录：`/home/docker/docker/Portainer/`，将汉化包放入其中
 
-![image.png|251](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-710--4OVkwNblSTMsog.png)
+![image.png|251](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-710--4OVkwNblSTMsog.png)
 
 2. 解压：`unzip Portainer-CN.zip`
 
-![image.png|260](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-719--rk-jxK20e6x8VA.png)
+![image.png|260](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-719--rk-jxK20e6x8VA.png)
 
 3. 停止之前启动的 Portainer 容器
 4. 启动新的容器：
@@ -3864,14 +3864,14 @@ portainer/portainer:2.16.2
 
 6. 浏览器进入：http://43.138.106.181:9443
 
-![image.png|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-731--Hj_PmTQ6bgb7og.png)
+![image.png|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-731--Hj_PmTQ6bgb7og.png)
 
 ## 3、直接安装 Portainer 汉化版本
 
 1. 简单直接一步到位。使用的是国内热心大佬上传到 Docker Hub 的二次编译汉化版 Portainer，安装好之后直接使用，弊端就是跟不上原版 Portainer 的更新节奏。虽说如此，它一般和最新版 Portainer 差距不大，所以使用起来几乎没什么差别。
 2. `6053537/portainer-ce`
 
-![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117131957.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117131957.png)
 
 3. 安装：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
@@ -3889,12 +3889,12 @@ docker run -d \
 
 4. 访问：[http://www.yue-hai.top:10000](http://www.yue-hai.top:10000)
 
-![|675](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117132407.png)
+![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117132407.png)
 
 5. 第一次进入需设置密码
 6. 界面：
 
-![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117132614.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231117132614.png)
 
 # 九、Docker 容器监控之 CAdvisor+InfluxDB+Granfana
 
@@ -3902,7 +3902,7 @@ docker run -d \
 
 - 执行命令后：
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-747--rt4sFbU8RApu9g.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-747--rt4sFbU8RApu9g.png)
 
 - 通过 docker stats 命令可以很方便的看到当前宿主机上所有容器的 CPU，内存以及网络流量等数据，一般小公司够用了
 - 但是，docker stats 统计结果只能是当前宿主机的全部容器，数据资料是实时的，没有地方存储、没有健康指标过线预警等功能
@@ -3911,23 +3911,23 @@ docker run -d \
 
 > CAdvisor 监控收集 + InfluxDB 存储数据 +Granfana 展示图表
 > 
-> ![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-759--E0voctaJILgExA.png)
+> ![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-759--E0voctaJILgExA.png)
 
 1. CAdvisor
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-806--wFw9N-vHgc1xtg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-806--wFw9N-vHgc1xtg.png)
 
 2. InfluxDB
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-830--CZx2nwm_szXPug.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-830--CZx2nwm_szXPug.png)
 
 3. Granfana
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-861--ZclgVLkAxU4gGg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-861--ZclgVLkAxU4gGg.png)
 
 4. 总结
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-876--odI1jf8BOLEHaA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2F2023-07-25-12--42-56-876--odI1jf8BOLEHaA.png)
 
 ## 3、
 
@@ -4062,7 +4062,7 @@ Successfully copied 18MB to /home/docker/docker/volumes/tomcat/tomcat9/
 docker@yan:~$ 
 ```
 
-![|548](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130094439.png)
+![|548](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130094439.png)
 
 2. 停止并删除容器：
 
@@ -4111,19 +4111,19 @@ docker@yan:~$
 1. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
 2. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
 
-![|560](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095712.png)
+![|560](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095712.png)
 
-![|589](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095734.png)
+![|589](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095734.png)
 
 3. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
 
-![|594](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095842.png)
+![|594](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095842.png)
 
-![|586](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095832.png)
+![|586](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095832.png)
 
 4. 再次访问：[http://www.yue-hai.top:10100/](http://www.yue-hai.top:10100/)
 
-![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095933.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130095933.png)
 
 ## 2、安装 mysql
 
@@ -4272,21 +4272,21 @@ docker@yuehai:~$
 
 7. 使用 Navicat 连接
 
-![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108140616.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108140616.png)
 
 ### ②、测试连接以及创建数据库与表
 
 1. 创建数据库
 
-![|442](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108141015.png)
+![|442](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108141015.png)
 
 2. 创建表
 
-![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108141150.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108141150.png)
 
 3. 添加数据
 
-![|700](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108141225.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231108141225.png)
 
 4. 进入 mysql 容器
 
@@ -4455,9 +4455,9 @@ mysql>
 
 1. 拉取镜像：`docker pull openjdk:21`
 2. 创建映射目录：`/home/docker/docker/volumes/openjdk/jar/00_TEST/`
-3. 上传 jar 程序：springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FTEST-0.0.1-SNAPSHOT.jar)
+3. 上传 jar 程序：springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FTEST-0.0.1-SNAPSHOT.jar)
 
-![|484](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130084700.png)
+![|484](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020231130084700.png)
 
 4. 启动容器：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
@@ -4473,16 +4473,16 @@ docker run -d \
 java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 ```
 
-5. 访问测试：[http://www.yue-hai.top:10300/hello/helloTest](http://www.yue-hai.top:10300/hello/helloTest)
+5. 访问测试：[http://tool.yuehai.fun:63/hello/helloTest](http://tool.yuehai.fun:63/hello/helloTest)
 
-![](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240415094614.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FPasted%20image%2020240415094614.png)
 
 ## 4、使用 shell 脚本执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FTEST-0.0.1-SNAPSHOT.jar)
-	2. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fy-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
-	3. y_chat 的 springboot 后台服务器 user 模块：[user-1.0-SNAPSHOT.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fuser-1.0-SNAPSHOT.jar)
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FTEST-0.0.1-SNAPSHOT.jar)
+	2. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fy-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
+	3. y_chat 的 springboot 后台服务器 user 模块：[user-1.0-SNAPSHOT.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fuser-1.0-SNAPSHOT.jar)
 2. 创建映射目录，并将这三个 jar 包上传到只当目录：
 	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
 	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
@@ -4547,7 +4547,7 @@ openjdk:21 \
 ```
 
 5. 访问测试：
-6. 测试：[http://www.yue-hai.top:10300/hello/helloTest](http://www.yue-hai.top:10300/hello/helloTest)
+6. 测试：[http://tool.yuehai.fun:63/hello/helloTest](http://tool.yuehai.fun:63/hello/helloTest)
 7. y-chat WebSocket 服务器：
 	1. 测试网站：[http://wstool.jackxiang.com/](http://wstool.jackxiang.com/)
 	2. 服务地址：ws://www.yue-hai.top:10301/connect/2
@@ -4556,9 +4556,9 @@ openjdk:21 \
 ## 5、使用 Docker-compose 容器编排执行多个 jar 程序
 
 1. 准备 jar 程序：
-	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FTEST-0.0.1-SNAPSHOT.jar)
-	2. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fy-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
-	3. y_chat 的 springboot 后台服务器 user 模块：[user-1.0-SNAPSHOT.jar](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fuser-1.0-SNAPSHOT.jar)
+	1. springboot 测试包：[TEST-0.0.1-SNAPSHOT.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2FTEST-0.0.1-SNAPSHOT.jar)
+	2. y_chat 的 WebSockets 消息转发：[y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fy-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar)
+	3. y_chat 的 springboot 后台服务器 user 模块：[user-1.0-SNAPSHOT.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%2Fattachments%2Fuser-1.0-SNAPSHOT.jar)
 2. 创建映射目录，并将这三个 jar 包上传到只当目录：
 	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
 	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
@@ -4625,7 +4625,7 @@ docker@yuehai:~/docker/volumes/openjdk$
 
 5. 如果嫌 `docker-compose.yml` 文件中的 `command` 属性的命令写起来太繁琐，也可以直接在 `command` 属性中调用上面的 `run_jar.sh` 脚本
 6. 访问测试：
-7. 测试：[http://www.yue-hai.top:10300/hello/helloTest](http://www.yue-hai.top:10300/hello/helloTest)
+7. 测试：[http://tool.yuehai.fun:63/hello/helloTest](http://tool.yuehai.fun:63/hello/helloTest)
 8. y-chat WebSocket 服务器：
 	1. 测试网站：[http://wstool.jackxiang.com/](http://wstool.jackxiang.com/)
 	2. 服务地址：ws://www.yue-hai.top:10301/connect/2

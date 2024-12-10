@@ -1,6 +1,6 @@
 > [B 站尚硅谷 Promise 视频](https://www.bilibili.com/video/BV1GA411x7z1?p=5&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
 > 
-> [尚硅谷_Promise从入门到自定义.pdf](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F尚硅谷_Promise从入门到自定义.pdf)
+> [尚硅谷_Promise从入门到自定义.pdf](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F尚硅谷_Promise从入门到自定义.pdf)
 
 # 一、Promise 的理解和使用
 
@@ -28,7 +28,7 @@
 
 ### ③、promise 的基本流程
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-31-593--Qn8ns5qQxU-AGQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-31-593--Qn8ns5qQxU-AGQ.png)
 
 ## 2、为什么要用 Promise
 
@@ -308,7 +308,7 @@ fs.readFile('./resource/content.txt', (err, data) => {
 
 - 在控制台运行
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-32-017--M9hGwymO8DYDQw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-32-017--M9hGwymO8DYDQw.png)
 
 ### ③、Promise 形式
 
@@ -337,7 +337,7 @@ p.then(value=>{
 
 - 在控制台运行
 
-![image.png](https://www.yue-hai.top:10300/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-32-121--ciGGij1P4NcIEA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2F%E4%B8%89%E4%BB%B6%E5%A5%97%2Fattachments%2F2023-07-25-13--10-32-121--ciGGij1P4NcIEA.png)
 
 ## 2、
 
