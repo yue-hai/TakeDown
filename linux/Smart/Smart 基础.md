@@ -6,14 +6,14 @@
 2. 输入 Ip：172.20.2.44
 3. 端口号：22
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--16-59-623--bYBmgUXtLpM79w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--16-59-623--bYBmgUXtLpM79w.png) 
 
 ## 2、输入账号密码进入
 
 1. 账号：trial
 2. 密码：trial1234
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-113--64rv0gJYsqWWPQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-113--64rv0gJYsqWWPQ.png)
 
 ## 3、参数说明
 
@@ -573,7 +573,7 @@
 1. 排序后才可使用此命令
 2. 输出相同主键的第一行
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-124--iwXlrJOnuotTOA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-124--iwXlrJOnuotTOA.png)
 
 ### ①、语法
 
@@ -621,7 +621,7 @@
 1. 排序后才可使用此命令
 2. 输出相同主键的最后一行
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-257--WEkHMZ071miKzg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-257--WEkHMZ071miKzg.png)
 
 ### ①、语法
 
@@ -738,7 +738,7 @@
 2. 使用参数 `-k` 指定主键列，然后使用参数 `-r` 指定比较的列
 3. 输出参数 `-r` 指定列的最后一行；与 `lstrow` 不同的是若最后几行的数据相同，则相同的这几行全都输出出来
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-386--RjxR7w_0CaoUHQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-386--RjxR7w_0CaoUHQ.png)
 
 ### ①、语法
 
@@ -1265,7 +1265,7 @@ a1c
 1. 排序后才可使用此命令，且排序的主键列要和输出的主键列相同
 2. 根据指定的主键列来分割文本文件，主键列中相同主键的数据会被放到一个文件中
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-586--Fxwan7i_6oOCtw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-586--Fxwan7i_6oOCtw.png)
 
 ### ①、语法
 
@@ -1747,13 +1747,13 @@ Try `stail --help' for more information.
 [trial@localhost cuichangjian]$ 
 ```
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-823--ufZ6BXZGoyBT0Q.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-823--ufZ6BXZGoyBT0Q.png)
 
 ## 20、将文件转换为SMART文本：`cln`
 
 有很多功能，如：转换CSV文件、自动去引号、去掉指定字符、去掉多余空格
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-919--xbydyyQ-R3fI8Q.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-00-919--xbydyyQ-R3fI8Q.png)
 
 ### ①、语法
 
@@ -1861,7 +1861,7 @@ Try `stail --help' for more information.
 4. 只会显示指定的主键列和求和的结果，不会显示原始数据
 5. 若是指定最后一列求和，可以指定参数 -c 为 NF 或者 9999
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-052--mIdUkRwTnHPw1A.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-052--mIdUkRwTnHPw1A.png)
 
 ### ①、语法 
 
@@ -1916,7 +1916,7 @@ Try `stail --help' for more information.
 2. -c：指定求和的列，如果多次指定，则仅最后一个指定有效
 3. -n：将主键列的个数在主键列之后（第二列）打印出来
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-149--Q_w1fcRn1-eKLQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-149--Q_w1fcRn1-eKLQ.png)
 
 ## 4、横向求和：`hsum`
 
@@ -1973,7 +1973,7 @@ Try `stail --help' for more information.
 2. 计算每一列的总和
 3. 必须使用 -s 指定不进行合计的行
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-277--IulIsWEt5EuUJQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-277--IulIsWEt5EuUJQ.png)
 
 ### ①、语法
 `total -sCOL1[,COL2] -cCOL1[,COL2] [FILE]`
@@ -2007,7 +2007,7 @@ Try `stail --help' for more information.
 3. 根据指定的主键列，来对主键列相同的每行数据进行求和，在每个主键列的下面一行输出指定的每行的总和
 4. 不被 `-k、-s、-c` 指定的列不会显示
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-433--FAGB4qQanNUfZw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-433--FAGB4qQanNUfZw.png)
 
 ### ①、语法
 
@@ -2100,7 +2100,7 @@ Try `stail --help' for more information.
 3 2 1 5
 ```
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-592--Db95wTjgXimK4w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-592--Db95wTjgXimK4w.png)
 
 ### ②、参数
 
@@ -2112,7 +2112,7 @@ Try `stail --help' for more information.
 1. 根据指定的列计算其个数
 2. 排序后才可正常使用
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-749--wtFrQXamlE9RZA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-01-749--wtFrQXamlE9RZA.png)
 
 ### ①、语法
 
@@ -2430,7 +2430,7 @@ Try `stail --help' for more information.
 1. 将指定列除以 1000
 2. 默认对文件进行不保留小数的四舍五入；使用参数 `-s` 可保留小数
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-004--B9Fjh2JWrht9Sg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-004--B9Fjh2JWrht9Sg.png)
 
 ### ①、语法
 
@@ -4171,7 +4171,7 @@ AWK 是一种处理文本文件的语言，是一个强大的文本分析工具
 
 ##### （2）、`printf`
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-145--w-74L7ba3sFssA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-145--w-74L7ba3sFssA.png)
 
 - 10 进制的整数
    - %5d：长度为 5 （多的不会被删掉），右对齐
@@ -4896,7 +4896,7 @@ yuehai
 
 5. 没有的数据会以 0 来补足
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-164--ou2z2pkzIbUnuw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-164--ou2z2pkzIbUnuw.png)
 
 ### ①、语法
 
@@ -4951,7 +4951,7 @@ yuehai
 3 4 0 0 0 0
 ```
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-321--pugfwPS5-xUaLA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-321--pugfwPS5-xUaLA.png)
 
 ### ①、语法
 
@@ -5060,9 +5060,9 @@ yuehai
 第四列 5
 ```
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-517--cCPL6HNCAmHLjQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-517--cCPL6HNCAmHLjQ.png)
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-637--TbSAxP_RgWSPAQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-637--TbSAxP_RgWSPAQ.png)
 
 ### ①、语法
 
@@ -5213,7 +5213,7 @@ yuehai
 
 3. 回车的问题和上面一样
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-753--DB3xVCMQVAUdjg.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-753--DB3xVCMQVAUdjg.png)
 
 ### ①、语法
 `toh -n <NUM> -l <String> -kCOL1[,COL2]... [FILE]`
@@ -5242,7 +5242,7 @@ yuehai
 行变列，列变行
 横着的变成竖着的，竖着的变成横着的
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-851--Y5wdMUkIJVMwCQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-851--Y5wdMUkIJVMwCQ.png)
 
 ### ①、语法
 
@@ -5270,7 +5270,7 @@ yuehai
 2. 排序后，依据指定的主键列，将相同主键的最后一行删除，然后将删除的最后一行的数据放上后一行的末尾，以此类推
 3. 如果指定的主键列只有一行，则主键列之后是空的
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-943--8nddgZWTIoEAuA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-02-943--8nddgZWTIoEAuA.png)
 
 ### ①、语法
 
@@ -5336,7 +5336,7 @@ yuehai
 3 2 1
 ```
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-115--BmXx1JpSZErisA.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-115--BmXx1JpSZErisA.png)
 
 ### ②、参数
 
@@ -5388,7 +5388,7 @@ yuehai
 3. 非数字会被变为 0 ，位数为参数`-w` 所设定的位数
 4. 小数会被舍弃
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-344--pZIwcfjSylddWw.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-344--pZIwcfjSylddWw.png)
 
 ### ①、语法
 
@@ -5489,7 +5489,7 @@ yuehai
 1. 以千分位显示数字，如：12,345,456
 2. 注意：千分位处理后的列不能再进行运算。所以，千分位一般用于最后账票显示的格式化。切记！！切记！！
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-429--FuDtuGlWUde96Q.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-429--FuDtuGlWUde96Q.png)
 
 ### ①、语法
 
@@ -5553,7 +5553,7 @@ yuehai
 2. 非数字会被变为 0
 3. 参数 `-r` 会将数字变为负数（负数变为正数）
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-562--DcF4BQOChiQz5w.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-562--DcF4BQOChiQz5w.png)
 
 ### ①、语法
 
@@ -5642,7 +5642,7 @@ yuehai
 
 1. 将科学计数法转换到十进制
 
-![image.png](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-775--pouDneS7_vc-MQ.png)
+![image.png](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2F2023-07-25-13--17-03-775--pouDneS7_vc-MQ.png)
 
 ### ①、语法
 
@@ -6421,7 +6421,7 @@ sex ----
 4. 根据 master 表的主键列对 tran 表指定的主键列进行筛选，显示 tran 表中主键与 master 表主键相同的 tran 表中的数据
 5. 只会显示 tran 表的数据
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725155815.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725155815.png)
 
 ### ①、语法
 
@@ -6470,7 +6470,7 @@ sex ----
 5 02 213
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725155920.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725155920.png)
 
 3. 参数 -a 可以显示 tran 表中所有数据；对应的显示在上面，不对应的显示在下面
 
@@ -6959,7 +6959,7 @@ sex ----
 2. 根据指定的主键列显示所有表的数据，表中没有的主键列会以 `0` 来填充
 3. 与右连接 `rjoin` 类似，会显示所有表的数据，根据指定的主键列，主键列在前、然后按写的顺序显示表的数据
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160200.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160200.png)
 
 #### Ⅳ、案例
 
@@ -7137,7 +7137,7 @@ sex ----
    2. 会显示 master 表和 tran 表主键相对应的数据，不对应的数据不会显示
 4. 一般在数据需要进行补全时使用
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160246.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160246.png)
 
 ### ①、语法
 
@@ -7680,7 +7680,7 @@ sex ----
 1. 必须排序后才可正常使用
 2. 根据主键合并两个表
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160410.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160410.png)
 
 ### ①、语法
 
@@ -9873,7 +9873,7 @@ _
 3 3 2 1
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160903.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160903.png)
 
 ### ①、语法
 
@@ -9935,7 +9935,7 @@ _
 3 3 2 1
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160938.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725160938.png)
 
 ### ①、语法
 
@@ -9993,7 +9993,7 @@ _
 [trial@smartedu data]$
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161049.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161049.png)
 
 2. 指定第一列为主键列，求第二列和第三列的和
 
@@ -10667,7 +10667,7 @@ _
 6. -n：指定选择插入页的名称（这个参数好像有问题）
 7. -d：字符拆分器；当输入文件的类型为 csv 时，可以使用该参数
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161318.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161318.png)
 
 ### ③、说明
 
@@ -10690,7 +10690,7 @@ _
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161416.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161416.png)
 
 #### Ⅱ、从第 4 行 第 5 列开始插入
 
@@ -10702,7 +10702,7 @@ _
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161435.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161435.png)
 
 ## 3、复制表格格式：`copyStyle`
 
@@ -10730,7 +10730,7 @@ _
 
 ##### （1）、原表格
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161507.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161507.png)
 
 ##### （2）、  命令及结果
 
@@ -10743,7 +10743,7 @@ _
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161533.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161533.png)
 
 ## 4、隐藏某页表格：`hideSheet`
 
@@ -10767,7 +10767,7 @@ _
 
 ##### （1）、原始表格
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161644.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161644.png)
 
 ##### （2）、命令及结果
 
@@ -10779,7 +10779,7 @@ _
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161712.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161712.png)
 
 ## 5、处理表格：`mkExcel`
 
@@ -10806,7 +10806,7 @@ _
    1. 标记示例： `COPYSTYLE 2 A2 A10:C12`；将第 2 页的 A2 单元格的格式复制到 A10:C12 这个单元格区间中
    2. 矩阵示例： `COPYSTYLE 1 1,2 1,10:3,12`；将第 1 页的第 1 行、第 2 列单元格的格式复制到第 1 行、第 10 列至第 3 行、第 12 列这个单元格区间中
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161743.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161743.png)
 
 ### ③、说明
 
@@ -10832,7 +10832,7 @@ Row:1 do: FILLDATA 2 B3 data
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161814.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725161814.png)
 
 #### Ⅱ、INSROW：在指定行的上面插入行
 
@@ -10846,7 +10846,7 @@ Row:1 do: INSROW 2 4 2
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162108.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162108.png)
 
 #### Ⅲ、DELROW：从指定行开始删除行
 
@@ -10861,7 +10861,7 @@ Row:1 do: DELROW 2 4 2
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162149.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162149.png)
 
 #### Ⅳ、SHEETNAME：设置指定页的名称
 ##### （1）、一般使用
@@ -10873,7 +10873,7 @@ Row:1 do: SHEETNAME 1 yuehai
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162230.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162230.png)
 
 #### Ⅴ、HIDESHEET：隐藏指定页
 
@@ -10887,7 +10887,7 @@ Row:1 do: HIDESHEET 2
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162254.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162254.png)
 
 #### Ⅵ、HIDECOL：隐藏列
 
@@ -10901,7 +10901,7 @@ Row:1 do: HIDECOL 2 2
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162318.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162318.png)
 
 #### Ⅶ、COPYSTYLE：复制格式
 
@@ -10915,7 +10915,7 @@ Row:1 do: COPYSTYLE 2 B2 A1:I1
 [trial@smartedu excel]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162340.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162340.png)
 
 #### Ⅷ、VMERGECELL：合并单元格
 
@@ -11096,7 +11096,7 @@ drwxrwxr-x. 2 trial trial  53  8月 29 15:40 zmerge
 e�c[trial@smartedu data]$ 
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162446.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Flinux%2FSmart%2Fattachments%2FPasted%20image%2020230725162446.png)
 
 ## 3、判断文件是否存在：`default`
 
