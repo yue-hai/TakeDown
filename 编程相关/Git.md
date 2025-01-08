@@ -1542,7 +1542,65 @@ target
 /公司/*
 ```
 
-## 9、
+## 9、变基无法终止，也无法继续
+
+### ①、问题
+
+1. 无法继续变基，提示：
+
+```shell
+You must edit all merge conflicts and then mark them as resolved using git add
+```
+
+2. 无法终止变基，提示：
+
+```shell
+warning: could not read '.git/rebase-merge/head-name': No such file or directory
+```
+
+3. `git status` 提示：
+
+```shell
+PS D:\OneDrive\文档资料\TakeDown> git status
+On branch master
+Your branch is ahead of 'github/master' by 9 commits.
+  (use "git push" to publish your local commits)
+
+You are currently rebasing.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .idea/.gitignore
+        new file:   .idea/TakeDown.iml
+        new file:   .idea/misc.xml
+        new file:   .idea/modules.xml
+        new file:   .idea/shelf/___.xml
+        new file:   ".idea/shelf/\345\234\250\345\217\230\345\237\272\344\271\213\345\211\215\346\234\252\346\217\220\344\272\244\347\232\204\346\233\264\346\224\271_[\346\233\264\346\224\271]/shelved.patch"
+        new file:   .idea/vcs.xml
+        new file:   .idea/workspace.xml
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    .idea/TakeDown.iml
+        deleted:    .idea/misc.xml
+        deleted:    .idea/modules.xml
+        deleted:    .idea/shelf/___.xml
+        deleted:    ".idea/shelf/\345\234\250\345\217\230\345\237\272\344\271\213\345\211\215\346\234\252\346\217\220\344\272\244\347\232\204\346\233\264\346\224\271_[\346\233\264\346\224\271]/shelved.patch"
+        deleted:    .idea/workspace.xml
+
+PS D:\OneDrive\文档资料\TakeDown>
+```
+
+### ②、解决办法
+
+1. 删除变基的临时目录，清除当前变基状态：删除 `.git/rebase-merge` 目录
+2. 将分支重置到当前的最后一次提交状态：
+
+```shell
+git reset --hard HEAD
+```
 
 ## 11、
 
