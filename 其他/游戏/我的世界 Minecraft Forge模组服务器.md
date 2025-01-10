@@ -155,8 +155,9 @@ mkdir -p game/Minecraft-forge
 cd game/Minecraft-forge
 ```
 
-5. 下载指定版本的 Forge；此处以 `1.20.1` 版本进行演示
-	1. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fforge-1.20.1-47.2.0-installer.jar)
+5. 下载指定版本的 Forge：https://files.minecraftforge.net/net/minecraftforge/forge/
+	1. 此处以 `1.20.1` 版本进行演示
+	2. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fforge-1.20.1-47.2.0-installer.jar)
 
 ![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227103945.png)
 
@@ -827,8 +828,6 @@ tp chenpi 100 64 100
 	4. 支持mod管理
 	5. 支持界面主题定制、整合包制作
 
-![|525](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102057.png)
-
 ### ②、PCL2 Plain Craft Launcher 2 启动器
 
 1. 下载地址：https://afdian.net/p/0164034c016c11ebafcb52540025c377
@@ -838,8 +837,6 @@ tp chenpi 100 64 100
 	2. 极速，多下载源
 	3. Forge安装
 	4. 自定义主题
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102113.png)
 
 ### ③、BMCLNG 启动器
 
@@ -855,12 +852,6 @@ tp chenpi 100 64 100
 10. Mojang推送了第一个编译起的全部版本，BMCL全部支持
 11. 带有第二下载源。不怕碰到官方下载源被限流
 
-![|475](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102125.png)
-
-![|472](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102132.png)
-
-![|468](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102139.png)
-
 ### ④、BakaXL 启动器
 
 1. 下载地址：https://www.minecraftzw.com/20070.html
@@ -874,12 +865,6 @@ tp chenpi 100 64 100
 9. 将您的风格分享给世界，不光配色和背景要有型，背景音乐也得给安排上。
 10. 这个主题系统，没有那么多麻烦。使用、创建及分享BakaXL的主题并无任何门槛，也无需任何额外支出或版本即可享受全部功能。任何人都可以创建属于自己的BakaXL主题，并分享给自己的好友。因为我们相信，好东西应该人人都有份。
 
-![|642](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102204.png)
-
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102211.png)
-
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102219.png)
-
 ### ⑤、燕子启动器
 
 1. 下载地址：https://www.minecraftzw.com/20067.html
@@ -892,20 +877,10 @@ tp chenpi 100 64 100
 8. 此功能可一键生成附属软件，下一次畅玩游戏时只需双击生成的软件即可。
 9. 三个“多”：支持多账号，多版本，多验证，让你游戏体验无烦恼！
 
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102329.png)
-
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102339.png)
-
 ### ⑥、MSS2 启动器
 
 1. 下载地址：https://www.minecraftzw.com/20062.html
 2. MSS2启动器可以让玩家轻松创建你自己的MC服务器，让MC开服不在会是难题，变得轻而易举
-
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102408.png)
-
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102413.png)
-
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102420.png)
 
 ## 3、HMCL 启动器使用
 

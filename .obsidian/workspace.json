@@ -60,7 +60,7 @@
             }
           },
           {
-            "id": "df4488ca5675f927",
+            "id": "26409a2a847ef5af",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -72,7 +72,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -126,8 +127,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -162,52 +162,53 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "ef3c11811a392481",
+  "active": "26409a2a847ef5af",
   "lastOpenFiles": [
-    "Android/Android 基础.md",
+    "其他/attachments/Pasted image 20250110092539.png",
+    "其他/attachments/Pasted image 20250110092528.png",
     "公司/创迹/SSC/SSC 购物车.md",
-    "java/17、数据结构与算法.md",
     "其他/设备和工具.md",
+    "其他/游戏/我的世界 Minecraft Forge模组服务器.md",
     "标题.md",
-    "编程相关/Docker.md",
-    "SQL/MySql.md",
-    "编程相关/网络相关.md",
+    "其他/attachments/Pasted image 20250108112043.png",
+    "其他/attachments/Pasted image 20250108112031.png",
+    "其他/attachments/Pasted image 20250108112017.png",
+    "其他/attachments/Pasted image 20250108112003.png",
+    "其他/attachments/Pasted image 20250108111944.png",
+    "其他/attachments/Pasted image 20250108111932.png",
+    "其他/attachments/Pasted image 20250108111918.png",
+    "其他/attachments/Pasted image 20250108111908.png",
+    "其他/attachments/Pasted image 20250108111857.png",
+    "其他/attachments/hacs.zip",
+    "其他/attachments/files_mindmap-0.0.31.tar.gz",
+    "其他/attachments/drawio-v3.0.3.tar.gz",
+    "其他/attachments/notes-v4.11.0.tar.gz",
     "其他/attachments/onlyoffice.tar.gz",
-    "其他/attachments/Pasted image 20241203165703.png",
-    "其他/attachments/Pasted image 20241203165400.png",
-    "其他/attachments/Pasted image 20241203165513.png",
-    "其他/attachments/Pasted image 20241203165124.png",
-    "其他/attachments/Pasted image 20241203165030.png",
-    "其他/attachments/Pasted image 20241203164936.png",
-    "其他/attachments/Pasted image 20241203154357.png",
-    "其他/attachments/Pasted image 20241203154219.png",
-    "编程相关/编程软件.md",
-    "其他/attachments/Pasted image 20241203153736.png",
-    "其他/attachments/Pasted image 20241203153604.png",
-    "其他/软件使用/其他软件.md",
-    "Web/【其他】.md",
     "编程相关/Git.md",
-    "java/attachments/MyBatisPlus（SpringBoot版）.pdf",
-    "java/document/MyBatisPlus（SpringBoot版）.pdf",
+    "e --continue",
+    "编程相关/attachments/尚硅谷技术课程系列之Git V2.0.pdf",
+    "编程相关/attachments/WindTerm_2.6.0.zip",
+    "编程相关/attachments/video-srt-gui-ffmpeg-0.3.5-x64.zip",
+    "编程相关/attachments/Postman-win64-9.12.2-Setup.exe",
+    "编程相关/Docker.md",
+    "其他/软件使用/其他软件.md",
+    "java/17、数据结构与算法.md",
+    "其他/游戏/泰拉瑞亚 tModLoader 服务器.md",
+    "Android/Android 基础.md",
+    "Android/Kotlin 基础.md",
+    "java/15、SpringCloudAlibaba.md",
+    "其他/游戏/七日杀 7 Days to Die 服务器.md",
+    "linux/Smart/Smart 基础.md",
+    "linux/Liunx 基础.md",
+    "SQL/MySql.md",
+    "linux/正则表达式.md",
+    "其他/游戏/我的世界 Minecraft 原版服务器.md",
+    "编程相关/网络相关.md",
+    "编程相关/编程软件.md",
+    "Web/【其他】.md",
     "其他/软件使用/浏览器.md",
-    "其他/attachments/neo80三模-已修改.json",
-    "其他/attachments/neo80三模-初始版.json",
-    "其他/attachments/neo80三模.json",
     "attachments/neo80三模.json.md",
-    "attachments",
     "java/01、JAVA 基础.sync-conflict-20241106-125739-ML56PHO.md",
-    "其他/attachments/gnb_udp_over_tcp.sync-conflict-20241119-173428-ML56PHO.zip",
-    "java/01、JAVA 基础.sync-conflict-20241106-125959-ML56PHO.md",
-    "java/13、Redis.sync-conflict-20241119-173412-ML56PHO.md",
-    "公司/创迹/SSC/SSC 购物车.sync-conflict-20241119-173421-ML56PHO.md",
-    "其他/attachments/n2n-edge-query-back.sync-conflict-20241119-173429-ML56PHO.py",
-    "java/01、JAVA 基础.sync-conflict-20241106-125129-ML56PHO.md",
-    "java/14、SpringCloud.sync-conflict-20241119-173421-ML56PHO.md",
-    "Web/三件套/CSS.sync-conflict-20241119-173419-ML56PHO.md",
-    "java/08、SpringMVC.sync-conflict-20241119-173414-ML56PHO.md",
-    "其他/软件使用/其他软件.sync-conflict-20241119-173427-ML56PHO.md",
-    "其他/软件使用/浏览器.sync-conflict-20241119-173427-ML56PHO.md",
-    "SQL/MySql.sync-conflict-20241119-173415-ML56PHO.md",
-    "其他/attachments/n2n-edge-query-front.sync-conflict-20241119-173416-ML56PHO.html"
+    "java/01、JAVA 基础.sync-conflict-20241106-125959-ML56PHO.md"
   ]
 }
