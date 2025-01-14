@@ -3992,6 +3992,28 @@ nano /etc/docker/daemon.json
 }
 ```
 
+```shell
+{
+	"registry-mirrors": [
+			"https://hub.littlediary.cn",
+			"https://docker.rainbond.cc",
+			"https://docker.unsee.tech",
+			"https://docker.m.daocloud.io",
+			"https://hub.crdz.gq",
+			"https://docker.nastool.de",
+			"https://hub.firefly.store",
+			"https://registry.dockermirror.com",
+			"https://docker.1panelproxy.com",
+			"https://hub.rat.dev",
+			"https://docker.udayun.com",
+			"https://docker.kejilion.pro",
+			"https://dhub.kubesre.xyz",
+			"https://docker.1panel.live",
+			"https://dockerpull.org"
+	]
+}
+```
+
 3. 重新加载配置文件：
 
 ```shell
