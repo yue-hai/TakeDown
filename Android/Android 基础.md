@@ -12156,7 +12156,7 @@ class MyBounceInterpolator: Interpolator {
 
 ### ⑧、
 
-## 4、形状图片
+## 4、图片资源
 
 ### ①、drawable 下快速生成 icon 图片 vector
 
@@ -12261,7 +12261,142 @@ class MyBounceInterpolator: Interpolator {
 4. `mipmap-xxhdpi`：3x 图片
 5. `mipmap-xxxhdpi`：4x 图片
 
-### ⑥、
+### ⑥、Camera1 API 与 YUV420、NV21
+
+#### Ⅰ、YUV420 和 NV21 的说明
+
+##### （1）、YUV420
+
+1. YUV420 是一种颜色编码系统，广泛用于视频和图像处理。在 YUV420 格式中，图像被分为三个分量：Y（亮度），U 和 V（色度）。Y 分量代表图像的明暗信息，而 U 和 V 分量代表颜色信息
+2. YUV420 的一个特点是色度分量的采样率是亮度的一半，这意味着对于每四个 Y 分量，只有一个 U 和一个 V 分量。这种格式有多种子类型，常见的包括 YUV420p（平面式）和 YUV420sp（半平面式，如 NV12 和 NV21）
+
+##### （2）、NV21
+
+1. NV21 是 YUV420sp（半平面）格式的一种，其中 Y 分量后跟交错的 V 和 U 分量。具体来说，所有的 Y 分量先连续存储，然后是所有的 VU 分量交错存储（首先是 V，然后是 U）。这种格式在 Android 设备上非常常见，因为它易于使用并可通过硬件加速进行处理
+
+#### Ⅱ、Camera API 的说明
+
+##### （1）、Camera1
+
+1. Camera1 API，也称为原始的 Android 相机 API，是 Android 早期版本中用于相机应用开发的接口。这个 API 自 Android 1.0 起就存在，一直到 Android 5.0（Lollipop）推出 Camera2 API 后，Camera1 API 逐渐被视为过时。尽管 Camera1 API 已经不是开发新应用的首选，但它的简单性和广泛的兼容性使其在一些旧设备和简单应用中依然被使用
+2. **支持的图像格式**：Camera1 API 主要支持 JPEG 和一些 YUV 格式，包括 NV21。NV21 由于其简单的内存布局和易于处理的特性，在 Camera1 API 中是默认的预览格式
+3. **局限性**：Camera1 API 的主要局限性在于其对现代相机硬件功能的有限支持。例如，对高动态范围（HDR）拍摄、原始图像捕捉（RAW）等先进功能的支持非常有限
+4. **过渡到 Camera2 和 CameraX**：鉴于 Camera1 的局限性，Google 推出了 Camera2 API，该 API 提供了对相机硬件更详细的控制，并支持更高级的图像处理功能。随后，为了简化 Camera2 的复杂性并改善开发者体验，Google 又引入了 CameraX 库，该库在保持 Camera2 强大功能的同时，简化了 API 的使用
+5. 总的来说，Camera1 API 主要支持 JPEG 和 NV21 格式，尤其是在处理视频预览和简单图像捕获时。对于现代 Android 开发，推荐使用 CameraX 或至少是 Camera2 API，因为这些新 API 提供了更多的功能和更好的设备兼容性。如果需要在旧设备上维护或更新应用，仍然可能需要了解和使用Camera1 API
+
+##### （2）、Camera2
+
+1. Camera2 API 是 Android 5.0（Lollipop）引入的一套先进的相机控制 API，旨在提供比旧的 Camera1 API 更强大和灵活的相机操作功能。amera2 API 在设计上更加模块化和抽象，提供了对相机硬件的细粒度控制，包括每一帧的控制、详细的图像处理和更复杂的图像捕捉流程
+2. **主要特性**：
+	1. **控制和图像数据访问**：
+		1. Camera2 允许应用程序对焦点、曝光、白平衡等进行精细控制。开发者可以手动设置这些参数，或者利用自动模式
+		2. 提供对帧率、格式、分辨率等的详细控制，支持高速视频录制和高分辨率照片拍摄
+	2. **会话和请求**：
+		1. Camera2 API 使用会话（CameraCaptureSession）和请求（CaptureRequest）的概念来处理图像捕捉。每个请求可以细致地配置相机设置，而会话则管理一系列这样的请求
+		2. 通过这种方式，Camera2 支持高级功能，如连拍（Burst capture）和YUV图像捕捉后的JPEG编码
+	3. **管道和回调**：
+		1. Camera2 API 构建在一个复杂的管道模型上，这个模型允许多个请求在相机管道中同时进行，提高了相机操作的效率和速度
+		2. API 提供了强大的回调机制，如 CameraCaptureSession.CaptureCallback 和 CameraDevice.StateCallback，让开发者可以精确地知道相机状态和每个请求的处理情况
+	4. **Android硬件抽象层（HAL）**：
+		1. Camera2 的实现依赖于 Android 硬件抽象层（HAL），允许厂商根据硬件能力实现不同级别的功能支持
+		2. 根据设备的能力，Camera2 API 分为三个级别：Legacy、Limited 和 Full。Full 级别提供了最全面的控制，Legacy 级别的设备则主要通过Camera1 API实现的功能来模拟Camera2的操作
+	5. **支持的格式和帧控制**：
+		1. Camera2 支持多种图像格式，包括 JPEG、DNG（RAW）、YUV_420_888 等，满足不同的图像处理需求
+		2. 允许对捕获的每一帧进行细粒度的时间控制，支持创建复杂的图像捕捉序列和高动态范围（HDR）图像处理
+3. **开发中的挑战**：
+	1. API 复杂性：Camera2 提供了非常强大的功能，但相应的，它的 API 也相对复杂，学习曲线陡峭，尤其是对于初学者或只需简单相机功能的开发者
+	2. 设备兼容性：虽然 Camera2 API 旨在统一相机访问接口，但不同设备制造商的实现可能有差异，这可能导致在不同设备上出现功能差异或兼容性问题
+4. **CameraX 作为解决方案**：为了解决 Camera2 API 的复杂性和兼容性问题，Google 推出了 CameraX 库，它在保持 Camera2 强大功能的基础上，提供了更简单的 API 和更好的跨设备兼容性。CameraX 自动处理设备间的差异，并简化了相机应用的开发流程，使开发者能够更容易地实现高质量的相机功能
+5. 总的来说，Camera2 API 是一套功能强大但使用复杂的相机控制接口，适合需要高度相机控制和复杂图像处理的应用。对于大多数开发者而言，使用 CameraX 可能是一个更简便且稳妥的选择
+
+##### （3）、CameraX
+
+1. CameraX 是 Android Jetpack 的一部分，它是一个简化相机应用开发的库，旨在克服 Camera2 API 使用中的复杂性和设备兼容性问题。CameraX 通过提供简洁的 API 和自动化的多数硬件级别的处理，帮助开发者更容易地实现高质量的相机功能，而不需要针对各种设备进行大量的测试和调整。
+2. **CameraX 的主要特点**：
+	1. **简化的 API**：
+		1. CameraX 提供了一组简单的 API，允许开发者使用少量的代码实现常见的相机操作，如预览、拍照和图像分析。
+		2. 这些API设计成与生命周期感知组件兼容，自动处理相机的打开和关闭，减少了开发者在管理相机生命周期时的工作量。
+	2. **使用用例（Use Cases）架构**：
+		1. CameraX 定义了几个基本的“用例”，包括 Preview、ImageCapture 和 ImageAnalysis。每个用例都对应一种常见的相机功能，开发者可以根据需要选择并配置这些用例。
+		2. Preview（预览）：配置相机预览流到界面元素。
+		3. ImageCapture（图像捕获）：用于捕获高质量的照片。
+		4. ImageAnalysis（图像分析）：提供一种连续获取相机帧数据的方法，用于实时图像处理或机器学习。
+	3. **兼容性和测试**：
+		1. CameraX 通过内置的设备兼容性层，自动适配不同制造商的相机实现，确保在多种设备上表现一致。
+		2. Google 提供了广泛的设备和系统版本的测试，保证了 CameraX 的稳定性和可靠性。
+	4. **扩展性和灵活性**：
+		1. 虽然 CameraX 旨在简化相机应用的开发，但它也提供了足够的扩展点和配置选项，以满足更高级的摄影需求。
+		2. 开发者可以通过自定义配置来调整焦距、曝光、ISO 等参数，或使用附加的 CameraX Extensions 来增强功能，例如夜景模式、HDR 等。
+	5. **与生命周期集成**：
+		1. CameraX 使用 Android 生命周期，自动管理相机的打开和关闭，减少了内存泄漏和崩溃的风险。
+		2. 这意味着当用户界面不可见时，CameraX 会自动释放相机资源，当用户界面重新可见时，再自动重新连接相机。
+3. **开发示例**：
+	1. 使用 CameraX 的开发流程通常包括以下几个步骤：
+	2. 配置 Gradle：在项目的 build.gradle 文件中添加 CameraX 依赖。
+	3. 设置相机的权限：在 AndroidManifest.xml 中请求必要的相机权限。
+	4. 初始化和配置用例：创建和配置 Preview、ImageCapture 和/或 ImageAnalysis 用例。
+	5. 绑定生命周期：将用例绑定到一个 LifecycleOwner，通常是一个 Activity 或 Fragment。
+	6. 实现功能：根据需要实现拍照、预览显示或图像分析的逻辑。
+4. 总结：CameraX 是面向所有 Android 开发者的相机库，它提供了一种高效、易用且可靠的方式来实现相机相关功能。通过简化应用的开发和测试工作，CameraX 让开发者可以集中精力于创造独特的用户体验和功能，而不必担心不同设备间的兼容性问题。
+
+#### Ⅲ、将 YUV420 数据转为 NV21 数据
+
+
+```kotlin
+fun yuv420ToNv21(image: ImageProxy): ByteArray{
+    val crop: Rect = image.getCropRect()
+    val format: Int = image.getFormat()
+    val width = crop.width()
+    val height = crop.height()
+    val planes: Array<ImageProxy.PlaneProxy> = image.getPlanes()
+    val data = ByteArray(width * height * ImageFormat.getBitsPerPixel(format) / 8)
+    val rowData = ByteArray(planes[0].getRowStride())
+    var channelOffset = 0
+    var outputStride = 1
+    for (i in planes.indices) {
+        when (i) {
+            0 -> {
+                channelOffset = 0
+                outputStride = 1
+            }
+            1 -> {
+                channelOffset = width * height + 1
+                outputStride = 2
+            }
+            2 -> {
+                channelOffset = width * height
+                outputStride = 2
+            }
+        }
+        val buffer: ByteBuffer = planes[i].getBuffer()
+        val rowStride: Int = planes[i].getRowStride()
+        val pixelStride: Int = planes[i].getPixelStride()
+        val shift = if (i == 0) 0 else 1
+        val w = width shr shift
+        val h = height shr shift
+        buffer.position(rowStride * (crop.top shr shift) + pixelStride * (crop.left shr shift))
+        for (row in 0 until h) {
+            var length: Int
+            if (pixelStride == 1 && outputStride == 1) {
+                length = w
+                buffer[data, channelOffset, length]
+                channelOffset += length
+            } else {
+                length = (w - 1) * pixelStride + 1
+                buffer[rowData, 0, length]
+                for (col in 0 until w) {
+                    data[channelOffset] = rowData[col * pixelStride]
+                    channelOffset += outputStride
+                }
+            }
+            if (row < h - 1) {
+                buffer.position(buffer.position() + rowStride - length)
+            }
+        }
+    }
+    return data
+}
+```
 
 ### ⑦、
 
