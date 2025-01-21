@@ -71,7 +71,7 @@ tomcat:jre21
 
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250107163538.png)
 
-4. 再次访问：[http://www.yue-hai.top:8080/](http://172.17.0.1:8080/)
+4. 再次访问：[http://172.17.0.1:8080/](http://172.17.0.1:8080/)
 
 ![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250107163621.png)
 
@@ -317,7 +317,268 @@ mysql> SHOW VARIABLES LIKE 'character%';
 mysql> 
 ```
 
-# 三、openJdk 21
+# 三、postgres 数据库
+
+## 1、介绍
+
+1. PostgreSQL（简称 Postgres）是一个功能强大的开源关系型数据库管理系统（RDBMS），以其稳定性、灵活性、可扩展性和社区支持而闻名。它最初于 1986 年在加州大学伯克利分校的 POSTGRES 项目中开发，现已成为企业和开发者广泛采用的数据库解决方案。
+
+### ①、PostgreSQL 的核心特点
+
+1. 开源免费：
+	1. PostgreSQL 在 PostgreSQL 许可下发布，完全开源且免费，无需购买商业授权。
+	2. 拥有活跃的社区支持和丰富的第三方扩展。
+2. ACID 兼容：PostgreSQL 完全符合事务管理的 ACID 特性，确保数据一致性、持久性和完整性。
+3. 支持标准数据类型（如整数、浮点数、字符串等）以及复杂数据类型：
+	1. JSON/JSONB：适合存储和操作结构化数据。
+	2. 数组：支持一维或多维数组。
+	3. XML：支持 XML 数据存储。
+	4. 地理数据（PostGIS 扩展）：支持地理位置和地理信息处理。
+	5. 自定义数据类型：用户可以根据需要定义自己的数据类型。
+5. SQL 标准支持：PostgreSQL 遵循 ANSI SQL 标准，并扩展了大量功能，例如窗口函数、递归查询、CTE（公用表表达式）等。
+6. 扩展性强：
+	1. 支持用户定义的函数（UDF）、操作符、索引类型。
+	2. 支持扩展模块（如 PostGIS、TimescaleDB）以增强功能。
+7. 事务支持和并发控制：
+	1. 提供强大的事务支持，允许使用 BEGIN、COMMIT、ROLLBACK 等控制事务。
+	2. 使用多版本并发控制（MVCC），实现高效的并发性能而无需锁定读取。
+8. 复制和高可用性：
+	1. 支持逻辑复制和流复制，适合主从同步或异步架构。
+	2. 可与第三方工具（如 Patroni、PgBouncer、Pgpool-II）搭配实现高可用性和负载均衡。
+9. JSON 支持：支持存储和操作 JSON 格式的数据，并提供高效的索引（JSONB）。
+10. 地理信息支持（PostGIS 扩展）：是处理地理空间数据的最佳数据库之一。
+11. 存储过程语言支持：支持多种存储过程语言：PL/pgSQL、PL/Python、PL/Perl、PL/Tcl 等。
+
+### ②、PostgreSQL 的核心架构
+
+1. 存储和 MVCC：
+	1. PostgreSQL 使用 MVCC（多版本并发控制）来管理事务，使得读取不会阻塞写入，反之亦然。
+	2. 支持事务隔离级别（如 READ COMMITTED 和 SERIALIZABLE）。
+2. 支持多种索引类型：
+	1. B-Tree（默认）
+	2. GIN（适合全文搜索）
+	3. GiST（支持地理数据）
+	4. BRIN（适合大表扫描）
+	5. 可以根据需求选择最适合的索引类型。
+4. 复制和分片：
+	1. 支持多种复制方式：
+		1. 流复制：主从同步或异步复制。
+		2. 逻辑复制：支持特定表或数据库的复制。
+	2. 通过分片扩展（如 Citus）实现分布式存储和查询。
+5. 数据存储模型：数据文件存储在磁盘上，事务日志（WAL）用于数据恢复和复制。
+
+### ③、PostgreSQL 的主要用途
+
+1. Web 应用程序后端：许多 Web 应用选择 PostgreSQL 作为其核心数据库，尤其是需要复杂查询和高性能的场景。
+2. 数据分析：
+	1. 使用窗口函数、CTE 和聚合函数，PostgreSQL 能够执行复杂的分析任务。
+	2. 搭配 TimescaleDB 可用于时序数据分析。
+3. JSON 数据存储：通过 JSON/JSONB 支持，适合处理半结构化数据或与 NoSQL 数据库竞争。
+4. 地理信息系统（GIS）：搭配 PostGIS 扩展，可以处理复杂的地理空间数据。
+5. 大规模分布式系统：通过扩展（如 Citus、Patroni）支持水平扩展和高可用性。
+
+### ④、PostgreSQL 与其他数据库对比
+
+| 特性             | PostgreSQL               | MySQL                   | MongoDB                  |
+|------------------|--------------------------|-------------------------|--------------------------|
+| **开源协议**    | PostgreSQL License       | GPL                     | SSPL                    |
+| **SQL 支持**    | 完整支持 SQL 标准        | 支持大部分 SQL          | 部分 SQL 支持            |
+| **事务支持**    | 完整 ACID 支持           | InnoDB 引擎支持 ACID    | 无事务（非关系型数据库） |
+| **JSON 支持**   | 强（JSONB 高效存储与索引）| 有限制                  | 专为 JSON 数据设计       |
+| **扩展性**      | 极高                     | 较低                    | 中等                     |
+| **复杂查询性能**| 强                       | 中等                    | 较差（适合简单查询）     |
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置和数据目录：`/home/docker/docker/volumes/postgresql/data`
+	2. 日志目录：`/home/docker/docker/volumes/postgresql/logs`
+2. 使用 docker 部署：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `-p`：指定端口映射
+	3. `-e`：设置环境变量
+		1. `POSTGRES_USER`：指定 PostgreSQL 容器初始化时创建的超级用户（superuser），这个用户具有与默认的 postgres 超级用户相同的权限，因此可以执行几乎所有的数据库管理操作
+		2. `POSTGRES_PASSWORD`：超级用户对应的密码
+	4. `-v`：指定挂载目录
+	5. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+
+```shell
+docker run -d \
+-p 5432:5432 \
+-e POSTGRES_USER=admin \
+-e POSTGRES_PASSWORD=123456 \
+-v /home/docker/docker/volumes/postgresql/data:/var/lib/postgresql/data \
+-v /home/docker/docker/volumes/postgresql/logs:/var/log/postgresql \
+--restart=unless-stopped \
+--name code-postgres \
+postgres:latest
+```
+
+## 3、访问
+
+1. 我这里使用 heidisql 进行连接，其他不再做说明，这里要注意一下<font color="#00b0f0">蓝色箭头</font>数据库这里
+2. 使用 heidisql 连接 postgres 时，每次只能连接一个数据库，如果不指定数据库名称，默认连接到 `postgres` 数据库，想要连接到其他数据库，这里一定要指定一个数据库的名，比如：`test`
+
+![](attachments/Pasted%20image%2020250121105335.png)
+
+2. 连接进去后，可以使用以下命令查询当前连接的数据库名称，确定是不是想要连接的数据库
+
+```sql
+SELECT current_database();
+```
+
+3. 在 heidisql 中，新创建的数据库时不会显示的，只能在连接数据库时选择新建的数据库，可以使用以下命令查询 PostgreSQL 中所有数据库的名称
+
+```sql
+SELECT datname FROM pg_database;
+```
+
+4. 可以使用以下命令建一个新的架构：
+
+```sql
+CREATE SCHEMA schema_name;
+```
+
+5. 不想使用命令，也可以使用 idea 自带的数据库管理工具来创建：
+
+![](attachments/Pasted%20image%2020250121105443.png)
+
+## 4、从 mysql 迁移到 postgres
+
+1. 使用的工具为 pgloader，使用 docker 的方式
+2. 在宿主机创建目录：
+	1. 迁移脚本目录：`/home/docker/docker/volumes/pgloader/config`
+3. 在 `/home/docker/docker/volumes/pgloader/config` 中创建脚本文件 `load_command.load`，并输入以下内容：
+	1. 可设置多组，在最后追加即可
+
+```sql
+LOAD DATABASE
+	-- 从 MySQL 数据库中导入数据
+    -- 该语句定义了数据源为 MySQL 数据库，其中包括用户、密码、主机和数据库名称
+    FROM mysql://mysql_user:mysql_password@mysql_host/nextcloud
+
+    -- 将数据导入到 PostgreSQL 数据库
+    -- 定义目标数据库为 PostgreSQL，目标数据库信息包括用户、密码、主机和数据库名称
+    INTO postgresql://postgre_user:postgre_password@postgre_host/yan
+
+-- 指定导入操作的一些选项
+WITH 
+    -- 包括丢弃现有数据库的结构（如表、索引等），以确保新的数据结构能完全匹配源数据库
+    include drop, 
+    -- 创建表结构，将源数据库中的表结构复制到目标数据库中
+    create tables, 
+    -- 不截断表，这表示不会清空现有表中的数据
+    no truncate,
+    -- 创建表时一并创建对应的索引，以提升查询性能
+    create indexes, 
+    -- 重置序列，确保主键序列等能正确从导入的数据中继续
+    reset sequences, 
+    -- 在目标数据库中创建外键约束，以确保数据完整性
+    foreign keys
+
+-- 设置数据库导入时的内存使用参数
+SET 
+    -- 设置用于排序操作的内存大小（如索引创建等），此处设置为 16MB
+    work_mem to '16MB', 
+    -- 设置维护任务（如索引重建、分析）的内存大小，此处设置为 512MB
+    maintenance_work_mem to '512 MB';
+```
+
+4. 使用 docker 部署：
+	1. `--rm`：在容器运行结束后自动删除容器
+	2. `-v`：指定挂载目录，使其可以执行迁移脚本
+	3. `pgloader /pgloader/load_command.load`：在容器启动后，执行该迁移脚本
+
+```shell
+docker run --rm \
+-v /home/docker/docker/volumes/pgloader/config:/pgloader \
+--name pgloader \
+dimitri/pgloader \
+pgloader /pgloader/load_command.load
+```
+
+5. 执行成功的情况：
+
+```shell
+docker@yuehai:~/docker/volumes/pgloader/config$ docker run --rm -v /home/docker/docker/volumes/pgloader/config:/pgloader --name pgloader dimitri/pgloader pgloader /pgloader/load_command.load
+2025-01-21T02:42:07.008000Z LOG pgloader version "3.6.7~devel"
+2025-01-21T02:42:07.012000Z LOG Data errors in '/tmp/pgloader/'
+2025-01-21T02:42:07.012000Z LOG Parsing commands from file #P"/pgloader/load_command.load"
+2025-01-21T02:42:07.112005Z LOG Migrating from #<MYSQL-CONNECTION mysql://
+2025-01-21T02:42:07.112005Z LOG Migrating into #<PGSQL-CONNECTION pgsql://
+2025-01-21T02:42:08.608060Z LOG report summary reset
+                              table name     errors       rows      bytes      total time
+----------------------------------------  ---------  ---------  ---------  --------------
+                         fetch meta data          0         37                     0.216s
+                          Create Schemas          0          0                     0.004s
+                        Create SQL Types          0          0                     0.008s
+                           Create tables          0         24                     0.080s
+                          Set Table OIDs          0         12                     0.008s
+----------------------------------------  ---------  ---------  ---------  --------------
+     y_chat_nacos_config.his_config_info          0         21    13.5 kB          0.124s
+         y_chat_nacos_config.config_info          0         14     9.6 kB          0.116s
+               y_chat_nacos_config.roles          0          4     0.1 kB          0.088s
+         y_chat_nacos_config.permissions          0          4     0.2 kB          0.120s
+               y_chat_nacos_config.users          0          4     0.3 kB          0.096s
+         y_chat_nacos_config.tenant_info          0          4     0.5 kB          0.084s
+    y_chat_nacos_config.config_info_aggr          0          0                     0.240s
+    y_chat_nacos_config.config_info_beta          0          0                     0.112s
+y_chat_nacos_config.config_tags_relation          0          0                     0.100s
+     y_chat_nacos_config.tenant_capacity          0          0                     0.120s
+     y_chat_nacos_config.config_info_tag          0          0                     0.088s
+      y_chat_nacos_config.group_capacity          0          0                     0.088s
+----------------------------------------  ---------  ---------  ---------  --------------
+                 COPY Threads Completion          0          4                     0.644s
+                          Create Indexes          0         25                     0.236s
+                  Index Build Completion          0         25                     0.052s
+                         Reset Sequences          0          9                     0.048s
+                            Primary Keys          0         10                     0.024s
+                     Create Foreign Keys          0          0                     0.000s
+                         Create Triggers          0          0                     0.004s
+                        Install Comments          0         88                     0.248s
+----------------------------------------  ---------  ---------  ---------  --------------
+                       Total import time          ✓         51    24.1 kB          1.256s
+docker@yuehai:~/docker/volumes/pgloader/config$ 
+```
+
+6. 如果有报错，继续往下看
+
+### ①、Condition QMYND:MYSQL-UNSUPPORTED-AUTHENTICATION was signalled.
+
+#### Ⅰ、报错现象
+
+```shell
+docker@yuehai:~/docker/volumes/pgloader/config$ docker run --rm -v /home/docker/docker/volumes/pgloader/config:/pgloader --name pgloader dimitri/pgloader pgloader /pgloader/load_command.cmd
+2025-01-21T01:40:56.012000Z LOG pgloader version "3.6.7~devel"
+2025-01-21T01:40:56.096003Z LOG Migrating from #<MYSQL-CONNECTION mysql://
+2025-01-21T01:40:56.096003Z LOG Migrating into #<PGSQL-CONNECTION pgsql://
+2025-01-21T01:40:56.316011Z ERROR mysql: Failed to connect to mysql at "127.0.0.1" (port 3306) as user "admin": Condition QMYND:MYSQL-UNSUPPORTED-AUTHENTICATION was signalled.
+2025-01-21T01:40:56.316011Z LOG report summary reset
+       table name     errors       rows      bytes      total time
+-----------------  ---------  ---------  ---------  --------------
+  fetch meta data          0          0                     0.000s
+-----------------  ---------  ---------  ---------  --------------
+-----------------  ---------  ---------  ---------  --------------
+docker@yuehai:~/docker/volumes/pgloader/config$
+```
+
+#### Ⅱ、原因
+
+1. pgloader 不支持 caching_sha2_password 的连接方式，修改 mysql 即可
+
+#### Ⅲ、解决
+
+1. 在 mysql 的配置文件 `/etc/my.cnf` 中增加：
+
+```shell
+default-authentication-plugin=mysql_native_password
+```
+
+2. 修改完毕后，重启 mysql 即可
+
+### ②、
+
+# 四、openJdk 21
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
 	1. 配置目录：`/home/docker/docker/volumes/openjdk/jar/00_TEST/`
@@ -346,7 +607,7 @@ java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
 
 4. 访问接口测试
 
-# 四、使用 shell 脚本执行多个 jar 程序
+# 五、使用 shell 脚本执行多个 jar 程序
 
 1. 准备 jar 程序：
 	1. springboot 测试包：`TEST-0.0.1-SNAPSHOT.jar`，请对应修改名称
@@ -423,7 +684,7 @@ openjdk:21 \
 
 5. 访问接口测试
 
-# 五、使用 Docker-compose 容器编排执行多个 jar 程序
+# 六、使用 Docker-compose 容器编排执行多个 jar 程序
 
 1. 准备 jar 程序：
 	1. springboot 测试包：`TEST-0.0.1-SNAPSHOT.jar`，请对应修改名称
@@ -496,7 +757,7 @@ docker@yuehai:~/docker/volumes/openjdk$
 6. 访问接口测试
 7. 这种方式感觉好麻烦
 
-# 六、consul 分布式系统的服务发现和配置
+# 七、consul 分布式系统的服务发现和配置
 
 ## 1、介绍
 
@@ -772,8 +1033,6 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
     }
 ]
 ```
-
-# 七、
 
 # 八、
 
