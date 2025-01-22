@@ -1,215 +1,30 @@
-# 一、购买服务器
+# 一、游戏服务器信息
 
-1. ~~推荐阿里云学生机~~
-2. 阿里云新用户优惠网址：https://www.aliyun.com/minisite/goods
-3. 选择轻量型服务器，1 核 2G 就可以，2 核 2G 更好
-    - 地域：随意
-    - 镜像类型：系统镜像
-    - 系统镜像：Ubuntu 22.04（或 Ubuntu 的其他版本）
-4. 付款
+1. 端口号：`25565`
+2. 不需要通过 SteamCmd 进行下载
+3. 首先进行：[服务器设置](游戏服务器购买和设置.md)
 
-# 二、设置服务器
+# 二、环境配置
 
-## 1、重置密码
-
-1. 进入云服务器 ECS 后，点击实例 ID
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093536.png)
-
-2. 点击实例 ID 后，会进入实例详情，点击重置密码
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093423.png)
-
-3. 输入想要设置的密码，点击确定
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093648.png)
-
-## 2、在云服务器网站中进行防火墙设置
-
-1. 在实例详情中，点击安全组。然后点击管理规则
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093923.png)
-
-2. 进入后点击手动添加，下方会出现设置
-	1. 授权策略：`允许`
-	2. 优先级：`1`；1 为最高优先级
-	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `25565`
-	5. 授权对象：`0.0.0.0/0`
-	6. 描述：随意
-	7. 操作：上面的都设置好后，点击保存
-
-![|600](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094029.png)
-
-5. 在云服务器网站中进行防火墙设置完成
-
-## 3、在命令行中进行防火墙设置
-
-1. 在概览中点击远程连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092751.png)
-
-2. 在弹出来的窗口中点击通过 Workbench 远程连接
-
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092854.png)
-
-3. 可以选择密码认证，然后输入刚才设置的密码；也可以选择进士 SSH 密钥认证；点击确定进行连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094251.png)
-
-3. 连接成功后，执行以下命令开放端口：
-
-```shell
-sudo ufw allow from any to any port 25565 proto
-```
-
-# 三、设置 SWAP 分区
-
-> 1. 由于 ECS 云服务器镜像安装好像是没有给系统分配软件交换分区 Swap 的，所以这里我们需要手动分配一下，以免我们的游戏在挂机在服务器途中突然关闭。
-> 2. 这里提一下 vi 编辑器的基本用法：进入文本后按键盘上的 `i` 键开始编辑，按 `esc` 退出编辑，上下左右移动光标，输入 `:wq` 保存并退出。
-> 3. 有 nano 也可以使用 nano，ctrl + S 保存，ctrl + X 退出
-
-1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
-
-```shell
-free -m
-```
-
-2. 删除原来的 Swap 分区
-
-```shell
-swapoff -a
-```
-
-3. 新增 SWAP 分区（一般是物理内存的 2 倍）
-
-```shell
-dd if=/dev/zero of=/root/swapfile bs=1M count=8192
-```
-
-4. 格式化交换分区文件
-
-```shell
-mkswap /root/swapfile
-```
-
-5. 启用 swap 分区文件
-
-```shell
-swapon /root/swapfile
-```
-
-6. 添加开机启动，打开 fstab
-
-```shell
-vi /etc/fstab
-```
-
-7. 在众多的文本最后添加一行
-
-```shell
-/root/swapfile swap swap defaults 0 0
-```
-
-8. 退出编辑，按一下 <font color="#dd0000">Esc</font>，然后退出
-
-```shell
-:wq
-```
-
-9. 重启下是否生效
-
-```shell
-reboot
-```
-
-10. 重启后输入指令查看下SWAP是否增加
-
-```shell
-free -m
-```
-
-# 四、创建用户，下载游戏服务器
-
-1. 创建用户 steam，根据提示设置密码：
-
-```shell
-adduser steam
-```
-
-2. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
-
-```shell
-su steam & cd ~
-```
-
-3. 在根目录下创建 `game/Minecraft` 目录，仅是为了方便管理
-
-```shell
-mkdir -p game/Minecraft
-```
-
-4. 进入 `game/Minecraft` 文件夹
-
-```shell
-cd game/Minecraft
-```
-
-5. 下载 Minecraft；MC 服务端核心分为官方版本和其他版本，下面是部分服务端下载链接：
-	1. 官方服务端：https://minecraft.net/zh-hans/download/server/
-	2. 官方服务端：https://mcversions.net/
-	3. papermc服务端：https://papermc.io/downloads
-	4. spigot服务端：https://hub.spigotmc.org/jenkins/job/BuildTools/
-	5. sponge服务端：https://www.spongepowered.org/
-6. 这里使用 papermc 服务端，访问 papermc 官网，选择版本下载；此处以 `1.20.1` 版本进行演示
-	1. paper-1.20.1-196 版本下载：[paper-1.20.1-196.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fpaper-1.20.1-196.jar)
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240226163637.png)
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227090220.png)
-
-7. 将上面下载的文件上传到 `/home/steam/game/Minecraft` 目录中，此时该目录只有 `paper-1.20.1-196.jar` 这一个文件
-8. 赋予权限：
-
-```shell
-chmod 755 paper-1.20.1-196.jar
-```
-
-# 五、环境配置
-
-## 1、安装远程管理工具 screen
-
-1. 更新软件源
-
-```shell
-sudo apt update
-```
-
-2. 安装远程管理工具 screen，需使用 root 用户
-
-```shell
-apt install -y screen
-```
-
-## 2、使用包管理器安装 java
+## 1、使用包管理器安装 java
 
 1. 使用包管理器安装 java，需使用 root 用户：
 
 ```shell
 # 更新包索引：
-sudo apt update
+apt update
 
 # 安装特定版本的 OpenJDK，例如 OpenJDK 8：
-sudo apt install openjdk-8-jdk
+apt install openjdk-8-jdk
 
 # 安装特定版本的 OpenJDK，例如 OpenJDK 11：
-sudo apt install openjdk-11-jdk
+apt install openjdk-11-jdk
 
 # 安装特定版本的 OpenJDK，例如 OpenJDK 17：
-sudo apt install openjdk-17-jdk
+apt install openjdk-17-jdk
 ```
 
-## 3、手动配置 java 环境
+## 2、手动配置 java 环境
 
 ### ①、从 oracle 下载
 
@@ -224,10 +39,10 @@ sudo apt install openjdk-17-jdk
 ### ②、本地下载
 
 1. java 21 压缩包下载：[jdk-21_linux-x64_bin.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fjdk-21_linux-x64_bin.zip)
-2. 解压缩后重新压缩为单个 zip 文件 `jdk-21_linux-x64_bin.zip`，传到服务器目录：`/home/steam/IDE/Java/JDK/`
+2. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
 3. 解压缩：`unzip jdk-21_linux-x64_bin.zip`
 
-## 4、配置 jdk 环境变量
+### ③、配置 jdk 环境变量
 
 1. 打开 `~/.bashrc` 文件进行编辑
 
@@ -247,7 +62,7 @@ export PATH=/home/steam/IDE/Java/JDK/jdk-21.0.2/bin:$PATH
 source ~/.bashrc
 ```
 
-4. 查看配置是否生效：
+## 3、查看 jdk 配置是否生效：
 
 ```shell
 java -version
@@ -269,6 +84,46 @@ Java HotSpot(TM) 64-Bit Server VM (build 21.0.2+13-LTS-58, mixed mode, sharing)
 | 1.7.10 ~ 1.16.5 | java 8 及以上 |
 | 1.17 | java 16 及以上 |
 | 1.18 ~ 1.19 | java 17 及以上 |
+
+# 三、下载游戏服务器
+
+1. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
+
+```shell
+su steam & cd ~
+```
+
+2. 在根目录下创建 `game/Minecraft` 目录，仅是为了方便管理
+
+```shell
+mkdir -p game/Minecraft
+```
+
+3. 进入 `game/Minecraft` 文件夹
+
+```shell
+cd game/Minecraft
+```
+
+4. 下载 Minecraft；MC 服务端核心分为官方版本和其他版本，下面是部分服务端下载链接：
+	1. 官方服务端：https://minecraft.net/zh-hans/download/server/
+	2. 官方服务端：https://mcversions.net/
+	3. papermc服务端：https://papermc.io/downloads
+	4. spigot服务端：https://hub.spigotmc.org/jenkins/job/BuildTools/
+	5. sponge服务端：https://www.spongepowered.org/
+5. 这里使用 papermc 服务端，访问 papermc 官网，选择版本下载；此处以 `1.20.1` 版本进行演示
+	1. paper-1.20.1-196 版本下载：[paper-1.20.1-196.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fpaper-1.20.1-196.jar)
+
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240226163637.png)
+
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227090220.png)
+
+7. 将上面下载的文件上传到 `/home/steam/game/Minecraft` 目录中，此时该目录只有 `paper-1.20.1-196.jar` 这一个文件
+8. 赋予权限：
+
+```shell
+chmod 755 paper-1.20.1-196.jar
+```
 
 # 六、启动游戏服务器
 
@@ -479,7 +334,7 @@ touch minecraft_server_backup.sh
 touch minecraft_server.log
 ```
 
-3. 编写自动关服脚本代码：`nano minecraft_server_backup.sh`
+3. 编写自动备份存档脚本代码：`nano minecraft_server_backup.sh`
 
 ```shell
 #!/bin/bash
@@ -784,8 +639,6 @@ motd=A Minecraft Server
 enable-rcon=false 
 ```
 
-## 3、
-
 # 十、管理服务器
 
 ## 1、指令
@@ -794,8 +647,6 @@ enable-rcon=false
 
 1. 服务端指令前不需要加 `/`
 2. 客户端按 `t` 打开聊天框，指令前需要加 `/`
-
-## 2、
 
 # 十一、客户端启动器
 
@@ -816,8 +667,6 @@ enable-rcon=false
 	4. 支持mod管理
 	5. 支持界面主题定制、整合包制作
 
-![|525](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102057.png)
-
 ### ②、PCL2 Plain Craft Launcher 2 启动器
 
 1. 下载地址：https://afdian.net/p/0164034c016c11ebafcb52540025c377
@@ -827,8 +676,6 @@ enable-rcon=false
 	2. 极速，多下载源
 	3. Forge安装
 	4. 自定义主题
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102113.png)
 
 ### ③、BMCLNG 启动器
 
@@ -844,12 +691,6 @@ enable-rcon=false
 10. Mojang推送了第一个编译起的全部版本，BMCL全部支持
 11. 带有第二下载源。不怕碰到官方下载源被限流
 
-![|475](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102125.png)
-
-![|472](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102132.png)
-
-![|468](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102139.png)
-
 ### ④、BakaXL 启动器
 
 1. 下载地址：https://www.minecraftzw.com/20070.html
@@ -863,12 +704,6 @@ enable-rcon=false
 9. 将您的风格分享给世界，不光配色和背景要有型，背景音乐也得给安排上。
 10. 这个主题系统，没有那么多麻烦。使用、创建及分享BakaXL的主题并无任何门槛，也无需任何额外支出或版本即可享受全部功能。任何人都可以创建属于自己的BakaXL主题，并分享给自己的好友。因为我们相信，好东西应该人人都有份。
 
-![|642](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102204.png)
-
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102211.png)
-
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102219.png)
-
 ### ⑤、燕子启动器
 
 1. 下载地址：https://www.minecraftzw.com/20067.html
@@ -881,20 +716,10 @@ enable-rcon=false
 8. 此功能可一键生成附属软件，下一次畅玩游戏时只需双击生成的软件即可。
 9. 三个“多”：支持多账号，多版本，多验证，让你游戏体验无烦恼！
 
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102329.png)
-
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102339.png)
-
 ### ⑥、MSS2 启动器
 
 1. 下载地址：https://www.minecraftzw.com/20062.html
 2. MSS2启动器可以让玩家轻松创建你自己的MC服务器，让MC开服不在会是难题，变得轻而易举
-
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102408.png)
-
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102413.png)
-
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227102420.png)
 
 ## 3、HMCL 启动器使用
 

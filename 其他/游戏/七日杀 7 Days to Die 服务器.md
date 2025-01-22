@@ -1,71 +1,6 @@
-# 一、购买服务器
+# 一、游戏服务器信息
 
-1. ~~推荐阿里云学生机~~
-2. 阿里云新用户优惠网址：https://www.aliyun.com/minisite/goods
-3. 选择轻量型服务器，2 核 4G 可以勉强使用
-    - 地域：随意
-    - 镜像类型：系统镜像
-    - 系统镜像：Ubuntu 22.04（或 Ubuntu 的其他版本）
-4. 付款
-
-# 二、设置服务器
-
-## 1、重置密码
-
-1. 进入云服务器 ECS 后，点击实例 ID
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093536.png)
-
-2. 点击实例 ID 后，会进入实例详情，点击重置密码
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093423.png)
-
-3. 输入想要设置的密码，点击确定
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093648.png)
-
-## 2、在云服务器网站中进行防火墙设置
-
-1. 在实例详情中，点击安全组。然后点击管理规则
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093923.png)
-
-2. 进入后点击手动添加，下方会出现设置
-	1. 授权策略：`允许`
-	2. 优先级：`1`；1 为最高优先级
-	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `29600`、`29602`
-	5. 授权对象：`0.0.0.0/0`
-	6. 描述：随意
-	7. 操作：上面的都设置好后，点击保存
-
-![|600](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094029.png)
-
-5. 在云服务器网站中进行防火墙设置完成
-
-## 3、在命令行中进行防火墙设置
-
-1. 在概览中点击远程连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092751.png)
-
-2. 在弹出来的窗口中点击通过 Workbench 远程连接
-
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092854.png)
-
-3. 可以选择密码认证，然后输入刚才设置的密码；也可以选择进士 SSH 密钥认证；点击确定进行连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094251.png)
-
-3. 连接成功后，执行以下命令开放端口：
-
-```shell
-sudo ufw allow from any to any port 26900 proto tcp
-
-sudo ufw allow from any to any port 26902 proto tcp
-```
-
-## 4、游戏端口说明
+1. 端口号：`29600`、`29602`，游戏端口说明：
 
 | 端口        | 协议 | 说明                                           |
 | ----------- | ---- | ---------------------------------------------- |
@@ -74,134 +9,24 @@ sudo ufw allow from any to any port 26902 proto tcp
 | 8082        | TCP  | 如果安装了 Alloc 的 mods，这个端口可以展示地图 |
 | 26900/26902 | UDP  | 客户端通讯                                               |
 
-# 三、设置 SWAP 分区
+2. 需要通过 SteamCmd 进行下载
+3. 首先进行：[服务器设置](游戏服务器购买和设置.md)
 
-> 1. 由于 ECS 云服务器镜像安装好像是没有给系统分配软件交换分区 Swap 的，所以这里我们需要手动分配一下，以免我们的游戏在挂机在服务器途中突然关闭。
-> 2. 这里提一下 vi 编辑器的基本用法：进入文本后按键盘上的 `i` 键开始编辑，按 `esc` 退出编辑，上下左右移动光标，输入 `:wq` 保存并退出。
-> 3. 有 nano 也可以使用 nano，ctrl + S 保存，ctrl + X 退出
+# 二、下载游戏服务器
 
-1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
-
-```shell
-free -m
-```
-
-2. 删除原来的 Swap 分区
+1. 进入 steam 用户，再进入 `steamcmd` 目录
 
 ```shell
-swapoff -a
+su steam && cd ~ && cd steamcmd
 ```
 
-3. 新增 SWAP 分区（一般是物理内存的 2 倍）
+2. 启动 SteamCMD，以 `Steam>` 开头的就代表进入了 SteamCMD
 
 ```shell
-dd if=/dev/zero of=/root/swapfile bs=1M count=8192
-```
-
-4. 格式化交换分区文件
-
-```shell
-mkswap /root/swapfile
-```
-
-5. 启用 swap 分区文件
-
-```shell
-swapon /root/swapfile
-```
-
-6. 添加开机启动，打开 fstab
-
-```shell
-vi /etc/fstab
-```
-
-7. 在众多的文本最后添加一行
-
-```shell
-/root/swapfile swap swap defaults 0 0
-```
-
-8. 退出编辑，按一下 <font color="#dd0000">Esc</font>，然后退出
-
-```shell
-:wq
-```
-
-9. 重启下是否生效
-
-```shell
-reboot
-```
-
-10. 重启后输入指令查看下SWAP是否增加
-
-```shell
-free -m
-```
-
-# 四、环境配置
-
-1. 更新软件源
-
-```shell
-sudo apt update
-```
-
-2. 安装远程管理工具 screen
-
-```shell
-apt install -y screen
-```
-
-3. 安装 SteamCmd 运行所需环境
-
-```shell
-# 这些操作要在 root 中进行，根据你的系统选择不同指令。
-
-# Ubuntu/Debian 64 位
-apt -y install lib32gcc-s1
-
-# RedHat/CentOS 32 位
-yum -y install glibc libstdc++
-
-# RedHat/CentOS 64 位
-yum -y install glibc.i686 libstdc++.i686
-```
-
-# 五、创建用户，下载游戏服务器
-
-1. 创建用户 steam，设置密码
-
-```bash
-adduser steam
-```
-   
-2. 进入 steam 用户，创建 `steamcmd` 文件夹，再进入 `steamcmd` 目录
-
-```bash
-su steam && cd ~ && mkdir steamcmd && cd steamcmd
-```
-
-3. 下载 steamcmd
-
-```bash
-wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
-```
-
-4. 解压 steamcmd
-
-```bash
-tar -zxvf steamcmd_linux.tar.gz
-```
-
-5. 启动 SteamCMD，以 `Steam>` 开头的就代表进入了 SteamCMD
-
-```bash
 ./steamcmd.sh
 ```
    
-```
+```shell
 Redirecting stderr to '/root/Steam/logs/stderr.txt'
 [  0%] Checking for available updates...
 [----] Verifying installation...
@@ -212,32 +37,32 @@ Loading Steam API...OK
 Steam>
 ```
 
-6. 匿名登录 steam
+3. 匿名登录 steam
 	1. 若是想自定义下载目录，需在登陆前设置：`force_install_dir /home/steam/game/7DaysToDieServer`
 
-```bash
+```shell
 login anonymous
 ```
 
-7. 下载七日杀，更新游戏时同样使用此命令
+4. 下载七日杀，更新游戏时同样使用此命令
  
-```bash
+```shell
 app_update 294420 validate
 ```
 
-8. 等待下载完后输入 quit 或者 （ctrl + c） 退出 SteamCMD，至此服务器已经下载好了，接下来就是配置服务器
+5. 等待下载完后输入 quit 或者 （ctrl + c） 退出 SteamCMD，至此服务器已经下载好了，接下来就是配置服务器
 
-# 六、使用 screen 后台运行服务器
+# 三、使用 screen 后台运行服务器
 
 1. 进入七日杀服务端根目录
 
-```bash
+```shell
 cd "/home/steam/Steam/steamapps/common/7 Days to Die Dedicated Server/"
 ```
 
 2. 启动服务器；按 `Ctrl + a + d` 可退出终端
 
-```bash
+```shell
 screen -S 7DaysServer
 
 ./startserver.sh -configfile=serverconfig.xml
@@ -245,23 +70,23 @@ screen -S 7DaysServer
 
 3. 获取 screen 列表，会有一个 `XXX.7DaysServer` 的进程
  
-```
+```shell
 screen -ls
 ```
 
 4. 输入进程名字即可进入终端
 
-```
+```shell
 screen -r XXX
 ```
 
 5. 结束进程
  
-```
+```shell
 screen -S XXX -X quit
 ```
 
-# 七、文件和参数说明
+# 四、文件和参数说明
 
 ## 1、重要路径和文件
 
@@ -501,7 +326,7 @@ screen -S XXX -X quit
 </ServerSettings>
 ```
 
-# 八、管理服务器
+# 五、管理服务器
 
 1. 在服务器中安装 telnet。（也可以用 Xshell 的远程 telnet 连接，这里不做赘述）
 

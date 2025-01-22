@@ -1,210 +1,30 @@
-# 一、购买服务器
+# 一、游戏服务器信息
 
-1. ~~推荐阿里云学生机~~
-2. 阿里云新用户优惠网址：https://www.aliyun.com/minisite/goods
-3. 选择轻量型服务器，1 核 2G 就可以，2 核 2G 更好
-    - 地域：随意
-    - 镜像类型：系统镜像
-    - 系统镜像：Ubuntu 22.04（或 Ubuntu 的其他版本）
-4. 付款
+1. 端口号：`25565`
+2. 不需要通过 SteamCmd 进行下载
+3. 首先进行：[服务器设置](游戏服务器购买和设置.md)
 
-# 二、设置服务器
+# 二、环境配置
 
-## 1、重置密码
-
-1. 进入云服务器 ECS 后，点击实例 ID
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093536.png)
-
-2. 点击实例 ID 后，会进入实例详情，点击重置密码
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093423.png)
-
-3. 输入想要设置的密码，点击确定
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093648.png)
-
-## 2、在云服务器网站中进行防火墙设置
-
-1. 在实例详情中，点击安全组。然后点击管理规则
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093923.png)
-
-2. 进入后点击手动添加，下方会出现设置
-	1. 授权策略：`允许`
-	2. 优先级：`1`；1 为最高优先级
-	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `25565`
-	5. 授权对象：`0.0.0.0/0`
-	6. 描述：随意
-	7. 操作：上面的都设置好后，点击保存
-
-![|600](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094029.png)
-
-5. 在云服务器网站中进行防火墙设置完成
-
-## 3、在命令行中进行防火墙设置
-
-1. 在概览中点击远程连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092751.png)
-
-2. 在弹出来的窗口中点击通过 Workbench 远程连接
-
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092854.png)
-
-3. 可以选择密码认证，然后输入刚才设置的密码；也可以选择进士 SSH 密钥认证；点击确定进行连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094251.png)
-
-3. 连接成功后，执行以下命令开放端口：
-
-```shell
-sudo ufw allow from any to any port 25565 proto
-```
-
-# 三、设置 SWAP 分区
-
-> 1. 由于 ECS 云服务器镜像安装好像是没有给系统分配软件交换分区 Swap 的，所以这里我们需要手动分配一下，以免我们的游戏在挂机在服务器途中突然关闭。
-> 2. 这里提一下 vi 编辑器的基本用法：进入文本后按键盘上的 `i` 键开始编辑，按 `esc` 退出编辑，上下左右移动光标，输入 `:wq` 保存并退出。
-> 3. 有 nano 也可以使用 nano，ctrl + S 保存，ctrl + X 退出
-
-1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
-
-```shell
-free -m
-```
-
-2. 删除原来的 Swap 分区
-
-```shell
-swapoff -a
-```
-
-3. 新增 SWAP 分区（一般是物理内存的 2 倍）
-
-```shell
-dd if=/dev/zero of=/root/swapfile bs=1M count=8192
-```
-
-4. 格式化交换分区文件
-
-```shell
-mkswap /root/swapfile
-```
-
-5. 启用 swap 分区文件
-
-```shell
-swapon /root/swapfile
-```
-
-6. 添加开机启动，打开 fstab
-
-```shell
-vi /etc/fstab
-```
-
-7. 在众多的文本最后添加一行
-
-```shell
-/root/swapfile swap swap defaults 0 0
-```
-
-8. 退出编辑，按一下 <font color="#dd0000">Esc</font>，然后退出
-
-```shell
-:wq
-```
-
-9. 重启下是否生效
-
-```shell
-reboot
-```
-
-10. 重启后输入指令查看下SWAP是否增加
-
-```shell
-free -m
-```
-
-# 四、创建用户，下载游戏服务器
-
-1. 创建用户 steam，根据提示设置密码：
-
-```shell
-adduser steam
-```
-
-2. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
-
-```shell
-su steam & cd ~
-```
-
-3. 在根目录下创建 `game/Minecraft-forge` 目录，仅是为了方便管理
-
-```shell
-mkdir -p game/Minecraft-forge
-```
-
-4. 进入 `game/Minecraft-forge` 文件夹
-
-```shell
-cd game/Minecraft-forge
-```
-
-5. 下载指定版本的 Forge：https://files.minecraftforge.net/net/minecraftforge/forge/
-	1. 此处以 `1.20.1` 版本进行演示
-	2. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fforge-1.20.1-47.2.0-installer.jar)
-
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227103945.png)
-
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227104008.png)
-
-6. 将上面下载的文件上传到 `/home/steam/game/Minecraft-forge` 目录中，此时该目录只有 `forge-1.20.1-47.2.0-installer.jar` 这一个文件
-7. 赋予权限：
-
-```shell
-chmod 755 forge-1.20.1-47.2.0-installer.jar
-```
-
-# 五、环境配置
-
-## 1、安装远程管理工具 screen
-
-1. 更新软件源
-
-```shell
-sudo apt update
-```
-
-2. 安装远程管理工具 screen，需使用 root 用户
-
-```shell
-apt install -y screen
-```
-
-## 2、使用包管理器安装 java
+## 1、使用包管理器安装 java
 
 1. 使用包管理器安装 java，需使用 root 用户：
 
 ```shell
 # 更新包索引：
-sudo apt update
+apt update
 
 # 安装特定版本的 OpenJDK，例如 OpenJDK 8：
-sudo apt install openjdk-8-jdk
+apt install openjdk-8-jdk
 
 # 安装特定版本的 OpenJDK，例如 OpenJDK 11：
-sudo apt install openjdk-11-jdk
+apt install openjdk-11-jdk
 
 # 安装特定版本的 OpenJDK，例如 OpenJDK 17：
-sudo apt install openjdk-17-jdk
+apt install openjdk-17-jdk
 ```
 
-## 3、手动配置 java 环境
+## 2、手动配置 java 环境
 
 ### ①、从 oracle 下载
 
@@ -219,10 +39,10 @@ sudo apt install openjdk-17-jdk
 ### ②、本地下载
 
 1. java 21 压缩包下载：[jdk-21_linux-x64_bin.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fjdk-21_linux-x64_bin.zip)
-2. 解压缩后重新压缩为单个 zip 文件 `jdk-21_linux-x64_bin.zip`，传到服务器目录：`/home/steam/IDE/Java/JDK/`
+2. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
 3. 解压缩：`unzip jdk-21_linux-x64_bin.zip`
 
-## 4、配置 jdk 环境变量
+### ③、配置 jdk 环境变量
 
 1. 打开 `~/.bashrc` 文件进行编辑
 
@@ -242,7 +62,7 @@ export PATH=/home/steam/IDE/Java/JDK/jdk-21.0.2/bin:$PATH
 source ~/.bashrc
 ```
 
-4. 查看配置是否生效：
+## 3、查看 jdk 配置是否生效：
 
 ```shell
 java -version
@@ -264,6 +84,41 @@ Java HotSpot(TM) 64-Bit Server VM (build 21.0.2+13-LTS-58, mixed mode, sharing)
 | 1.7.10 ~ 1.16.5 | java 8 及以上 |
 | 1.17 | java 16 及以上 |
 | 1.18 ~ 1.19 | java 17 及以上 |
+
+# 四、下载游戏服务器
+
+1. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
+
+```shell
+su steam & cd ~
+```
+
+2. 在根目录下创建 `game/Minecraft-forge` 目录，仅是为了方便管理
+
+```shell
+mkdir -p game/Minecraft-forge
+```
+
+3. 进入 `game/Minecraft-forge` 文件夹
+
+```shell
+cd game/Minecraft-forge
+```
+
+4. 下载指定版本的 Forge：https://files.minecraftforge.net/net/minecraftforge/forge/
+	1. 此处以 `1.20.1` 版本进行演示
+	2. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fforge-1.20.1-47.2.0-installer.jar)
+
+![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227103945.png)
+
+![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227104008.png)
+
+5. 将上面下载的文件上传到 `/home/steam/game/Minecraft-forge` 目录中，此时该目录只有 `forge-1.20.1-47.2.0-installer.jar` 这一个文件
+6. 赋予权限：
+
+```shell
+chmod 755 forge-1.20.1-47.2.0-installer.jar
+```
 
 # 六、启动游戏服务器
 
@@ -439,7 +294,7 @@ touch minecraft_server_backup.sh
 touch minecraft_server.log
 ```
 
-3. 编写自动关服脚本代码：`nano minecraft_server_backup.sh`
+3. 编写自动备份存档脚本代码：`nano minecraft_server_backup.sh`
 
 ```shell
 #!/bin/bash
@@ -755,8 +610,6 @@ white-list=false                   # 是否启用白名单。
 -Xmx16G
 ```
 
-## 4、
-
 # 十、服务器添加 mod
 
 > 首先在客户端下载和安装 mod，具体说明在十二节
@@ -774,7 +627,6 @@ white-list=false                   # 是否启用白名单。
 ![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305211909.png)
 
 4. 若是启动时报错，可能是因为这些 mod 中有客户端专属，而服务器不能安装的 mod，根据提示删除即可
-	1. 比如 `All the Mods 9 - ATM9` 整合包中的 `oculus-mc1.20.1-1.6.15a.jar` mod
 
 # 十一、管理服务器
 
@@ -796,14 +648,6 @@ white-list=false                   # 是否启用白名单。
 ```shell
 tp chenpi 100 64 100
 ```
-
-#### Ⅱ、
-
-#### Ⅲ、
-
-### ②、
-
-### ③、
 
 ## 2、客户端指令
 

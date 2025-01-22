@@ -1,227 +1,58 @@
-# 一、购买服务器
+# 一、游戏服务器信息
 
-1. ~~推荐阿里云学生机~~
-2. 阿里云新用户优惠网址：https://www.aliyun.com/minisite/goods
-3. 选择轻量型服务器，1 核 2G 就可以，2 核 2G 更好
-    - 地域：随意
-    - 镜像类型：系统镜像
-    - 系统镜像：Ubuntu 22.04（或 Ubuntu 的其他版本）
-4. 付款
+1. 端口号：`7777`
+2. 不需要通过 SteamCmd 进行下载
+3. 首先进行：[服务器设置](游戏服务器购买和设置.md)
 
-# 二、设置服务器
+# 二、创建用户，下载游戏服务器
 
-## 1、重置密码
-
-1. 进入云服务器 ECS 后，点击实例 ID
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093536.png)
-
-2. 点击实例 ID 后，会进入实例详情，点击重置密码
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093423.png)
-
-3. 输入想要设置的密码，点击确定
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093648.png)
-
-## 2、在云服务器网站中进行防火墙设置
-
-1. 在实例详情中，点击安全组。然后点击管理规则
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124093923.png)
-
-2. 进入后点击手动添加，下方会出现设置
-	1. 授权策略：`允许`
-	2. 优先级：`1`；1 为最高优先级
-	3. 协议类型：`自定义 TCP`，或者全部；若是选择了全部则代表开放了所有的端口，那么下面的端口范围无法选择
-	4. 端口范围：若是选择了全部则不需输入；若是选择的自定义 TCP，<font color="#ff0000">则输入游戏的端口号</font> `7777`
-	5. 授权对象：`0.0.0.0/0`
-	6. 描述：随意
-	7. 操作：上面的都设置好后，点击保存
-
-![|600](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094029.png)
-
-5. 在云服务器网站中进行防火墙设置完成
-
-## 3、在命令行中进行防火墙设置
-
-1. 在概览中点击远程连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092751.png)
-
-2. 在弹出来的窗口中点击通过 Workbench 远程连接
-
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124092854.png)
-
-3. 可以选择密码认证，然后输入刚才设置的密码；也可以选择进士 SSH 密钥认证；点击确定进行连接
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240124094251.png)
-
-3. 连接成功后，执行以下命令开放端口：
-
-```shell
-sudo ufw allow from any to any port 7777 proto tcp
-```
-
-# 三、设置 SWAP 分区
-
-> 1. 由于 ECS 云服务器镜像安装好像是没有给系统分配软件交换分区 Swap 的，所以这里我们需要手动分配一下，以免我们的游戏在挂机在服务器途中突然关闭。
-> 2. 这里提一下 vi 编辑器的基本用法：进入文本后按键盘上的 `i` 键开始编辑，按 `esc` 退出编辑，上下左右移动光标，输入 `:wq` 保存并退出。
-> 3. 有 nano 也可以使用 nano，ctrl + S 保存，ctrl + X 退出
-
-1. 查看 SWAP 设置了多少（有的话就不用进行下面的操作了，直接看第四节）
-
-```shell
-free -m
-```
-
-2. 删除原来的 Swap 分区
-
-```shell
-swapoff -a
-```
-
-3. 新增 SWAP 分区（一般是物理内存的 2 倍）
-
-```shell
-dd if=/dev/zero of=/root/swapfile bs=1M count=8192
-```
-
-4. 格式化交换分区文件
-
-```shell
-mkswap /root/swapfile
-```
-
-5. 启用 swap 分区文件
-
-```shell
-swapon /root/swapfile
-```
-
-6. 添加开机启动，打开 fstab
-
-```shell
-vi /etc/fstab
-```
-
-7. 在众多的文本最后添加一行
-
-```shell
-/root/swapfile swap swap defaults 0 0
-```
-
-8. 退出编辑，按一下 <font color="#dd0000">Esc</font>，然后退出
-
-```shell
-:wq
-```
-
-9. 重启下是否生效
-
-```shell
-reboot
-```
-
-10. 重启后输入指令查看下SWAP是否增加
-
-```shell
-free -m
-```
-
-# 四、环境配置
-
-1. 更新软件源
-
-```shell
-sudo apt update
-```
-
-2. 安装远程管理工具 screen
-
-```shell
-apt install -y screen
-```
-
-3. 安装 SteamCmd 运行所需环境
-
-```shell
-# 这些操作要在 root 中进行，根据你的系统选择不同指令。
-
-# Ubuntu/Debian 64 位
-apt -y install lib32gcc-s1
-
-# RedHat/CentOS 32 位
-yum -y install glibc libstdc++
-
-# RedHat/CentOS 64 位
-yum -y install glibc.i686 libstdc++.i686
-```
-
-4. 下载 dotnet 6.0.0，泰拉联机依赖 dotnet
-	1. 建议 Windows 下载后上传到 linux，因为 linux 下载太慢了：https://dotnet.microsoft.com/en-us/download/dotnet/6.0
-	2. 愿意等待的话，启动 tModLoader 服务器时会自动下载
-
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020230517084849.png)
-
-5. dotnet 6.0.418 下载：[dotnet-sdk-6.0.418-linux-x64.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fdotnet-sdk-6.0.418-linux-x64.tar.gz)
-
-# 五、创建用户，下载游戏服务器
-
-1. 创建用户 steam，根据提示设置密码：
-
-```shell
-adduser steam
-```
-
-2. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
+1. 登录普通用户 steam，根据提示输入密码，然后进入用户根目录
 
 ```shell
 su steam & cd ~
 ```
 
-3. 在根目录下创建 `game/TShock` 目录，仅是为了方便管理
+2. 在根目录下创建 `game/TShock` 目录，仅是为了方便管理
 
 ```shell
 mkdir -p game/TShock
 ```
 
-4. 进入 `game/TShock` 文件夹
+3. 进入 `game/TShock` 文件夹
 
 ```shell
 cd game/TShock
 ```
 
-5. 下载最新版本 5.2 的 TShock，Github 地址：https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip
+4. 下载 v5.2.0 版本的 TShock，Github 地址：https://github.com/Pryaxis/TShock/releases
 
 ```shell
 wget https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip
 ```
 
-6. 也可以本地下载后上传到 linux：
+5. 也可以本地下载后上传到 linux：
 	1. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
 	2. TShock 压缩包下载：[TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FTShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip)
-7. 创建与 TShock 版本对应的目录，仅是为了方便管理
+6. 创建与 TShock 版本对应的目录，仅是为了方便管理
 
 ```shell
 mkdir -p v5.2.0
 ```
 
-8. 将下载好的压缩包解压到 `v5.2.0` 目录，会得到打包文件 `TShock-Beta-linux-x64-Release.tar`
+7. 将下载好的压缩包解压到 `v5.2.0` 目录，会得到打包文件 `TShock-Beta-linux-x64-Release.tar`
 
 ```shell
 unzip TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip -d /home/steam/game/TShock/v5.2.0/
 ```
 
-9. 继续解压文件 `TShock-Beta-linux-x64-Release.tar`
+8. 继续解压文件 `TShock-Beta-linux-x64-Release.tar`
 
 ```shell
 tar -xvf TShock-Beta-linux-x64-Release.tar
 ```
 
-10. 将之前下载的 dotnet 6.0.0 上传到此目录；若是愿意等待的话，一会会自动下载
-11. 运行 `TShock.Installer` 文件，安装 dotnet 环境
-12. 下载成功后，会显示此页面：
+9. 运行 `TShock.Installer` 文件，自动安装 dotnet 环境
+10. 下载成功后，会显示此页面：
 
 ```shell
 TShock was improperly shut down. Please use the exit command in the future to prevent this.
@@ -240,12 +71,12 @@ d <number>      Delete World
 Choose World: 
 ```
 
-# 六、使用 screen 后台运行泰拉瑞亚服务器
+# 三、使用 screen 后台运行泰拉瑞亚服务器
 
-1. 输入命令创建终端，ttrts 为终端名称，可任意更改，输入完毕后会进入一个新的页面
+1. 输入命令创建终端，tShock 为终端名称，可任意更改，输入完毕后会进入一个新的页面
 
 ```shell
-screen -S ttrts
+screen -S tShock
 ```
 
 2. 启动服务器
@@ -350,7 +181,7 @@ Terraria Server v1.4.4.9
 Max players (press enter for 16): 
 ```
 
-11. 服务器端口号，默认7777，与前面开放端口设置的要相同，最好不要改，回车确认
+11. 服务器端口号，默认 7777，与前面开放端口设置的要相同，不要修改，回车确认
 
 ```shell
 Terraria Server v1.4.4.9
@@ -426,9 +257,9 @@ exit
 
 22. 按 `Ctrl + a + d` 可退出终端
 
-# 七、服务器查看关闭等
+# 四、服务器查看关闭等
 
-1. 获取 screen 列表，会有一个 <font color="#dd0000">XXX.ttrts</font> 的进程
+1. 获取 screen 列表，会有一个 <font color="#dd0000">XXX.tShock</font> 的进程
 
 ```shell
 screen -ls
@@ -437,16 +268,17 @@ screen -ls
 2. 输入进程名字即可进入终端
 
 ```shell
-screen -r XXX.ttrts
+screen -r XXX.tShock
 ```
 
 3. 结束进程
 
 ```shell
-screen -S XXX.ttrts -X quit
+screen -S XXX.tShock -X quit
 ```
 
-# 八、更改服务器配置
+# 五、更改服务器配置
+
 ## 1、基本配置文件，强制开荒与初始背包等
 
 1. 文件位置：`/home/steam/game/TShock/v5.2.0/tshock/sscconfig.json`
@@ -628,7 +460,7 @@ screen -S XXX.ttrts -X quit
 }
 ```
 
-# 九、服务器权限与指令
+# 六、服务器权限与指令
 
 ## 1、用户组权限
 
