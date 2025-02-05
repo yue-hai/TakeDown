@@ -589,17 +589,19 @@ default-authentication-plugin=mysql_native_password
 3. 使用 docker 部署：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `-p`：指定端口映射
-	3. `-v`：指定挂载目录
-	4. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	5. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器
-	6. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该命令，即启动指定 java 程序
+	3. `-e TZ=Asia/Shanghai`：指定时区：上海
+	4. `-v`：指定挂载目录
+	5. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+	6. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器
+	7. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该命令，即启动指定 java 程序
 	
 ```shell
 docker run -d \
 -p 8080:8080 \
+-e TZ=Asia/Shanghai \
 -v /home/docker/docker/volumes/openjdk/:/container/path \
 --privileged=true \
---restart=unless-stopped
+--restart=unless-stopped \
 --name code-java-test \
 openjdk:21 \
 java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
@@ -661,14 +663,16 @@ start_app "${main_path}/jar/00_TEST" \
 4. 启动容器：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
 	2. `-p`：指定端口映射
-	3. `-v`：指定挂载目录
-	4. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	5. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器
-	6. `/container/path/run_jar.sh`：容器启动时执行该命令，即执行指定脚本
+	3. `-e TZ=Asia/Shanghai`：指定时区
+	4. `-v`：指定挂载目录
+	5. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
+	6. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器
+	7. `/container/path/run_jar.sh`：容器启动时执行该命令，即执行指定脚本
 	
 ```shell
 docker run -d \
 -p 8080-8082:8080-8083 \
+-e TZ=Asia/Shanghai \
 -e NACOS_SERVER_ADDR="127.0.0.1:8848" \
 -e NACOS_NAMESPACE="******" \
 -e NACOS_USERNAME="nacos" \
@@ -718,6 +722,8 @@ services:
       - "/home/docker/docker/volumes/openjdk/:/container/path"
     # 设置全局变量；可指定多组
     environment:
+      # 指定时区
+	  - TZ=Asia/Shanghai
       # 10310 user y-chat springboot 后台数据服务器所需变量
 	  - NACOS_SERVER_ADDR="127.0.0.1:8848"
 	  - NACOS_NAMESPACE="******"
