@@ -2801,6 +2801,13 @@ export default [
 ]
 ```
 
+### ⑤、设置子路由时的 /
+
+1. 设置子路由时的 `/` 代表根路径
+2. 比如父路由是 `/home`，其中设置的子路由 `file` 和 `/file` 的区别是：
+3.  `file`：访问路径为：`/home/file`
+4. `/file`：访问路径为：`/file`
+
 ## 5、vite 创建的 vue3 中使用 `@` 作为根路径
 
 - 在 `vite.config.js` 中配置
@@ -3204,7 +3211,19 @@ export const readImage = (path) => {
 
 ### ⑥、
 
-## 10、
+## 10、安装卸载库
+
+1. 安装库：`npm install 库名`
+
+```shell
+npm install vue-router@4
+```
+
+2. 卸载库：`npm uninstall 库名`
+
+```shell
+npm uninstall vue-router@4
+```
 
 ## 11、
 
