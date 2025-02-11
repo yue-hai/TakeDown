@@ -1,8 +1,108 @@
 # 一、游戏服务器信息
 
+## 1、服务器信息
+
 1. 端口号：`25565`
 2. 不需要通过 SteamCmd 进行下载
 3. 首先进行：[服务器设置](游戏服务器购买和设置.md)
+
+## 2、模组加载器介绍
+
+### ①、Forge
+
+> 官方下载地址：https://files.minecraftforge.net/net/minecraftforge/forge/
+
+#### Ⅰ、简介
+
+1. Forge（Minecraft Forge） 是最早出现的 Minecraft 模组加载器之一，诞生于 Minecraft 1.2.5 时代
+2. 一直是模组生态的主流平台，支持大量复杂模组。
+
+#### Ⅱ、特点
+
+1. 功能强大：Forge 自带丰富的 API，允许模组开发者创建各种复杂的功能。
+2. 兼容 OptiFine：Forge 支持 OptiFine（一款优化模组），这使得 Forge 依然很受欢迎。
+3. 庞大生态：大量知名模组（如工业时代 2、暮色森林、神秘时代等）都是基于 Forge 开发的。
+4. 对老版本支持较好：许多模组依然只支持老版本 Minecraft，而 Forge 保持了对它们的兼容性。
+5. 缺点：
+	1. 较为臃肿：Forge 加载时较慢，内存占用较高。
+	2. 更新较慢：Forge 在新版本 Minecraft 发布后，通常需要较长时间才会推出对应版本。
+
+#### Ⅲ、适用人群
+
+1. 需要运行大型模组（工业、魔法、科技类模组）的玩家
+2. 需要 OptiFine 支持的玩家
+3. 想玩老版本 Minecraft 并使用模组的用户
+
+#### Ⅳ、本地下载
+
+
+
+### ②、Fabric
+
+> 官方下载地址：https://fabricmc.net/
+
+#### Ⅰ、简介
+
+1. Fabric 是一个轻量级、模块化、高性能的模组加载器，最早由 Fabric 团队 在 1.14 版本发布时开发
+2. 目标是提供一个比 Forge 更轻便、更新更快的替代方案。
+
+#### Ⅱ、特点
+
+1. 轻量化：相比 Forge，Fabric 运行更加流畅，占用更少的系统资源。
+2. 模块化：Fabric API 作为核心组件，提供了基础功能，模组可以按需加载，而不像 Forge 那样自带大量 API。
+3. 快速更新：Fabric 在新 Minecraft 版本发布后，通常会迅速更新并提供支持。
+4. 兼容性强：Fabric 能与 Sodium（性能优化模组）等高性能模组兼容，而 Forge 版的 OptiFine 可能会有问题。
+5. 独立性：Fabric 不能直接运行 Forge 模组，二者生态不兼容。
+
+#### Ⅲ、适用人群
+
+1. 追求高性能的玩家
+2. 喜欢快速更新版本的用户
+3. 使用 Sodium、Lithium、Phosphor 等优化模组的玩家
+
+#### Ⅳ、本地下载
+
+### ③、NeoForge
+
+> 官方下载地址：https://neoforged.net/
+
+#### Ⅰ、简介
+
+1. NeoForge 是 2023 年由 Forge 社区的一部分成员 分裂出来的新模组加载器
+2. 目标是改进 Forge 的架构，提升其性能，并加速对新版本 Minecraft 的支持。
+
+#### Ⅱ、特点
+
+1. 源自 Forge：NeoForge 直接基于 Forge 代码库开发，但进行了优化。
+2. 更现代化：修复了一些 Forge 旧架构导致的问题，提高了模组兼容性和加载速度。
+3. 更快的更新：NeoForge 试图比 Forge 更快地适配 Minecraft 新版本。
+4. 与 Forge 高度兼容：许多 Forge 模组可以直接运行在 NeoForge 上，但仍需开发者适配。
+
+#### Ⅲ、适用人群
+
+1. 想要使用 Forge 生态但希望获得更好性能的玩家
+2. 需要较快更新支持新版本的用户
+
+#### Ⅳ、本地下载
+
+1. NeoForge 1.20.1：
+
+### ④、总结
+
+| 特性              | Forge       | Fabric        | NeoForge       |
+| --------------- | ----------- | ------------- | -------------- |
+| **性能**          | ⭐⭐⭐         | ⭐⭐⭐⭐          | ⭐⭐⭐⭐           |
+| **生态**          | ⭐⭐⭐⭐        | ⭐⭐            | ⭐⭐⭐            |
+| **更新速度**        | ⭐⭐          | ⭐⭐⭐⭐          | ⭐⭐⭐            |
+| **OptiFine 支持** | ✅           | ❌             | ✅              |
+| **大型模组支持**      | ✅           | ❌             | ✅              |
+| **兼容性**         | 支持 Forge 模组 | 仅支持 Fabric 模组 | 兼容大部分 Forge 模组 |
+
+1. 选择建议：
+2. 如果想要高性能和快速更新，选择 Fabric
+3. 如果想要使用经典的大型模组，选择 Forge
+4. 如果想要比 Forge 更好的性能，同时兼容 Forge 生态，选择 NeoForge
+5. 一般来说，显示都是使用 NeoForge 了
 
 # 二、环境配置
 
@@ -105,8 +205,8 @@ mkdir -p game/Minecraft-forge
 cd game/Minecraft-forge
 ```
 
-4. 下载指定版本的 Forge：https://files.minecraftforge.net/net/minecraftforge/forge/
-	1. 此处以 `1.20.1` 版本进行演示
+4. 下载指定版本的模组加载器：https://files.minecraftforge.net/net/minecraftforge/forge/
+	1. 此处以 Forge `1.20.1` 版本进行演示
 	2. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fforge-1.20.1-47.2.0-installer.jar)
 
 ![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227103945.png)
@@ -173,12 +273,21 @@ online-mode=false
 
 # 七、使用 `littleskin` 皮肤站
 
-> 在 Minecraft 服务端使用 authlib-injector 的[参考文档与下载地址](https://github.com/yushijinhun/authlib-injector/wiki/%E5%9C%A8-Minecraft-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BD%BF%E7%94%A8-authlib-injector)，
-> 
 > 我使用的皮肤站：https://littleskin.cn
 
+### ①、CustomSkinLoader（推荐）
+
+> 1. 下载地址：https://littleskin.cn/user/config
+> 2. 根据不同的模组加载器和其版本下载对应的 CustomSkinLoader
+
+1. LittleSkin 建议使用 CustomSkinLoader 作为皮肤加载 Mod，同时也支持其他所有支持 CustomSkinAPI 和传统皮肤加载方式的皮肤 Mod
+2. 将下载的 CustomSkinLoader 放入客户端的 Mod 目录，然后：[登录 littleskin 皮肤站](#12-2-2) 即可
+
+### ②、authlib-injector（不推荐）
+
+> 在 Minecraft 服务端使用 authlib-injector 的[参考文档与下载地址](https://github.com/yushijinhun/authlib-injector/wiki/%E5%9C%A8-Minecraft-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BD%BF%E7%94%A8-authlib-injector)
+
 1. 下载 `authlib-injector`，将其上传至 `/home/steam/game/Minecraft-forge/plugins/` 中
-	1. authlib-injector-1.2.5 下载：[authlib-injector-1.2.5.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fauthlib-injector-1.2.5.jar)
 2. 进入 `/home/steam/game/Minecraft-forge` 目录
 
 ```shell
@@ -221,7 +330,8 @@ unix_args_path="$path/libraries/net/minecraftforge/forge/1.20.1-47.2.0/unix_args
 java -javaagent:$authlib_injector_path=$url  @"$jvm_args_path" @"$unix_args_path" "$@"
 ```
 
-5. 此时重新启动服务器即可；当然还需要客户端同样加载 `authlib-injector`，这个后面说
+5. 此时服务器配置完毕，重新启动即可
+6. 当然还需要客户端同样加载 `authlib-injector`，放在 Mod 目录，然后：[登录 littleskin 皮肤站](#12-2-2)
 
 # 八、使用 screen 后台运行服务器
 
@@ -659,74 +769,7 @@ tp chenpi 100 64 100
 
 > 官方网站：https://www.minecraft.net/
 
-## 2、第三方
-
-### ①、HMCL Hello Minecraft Launcher v3 启动器
-
-1. 下载地址：https://hmcl.huangyuhui.net/download/
-2. 该启动器目前是国内最知名的我的世界启动器，三年来累计使用超过3亿次，适用于 win/mac/Linux
-3. HMCL 启动器特点：
-	1. 支持离线模式和正版登录
-	2. 支持 Forge，Optifine 和 LiteLoader 自动安装
-	3. 自动下载游戏缺失库和资源
-	4. 支持mod管理
-	5. 支持界面主题定制、整合包制作
-
-### ②、PCL2 Plain Craft Launcher 2 启动器
-
-1. 下载地址：https://afdian.net/p/0164034c016c11ebafcb52540025c377
-2. 一款使用快捷，方便的可视化我的世界启动器。
-3. PCL2启动器特点：
-	1. 精美动画，扁平界面
-	2. 极速，多下载源
-	3. Forge安装
-	4. 自定义主题
-
-### ③、BMCLNG 启动器
-
-1. 下载地址：https://www.bangbang93.com/category/5/bmcl
-2. 支持自动下载原版客户端
-3. 支持一键下载Forge客户端，可以选择Forge版本并且自动下载
-4. 本启动器支持Mojang每周快照下载
-5. 每周快照也可盗版启动
-6. 可以启动1.7.2并且支持1.7的新版验证方式
-7. 如果FML不做大的修改（不过我觉得只要FML能用正版启动器起，我的启动器就能跑），可以一直保持兼容
-8. 可导入旧版客户端
-9. 自定义JVM Argument功能，以支持诸如Optifine之类的mod
-10. Mojang推送了第一个编译起的全部版本，BMCL全部支持
-11. 带有第二下载源。不怕碰到官方下载源被限流
-
-### ④、BakaXL 启动器
-
-1. 下载地址：https://www.minecraftzw.com/20070.html
-2. BakaXL 3.1 满载超过 200 项新增及改进的功能，
-3. 不论您在与他人建立联系、管理游戏资源，还是在探索Minecraft世界时，都可以让您的体验更进一步。
-4. 出彩的新功能
-5. 主题系统
-6. 凭证用户档案
-7. 多维视差
-8. 在 BakaXL 大厅中与好友一同联机
-9. 将您的风格分享给世界，不光配色和背景要有型，背景音乐也得给安排上。
-10. 这个主题系统，没有那么多麻烦。使用、创建及分享BakaXL的主题并无任何门槛，也无需任何额外支出或版本即可享受全部功能。任何人都可以创建属于自己的BakaXL主题，并分享给自己的好友。因为我们相信，好东西应该人人都有份。
-
-### ⑤、燕子启动器
-
-1. 下载地址：https://www.minecraftzw.com/20067.html
-2. 全方位自定义，支持一键启动,多账号的全新我的世界启动器
-3. 追求编程热爱
-4. 燕子启动器-新一代Minecraft启动器，使用Module-Launcher启动引擎，简洁高效快速。目前支持离线、正版、统一通行证、Authlib-injector等第三方登陆认证且支持快速配置、判断游戏文件丢失并进行快速补全下载。支持多账号管理、版本隔离、自定义公告，自定义计划等一系列人性化功能。
-5. 全局自定义
-6. 软件界面由使用者自己决定，怎么好看就怎么改！并且还支持GIF动态壁纸。
-7. 一键生成软件
-8. 此功能可一键生成附属软件，下一次畅玩游戏时只需双击生成的软件即可。
-9. 三个“多”：支持多账号，多版本，多验证，让你游戏体验无烦恼！
-
-### ⑥、MSS2 启动器
-
-1. 下载地址：https://www.minecraftzw.com/20062.html
-2. MSS2启动器可以让玩家轻松创建你自己的MC服务器，让MC开服不在会是难题，变得轻而易举
-
-## 3、HMCL 启动器使用
+## 2、HMCL 启动器使用
 
 ### ①、下载
 
@@ -734,7 +777,7 @@ tp chenpi 100 64 100
 2. 下载最新版本即可
 3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FHMCL-3.5.5.exe)
 
-### ②、登录 `littleskin` 皮肤站
+### ②、<span id="12-2-2">登录 `littleskin` 皮肤站</span>
 
 1. 在皮肤站账册账号，使用皮肤：https://littleskin.cn
 2. HMCL 启动器中点击设置
