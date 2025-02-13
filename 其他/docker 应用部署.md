@@ -2137,7 +2137,46 @@ http://www.pushplus.plus/send/
 
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111238.png)
 
-# 十八、
+# 十八、onenav 开源的导航管理工具
+
+## 1、介绍
+
+1. OneNav 是一个基于 PHP + SQLite 开发的简洁、轻量级的书签管理导航系统。它的设计目标是提供一个简洁高效的导航页面，适用于个人或团队使用，方便管理和访问常用网站。
+2. OneNav 的主要特点：
+	1. 轻量级：使用 PHP 作为后端，无需复杂的配置，直接可用。
+	2. 数据库支持：支持 SQLite 和 MySQL，适应不同的使用需求。
+	3. 简洁 UI：前端采用简洁美观的设计，用户体验良好。
+	4. 支持分类管理：可以对书签进行分类管理，方便查找和使用。
+	5. 多用户支持：部分版本支持多用户管理，可用于团队协作。
+	6. 开源项目：OneNav 是一个开源项目，可以自由修改和扩展。
+3. 适用场景：
+	1. 个人导航页：用于管理个人常用的网站链接，提高访问效率。
+	2. 公司/团队内部导航：作为团队内部的书签管理工具，方便共享常用资源。
+	3. 开发者工具集合：可以整理各种 API 文档、开发工具网站等，提高开发效率。
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/home/docker/docker/volumes/onenav/data`
+2. 使用 docker 部署：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `-p`：指定端口映射
+	3. `-v`：指定挂载目录
+	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+
+```shell
+docker run -d \
+-p 80:80 \
+-v /home/docker/docker/volumes/onenav/data:/data/wwwroot/default/data \
+--restart=unless-stopped
+--name onenav \
+helloz/onenav:latest
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:80/](http://127.0.0.1:80/)
+2. 初次访问需注册管理员账号密码
 
 # 十九、
 
