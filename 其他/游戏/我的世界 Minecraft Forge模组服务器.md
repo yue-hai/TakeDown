@@ -35,8 +35,6 @@
 
 #### Ⅳ、本地下载
 
-
-
 ### ②、Fabric
 
 > 官方下载地址：https://fabricmc.net/
@@ -85,7 +83,7 @@
 
 #### Ⅳ、本地下载
 
-1. NeoForge 1.20.1：
+1. NeoForge 1.20.1：[NeoForge-1.21.1-21.1.116.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FNeoForge-1.21.1-21.1.116.jar)
 
 ### ④、总结
 
@@ -102,7 +100,7 @@
 2. 如果想要高性能和快速更新，选择 Fabric
 3. 如果想要使用经典的大型模组，选择 Forge
 4. 如果想要比 Forge 更好的性能，同时兼容 Forge 生态，选择 NeoForge
-5. 一般来说，显示都是使用 NeoForge 了
+5. 一般来说，现在都是使用 NeoForge 了
 
 # 二、环境配置
 
@@ -282,6 +280,17 @@ online-mode=false
 
 1. LittleSkin 建议使用 CustomSkinLoader 作为皮肤加载 Mod，同时也支持其他所有支持 CustomSkinAPI 和传统皮肤加载方式的皮肤 Mod
 2. 将下载的 CustomSkinLoader 放入客户端的 Mod 目录，然后：[登录 littleskin 皮肤站](#12-2-2) 即可
+3. Forge 加载器 CustomSkinLoader 下载：
+	1. 1.20.6 +：[CustomSkinLoader_ForgeV3-14.22.jar](attachments/CustomSkinLoader_ForgeV3-14.22.jar)
+	2. 1.17.1 ~ 1.20.4：[CustomSkinLoader_ForgeV2-14.22.jar](attachments/CustomSkinLoader_ForgeV2-14.22.jar)
+	3. 1.8 ~ 1.16.5：[CustomSkinLoader_ForgeV1-14.22.jar](attachments/CustomSkinLoader_ForgeV1-14.22.jar)
+	4. 1.7.10：[CustomSkinLoader_14.6a.jar](attachments/CustomSkinLoader_14.6a.jar)；该版本及以下 CustomSkinLoader 需要手动配置后才可加载来自 LittleSkin 的材质，请参考 LittleSkin 用户使用手册中的相关页面对 CustomSkinLoader 进行配置。 [点击这里查看 >>>](https://manual.littlesk.in/newbee/csl#%E7%89%88%E6%9C%AC-%E6%97%A9%E6%9C%9F)
+	5. 1.7.2：[CustomSkinLoader_12.9-HD.jar](attachments/CustomSkinLoader_12.9-HD.jar)
+	6. 1.6.4：[CustomSkinLoader_12.9-HD.jar](attachments/CustomSkinLoader_12.9-HD.jar)
+4. Fabric 加载器 CustomSkinLoader 下载：
+	1. 1.14 +：[CustomSkinLoader_Fabric-14.22.jar](attachments/CustomSkinLoader_Fabric-14.22.jar)
+5. NeoForge 加载器 CustomSkinLoader 下载：
+	1. 1.20.2 +：[CustomSkinLoader_ForgeV3-14.22.jar](attachments/CustomSkinLoader_ForgeV3-14.22.jar)
 
 ### ②、authlib-injector（不推荐）
 
@@ -423,14 +432,26 @@ backup_filename="backup_$current_time.tar.gz"
 
 # 检查备份存放目录是否存在，不存在则创建
 if [ ! -d "$backup_storage_dir" ]; then
-    mkdir -p "$backup_storage_dir"
+    mkdir -p "$backup_storage_dir" || { 
+        echo "【${current_time}】错误：创建备份目录失败！" >> "$path/minecraft_server.log"
+        exit 1
+    }
     echo "【${current_time}】创建备份目录 $backup_storage_dir" >> $path/minecraft_server.log
 fi
 
 # 进入备份目录
-cd "$backup_dir"
+cd "$backup_dir" || { 
+    echo "【${current_time}】错误：无法进入 $backup_dir，备份中止。" >> "$path/minecraft_server.log"
+    exit 1
+}
 # 打包并压缩指定目录
-tar -czf "$backup_storage_dir/$backup_filename" .
+tar --exclude='./session.lock' --exclude='./logs' -czf "$backup_storage_dir/$backup_filename" . || { 
+    echo "【${current_time}】错误：备份失败！" >> "$path/minecraft_server.log"
+    exit 1
+}
+# 记录成功备份日志
+echo "【${current_time}】Minecraft 服务器备份成功：$backup_filename" >> "$path/minecraft_server.log"
+
 # 删除一周前的备份
 # find "$backup_storage_dir"：指定了 find 命令开始搜索的目录路径，即备份文件存放的目录
 # -name "backup_*.tar.gz"：这个选项让 find 命令查找名称匹配模式 backup_*.tar.gz 的文件
@@ -438,7 +459,6 @@ tar -czf "$backup_storage_dir/$backup_filename" .
 # -mtime +7：这个选项基于文件的修改时间来过滤搜索结果。mtime 是文件内容最后修改的时间。+7 表示选择那些最后修改时间在七天前或更早的文件
 # -exec rm {} \;：这是一个执行动作，指示 find 命令对每个找到的文件执行 rm（删除）命令。在 find 命令中，{} 用作匹配文件的占位符，而 \; 是该 -exec 动作的结束标志
 find "$backup_storage_dir" -name "backup_*.tar.gz" -type f -mtime +7 -exec rm {} \;
-
 # 向 minecraft_server.log 文件中追加日志
 echo "【${current_time}】我的世界 Minecraft forge 脆骨症 备份存档和清理一周前备份已完成" >> $path/minecraft_server.log
 echo "" >> $path/minecraft_server.log
@@ -761,7 +781,7 @@ tp chenpi 100 64 100
 
 ## 2、客户端指令
 
-## 2、远程控制台（RCON）使用
+## 3、远程控制台（RCON）使用
 
 # 十二、客户端启动器
 
