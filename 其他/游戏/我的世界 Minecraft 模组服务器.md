@@ -779,6 +779,39 @@ white-list=false                   # 是否启用白名单。
 tp chenpi 100 64 100
 ```
 
+#### Ⅱ、给玩家管理员权限
+
+1. 命令格式为：`op <玩家名>`。
+	1. `<玩家名>`：要给与管理员权限的玩家的用户名
+2. 收回管理员权限：`deop <玩家名>`
+3. 例子：给予玩家 `chenpi` 管理员权限
+
+```shell
+# 给予管理员权限
+op chenpi
+
+# 收回管理员权限
+deop chenpi
+```
+
+#### Ⅲ、关闭死亡掉落
+
+1. 命令格式为：
+
+```shell
+gamerule keepInventory true
+```
+
+2. 恢复掉落：
+
+```shell
+gamerule keepInventory false
+```
+
+#### Ⅳ、
+
+#### Ⅴ、
+
 ## 2、客户端指令
 
 ## 3、远程控制台（RCON）使用
