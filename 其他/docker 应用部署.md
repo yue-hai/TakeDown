@@ -21,7 +21,7 @@
 	2. `-p`：指定端口映射；因为家庭宽带的 80、443 端口一般都是被封的，所以这里一般修改为其他端口
 		1. `8081`：nginx-proxy-manager 的 web 访问端口
 		2. `8080`：http 代理端口，访问代理的 http 地址时，需要加上这个端口
-		3. `8553`：https 代理端口，访问代理的 https 地址时，需要加上这个端口
+		3. `8443`：https 代理端口，访问代理的 https 地址时，需要加上这个端口
 	3. `-v`：指定挂载目录
 	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
 
@@ -39,7 +39,8 @@ chishin/nginx-proxy-manager-zh:latest
 ## 3、访问
 
 1. 访问：[http://127.0.0.1:8081](http://127.0.0.1:8081)
-2. 初次访问需设定管理员账号密码
+2. 初始管理员账号：`admin@example.com`
+3. 初始管理员密码：`changeme`
 
 ## 4、申请 ssl 证书
 
@@ -154,7 +155,52 @@ sudo ufw allow from 172.0.0.0/8
 
 5. 开启完毕后，可再次尝试访问 `xunlei.yuehai.fun` 
 
-## 7、代理权限设置
+## 7、设置代理静态资源
+
+> 1. 代理的资源是 vue3 打包后的静态资源
+> 2. 本次代理域名是 ip + 路径，因为阿里云没有备案不能被解析为域名
+
+1. nginx 挂载的路径是：`/home/docker/docker/volumes/nginx-proxy-manager/data:/data`，我们需要将静态资源的目录放在 `/data` 下
+2. 在 `/data` 下创建目录： `/web/oneNav-theme-yuehai/`，将 vue 打包后的文件放入其中
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250218123840.png)
+
+3. 点击主机 -> 代理服务 -> 添加代理服务
+
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084201.png)
+
+4. 设置一个代理：
+	1. 域名：本服务器的 ip
+	2. 协议：http；没有域名，无法设置证书，也就没有 https
+	3. 转发主机/IP：本服务器的 ip
+	4. 转发端口：80，如果不可用，自定义其他的端口也可以
+	5. 缓存资源、阻止常见漏洞、支持 WebSockets 不要开启
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250220162617.png)
+
+5. 点击自定义位置：
+	1. 定义位置：`/oneNav`，根据自定需求更改
+	2. 协议：http
+	3. 转发主机/IP：`127.0.0.1`，因为是读取本地资源
+	4. 转发端口：`80`
+6. 然后点击定义位置后的齿轮按钮，在输入框中输入以下内容：
+	1. `location /oneNav {}`：匹配访问路径 `/oneNav` 的请求
+	2. `alias /data/web/oneNav-theme-yuehai;`：alias 设定了路径映射，表示 当请求 `/oneNav/xxx` 时，Nginx 实际访问 `/data/web/oneNav-theme-yuehai/xxx`
+	3. `index index.html;`：当访问 `/oneNav/` 目录时，默认返回 `index.html`
+
+```nginx
+location /oneNav {
+    alias /data/web/oneNav-theme-yuehai;
+    index index.html;
+}
+```
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250218123921.png)
+
+7. 设置完毕后，点击保存即可
+8. 最后访问：http://127.0.0.1/oneNav
+
+## 8、代理权限设置
 
 1. 点击通信规则 -> 添加通信规则
 

@@ -281,16 +281,16 @@ online-mode=false
 1. LittleSkin 建议使用 CustomSkinLoader 作为皮肤加载 Mod，同时也支持其他所有支持 CustomSkinAPI 和传统皮肤加载方式的皮肤 Mod
 2. 将下载的 CustomSkinLoader 放入客户端的 Mod 目录，然后：[登录 littleskin 皮肤站](#12-2-2) 即可
 3. Forge 加载器 CustomSkinLoader 下载：
-	1. 1.20.6 +：[CustomSkinLoader_ForgeV3-14.22.jar](attachments/CustomSkinLoader_ForgeV3-14.22.jar)
-	2. 1.17.1 ~ 1.20.4：[CustomSkinLoader_ForgeV2-14.22.jar](attachments/CustomSkinLoader_ForgeV2-14.22.jar)
-	3. 1.8 ~ 1.16.5：[CustomSkinLoader_ForgeV1-14.22.jar](attachments/CustomSkinLoader_ForgeV1-14.22.jar)
-	4. 1.7.10：[CustomSkinLoader_14.6a.jar](attachments/CustomSkinLoader_14.6a.jar)；该版本及以下 CustomSkinLoader 需要手动配置后才可加载来自 LittleSkin 的材质，请参考 LittleSkin 用户使用手册中的相关页面对 CustomSkinLoader 进行配置。 [点击这里查看 >>>](https://manual.littlesk.in/newbee/csl#%E7%89%88%E6%9C%AC-%E6%97%A9%E6%9C%9F)
-	5. 1.7.2：[CustomSkinLoader_12.9-HD.jar](attachments/CustomSkinLoader_12.9-HD.jar)
-	6. 1.6.4：[CustomSkinLoader_12.9-HD.jar](attachments/CustomSkinLoader_12.9-HD.jar)
+	1. 1.20.6 +：[CustomSkinLoader_ForgeV3-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV3-14.22.jar)
+	2. 1.17.1 ~ 1.20.4：[CustomSkinLoader_ForgeV2-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV2-14.22.jar)
+	3. 1.8 ~ 1.16.5：[CustomSkinLoader_ForgeV1-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV1-14.22.jar)
+	4. 1.7.10：[CustomSkinLoader_14.6a.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_14.6a.jar)；该版本及以下 CustomSkinLoader 需要手动配置后才可加载来自 LittleSkin 的材质，请参考 LittleSkin 用户使用手册中的相关页面对 CustomSkinLoader 进行配置。 [点击这里查看 >>>](https://manual.littlesk.in/newbee/csl#%E7%89%88%E6%9C%AC-%E6%97%A9%E6%9C%9F)
+	5. 1.7.2：[CustomSkinLoader_12.9-HD.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_12.9-HD.jar)
+	6. 1.6.4：[CustomSkinLoader_12.9-HD.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_12.9-HD.jar)
 4. Fabric 加载器 CustomSkinLoader 下载：
-	1. 1.14 +：[CustomSkinLoader_Fabric-14.22.jar](attachments/CustomSkinLoader_Fabric-14.22.jar)
+	1. 1.14 +：[CustomSkinLoader_Fabric-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_Fabric-14.22.jar)
 5. NeoForge 加载器 CustomSkinLoader 下载：
-	1. 1.20.2 +：[CustomSkinLoader_ForgeV3-14.22.jar](attachments/CustomSkinLoader_ForgeV3-14.22.jar)
+	1. 1.20.2 +：[CustomSkinLoader_ForgeV3-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV3-14.22.jar)
 
 ### ②、authlib-injector（不推荐）
 

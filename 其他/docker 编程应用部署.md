@@ -419,7 +419,7 @@ postgres:latest
 1. 我这里使用 heidisql 进行连接，其他不再做说明，这里要注意一下<font color="#00b0f0">蓝色箭头</font>数据库这里
 2. 使用 heidisql 连接 postgres 时，每次只能连接一个数据库，如果不指定数据库名称，默认连接到 `postgres` 数据库，想要连接到其他数据库，这里一定要指定一个数据库的名，比如：`test`
 
-![](attachments/Pasted%20image%2020250121105335.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250121105335.png)
 
 2. 连接进去后，可以使用以下命令查询当前连接的数据库名称，确定是不是想要连接的数据库
 
@@ -441,7 +441,7 @@ CREATE SCHEMA schema_name;
 
 5. 不想使用命令，也可以使用 idea 自带的数据库管理工具来创建：
 
-![](attachments/Pasted%20image%2020250121105443.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250121105443.png)
 
 ## 4、从 mysql 迁移到 postgres
 
