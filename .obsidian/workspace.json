@@ -15,22 +15,26 @@
               "state": {
                 "file": "Android/Kotlin 基础.md",
                 "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Kotlin 基础"
             }
           },
           {
-            "id": "2c3052c44cd27852",
+            "id": "b5db2041f0de2ffd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Android/Android 基础.md",
                 "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Android 基础"
             }
           },
           {
@@ -41,9 +45,11 @@
               "state": {
                 "file": "公司/创迹/SSC/SSC 购物车.md",
                 "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "SSC 购物车"
             }
           },
           {
@@ -54,26 +60,45 @@
               "state": {
                 "file": "java/17、数据结构与算法.md",
                 "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "17、数据结构与算法"
             }
           },
           {
-            "id": "08b36cf6a2ad7d9a",
+            "id": "2f73f963025fb460",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "其他/设备和工具.md",
                 "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "设备和工具"
+            }
+          },
+          {
+            "id": "6e48e1bd5cd61e46",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "编程相关/Git.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Git"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -92,8 +117,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
             }
           },
           {
@@ -101,7 +129,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
             }
           },
           {
@@ -109,7 +139,9 @@
             "type": "leaf",
             "state": {
               "type": "starred",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           },
           {
@@ -124,7 +156,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
             }
           }
         ],
@@ -147,7 +181,19 @@
             "type": "leaf",
             "state": {
               "type": "quiet-outline",
-              "state": {}
+              "state": {},
+              "icon": "lines-of-text",
+              "title": "Quiet Outline"
+            }
+          },
+          {
+            "id": "39ee73aa4620b336",
+            "type": "leaf",
+            "state": {
+              "type": "copilot-chat-view",
+              "state": {},
+              "icon": "message-square",
+              "title": "Copilot"
             }
           }
         ]
@@ -158,56 +204,57 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "18145564790a03ce",
+  "active": "6e48e1bd5cd61e46",
   "lastOpenFiles": [
     "其他/设备和工具.md",
-    "编程相关/编程软件.md",
-    "其他/docker 编程应用部署.md",
     "公司/创迹/SSC/SSC 购物车.md",
-    "Android/Android 基础.md",
-    "其他/游戏/我的世界 Minecraft Forge模组服务器.md",
-    "其他/docker 应用部署.md",
-    "编程相关/Docker.md",
-    "其他/游戏/游戏服务器购买和设置.md",
+    "其他/游戏/我的世界 Minecraft 模组服务器.md",
     "其他/游戏/饥荒联机版 Don't Starve 服务器.md",
-    "其他/游戏/七日杀 7 Days to Die 服务器.md",
-    "其他/游戏/幻兽帕鲁 Palworld 服务器.md",
-    "其他/游戏/我的世界 Minecraft 原版服务器.md",
-    "其他/游戏/泰拉瑞亚 tModLoader 服务器.md",
-    "标题.md",
-    "其他/游戏/泰拉瑞亚 TShock 服务器.md",
-    "编程相关/网络相关.md",
-    "其他/attachments/Pasted image 20250121105443.png",
-    "其他/attachments/Pasted image 20250121105335.png",
-    "Android/Kotlin 基础.md",
-    "Flutter/Flutter 基础.md",
+    "Web/JS 框架/Vue3.md",
+    "其他/n2n/n2n 的安装配置.md",
+    "Android/Android 基础.md",
+    "_plugin/copilot/custom-prompts/内容续写.md",
+    "_plugin/copilot/custom-prompts/SEO专家 - 副本.md",
     "java/17、数据结构与算法.md",
-    "其他/attachments/Pasted image 20250114165142.png",
-    "其他/attachments/Pasted image 20250114165120.png",
-    "其他/attachments/Pasted image 20250114165055.png",
-    "其他/attachments/Pasted image 20250114165023.png",
-    "其他/attachments/Pasted image 20250114165010.png",
-    "其他/attachments/Pasted image 20250114164945.png",
-    "其他/attachments/Pasted image 20250114164905.png",
-    "其他/attachments/Pasted image 20250114164847.png",
-    "java/15、SpringCloudAlibaba.md",
-    "SQL/MySql.md",
-    "其他/attachments/hacs.zip",
-    "其他/attachments/files_mindmap-0.0.31.tar.gz",
-    "其他/attachments/drawio-v3.0.3.tar.gz",
-    "其他/attachments/notes-v4.11.0.tar.gz",
-    "其他/attachments/onlyoffice.tar.gz",
-    "编程相关/Git.md",
-    "e --continue",
-    "编程相关/attachments/尚硅谷技术课程系列之Git V2.0.pdf",
-    "编程相关/attachments/WindTerm_2.6.0.zip",
-    "编程相关/attachments/video-srt-gui-ffmpeg-0.3.5-x64.zip",
-    "编程相关/attachments/Postman-win64-9.12.2-Setup.exe",
-    "其他/软件使用/其他软件.md",
-    "linux/Smart/Smart 基础.md",
-    "linux/Liunx 基础.md"
+    "Android/Kotlin 基础.md",
+    "_plugin/copilot/conversations/你是一名内容优化专家，我需要你帮我优化我的博客文章的_SEO_效果。你具备全面的_SEO_策略制定和执行经验，特别是在文章和内容推广领域。你擅长关键词研究、内容优化、外链建设等能力，同时精通技术_SE@20250303_095833.md",
+    "_plugin/copilot/custom-prompts/SEO专家.md",
+    "_plugin/copilot/conversations/请总结一下这个文章@20250303_092312.md",
+    "_plugin/copilot/custom-prompts",
+    "_plugin/copilot/conversations",
+    "_plugin/copilot/conversation",
+    "_plugin/copilot",
+    "_plugin/custom-prompts/SEO专家.md",
+    "_plugin/custom-prompts",
+    "_plugin",
+    "新建文件夹",
+    "obsidianData/copilot/custom-prompts/SEO专家.md",
+    "obsidianData/copilot/conversations/请总结一下这个文章@20250303_092312.md",
+    "obsidianData/copilot/custom-prompts",
+    "obsidianData/copilot/conversations",
+    "obsidianData/copilot/conversation",
+    "copilot/custom-prompts/SEO专家.md",
+    "copilot/conversations/请总结一下这个文章@20250303_092312.md",
+    "custom-prompts/SEO专家.md",
+    "conversations/请总结一下这个文章@20250303_092312.md",
+    "obsidianData/copilot/conversations/请总结一下这个文章@20250303_091145.md",
+    "obsidianData/copilot/conversations/请总结这个文章@20250303_091145.md",
+    "copilot-conversations/123@20250303_090446.md",
+    "标题.md",
+    "Web/JS 框架/Vue2.md",
+    "其他/attachments/Pasted image 20250220162617.png",
+    "其他/attachments/Pasted image 20250218123921.png",
+    "其他/attachments/Pasted image 20250218123909.png",
+    "其他/attachments/Pasted image 20250218123840.png",
+    "其他/n2n/attachments/Pasted image 20241108103751.png",
+    "其他/n2n/attachments/Pasted image 20240809134324.png",
+    "其他/n2n/attachments/Pasted image 20240809131849.png",
+    "其他/n2n/attachments/Pasted image 20240809134147 1.png",
+    "其他/n2n/attachments/Pasted image 20241108093757.png",
+    "其他/n2n/attachments/Pasted image 20241108093723.png"
   ]
 }

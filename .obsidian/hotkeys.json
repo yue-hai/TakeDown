@@ -56,5 +56,14 @@
       ],
       "key": "\\"
     }
+  ],
+  "copilot:apply-custom-prompt": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "C"
+    }
   ]
 }
