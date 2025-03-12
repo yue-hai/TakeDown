@@ -2224,7 +2224,85 @@ helloz/onenav:latest
 1. 访问：[http://127.0.0.1:80/](http://127.0.0.1:80/)
 2. 初次访问需注册管理员账号密码
 
-# 十九、
+# 十九、NextChat AI 前端工具
+
+> github：https://github.com/ChatGPTNextWeb/NextChat
+
+## 1、介绍
+
+1. NextChat 是一个开源的聊天应用，旨在为用户提供类似 ChatGPT 的交互体验
+2. 基于现代前后端架构：NextChat 是基于 Next.js 构建的，利用其最新的特性（例如 Server Actions 和 API 路由）来实现高效、动态的前后端交互。这使得开发者可以更轻松地进行定制和扩展。
+3. 多 API 集成支持：除了常见的 OpenAI API 外，NextChat 还支持 DeepSeek 等其他 API 服务。这样一来，用户和开发者可以根据需求灵活选择不同的语言模型或搜索服务，提升应用的智能化水平。
+4. 灵活的部署方式：通过 Docker 部署可以快速搭建运行环境，支持使用 docker run 或 docker-compose 部署，简化了环境配置和运维管理。开发者可以通过环境变量配置数据库连接、认证参数和 API 密钥，满足不同生产环境的需求。
+5. 安全认证与会话管理：NextChat 集成了 NextAuth 等认证方案，能够对用户会话进行安全管理，确保数据传输安全。这对于涉及用户数据和敏感信息的应用尤为重要。
+6. 良好的扩展性和定制化：开源的特性和模块化设计使得开发者可以根据自己的业务需求定制和扩展功能，例如添加新的对话接口、调整 UI 界面以及接入更多第三方服务。
+
+## 2、docker 部署
+
+1. 该应用所有数据都保存在浏览器，或者通过 WebDAV 同步，所以不需要配置挂载目录
+2. 使用 docker 部署：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `-p`：指定端口映射
+	3.  `-e`：设置环境变量
+		1. `OPENAI_API_KEY`：<font color="#ff0000">必填</font>，OpenAI 密钥，可使用英文逗号隔开多个 key，即使不用 OpenAI 也需要填写
+		2. `CODE`：访问密码；如果不填写此项，则任何人都可以直接使用部署后的网站，可能会导致 token 被急速消耗完毕，建议填写此选项
+		3. `DEEPSEEK_URL`：deepseek 的 base_url，因为我要使用 deepseek 所以填写，如果要使用其他的 ai，可以设定其他的
+		4. `DEEPSEEK_API_KEY`：deepseek 的 api_key
+	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+
+```shell
+docker run -d \
+-p 3000:3000 \
+-e CODE=123,456,789 \
+-e OPENAI_API_KEY=sk-xxx \
+-e DEEPSEEK_URL=https://api.deepseek.com \
+-e DEEPSEEK_API_KEY=sk-xxx \
+--restart=unless-stopped \
+--name nextchat \
+yidadaa/chatgpt-next-web:latest
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:3000](http://127.0.0.1:3000)
+2. 进入网址后会自动弹出提示，点击箭头处提示：
+
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101212.png)
+
+1. 输入密码，仅在第一行填入部署时使用 CODE 设置的密码即可：
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101227.png)
+
+1. 登录成功后即可正常使用
+2. 因为上面部署时只配置了 deepseek 的 api_key，所以只能使用 deepseek，要使用其他 ai，可以增加其他 ai 的配置
+
+## 4、nginx 配置
+
+> 1. 如果 nginx 代理使用的 80 或者 443 端口可以不进行此配置
+> 2. 如果使用的其他端口比如 1443，则需要进行此配置
+
+1. 代理服务设置：
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101259.png)
+
+2. 因为 Next.js 的 Server Actions 安全验证机制与反向代理配置的可能冲突，增加以下配置：
+	1. 主要的配置项为：`proxy_set_header X-Forwarded-Host $host:1443;`
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101623.png)
+
+```nginx
+location / {
+	proxy_pass http://172.17.0.1:3000; # 指向容器映射的端口
+	proxy_set_header Host $host:$server_port; # 保留端口信息
+	proxy_set_header X-Real-IP $remote_addr;
+	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	proxy_set_header X-Forwarded-Proto $scheme;
+	proxy_set_header X-Forwarded-Host $host:1443; # 关键：包含端口
+	proxy_set_header X-Forwarded-Port $server_port;
+}
+```
+
+3. 这样配置完成后，就不会报错了，可正常对话
 
 # 二十、
 
