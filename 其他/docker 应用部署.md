@@ -1,5 +1,9 @@
 # nginx-proxy-manager 基于 Nginx 的反向代理管理工具
 
+> 1. 项目 github：https://github.com/xiaoxinpro/nginx-proxy-manager-zh
+> 2. 原项目 github：https://github.com/NginxProxyManager/nginx-proxy-manager
+> 3. dockerHub 地址：https://hub.docker.com/r/chishin/nginx-proxy-manager-zh
+
 ## 1、介绍
 
 1. Nginx Proxy Manager（NPM）是一个基于 Nginx 的反向代理管理工具，旨在简化 Nginx 的配置和管理。 它提供了直观的 Web 界面，使用户无需深入了解 Nginx，即可轻松设置和管理反向代理、SSL 证书、访问控制等功能。
@@ -245,6 +249,10 @@ location /oneNav {
 
 # 零、docker 可视化 portainer-ce
 
+> 1. 项目 github：https://github.com/eysp/portainer-ce
+> 2. 原项目 github：https://github.com/portainer/portainer
+> 3. dockerHub 地址：https://hub.docker.com/r/6053537/portainer-ce
+
 ## 1、介绍
 
 1. Portainer 是一款轻量级的应用，它提供了图形化界面，用于方便地管理 Docker 环境，包括单机环境和集群环境
@@ -285,9 +293,8 @@ docker run -d \
 
 # 一、迅雷群晖提取版
 
-> github 项目地址：https://github.com/cnk3x/xunlei
-> 
-> dockerHub 地址：https://hub.docker.com/r/cnk3x/xunlei
+> 1. 项目 github：https://github.com/cnk3x/xunlei
+> 2. dockerHub 地址：https://hub.docker.com/r/cnk3x/xunlei
 
 ## 1、介绍
 
@@ -334,10 +341,11 @@ cnk3x/xunlei:latest
 
 # 二、AList 网盘整合挂载工具
 
-> 1. AList 官网：https://alist.nn.ci/zh/guide/install/desktop.html
-> 2. AList-desktop gui 桌面版官网：https://ad.nn.ci/zh
-> 3. github：https://github.com/AlistGo/alist
-> 4. 操作系统版本为：Ubuntu 22.04.3 LTS
+> 1. 项目 github：https://github.com/AlistGo/alist
+> 2. dockerHub 地址：https://hub.docker.com/r/xhofe/alist
+> 3. AList 官网：https://alist.nn.ci/zh/guide/install/desktop.html
+> 4. AList-desktop gui 桌面版官网：https://ad.nn.ci/zh
+> 5. 操作系统版本为：Ubuntu 22.04.3 LTS
 
 ## 1、AList docker 版安装
 
@@ -576,7 +584,8 @@ alist-desktop
 
 # 三、TaoSync （桃桃的自动同步工具）基于 AList 的网盘同步工具
 
-> github 项目地址：https://github.com/dr34m-cn/taosync
+> 1. 项目 github：https://github.com/dr34m-cn/taosync
+> 2. dockerHub 地址：https://hub.docker.com/r/dr34m/tao-sync
 
 ## 1、介绍
 
@@ -618,7 +627,8 @@ docker logs taoSync
 
 # 四、qBittorrent BitTorrent 客户端
 
-> github 项目地址：https://github.com/linuxserver/docker-qbittorrent
+> 1. 项目 github：https://github.com/linuxserver/docker-qbittorrent
+> 2. dockerHub 地址：https://hub.docker.com/r/linuxserver/qbittorrent
 
 ## 1、介绍
 
@@ -726,7 +736,8 @@ location / {
 
 # 五、Nexterm 基于浏览器的服务器管理工具
 
-> github 项目地址：https://github.com/gnmyt/Nexterm
+> 1. 项目 github：https://github.com/gnmyt/Nexterm
+> 2. dockerHub 地址：https://hub.docker.com/r/germannewsmaker/nexterm
 
 ## 1、介绍
 
@@ -765,8 +776,9 @@ germannewsmaker/nexterm:latest
 
 # 六、Nextcloud 自托管云存储和协作平台
 
-> 1. github 项目地址：https://github.com/55190116/nextcloud-docker
-> 2. 该项目需要关联一个数据库作为数据的存取
+> 1. 项目 github：https://github.com/55190116/nextcloud-docker
+> 2. dockerHub 地址：https://hub.docker.com/r/nextcloud
+> 3. 该项目需要关联一个数据库作为数据的存取
 
 ## 1、介绍
 
@@ -1019,6 +1031,9 @@ nano config.php
 
 # 七、Onlyoffice 提供文档、电子表格、演示文稿等工具
 
+> 1. 项目 github：https://github.com/ONLYOFFICE/Docker-DocumentServer
+> 2. dockerHub 地址：https://hub.docker.com/r/onlyoffice/documentserver
+
 ## 1、介绍
 
 1. nlyOffice 是一套强大的在线办公套件，支持文档、表格和幻灯片的创建、编辑和协作。
@@ -1173,6 +1188,9 @@ onlyoffice/documentserver
 
 # 八、Memos 开源、轻量级的备忘录服务
 
+> 1. 项目 github：https://github.com/usememos/memos
+> 2. dockerHub 地址：https://hub.docker.com/r/neosmemo/memos
+
 ## 1、介绍
 
 1. Memos 是一个轻量级的开源备忘录应用，适合用于个人知识管理、日记记录或团队协作等场景。
@@ -1207,6 +1225,9 @@ neosmemo/memos:latest
 2. 初次访问需设定管理员账号密码
 
 # 九、2FAuth 基于 Web 的自托管 2FA 双因素认证替代方案
+
+> 1. 项目 github：https://github.com/Bubka/2FAuth
+> 2. dockerHub 地址：https://hub.docker.com/r/2fauth/2fauth
 
 ## 1、介绍
 
@@ -1274,6 +1295,9 @@ docker run -d \
 3. 初次访问需注册管理员账号密码
 
 # 十、filebrowser 极简的文件管理工具
+
+> 1. 项目 github：https://github.com/filebrowser/filebrowser
+> 2. dockerHub 地址：https://hub.docker.com/r/filebrowser/filebrowser
 
 ## 1、介绍
 
@@ -1379,6 +1403,9 @@ filebrowser/filebrowser
 
 # 十一、Jellyfin 媒体服务器
 
+> 1. 项目 github：https://github.com/jellyfin/jellyfin
+> 2. dockerHub 地址：https://hub.docker.com/r/jellyfin/jellyfin
+
 ## 1、介绍
 
 1. Jellyfin 是一个开源的媒体服务器软件，旨在提供类似 Plex 和 Emby 的家庭媒体管理和流媒体功能。
@@ -1473,6 +1500,9 @@ jellyfin/jellyfin:latest
 
 # 十二、navidrome 开源的、自托管的音乐流媒体服务器
 
+> 1. 项目 github：https://github.com/navidrome/navidrome
+> 2. dockerHub 地址：https://hub.docker.com/r/deluan/navidrome
+
 ## 1、介绍
 
 1. Navidrome 是一个开源的、自托管的音乐流媒体服务器
@@ -1526,17 +1556,18 @@ deluan/navidrome:latest
 
 # 十三、NapCatQQ 基于 TypeScript 构建的 QQ Node 模块
 
-> 1. github 地址：https://github.com/NapNeko/NapCatQQ
-> 2. 官方 Docker 版本 github 地址：https://github.com/NapNeko/NapCat-Docker
-> 3. 官网：https://napneko.github.io/
+> 1. 项目 github：https://github.com/NapNeko/NapCatQQ
+> 2. 项目 Docker 版本 github：https://github.com/NapNeko/NapCat-Docker
+> 3. dockerHub 地址：https://hub.docker.com/r/mlikiowa/napcat-docker
+> 4. 官网：https://napneko.github.io/
 > -------- 
-> 4. 本来想将 NapCatQQ 和 nonebot-bison 都部署在阿里云上，但是阿里云的 WebSocket 好像要收费才能开通，所以 nonebot-bison 部署后连接不上
-> 5. 但是不知道为什么 NapCatQQ 可以启动，WebSocket 的客户端和服务端都可以正常启动并连接，为什么 nonebot-bison 不行？
-> 6. 具体原因到底是不是这个，还有待考证；[WebSocket 官网计费说明](https://help.aliyun.com/zh/edge-security-acceleration/dcdn/configure-websocket)
-> 7. 所以现在 NapCatQQ 部署在阿里云上，nonebot-bison 部署在自己的实体机上
+> 5. 本来想将 NapCatQQ 和 nonebot-bison 都部署在阿里云上，但是阿里云的 WebSocket 好像要收费才能开通，所以 nonebot-bison 部署后连接不上
+> 6. 但是不知道为什么 NapCatQQ 可以启动，WebSocket 的客户端和服务端都可以正常启动并连接，为什么 nonebot-bison 不行？
+> 7. 具体原因到底是不是这个，还有待考证；[WebSocket 官网计费说明](https://help.aliyun.com/zh/edge-security-acceleration/dcdn/configure-websocket)
+> 8. 所以现在 NapCatQQ 部署在阿里云上，nonebot-bison 部署在自己的实体机上
 > -------- 
-> 8. 经过尝试，阿里云上部署之后有可以链接上了，参数都没变，只是将我实体机上使用的镜像导出，上传到了阿里云的服务器上使用
-> 9. 难道是上一次镜像下载时出错了？还有待考证
+> 9. 经过尝试，阿里云上部署之后有可以链接上了，参数都没变，只是将我实体机上使用的镜像导出，上传到了阿里云的服务器上使用
+> 10. 难道是上一次镜像下载时出错了？还有待考证
 
 ## 1、介绍
 
@@ -1702,6 +1733,9 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 
 # 十四、nonebot-bison 通用订阅推送插件机器人
 
+> 1. 项目 github：https://github.com/MountainDash/nonebot-bison
+> 2. dockerHub 地址：https://hub.docker.com/r/felinae98/nonebot-bison
+
 ## 1、介绍
 
 1. NoneBot-Bison 是 NoneBot 的一个扩展插件，专注于多种消息源（例如 RSS、B 站、推特等）的订阅与推送功能
@@ -1786,6 +1820,9 @@ felinae98/nonebot-bison
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250107151702.png)
 
 # 十五、qinglong 青龙定时任务管理
+
+> 1. 项目 github：https://github.com/whyour/qinglong
+> 2. dockerHub 地址：https://hub.docker.com/r/whyour/qinglong
 
 ## 1、介绍
 
@@ -1973,6 +2010,9 @@ Node.js v20.15.1
 
 # 十六、QD 一个 HTTP 定时任务自动执行 Web 框架
 
+> 1. 项目 github：https://github.com/qd-today/qd
+> 2. dockerHub 地址：https://hub.docker.com/r/qdtoday/qd
+
 ## 1、介绍
 
 1. QD（全称：Quick Deployment）是一个基于 HAR 编辑器和 Tornado 服务器的 HTTP 定时任务自动执行 Web 框架。 它允许用户通过上传抓包得到的 HAR 文件，快速创建并执行 HTTP 请求任务，常用于自动签到等场景。
@@ -2042,6 +2082,9 @@ http://www.pushplus.plus/send/
 8. 设置完成后，可以执行一个任务查看是否可以正常推送
 
 # 十七、ddns-go 一款轻量级、开源的动态域名解析服务
+
+> 1. 项目 github：https://github.com/jeessy2/ddns-go
+> 2. dockerHub 地址：https://hub.docker.com/r/jeessy/ddns-go
 
 ## 1、介绍
 
@@ -2185,6 +2228,9 @@ http://www.pushplus.plus/send/
 
 # 十八、onenav 开源的导航管理工具
 
+> 1. 项目 github：https://github.com/helloxz/onenav
+> 2. dockerHub 地址：https://hub.docker.com/r/helloz/onenav
+
 ## 1、介绍
 
 1. OneNav 是一个基于 PHP + SQLite 开发的简洁、轻量级的书签管理导航系统。它的设计目标是提供一个简洁高效的导航页面，适用于个人或团队使用，方便管理和访问常用网站。
@@ -2226,7 +2272,8 @@ helloz/onenav:latest
 
 # 十九、NextChat AI 前端工具
 
-> github：https://github.com/ChatGPTNextWeb/NextChat
+> 1. 项目 github：https://github.com/ChatGPTNextWeb/NextChat
+> 2. dockerHub 地址：https://hub.docker.com/r/yidadaa/chatgpt-next-web
 
 ## 1、介绍
 
@@ -2309,6 +2356,9 @@ location / {
 # 二十一、
 
 # 一百、homeassistant 智能家居平台
+
+> 1. 项目 github：https://github.com/home-assistant/core
+> 2. dockerHub 地址：https://hub.docker.com/r/homeassistant/home-assistant
 
 ## 1、介绍
 
