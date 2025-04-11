@@ -13954,7 +13954,183 @@ System.out.println("下一个工作日是：" + localDate);
 
 ## 9、Base64
 
-# 二十二、
+# 二十二、JDK 9 新特性
+
+## 1、模块化系统（JPMS）
+
+### ①、模块化核心目标
+
+1. 强封装：精确控制包和类型的可见性
+2. 可靠配置：显式声明模块间依赖关系
+3. 可扩展性：支持大型应用和类库的组件化
+
+### ②、核心概念
+
+| 术语         | 描述                                       |
+| ---------- | ---------------------------------------- |
+| 模块（Module） | 包含`module-info.java`的代码单元，是包（package）的容器 |
+| 模块描述文件     | `module-info.java`（必须放在模块根目录）            |
+| 模块路径       | 替代部分类路径功能，通过`--module-path`指定            |
+| 未命名模块      | 传统类路径中的 JAR 被视为一个特殊模块（可访问所有模块）           |
+
+### ③、模块声明关键字详解
+
+#### Ⅰ、模块定义
+
+1. 文件名必须是 `module-info.java`，必须放在模块根目录
+
+```java
+module com.yuehai.core { /* ... */ }
+```
+
+#### Ⅱ、依赖声明
+
+| 修饰符                    | 作用                                                                 |
+|--------------------------|----------------------------------------------------------------------|
+| `requires <模块名>`      | 声明编译和运行时的强依赖                                             |
+| `requires transitive`    | 传递依赖（下游模块自动获得此依赖）                                   |
+| `requires static`        | 编译时必需，运行时可选（如注解处理器）                               |
+
+1. 代码示例：
+
+```java
+module com.yuehai.core {
+	requires java.sql;
+	requires transitive com.yuehai.json;
+	requires static lombok;
+}
+```
+
+#### Ⅲ、导出控制
+
+| 操作符                  | 作用                                                                 |
+|-------------------------|----------------------------------------------------------------------|
+| `exports <包名>`        | 允许其他模块访问此包的公共类型                                       |
+| `exports ... to`        | 定向导出到特定模块（白名单）                                         |
+| `opens <包名>`          | 开放反射访问权限（包括非public成员）                                 |
+| `opens ... to`          | 定向开放反射权限                                                     |
+
+1. 代码示例：
+
+```java
+module com.yuehai.core {
+	exports com.yuehai.api;
+	exports com.yuehai.internal to com.yuehai.test;
+	opens com.yuehai.reflect;
+}
+```
+
+#### Ⅳ、服务提供
+
+| 声明                   | 作用                                 |
+|------------------------|--------------------------------------|
+| `provides ... with`    | 注册服务实现类                       |
+| `uses`                 | 声明消费的服务接口                   |
+
+1. 代码示例：
+
+```java
+module com.yuehai.core {
+	provides com.yuehai.spi.Database 
+	    with com.yuehai.core.MySQLDB;
+	uses com.yuehai.spi.Logger;
+}
+```
+
+### ④、模块声明文件示例
+
+```java
+/**
+ * 模块：核心业务逻辑
+ * @author 月海
+ */
+module com.yuehai.core {
+    // 标准库依赖
+    requires java.sql;
+    
+    // 传递依赖（暴露给下游）
+    requires transitive com.yuehai.json;
+    
+    // 可选依赖（仅编译时）
+    requires static lombok;
+    
+    // 公共API导出
+    exports com.yuehai.core.api;
+    
+    // 定向导出给测试模块
+    exports com.yuehai.core.internal to com.yuehai.test;
+    
+    // 开放反射给Spring
+    opens com.yuehai.core.config to org.spring.core;
+    
+    // 服务提供
+    provides com.yuehai.spi.CacheService
+        with com.yuehai.core.redis.RedisCache;
+}
+```
+
+### ⑤、关键变化与迁移策略
+
+#### Ⅰ、访问控制变化
+
+| 作用域                | 传统Java          | 模块化系统                  |
+|-----------------------|-------------------|-----------------------------|
+| public类              | 全局可见          | 仅模块内可见（除非被exports）|
+| 包私有（无修饰符）     | 同包可见          | 同包可见（不受模块影响）     |
+
+#### Ⅱ、迁移策略
+
+1. 逐步模块化：
+
+```java
+# 步骤1：将已有代码作为未命名模块运行
+java --class-path lib/*:out -m com.yuehai.app
+```
+
+2. 使用自动模块（过渡方案）：
+
+```java
+requires legacy.lib;  // 自动模块名从JAR文件名推导
+```
+
+3. 模块化测试：
+
+```java
+open module com.yuehai.test {
+    requires com.yuehai.core;
+}
+```
+
+### ⑥、常用命令
+
+```java
+# 编译模块
+javac -d out --module-path libs --module-source-path src $(find src -name *.java)
+
+# 运行模块
+java --module-path out:libs -m com.yuehai.app/com.yuehai.app.Main
+
+# 分析依赖
+jdeps --module-path libs --module com.yuehai.core
+```
+
+### ⑦、常见问题
+
+1. 如何允许反射访问？
+
+```java
+opens com.yuehai.reflect;  // 开放整个包
+opens com.yuehai.model to hibernate.core; // 定向开放
+```
+
+1. 如何处理未模块化的 JAR？
+	1. 放置在 `--class-path` 中（成为未命名模块）
+	2. 或作为自动模块使用（自动导出所有包）
+2. 模块化 vs OSGi？
+	1. JPMS 是语言层解决方案，OSGi 是运行时框架
+	2. JPMS 更轻量，OSGi 支持动态加载
+
+## 2、
 
 # 二十三、
 
@@ -14030,4 +14206,5 @@ System.out.println("下一个工作日是：" + localDate);
 #### Ⅸ、
 
 #### Ⅹ、
+
 
