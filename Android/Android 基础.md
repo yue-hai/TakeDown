@@ -13723,40 +13723,7 @@ public final void notifyItemRangeRemoved(int positionStart, int itemCount);
 
 ## 8、
 
-# 十二、错误总结
-
-## 1、module java.base does not "opens java.io"
-
-```cmd
-Unable to make field private final java.lang.String java.io.File.path accessible: module java.base does not "opens java.io" to unnamed module @28904302
-```
-
-1. 打开项目根目录下的 `gradle.properties` 文件
-2. 加入以下代码：
-
-```properties
-org.gradle.jvmargs=-Xmx1536M \
---add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
---add-opens=java.base/java.lang=ALL-UNNAMED \
---add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
---add-opens=java.base/java.io=ALL-UNNAMED \
---add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
-```
-
-## 2、编译报错：  `javax.annotation.processing.Generated`
-
-1. 原因：`javax.annotation.processing.Generated` 类是 JDK 1.8 引入的注解，用于标识由注解处理器生成的代码。但是 jdk11及其以上移除了该包
-2. 解决方法 1：下载 `javax.annotation-api`，手动引入
-3. 解决方法 2：退回 jdk8
-4. 解决方法 3：`build.gradle` 中添加依赖：`compile 'org.glassfish:javax.annotation:10.0-b28'`
-
-## 3、
-
-## 4、
-
-## 5、
-
-# 十三、其他补充记录
+# 十二、其他补充记录
 
 ## 1、工具
 
@@ -14148,4 +14115,398 @@ adb disconnect 手机ip:端口号
 ## 6、
 
 
+# 十三、错误总结
+
+## 1、module java.base does not "opens java.io"
+
+```cmd
+Unable to make field private final java.lang.String java.io.File.path accessible: module java.base does not "opens java.io" to unnamed module @28904302
+```
+
+1. 打开项目根目录下的 `gradle.properties` 文件
+2. 加入以下代码：
+
+```properties
+org.gradle.jvmargs=-Xmx1536M \
+--add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
+--add-opens=java.base/java.lang=ALL-UNNAMED \
+--add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
+--add-opens=java.base/java.io=ALL-UNNAMED \
+--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+```
+
+## 2、编译报错：  `javax.annotation.processing.Generated`
+
+1. 原因：`javax.annotation.processing.Generated` 类是 JDK 1.8 引入的注解，用于标识由注解处理器生成的代码。但是 jdk11及其以上移除了该包
+2. 解决方法 1：下载 `javax.annotation-api`，手动引入
+3. 解决方法 2：退回 jdk8
+4. 解决方法 3：`build.gradle` 中添加依赖：`compile 'org.glassfish:javax.annotation:10.0-b28'`
+
+## 3、Webview 在系统签名下会崩溃报错的解决方案
+
+### ①、报错
+
+1. 有个功能用到了 WebView 这个控件，正常不添加系统签名情况下WebView是正常的，添加系统签名后 Webview 崩溃报错：
+
+```shell
+Binary XML file line #147: Binary XML file line #147: Error inflating class android.webkit.WebView
+```
+
+1. 详细报错：
+
+```shell
+FATAL EXCEPTION: main
+Process: jp.retailai.raicart, PID: 8810
+android.view.InflateException: Binary XML file line #147: Binary XML file line #147: Error inflating class android.webkit.WebView
+Caused by: android.view.InflateException: Binary XML file line #147: Error inflating class android.webkit.WebView
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.lang.reflect.Constructor.newInstance0(Native Method)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:343)
+	at android.view.LayoutInflater.createView(LayoutInflater.java:647)
+	at com.android.internal.policy.PhoneLayoutInflater.onCreateView(PhoneLayoutInflater.java:58)
+	at android.view.LayoutInflater.onCreateView(LayoutInflater.java:720)
+	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:788)
+	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:730)
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:863)
+	at android.view.LayoutInflater.rInflateChildren(LayoutInflater.java:824)
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:866)
+	at android.view.LayoutInflater.rInflateChildren(LayoutInflater.java:824)
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:866)
+	at android.view.LayoutInflater.rInflateChildren(LayoutInflater.java:824)
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:515)
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:423)
+	at jp.retailai.mvvmcore.base.BaseFragment.onCreateView(BaseFragment.kt:62)
+	at androidx.fragment.app.Fragment.performCreateView(Fragment.java:2963)
+	at bx.f(FragmentStateManager.java:518)
+	at bx.m(FragmentStateManager.java:282)
+	at androidx.fragment.app.FragmentManager.d0(FragmentManager.java:2189)
+	at androidx.fragment.app.FragmentManager.l1(FragmentManager.java:2106)
+	at androidx.fragment.app.FragmentManager.a0(FragmentManager.java:2002)
+	at androidx.fragment.app.FragmentManager$g.run(FragmentManager.java:524)
+	at android.os.Handler.handleCallback(Handler.java:873)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:193)
+	at android.app.ActivityThread.main(ActivityThread.java:6746)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+Caused by: java.lang.UnsupportedOperationException: For security reasons, WebView is not allowed in privileged processes
+	at android.webkit.WebViewFactory.getProvider(WebViewFactory.java:235)
+	at android.webkit.WebView.getFactory(WebView.java:2424)
+	at android.webkit.WebView.ensureProviderCreated(WebView.java:2419)
+	at android.webkit.WebView.setOverScrollMode(WebView.java:2484)
+	at android.view.View.<init>(View.java:4807)
+	at android.view.View.<init>(View.java:4948)
+	at android.view.ViewGroup.<init>(ViewGroup.java:659)
+	at android.widget.AbsoluteLayout.<init>(AbsoluteLayout.java:55)
+	at android.webkit.WebView.<init>(WebView.java:403)
+	at android.webkit.WebView.<init>(WebView.java:348)
+	at android.webkit.WebView.<init>(WebView.java:331)
+	at android.webkit.WebView.<init>(WebView.java:318)
+	at java.lang.reflect.Constructor.newInstance0(Native Method) 
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:343) 
+	at android.view.LayoutInflater.createView(LayoutInflater.java:647) 
+	at com.android.internal.policy.PhoneLayoutInflater.onCreateView(PhoneLayoutInflater.java:58) 
+	at android.view.LayoutInflater.onCreateView(LayoutInflater.java:720) 
+	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:788) 
+	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:730) 
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:863) 
+	at android.view.LayoutInflater.rInflateChildren(LayoutInflater.java:824) 
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:866) 
+	at android.view.LayoutInflater.rInflateChildren(LayoutInflater.java:824) 
+	at android.view.LayoutInflater.rInflate(LayoutInflater.java:866) 
+	at android.view.LayoutInflater.rInflateChildren(LayoutInflater.java:824) 
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:515) 
+	at android.view.LayoutInflater.inflate(LayoutInflater.java:423) 
+	at jp.retailai.mvvmcore.base.BaseFragment.onCreateView(BaseFragment.kt:62) 
+	at androidx.fragment.app.Fragment.performCreateView(Fragment.java:2963) 
+	at bx.f(FragmentStateManager.java:518) 
+	at bx.m(FragmentStateManager.java:282) 
+	at androidx.fragment.app.FragmentManager.d0(FragmentManager.java:2189) 
+	at androidx.fragment.app.FragmentManager.l1(FragmentManager.java:2106) 
+	at androidx.fragment.app.FragmentManager.a0(FragmentManager.java:2002) 
+	at androidx.fragment.app.FragmentManager$g.run(FragmentManager.java:524) 
+	at android.os.Handler.handleCallback(Handler.java:873) 
+	at android.os.Handler.dispatchMessage(Handler.java:99) 
+	at android.os.Looper.loop(Looper.java:193) 
+	at android.app.ActivityThread.main(ActivityThread.java:6746) 
+	at java.lang.reflect.Method.invoke(Native Method) 
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493) 
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858) 
+```
+
+### ②、原因
+
+1. 报错中有这一行：出于安全原因，特权进程中不允许使用WebView
+
+```shell
+For security reasons, WebView is not allowed in privileged processes
+```
+
+1. 换句话说就是因为安全性问题系统级应用不允许使用 WebView 这个控件
+2. 那么是为什么不允许在系统级应用使用呢？Google 百度一番，得知原因：WebView 这个控件在首次运行时会先调用 getProvider() 方法检测 uid，如果是系统进程或者 root 进程，就直接抛出异常。为什么会有这种安全机制呢？因为 WebView 允许运行 js，如果用户通过 js 注入，那么 js 就可以肆无忌惮的使用系统权限，（系统级权限的 APP 不管要干嘛都可以无需做任何申请提示，可谓是为所欲为）这无疑是一个大漏洞，门户大开。
+3. 系统源码：
+
+```java
+static WebViewFactoryProvider getProvider() {
+        synchronized (sProviderLock) {
+            // For now the main purpose of this function (and the factory abstraction) is to keep
+            // us honest and minimize usage of WebView internals when binding the proxy.
+            if (sProviderInstance != null) return sProviderInstance;
+ 
+            final int uid = android.os.Process.myUid();
+            if (uid == android.os.Process.ROOT_UID || uid == android.os.Process.SYSTEM_UID) {
+                throw new UnsupportedOperationException(
+                        "For security reasons, WebView is not allowed in privileged processes");
+            }
+ 
+            Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "WebViewFactory.getProvider()");
+            try {
+                Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "WebViewFactory.loadNativeLibrary()");
+                loadNativeLibrary();
+                Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
+ 
+                Class<WebViewFactoryProvider> providerClass;
+                Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "WebViewFactory.getFactoryClass()");
+                try {
+                    providerClass = getFactoryClass();
+                } catch (ClassNotFoundException e) {
+                    Log.e(LOGTAG, "error loading provider", e);
+                    throw new AndroidRuntimeException(e);
+                } finally {
+                    Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
+                }
+ 
+                StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
+                Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "providerClass.newInstance()");
+                try {
+                    try {
+                        sProviderInstance = providerClass.getConstructor(WebViewDelegate.class)
+                                .newInstance(new WebViewDelegate());
+                    } catch (Exception e) {
+                        sProviderInstance = providerClass.newInstance();
+                    }
+                    if (DEBUG) Log.v(LOGTAG, "Loaded provider: " + sProviderInstance);
+                    return sProviderInstance;
+                } catch (Exception e) {
+                    Log.e(LOGTAG, "error instantiating provider", e);
+                    throw new AndroidRuntimeException(e);
+                } finally {
+                    Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
+                    StrictMode.setThreadPolicy(oldPolicy);
+                }
+            } finally {
+                Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
+            }
+        }
+    }
+}
+```
+
+### ③、解决方案
+
+#### Ⅰ、暴力改造系统 framework 层
+
+1. 如果是自编系统直接暴力改造系统 framework 层，直接干掉 uid 的判断；从根本上解决
+
+#### Ⅱ、特权进程隔离（多进程架构）
+
+1. 适用场景：必须同时存在特权逻辑和 WebView
+
+```java
+// 启动隔离的 WebView 进程 Activity
+Intent intent = new Intent(this, WebViewActivity.class);
+intent.putExtra("url", "https://example.com");
+startActivity(intent);
+
+// WebViewActivity 需在 AndroidManifest.xml 声明为独立进程
+```
+
+2. 进程通信建议：
+	1. 使用 Messenger 或 AIDL 进行跨进程通信
+	2. 避免直接共享文件或内存
+
+#### Ⅲ、使用其他内核
+
+1. 使用如腾讯内核等
+
+#### Ⅳ、反射/Hook 系统 API
+
+##### （1）、安卓 6.0
+
+1. 从 `WebViewFactory` 这个类的 `GetProvider` 方法上看，在抛出异常之前有个判断，如果 `sProviderInstance` 等空就开始检测是不是在系统进程或者 ROOT 进程下运行
+2. 既然知道了有这一层判断，那么我们是否可以尝试通过模仿系统创建 `sProviderInstance` 一开始就手动构造个 `sProviderInstance` 从而达到欺骗系统绕过这段检测呢？
+3. 看看系统是如何创建 sProviderInstance 的。这是 getFactoryClass 的源码
+
+```java
+private static Class<WebViewFactoryProvider> getFactoryClass() throws ClassNotFoundException {
+        Application initialApplication = AppGlobals.getInitialApplication();
+        try {
+            // First fetch the package info so we can log the webview package version.
+            String packageName = getWebViewPackageName();
+            sPackageInfo = initialApplication.getPackageManager().getPackageInfo(packageName, 0);
+            Log.i(LOGTAG, "Loading " + packageName + " version " + sPackageInfo.versionName +
+                          " (code " + sPackageInfo.versionCode + ")");
+ 
+            // Construct a package context to load the Java code into the current app.
+            Context webViewContext = initialApplication.createPackageContext(packageName,
+                    Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
+            initialApplication.getAssets().addAssetPath(
+                    webViewContext.getApplicationInfo().sourceDir);
+            ClassLoader clazzLoader = webViewContext.getClassLoader();
+            Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "Class.forName()");
+            try {
+                return (Class<WebViewFactoryProvider>) Class.forName(CHROMIUM_WEBVIEW_FACTORY, true,
+                                                                     clazzLoader);
+            } finally {
+                Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            // If the package doesn't exist, then try loading the null WebView instead.
+            // If that succeeds, then this is a device without WebView support; if it fails then
+            // swallow the failure, complain that the real WebView is missing and rethrow the
+            // original exception.
+            try {
+                return (Class<WebViewFactoryProvider>) Class.forName(NULL_WEBVIEW_FACTORY);
+            } catch (ClassNotFoundException e2) {
+                // Ignore.
+            }
+            Log.e(LOGTAG, "Chromium WebView package does not exist", e);
+            throw new AndroidRuntimeException(e);
+        }
+    }
+}
+```
+
+4. 通过查看以上源代码可以得知其实系统也是通过反射来创建的，返回值是一个 WebViewFactoryProvider 的类，可以看到系统会首先加载 CHROMIUM_WEBVIEW_FACTORY，也就是使用 Chrome 内核的 WebView。这个方法是静态的，那么我们就可以模仿一下
+5. 在使用 WebView 这个控件前也就是 onCreate() 方法调用 setContentView() 布局前，调用一次 hookWebView() 方法，手动创建个 sProviderInstance 对象，从而绕过系统的检测；解决系统签名下 WebView 不允许使用的限制：
+
+```java
+public static void hookWebView() {
+        int sdkInt = Build.VERSION.SDK_INT;
+        try {
+            Class<?> factoryClass = Class.forName("android.webkit.WebViewFactory");
+            Field field = factoryClass.getDeclaredField("sProviderInstance");
+            field.setAccessible(true);
+            Object sProviderInstance = field.get(null);
+            if (sProviderInstance != null) {
+                log.debug("sProviderInstance isn't null");
+                return;
+            }
+            Method getProviderClassMethod;
+            if (sdkInt > 22) {
+                getProviderClassMethod = factoryClass.getDeclaredMethod("getProviderClass");
+            } else if (sdkInt == 22) {
+                getProviderClassMethod = factoryClass.getDeclaredMethod("getFactoryClass");
+            } else {
+                log.info("Don't need to Hook WebView");
+                return;
+            }
+            getProviderClassMethod.setAccessible(true);
+            Class<?> providerClass = (Class<?>) getProviderClassMethod.invoke(factoryClass);
+            Class<?> delegateClass = Class.forName("android.webkit.WebViewDelegate");
+            Constructor<?> providerConstructor = providerClass.getConstructor(delegateClass);
+            if (providerConstructor != null) {
+                providerConstructor.setAccessible(true);
+                Constructor<?> declaredConstructor = delegateClass.getDeclaredConstructor();
+                declaredConstructor.setAccessible(true);
+                sProviderInstance = providerConstructor.newInstance(declaredConstructor.newInstance());
+                log.debug("sProviderInstance:{}", sProviderInstance);
+                field.set("sProviderInstance", sProviderInstance);
+            }
+            log.debug("Hook done!");
+        } catch (Throwable e) {
+            log.error(e);
+        }
+    }
+}
+```
+
+##### （2）、安卓 9.0
+
+```kotlin
+import android.os.Build
+import android.util.Log
+import java.lang.reflect.Constructor
+import java.lang.reflect.Field
+
+object WebViewHack {
+    private const val TAG = "月海 WebViewHack"
+    
+    /**
+     * 尝试通过反射绕过系统应用无法访问 WebView 的限制
+     */
+    fun hookWebView() {
+        val sdkInt = Build.VERSION.SDK_INT
+        
+        try {
+            val factoryClass = Class.forName("android.webkit.WebViewFactory")
+            val field: Field = factoryClass.getDeclaredField("sProviderInstance").apply {
+                isAccessible = true
+            }
+            
+            // 检查是否已有实例
+            var sProviderInstance = field.get(null)
+            if (sProviderInstance != null) {
+                Log.i(TAG, "sProviderInstance 不为 null，跳过 Hook")
+                return
+            }
+            
+            // 根据版本选择获取方法
+            val getProviderClassMethod = when {
+                sdkInt > 22 -> factoryClass.getDeclaredMethod("getProviderClass")
+                sdkInt == 22 -> factoryClass.getDeclaredMethod("getFactoryClass")
+                else -> {
+                    Log.i(TAG, "不支持的 Android 版本：$sdkInt")
+                    return
+                }
+            }.apply { isAccessible = true }
+            
+            // 获取 Provider 类
+            val factoryProviderClass = getProviderClassMethod.invoke(factoryClass) as Class<*>
+            
+            // 创建 WebViewDelegate 实例
+            val delegateClass = Class.forName("android.webkit.WebViewDelegate")
+            val delegateConstructor: Constructor<*> = delegateClass.getDeclaredConstructor().apply {
+                isAccessible = true
+            }
+            val delegateInstance = delegateConstructor.newInstance()
+            
+            // 根据版本构建 Provider 实例
+            sProviderInstance = if (sdkInt < 26) {
+                // Android O 以下版本
+                factoryProviderClass.getConstructor(delegateClass)
+                    ?.apply { isAccessible = true }
+                    ?.newInstance(delegateInstance)
+            } else {
+                // Android O 及以上版本
+                val chromiumField: Field = factoryClass.getDeclaredField("CHROMIUM_WEBVIEW_FACTORY_METHOD").apply {
+                    isAccessible = true
+                }
+                val methodName = (chromiumField.get(null) as? String) ?: "create"
+                factoryProviderClass.getMethod(methodName, delegateClass)
+                    ?.invoke(null, delegateInstance)
+            }
+            
+            // 设置字段值
+            if (sProviderInstance != null) {
+                field.set(null, sProviderInstance)
+                Log.i(TAG, "Hook 成功！")
+            } else {
+                Log.i(TAG, "Hook 失败，sProviderInstance 为 null")
+            }
+        } catch (e: Throwable) {
+            Log.w(TAG, "Hook 失败并出现异常", e)
+        }
+    }
+}
+```
+
+### ④、
+
+### ⑤、
+
+## 4、
+
+## 5、
 
