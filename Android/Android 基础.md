@@ -13717,7 +13717,375 @@ public final void notifyItemRangeRemoved(int positionStart, int itemCount);
 
 #### Ⅱ、
 
-### ⑤、
+### ⑤、Dialog
+
+#### Ⅰ、dialog 弹窗中设置透明区块
+
+1. 设置透明区块工具类
+
+```kotlin
+package jp.retailai.common.dialog
+
+import android.content.Context
+import android.graphics.*
+import android.util.AttributeSet
+import android.view.View
+import androidx.core.view.doOnLayout
+
+class TransparentOverlayView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null
+) : View(context, attrs) {
+    
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
+    private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.parseColor("#B2000000") }
+    
+    private val path = Path()
+    private val transparentRects = mutableListOf<RectF>()
+    
+    fun addTransparentTarget(view: View) {
+        view.doOnLayout {
+            val location = IntArray(2)
+            view.getLocationOnScreen(location)
+            
+            val left = location[0].toFloat()
+            val top = location[1].toFloat()
+            val right = left + view.width
+            val bottom = top + view.height
+            
+            synchronized(transparentRects) {
+                transparentRects.add(RectF(left, top, right, bottom))
+            }
+            invalidate()
+        }
+    }
+    
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        
+        canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), backgroundPaint)
+        synchronized(transparentRects) {
+            path.reset()
+            for (rect in transparentRects) {
+                path.addRoundRect(rect, 0f, 0f, Path.Direction.CW)
+            }
+            canvas.drawPath(path, paint)
+        }
+    }
+    
+    fun clearTransparentAreas() {
+        synchronized(transparentRects) {
+            transparentRects.clear()
+        }
+        invalidate()
+    }
+}
+```
+
+1. 修改后的 `BaseGuidePocDialog`
+
+```kotlin
+package jp.retailai.common.dialog
+
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.FrameLayout
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.doOnLayout
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import cn.chaohi.device.DeviceManager
+import jp.retailai.common.R
+import jp.retailai.common.utils.SystemWindowUtil
+
+abstract class BaseGuidePocDialog : DialogFragment() {
+    private var transparentOverlayView: TransparentOverlayView? = null
+    private val transparentTargets = mutableListOf<View>()
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        setStyle(STYLE_NO_TITLE, R.style.DialogTheme)
+        val dialog = activity?.let {
+            val builder = AlertDialog.Builder(it).apply {
+                setView(getLayoutView())
+            }
+            builder.create()
+        } ?: throw IllegalStateException("Activity cannot be null")
+        dialog.let {
+            it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            it.setCanceledOnTouchOutside(true)
+            it.setOnKeyListener { _, _, event ->
+                DeviceManager.receiveKeyEvent(event)
+                true
+            }
+        }
+        return dialog
+    }
+
+    abstract fun getLayout(): Int
+    
+    abstract fun initData(dialog: Dialog)
+
+    abstract fun initEvent(dialog: Dialog)
+    
+    override fun onStart() {
+        super.onStart()
+        
+        dialog?.window?.let { win ->
+            SystemWindowUtil.fullScreen(win)
+            
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            win.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            
+            win.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT
+            )
+            win.decorView.setPadding(0, 0, 0, 0)
+        }
+        dialog?.let {
+            initEvent(it)
+            initData(it)
+        }
+    }
+    override fun onStop() {
+        super.onStop()
+        clearTransparentViews()
+    }
+    
+    override fun show(manager: FragmentManager, tag: String?) {
+        try {
+            //Add a remove transaction before each add transaction to prevent continuous add
+            manager.beginTransaction().remove(this).commitAllowingStateLoss()
+            super.show(manager, tag)
+        } catch (e: Exception) {
+            //If the same instance uses different tags, an exception will occur. Here is a capture:
+            e.printStackTrace()
+        }
+    }
+    
+    private fun getLayoutView(): View {
+        val rootView = FrameLayout(requireContext())
+        if (transparentOverlayView == null) {
+            transparentOverlayView = TransparentOverlayView(requireContext())
+        } else {
+            (transparentOverlayView?.parent as? ViewGroup)?.removeView(transparentOverlayView)
+        }
+        rootView.addView(
+            transparentOverlayView,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+        
+        val contentView = LayoutInflater.from(requireContext()).inflate(getLayout(), rootView, false)
+        rootView.addView(contentView)
+        contentView.doOnLayout {
+            for (target in transparentTargets) {
+                transparentOverlayView?.addTransparentTarget(target)
+            }
+        }
+        
+        return rootView
+    }
+    
+    fun addTransparentView(vararg views: View) {
+        transparentTargets.addAll(views)
+        transparentOverlayView?.let { overlay -> views.forEach { overlay.addTransparentTarget(it) } }
+        transparentOverlayView?.requestLayout()
+    }
+    
+    private fun clearTransparentViews() {
+        transparentTargets.clear()
+        transparentOverlayView?.clearTransparentAreas()
+        (transparentOverlayView?.parent as? ViewGroup)?.removeView(transparentOverlayView)
+    }
+}
+```
+
+1. dialog 弹窗类
+
+```kotlin
+package jp.retailai.raicart.guide
+
+import android.app.Dialog
+import android.view.View
+import jp.retailai.common.dialog.BaseGuidePocDialog
+import jp.retailai.raicart.R
+import kotlinx.android.synthetic.main.fragment_guide_one.*
+
+class GuideScanDialog : BaseGuidePocDialog() {
+    private var onEnterListener: (() -> Unit)? = null
+    private var onCancelListener: (() -> Unit)? = null
+
+    override fun getLayout(): Int {
+        return R.layout.fragment_guide_one
+    }
+
+    override fun initData(dialog: Dialog) {
+        val transparentView = dialog.findViewById<View>(R.id.guide_one_transparent_view)
+        addTransparentView(transparentView)
+    }
+
+    override fun initEvent(dialog: Dialog) {
+        dialog.setCancelable(false)
+        dialog.btnConfirm.setOnClickListener {
+            onEnterListener?.invoke()
+            dialog.dismiss()
+        }
+        dialog.btnCancel.setOnClickListener {
+            onCancelListener?.invoke()
+            dismiss()
+        }
+    }
+
+    fun setEnterListener(onEnterListener: (() -> Unit)? = null): GuideScanDialog {
+        this.onEnterListener = onEnterListener
+        return this
+    }
+
+    fun setCancelListener(onCancelListener: (() -> Unit)? = null): GuideScanDialog {
+        this.onCancelListener = onCancelListener
+        return this
+    }
+}
+```
+
+1. dialog 布局
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/guide_one_content"
+        android:layout_width="1090dp"
+        android:layout_height="516dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dp_55"
+        android:padding="@dimen/dp_40"
+        android:background="@drawable/shape_orange_border">
+        
+        <LinearLayout
+            android:layout_width="616dp"
+            android:layout_height="436dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:background="@color/white"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gif"
+                android:src="@mipmap/guide_poc_one_img" />
+            
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_25"
+                android:text="画面の表示が変わりましたが、これまで通りスキャンして商品を追加できます。"
+                android:textSize="@dimen/sp_26"
+                android:textColor="@color/font_black"
+                android:lineSpacingExtra="8sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="@dimen/dp_390"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+            
+            <TextView
+                style="@style/sp_26_font_style"
+                android:gravity="start"
+                android:text="スキャンした商品は、こちらの「カートを見る」ボタンから確認できます。(1/3)"
+                android:lineSpacingExtra="8sp"/>
+            
+            <jp.retailai.common.view.ShadowButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_35"
+                app:button_shadow_distance="@dimen/dp_6">
+                <TextView
+                    android:id="@+id/btnConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="@dimen/dp_390"
+                    android:textAllCaps="false"
+                    android:text="@string/shopping_bag_confirm"
+                    android:minHeight="@dimen/dp_80"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/bg_button_blue_radius_40"/>
+            </jp.retailai.common.view.ShadowButton>
+            
+            <jp.retailai.common.view.ShadowButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:button_shadow_distance="@dimen/dp_6">
+                
+                <TextView
+                    android:id="@+id/btnCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="使い方ガイドをスキップ"
+                    android:minWidth="@dimen/dp_390"
+                    android:paddingVertical="@dimen/dp_11"
+                    android:textAllCaps="false"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/sp_26"
+                    app:cornerRadius="@dimen/dp_30"
+                    android:background="@drawable/bg_white_corner_40" />
+            </jp.retailai.common.view.ShadowButton>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_30"
+        app:layout_constraintBottom_toTopOf="@id/guide_one_content"
+        app:layout_constraintEnd_toEndOf="@+id/guide_one_content"
+        android:src="@mipmap/guide_poc_one_arrow"/>
+    
+    <View
+        android:id="@+id/guide_one_transparent_view"
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_65"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@color/transparent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+#### Ⅱ、
 
 ### ⑥、
 
@@ -14110,7 +14478,20 @@ adb disconnect 手机ip:端口号
 
 ### ④、
 
-## 5、
+## 5、gradle 设置
+
+### ①、设置 gradle 目录
+
+1. 缓存目录：`.gradle` 里放的是下载的依赖、守护进程日志等，在电脑环境变量中设置：
+	1. 变量名：`GRADLE_USER_HOME`
+	2. 变量值:  缓存目录，如：`D:\IDE\Gradle\.gradle`
+2. Gradle 安装目录：真正的 gradle 程序，在电脑环境变量中设置：
+	1. 变量名：`GRADLE_HOME`（或改 gradle-wrapper.properties 指向本地 zip）
+	2. 变量值:  gradle 程序目录，如：`D:\IDE\Gradle\gradle-8.14`
+
+### ②、idea 中设置 gradle 目录
+
+![](attachments/Pasted%20image%2020250507151734.png)
 
 ## 6、
 

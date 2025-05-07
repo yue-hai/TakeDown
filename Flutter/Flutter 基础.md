@@ -88,12 +88,12 @@
 
 5. 在使用命令安装项目的情况下，在此终端窗口中，按下以下按键，将会执行不同操作：
 
-  | 按键 | 功能                                                 |
-  | ---- | ---------------------------------------------------- |
-  | r | 热重载                   |
-  | R（shift + r） | 热重启项目。                                         |
-  | p | 显示网格，这个可以很好的掌握布局情况，工作中很有用。 |
-  | o | 切换 android 和 ios 的预览模式                                 |
+| 按键           | 功能                         |
+| ------------ | -------------------------- |
+| r            | 热重载                        |
+| R（shift + r） | 热重启项目。                     |
+| p            | 显示网格，这个可以很好的掌握布局情况，工作中很有用。 |
+| o            | 切换 android 和 ios 的预览模式     |
 
 ## 6、Dart SDK 在 Flutter SDK 中的存储路径
 
@@ -21505,9 +21505,71 @@ void update(VoidCallback fn) {
 
 ![|306](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FFlutter%2Fattachments%2FPasted%20image%2020231127103507.png)
 
-## 3、
+## 3、初次编译时一直显示：`Running Gradle task 'assembleDebug'...`
 
-## 4、
+### ①、问题
+
+1. 初次编译时一直显示：
+
+```shell
+Launching lib\main.dart on SM G988N in debug mode...
+Support for Android x86 targets will be removed in the next stable release after 3.27. See https://github.com/flutter/flutter/issues/157543 for details.
+Running Gradle task 'assembleDebug'...
+```
+
+2. 注意：这些方法是建立在[在中国网络环境下使用 Flutter | Flutter 中文文档 - Flutter 中文开发者网站 - Flutter](https://docs.flutter.cn/community/china) 已经设置，但 Running Gradle task 'assembleDebug'... 仍会卡住的情况
+
+### ②、解决
+
+1. 进入 android 项目，打开 `gradle-wrapper.properties` 文件，查看使用的 gradle 版本
+
+![|700](attachments/Pasted%20image%2020250417125710.png)
+
+2. 下载对应的 gradle 版本，比如从 [腾讯gradle镜像](https://mirrors.cloud.tencent.com/gradle/) 下载对应上面版本的 gradle：
+
+![|676](attachments/Pasted%20image%2020250417125932.png)
+
+3. 下载完毕后：
+	1. 进入：`C:/Users/用户名/.gradle/wrapper/dists` 目录
+	2. 然后进入对应 gradle 版本的目录
+	3. 其中会有一个随机字符串的目录名，点击进入，然后将下载的 gradle 复制到其中
+
+![|700](attachments/Pasted%20image%2020250417130701.png)
+
+4. 解压复制的 gradle 压缩文件，然后 flutter 中重新 run app 即可
+
+## 4、报错：
+
+
+```shell
+PS D:\Idea\save\Study\Flutter\flutter_demo\android> ./gradlew clean
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'D:\Idea\save\Study\Flutter\flutter_demo\android\build.gradle.kts' line: 16
+
+* What went wrong:
+A problem occurred configuring project ':app'.
+> [CXX1101] NDK at D:\IDE\Android\Android_SDK\ndk\26.3.11579264 did not have a source.properties file
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1s
+6 actionable tasks: 1 executed, 5 up-to-date
+PS D:\Idea\save\Study\Flutter\flutter_demo\android> 
+```
+
 
 ## 5、
 
