@@ -395,7 +395,7 @@ screen -r XXX.NFWC
 screen -S XXX.NFWC -X quit
 ```
 
-### ②、自动开服脚本
+### ②、服务器管理脚本
 
 1. 进入游戏服务器目录：
    
@@ -407,23 +407,34 @@ cd /home/steam/game/Minecraft-forge/NFWC-Beta-0.3.2-server/
 
 ```shell
 # 创建脚本文件：
-touch minecraft_server_start.sh
-
-# 创建日志文件：
-touch minecraft_server.log
+touch minecraft_server_manager.sh
 ```
 
-3. 编写自动开服脚本代码：`nano minecraft_server_start.sh`
+1. 编写服务器管理脚本代码：`nano minecraft_server_manager.sh`
 
 ```shell
 #!/bin/bash
 
+# 获取第一个参数：执行方式（启动=start、重启=restart、停止=stop、备份=backup），默认是启动
+mode=${1:-start}
+
+# 启动脚本名称，一般有 run.sh、start.sh
+script_name="start.sh"
 # screen 会话名称，每个会话中可能有多个窗口
-screen_name="1846962.MC-atm10-2025-02-08"
+screen_name="1359342.BMC4-v36"
 # 脚本所在路径
-path="/home/steam/game/Minecraft-neoforge/atm10-2025-02-08"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
+path="/home/steam/game/Minecraft-forge/BMC4-v36"
+
+# 获取当前时间，用于日志记录、备份文件名
+current_time=$(date "+%Y-%m-%d_%H%M%S")
+# 日志内容
+log_content=""
+# 设置备份的目录
+backup_dir="$path/world"
+# 设置备份存放的目录
+backup_storage_dir="$path/backup"
+# 生成备份文件的名称，包含日期
+backup_filename="backup_$current_time.tar.gz"
 
 # 定义发送命令并可选地休眠的函数
 # $1 是要发送的命令
@@ -441,41 +452,135 @@ send_command() {
     fi
 }
 
-# 发送指令，保存服务器世界状态到硬盘，并模拟按下回车键；等待 20 秒；防止服务器正在运行
-send_command "save-all\r" 20
-# 发送指令，关闭服务器，并模拟按下回车键；等待 20 秒；防止服务器正在运行
-send_command "stop\r" 20
+# 向日志文件中追加日志
+logging() {
+    echo "----------------------------------------------------------------" >> $path/minecraft_server.log
+    echo "$log_content" >> $path/minecraft_server.log
+    echo "" >> $path/minecraft_server.log
+}
 
-# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒；执行两次
-send_command $'\x03' 20
-send_command $'\x03' 5
+# 定义启动函数
+start_server() {
+    # 进入游戏服务器目录，不在此目录执行启动脚本会导致报错
+    send_command "cd $path\r" 2
+    # 发送启动命令，包括运行参数，将命令发送到会话中，并模拟按下回车键
+    send_command "./$script_name\r"
 
-# 进入游戏服务器目录，不在此目录执行启动脚本会导致报错
-send_command "cd $path\r" 5
+    # 向日志内容中添加信息
+    log_content="【${current_time}】我的世界服务器已启动"
+}
 
-# 发送启动 PalServer 命令，包括运行参数，将命令发送到会话中，并模拟按下回车键；等待 20 秒，确保 PalServer 启动完成
-send_command "$path/run.sh\r"
+# 定义停止函数
+stop_server() {
+    # 发送指令，保存服务器世界状态到硬盘，并模拟按下回车键；等待 60 秒
+    send_command "save-all\r" 60
+    # 发送指令，关闭服务器，并模拟按下回车键；等待 20 秒
+    send_command "stop\r" 20
 
-# 向 minecraft_server.log 文件中追加日志
-echo "----------------------------------------------------------------" >> $path/minecraft_server.log
-echo "【${current_time}】我的世界 Minecraft neoforge atm-10 服务器已启动" >> $path/minecraft_server.log
+    # 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 20 秒；执行 3 次
+    send_command $'\x03' 20
+    send_command $'\x03' 5
+    send_command $'\x03' 5
+
+    # 向日志内容中添加信息
+    log_content="【${current_time}】我的世界服务器已停止"
+}
+
+# 定义重启函数
+restart_server() {
+    # 调用停止函数
+    stop_server
+    # 调用启动函数
+    start_server
+
+    # 向日志内容中添加信息
+    log_content="【${current_time}】我的世界服务器已重启"
+}
+
+# 定义备份存档函数
+backup_world() {
+    echo "----------------------------------------------------------------" >> $path/minecraft_server.log
+    # 检查备份存放目录是否存在，不存在则创建
+    if [ ! -d "$backup_storage_dir" ]; then
+        mkdir -p "$backup_storage_dir" || { 
+            echo "【${current_time}】错误：创建备份目录失败！" >> "$path/minecraft_server.log"
+            exit 1
+        }
+        echo "【${current_time}】创建备份目录 $backup_storage_dir 成功" >> $path/minecraft_server.log
+    fi
+    # 进入备份目录
+    cd "$backup_dir" || { 
+        echo "【${current_time}】错误：无法进入 $backup_dir，备份中止。" >> "$path/minecraft_server.log"
+        exit 1
+    }
+
+    # 打包并压缩指定目录，排除 session.lock 和 logs 文件
+    tar --exclude='./session.lock' --exclude='./logs' -czf "$backup_storage_dir/$backup_filename" . || { 
+        echo "【${current_time}】错误：备份失败！" >> "$path/minecraft_server.log"
+        exit 1
+    }
+    # 记录成功备份日志
+    echo "【${current_time}】Minecraft 服务器备份成功：$backup_filename" >> "$path/minecraft_server.log"
+
+    # 删除一周前的备份
+    # find "$backup_storage_dir"：指定了 find 命令开始搜索的目录路径，即备份文件存放的目录
+    # -name "backup_*.tar.gz"：这个选项让 find 命令查找名称匹配模式 backup_*.tar.gz 的文件
+    # -type f：指定 find 只应查找类型为普通文件的条目。它排除了目录、链接或其他特殊类型的文件，确保只处理实际的备份文件
+    # -mtime +7：这个选项基于文件的修改时间来过滤搜索结果。mtime 是文件内容最后修改的时间。+7 表示选择那些最后修改时间在七天前或更早的文件
+    # -exec rm {} \;：这是一个执行动作，指示 find 命令对每个找到的文件执行 rm（删除）命令。在 find 命令中，{} 用作匹配文件的占位符，而 \; 是该 -exec 动作的结束标志
+    find "$backup_storage_dir" -name "backup_*.tar.gz" -type f -mtime +7 -exec rm {} \;
+    # 向 minecraft_server.log 文件中追加日志
+    echo "【${current_time}】我的世界 neoforge atm-10 备份存档和清理一周前备份已完成" >> $path/minecraft_server.log
+    echo "" >> $path/minecraft_server.log
+}
+
+
+
+# 检查执行方式，进行相应的操作
+if [ "$mode" == "start" ]; then
+    # 如果是启动或重启，则调用启动函数，并向日志文件中追加日志
+    start_server
+    logging
+elif [ "$mode" == "restart" ]; then
+    # 如果是重启，则调用重启函数，并向日志文件中追加日志
+    restart_server
+    logging
+elif [ "$mode" == "stop" ]; then
+    # 如果是停止，则调用停止函数，并向日志文件中追加日志
+    stop_server
+    logging
+elif [ "$mode" == "backup" ]; then
+    # 如果是备份，则调用备份函数
+    backup_world
+else
+    echo "无效的执行方式，请使用 start、restart、stop 或 backup。"
+fi
 ```
 
 4. 设置脚本权限：
 
 ```shell
-chmod 755 minecraft_server_start.sh
+chmod 755 minecraft_server_manager.sh
 ```
 
-5. 设置定时执行：
-6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
-7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令：
+1. 脚本使用：使用时需传入执行方式：启动=start、重启=restart、停止=stop、备份=backup
+2. 每个服务器对应的修改：
+	1. script_name：启动脚本的名称，一般有 run.sh、start.sh
+	2. screen_name：screen 会话名称，通过命令 `screen -ls` 查看
+	3. path：服务器、服务器启动脚本所在目录
+3. 设置定时执行：
+	1. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+	2. 在 `crontab` 文件中添加一行，指定时间和要执行的命令：
 
 ```shell
-# 我的世界 Minecraft forge 服务器开启，周一至周五，每天 19 点
-0 19 * * 1-5 /home/steam/game/Minecraft-forge/NFWC-Beta-0.3.2-server/minecraft_server_start.sh
-# 我的世界 Minecraft forge 服务器开启，周六和周日，每天 10 点
-0 10 * * 6,0 /home/steam/game/Minecraft-forge/NFWC-Beta-0.3.2-server/minecraft_server_start.sh
+# 我的世界 forge BMC4-v36 服务器开启，周一至周五，每天 18 点
+0 18 * * 1-5 /home/steam/game/Minecraft-forge/BMC4-v36/minecraft_server_manager.sh start
+# 我的世界 forge BMC4-v36 服务器开启，周六和周日，每天 9 点
+0 9 * * 6,0 /home/steam/game/Minecraft-forge/BMC4-v36/minecraft_server_manager.sh start
+# 我的世界 forge BMC4-v36 服务器关闭，每天 23 点
+0 23 * * * /home/steam/game/Minecraft-forge/BMC4-v36/minecraft_server_manager.sh stop
+# 我的世界 forge BMC4-v36 备份存档，每天 23:30
+30 23 * * * /home/steam/game/Minecraft-forge/BMC4-v36/minecraft_server_manager.sh backup
 ```
 
 8. 在 cron 表达式中，参数用于指定定时任务的执行时间。一个标准的 cron 表达式由五个或六个字段组成，每个字段代表不同的时间单位：
@@ -485,155 +590,6 @@ chmod 755 minecraft_server_start.sh
 	4. 月（Month）：1 ~ 12 或使用月份名称的缩写（例如，1代表一月，2代表二月，等等），代表一年中的哪一个月份执行任务。
 	5. 星期几（Day of the Week）：0 ~ 7 或使用星期名称的缩写（0和7都代表星期日，1代表星期一，等等）代表一周中的哪一天执行任务。
 9. 在编辑完 `crontab` 后，保存并退出编辑器，`crontab` 会自动安装新的计划任务。可以通过 `crontab -l` 命令查看当前的 `crontab` 任务列表，以确认任务已正确设置
-
-### ③、自动关服脚本
-
-1. 进入游戏服务器目录：
-   
-```shell
-cd /home/steam/game/Minecraft-forge/NFWC-Beta-0.3.2-server/
-```
-
-2. 在其中创建文件：
-
-```shell
-# 创建脚本文件：
-touch minecraft_server_close.sh
-```
-
-3. 编写自动关服脚本代码：`nano minecraft_server_close.sh`
-
-```shell
-#!/bin/bash
-
-# screen 会话名称，每个会话中可能有多个窗口
-screen_name="1846962.MC-atm10-2025-02-08"
-# 脚本所在路径
-path="/home/steam/game/Minecraft-neoforge/atm10-2025-02-08"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
-
-# 定义发送命令并可选地休眠的函数
-# $1 是要发送的命令
-# $2 是可选的休眠时间
-send_command() {
-    # -x：附加到指定的会话。
-    # -S $screen_name：指定要操作的会话名称。
-    # -p 0：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口；如果只有一个窗口，那这就是第一个
-    # -X stuff：在选定的窗口中发送字符。
-    screen -x -S $screen_name -p 0 -X stuff "$1"
-
-    # 如果提供了休眠时间，则进行休眠
-    if [ ! -z "$2" ]; then 
-        sleep $2
-    fi
-}
-
-# 发送指令，保存服务器世界状态到硬盘，并模拟按下回车键；等待 20 秒
-send_command "save-all\r" 20
-# 发送指令，关闭服务器，并模拟按下回车键；等待 20 秒
-send_command "stop\r" 20
-
-# 模拟按下 Ctrl + C 组合键，防止服务器正在运行；等待 10 秒；执行两次
-send_command $'\x03' 20
-send_command $'\x03'
-
-# 向 minecraft_server.log 文件中追加日志
-echo "【${current_time}】我的世界 Minecraft neoforge atm-10 服务器已关闭" >> $path/minecraft_server.log
-
-# 执行备份脚本
-$path/minecraft_server_backup.sh
-```
-
-4. 设置脚本权限：
-
-```shell
-chmod 755 minecraft_server_close.sh
-```
-
-5. 设置定时执行：
-6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
-7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令：
-
-```shell
-# 我的世界 Minecraft forge 服务器关闭，每天 23 点
-0 23 * * * /home/steam/game/Minecraft-forge/NFWC-Beta-0.3.2-server/minecraft_server_close.sh
-```
-
-### ④、自动备份存档脚本
-
-1. 进入游戏服务器目录：
-   
-```shell
-cd /home/steam/game/Minecraft-forge/NFWC-Beta-0.3.2-server/
-```
-
-2. 在其中创建文件：
-
-```shell
-# 创建备份存档脚本文件：
-touch minecraft_server_backup.sh
-
-# 创建日志文件：
-touch minecraft_server.log
-```
-
-3. 编写自动备份存档脚本代码：`nano minecraft_server_backup.sh`
-
-```shell
-#!/bin/bash
-
-# 脚本所在路径
-path="/home/steam/game/Minecraft-neoforge/atm10-2025-02-08"
-# 获取当前时间
-current_time=$(date "+%Y-%m-%d_%H%M%S")
-
-# 设置备份的目录
-backup_dir="$path/world"
-# 设置备份存放的目录
-backup_storage_dir="$path/backup"
-# 生成备份文件的名称，包含日期
-backup_filename="backup_$current_time.tar.gz"
-
-# 检查备份存放目录是否存在，不存在则创建
-if [ ! -d "$backup_storage_dir" ]; then
-    mkdir -p "$backup_storage_dir" || { 
-        echo "【${current_time}】错误：创建备份目录失败！" >> "$path/minecraft_server.log"
-        exit 1
-    }
-    echo "【${current_time}】创建备份目录 $backup_storage_dir" >> $path/minecraft_server.log
-fi
-
-# 进入备份目录
-cd "$backup_dir" || { 
-    echo "【${current_time}】错误：无法进入 $backup_dir，备份中止。" >> "$path/minecraft_server.log"
-    exit 1
-}
-# 打包并压缩指定目录
-tar --exclude='./session.lock' --exclude='./logs' -czf "$backup_storage_dir/$backup_filename" . || { 
-    echo "【${current_time}】错误：备份失败！" >> "$path/minecraft_server.log"
-    exit 1
-}
-# 记录成功备份日志
-echo "【${current_time}】Minecraft 服务器备份成功：$backup_filename" >> "$path/minecraft_server.log"
-
-# 删除一周前的备份
-# find "$backup_storage_dir"：指定了 find 命令开始搜索的目录路径，即备份文件存放的目录
-# -name "backup_*.tar.gz"：这个选项让 find 命令查找名称匹配模式 backup_*.tar.gz 的文件
-# -type f：指定 find 只应查找类型为普通文件的条目。它排除了目录、链接或其他特殊类型的文件，确保只处理实际的备份文件
-# -mtime +7：这个选项基于文件的修改时间来过滤搜索结果。mtime 是文件内容最后修改的时间。+7 表示选择那些最后修改时间在七天前或更早的文件
-# -exec rm {} \;：这是一个执行动作，指示 find 命令对每个找到的文件执行 rm（删除）命令。在 find 命令中，{} 用作匹配文件的占位符，而 \; 是该 -exec 动作的结束标志
-find "$backup_storage_dir" -name "backup_*.tar.gz" -type f -mtime +7 -exec rm {} \;
-# 向 minecraft_server.log 文件中追加日志
-echo "【${current_time}】我的世界 neoforge atm-10 备份存档和清理一周前备份已完成" >> $path/minecraft_server.log
-echo "" >> $path/minecraft_server.log
-```
-
-4. 设置脚本权限：
-
-```shell
-chmod 755 minecraft_server_backup.sh
-```
 
 # 九、文件和参数说明
 
