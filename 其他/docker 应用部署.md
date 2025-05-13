@@ -2351,7 +2351,65 @@ location / {
 
 3. 这样配置完成后，就不会报错了，可正常对话
 
-# 二十、
+# 二十、LobeChat  AI 前端工具
+
+> 1. 官网：https://lobehub.com/zh/docs/self-hosting/start
+> 2. 项目 github：https://github.com/lobehub/lobe-chat
+> 3. dockerHub 地址：https://hub.docker.com/r/lobehub/lobe-chat
+
+## 1、介绍
+
+1. LobeChat 是一款由 LobeHub 团队开发的开源聊天前端，专为对接大语言模型（如 OpenAI、DeepSeek 等）设计。它以简洁美观的界面、强大的自定义能力和丰富的插件系统著称，支持通过 Docker 快速本地化部署。
+2. 核心功能：
+3. 多模型支持：
+	1. 可无缝切换 OpenAI、DeepSeek、Claude 等主流模型（需兼容 OpenAI API 格式）。
+	2. 支持自定义模型名称（如 deepseek-chat）。
+4. 插件系统：
+	1. 内置插件市场，支持联网搜索、图像生成、代码解释器等扩展功能。
+	2. 可开发自定义插件（基于 TypeScript + React）。
+5. 对话管理：
+	1. 会话历史记录自动保存，支持多标签页管理。
+	2. 可导出/导入对话数据（Markdown 或 JSON 格式）。
+6. 界面与交互：
+	1. 响应式设计，适配 PC、平板和手机端。
+	2. 支持 Markdown 渲染、代码高亮、LaTeX 公式。
+	3. 主题切换（亮色/暗色模式）。
+7. 安全控制：
+	1. 支持密码保护、IP 白名单限制访问。
+	2. 敏感词过滤和对话内容审查机制。
+
+| 组件          | 说明                                                                 |
+|---------------|----------------------------------------------------------------------|
+| 前端框架      | Next.js（React） + Ant Design                                       |
+| 状态管理      | Zustand                                                             |
+| 插件系统      | 基于 `@lobehub/chat-plugins` SDK                                    |
+| 部署方式      | Docker 容器化 / Vercel 一键部署                                     |
+| 兼容性        | 要求模型 API 兼容 OpenAI 的 `/v1/chat/completions` 接口格式         |
+
+## 2、docker 部署
+
+1. 该应用所有数据都保存在浏览器，所以不需要配置挂载目录
+2. 使用 docker 部署：
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `-p`：指定端口映射
+	3.  `-e`：设置环境变量
+		1. `OPENAI_API_KEY`：<font color="#ff0000">必填</font>，OpenAI 密钥，可使用英文逗号隔开多个 key，即使不用 OpenAI 也需要填写
+		2. `OPENAI_API_BASE_URL`：deepseek 的 api_key
+	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+
+```shell
+docker run -d \
+-p 3210:3210 \
+-e OPENAI_API_KEY=sk-xxx \
+-e OPENAI_API_BASE_URL=https://api.deepseek.com \
+--restart=unless-stopped \
+--name lobe-chat \
+lobehub/lobe-chat:latest
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:3210](http://127.0.0.1:3210)
 
 # 二十一、
 
