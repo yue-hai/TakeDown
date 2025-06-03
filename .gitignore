@@ -1,3 +1,10 @@
+# 所有的图片等附件
 **/attachments/**
+# 公司相关内容
 /公司*
+
+# syncthing 同步软件缓存目录
+/.stfolder/**
+
+# copilot 插件数据
 /.obsidian/plugins/copilot/data.json
