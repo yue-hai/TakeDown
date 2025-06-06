@@ -95,13 +95,24 @@
 | p            | 显示网格，这个可以很好的掌握布局情况，工作中很有用。 |
 | o            | 切换 android 和 ios 的预览模式     |
 
-## 6、Dart SDK 在 Flutter SDK 中的存储路径
+## 6、flutter 命令常用参数
+
+| 参数             | 简写  | 作用描述                                                  | 使用示例                                   |
+| -------------- | --- | ----------------------------------------------------- | -------------------------------------- |
+| --release      | 无   | 构建用于生产发布的版本。开启最高性能优化，关闭所有调试功能，包体最小                    | flutter build apk --release            |
+| --profile      | 无   | 构建用于性能分析的版本。性能同 release，但保留了连接 DevTools 进行性能剖析所需的信息   | flutter run --profile                  |
+| --debug        | 无   | (默认模式) 用于日常开发调试。开启热重载、热重启、断言和完整的 DevTools 支持          | flutter run (通常省略)                     |
+| --dart-define  | 无   | 定义编译时环境变量 (<KEY=VALUE>)，用于向代码中传递配置，区分不同环境（如 dev, prod | flutter run --dart-define=ENV=prod     |
+| --flavor       | 无   | 指定要构建的应用渠道或版本 (e.g., free, paid)。需预先在原生平台配置           | flutter build apk --flavor staging     |
+| --verbose      | v   | 打印详细的构建和运行日志，用于排查复杂问题                                 | flutter build ios --verbose            |
+| --analyze-size | 无   | 在构建后分析并可视化展示应用包体积的构成，帮助应用瘦身                           | flutter build appbundle --analyze-size |
+| --device-id    | d   | 当连接多个设备时，指定一个目标设备来运行应用。可先用 flutter devices 查看 ID      | flutter run -d 'iPhone-14'             |
+
+## 7、Dart SDK 在 Flutter SDK 中的存储路径
 
 - `flutterSDK路径\bin\cache\dart-sdk`
 
 ![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FFlutter%2Fattachments%2FPasted%20image%2020231127090935.png)
-
-## 7、
 
 ## 8、
 
