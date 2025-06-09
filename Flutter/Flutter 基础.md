@@ -21446,7 +21446,65 @@ void update(VoidCallback fn) {
 
 ## 8、
 
-# 十五、
+# 十五、补充
+
+## 1、修改 app 图标
+
+> 使用 flutter_launcher_icons 插件
+
+1. 准备一个高分辨率的应用图标，最好是 1024x1024 像素的 PNG 图片，重命名为 `ic_launcher.png`
+2. 将这个图片文件放置在根目录下的 `assets/` 文件夹中
+3. 打开项目根目录下的 `pubspec.yaml` 文件，在 `dev_dependencies` 部分添加 `flutter_launcher_icons` 依赖：
+
+```yaml
+flutter_launcher_icons: ^0.14.3
+```
+
+4. 同样在 `pubspec.yaml` 文件中，添加一个新的顶级配置项 `flutter_launcher_icons` 来指定你的图标路径和其他选项：
+
+```yaml
+flutter_launcher_icons:
+  android: "launcher_icon"  # true, false, 或者 "launcher_icon"
+  ios: true
+  image_path: "assets/ic_launcher.png" # 图标路径
+  min_sdk_android: 21 # 可选，安卓最低 SDK 版本
+  remove_alpha_ios: true # 可选，移除 iOS 图标的 alpha 通道
+```
+
+5. 配置完成后，保存 `pubspec.yaml` 文件，并在终端中执行 `flutter pub get` 来安装插件
+6. 在项目根目录的终端中，执行以下命令，这条命令会根据上面的配置自动创建和替换 Android 和 iOS 项目中所有需要的图标文件：
+
+```shell
+flutter pub run flutter_launcher_icons:main
+```
+
+7. 完成
+
+## 2、修改 app 名称
+
+1. Android：打开 `android/app/src/main/AndroidManifest.xml` 文件，找到 `<application>` 标签，修改 `android:label` 属性的值为想要的应用名称：
+
+```xml
+<application
+    android:label="应用名称"
+    android:name="${applicationName}"
+    android:icon="@mipmap/ic_launcher">
+    ...
+</application>
+```
+
+2. iOS：打开 `ios/Runner/Info.plist` 文件，找到键 (key) 为 `CFBundleName` 的一行，修改它下面的 `<string>` 标签中的值为想要的应用名称：
+
+```plist
+<key>CFBundleName</key>
+<string>应用名称</string>
+```
+
+## 3、
+
+## 4、
+
+
 # 十六、问题整理
 
 ## 1、flutter daemon terminated 守护进程被终止
