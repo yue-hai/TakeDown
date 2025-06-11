@@ -8,21 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ef3c11811a392481",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/Kotlin 基础.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Kotlin 基础"
-            }
-          },
-          {
             "id": "b5db2041f0de2ffd",
             "type": "leaf",
             "state": {
@@ -53,18 +38,18 @@
             }
           },
           {
-            "id": "57383cdd04d15c72",
+            "id": "8c07ff8a98e4ee7a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "java/17、数据结构与算法.md",
+                "file": "Flutter/Flutter 基础.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "17、数据结构与算法"
+              "title": "Flutter 基础"
             }
           },
           {
@@ -81,24 +66,9 @@
               "icon": "lucide-file",
               "title": "设备和工具"
             }
-          },
-          {
-            "id": "6e48e1bd5cd61e46",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "编程相关/Git.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Git"
-            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -208,53 +178,49 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "6e48e1bd5cd61e46",
+  "active": "2c960a24d23e051f",
   "lastOpenFiles": [
     "其他/设备和工具.md",
+    "Docker/docker 应用部署.md",
+    "Flutter/Flutter 基础.md",
+    "Docker/attachments/Pasted image 20250107151702.png",
+    "Docker/attachments/Pasted image 20250107163352.png",
+    "Docker/attachments/Pasted image 20250107163443.png",
+    "Docker/attachments/Pasted image 20250107163500.png",
+    "Docker/attachments/Pasted image 20250107163523.png",
+    "Docker/attachments/Pasted image 20250107163538.png",
+    "Docker/attachments/Pasted image 20250107163621.png",
+    "Docker/attachments/Pasted image 20250107164736.png",
+    "Docker/attachments/Pasted image 20250107164810.png",
+    "Docker/attachments/Pasted image 20250107164827.png",
+    "Docker/attachments/alist-desktop_3.38.0_amd64.deb",
+    "Docker/attachments/libssl.so.1.1",
+    "Docker/attachments/libcrypto.so.1.1",
+    "Docker/attachments/openssl-1.1.1g.tar.gz",
+    "Docker/attachments/onlyoffice.tar.gz",
+    "Docker/attachments/notes-v4.11.0.tar.gz",
+    "Docker/attachments/drawio-v3.0.3.tar.gz",
+    "Docker/attachments/files_mindmap-0.0.31.tar.gz",
+    "Docker/attachments/hacs.zip",
+    "Docker/docker 编程应用部署.md",
+    "Docker/attachments",
+    "标题.md",
+    "编程相关/Git.md",
+    "Android/Android 基础.md",
     "公司/创迹/SSC/SSC 购物车.md",
+    "Flutter/Dart 基础.md",
     "其他/游戏/我的世界 Minecraft 模组服务器.md",
+    "其他/游戏/我的世界 Minecraft 原版服务器.md",
+    "java/01、JAVA 基础.md",
+    "java/【其他】.md",
     "其他/游戏/饥荒联机版 Don't Starve 服务器.md",
     "Web/JS 框架/Vue3.md",
     "其他/n2n/n2n 的安装配置.md",
-    "Android/Android 基础.md",
     "_plugin/copilot/custom-prompts/内容续写.md",
     "_plugin/copilot/custom-prompts/SEO专家 - 副本.md",
     "java/17、数据结构与算法.md",
     "Android/Kotlin 基础.md",
     "_plugin/copilot/conversations/你是一名内容优化专家，我需要你帮我优化我的博客文章的_SEO_效果。你具备全面的_SEO_策略制定和执行经验，特别是在文章和内容推广领域。你擅长关键词研究、内容优化、外链建设等能力，同时精通技术_SE@20250303_095833.md",
-    "_plugin/copilot/custom-prompts/SEO专家.md",
-    "_plugin/copilot/conversations/请总结一下这个文章@20250303_092312.md",
-    "_plugin/copilot/custom-prompts",
-    "_plugin/copilot/conversations",
-    "_plugin/copilot/conversation",
-    "_plugin/copilot",
-    "_plugin/custom-prompts/SEO专家.md",
-    "_plugin/custom-prompts",
-    "_plugin",
-    "新建文件夹",
-    "obsidianData/copilot/custom-prompts/SEO专家.md",
-    "obsidianData/copilot/conversations/请总结一下这个文章@20250303_092312.md",
-    "obsidianData/copilot/custom-prompts",
-    "obsidianData/copilot/conversations",
-    "obsidianData/copilot/conversation",
-    "copilot/custom-prompts/SEO专家.md",
-    "copilot/conversations/请总结一下这个文章@20250303_092312.md",
-    "custom-prompts/SEO专家.md",
-    "conversations/请总结一下这个文章@20250303_092312.md",
-    "obsidianData/copilot/conversations/请总结一下这个文章@20250303_091145.md",
-    "obsidianData/copilot/conversations/请总结这个文章@20250303_091145.md",
-    "copilot-conversations/123@20250303_090446.md",
-    "标题.md",
-    "Web/JS 框架/Vue2.md",
-    "其他/attachments/Pasted image 20250220162617.png",
-    "其他/attachments/Pasted image 20250218123921.png",
-    "其他/attachments/Pasted image 20250218123909.png",
-    "其他/attachments/Pasted image 20250218123840.png",
-    "其他/n2n/attachments/Pasted image 20241108103751.png",
-    "其他/n2n/attachments/Pasted image 20240809134324.png",
-    "其他/n2n/attachments/Pasted image 20240809131849.png",
-    "其他/n2n/attachments/Pasted image 20240809134147 1.png",
-    "其他/n2n/attachments/Pasted image 20241108093757.png",
-    "其他/n2n/attachments/Pasted image 20241108093723.png"
+    "_plugin/copilot/custom-prompts/SEO专家.md"
   ]
 }
