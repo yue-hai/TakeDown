@@ -56,28 +56,28 @@ chishin/nginx-proxy-manager-zh:latest
 
 1. 申请并配置阿里云 DNS 访问密钥：会进入 [RAM 访问控制](https://ram.console.aliyun.com/profile/access-keys) 页面；点击左侧的授权，然后点击新增授权
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108083754.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108083754.png)
 
 2. 在右侧弹窗中：
 	1. 授权主体勾选 **RAM 用户**类型的角色
 	2. 权限策略中搜索 `AliyunDNSFullAccess`，然后勾选（我这里已经有了所以不能勾选）
 	3. 点击确认新增授权
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108083825.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108083825.png)
 
 3. 权限设置完成后，进入 [RAM 访问控制](https://ram.console.aliyun.com/profile/access-keys) 页面：
 	1. 若是其他应用（比如 ddns-go）使用时已经创建过了，直接使用之前创建的 AccessKey ID 和 AccessKey Secret 即可
 	2. 若是没有，继续下面的步骤进行创建：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108083857.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108083857.png)
 
 4. 勾选**我确认知晓云账号 AccessKey 安全风险**，然后点击**继续使用云账号AccessKey**
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108083922.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108083922.png)
 
 5. 选择**创建AccessKey**，同样确认风险
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108083957.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108083957.png)
 
 6. 验证身份后，记得保存 AccessKey ID 和 AccessKey Secret，否则一旦关闭页面，只能重新创建
 
@@ -85,7 +85,7 @@ chishin/nginx-proxy-manager-zh:latest
 
 1. 进入 nginx-proxy-manager 页面后，点击 **SSL 证书**，然后点击**添加 SSL 证书**，再选择 **Let's Encrypt**
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084028.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084028.png)
 
 2. 在添加 Let's Encrypt 证书弹窗中：
 	1. 域名可以设置泛域名，如：`*.yuehai.fun`
@@ -95,7 +95,7 @@ chishin/nginx-proxy-manager-zh:latest
 	5. 证书内容：填入上一节创建的 AccessKey ID 和 AccessKey Secret
 	6. 等待时间(秒)：120 ~ 240 即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084109.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084109.png)
 
 3. 点击保存，等待几分钟即可
 
@@ -107,11 +107,11 @@ chishin/nginx-proxy-manager-zh:latest
 ip addr show docker0
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084146.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084146.png)
 
 2. 点击主机 -> 代理服务 -> 添加代理服务
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084201.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084201.png)
 
 3. 比如我给部署的迅雷设置一个代理：
 	1. 域名：外部访问时的域名；因为是泛解析的域名，所以三级域名可以随便设置，指向迅雷即可
@@ -120,11 +120,11 @@ ip addr show docker0
 	4. 转发端口：部署的迅雷的端口，迅雷默认是 `2345`
 	5. 缓存资源、阻止常见漏洞、支持 WebSockets 一般都开启即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084347.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084347.png)
 
 4. 点击 SSL，选择上面申请的证书
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084403.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084403.png)
 
 5. 强制SSL、支持HTTP/2、启用了HSTS、HSTS 子域一般都开启即可
 6. 点击保存，即可；因为端口号我们修改过，所以要加上 8080 或者 8443 的端口号：
@@ -167,11 +167,11 @@ sudo ufw allow from 172.0.0.0/8
 1. nginx 挂载的路径是：`/home/docker/docker/volumes/nginx-proxy-manager/data:/data`，我们需要将静态资源的目录放在 `/data` 下
 2. 在 `/data` 下创建目录： `/web/oneNav-theme-yuehai/`，将 vue 打包后的文件放入其中
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250218123840.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250218123840.png)
 
 3. 点击主机 -> 代理服务 -> 添加代理服务
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084201.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084201.png)
 
 4. 设置一个代理：
 	1. 域名：本服务器的 ip
@@ -180,7 +180,7 @@ sudo ufw allow from 172.0.0.0/8
 	4. 转发端口：80，如果不可用，自定义其他的端口也可以
 	5. 缓存资源、阻止常见漏洞、支持 WebSockets 不要开启
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250220162617.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250220162617.png)
 
 5. 点击自定义位置：
 	1. 定义位置：`/oneNav`，根据自定需求更改
@@ -199,7 +199,7 @@ location /oneNav {
 }
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250218123921.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250218123921.png)
 
 7. 设置完毕后，点击保存即可
 8. 最后访问：http://127.0.0.1/oneNav
@@ -208,44 +208,44 @@ location /oneNav {
 
 1. 点击通信规则 -> 添加通信规则
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084713.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084713.png)
 
 2. 详情页面：
 	1. 名字：这个通信规则的名字，仅作为标识符使用
 	2. 满足任何要求：规则页面中满足任意即可访问
 	3. 授权访问主机：暂不知作用
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084741.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084741.png)
 
 3. 授权用户页面：
 	1. 账号：启用时需要输入的账号
 	2. 密码：启用时需要输入的密码
 	3. 可以设置多个，有一个输入正确了即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084759.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084759.png)
 
 4. 规则页面：
 	1. allow：**允许**；设置为 `all` 表示允许所有 ip，单独设置则为白名单
 	2. deny：**禁止**； 设置为 `all` 表示禁止所有 ip，单独设置则为黑名单
 	3. 可以设置多个，规则将按照它们定义的顺序执行
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084825.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084825.png)
 
 5. 设置完成后，点击保存即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084841.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084841.png)
 
 6. 进入代理服务页面，选择一个代理设置
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084855.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084855.png)
 
 7. 点击编辑，通信规则选择刚刚设置的规则名称，然后点击保存即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084915.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084915.png)
 
 8. 访问上面设置了通信规则的代理服务地址，浏览器上方会弹出账号密码输入框，输入上面在授权用户页面设置的账号密码即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108084933.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108084933.png)
 
 # 零、docker 可视化 portainer-ce
 
@@ -263,7 +263,7 @@ location /oneNav {
 
 1. 镜像名：`6053537/portainer-ce`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108090528.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108090528.png)
 
 2. 安装：
 	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
@@ -284,12 +284,12 @@ docker run -d \
 
 1. 访问：[http://127.0.0.1:9000](http://127.0.0.1:9000)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108090730.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108090730.png)
 
 2. 第一次进入需设置密码
 3. 界面：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108090706.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108090706.png)
 
 # 一、迅雷群晖提取版
 
@@ -329,15 +329,15 @@ cnk3x/xunlei:latest
 1. 访问迅雷迅雷群晖提取版网页： [http://127.0.0.1:2345](http://127.0.0.1:2345)
 2. 扫码或使用账号密码登录
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108091117.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108091117.png)
 
 3. 输入内测邀请码（经过测试 <font color="#ff0000">迅雷牛通</font> 内测码有效）
 
-![|425](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108091129.png)
+![|425](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108091129.png)
 
 10. 登录完成后，点击新建任务，就可以添加连接进行下载
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108091142.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108091142.png)
 
 # 二、AList 网盘整合挂载工具
 
@@ -390,7 +390,7 @@ docker exec -it alist ./alist admin set NEW_PASSWORD
 5. 访问：`http://127.0.0.1:5244`，进入主页面；输入账号 `admin` 以及刚才设置的密码进行登录
 6. 点击管理可进行网盘的设置等，具体查看文档
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108091446.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108091446.png)
 
 ## 2、AList-desktop ubuntu gui 桌面版的安装
 
@@ -398,9 +398,9 @@ docker exec -it alist ./alist admin set NEW_PASSWORD
 > 2. 不如直接安装 docker 版
 
 1. 桌面版需要购买，50元，请在 AList-desktop gui 桌面版官网选择购买
-2. 在官网下载对应的 linux 版本到目录，比如我放在了：`/home/yan/apply/file/alist-desktop/` 目录下，或点击此处下载：[alist-desktop_3.38.0_amd64.deb](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Falist-desktop_3.38.0_amd64.deb)
+2. 在官网下载对应的 linux 版本到目录，比如我放在了：`/home/yan/apply/file/alist-desktop/` 目录下，或点击此处下载：[alist-desktop_3.38.0_amd64.deb](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Falist-desktop_3.38.0_amd64.deb)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108091543.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108091543.png)
 
 3. 更新软件源：
 
@@ -476,8 +476,8 @@ OpenSSL 3.0.2 15 Mar 2022 (Library: OpenSSL 3.0.2 15 Mar 2022)
 
 ### ②、仅引用  `libssl.so.1.1` 库
 
-> 1. [libssl.so.1.1](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Flibssl.so.1.1)
-> 2. [libcrypto.so.1.1](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Flibcrypto.so.1.1)
+> 1. [libssl.so.1.1](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Flibssl.so.1.1)
+> 2. [libcrypto.so.1.1](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Flibcrypto.so.1.1)
 
 1. 下载上方的 libssl.so.1.1 和 libcrypto.so.1.1，上传到目录，比如我放在了：`/home/yan/apply/file/alist-desktop/` 目录下
 2. 创建符号链接；前面的路径是文件所在的路径，后面的路径是要连接到的路径
@@ -497,7 +497,7 @@ alist-desktop
 
 ### ③、安装  `libssl.so.1.1` 库
 
-> [openssl-1.1.1g.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Fopenssl-1.1.1g.tar.gz)
+> [openssl-1.1.1g.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Fopenssl-1.1.1g.tar.gz)
 
 1. 进入目录：
 
@@ -716,7 +716,7 @@ location / {
 2. 我找了找，没找到解决办法，这里再提供另一个解决办法
 3. 上面 4 中的配置不再需要，nginx 中仅配置代理即可
 
-![|474](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108100020.png)
+![|474](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108100020.png)
 
 4. 本地进入 qbittorrent 的管理页，点击设置 -> WebUI，勾选**对 IP 子网白名单中的客户端跳过身份验证**，并设置如下内容：
 	1. 最重要的是 `172.17.0.0/16` 这一条，对 docker 应用的 ip 设置白名单
@@ -730,7 +730,7 @@ location / {
 
 5. 向下翻，取消勾选**启用跨站请求伪造 (CSRF) 保护**
 
-![|550](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108100058.png)
+![|550](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108100058.png)
 
 6. 点击保存即可
 
@@ -837,21 +837,21 @@ nextcloud:latest
 ## 4、Nextcloud 集成 Onlyoffice
 
 > 1. 需要部署 Onlyoffice
-> 2. 这里采用离线安装的方式，因为我的应用商店无法访问，插件下载：[onlyoffice.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Fonlyoffice.tar.gz)
+> 2. 这里采用离线安装的方式，因为我的应用商店无法访问，插件下载：[onlyoffice.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Fonlyoffice.tar.gz)
 > 3. 如果可以访问应用商店，直接搜索 Onlyoffice 安装
 
 1. 进入 Nextcloud 应用商店下载插件：https://apps.nextcloud.com/
 2. 搜索 Onlyoffice
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108100948.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108100948.png)
 
 3. 向下拉，选择一个版本进行下载
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101004.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101004.png)
 
 4. 下载完成后，将其上传到挂载的 `/home/docker/docker/volumes/nextcloud/apps` 目录中
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101018.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101018.png)
 
 5. 进入该目录，然后将 Onlyoffice 插件解压：
 
@@ -869,7 +869,7 @@ chown -R www-data:www-data onlyoffice
 
 7. 进入 Nextcloud 页面，点击头像 -> 应用 -> 你的应用，会多出来一个 ONLYOFFICE，点击后面的启用来启用插件
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101034.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101034.png)
 
 8. 在 onlyoffice 7.2 版本之后，需要使用秘钥才能连接上，使用下面的命令获取 onlyoffice 的秘钥：
 
@@ -881,7 +881,7 @@ sudo docker exec onlyoffice /var/www/onlyoffice/documentserver/npm/json -f /etc/
 	1. ONLYOFFICE Docs 地址就是部署的 Onlyoffice 的 ip 和端口号。如：`http://ip:port/`
 	2. 密钥就是上面使用命令获取的密钥
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101059.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101059.png)
 
 10. 点击保存即可集成，成功后下方会显示常用设置等
 
@@ -889,7 +889,7 @@ sudo docker exec onlyoffice /var/www/onlyoffice/documentserver/npm/json -f /etc/
 
 1. Nextcloud 集成 Onlyoffice 后默认的页面是这样的，上面还有一个工具栏，看着很不舒服，现在把他去掉
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101122.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101122.png)
 
 2. 进入挂载目录：`/home/docker/docker/volumes/nextcloud/html/custom_apps/onlyoffice/css/editor.css`，编辑：
 3. 在顶部添加：
@@ -922,13 +922,13 @@ sudo docker exec onlyoffice /var/www/onlyoffice/documentserver/npm/json -f /etc/
 
 5. 修改后的页面显示：按住 shift 刷新浏览器：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101143.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101143.png)
 
 ## 6、使用 Nginx 反向代理 Nextcloud 并配置 HTTPS 访问
 
 1. 在 nginx 上的配置不在详细说明；配置完成后，访问：`https://nextcloud.yuehai.fun:8080` 会出现如下提示：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101208.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101208.png)
 
 2. 这是代理成功了，但是我们需要修改 Nextcloud 的配置文件，添加信任域名并修改配置
 3. 进入挂载目录：`/home/docker/docker/volumes/nextcloud/config/`
@@ -1003,29 +1003,29 @@ nano config.php
 
 1. 介绍：笔记，支持 markdown
 2. 商店地址：https://apps.nextcloud.com/apps/notes
-3. 本地下载：[notes-v4.11.0.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Fnotes-v4.11.0.tar.gz)
+3. 本地下载：[notes-v4.11.0.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Fnotes-v4.11.0.tar.gz)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101326.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101326.png)
 
 ### ②、Draw.io
 
 1. 介绍：在线图表工具，文件直接保存到 Nextcloud
 2. 商店地址：https://apps.nextcloud.com/apps/drawio
-3. 本地下载：[drawio-v3.0.3.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Fdrawio-v3.0.3.tar.gz)
+3. 本地下载：[drawio-v3.0.3.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Fdrawio-v3.0.3.tar.gz)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101434.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101434.png)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101444.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101444.png)
 
 ### ③、Mind Map
 
 1. 介绍：思维导图
 2. 商店地址：https://apps.nextcloud.com/apps/files_mindmap
-3. 本地下载：[files_mindmap-0.0.31.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Ffiles_mindmap-0.0.31.tar.gz)
+3. 本地下载：[files_mindmap-0.0.31.tar.gz](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Ffiles_mindmap-0.0.31.tar.gz)
 
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101527.png)
+![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101527.png)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101536.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101536.png)
 
 ### ④、
 
@@ -1077,7 +1077,7 @@ onlyoffice/documentserver
 
 1. 访问：[http://127.0.0.1:80](http://127.0.0.1:80)，出现下面页面则部署成功
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108101959.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108101959.png)
 
 2. 执行下面两条命令，启动 onlyoffice 的测试示例页面：
 
@@ -1089,17 +1089,17 @@ docker exec onlyoffice sudo sed 's,autostart=false,autostart=true,' -i /etc/supe
 
 3. 点击 `GO TOTESTEXAMPLE` 按钮，可进入测试示例页面
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102030.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102030.png)
 
 4. 在测试示例页面，可选择语言，选择后地址栏上会带上参数：`lang=zh`，建议将此时的地址存为书签，因为语言的设置并不会保存，只能以地址参数设置
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102044.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102044.png)
 
 5. 可尝试新建或上传一个文档，测试可用性
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102100.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102100.png)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102112.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102112.png)
 
 ## 4、设置 OnlyOffice 自动保存
 
@@ -1127,7 +1127,7 @@ nano local.json
 "autoAssembly": { "enable": true, "interval": "5m" },
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102127.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102127.png)
 
 5. 重启即可
 
@@ -1146,11 +1146,11 @@ docker rm onlyoffice
 
 3. 在 nginx-proxy-manager 中下载证书：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102246.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102246.png)
 
 4. 将下载的压缩文件解压，得到下面的四个文件：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102258.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102258.png)
 
 5. 在服务器的挂载路径 `/home/docker/docker/volumes/Onlyoffice/data` 目录下创建一个 `certs` 目录
 
@@ -1163,7 +1163,7 @@ mkdir /home/docker/docker/volumes/Onlyoffice/data/certs
 	2. 将 `privkey1.pem` 改名为：`onlyoffice.key`
 	3. 一定要改名，否则启动会报错
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102325.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102325.png)
 
 7. 重新启动容器，将原本映射的 `80` 端口号改为 `443`：``
 
@@ -1184,7 +1184,7 @@ onlyoffice/documentserver
 
 8. 访问：[https://127.0.0.1:443](https://127.0.0.1:443)，出现下面页面则部署成功
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108102354.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108102354.png)
 
 # 八、Memos 开源、轻量级的备忘录服务
 
@@ -1466,7 +1466,7 @@ jellyfin/jellyfin:latest
 
 1. 进入控制台后，点击媒体库，然后点击添加媒体库
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108104150.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108104150.png)
 
 2. 之后选择类型、名称、文件夹、各种设置即可
 
@@ -1477,11 +1477,11 @@ jellyfin/jellyfin:latest
 1. 各种客户端可点击上面的链接进行下载
 2. 若是想在浏览器观看，则进入服务器后，点击服务器名称
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108104208.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108104208.png)
 
 3. 即可查看设定的媒体库
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108104221.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108104221.png)
 
 ## 6、https 设置
 
@@ -1490,11 +1490,11 @@ jellyfin/jellyfin:latest
 1. 将生成的 `mykeystore.p12` 文件复制到挂载的目录下，比如 `/home/docker/docker/volumes/jellyfin/config/certificate/`
 2. jellyfin 控制台中，选择网络，点击启用 https
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108104244.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108104244.png)
 
 3. 在 HTTPS 设置中，选择刚才复制的 `mykeystore.p12` 文件，填入证书密码，然后重启服务器即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108104304.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108104304.png)
 
 4. 成功后访问 https 端口：[https://127.0.0.1:8920](https://127.0.0.1:8920)
 
@@ -1615,7 +1615,7 @@ mlikiowa/napcat-docker:latest
 2. TOKEN 是创建 docker 容器时指定的，如果没有指定，查找挂载目录的 `/config/webui.json` 文件中，填入 `token` 字段的值即可
 3. 登录成功后，点击 `QR Code`，使用想要作为机器人的 QQ 扫描登录即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105258.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105258.png)
 
 4. 扫描并且确认后，等待几面就会自动进入管理页面
 
@@ -1623,7 +1623,7 @@ mlikiowa/napcat-docker:latest
 
 1. 点击日志查看，可以看到登录的 QQ 号接收的消息，私聊和群聊都可以看到
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105417.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105417.png)
 
 ## 5、将 NapCatQQ 作为 java 端的 WebSocket 服务器
 
@@ -1631,14 +1631,14 @@ mlikiowa/napcat-docker:latest
 	1. 名称：比如：`将 NapCatQQ 作为 java 端的 WebSocket 服务器`
 	2. 类型：WebSocket 服务器
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105436.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105436.png)
 
 2. 勾选启用
 3. 主机使用默认 `0.0.0.0`，不用修改
 4. 端口修改为 3003、3004 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
 5. 其他默认，不用修改，点击确定
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105626.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105626.png)
 
 6. 在 java 中，使用 `ws://ip:3003` 连接服务器
 
@@ -1715,7 +1715,7 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 	1. 名称：比如：`将 NapCatQQ 作为 java 端的 http 服务器`
 	2. 类型：HTTP 服务器
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250110092528.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250110092528.png)
 
 2. 勾选启用
 3. 端口修改为 3003、3004 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
@@ -1723,7 +1723,7 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 5. CORS 和 WS 可以关闭
 6. 其他默认，不用修改，点击确定
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250110092539.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250110092539.png)
 
 7. 开启后，可通过 ip 和 端口，调用其接口，实现各种操作
 
@@ -1792,7 +1792,7 @@ felinae98/nonebot-bison
 	1. 名称：比如：`接入 onebot11 的服务端`
 	2. 类型：WebSocket 客户端
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105850.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105850.png)
 
 2. 勾选启用
 3. URL 填入：`ws://172.17.0.1:8080/onebot/v11/ws`
@@ -1800,7 +1800,7 @@ felinae98/nonebot-bison
 	2. 我是在同一个机器的 docker 下部署的，所以 `172.17.0.1` 指向本机地址，即类似 `127.0.0.1`
 4. 其他默认，不用修改，点击确定
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105926.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105926.png)
 
 5. NapCatQQ 与 nonebot-bison 成功建立链接时，日志上会显示 connect open
 
@@ -1813,11 +1813,11 @@ felinae98/nonebot-bison
 
 1. NapCatQQ 与 nonebot-bison 成功建立链接后，可以私聊 `/后台管理` 获取后台管理地址
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108105948.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108105948.png)
 
 2. 也可以直接在群里 @，然后发送指令进行管理：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250107151702.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107151702.png)
 
 # 十五、qinglong 青龙定时任务管理
 
@@ -1921,7 +1921,7 @@ lxml
 
 6. 安装方式：点击创建依赖，选择对应的依赖类型，勾选自动拆分，将上面的依赖名复制进名称中即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108110424.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108110424.png)
 
 7. 如果添加依赖库出现安装失败和提示源问题，使用 ssh 工具进入青龙面板容器，执行下面的代码：
 
@@ -1931,7 +1931,7 @@ npm config set registry https://registry.npmmirror.com/
 
 8. 耐心等待安装即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108110442.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108110442.png)
 
 9. 如果有的任务执行失败，可以查看日志是不是依赖报错：
 
@@ -1968,7 +1968,7 @@ Node.js v20.15.1
 10. 此处报错 `Error: Cannot find module 'cloud189-sdk'`，说明没有 `cloud189-sdk` 的依赖
 11. 此时就下载这个依赖即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108110459.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108110459.png)
 
 12. 如果不知道是什么类型的依赖，都试试就好了
 
@@ -2054,7 +2054,7 @@ qdtoday/qd:latest
 
 1. 点击工具箱 -> 推送设置，选择自定义推送，然后下面的任务结果通知选择、任务推送开关全部打开
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108110632.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108110632.png)
 
 2. 点击工具箱 -> 自定义推送：
 3. 请求方法选择 `POST`
@@ -2076,7 +2076,7 @@ http://www.pushplus.plus/send/
 }
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108110714.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108110714.png)
 
 7. 点击测试可查看是否设置成功，点击提交进行保存
 8. 设置完成后，可以执行一个任务查看是否可以正常推送
@@ -2151,15 +2151,15 @@ jeessy/ddns-go
 
 1. 进入页面后，选择阿里云，然后点击 `创建 AccessKey`，会进入 [RAM 访问控制](https://ram.console.aliyun.com/profile/access-keys) 页面
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111017.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111017.png)
 
 2. 勾选**我确认知晓云账号 AccessKey 安全风险**，然后点击**继续使用云账号AccessKey**
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111030.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111030.png)
 
 3. 选择**创建AccessKey**，同样确认风险
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111041.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111041.png)
 
 4. 验证身份后，保存创建的 AccessKey ID 和 AccessKey Secret，否则一旦关闭，只能重新创建
 
@@ -2167,7 +2167,7 @@ jeessy/ddns-go
 
 1. 拿到 AccessKey ID 和 AccessKey Secret 后，填入 ddns-go 中，TTL 保持自动即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111057.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111057.png)
 
 2. IPv4 设置中：
 	1. 是否启用：勾选表示启用
@@ -2180,7 +2180,7 @@ jeessy/ddns-go
 https://myip.ipip.net, https://ddns.oray.com/checkip, https://ip.3322.net, https://4.ipw.cn, https://v4.yinghualuo.cn/bejson
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111126.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111126.png)
 
 ## 5、通知渠道
 
@@ -2192,7 +2192,7 @@ https://myip.ipip.net, https://ddns.oray.com/checkip, https://ip.3322.net, https
 https://sctapi.ftqq.com/[SendKey].send?title=域名更新结果：#{ipv4Result}&desp=当前IPv4地址：#{ipv4Addr}；当前域名：#{ipv4Result}
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111149.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111149.png)
 
 2. 当 ip 变化时，ddns-go 会重新解析域名并发送通知
 
@@ -2214,7 +2214,7 @@ http://www.pushplus.plus/send/
 }
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111217.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111217.png)
 
 3. 当 ip 变化时，ddns-go 会重新解析域名并发送通知
 
@@ -2224,7 +2224,7 @@ http://www.pushplus.plus/send/
 2. 选择一个域名查询网址，如：https://site.ip138.com/
 3. 输入域名进行查询，即可看到解析的 ip 地址：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111238.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111238.png)
 
 # 十八、onenav 开源的导航管理工具
 
@@ -2314,11 +2314,11 @@ yidadaa/chatgpt-next-web:latest
 1. 访问：[http://127.0.0.1:3000](http://127.0.0.1:3000)
 2. 进入网址后会自动弹出提示，点击箭头处提示：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101212.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250312101212.png)
 
 1. 输入密码，仅在第一行填入部署时使用 CODE 设置的密码即可：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101227.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250312101227.png)
 
 1. 登录成功后即可正常使用
 2. 因为上面部署时只配置了 deepseek 的 api_key，所以只能使用 deepseek，要使用其他 ai，可以增加其他 ai 的配置
@@ -2330,12 +2330,12 @@ yidadaa/chatgpt-next-web:latest
 
 1. 代理服务设置：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101259.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250312101259.png)
 
 2. 因为 Next.js 的 Server Actions 安全验证机制与反向代理配置的可能冲突，增加以下配置：
 	1. 主要的配置项为：`proxy_set_header X-Forwarded-Host $host:1443;`
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250312101623.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250312101623.png)
 
 ```nginx
 location / {
@@ -2524,11 +2524,11 @@ LISTEN :: 3493
 
 3. 保存修改后，进入 homeassistant 管理页面，点击设置 -> 设备与服务
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111608.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111608.png)
 
 4. 正常的话，已发现中就会有 Network UPS Tools (NUT)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111622.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111622.png)
 
 5. 点击添加，输入完参数后点击提交即可
 	1. 主机：`172.17.0.1`
@@ -2536,15 +2536,15 @@ LISTEN :: 3493
 	3. 用户名：ups 的用户名
 	4. 密码：ups 的密码
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111640.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111640.png)
 
 6. 添加成功后，会显示在设备中
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111736.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111736.png)
 
 7. 点击概览，也会显示 ups 的信息
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111705.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111705.png)
 
 ## 6、集成 hacs
 
@@ -2562,13 +2562,13 @@ LISTEN :: 3493
 
 1.  下载 hacs 源码：
 	1. github 最新版下载：[Releases · hacs/integration](https://github.com/hacs/integration/releases)
-	2. 本地  v2.0.1 版下载：[hacs.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2Fhacs.zip)
+	2. 本地  v2.0.1 版下载：[hacs.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2Fhacs.zip)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111816.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111816.png)
 
 2. 在挂载目录 `/home/docker/docker/volumes/homeassistant/config` 下再创建 `custom_components` 目录，将下载的文件上传到此目录中：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111831.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111831.png)
 
 3. 解压 hacs.zip
 
@@ -2578,25 +2578,25 @@ unzip hacs.zip -d hacs/
 
 4. 解压完毕后，重启容器，进入 homeassistant 管理页面，点击设置 -> 设备与服务
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111847.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111847.png)
 
 5. 点击添加集成：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111857.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111857.png)
 
 6. 搜索 `hacs`，选择后勾选所有选项，然后点击提交：
 
-![|499](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111908.png)
+![|499](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111908.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111918.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111918.png)
 
 7. 等待一段时间后，提示需要点击中间的链接跳转到 GitHub 进行验证，复制下面验证码填入 GitHub 进行验证
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111932.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111932.png)
 
 8. 验证完成后，刷新一下，左侧出现 HACS 选项，进入即可安装各种插件与设备链接
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108111944.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108111944.png)
 
 ## 7、集成米家
 
@@ -2604,16 +2604,16 @@ unzip hacs.zip -d hacs/
 
 1. 在 hacs 中搜索 `Xiaomi Miot Auto`，进入后点击 download
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108112003.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108112003.png)
 
 2. 下载完成后，点击设置 -> 小米模块，会提示需要重启容器
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108112017.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108112017.png)
 
 3. 重新容器后，进入设置 -> 添加集成，搜索 `xiaomi`，选择 `Xiaomi Miot Auto`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108112031.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108112031.png)
 
 4. 选择账号集成，再选择排除模式，不选择任何设备，点击提交，就可以成功添加
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fattachments%2FPasted%20image%2020250108112043.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108112043.png)
