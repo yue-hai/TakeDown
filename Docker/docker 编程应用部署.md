@@ -1,12 +1,8 @@
-# 一、tomcat
+# 1、tomcat
 
 ## 1、首次创建容器
 
-1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 数据目录：`/home/docker/docker/volumes/tomcat/tomcat9`
-2. 使用 docker 部署：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
+1. 使用 docker 部署：
 
 ```shell
 docker run -d \
@@ -17,7 +13,8 @@ tomcat:jre21
 
 ## 2、复制数据，并设置映射目录
 
-1. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：
+1. 在宿主机创建目录：`/home/docker/docker/volumes/tomcat/tomcat9`
+2. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：
 
 ```shell
 docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
@@ -25,7 +22,7 @@ docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tom
 
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163352.png)
 
-2. 停止并删除容器：
+3. 停止并删除容器：
 
 ```shell
 # 停止：
@@ -35,21 +32,51 @@ docker stop code-tomcat9
 docker rm code-tomcat9
 ```
 
-3. 重新启动容器，并设置映射目录：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
-	3. `-v`：指定挂载目录
-	4. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	5. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+4. 使用 docker run 部署，重新启动容器，并设置映射目录：
 
 ```shell
 docker run -d \
 -p 8080:8080 \
 -v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
---privileged=true \
+--network yuehai-net \
 --restart=unless-stopped
 --name code-tomcat9 \
 tomcat:jre21
+```
+
+5. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-tomcat9 的服务
+    code-tomcat9:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: tomcat:jre21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-tomcat9
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Tomcat 的默认 HTTP 端口
+            - "8080:8080"
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
 ## 3、访问
@@ -75,343 +102,352 @@ tomcat:jre21
 
 ![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163621.png)
 
-# 二、mysql
 
-## 1、创建容器，并设置映射目录
+# 2、openJdk
+
+## 1、openJdk 21
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/home/docker/docker/volumes/mysql/conf/`
-	2. 数据目录：`/home/docker/docker/volumes/mysql/data/`
-	3. 日志目录：`/home/docker/docker/volumes/mysql/log/`
-2. 在 `/home/docker/docker/volumes/mysql/conf/` 目录下创建配置文件  `my.cnf`，并填入以下配置：
-
-```shell
-cd /home/docker/docker/volumes/mysql/conf/
-
-nano my.cnf
-```
-
-```shell
-[client]
-#设置客户端默认字符集utf8mb4
-default-character-set=utf8mb4
-[mysql]
-#设置服务器默认字符集为utf8mb4
-default-character-set=utf8mb4
-[mysqld]
-#配置服务器的服务号，具备日后需要集群做准备
-server-id = 1
-#开启MySQL数据库的二进制日志，用于记录用户对数据库的操作SQL语句，具备日后需要集群做准备
-log-bin=mysql-bin
-#设置清理超过30天的日志，以免日志堆积造过多成服务器内存爆满。2592000秒等于30天的秒数
-binlog_expire_logs_seconds = 2592000
-#解决MySQL8.0版本GROUP BY问题
-sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
-#允许最大的连接数
-max_connections=1000
-# 禁用符号链接以防止各种安全风险
-symbolic-links=0
-# 设置东八区时区
-default-time_zone = '+8:00'
-```
-
-3. 启动容器时映射容器数据卷：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
-	3. `-v`：指定挂载目录
-	4. `-e MYSQL_ROOT_PASSWORD=123456`：设置 root 密码
-	5. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	6. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+	1. 配置目录：`/vol1/1000/docker/services/backend/yuehai-tool`
+2. 使用 docker run 部署：
 
 ```shell
 docker run -d \
--p 3306:3306 \
--e MYSQL_ROOT_PASSWORD=123456 \
--v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
--v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
--v /home/docker/docker/volumes/mysql/conf/my.cnf:/etc/mysql/my.cnf \
+-p 8080:8080 \
+-e TZ=Asia/Shanghai \
+-v /vol1/1000/docker/services/backend/yuehai-tool:/container/path \
+--network yuehai-net \
+--restart=unless-stopped \
+--name code-java-yuehai-tool \
+openjdk:21 \
+java -jar /container/path/tool-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-java-yuehai-tool 的服务
+    code-java-yuehai-tool:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: openjdk:21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-java-yuehai-tool
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 启用特权模式
+        privileged: true
+        # 定义端口映射规则
+        ports:
+            # Java 应用监听的端口
+            - "8080:8080"
+        # 定义环境变量
+        environment:
+            # 设置容器的时区为亚洲/上海
+            - TZ=Asia/Shanghai
+        # 定义数据卷挂载规则
+        volumes:
+            # jar 包目录
+            - /vol1/1000/docker/services/backend/yuehai-tool:/container/path
+        # 指定容器启动时执行的命令：运行指定的 Jar 文件
+        command: java -jar /container/path/tool-1.0-SNAPSHOT-jar-with-dependencies.jar
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+
+## 2、openJdk 21 使用 shell 脚本执行多个 jar 程序
+
+1. 创建映射目录，并将 jar 包上传到指定目录：
+	1. 程序 1 的目录：`/vol1/1000/docker/services/backend/yuehai-tool/01`
+	2. 程序 2 的目录：`/vol1/1000/docker/services/backend/yuehai-tool/02`
+2. 进入 `/vol1/1000/docker/services/backend/yuehai-tool` 目录，创建 `run_jar.sh` 文件，并写入下面的内容：
+
+```shell
+#!/bin/bash
+
+# 容器内映射目录所在的路径
+main_path="/container/path"
+
+start_app() {
+    local app_path=$1 # 程序所在的路径
+    local app_name=$2 # 程序的名称
+    local log_name=$3 # 程序日志的名称
+    local background=$4  # 用于判断是否需要在后台运行
+
+    # yes 便是需要在后台运行
+    if [ "$background" == "yes" ]; then
+        java -jar "${app_path}/${app_name}" > "${app_path}/${log_name}" 2>&1 &
+    else
+        java -jar "${app_path}/${app_name}" > "${app_path}/${log_name}" 2>&1
+    fi
+}
+
+# 01 程序，后台
+start_app "${main_path}/01" \
+          "01.jar" \
+          "01.log" \
+          "yes"
+
+# 02 程序，前台
+start_app "${main_path}/02" \
+          "02.jar" \
+          "02.log" \
+          "no"
+```
+
+3. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 8080-8081:8080-8081 \
+-e TZ=Asia/Shanghai \
+-v /vol1/1000/docker/services/backend/yuehai-tool:/container/path \
+--network yuehai-net \
 --privileged=true \
 --restart=unless-stopped \
---name code-mysql \
-mysql:8.2.0
+--name code-java \
+openjdk:21 \
+/container/path/run_jar.sh
 ```
 
-7. 使用 Navicat 连接
+4. 使用 `docker-compose.yml` 部署：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107164736.png)
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-java 的服务
+    code-java:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: openjdk:21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-java
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 启用特权模式
+        privileged: true
+        # 定义端口映射规则
+        ports:
+            # 将主机的 8080-8081 端口范围映射到容器的 8080-8081 端口范围
+            - "8080-8081:8080-8081"
+        # 定义环境变量
+        environment:
+            # 设置容器的时区为亚洲/上海
+            - TZ=Asia/Shanghai
+        # 定义数据卷挂载规则 (格式：主机路径:容器路径)
+        volumes:
+            # jar 包目录
+            - /vol1/1000/docker/services/backend/openjdk/yuehai-tool:/container/path
+        # 指定容器启动时执行的命令：运行位于挂载卷中的启动脚本
+        command: /container/path/run_jar.sh
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
 
-## 2、测试连接以及创建数据库与表
-
-1. 创建数据库
-
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107164810.png)
-
-2. 创建表
-
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107164827.png)
-
-3. 添加数据
-
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107164845.png)
-
-4. 进入 mysql 容器
-
-```shell
-docker@yuehai:~$ docker ps
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
-bfab03cebaac   mysql     "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   code-mysql
-docker@yuehai:~$ docker exec -it bfab03cebaac bash
-
-bash-4.4# 
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
-5. 进入 mysql，输入密码：123456
 
-```shell
-bash-4.4# mysql -u root -p       
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 16
-Server version: 8.2.0 MySQL Community Server - GPL
+# 10、pgadmin4 PostgreSQL 的 web 管理工具
 
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> 
-```
-
-6. 查看数据库与表
-
-```shell
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-| yuehai             |
-+--------------------+
-5 rows in set (0.00 sec)
-
-mysql> use yuehai
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> show tables;
-+------------------+
-| Tables_in_yuehai |
-+------------------+
-| user             |
-+------------------+
-1 row in set (0.00 sec)
-
-mysql> select * from user;
-+----+------+
-| id | name |
-+----+------+
-|  1 | ??   |
-|  2 | ?    |
-+----+------+
-2 rows in set (0.00 sec)
-
-mysql> exit
-Bye
-
-bash-4.4# exit
-exit
-docker@yuehai:~$ 
-```
-
-## 3、插入中文报错
-
-1. 进入容器，查看编码
-
-```shell
-docker@yuehai:~$ docker exec -it bfab03cebaac bash
-bash-4.4# mysql -u root -p   
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 17
-Server version: 8.2.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> SHOW VARIABLES LIKE 'character%';
-+--------------------------+--------------------------------+
-| Variable_name            | Value                          |
-+--------------------------+--------------------------------+
-| character_set_client     | latin1                         |
-| character_set_connection | latin1                         |
-| character_set_database   | utf8mb4                        |
-| character_set_filesystem | binary                         |
-| character_set_results    | latin1                         |
-| character_set_server     | utf8mb4                        |
-| character_set_system     | utf8mb3                        |
-| character_sets_dir       | /usr/share/mysql-8.2/charsets/ |
-+--------------------------+--------------------------------+
-8 rows in set (0.01 sec)
-
-mysql>
-```
-
-2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
-
-```shell
-docker@VM-8-15-ubuntu:~$ sudo vim /home/docker/docker/mysql/test/conf/my.cnf
-[sudo] password for docker: 
-
-[client]
-default_character_set=utf8
-[mysqld]
-collation_server=utf8_general_ci
-character_set_server=utf8
-```
-
-3. 重新进入容器查看编码
-
-```shell
-docker@yuehai:~$ docker exec -it bfab03cebaac bash
-bash-4.4# mysql -u root -p   
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 17
-Server version: 8.2.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> SHOW VARIABLES LIKE 'character%';
-+--------------------------+----------------------------+
-| Variable_name            | Value                      |
-+--------------------------+----------------------------+
-| character_set_client     | utf8                       |
-| character_set_connection | utf8                       |
-| character_set_database   | utf8                       |
-| character_set_filesystem | binary                     |
-| character_set_results    | utf8                       |
-| character_set_server     | utf8                       |
-| character_set_system     | utf8                       |
-| character_sets_dir       | /usr/share/mysql/charsets/ |
-+--------------------------+----------------------------+
-8 rows in set (0.00 sec)
-
-mysql> 
-```
-
-# 三、postgres 数据库
+> 1. 项目 github：https://github.com/pgadmin-org/pgadmin4
+> 2. dockerHub 地址：https://hub.docker.com/r/dpage/pgadmin4
 
 ## 1、介绍
 
-1. PostgreSQL（简称 Postgres）是一个功能强大的开源关系型数据库管理系统（RDBMS），以其稳定性、灵活性、可扩展性和社区支持而闻名。它最初于 1986 年在加州大学伯克利分校的 POSTGRES 项目中开发，现已成为企业和开发者广泛采用的数据库解决方案。
-
-### ①、PostgreSQL 的核心特点
-
-1. 开源免费：
-	1. PostgreSQL 在 PostgreSQL 许可下发布，完全开源且免费，无需购买商业授权。
-	2. 拥有活跃的社区支持和丰富的第三方扩展。
-2. ACID 兼容：PostgreSQL 完全符合事务管理的 ACID 特性，确保数据一致性、持久性和完整性。
-3. 支持标准数据类型（如整数、浮点数、字符串等）以及复杂数据类型：
-	1. JSON/JSONB：适合存储和操作结构化数据。
-	2. 数组：支持一维或多维数组。
-	3. XML：支持 XML 数据存储。
-	4. 地理数据（PostGIS 扩展）：支持地理位置和地理信息处理。
-	5. 自定义数据类型：用户可以根据需要定义自己的数据类型。
-5. SQL 标准支持：PostgreSQL 遵循 ANSI SQL 标准，并扩展了大量功能，例如窗口函数、递归查询、CTE（公用表表达式）等。
-6. 扩展性强：
-	1. 支持用户定义的函数（UDF）、操作符、索引类型。
-	2. 支持扩展模块（如 PostGIS、TimescaleDB）以增强功能。
-7. 事务支持和并发控制：
-	1. 提供强大的事务支持，允许使用 BEGIN、COMMIT、ROLLBACK 等控制事务。
-	2. 使用多版本并发控制（MVCC），实现高效的并发性能而无需锁定读取。
-8. 复制和高可用性：
-	1. 支持逻辑复制和流复制，适合主从同步或异步架构。
-	2. 可与第三方工具（如 Patroni、PgBouncer、Pgpool-II）搭配实现高可用性和负载均衡。
-9. JSON 支持：支持存储和操作 JSON 格式的数据，并提供高效的索引（JSONB）。
-10. 地理信息支持（PostGIS 扩展）：是处理地理空间数据的最佳数据库之一。
-11. 存储过程语言支持：支持多种存储过程语言：PL/pgSQL、PL/Python、PL/Perl、PL/Tcl 等。
-
-### ②、PostgreSQL 的核心架构
-
-1. 存储和 MVCC：
-	1. PostgreSQL 使用 MVCC（多版本并发控制）来管理事务，使得读取不会阻塞写入，反之亦然。
-	2. 支持事务隔离级别（如 READ COMMITTED 和 SERIALIZABLE）。
-2. 支持多种索引类型：
-	1. B-Tree（默认）
-	2. GIN（适合全文搜索）
-	3. GiST（支持地理数据）
-	4. BRIN（适合大表扫描）
-	5. 可以根据需求选择最适合的索引类型。
-4. 复制和分片：
-	1. 支持多种复制方式：
-		1. 流复制：主从同步或异步复制。
-		2. 逻辑复制：支持特定表或数据库的复制。
-	2. 通过分片扩展（如 Citus）实现分布式存储和查询。
-5. 数据存储模型：数据文件存储在磁盘上，事务日志（WAL）用于数据恢复和复制。
-
-### ③、PostgreSQL 的主要用途
-
-1. Web 应用程序后端：许多 Web 应用选择 PostgreSQL 作为其核心数据库，尤其是需要复杂查询和高性能的场景。
-2. 数据分析：
-	1. 使用窗口函数、CTE 和聚合函数，PostgreSQL 能够执行复杂的分析任务。
-	2. 搭配 TimescaleDB 可用于时序数据分析。
-3. JSON 数据存储：通过 JSON/JSONB 支持，适合处理半结构化数据或与 NoSQL 数据库竞争。
-4. 地理信息系统（GIS）：搭配 PostGIS 扩展，可以处理复杂的地理空间数据。
-5. 大规模分布式系统：通过扩展（如 Citus、Patroni）支持水平扩展和高可用性。
-
-### ④、PostgreSQL 与其他数据库对比
-
-| 特性             | PostgreSQL               | MySQL                   | MongoDB                  |
-|------------------|--------------------------|-------------------------|--------------------------|
-| **开源协议**    | PostgreSQL License       | GPL                     | SSPL                    |
-| **SQL 支持**    | 完整支持 SQL 标准        | 支持大部分 SQL          | 部分 SQL 支持            |
-| **事务支持**    | 完整 ACID 支持           | InnoDB 引擎支持 ACID    | 无事务（非关系型数据库） |
-| **JSON 支持**   | 强（JSONB 高效存储与索引）| 有限制                  | 专为 JSON 数据设计       |
-| **扩展性**      | 极高                     | 较低                    | 中等                     |
-| **复杂查询性能**| 强                       | 中等                    | 较差（适合简单查询）     |
+1. dpage/pgadmin4 是 pgAdmin 4 的官方 Docker 镜像。pgAdmin 4 本身是 PostgreSQL 最流行和功能最全面的开源管理和开发平台，它提供了一个基于 Web 的用户界面，允许用户通过浏览器与 PostgreSQL 数据库进行交互
+2. 它的主要特点包括：
+	1. 现代化的 Web 用户界面：pgAdmin 4 提供了一个美观且响应迅速的 Web 界面，取代了旧版 pgAdmin III 的桌面应用程序形态，方便用户随时随地通过浏览器访问和管理数据库
+	2. 全面的数据库对象管理：提供了一个直观的对象浏览器，可以轻松地查看、创建、修改和删除数据库、模式、表、视图、函数、触发器等各种数据库对象
+	3. 强大的 SQL 开发工具：内置了一个功能丰富的 SQL 编辑器，支持语法高亮、代码自动完成、SQL 代码格式化、查询历史记录，以及一个图形化的查询构建器，帮助用户编写和执行 SQL 查询
+	4. 图形化查询计划分析器 (Explain)：可以显示和分析 SQL 查询的执行计划，帮助开发者理解查询的性能瓶颈并进行优化
+	5. 服务器监控仪表盘：提供实时的服务器状态信息，包括会话、锁、预备事务以及 CPU、内存、磁盘I/O等系统资源的使用情况
+	6. 数据导入/导出与备份/恢复：支持以多种格式（如 CSV、Text、SQL）导入和导出数据，并提供了方便的备份和恢复工具界面
+	7. 通过 Docker 轻松部署：dpage/pgadmin4 Docker 镜像使得部署和运行 pgAdmin 4 变得非常简单和快捷，无需在宿主机上进行复杂的安装和配置
 
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置和数据目录：`/home/docker/docker/volumes/postgresql/data`
-	2. 日志目录：`/home/docker/docker/volumes/postgresql/logs`
-2. 使用 docker 部署：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
-	3. `-e`：设置环境变量
-		1. `POSTGRES_USER`：指定 PostgreSQL 容器初始化时创建的超级用户（superuser），这个用户具有与默认的 postgres 超级用户相同的权限，因此可以执行几乎所有的数据库管理操作
-		2. `POSTGRES_PASSWORD`：超级用户对应的密码
-	4. `-v`：指定挂载目录
-	5. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+	1. 配置目录：`/vol1/1000/docker/services/frontend/pgadmin4/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 80:80 \
+-e "PGADMIN_DEFAULT_EMAIL=xxx@qq.com" \
+-e "PGADMIN_DEFAULT_PASSWORD=xxx" \
+-v /vol1/1000/docker/services/frontend/pgadmin4/data:/var/lib/pgadmin \
+--network yuehai-net \
+--restart=unless-stopped \
+--name code-pgadmin4 \
+dpage/pgadmin4:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-pgadmin4 的服务
+    code-pgadmin4:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: dpage/pgadmin4:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-pgadmin4
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # pgAdmin 4 默认的 Web 访问端口
+            - "80:80"
+        # 定义环境变量
+        environment:
+            # 设置 pgAdmin 4 初始登录的默认邮箱地址
+            - PGADMIN_DEFAULT_EMAIL=xxx0@qq.com
+            # 设置 pgAdmin 4 初始登录的默认密码
+            - PGADMIN_DEFAULT_PASSWORD=xxx
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/services/frontend/pgadmin4/data:/var/lib/pgadmin
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 4、访问
+
+1. 访问：[http://127.0.0.1:80](http://127.0.0.1:80)
+2. 输入上面设定的账号密码即可
+
+## 5、使用 nginx 代理
+
+1. 只设定基础的 nginx 代理，登录后可能提示：`Failed to load preferences`
+2. 此时需要添加如下配置：
+
+```nginx
+# 定义一个 location 块，匹配所有进入的请求 (/)
+location / {
+  # 关键：将请求代理到指定服务
+  # proxy_pass 指令指定了后端服务器的地址和端口
+  # 所有匹配此 location 块的请求都将被转发到 http://code-pgadmin4:80
+  proxy_pass http://code-pgadmin4:80;
+  
+  # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
+  # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
+  # $scheme 变量的值是 http 或 https
+  proxy_set_header X-Forwarded-Proto $scheme;
+  # 设置 HTTP 头部 Host，将原始请求中的 Host 头部传递给后端服务器
+  # $http_host 变量包含了客户端请求中的 Host 头部信息
+  proxy_set_header Host $http_host;
+  # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
+  # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
+  proxy_set_header X-Real-IP $remote_addr;
+}
+```
+
+
+# 20、postgres 数据库
+
+## 1、介绍
+
+1. PostgreSQL (通常简称为 Postgres) 是一个功能强大、开源的对象关系型数据库系统 (ORDBMS)。它拥有超过 35 年的活跃开发历史，并在可靠性、功能健壮性和性能方面赢得了良好声誉
+2. 它的主要特点包括：
+	1. 高度的 SQL 标准兼容性：严格遵循 SQL 标准，并支持众多现代 SQL 特性
+	2. 强大的数据类型支持：除了常见的数字、字符串、日期/时间类型外，还支持 JSON/JSONB、XML、数组、范围类型、地理空间数据 (通过 PostGIS 扩展) 等复杂数据类型
+	3. 卓越的扩展性：用户可以定义自己的数据类型、函数、操作符、聚合函数、索引方法和过程语言 (如 PL/pgSQL, PL/Python, PL/Perl 等)
+	4. 并发控制与事务处理：采用多版本并发控制 (MVCC) 技术，有效处理高并发读写操作，并提供完整的 ACID (原子性、一致性、隔离性、持久性) 事务保证
+	5. 可靠性与灾难恢复：支持预写式日志 (WAL)、时间点恢复 (PITR)、流复制和逻辑复制等多种高可用和数据备份恢复机制
+	6. 丰富的索引选项：支持 B-tree、Hash、GiST、SP-GiST、GIN 和 BRIN 等多种索引类型，以适应不同的查询负载
+	7. 活跃的社区和生态系统：拥有一个庞大且活跃的全球社区，提供丰富的文档、工具和第三方扩展支持
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置和数据目录：`/vol1/1000/docker/services/databases/postgres/data`
+2. 使用 docker run 部署：
 
 ```shell
 docker run -d \
 -p 5432:5432 \
--e POSTGRES_USER=admin \
--e POSTGRES_PASSWORD=123456 \
--v /home/docker/docker/volumes/postgresql/data:/var/lib/postgresql/data \
--v /home/docker/docker/volumes/postgresql/logs:/var/log/postgresql \
+-e POSTGRES_USER=xxx \
+-e POSTGRES_PASSWORD=xxx \
+-v /vol1/1000/docker/services/databases/postgres/data:/var/lib/postgresql/data \
+--network yuehai-net \
 --restart=unless-stopped \
 --name code-postgres \
 postgres:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-postgres 的服务
+    code-postgres:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: postgres:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-postgres
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # PostgreSQL 的默认数据库端口
+            - "5432:5432"
+        # 定义环境变量
+        environment:
+            # 设置 PostgreSQL 的默认用户名
+            - POSTGRES_USER=xxx
+            # 设置 PostgreSQL 的默认用户密码 (警告：直接在 yml 中写密码不安全，建议使用 .env 文件或 Docker Secrets)
+            - POSTGRES_PASSWORD=xxx
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/services/databases/postgres/data:/var/lib/postgresql/data
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
 ## 3、访问
@@ -421,25 +457,31 @@ postgres:latest
 
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250121105335.png)
 
-2. 连接进去后，可以使用以下命令查询当前连接的数据库名称，确定是不是想要连接的数据库
+3. 连接进去后，可以使用以下命令查询当前连接的数据库名称，确定是不是想要连接的数据库
 
 ```sql
 SELECT current_database();
 ```
 
-3. 在 heidisql 中，新创建的数据库时不会显示的，只能在连接数据库时选择新建的数据库，可以使用以下命令查询 PostgreSQL 中所有数据库的名称
+4. 在 heidisql 中，新创建的数据库时不会显示的，只能在连接数据库时选择新建的数据库，可以使用以下命令查询 PostgreSQL 中所有数据库的名称
 
 ```sql
 SELECT datname FROM pg_database;
 ```
 
-4. 可以使用以下命令建一个新的架构：
+5. 使用以下命令建一个新的数据库：
+
+```
+CREATE DATABASE my_database;
+```
+
+6. 可以使用以下命令建一个新的架构：
 
 ```sql
 CREATE SCHEMA schema_name;
 ```
 
-5. 不想使用命令，也可以使用 idea 自带的数据库管理工具来创建：
+7. 不想使用命令，也可以使用 idea 自带的数据库管理工具来创建：
 
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250121105443.png)
 
@@ -576,194 +618,412 @@ default-authentication-plugin=mysql_native_password
 
 2. 修改完毕后，重启 mysql 即可
 
-### ②、
 
-# 四、openJdk 21
+# 21、pgvector 带向量插件的 postgres 数据库
+
+## 1、介绍
+
+1. pgvector/pgvector (通常简称为 pgvector) 是一个针对 PostgreSQL 的开源扩展，它使得 PostgreSQL 数据库能够高效地存储和搜索向量嵌入 (vector embeddings)。这对于构建涉及机器学习、人工智能、相似性搜索和推荐系统的应用程序至关重要。
+2. 它的主要特点包括：
+	1. 向量数据类型支持：引入了一个新的 vector 数据类型，可以直接在 PostgreSQL 中存储高维浮点数向量
+	2. 精确相似性搜索：支持使用 L2 距离 (欧氏距离)、内积 (inner product) 和余弦相似度 (cosine similarity/distance) 来计算向量之间的相似性，并进行精确的 k-最近邻 (k-NN) 搜索
+	3. 近似最近邻 (ANN) 搜索：为了加速大规模向量集的搜索，pgvector 支持创建近似最近邻 (ANN) 索引，如 IVFFlat 和 HNSW (Hierarchical Navigable Small World)，可以在保证召回率的同时大幅提升查询速度
+	4. 与 PostgreSQL 无缝集成：作为 PostgreSQL 扩展，pgvector 可以与 PostgreSQL 的所有现有功能完美结合，包括事务、索引、备份、复制以及丰富的 SQL 查询能力。这意味着您可以将向量数据与其他结构化数据存储在同一个数据库中，并进行复杂的联合查询
+	5. 易用性：提供了简单直观的 SQL 接口来创建向量列、插入向量数据和执行相似性搜索
+	6. 多语言客户端支持：由于它建立在 PostgreSQL 之上，任何支持 PostgreSQL 的编程语言和客户端库都可以与 pgvector 交互
+
+## 2、docker 部署 
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/home/docker/docker/volumes/openjdk/jar/00_TEST/`
-2. 上传 jar 程序到 `00_TEST` 目录中，测试 jar 包名称为：`TEST-0.0.1-SNAPSHOT.jar`，请对应修改名称
+	1. 配置和数据目录：`/vol1/1000/docker/services/databases/postgres-pgvector/data`
+2. 使用 docker run 部署：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107165410.png)
-
-3. 使用 docker 部署：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
-	3. `-e TZ=Asia/Shanghai`：指定时区：上海
-	4. `-v`：指定挂载目录
-	5. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	6. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器
-	7. `java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar`：容器启动时执行该命令，即启动指定 java 程序
-	
 ```shell
 docker run -d \
--p 8080:8080 \
--e TZ=Asia/Shanghai \
--v /home/docker/docker/volumes/openjdk/:/container/path \
---privileged=true \
+-p 5432:5432 \
+-e POSTGRES_USER=xxx \
+-e POSTGRES_PASSWORD=xxx \
+-v /vol1/1000/docker/services/databases/postgres-pgvector/data:/var/lib/postgresql/data \
+--network yuehai-net \
 --restart=unless-stopped \
---name code-java-test \
-openjdk:21 \
-java -jar /container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
+--name code-postgres-pgvector \
+pgvector/pgvector:0.8.0-pg17
 ```
 
-4. 访问接口测试
-
-# 五、使用 shell 脚本执行多个 jar 程序
-
-1. 准备 jar 程序：
-	1. springboot 测试包：`TEST-0.0.1-SNAPSHOT.jar`，请对应修改名称
-	2. y_chat 的 WebSockets 消息转发：`y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar`，请对应修改名称
-	3. y_chat 的 springboot 后台服务器 user 模块：`user-1.0-SNAPSHOT.jar`，请对应修改名称
-2. 创建映射目录，并将这三个 jar 包上传到指定目录：
-	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
-	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
-	3. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/user/`
-3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `run_jar.sh` 文件，并写入下面的内容：
-
-```shell
-#!/bin/bash
-
-# 容器内映射目录所在的路径
-main_path="/container/path"
-
-start_app() {
-    local app_path=$1 # 程序所在的路径
-    local app_name=$2 # 程序的名称
-    local log_name=$3 # 程序日志的名称
-    local background=$4  # 用于判断是否需要在后台运行
-
-    # yes 便是需要在后台运行
-    if [ "$background" == "yes" ]; then
-        java -jar "${app_path}/${app_name}" > "${app_path}/${log_name}" 2>&1 &
-    else
-        java -jar "${app_path}/${app_name}" > "${app_path}/${log_name}" 2>&1
-    fi
-}
-
-# 8082 y-chat WebSocket 消息转发服务器 (后台)
-start_app "${main_path}/jar/y-chat-WebSocket-server" \
-          "y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar" \
-          "y_chat_ws.log" \
-          "yes"
-
-# 8081 user y-chat springboot 后台数据服务器 (后台)
-start_app "${main_path}/jar/y-chat-back-server/user" \
-          "user-1.0-SNAPSHOT.jar" \
-          "user.log" \
-          "yes"
-
-# 8080 测试 (前台)
-start_app "${main_path}/jar/00_TEST" \
-          "TEST-0.0.1-SNAPSHOT.jar" \
-          "test.log" \
-          "no"
-```
-
-4. 启动容器：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
-	3. `-e TZ=Asia/Shanghai`：指定时区
-	4. `-v`：指定挂载目录
-	5. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	6. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器
-	7. `/container/path/run_jar.sh`：容器启动时执行该命令，即执行指定脚本
-	
-```shell
-docker run -d \
--p 8080-8082:8080-8083 \
--e TZ=Asia/Shanghai \
--e NACOS_SERVER_ADDR="127.0.0.1:8848" \
--e NACOS_NAMESPACE="******" \
--e NACOS_USERNAME="nacos" \
--e NACOS_PASSWORD="nacos" \
--e NACOS_GROUP="DEFAULT_GROUP" \
--e NACOS_FILE_EXTENSION="yml" \
--v /home/docker/docker/volumes/openjdk/:/container/path \
---privileged=true \
---name code-java \
-openjdk:21 \
-/container/path/run_jar.sh
-```
-
-5. 访问接口测试
-
-# 六、使用 Docker-compose 容器编排执行多个 jar 程序
-
-1. 准备 jar 程序：
-	1. springboot 测试包：`TEST-0.0.1-SNAPSHOT.jar`，请对应修改名称
-	2. y_chat 的 WebSockets 消息转发：`y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar`，请对应修改名称
-	3. y_chat 的 springboot 后台服务器 user 模块：`user-1.0-SNAPSHOT.jar`，请对应修改名称
-2. 创建映射目录，并将这三个 jar 包上传到指定目录：
-	1. `/home/docker/docker/volumes/openjdk/jar/00_TEST/`
-	2. `/home/docker/docker/volumes/openjdk/jar/y-chat-WebSocket-server/`
-	3. `/home/docker/docker/volumes/openjdk/jar/y-chat-back-server/user/`
-3. 进入 `/home/docker/docker/volumes/openjdk` 目录，创建 `docker-compose.yml` 文件，并写入下面的内容：
+3. 使用 `docker-compose.yml` 部署：
 
 ```yaml
-# 版本信息，定义关乎于 docker 的兼容性，Compose 文件格式有 3 个版本,分别为 1、2.x 和 3.x
-version : '3.8'
-
-# 所有的 docker 容器
+# 定义所有要管理的服务（容器）
 services:
-  # code-java 容器
-  code-java:
-    # 容器名称
-    container_name: code-java
-    # 指定使用的镜像
-    image: openjdk:21
-    # 映射的端口号；可指定多组
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-      - "8082:8082"
-    # 映射挂载的目录；可指定多组
-    volumes: 
-      - "/home/docker/docker/volumes/openjdk/:/container/path"
-    # 设置全局变量；可指定多组
-    environment:
-      # 指定时区
-	  - TZ=Asia/Shanghai
-      # 10310 user y-chat springboot 后台数据服务器所需变量
-	  - NACOS_SERVER_ADDR="127.0.0.1:8848"
-	  - NACOS_NAMESPACE="******"
-	  - NACOS_USERNAME="nacos"
-	  - NACOS_PASSWORD="nacos"
-	  - NACOS_GROUP="DEFAULT_GROUP"
-	  - NACOS_FILE_EXTENSION="yml"
-      # 8082 y-chat WebSocket 消息转发服务器 (后台)
-      - y_char_ws_app=/container/path/jar/yuehai-chat-WebSocket-server/y-chat-WebSocket-server-1.0-SNAPSHOT-jar-with-dependencies.jar
-      - y_char_ws_log=/container/path/jar/yuehai-chat-WebSocket-server/y_char_ws.log
-      # 8081 user y-chat springboot 后台数据服务器 (后台)
-      - y_char_back_server_user_app=/container/path/jar/y-chat-back-server/user/user-1.0-SNAPSHOT.jar
-      - y_char_back_server_user_log=/container/path/jar/y-chat-back-server/user/user.log
-      # 8080 测试 (前台)
-      - test_app=/container/path/jar/00_TEST/TEST-0.0.1-SNAPSHOT.jar
-      - test_log=/container/path/jar/00_TEST/test.log
-    # 容器启动时执行的命令，该命令只能指定一行，不过可以使用 sh -c 来变相实现多行
-    # 变量引用使用 $$ 的原因是为了转义特殊字符，以确保变量在命令字符串中被正确地解析而不是被 Compose 文件本身解析
-    command: >
-      sh -c "
-        java -jar $${y_char_ws_app} > $${y_char_ws_log} 2>&1 &
-        java -jar $${y_char_back_server_user_app} > $${y_char_back_server_user_log} 2>&1 &
-        java -jar $${test_app} > $${test_log} 2>&1
-      "
+    # 定义一个名为 pgvector-db 的服务
+    pgvector-db:
+        # 指定该服务使用的 Docker 镜像及其标签（版本），因为没有 latest 标签，所以指定 0.8.0-pg17
+        image: pgvector/pgvector:0.8.0-pg17
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-postgres-pgvector
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # PostgreSQL 的默认数据库端口
+            - "5432:5432"
+        # 定义环境变量
+        environment:
+            # 设置 PostgreSQL 的默认用户名
+            - POSTGRES_USER=xxx
+            # 设置 PostgreSQL 的默认用户密码 (警告：直接在 yml 中写密码不安全)
+            - POSTGRES_PASSWORD=xxx
+        # 定义数据卷挂载规则 (格式：主机路径:容器路径)
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/services/databases/postgres-pgvector/data:/var/lib/postgresql/data
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
-4. 启动 docker-compose 服务并后台运行：`docker-compose up -d`
+4. 查看 pgvector 是否开启：
+
+```sql
+SELECT * FROM pg_extension WHERE extname = 'vector';
+
+SELECT extname FROM pg_extension;
+```
+
+5. 如果执行第一条命令后，结果区域显示了一行或多行数据（通常会显示 vector 的相关信息，如 extname, extowner, extversion 等），那么说明 pgvector 扩展已经在当前选择的数据库中启用了。如果执行第一条命令后，结果区域为空（或者执行第二条命令后，结果列表中没有 vector），那么说明 pgvector 尚未在当前数据库中启用
+6. 如果未在特定数据库中启用，可以执行以下命令来启用它：
+
+```sql
+CREATE EXTENSION vector;
+```
+
+7. 再次执行第一条命令查询，如果结果中显示 `vector` 则代表启用成功
+
+| extname |
+| ------- |
+| plpgsql |
+| vector  |
+
+8. 在当前数据库中移除 pgvector 扩展，执行以下命令：
+
+```sql
+DROP EXTENSION vector;
+```
+
+9. 需要注意的是，如果数据库中有任何对象（例如表中的列、索引、函数等）正在使用 pgvector 提供的功能（比如 vector 数据类型），那么直接执行 `DROP EXTENSION vector;` 将会失败，并报错提示存在依赖关系。这是为了防止意外破坏数据库
+
+
+# 22、mysql
+
+## 1、介绍
+
+1. MySQL 是世界上最流行的开源关系型数据库管理系统 (RDBMS) 之一。它以其易用性、可靠性和高性能而闻名，被广泛应用于各种规模的应用程序，尤其是 Web 应用程序开发。MySQL 最初由瑞典公司 MySQL AB 开发，目前由 Oracle 公司拥有和赞助
+2. 它的主要特点包括：
+	1. 广泛的流行度和社区支持：作为最受欢迎的开源数据库之一，MySQL 拥有庞大而活跃的用户社区，提供了丰富的文档、教程和第三方工具
+	2. 跨平台性：MySQL 可以在多种操作系统上运行，包括 Linux、Windows、macOS 等，具有良好的可移植性
+	3. 多种存储引擎：支持多种存储引擎，最著名的是 InnoDB 和 MyISAM。InnoDB 提供事务安全 (ACID 兼容)、行级锁定和外键约束，而 MyISAM 则在某些只读或读密集型场景下可能提供更高的性能
+	4. 复制和高可用性：支持多种复制方式（如主从复制、半同步复制、组复制），可以用于数据备份、负载均衡和实现高可用性解决方案
+	5. 安全特性：提供了强大的安全功能，包括基于权限的用户账户管理、SSL 加密连接、数据加密等，以保护数据安全
+	6. 易用性和丰富的工具：MySQL 易于安装、配置和使用。有大量图形化管理工具（如 phpMyAdmin, MySQL Workbench）和命令行工具可供选择，方便数据库的管理和开发
+	7. 可扩展性和性能：能够处理大量数据和高并发连接，通过适当的配置和优化，可以满足不同应用场景的性能需求
+
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/home/docker/docker/volumes/mysql/conf/`
+	2. 数据目录：`/home/docker/docker/volumes/mysql/data/`
+	3. 日志目录：`/home/docker/docker/volumes/mysql/log/`
+2. 在 `/home/docker/docker/volumes/mysql/conf/` 目录下创建配置文件  `my.cnf`：
 
 ```shell
-docker@yuehai:~/docker/volumes/openjdk$ docker compose up -d
-[+] Running 1/1
- ✔ Container code-java  Started                                                      0.0s 
-docker@yuehai:~/docker/volumes/openjdk$ 
+cd /home/docker/docker/volumes/mysql/conf/
+
+nano my.cnf
 ```
 
-5. 如果嫌 `docker-compose.yml` 文件中的 `command` 属性的命令写起来太繁琐，也可以直接在 `command` 属性中调用上面的 `run_jar.sh` 脚本
-6. 访问接口测试
-7. 这种方式感觉好麻烦
+3. 填入以下配置：
 
-# 七、consul 分布式系统的服务发现和配置
+```shell
+[client]
+#设置客户端默认字符集utf8mb4
+default-character-set=utf8mb4
+[mysql]
+#设置服务器默认字符集为utf8mb4
+default-character-set=utf8mb4
+[mysqld]
+#配置服务器的服务号，具备日后需要集群做准备
+server-id = 1
+#开启MySQL数据库的二进制日志，用于记录用户对数据库的操作SQL语句，具备日后需要集群做准备
+log-bin=mysql-bin
+#设置清理超过30天的日志，以免日志堆积造过多成服务器内存爆满。2592000秒等于30天的秒数
+binlog_expire_logs_seconds = 2592000
+#解决MySQL8.0版本GROUP BY问题
+sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+#允许最大的连接数
+max_connections=1000
+# 禁用符号链接以防止各种安全风险
+symbolic-links=0
+# 设置东八区时区
+default-time_zone = '+8:00'
+```
+
+4. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=xxx \
+-v /home/docker/docker/volumes/mysql/log:/var/log/mysql \
+-v /home/docker/docker/volumes/mysql/data:/var/lib/mysql \
+-v /home/docker/docker/volumes/mysql/conf/my.cnf:/etc/mysql/my.cnf \
+--network yuehai-net \
+--restart=unless-stopped \
+--name code-mysql \
+mysql:8.2.0
+```
+
+1. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-mysql 的服务
+    code-mysql:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: mysql:8.2.0
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-mysql
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # MySQL 的默认端口
+            - "3306:3306"
+        # 定义环境变量
+        environment:
+            # 设置 MySQL root 用户的密码
+            - MYSQL_ROOT_PASSWORD=xxx
+        # 定义数据卷挂载规则
+        volumes:
+            # 日志文件
+            - /home/docker/docker/volumes/mysql/log:/var/log/mysql
+            # 数据库文件 (非常重要
+            - /home/docker/docker/volumes/mysql/data:/var/lib/mysql
+            # 配置文件
+            - /home/docker/docker/volumes/mysql/conf/my.cnf:/etc/mysql/my.cnf
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 使用 Navicat 连接
+
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107164736.png)
+
+## 4、插入中文报错
+
+1. 进入容器，查看编码
+
+```shell
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+bash-4.4# mysql -u root -p   
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW VARIABLES LIKE 'character%';
++--------------------------+--------------------------------+
+| Variable_name            | Value                          |
++--------------------------+--------------------------------+
+| character_set_client     | latin1                         |
+| character_set_connection | latin1                         |
+| character_set_database   | utf8mb4                        |
+| character_set_filesystem | binary                         |
+| character_set_results    | latin1                         |
+| character_set_server     | utf8mb4                        |
+| character_set_system     | utf8mb3                        |
+| character_sets_dir       | /usr/share/mysql-8.2/charsets/ |
++--------------------------+--------------------------------+
+8 rows in set (0.01 sec)
+
+mysql>
+```
+
+2. 在容器内 `/etc/mysql/conf.d` 目录或者宿主机内被映射的目录 `/home/docker/docker/mysql/test/conf` 中创建 `my.cnf`，并输入内容
+
+```shell
+docker@VM-8-15-ubuntu:~$ sudo vim /home/docker/docker/mysql/test/conf/my.cnf
+[sudo] password for docker: 
+
+[client]
+default_character_set=utf8
+[mysqld]
+collation_server=utf8_general_ci
+character_set_server=utf8
+```
+
+3. 重新进入容器查看编码
+
+```shell
+docker@yuehai:~$ docker exec -it bfab03cebaac bash
+bash-4.4# mysql -u root -p   
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW VARIABLES LIKE 'character%';
++--------------------------+----------------------------+
+| Variable_name            | Value                      |
++--------------------------+----------------------------+
+| character_set_client     | utf8                       |
+| character_set_connection | utf8                       |
+| character_set_database   | utf8                       |
+| character_set_filesystem | binary                     |
+| character_set_results    | utf8                       |
+| character_set_server     | utf8                       |
+| character_set_system     | utf8                       |
+| character_sets_dir       | /usr/share/mysql/charsets/ |
++--------------------------+----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+```
+
+
+# 30、redis 高性能的开源内存数据存储
+
+## 1、介绍
+
+1. Redis 是一个高性能的开源内存数据存储，广泛用于缓存、数据存储、消息队列等场景。它支持多种数据结构，具有快速读写能力，并能通过持久化保证数据安全。
+2. 内存存储：数据存储在内存中，读取和写入速度非常快，适用于需要高吞吐量和低延迟的场景。
+3. 多种数据结构支持：支持多种数据类型，包括：
+	1. 字符串（String）
+	2. 哈希（Hash）
+	3. 列表（List）
+	4. 集合（Set）
+	5. 有序集合（Sorted Set）
+	6. 位图（Bitmap）
+	7. HyperLogLog、地理空间索引（Geo）等
+4. 持久化选项：
+	8. RDB：周期性快照备份，适合大规模备份和恢复。
+	9. AOF：记录所有写操作，提供更强的数据持久性。
+	10. 混合持久化：结合 RDB 和 AOF 的优势。
+5. 高可用与分布式：
+	1. 主从复制：支持一主多从架构，数据冗余和负载均衡。
+	2. Sentinel：自动故障转移和高可用性保障。
+	3. Redis Cluster：支持水平扩展和数据分片。
+6. 支持事务：支持通过 MULTI、EXEC、DISCARD 和 WATCH 实现事务性操作。
+7. 发布/订阅：支持 Pub/Sub 模型，可以实现消息队列功能。
+8. 高效的缓存：通过内存管理和多种淘汰策略（如 LRU）管理缓存，避免内存溢出。
+9. Lua 脚本支持：可以在 Redis 上运行 Lua 脚本，保证原子操作。
+10. 简单易用：提供了丰富的命令和客户端，支持多种编程语言，易于集成和使用。
+11. 安全性：提供密码保护（requirepass）、ACL 访问控制和 TLS 加密通信等功能，保障数据和通信的安全性。
+12. Redis 由于其高性能、灵活性和易用性，已经成为现代系统架构中不可或缺的组件，广泛应用于缓存、实时分析、队列管理等场景。
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/vol1/1000/docker/services/nosql/redis/config`
+	2. 数据目录：`/vol1/1000/docker/services/nosql/redis/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 6379:6379 \
+-v /vol1/1000/docker/services/nosql/redis/config/redis.conf:/usr/local/etc/redis/redis.conf \
+-v /vol1/1000/docker/services/nosql/redis/data:/data \
+--network yuehai-net \
+--restart=unless-stopped \
+--name code-redis \
+redis:latest \
+redis-server /usr/local/etc/redis/redis.conf
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-redis 的服务
+    code-redis:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: redis:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-redis
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Redis 的默认端口
+            - "6379:6379"
+        # 定义数据卷挂载规则
+        volumes:
+            # 配置目录
+            - /vol1/1000/docker/services/nosql/redis/config/redis.conf:/usr/local/etc/redis/redis.conf
+            # 数据目录
+            - /vol1/1000/docker/services/nosql/redis/data:/data
+        # 指定容器启动时执行的命令：使用指定的配置文件启动 redis-server
+        command: redis-server /usr/local/etc/redis/redis.conf
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 可使用 `Another-Redis-Desktop-Manager` 进行连接
+2. 密码在配置文件中设置，用户名默认为 `default`
+
+
+# 40、consul 分布式系统的服务发现和配置
 
 ## 1、介绍
 
@@ -785,20 +1045,22 @@ docker@yuehai:~/docker/volumes/openjdk$
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/home/docker/docker/volumes/consul/config`
-	2. 数据目录：`/home/docker/docker/volumes/consul/data`
-2. 进入配置目录，创建 `consul.hcl` 文件，并写入以下内容：
+	1. 配置目录：`/vol1/1000/docker/services/infra/consul/config`
+	2. 数据目录：`/vol1/1000/docker/services/infra/consul/data`
+2. 进入配置目录，创建 `consul.hcl` 文件
+
+```shell
+cd /vol1/1000/docker/services/infra/consul/config
+
+nano consul.hcl
+```
+
+3. 进入配置目录，创建 `consul.hcl` 文件，并写入以下内容：
 	1. `enabled = true`：开启 ACL 系统。只有当这一项被设置为 true 时，ACL 的功能才会被激活。
 	2. `default_policy = "deny"`：设置了默认的ACL策略。如果设置为 `deny`，则默认情况下拒绝所有的请求，除非有明确的规则允许这些请求。这是一个保守的安全设置，确保没有明确许可的操作都不会被执行。
 	3. `enable_token_persistence = true`：当这一项设置为 true 时，会在本地持久化存储 ACL 令牌。这意味着，即使 Consul 重启，令牌的信息也会被保存并在重启后恢复。
 	4. `tokens`：这是一个配置令牌的部分。
-		1. `master = "c5165092-af61-48e8-acf9-eda32a6e4b70"`：master 令牌是一个具有高级权限的令牌，通常用于 ACL 系统的初始化和管理。这里配置的是 master 令牌的值。它应当被妥善保护，因为持有者可以进行广泛的控制操作。
-
-```shell
-cd /home/docker/docker/volumes/consul/config
-
-nano consul.hcl
-```
+		1. `master = "xxx"`：master 令牌是一个具有高级权限的令牌，通常用于 ACL 系统的初始化和管理。这里配置的是 master 令牌的值。它应当被妥善保护，因为持有者可以进行广泛的控制操作。
 
 ```shell
 acl {
@@ -806,43 +1068,91 @@ acl {
   default_policy = "deny"
   enable_token_persistence = true
   tokens {
-    master = "c5165092-af61-48e8-acf9-eda32a6e4b70"
+    master = "xxx"
   }
 }
 ```
 
-3. 使用 docker 部署：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-p`：指定端口映射
-		1. `8300`：TCP 协议，用于 Consul 集群中各个节点相互连结通信的端口
-		2. `8301`：TCP 或者 UDP 协议，用于 Consul 节点之间相互使用 Gossip 协议健康检查等交互
-		3. `8302`：TCP 或者 UDP 协议，用于单个或多个数据中心之间的服务器节点的信息同步
-		4. `8500`：HTTP 协议，用于 API 接口或者我们上述的网页管理界面访问
-		5. `8600`：TCP 或者 UDP 协议，作为 DNS 服务器，用于通过节点名查询节点信息
-	3. `-v`：指定挂载目录
-	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
-	5. 除此之外，我们来看一下命令最后的几个参数：
-		1. `agent`：表示启动一个 Agent 进程
-		2. `-server`：指定该节点为服务器模式
-		3. `-bootstrap=true`：开启引导模式，适用于单节点 Consul
-		4. `-ui`：开启网页可视化管理界面
-		5. `-client='0.0.0.0'`：指定可以外部连接的地址，0.0.0.0 表示外网全部可以连接
-		6. `-data-dir=/consul/data`：指定数据存储路径为 `/consul/data`
-		7. 除此之外，还可以加上 `-datacenter` 参数自定义一个数据中心名，同一个数据中心的节点数据中心名应当指定为一样！
+
+4. 使用 docker run 部署：
 
 ```shell
 docker run -d \
 -p 8300:8300 \
--p 8301:8301 \
--p 8302:8302 \
+-p 8301:8301/tcp \
+-p 8301:8301/udp \
+-p 8302:8302/tcp \
+-p 8302:8302/udp \
 -p 8500:8500 \
--p 8600:8600 \
--v /home/docker/docker/volumes/consul/data:/consul/data \
--v /home/docker/docker/volumes/consul/config:/consul/config \
---restart=unless-stopped
+-p 8600:8600/tcp \
+-p 8600:8600/udp \
+-v /vol1/1000/docker/services/infra/consul/config:/consul/config \
+-v /vol1/1000/docker/services/infra/consul/data:/consul/data \
+--network yuehai-net \
+--restart=unless-stopped \
 --name=code-consul \
-hashicorp/consul \
-agent -server -bootstrap=true -ui -client='0.0.0.0' -data-dir=/consul/data
+hashicorp/consul:latest \
+agent -server -bootstrap-expect=1 -ui -client='0.0.0.0' -data-dir=/consul/data
+```
+
+5. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-consul 的服务
+    code-consul:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: hashicorp/consul:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-consul
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Server RPC 端口 (用于 Server 之间通信)
+            - "8300:8300"
+            # Serf LAN 端口 (TCP, 用于局域网内 Gossip 协议)
+            - "8301:8301/tcp"
+            # Serf LAN 端口 (UDP, 用于局域网内 Gossip 协议)
+            - "8301:8301/udp"
+            # Serf WAN 端口 (TCP, 用于广域网/跨数据中心 Gossip 协议)
+            - "8302:8302/tcp"
+            # Serf WAN 端口 (UDP, 用于广域网/跨数据中心 Gossip 协议)
+            - "8302:8302/udp"
+            # HTTP API & UI 端口 (用于访问 Consul 的 API 和 Web 界面)
+            - "8500:8500"
+            # DNS 端口 (TCP, 用于 Consul 的 DNS 服务)
+            - "8600:8600/tcp"
+            # DNS 端口 (UDP, 用于 Consul 的 DNS 服务)
+            - "8600:8600/udp"
+        # 定义数据卷挂载规则
+        volumes:
+            # 配置目录
+            - /vol1/1000/docker/services/infra/consul/config:/consul/config
+            # 数据目录
+            - /vol1/1000/docker/services/infra/consul/data:/consul/data
+        # 指定容器启动时执行的命令和参数
+        # agent：表示启动一个 Agent 进程
+        # -server：指定该节点为服务器模式
+        # -bootstrap-expect=1：表示期望有 1 个服务器节点（通常在单节点测试环境中使用）
+        # -ui：开启网页可视化管理界面
+        # -client=0.0.0.0：指定可以外部连接的地址，0.0.0.0 表示外网全部可以连接
+        # -data-dir=/consul/data：指定数据存储路径为 /consul/data
+        # 除此之外，还可以加上 -datacenter 参数自定义一个数据中心名，同一个数据中心的节点数据中心名应当指定为一样！
+        command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0 -data-dir=/consul/data
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
 ## 3、访问
@@ -867,7 +1177,7 @@ agent -server -bootstrap=true -ui -client='0.0.0.0' -data-dir=/consul/data
 
 ```shell
 curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
---header 'X-Consul-Token: c5165092-af61-48e8-acf9-eda32a6e4b70' \
+--header 'X-Consul-Token: xxx' \
 ```
 
 4. 得到的数据中，`Value` 中是配置的值，其内容被 Base64 编码了，可使用该网址进行解码：[Base64 编码/解码](https://www.toolhelper.cn/EncodeDecode/Base64)
@@ -1022,7 +1332,7 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 
 ```shell
 curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
---header 'X-Consul-Token: c5165092-af61-48e8-acf9-eda32a6e4b70' \
+--header 'X-Consul-Token: xxx' \
 ```
 
 4. 得到的数据中，`Value` 中是配置的值，其内容被 Base64 编码了，可使用该网址进行解码：[Base64 编码/解码](https://www.toolhelper.cn/EncodeDecode/Base64)
