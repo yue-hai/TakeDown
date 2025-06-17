@@ -162,8 +162,8 @@
             "state": {
               "type": "copilot-chat-view",
               "state": {},
-              "icon": "message-square",
-              "title": "Copilot"
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           }
         ]
@@ -178,11 +178,16 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "2c960a24d23e051f",
+  "active": "2f73f963025fb460",
   "lastOpenFiles": [
+    "公司/创迹/SSC/SSC 购物车.md",
     "其他/设备和工具.md",
-    "Docker/docker 应用部署.md",
     "Flutter/Flutter 基础.md",
+    "Flutter/attachments/Pasted image 20250417130701.png",
+    "Android/Android 基础.md",
+    "其他/游戏/我的世界 Minecraft 模组服务器.md",
+    "其他/游戏/游戏服务器购买和设置.md",
+    "Docker/docker 应用部署.md",
     "Docker/attachments/Pasted image 20250107151702.png",
     "Docker/attachments/Pasted image 20250107163352.png",
     "Docker/attachments/Pasted image 20250107163443.png",
@@ -192,7 +197,6 @@
     "Docker/attachments/Pasted image 20250107163621.png",
     "Docker/attachments/Pasted image 20250107164736.png",
     "Docker/attachments/Pasted image 20250107164810.png",
-    "Docker/attachments/Pasted image 20250107164827.png",
     "Docker/attachments/alist-desktop_3.38.0_amd64.deb",
     "Docker/attachments/libssl.so.1.1",
     "Docker/attachments/libcrypto.so.1.1",
@@ -206,10 +210,7 @@
     "Docker/attachments",
     "标题.md",
     "编程相关/Git.md",
-    "Android/Android 基础.md",
-    "公司/创迹/SSC/SSC 购物车.md",
     "Flutter/Dart 基础.md",
-    "其他/游戏/我的世界 Minecraft 模组服务器.md",
     "其他/游戏/我的世界 Minecraft 原版服务器.md",
     "java/01、JAVA 基础.md",
     "java/【其他】.md",

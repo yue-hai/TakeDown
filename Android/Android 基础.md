@@ -1,4 +1,3 @@
-
 # 一、`Android` 初识
 
 ## 1、App 的开发特点
@@ -14491,7 +14490,7 @@ adb disconnect 手机ip:端口号
 
 ### ②、idea 中设置 gradle 目录
 
-![](attachments/Pasted%20image%2020250507151734.png)
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020250507151734.png)
 
 ## 6、
 

@@ -21592,18 +21592,18 @@ Running Gradle task 'assembleDebug'...
 
 1. 进入 android 项目，打开 `gradle-wrapper.properties` 文件，查看使用的 gradle 版本
 
-![|700](attachments/Pasted%20image%2020250417125710.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FFlutter%2Fattachments%2FPasted%20image%2020250417125710.png)
 
 2. 下载对应的 gradle 版本，比如从 [腾讯gradle镜像](https://mirrors.cloud.tencent.com/gradle/) 下载对应上面版本的 gradle：
 
-![|676](attachments/Pasted%20image%2020250417125932.png)
+![|676](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FFlutter%2Fattachments%2FPasted%20image%2020250417125932.png)
 
 3. 下载完毕后：
 	1. 进入：`C:/Users/用户名/.gradle/wrapper/dists` 目录
 	2. 然后进入对应 gradle 版本的目录
 	3. 其中会有一个随机字符串的目录名，点击进入，然后将下载的 gradle 复制到其中
 
-![|700](attachments/Pasted%20image%2020250417130701.png)
+![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FFlutter%2Fattachments%2FPasted%20image%2020250417130701.png)
 
 4. 解压复制的 gradle 压缩文件，然后 flutter 中重新 run app 即可
 
