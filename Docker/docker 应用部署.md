@@ -777,18 +777,19 @@ http://www.pushplus.plus/send/
 3. 当 ip 变化时，ddns-go 会重新解析域名并发送通知
 
 
-# 100、AList 网盘整合挂载工具
+# 100、OpenList 网盘整合挂载工具
 
-> 1. 项目 github：https://github.com/AlistGo/alist
-> 2. dockerHub 地址：https://hub.docker.com/r/xhofe/alist
-> 3. AList 官网：https://alist.nn.ci/zh/guide/install/desktop.html
-> 4. AList-desktop gui 桌面版官网：https://ad.nn.ci/zh
-> 5. 操作系统版本为：Ubuntu 22.04.3 LTS
+> 1. 项目 github：https://github.com/OpenListTeam/OpenList
+> 2. dockerHub 地址：https://hub.docker.com/r/openlistteam/openlist
+> 3. 官网：https://oplist.org/zh/guide/
+> 4. 操作系统版本为：Ubuntu 22.04.3 LTS
+> 5. 目前仅有 beta 版
 
 ## 1、介绍
 
-1. xhofe/alist 是 AList 的官方 Docker 镜像。AList 是一个支持多种存储的文件列表程序，它允许将各种云存储、对象存储、WebDAV 甚至本地目录统一管理起来，并通过一个清爽的网页界面进行浏览、预览、下载甚至上传（取决于存储后端支持）
-2. 它的主要特点包括：
+1. OpenListTeam/OpenList 是 OpenList 的官方 Docker 镜像，OpenList 是 AList 的一个分支版本
+2. OpenList 支持多种存储的文件列表程序，它允许将各种云存储、对象存储、WebDAV 甚至本地目录统一管理起来，并通过一个清爽的网页界面进行浏览、预览、下载甚至上传（取决于存储后端支持）
+3. 它的主要特点包括：
 	1. 广泛的存储支持：支持阿里云盘、OneDrive、Google Drive、夸克网盘、百度网盘、S3、FTP、SFTP 等数十种国内外流行的存储服务
 	2. WebDAV 服务：可以将挂载的所有存储通过 WebDAV 协议暴露出来，方便其他应用（如播放器、阅读器）直接访问
 	3. 在线预览：支持视频、音频、文档、图片、PDF 等多种格式的在线预览
@@ -798,7 +799,7 @@ http://www.pushplus.plus/send/
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 数据目录：`/vol1/1000/docker/file/file-management/alist/data`
+	1. 数据目录：`/vol1/1000/docker/file/file-management/openlist/data`
 	2. 宿主机挂载目录 1：`/vol1/1000/固态盘`
 	3. 宿主机挂载目录 2：`/vol2/1000/raid组`
 2. 使用 docker run 部署：
@@ -809,14 +810,14 @@ docker run -d \
 -e PUID=0  \
 -e PGID=0  \
 -e UMASK=022  \
--v /vol1/1000/docker/file/file-management/alist/data:/opt/alist/data \
+-v /vol1/1000/docker/file/file-management/openlist/data:/opt/openlist/data \
 -v /vol1/1000/固态盘:/vol1/1000/固态盘 \
 -v /vol2/1000/raid组:/vol2/1000/raid组 \
 --privileged=true \
 --network yuehai-net \
 --restart=unless-stopped  \
---name=alist  \
-xhofe/alist:latest
+--name=openlist  \
+openlistteam/openlist:beta
 ```
 
 3. 使用 `docker-compose.yml` 部署：
@@ -824,35 +825,35 @@ xhofe/alist:latest
 ```yaml
 # 定义所有要管理的服务（容器）
 services:
-    # 定义一个名为 alist 的服务
-    alist:
+    # 定义一个名为 openlist 的服务
+    openlist:
         # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: xhofe/alist:latest
+        image: openlistteam/openlist:beta
         # 设置容器的固定名称，方便识别和管理
-        container_name: alist
+        container_name: openlist
         # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
         restart: unless-stopped
         # 启用特权模式，赋予容器几乎所有主机的 root 能力（请谨慎使用，仅在必要时开启）
         privileged: true
         # 定义端口映射规则
         ports:
-            # 将主机的 41010 端口映射到容器的 5244 端口 (AList 的 Web 访问端口)
+            # openlist 的 Web 访问端口
             - "5244:5244"
         # 定义环境变量
         environment:
-            # 设置容器内运行 AList 进程的用户 ID (0 代表 root)
+            # 设置容器内运行 openlist 进程的用户 ID (0 代表 root)
             - PUID=0
-            # 设置容器内运行 AList 进程的用户组 ID (0 代表 root)
+            # 设置容器内运行 openlist 进程的用户组 ID (0 代表 root)
             - PGID=0
             # 设置创建文件的默认权限掩码
             - UMASK=022
         # 定义数据卷挂载规则
         volumes:
             # 数据目录
-            - /vol1/1000/docker/file/file-management/alist/data:/opt/alist/data
-            # 将主机的 /vol1/1000/固态盘 目录挂载到容器的 /vol1/1000/固态盘 目录，以便 AList 可以访问和管理该路径下的文件
+            - /vol1/1000/docker/file/file-management/openlist/data:/opt/openlist/data
+            # 将主机的 /vol1/1000/固态盘 目录挂载到容器的 /vol1/1000/固态盘 目录，以便 openlist 可以访问和管理该路径下的文件
             - /vol1/1000/固态盘:/vol1/1000/固态盘
-            # 将主机的 /vol2/1000/raid组 目录挂载到容器的 /vol2/1000/raid组 目录，以便 AList 可以访问和管理该路径下的文件
+            # 将主机的 /vol2/1000/raid组 目录挂载到容器的 /vol2/1000/raid组 目录，以便 openlist 可以访问和管理该路径下的文件
             - /vol2/1000/raid组:/vol2/1000/raid组
         # 定义此服务要连接的网络
         networks:
@@ -873,13 +874,13 @@ networks:
 1. 部署成功后，随机生成一个密码：
 
 ```shell
-docker exec -it alist ./alist admin random
+docker exec -it openlist ./openlist admin random
 ```
 
 2. 手动设置一个密码，`NEW_PASSWORD` 是指需要设置的密码：
 
 ```shell
-docker exec -it alist ./alist admin set NEW_PASSWORD
+docker exec -it openlist ./openlist admin set NEW_PASSWORD
 ```
 
 3. 访问：`http://127.0.0.1:5244`，进入主页面；输入账号 `admin` 以及刚才设置的密码进行登录
@@ -896,8 +897,8 @@ docker exec -it alist ./alist admin set NEW_PASSWORD
 location / {
   # 关键：将请求代理到指定服务
   # proxy_pass 指令指定了后端服务器的地址和端口
-  # 所有匹配此 location 块的请求都将被转发到 http://alist:5244
-  proxy_pass http://alist:5244;
+  # 所有匹配此 location 块的请求都将被转发到 http://openlist:5244
+  proxy_pass http://openlist:5244;
   
   # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
   # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
@@ -922,12 +923,12 @@ location / {
   # 这通常在后端应用自己能正确处理重定向 URL 时使用
   proxy_redirect off;
   # 设置客户端请求体的最大允许大小
-  # AList 官方文档推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+  # openlist 官方文档推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
   # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
   client_max_body_size 20000m;
 
   # --- 以下是针对 WebSocket 的可选配置 ---
-  # 如果 AList 使用 WebSockets (例如某些实时功能)，
+  # 如果 openlist 使用 WebSockets (例如某些实时功能)，
   # 并且 NPM 的 "支持 WebSockets" 开关没有自动处理好，可以手动添加：
 
   # 设置代理使用的 HTTP 版本为 1.1
@@ -1137,7 +1138,7 @@ alist-desktop
 ```
 
 
-# 101、TaoSync （桃桃的自动同步工具）基于 AList 的网盘同步工具
+# 101、TaoSync （桃桃的自动同步工具）基于 OpenList 的网盘同步工具
 
 > 1. 项目 github：https://github.com/dr34m-cn/taosync
 > 2. dockerHub 地址：https://hub.docker.com/r/dr34m/tao-sync
@@ -1152,13 +1153,13 @@ alist-desktop
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 数据目录：`/vol1/1000/docker/file/file-management/taosync/data`
+	1. 数据目录：`/vol1/1000/docker/file/file-management/tao-sync/data`
 2. 使用 docker run 部署：
 
 ```shell
 docker run -d \
 -p 8023:8023 \
--v /vol1/1000/docker/file/file-management/taosync/data:/app/data \
+-v /vol1/1000/docker/file/file-management/tao-sync/data:/app/data \
 --network yuehai-net \
 --restart=unless-stopped \
 --name=tao-sync \
@@ -1170,8 +1171,8 @@ dr34m/tao-sync:latest
 ```yaml
 # 定义所有要管理的服务（容器）
 services:
-    # 定义一个名为 taoSync 的服务
-    taoSync:
+    # 定义一个名为 tao-sync 的服务
+    tao-sync:
         # 指定该服务使用的 Docker 镜像及其标签（版本）
         image: dr34m/tao-sync:latest
         # 设置容器的固定名称，方便识别和管理
@@ -1180,12 +1181,12 @@ services:
         restart: unless-stopped
         # 定义端口映射规则
         ports:
-            # 将主机的 41011 端口映射到容器的 8023 端口 (TaoSync 可能的 Web 访问或 API 端口)
+            # TaoSync 的 Web 访问或 API 端口
             - "8023:8023"
         # 定义数据卷挂载规则
         volumes:
             # 数据目录
-            - /vol1/1000/docker/file/file-management/taosync/data:/app/data
+            - /vol1/1000/docker/file/file-management/tao-sync/data:/app/data
         # 定义此服务要连接的网络
         networks:
             # 将此服务连接到名为 yuehai-net 的网络
@@ -2227,7 +2228,6 @@ location / {
   # 这通常在后端应用自己能正确处理重定向 URL 时使用
   proxy_redirect off;
   # 设置客户端请求体的最大允许大小
-  # AList 官方文档推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
   # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
   client_max_body_size 20000m;
 
