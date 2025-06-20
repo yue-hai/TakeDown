@@ -301,7 +301,77 @@ location /oneNav {
 ![]https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250617092837.png)
 
 
-# 1、chromium 谷歌开源的浏览器核心项目
+# 1、docker 可视化 portainer-ce
+
+> 1. 项目 github：https://github.com/eysp/portainer-ce
+> 2. 原项目 github：https://github.com/portainer/portainer
+> 3. dockerHub 地址：https://hub.docker.com/r/6053537/portainer-ce
+
+## 1、介绍
+
+1. Portainer 是一款轻量级的应用，它提供了图形化界面，用于方便地管理 Docker 环境，包括单机环境和集群环境
+2. 这里使用的是国内热心大佬上传到 Docker Hub 的二次编译汉化版 Portainer，安装好之后直接使用
+3. 弊端就是跟不上原版 Portainer 的更新节奏。虽说如此，它一般和最新版 Portainer 差距不大，所以使用起来几乎没什么差别。
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/code/portainer-ce/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 9000:9000 \
+-v /vol1/1000/docker/code/portainer-ce/data:/data \
+-v /var/run/docker.sock:/var/run/docker.sock \
+--restart=unless-stopped \
+--name="portainer-ce" \
+6053537/portainer-ce:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 portainer-ce 的服务
+    portainer-ce:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: 6053537/portainer-ce:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: portainer-ce
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Portainer 的 Web 管理界面端口
+            - "9000:9000"
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/code/portainer-ce/data:/data
+            # 将主机的 Docker Socket 挂载到容器，这是 Portainer 能够管理 Docker 的核心，也意味着此容器拥有很高的主机权限
+            - /var/run/docker.sock:/var/run/docker.sock
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络，以便它可以识别和管理网络内的其他容器
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+## 3、访问及设置
+
+1. 访问：[http://127.0.0.1:9000](http://127.0.0.1:9000)
+2. 初次访问需设定管理员账号密码
+
+
+# 2、chromium 谷歌开源的浏览器核心项目
 
 > 1. 项目 github：https://github.com/linuxserver/docker-chromium
 > 2. dockerHub 地址：https://hub.docker.com/r/linuxserver/chromium
@@ -407,7 +477,7 @@ apt-get update && apt-get install -y fonts-wqy-zenhei fonts-arphic-ukai
 ![]https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250617093427.png)
 
 
-# 2、clash
+# 3、clash
 
 > 1. 项目 github：https://github.com/ShangjinTang/clash-core
 > 2. dockerHub 地址：https://hub.docker.com/r/dreamacro/clash
@@ -501,7 +571,7 @@ networks:
 1. 没有 web 端口，需通过 clash-yacd 或其他 clash 前端访问
 
 
-# 3、clash-yacd
+# 4、clash-yacd
 
 > 1. 项目 github：https://github.com/haishanh/yacd
 > 2. dockerHub 地址：https://hub.docker.com/r/haishanh/yacd
@@ -567,82 +637,6 @@ networks:
 
 1. 访问：[http://127.0.0.1:80](http://127.0.0.1:80)
 2. 填入 clash 的 api 地址即可
-
-
-# 4、docker 可视化 portainer-ce
-
-> 1. 项目 github：https://github.com/eysp/portainer-ce
-> 2. 原项目 github：https://github.com/portainer/portainer
-> 3. dockerHub 地址：https://hub.docker.com/r/6053537/portainer-ce
-
-## 1、介绍
-
-1. Portainer 是一款轻量级的应用，它提供了图形化界面，用于方便地管理 Docker 环境，包括单机环境和集群环境
-2. 这里使用的是国内热心大佬上传到 Docker Hub 的二次编译汉化版 Portainer，安装好之后直接使用
-3. 弊端就是跟不上原版 Portainer 的更新节奏。虽说如此，它一般和最新版 Portainer 差距不大，所以使用起来几乎没什么差别。
-
-## 2、docker 部署
-
-1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 数据目录：`/vol1/1000/docker/code/portainer-ce/data`
-2. 使用 docker run 部署：
-
-```shell
-docker run -d \
--p 9000:9000 \
--v /vol1/1000/docker/code/portainer-ce/data:/data \
--v /var/run/docker.sock:/var/run/docker.sock \
---restart=unless-stopped \
---name="portainer-ce" \
-6053537/portainer-ce:latest
-```
-
-3. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 portainer-ce 的服务
-    portainer-ce:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: 6053537/portainer-ce:latest
-        # 设置容器的固定名称，方便识别和管理
-        container_name: portainer-ce
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义端口映射规则
-        ports:
-            # Portainer 的 Web 管理界面端口
-            - "9000:9000"
-        # 定义数据卷挂载规则，用于持久化存储数据
-        volumes:
-            # 数据目录
-            - /vol1/1000/docker/code/portainer-ce/data:/data
-            # 将主机的 Docker Socket 挂载到容器，这是 Portainer 能够管理 Docker 的核心，也意味着此容器拥有很高的主机权限
-            - /var/run/docker.sock:/var/run/docker.sock
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络，以便它可以识别和管理网络内的其他容器
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-## 3、访问及设置
-
-1. 访问：[http://127.0.0.1:9000](http://127.0.0.1:9000)
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108090730.png)
-
-2. 第一次进入需设置密码
-3. 界面：
-
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250108090706.png)
 
 
 # 5、ddns-go 一款轻量级、开源的动态域名解析服务

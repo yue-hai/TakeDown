@@ -14492,8 +14492,108 @@ adb disconnect 手机ip:端口号
 
 ![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020250507151734.png)
 
-## 6、
+## 6、应用签名
 
+1. 电脑中需要有 jdk 环境，在 cmd 中执行以下命令：
+
+```shell
+keytool -genkey -v -keystore flutter-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias flutter-key
+```
+
+2. 参数说明：
+	1. `-keytool`：Java 开发工具包（JDK）中用于管理密钥和证书的命令行工具
+	2. `-genkey`：指定操作是生成一个新的密钥对（公钥和私钥）以及包含公钥的自签名证书
+	3. `-v`：表示 verbose（详细模式），命令执行时会输出更详细的信息
+	4. `-keystore flutter-key.jks`：指定生成的密钥库文件的名称和路径。这里文件名为 `flutter-key.jks`，并将保存在当前目录下
+	5. `-keyalg RSA`：指定生成密钥对所使用的算法为 RSA。RSA 是一种广泛使用的非对称加密算法
+	6. `-keysize 2048`：指定密钥的长度为 2048 位。对于 RSA 算法，2048 位是目前推荐的最小安全长度
+	7. `-validity 10000`：指定证书的有效期天数。这里设置为 10000 天（大约 27 年）
+	8. `-alias flutter-key`：为新生成的密钥对（及其证书）在密钥库中指定一个唯一的别名，此处别名为 `flutter-key`
+3. 执行命令后，会要求输入一些值，这些值很重要，需要保存起来以备以后使用：
+
+![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020250620100114.png)
+
+4. 密钥库文件 `flutter-key.jks` 生成之后，将其放在 `android/app` 目录下，和 `app/build.gradle.kts` 在同一目录
+5. 然后在同一个目录中创建 `key.properties` 文件，在其中填入以下内容：
+
+```properties
+# 密钥库 (keystore) 文件的路径
+storeFile=./flutter-key.jks
+# 密钥库的密码
+storePassword=planocycle
+# 密钥别名 (key alias)
+keyAlias=flutter-key
+# 密钥的密码，通常与密钥库密码相同
+keyPassword=planocycle
+```
+
+6. 配置 `app/build.gradle.kts` 文件：
+
+```java
+import java.util.Properties
+import java.io.FileInputStream
+
+// 加载和解析密钥属性文件 key.properties
+val keystorePropertiesFile = file("key.properties")
+// 创建一个新的 Properties 对象，用于存储从 key.properties 文件中加载的键值对
+val keystoreProperties = Properties()
+// 检查 key.properties 文件是否存在
+if (keystorePropertiesFile.exists()) {
+    // 如果文件存在，则创建一个文件输入流 (FileInputStream) 来读取该文件，并使用 Properties 对象的 load 方法从输入流中加载属性。
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    // 配置签名 (Signing Configurations)，signingConfigs 代码块用于定义不同的签名配置方案。
+    signingConfigs {
+        // 创建一个名为 release 的签名配置，这个配置将用于签署应用的发布版本
+        create("release") {
+            // 再次检查 key.properties 文件是否存在，以确保只有在属性文件有效时才进行签名配置
+            if (keystorePropertiesFile.exists()) {
+                // 从 key.properties 文件中读取 keystore 的相关信息
+                // 设置密钥库 (keystore) 文件的路径
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                // 设置密钥库的密码
+                storePassword = keystoreProperties.getProperty("storePassword")
+                // 设置密钥别名 (key alias)
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                // 设置密钥的密码
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+    
+    // 构建：flutter build apk --release --dart-define=ENV=prod --verbose
+    // 清除构建缓存：flutter clean
+    // 配置构建类型 (Build Types)，buildTypes 代码块用于定义和配置不同的构建变体，如 debug 和 release
+    buildTypes {
+        // 获取名为 release 的构建类型进行配置，这是 Android 项目中标准的发布构建类型
+        getByName("release") {
+            // 将此 release 构建类型与上面定义的 release 签名配置关联起来，这意味着当构建 release 版本时，会使用该签名配置进行签名
+            signingConfig = signingConfigs.getByName("release")
+            // 启用代码混淆和压缩
+            isMinifyEnabled = true
+            // 启用资源压缩 (Resource Shrinking)，这会移除未被使用的资源
+            isShrinkResources = true
+            // 指定 ProGuard 规则文件，默认使用 Android SDK 提供的优化规则文件和自定义的 ProGuard 规则文件
+            // getDefaultProguardFile("proguard-android-optimize.txt") 获取 Android SDK 提供的默认优化规则。
+            // proguard-rules.pro 是项目自定义的 ProGuard 规则文件，通常位于 app 模块的根目录下
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        // 新增：获取名为 debug 的构建类型进行配置
+        getByName("debug") {
+            // 为 debug 版本添加一个 applicationId 后缀，使其与 release 版本区分开来，可以在同一设备上安装多个版本的应用
+            applicationIdSuffix = ".debug"
+        }
+    }
+}
+```
+
+7. 最后使用 `flutter build apk --release --dart-define=ENV=prod --verbose` 打包即可
+
+## 7、
+
+## 8、
 
 # 十三、错误总结
 
