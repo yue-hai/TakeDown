@@ -783,7 +783,6 @@ http://www.pushplus.plus/send/
 > 2. dockerHub 地址：https://hub.docker.com/r/openlistteam/openlist
 > 3. 官网：https://oplist.org/zh/guide/
 > 4. 操作系统版本为：Ubuntu 22.04.3 LTS
-> 5. 目前仅有 beta 版
 
 ## 1、介绍
 
@@ -811,13 +810,13 @@ docker run -d \
 -e PGID=0  \
 -e UMASK=022  \
 -v /vol1/1000/docker/file/file-management/openlist/data:/opt/openlist/data \
--v /vol1/1000/固态盘:/vol1/1000/固态盘 \
--v /vol2/1000/raid组:/vol2/1000/raid组 \
+-v /vol1/1000:/vol1/1000 \
+-v /vol2/1000:/vol2/1000 \
 --privileged=true \
 --network yuehai-net \
 --restart=unless-stopped  \
 --name=openlist  \
-openlistteam/openlist:beta
+openlistteam/openlist:latest
 ```
 
 3. 使用 `docker-compose.yml` 部署：
@@ -828,7 +827,7 @@ services:
     # 定义一个名为 openlist 的服务
     openlist:
         # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: openlistteam/openlist:beta
+        image: openlistteam/openlist:latest
         # 设置容器的固定名称，方便识别和管理
         container_name: openlist
         # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
@@ -852,9 +851,9 @@ services:
             # 数据目录
             - /vol1/1000/docker/file/file-management/openlist/data:/opt/openlist/data
             # 将主机的 /vol1/1000/固态盘 目录挂载到容器的 /vol1/1000/固态盘 目录，以便 openlist 可以访问和管理该路径下的文件
-            - /vol1/1000/固态盘:/vol1/1000/固态盘
+            - /vol1/1000:/vol1/1000
             # 将主机的 /vol2/1000/raid组 目录挂载到容器的 /vol2/1000/raid组 目录，以便 openlist 可以访问和管理该路径下的文件
-            - /vol2/1000/raid组:/vol2/1000/raid组
+            - /vol2/1000:/vol2/1000
         # 定义此服务要连接的网络
         networks:
             # 将此服务连接到名为 yuehai-net 的网络
@@ -2937,6 +2936,7 @@ networks:
 ```shell
 docker run -d \
 -p 6989:6989 \
+-e ENCRYPTION_KEY="xxx" \
 -v /vol1/1000/docker/tool/nexterm/data:/app/data \
 --network yuehai-net \
 --restart=unless-stopped \
@@ -2961,7 +2961,11 @@ services:
         ports:
             # NextSSH/NexTerm 的 Web UI 端口
             - "6989:6989"
-        # 定义数据卷挂载规则
+        # 定义环境变量
+        environment:
+            # 加密密钥，可以使用 openssl rand -hex 32 生成
+            - ENCRYPTION_KEY=xxx
+		# 定义数据卷挂载规则
         volumes:
             # 数据目录
             - /vol1/1000/docker/tool/nexterm/data:/app/data
