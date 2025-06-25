@@ -1431,7 +1431,7 @@ git push --force origin <提交哈希>:<分支名>
 1. 我们要设置 gitbash 的代理：
 
 ```bash
-git config --global http.proxy http://127.0.0.1:7890 
+git config --global http.proxy http://127.0.0.1:7890
 git config --global https.proxy http://127.0.0.1:7890
 ```
 

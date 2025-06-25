@@ -4419,25 +4419,10 @@ print(requests.text)
 
 > Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fpython%2Fattachments%2F05.scrapy.pdf)
+[scrapy.pdf](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fpython%2Fattachments%2F05.scrapy.pdf)
 
-# 十二、
+# 十二、第三方包
 
-# 十三、
-
-# 十四
-
-# 十五、
-
-# 十六、
-
-# 十七、
-
-# 十八、
-
-# 十九、
-
-# 二十、第三方包
 ## 1、数据可视化 pyecharts
 > Echarts 是个由百度开源的数据可视化，凭借着良好的交互性，精巧的图表设计，得到了众多开发者的认可. 而 Python 是门富有表达力的语言，很适合用于数据处理，当数据分析遇上数据可视化时 pyecharts 诞生了
 > 
@@ -4533,7 +4518,78 @@ C:\Users\10222148\AppData\Local\Programs\Python\Python311\python.exe "D:\Idea\sa
 ## 4、
 
 
+# 十三、
 
+# 十四
+
+# 十五、补充
+
+# 十六、其他补充记录
+
+## 1、python 免安装版下载配置
+
+> 1. Python 官方为 Windows 用户提供了免安装版，它被称为 “嵌入式包” (Embeddable Package)。
+> 2. 不过，需要特别注意的是，这个版本非常精简，主要目的是嵌入到其他应用程序中。因此，它默认不包含 pip（Python 的包管理器），需要手动配置一下才能像完整版一样使用
+
+1. 访问官网：前往 [Python 官网 Windows 下载页面](https://www.python.org/downloads/windows/)
+2. 选择版本：找到需要的 Python 版本，在文件列表中选择 Windows embeddable package (64-bit) 并下载，它是一个 .zip 压缩包
+
+![|700](attachments/Pasted%20image%2020250625102353.png)
+
+3. 解压文件：将下载的 .zip 包解压到希望的目录，例如：`D:\tools\python-3.12`
+4. 用浏览器访问：https://bootstrap.pypa.io/get-pip.py，在页面上右键 -> 另存为，将 `get-pip.py` 文件保存到刚刚解压的 Python 目录里，即 `D:\tools\python-3.12`
+5. 在 Python 目录里，找到一个名为 `python3xx._pth` 的文件（例如 `python312._pth`），用记事本或任何文本编辑器打开它
+6. 有一行被注释掉的内容：`#import site`。删掉它前面的 # 号，然后保存文件。这一步是为了让 Python 能够识别第三方库的安装路径
+7. 打开一个命令提示符 (CMD) 或 PowerShell 窗口，使用 cd 命令进入 Python 目录：
+
+```shell
+cd D:\tools\python-3.12
+```
+
+8. 执行 `get-pip.py` 脚本来安装 pip：
+
+```shell
+python get-pip.py
+```
+
+9. 等待命令执行完毕，成功后，Python 目录里会出现一个新的 Scripts 文件夹，`pip.exe` 就在里面
+10. 添加环境变量：
+
+```shell
+# 环境变量中添加 python 目录
+PYTHON_HOME=D:\tools\python-3.12
+
+# path 中添加 python 目录
+%PYTHON_HOME%
+# path 中添加 python Scripts 目录
+%PYTHON_HOME%\Scripts
+```
+
+11. 添加完毕后，一路点击确定保存所有更改
+12. 验证是否配置成功，都成功显示了版本号，那么已经配置成功：
+13. 验证 python 版本：
+
+```shell
+python --version
+```
+
+14. 验证 python pip 版本：
+
+```shell
+pip --version
+```
+
+## 2、
+
+## 3、
+
+## 4、
+
+# 十七、
+
+# 十八、
+
+# 十九、
 
 ## 1、
 
