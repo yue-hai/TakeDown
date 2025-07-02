@@ -116,8 +116,7 @@
               "title": "搜索"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -163,12 +162,25 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "d8a3b25edc00e23e",
+  "active": "8d15106a04089845",
   "lastOpenFiles": [
     "其他/设备和工具/设备和工具.md",
+    "标题.md",
+    "SQL/MySql.md",
+    "python/Python 基础.md",
     "Flutter/Flutter 基础.md",
     "Android/Android 基础.md",
-    "SQL/MySql.md",
+    "linux/正则表达式.md",
+    "Web/三件套 - 旧/01、HTML和CSS.md",
+    "Web/三件套/HTML5 新特性.md",
+    "Web/UI 组件库/Bootstrap 快速入门.md",
+    "Web/JS 框架/jQuery.md",
+    "java/01、JAVA 基础.md",
+    "Docker/docker 应用部署.md",
+    "编程相关/编程软件.md",
+    "其他/软件使用/其他软件.md",
+    "其他/游戏/我的世界 Minecraft 模组服务器.md",
+    "其他/n2n/n2n 的安装配置.md",
     "公司/创迹/SSC/SSC 购物车.md",
     "Web/【其他】.md",
     "其他/设备和工具.md",
@@ -195,21 +207,8 @@
     "java/JUC 并发编程.md",
     "java/【其他】.md",
     "Android/Kotlin 基础.md",
-    "其他/n2n/n2n 的安装配置.md",
     "其他/n2n/n2n 的使用方法和问题.md",
-    "python/Python 基础.md",
-    "Docker/docker 应用部署.md",
     "编程相关/Git.md",
-    "其他/软件使用/其他软件.md",
-    "公司/创迹/Smart/Smart 基础.md",
-    "公司/创迹/Smart/Smart 编程.md",
-    "Docker/docker 编程应用部署.md",
-    "Docker/docker 游戏应用部署.md",
-    "attachments/default.json.md",
-    "其他/游戏/我的世界 Minecraft 模组服务器.md",
-    "其他/游戏/游戏服务器购买和设置.md",
-    "标题.md",
-    "Flutter/Dart 基础.md",
-    "其他/游戏/我的世界 Minecraft 原版服务器.md"
+    "公司/创迹/Smart/Smart 基础.md"
   ]
 }
