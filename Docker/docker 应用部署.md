@@ -3672,6 +3672,24 @@ Node.js v20.15.1
 | `0 0-5 14 * * ?`       | 每天下午 2 点到 2:05 期间的每 1 分钟触发                 |
 | `0 15 10 15 ? *`       | 每月 15 日上午 10:15 触发                         |
 
+## 7、获取京东 cookie
+
+1. 进入京东触屏版：https://m.jd.com/
+2. 登录京东，建议使用手机短信验证码登录，此方式 cookie 有效时长大概 31 天，其他登录方式比较短
+3. 点击我的，选择第一个封包 `my.m.jd.com`，找到 cookie 并全部复制
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250702110132.png)
+
+4. 将复制的内容保存到文档中，用查找功能找到里面 `pt_key=xxxx;pt_pin=xxxx;` 这一部分的内容即可(英文分号 `;` 一定不要漏了)，cookie 不要泄露给别人，比如：
+
+![|525](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250702110205.png)
+
+5. 将刚刚截取的 `pt_key=xxx; pt_pin=xxx` 添加至青龙面板的环境变量，名称写 `JD_COOKIE` (一定要写这个)
+
+![|270](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250702110225.png)
+
+6. 京东 cookie 获取并配置完毕，执行脚本即可
+
 
 # 502、cronicle 轻量的定时任务工具
 
