@@ -1,6 +1,6 @@
 > [https://www.bilibili.com/video/BV1Zy4y1K7SH](https://www.bilibili.com/video/BV1Zy4y1K7SH)
 > 
-> [尚硅谷_前端技术_Vue全家桶.pdf](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/尚硅谷_前端技术_Vue全家桶.pdf)
+> [尚硅谷_前端技术_Vue全家桶.pdf](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/尚硅谷_前端技术_Vue全家桶.pdf)
 
 # 一、Vue 简介
 
@@ -44,7 +44,7 @@
 
 1. 在上面的链接中下载开发版本
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-53-889--OLjDsIjjhoYC5w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-53-889--OLjDsIjjhoYC5w.png)
 
 2. 在 html 文件中引入
 
@@ -67,19 +67,19 @@
 
 3. 浏览器打开，会有两个提示，正常的；下面添加开发者工具
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-491--qleHOu3jo9jJrg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-491--qleHOu3jo9jJrg.png)
 
 4. 如果是 edge 或 谷歌浏览器，github 打不开的话， 可以安装插件：`Vue.js devtools`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-507--oQstZfW-unUa-A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-507--oQstZfW-unUa-A.png)
 
 5. 点击插件 --> 详细信息，允许访问文件 URL
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-527--k_dZ5afdwF5vnw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-527--k_dZ5afdwF5vnw.png)
 
 6. 开发者工具提示消失
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-687--D2DUD3Wd8WHONQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-687--D2DUD3Wd8WHONQ.png)
 
 7. 修改 `productionTip` 属性
 
@@ -109,7 +109,7 @@
 
 8. 开发版提示消失
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-782--qsQrpkLVtwex3w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-782--qsQrpkLVtwex3w.png)
 
 ## 2、Hello World 小案例
 
@@ -170,7 +170,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-926--vNV2Rv35LCHWKg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-54-926--vNV2Rv35LCHWKg.png)
 
 ## 3、模板语法 `{{}}`
 
@@ -228,7 +228,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-015--6U3yFk7X4qAm-A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-015--6U3yFk7X4qAm-A.png)
 
 ## 4、数据绑定 `data、v-bind、v-model`
 
@@ -284,7 +284,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-123--X6vOSQsCYMFDhQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-123--X6vOSQsCYMFDhQ.png)
 
 ### ②、收集表单数据
 
@@ -409,9 +409,9 @@
 1. data 中所有的属性，最后都出现在了 vm 身上
 2. vm 身上所有的属性 及 Vue 原型上所有属性，在 Vue 模板中都可以直接使用.
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-229--GZv28vJRTMnhNA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-229--GZv28vJRTMnhNA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-419--JhZEIu3HWzzIrA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-419--JhZEIu3HWzzIrA.png)
 
 ## 6、数据代理 `defineProperty()`
 
@@ -487,9 +487,9 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-555--YoLSMmv-1ZsS6A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-555--YoLSMmv-1ZsS6A.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-694--ZsbGW889uAeZuQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-694--ZsbGW889uAeZuQ.png)
 
 ### ②、理解数据代理
 
@@ -543,7 +543,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-831--ZOY1kIxpjJ2njA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-831--ZOY1kIxpjJ2njA.png)
 
 ### ③、vue 的数据代理
 
@@ -596,13 +596,13 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-968--O74sjnQWEG5tYQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-55-968--O74sjnQWEG5tYQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-183--r60SJXx3QjNQPw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-183--r60SJXx3QjNQPw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-328--XK2rb290hs4EfA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-328--XK2rb290hs4EfA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-415--VqCL9_gyQTWhEQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-415--VqCL9_gyQTWhEQ.png)
 
 ## 7、事件处理 `methods、v-on、@`
 
@@ -684,7 +684,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-616--t0rXtPGCu6iscA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-616--t0rXtPGCu6iscA.png)
 
 ### ②、事件修饰符
 
@@ -1051,7 +1051,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-774--QPpVvMvn1dRbBA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-774--QPpVvMvn1dRbBA.png)
 
 ### ④、计算属性简写
 
@@ -1268,7 +1268,7 @@
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-925--1ga0Lox9lpq7Og.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-56-925--1ga0Lox9lpq7Og.png)
 
 ### ③、深度监视
 
@@ -1725,7 +1725,7 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-104--oT4BvSN1FKH50A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-104--oT4BvSN1FKH50A.png)
 
 ### ②、key 的作用与原理
 
@@ -1742,9 +1742,9 @@ class/style 绑定就是专门用来实现动态样式效果的技术
    1. 最好使用每条数据的唯一标识作为 key，比如 id、手机号、身份证号、学号等唯一值。
    2. 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用 index 作为 key 是没有问题的。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-243--5cZZGzmunVontw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-243--5cZZGzmunVontw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-446--j6J_6NiKdVKBkQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-446--j6J_6NiKdVKBkQ.png)
 
 ### ③、列表过滤-使用监视属性
 
@@ -2065,7 +2065,7 @@ class/style 绑定就是专门用来实现动态样式效果的技术
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-673--fm-SDyg4b9tBVw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-673--fm-SDyg4b9tBVw.png)
 
 ## 14、自定义指令
 
@@ -2278,7 +2278,7 @@ Vue.directive(指令名,回调函数)
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-803--kkoGSpV4f95CRQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-803--kkoGSpV4f95CRQ.png)
 
 ### ②、vue 生命周期分析
 
@@ -2304,7 +2304,7 @@ Vue.directive(指令名,回调函数)
    2. 销毁后自定义事件会失效，但原生 DOM 事件依然有效。
    3. 一般不会在 `beforeDestroy` 操作数据，因为即便操作数据，也不会再触发更新流程了。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725125417.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725125417.png)
 
 # 三、Vue 组件化编程
 
@@ -2332,7 +2332,7 @@ Vue.directive(指令名,回调函数)
 
 - 当应用中的功能都是多组件的方式来编写的, 那这个应用就是一个组件化的应用
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-975--WRhFIyxbFXotFw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-57-975--WRhFIyxbFXotFw.png)
 
 ## 2、非单文件组件
 
@@ -2829,7 +2829,7 @@ Vue.directive(指令名,回调函数)
 
 - 一个文件中只包含一个组件
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-107--B3HwH0u9H18MUw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-107--B3HwH0u9H18MUw.png)
 
 1. 创建 School 组件
 
@@ -2989,32 +2989,32 @@ new Vue({
 
 1. 仅第一次执行，全局安装 @vue/cli：`yarn global add @vue/cli` 或 `npm install -g @vue/cli`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-240--p_qT73wD6II-5Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-240--p_qT73wD6II-5Q.png)
 
 2. 切换到你要创建项目的目录，然后使用命令创建项目
    1. 进入目录：`cd D:\Idea\save\html\0_study\vue2\'2、Vue 脚手架'`
    2. 创建项目：`vue create test01`
    3. 选择预设（使用上下键）：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-379--gBpDw9mVpAg7bQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-379--gBpDw9mVpAg7bQ.png)
 
    4. 选择安装依赖项时要使用的包管理器：（使用上下键）：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-498--cZCkTnx_1yRrzw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-498--cZCkTnx_1yRrzw.png)
 
    5. 开始安装
    6. 进入项目：`cd test01`
 3. 启动项目：`yarn serve` 或 `npm run serve`
 4. 访问项目：[http://172.20.2.88:8080/](http://172.20.2.88:8080/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-611--u8SeF09ZhN5QYA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-611--u8SeF09ZhN5QYA.png)
 
 5. 如出现下载缓慢请配置 npm 淘宝镜像：`npm config set registry https://registry.npm.taobao.org`
 6. Vue 脚手架隐藏了所有 webpack 相关的配置，若想查看具体的 webpakc 配置，请执行：`vue inspect > output.js`
 
 ## 2、项目结构
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-775--IjFIdWATWwTbrQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-775--IjFIdWATWwTbrQ.png)
 
 - 将之前的代码复制过来
 
@@ -3197,7 +3197,7 @@ module.exports = defineConfig({
 
 7. 启动项目：`yarn serve`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-786--aZ79Qb9QdzvL2g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-786--aZ79Qb9QdzvL2g.png)
 
 ## 3、`render` 函数
 
@@ -3236,7 +3236,7 @@ new Vue({
 
 ### ①、查看
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-896--VMxmtLLoBtFfSA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-58-896--VMxmtLLoBtFfSA.png)
 
 ### ②、修改 `vue.config.js`
 
@@ -3356,7 +3356,7 @@ new Vue({
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-145--dz7K6kRA1PsdfQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-145--dz7K6kRA1PsdfQ.png)
 
 ## 6、`props` 属性
 
@@ -3867,7 +3867,7 @@ new Vue({
 
 之前：会按照引入顺序，后来者居上
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-250--g8B9bDllMccb8Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-250--g8B9bDllMccb8Q.png)
 
 ```vue
 <template>
@@ -3973,7 +3973,7 @@ new Vue({
 
 使用 `scoped` 属性
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-366--WK1encHKriMbsw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-366--WK1encHKriMbsw.png)
 
 ```vue
 <template>
@@ -4090,7 +4090,7 @@ new Vue({
 1. 安装：`npm i less-loader`，注意 webpack 与 less 的版本
 2. 使用：`<style lang="less">`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-470--qI4Kcd0Jg02EEA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-470--qI4Kcd0Jg02EEA.png)
 
 ```vue
 <template>
@@ -4216,7 +4216,7 @@ new Vue({
 
 ---
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-619--iQdF8d9yYO1hHQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-619--iQdF8d9yYO1hHQ.png)
 
 ```javascript
 // 引入 vue
@@ -5857,7 +5857,7 @@ mounted() {
 
 ---
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-775--pwFMkhQI1NiJCw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-775--pwFMkhQI1NiJCw.png)
 
 ```javascript
 // 引入 vue
@@ -7357,7 +7357,7 @@ module.exports = defineConfig({
 </style>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-884--T4RTUE5nFJgnsg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-59-884--T4RTUE5nFJgnsg.png)
 
 ### ②、方式二（推荐）
 
@@ -7460,7 +7460,7 @@ module.exports = defineConfig({
 </style>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-032--thXSOH8AmL3BzA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-032--thXSOH8AmL3BzA.png)
 
 ## 3、users 用户搜索案例
 
@@ -7656,7 +7656,7 @@ module.exports = defineConfig({
 </style>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-177--UckkZZ3EXBKGmw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-177--UckkZZ3EXBKGmw.png)
 
 ## 4、插槽
 
@@ -8050,7 +8050,7 @@ export default {
 1. 在Vue中实现集中式状态（数据）管理的一个Vue插件，对vue应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
 2. Github 地址：[https://github.com/vuejs/vuex](https://github.com/vuejs/vuex)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725125437.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725125437.png)
 
 ---
 
@@ -9192,7 +9192,7 @@ export default {
 1. 理解： 一个路由（route）就是一组映射关系（key - value），key 为路径, value 可能是 function 或 component，多个路由需要路由器（router）进行管理。
 2. 前端路由：key是路径，value是组件。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-302--QTbYKKxMUGHZMA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-302--QTbYKKxMUGHZMA.png)
 
 ### ②、路由分类
 
@@ -9454,7 +9454,7 @@ export default new VueRouter({
 </script>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-517--uy6-XpTzrfcZtQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-517--uy6-XpTzrfcZtQ.png)
 
 ## 4、多级（嵌套）路由
 
@@ -9673,7 +9673,7 @@ export default {
 </script>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-626--j-ub-2zDADsvRA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-626--j-ub-2zDADsvRA.png)
 
 ## 5、命名路由
 
@@ -9991,7 +9991,7 @@ export default {
 </style>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-705--neDc_4DVhM2YBQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-705--neDc_4DVhM2YBQ.png)
 
 ### ②、params
 
@@ -10285,7 +10285,7 @@ export default {
 </style>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-863--lO3rvbLDsnH6TQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-863--lO3rvbLDsnH6TQ.png)
 
 ## 7、路由的 props 配置
 
@@ -11607,14 +11607,14 @@ beforeRouteLeave (to, from, next) {
 
 6. 在本地存储中加入`{name: 'yuehai'}`，只有 name 为 yuehai 才能访问
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-876--fYm7mMlJDCZPEQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-00-876--fYm7mMlJDCZPEQ.png)
 
 ### ②、全局守卫
 
 - 参数 `to, from`
 - 路由配置中可添加 `meta` 对象，其中可放入自定义配置属性
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-006--5_KfqdwRn_bO2g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-006--5_KfqdwRn_bO2g.png)
 
 #### Ⅰ、前置全局守卫：自己根据路径判断
 
@@ -12027,7 +12027,7 @@ export default router
    2. 兼容性和hash模式相比略差。
    3. 应用部署上线时需要后端人员支持，解决刷新页面服务端404的问题。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-238--a6bwN8HjbREfsg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-238--a6bwN8HjbREfsg.png)
 
 ```javascript
 // 引入 vue
@@ -12108,7 +12108,7 @@ export default router
 
 1. 打包：`npm run build`，会生成 dist 目录
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-399--v2vJdi0_5PwSyA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-399--v2vJdi0_5PwSyA.png)
 
 # 九、UI 组件库的基本使用
 
@@ -12156,11 +12156,11 @@ new Vue({
 
 3. 使用：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-488--VMSeauzS4bFUow.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-488--VMSeauzS4bFUow.png)
 
 4. 效果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-782--sBrSQ1CyF1fXkw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-782--sBrSQ1CyF1fXkw.png)
 
 ### ②、按需引入
 
@@ -12216,11 +12216,11 @@ new Vue({
 
 5. 使用：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-970--Bg3cpqmqF-ca2A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-970--Bg3cpqmqF-ca2A.png)
 
 6. 效果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-984--hWAfTVNXPie78w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-984--hWAfTVNXPie78w.png)
 
 # 十、其他问题
 
@@ -12282,9 +12282,9 @@ new Vue({
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-990--Pxmre1X24TDN8A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-01-990--Pxmre1X24TDN8A.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-146---WOyqfs_AtCUbA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-146---WOyqfs_AtCUbA.png)
 
 ### ②、`data` 的两种写法
 
@@ -12343,7 +12343,7 @@ new Vue({
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-237--4HKZkktsa6ariw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-237--4HKZkktsa6ariw.png)
 
 ## 2、vue 监测数据的原理
 
@@ -12462,13 +12462,13 @@ new Vue({
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-400--K2c7oObV3pX74A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-400--K2c7oObV3pX74A.png)
 
 ### ③、如何监测数组中的数据
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-518---EhkkpBjgdpHZw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-518---EhkkpBjgdpHZw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-686--3Hn6Pn6Ie0D6hw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-02-686--3Hn6Pn6Ie0D6hw.png)
 
 ### ④、总结
 

@@ -53,7 +53,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -164,19 +164,23 @@
   },
   "active": "8d15106a04089845",
   "lastOpenFiles": [
+    "Flutter/Flutter 基础.md",
     "其他/设备和工具/设备和工具.md",
     "标题.md",
-    "SQL/MySql.md",
-    "python/Python 基础.md",
-    "Flutter/Flutter 基础.md",
-    "Android/Android 基础.md",
-    "linux/正则表达式.md",
-    "Web/三件套 - 旧/01、HTML和CSS.md",
-    "Web/三件套/HTML5 新特性.md",
-    "Web/UI 组件库/Bootstrap 快速入门.md",
-    "Web/JS 框架/jQuery.md",
-    "java/01、JAVA 基础.md",
+    "Web/三件套旧/01、HTML和CSS.md",
+    "Web/UI组件库/Bootstrap 快速入门.md",
+    "Web/JS框架/Vue2.md",
+    "Web/JS框架/jQuery.md",
     "Docker/docker 应用部署.md",
+    "Docker/attachments/Pasted image 20250702110205.png",
+    "Docker/attachments/Pasted image 20250702110225.png",
+    "Docker/attachments/Pasted image 20250702110132.png",
+    "SQL/MySql.md",
+    "Python/Python 基础.md",
+    "Android/Android 基础.md",
+    "Linux/正则表达式.md",
+    "Web/三件套/HTML5 新特性.md",
+    "Java/01、JAVA 基础.md",
     "编程相关/编程软件.md",
     "其他/软件使用/其他软件.md",
     "其他/游戏/我的世界 Minecraft 模组服务器.md",
@@ -196,19 +200,15 @@
     "其他/设备和工具/attachments/Pasted image 20241226101054.png",
     "其他/设备和工具/attachments/Pasted image 20241226101009.png",
     "其他/设备和工具/attachments/Pasted image 20241121125059.png",
-    "其他/设备和工具/attachments/Pasted image 20241121100626.png",
-    "其他/设备和工具/attachments/Pasted image 20241120185612.png",
-    "其他/设备和工具/attachments/Pasted image 20241120185558.png",
     "其他/设备和工具/attachments/neo80三模-已修改.json",
     "其他/设备和工具/attachments/neo80三模-初始版.json",
     "其他/设备和工具/attachments/clashpremium-linux-amd64",
     "其他/设备和工具/attachments",
     "其他/设备和工具",
-    "java/JUC 并发编程.md",
-    "java/【其他】.md",
+    "Java/JUC 并发编程.md",
+    "Java/【其他】.md",
     "Android/Kotlin 基础.md",
     "其他/n2n/n2n 的使用方法和问题.md",
-    "编程相关/Git.md",
-    "公司/创迹/Smart/Smart 基础.md"
+    "编程相关/Git.md"
   ]
 }

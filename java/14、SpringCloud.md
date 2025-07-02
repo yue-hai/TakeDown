@@ -1,6 +1,6 @@
 > 尚硅谷 2020 SpringCloud 框架开发教程：[https://www.bilibili.com/video/BV18E411x7eT/](https://www.bilibili.com/video/BV18E411x7eT/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-07-789--PWGHU42-Q336hg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-07-789--PWGHU42-Q336hg.png)
 
 # 一、SpringCloud 简介
 
@@ -9,23 +9,23 @@
 
 ## 1、优质集成项目
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-429--uv0tp1ywKKUCKQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-429--uv0tp1ywKKUCKQ.png)
 
 ## 2、技术栈
 
 - 里面的是官方的，外面的是第三方的
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-518--lmEcamUWAKB1NQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-518--lmEcamUWAKB1NQ.png)
 
 ## 3、核心技术栈
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-577--9jMv_UKMfoLAnA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-577--9jMv_UKMfoLAnA.png)
 
 ## 4、Springcloud 和 Springboot 之间的依赖关系如何看
 
 1. 版本依赖关系：[https://spring.io/projects/spring-cloud#overview](https://spring.io/projects/spring-cloud#overview)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-605--uvRg02op3LeHVw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-605--uvRg02op3LeHVw.png)
 
 2. 详细的版本对应查看方法：[https://start.spring.io/actuator/info](https://start.spring.io/actuator/info)
 
@@ -154,23 +154,23 @@
 
 3. 本次使用的版本
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-800--oxhFaGDgPhCd6Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-800--oxhFaGDgPhCd6Q.png)
 
 4. 同时用 boot 和 cloud，需要照顾 cloud，由 cloud 决定 boot 版本
 5. 2.X 版本常用的组件 pom
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-811--rRjfmvq9sdl0dg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-811--rRjfmvq9sdl0dg.png)
 
 ## 5、关于 Cloud 各种组件的停更/升级/替换
 
 - 停更不停用
 1. 以前
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-08-988--S_wtNSGjev_6rg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-08-988--S_wtNSGjev_6rg.png)
 
 2. 2020年
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-021--6CPDF1tcpQnssQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-021--6CPDF1tcpQnssQ.png)
 
 # 二、微服务架构编码构建
 
@@ -180,23 +180,23 @@
 
 1. 创建父项目 SpringCloud
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-039--nJl9dXy1TyjMWg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-039--nJl9dXy1TyjMWg.png)
 
 2. 字符编码
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-068--oJhE4UB_1DtcBw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-068--oJhE4UB_1DtcBw.png)
 
 3. 注解生效激活
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-081--_pJt_FEngoWJSA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-081--_pJt_FEngoWJSA.png)
 
 4. 修改 jdk 版本为 8
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-095--3u_Wm--zmFyYFw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-095--3u_Wm--zmFyYFw.png)
 
 5. 删除 src 目录
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-109--lC13YXy5WbGjjQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-109--lC13YXy5WbGjjQ.png)
 
 6. 修改 pom 文件
 
@@ -309,15 +309,15 @@
 
 7. 执行 mvn:install 将父工程发布到仓库方便子工程继承
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-119--lTbyQ-6RgnewAQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-119--lTbyQ-6RgnewAQ.png)
 
 ## 2、创建微服务提供者支付模块 cloud-provider-payment8001
 
 1. 创建子模块 cloud-provider-payment8001
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-128--ISwOipaI5uDHpg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-128--ISwOipaI5uDHpg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-137--k2rJxPVethNMMw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-137--k2rJxPVethNMMw.png)
 
    1. 子项目 pom 文件
 
@@ -558,7 +558,7 @@ mybatis-plus:
 
 4. 创建数据库、数据表（payment）、插入数据；这里 id 的类型要设置为 `bigint(20)`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-144--PjfO6IENNmELkg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-144--PjfO6IENNmELkg.png)
 
 5. 创建实体类
 
@@ -589,7 +589,7 @@ public class Payment {
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-153--dtBLi78V4mlROQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-153--dtBLi78V4mlROQ.png)
 
 6. 创建 mapper 接口
 
@@ -634,7 +634,7 @@ public class Application {
 
 8. 创建 service 接口与 serviceImpl 实现类
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-168--Vgga5ASkTS0dLA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-168--Vgga5ASkTS0dLA.png)
 
 ```java
 package com.yuehai.service;
@@ -719,17 +719,17 @@ public class _01_TestController {
 
 10. 测试：[http://localhost:8001/getTest](http://localhost:8001/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-178--KVIUf2PGzXB8-w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-178--KVIUf2PGzXB8-w.png)
 
 ## 3、使用 spring-boot-devtools 进行热部署
 
 1. 开启自动构建项目
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-184--UaHep8QN2KW7bQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-184--UaHep8QN2KW7bQ.png)
 
 2. 间隔 1 秒保存文件
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-197--RkI0Ld1FJzFG0g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-197--RkI0Ld1FJzFG0g.png)
 
 3. 添加依赖
 
@@ -753,7 +753,7 @@ public class _01_TestController {
 
 1. 创建模块
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-207--nUeh69Q8GRKREQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-207--nUeh69Q8GRKREQ.png)
 
 2. 修改 pom.xml 文件
 
@@ -808,7 +808,7 @@ public class _01_TestController {
 
 3. 将 entities 和 utils 包与其中的内容复制到此项目中
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-348--QwSWvjtLboj1dQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-348--QwSWvjtLboj1dQ.png)
 
 ### ②、修改微服务提供者支付模块 cloud-provider-payment8001
 
@@ -870,11 +870,11 @@ public class _01_TestController {
 
 2. 删除 entities 和 utils 包与其中的内容
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-354--n2EnsXWXTc8SzQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-354--n2EnsXWXTc8SzQ.png)
 
 3. 启动 8001 模块，测试
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-360--gRg1NulmwkAUkA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-360--gRg1NulmwkAUkA.png)
 
 ## 5、创建微服务消费者订单模块 cloud-consumer-order80
 
@@ -883,18 +883,18 @@ public class _01_TestController {
 > 1. 官网地址：[https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html)
 > 2. 使用 restTemplate 访问 restful get 接口：`url, responseType, uriVariables` 这三个参数分别代表：请求地址、HTTP 响应转换被转换成的对象类型、url占位参数
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-366--_t3rNklZdDsb-A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-366--_t3rNklZdDsb-A.png)
 
 > 3. 使用 restTemplate 访问 restful post 接口：`url , request, responseType, uriVariables` 这四个参数分别代表：请求地址、请求参数（放到请求体中）、HTTP 响应转换被转换成的对象类型、url占位参数
 > 
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-373--hhgpsoUi__9YnQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-373--hhgpsoUi__9YnQ.png)
 
 > 4. 此处 HTTP 响应转换被转换成的对象类型是 `HashMap.class` 的原因是 `JsonResult` 类继承了 `HashMap<String, Object>`
 
 1. 创建模块
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-379--3E3uNHXSWtRSbQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-379--3E3uNHXSWtRSbQ.png)
 
 2. 修改 pom 文件，并将通用包作为依赖引入其中
 
@@ -1070,17 +1070,17 @@ public JsonResult postOrder(String serial){
 
 9. 测试 getOrder：[http://localhost/getOrder/payment/get](http://localhost/getOrder/payment/get)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-389--oEDGhbLYsh27IA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-389--oEDGhbLYsh27IA.png)
 
 10. 测试 postOrder：[http://localhost/postOrder/payment/post?serial=2](http://localhost/postOrder/payment/post?serial=2)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-395--M3Yc8FIA41ecug.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-395--M3Yc8FIA41ecug.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-406--s2_6yIZg08qpnw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-406--s2_6yIZg08qpnw.png)
 
 ## 6、目前工程样图
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-411--EzwnaBsx6E9CdQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-411--EzwnaBsx6E9CdQ.png)
 
 # 三、服务注册与发现 Eureka、Zookeeper、Consul
 
@@ -1102,7 +1102,7 @@ public JsonResult postOrder(String serial){
    3. 在任何 rpc 远程框架中，都会有一个注册中心(存放服务地址相关信息(接口地址))
 3. 下左图是 Eureka 系统架构，右图是 Dubbo 的架构，请对比
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-417--KEj1B0WpAMdobA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-417--KEj1B0WpAMdobA.png)
 
 #### Ⅲ、Eureka 两组件
 
@@ -1115,9 +1115,9 @@ public JsonResult postOrder(String serial){
 
 1. 建 Module
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-599--g27Ad1T7p626Ow.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-599--g27Ad1T7p626Ow.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-611--z9gjFyTsbFNKtg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-611--z9gjFyTsbFNKtg.png)
 
 2. 改 POM
 
@@ -1202,11 +1202,11 @@ public class EurekaServer7001 {
 
 5. 启动所有模块
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-618--nNCUjgPe86Sbng.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-618--nNCUjgPe86Sbng.png)
 
 6. 访问 7001 端口（此时还没有实例显示）
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-627--G9KLHeUkrliXoA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-627--G9KLHeUkrliXoA.png)
 
 #### Ⅱ、将 cloud-provider-payment8001 注册进 EurekaServer 成为服务提供者
 
@@ -1351,15 +1351,15 @@ public class ProviderPayment8001 {
 
 4. 重启 8001 与 7001 模块，测试，已发现 8001 实例
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-640--_yiz91ZUev103Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-640--_yiz91ZUev103Q.png)
 
 5. 微服务注册名配置说明
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-664--uXouuB_HyBMeeg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-664--uXouuB_HyBMeeg.png)
 
 6. 自我保护机制
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-687--pPH5AoA70KOWTg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-687--pPH5AoA70KOWTg.png)
 
 #### Ⅲ、将 cloud-consumer-order80 注册进 EurekaServer 成为服务消费
 
@@ -1451,7 +1451,7 @@ public class ConsumerOrder80 {
 
 4. 重启 80 与 7001 模块，测试，已发现 80 实例
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-701--OC1bIrR4Vo1FaQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-701--OC1bIrR4Vo1FaQ.png)
 
 ### ③、集群 Eureka 构建步骤
 
@@ -1462,15 +1462,15 @@ public class ConsumerOrder80 {
 2. 试想你的注册中心只有一个 only one， 它出故障了那就呵呵(￣▽￣)"了，会导致整个为服务环境不可用，所以：
 3. 解决办法：搭建 Eureka 注册中心集群 ，实现负载均衡+故障容错
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-717--4x-JXB58NtBixg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-717--4x-JXB58NtBixg.png)
 
 #### Ⅱ、EurekaServer 集群环境构建步骤
 
 1. 修改映射配置：找到 `C:\Windows\System32\drivers\etc` 路径下的 hosts 文件，修改映射配置添加进 hosts 文件；因为要将一台机器当作两台机器用
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-786--bu-nfkq3vnd54w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-786--bu-nfkq3vnd54w.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-794--lXQMGngGWWCz4Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-794--lXQMGngGWWCz4Q.png)
 
 ```java
 127.0.0.1		eureka7001.com
@@ -1479,7 +1479,7 @@ public class ConsumerOrder80 {
 
 2. 参考 cloud-eureka-server7001 新建 cloud-eureka-server7002
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-807--nKfCaSYrkfEdKg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-807--nKfCaSYrkfEdKg.png)
 
 3. 修改 7002 的 pom 文件
 
@@ -1668,17 +1668,17 @@ eureka:
 3. 最后启动消费者，80 服务
 4.  EurekaServer，7001：[http://eureka7001.com:7001/](http://eureka7001.com:7001/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-813--gq5dHy3bwiqplA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-813--gq5dHy3bwiqplA.png)
 
 5.  EurekaServer，7002：[http://eureka7002.com:7002/](http://eureka7002.com:7002/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-829--h44moFbv3gJ7fw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-829--h44moFbv3gJ7fw.png)
 
 #### Ⅵ、支付服务提供者集群环境构建 cloud-provider-payment8002
 
 1. 参考 cloud-provider-payment8001 新建 cloud-provider-payment8002
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-09-845--_Ld3ge5Tjlrn1g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-09-845--_Ld3ge5Tjlrn1g.png)
 
 2. 改 POM
 
@@ -1911,27 +1911,27 @@ public class PaymentController {
 
 7. 重新启动 5 个微服务
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-011--Cq72wtmPTWq2xA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-011--Cq72wtmPTWq2xA.png)
 
 8. 测试 7001：[http://eureka7001.com:7001/](http://eureka7001.com:7001/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-020--X_Xh4KXKn0_F_Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-020--X_Xh4KXKn0_F_Q.png)
 
 9. 测试 7002：[http://eureka7002.com:7002/](http://eureka7002.com:7002/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-038--cjHwPO6896LtHA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-038--cjHwPO6896LtHA.png)
 
 10. 测试 8001：[http://localhost:8001/test/getTest](http://localhost:8001/test/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-054--sNtshrApHAit4g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-054--sNtshrApHAit4g.png)
 
 11. 测试 8002：[http://localhost:8002/test/getTest](http://localhost:8002/test/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-062--3_CRCJ8dDXUQTA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-062--3_CRCJ8dDXUQTA.png)
 
 12. 测试 80：[http://localhost/getOrder/payment/get](http://localhost/getOrder/payment/get)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-070--vO-EnsAbw3W86w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-070--vO-EnsAbw3W86w.png)
 
 13. 问题：不论怎么刷新 80 端口，他调用的支付端口都是 8001，因为在 controller 调用时被写死 8001 了
 14. 解决：在下面解决
@@ -2033,31 +2033,31 @@ public class ApplicationContextConfig {
 2. 再启动服务提供者 provider，8001/8002 服务
 3. 最后启动消费者，80 服务
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-079---QLmlKmBEgZtmg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-079---QLmlKmBEgZtmg.png)
 
 4.  测试 7001：[http://eureka7001.com:7001/](http://eureka7001.com:7001/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-086--BV9cm0r9a9qwww.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-086--BV9cm0r9a9qwww.png)
 
 5. 测试 7002：[http://eureka7002.com:7002/](http://eureka7002.com:7002/)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-101--AfS7bjSFvsIcdQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-101--AfS7bjSFvsIcdQ.png)
 
 6. 测试 8001：[http://localhost:8001/test/getTest](http://localhost:8001/test/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-117--UlM94rllaRBM6Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-117--UlM94rllaRBM6Q.png)
 
 7. 测试 8002：[http://localhost:8002/test/getTest](http://localhost:8002/test/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-124--UiZWvRIfe9b3GQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-124--UiZWvRIfe9b3GQ.png)
 
 8. 测试 80：[http://localhost/getOrder/payment/get](http://localhost/getOrder/payment/get)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-132--o9TfIvlGvAPSDQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-132--o9TfIvlGvAPSDQ.png)
 
 9. 测试 80，多刷新几次：[http://localhost/getOrder/payment/get](http://localhost/getOrder/payment/get)，8001/8002 端口交替出现，负载均衡效果达到
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-140--kqBO7kaZW3umjQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-140--kqBO7kaZW3umjQ.png)
 
 10. Ribbon 和 Eureka 整合后 Consumer 可以直接调用服务而不用再关心地址和端口号，且该服务还有负载功能了。O(∩_∩)O
 
@@ -2067,7 +2067,7 @@ public class ApplicationContextConfig {
 
 1. 当前问题：状态指示会带着主机名
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-151--nhYSDezOEjAnEA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-151--nhYSDezOEjAnEA.png)
 
 2. 修改 yml 文件，添加 `instance-id` 属性
 
@@ -2193,7 +2193,7 @@ eureka:
 
 3. 修改之后：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-267--YZPKKy7XG-WJ1Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-267--YZPKKy7XG-WJ1Q.png)
 
 #### Ⅱ、访问信息有 IP 信息提示
 
@@ -2328,7 +2328,7 @@ eureka:
 
 3. 修改之后：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-278--DqZ0bWceJbChuA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-278--DqZ0bWceJbChuA.png)
 
 ### ⑤、服务发现 Discovery
 
@@ -2524,7 +2524,7 @@ public class PaymentController {
 2. 一旦进入保护模式，Eureka Server 将会尝试保护其服务注册表中的信息，不再删除服务注册表中的数据，也就是不会注销任何微服务。
 3. 如果在 Eureka Server 的首页看到以下这段提示，则说明 Eureka 进入了保护模式：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-292--FUkfawAgqIm9kA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-292--FUkfawAgqIm9kA.png)
 
 4. 为什么会产生 Eureka 自我保护机制：防止了虽然 EurekaClient 在正常运行，但是其与 EurekaServer 网络不通的情况下，EurekaServer 会立刻将 EurekaClient 服务剔除
 
@@ -2538,7 +2538,7 @@ public class PaymentController {
 6. 一句话：某时刻某一个微服务不可用了，Eureka 不会立刻清理，依旧会对该微服务的信息进行保存
 7. 属于 CAP 里面的 AP 分支
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-340--p9L4QXW7JItOAw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-340--p9L4QXW7JItOAw.png)
 
 #### Ⅲ、怎么禁止自我保护
 
@@ -2569,7 +2569,7 @@ eureka:
 
 2. 关闭之后的效果：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-454--cePywZZkE1TuOQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-454--cePywZZkE1TuOQ.png)
 
 3. 微服务提供者可以修改配置文件，新增以下属性：
    1. `eureka.instance.lease-renewal-interval-in-seconds=30`：Eureka 客户端向服务端发送心跳的时间间隔，单位为秒(默认是30秒)
@@ -2592,7 +2592,7 @@ eureka:
 
 1. 下载 zookeeper 镜像 3.5.3 版，版本的对应关系在 maven 依赖中查看；当然也可以自己指定 maven 依赖中的 zookeeper 版本
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-465--HzkcvQz3MEol_w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-465--HzkcvQz3MEol_w.png)
 
 ```bash
 docker@VM-8-15-ubuntu:~$ docker images
@@ -2804,9 +2804,9 @@ Using config: /conf/zoo.cfg
 
 1. 新建模块 cloud-provider-payment8004
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-475--YWwMGFNaQraZtw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-475--YWwMGFNaQraZtw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-483--Pj-F-jJZWcKlbA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-483--Pj-F-jJZWcKlbA.png)
 
 2. 修改 pom.xml，删除：`spring-cloud-starter-netflix-eureka-client`，新增：`spring-cloud-starter-zookeeper-discovery`，另数据操作的包暂时不需要
 
@@ -2928,7 +2928,7 @@ public class PaymentController {
 
 6. 访问测试：[http://localhost:8004/test/getTest](http://localhost:8004/test/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-489--fmq8Cj0srwq7OA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-489--fmq8Cj0srwq7OA.png)
 
 7. 查看 zookeeper：
 8. 进入容器：
@@ -3084,7 +3084,7 @@ services    zookeeper
 
 1. 新建模块 cloud-consumerzk-order80
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-498---5uThCztVtn34g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-498---5uThCztVtn34g.png)
 
 
 2. 修改 pom.xml
@@ -3246,7 +3246,7 @@ public class OrderController {
 
 7. 访问测试：[http://localhost/getOrder/payment/get](http://localhost/getOrder/payment/get)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-507--Hm8Oir7DmOMHjQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-507--Hm8Oir7DmOMHjQ.png)
 
 ## 3、Consul
 
@@ -3275,7 +3275,7 @@ public class OrderController {
 4. 多数据中心
 5. 可视化 Web 界面
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-515--NeXSCch9c94kfQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-515--NeXSCch9c94kfQ.png)
 
 #### Ⅲ、去哪下
 
@@ -3304,21 +3304,21 @@ public class OrderController {
    2. 满足 CP 原则：满足一致性，分区容错性的系统，通常性能不是特别高。
    3. 满足 AP 原则：满足可用性，分区容错性的系统，通常可能对一致性要求低一些。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-531--paoL3vT3kRQFFw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-531--paoL3vT3kRQFFw.png)
 
 ### ③、AP 架构：Eureka
 
 1. 当网络分区出现后，为了保证可用性，系统 B 可以返回旧值，保证系统的可用性。
 2. 结论：违背了一致性C的要求，只满足可用性和分区容错，即AP
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-717--xQunAUKT1Sc5rQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-717--xQunAUKT1Sc5rQ.png)
 
 ### ④、CP 架构：Zookeeper/Consul
 
 1. 当网络分区出现后，为了保证一致性，就必须拒接请求，否则无法保证一致性
 2. 结论：违背了可用性 A 的要求，只满足一致性和分区容错，即 CP
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-10-858--Ak5kOk1twtyM0A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-10-858--Ak5kOk1twtyM0A.png)
 
 # 四、负载均衡服务调用 Ribbon
 
@@ -3365,13 +3365,13 @@ public class OrderController {
 4. 其中 Ribbon 提供了多种策略：比如轮询、随机和根据响应时间加权。
 5. 总结：Ribbon 其实就是一个软负载均衡的客户端组件， 他可以和其他所需请求的客户端结合使用，和 eureka 结合只是其中的一个实例。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-026--64L9i5pMiGk2Zg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-026--64L9i5pMiGk2Zg.png)
 
 #### Ⅱ、为什么之前并没有引入 Ribbon 依赖也可以使用负载均衡
 
 - 原因：`spring-cloud-starter-netflix-eureka-client` 自带了 `spring-cloud-starter-ribbon` 引用
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-156--CGwDNP7oH3F4Fw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-156--CGwDNP7oH3F4Fw.png)
 
 #### Ⅲ、二说 RestTemplate 的使用
 
@@ -3379,7 +3379,7 @@ public class OrderController {
 
 > [https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-169--F8HdAO5a0N8T0Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-169--F8HdAO5a0N8T0Q.png)
 
 ##### （2）、`getForObjec`、`getForEntity` 方法 
 
@@ -3591,13 +3591,13 @@ public JsonResult postForEntity(String serial){
 
 官方文档明确给出了警告：这个自定义配置类不能放在 `@ComponentScan` 所扫描的当前包下以及子包下，否则我们自定义的这个配置类就会被所有的 Ribbon 客户端所共享，达不到特殊化定制的目的了。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-332--n6Zkp9XC22QbkQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-332--n6Zkp9XC22QbkQ.png)
 
 ##### （2）、创建新包与配置类
 
 1. 创建新包与配置类
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-468--gYNrqERIvUwBAQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-468--gYNrqERIvUwBAQ.png)
 
 
 2. 编写配置类
@@ -3659,7 +3659,7 @@ public class ConsumerOrder80 {
 
 4. 启动 7001、80、8001、8002
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-476--dfaCflC3vB617A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-476--dfaCflC3vB617A.png)
 
 5. 测试，发现  8001 和 8002 是随机出现，不再是交替出现
 
@@ -3738,7 +3738,7 @@ List [1] instances = 127.0.0.1:8001
 
 1. 新建模块 cloud-consumer-feign-order80
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-482--xz9Izq6FgKMMKA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-482--xz9Izq6FgKMMKA.png)
 
 2. 修改 pom.xml，引入 openfeign 依赖：`spring-cloud-starter-openfeign`
 
@@ -3891,11 +3891,11 @@ public class PaymentFeignController {
 
 7. 启动集群，先启动 2 个 eureka 集群 7001/7002，再启动 2 个微服务 8001/8002，最后启动 OpenFeign
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-492--DUUwpGJCbhn-jw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-492--DUUwpGJCbhn-jw.png)
 
 8. 测试：[http://localhost/getTest](http://localhost/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-497--Wrd0a9ih8lXQJg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-497--Wrd0a9ih8lXQJg.png)
 
 ### ③、OpenFeign 超时控制
 
@@ -3999,11 +3999,11 @@ public class PaymentFeignController {
 
 4. 停止 8002 端口，访问测试：[http://localhost/timeout5s](http://localhost/timeout5s)，报错
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-506--Cyl23kwUELuIEw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-506--Cyl23kwUELuIEw.png)
 
 5. 查看 8001 端口输出，看到被正常调用了
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-514--PqEdzviwLu-tbg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-514--PqEdzviwLu-tbg.png)
 
 #### Ⅱ、设置超时时间
 
@@ -4011,7 +4011,7 @@ public class PaymentFeignController {
 2. 为了避免这样的情况，有时候我们需要设置 Feign 客户端的超时控制。
 3. OpenFeign 默认支持 Ribbon，所以修改 Ribbon 配置即可
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-522--B6e1FKfcjmMgJQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-522--B6e1FKfcjmMgJQ.png)
 
 4. 修改 cloud-consumer-feign-order80 的 application.yml 配置文件
 
@@ -4050,7 +4050,7 @@ feign:
 
 5. 测试：[http://localhost/timeout5s](http://localhost/timeout5s)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-532--ilyeiXnDeUnFfQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-532--ilyeiXnDeUnFfQ.png)
 
 ### ④、OpenFeign 日志打印功能
 
@@ -4141,7 +4141,7 @@ logging:
 
 5. 重新启动，访问测试：[http://localhost/getTest](http://localhost/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-708--3ZeEO200SrUCFg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-708--3ZeEO200SrUCFg.png)
 
 6. 查看日志输出：
 
@@ -4182,7 +4182,7 @@ logging:
 4. 对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几秒钟内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他系统资源紧张，导致整个系统发生更多的级联故障。这些都表示需要对故障和延迟进行隔离和管理，以便单个依赖关系的失败，不能取消整个应用程序或系统。
 5. 所以，通常当你发现一个模块下的某个实例失败后，这时候这个模块依然还会接收流量，然后这个有问题的模块还调用了其他的模块，这样就会发生级联故障，或者叫雪崩。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-716--SeGNLz7Srfiv6A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-716--SeGNLz7Srfiv6A.png)
 
 #### Ⅱ、是什么
 
@@ -4220,7 +4220,7 @@ logging:
 
 1. 新建模块 cloud-provider-hystrix-payment8007
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-801--QtOfNzNrEIi_ow.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-801--QtOfNzNrEIi_ow.png)
 
 2. 修改 pom.xml，引入依赖：`spring-cloud-starter-netflix-hystrix`
 
@@ -4378,23 +4378,23 @@ public class PaymentController {
 
 6. 重启服务
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-822--sqbtnE02noNdFQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-822--sqbtnE02noNdFQ.png)
 
 7. 进入 Eureka 查看：[http://localhost:7001/](http://localhost:7001/) 
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-830--dvbhCpY0gyJFdA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-830--dvbhCpY0gyJFdA.png)
 
 8. 访问测试正常接口
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-844--ykextvGBccYp9w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-844--ykextvGBccYp9w.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-853--RgNCFotHpi1a_g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-853--RgNCFotHpi1a_g.png)
 
 9. 访问测试超时接口
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-861--SYQ3cEGdkC7SUw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-861--SYQ3cEGdkC7SUw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-868--eyywU9T6hBbYlg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-868--eyywU9T6hBbYlg.png)
 
 10. 目前都是正常访问的
 
@@ -4587,7 +4587,7 @@ public class OrderFeignController {
 
 7. 访问测试：[http://localhost/hystrixOK](http://localhost/hystrixOK)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-876--m270S7up1yyMAA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-876--m270S7up1yyMAA.png)
 
 
 ### ⑤、Hystrix 服务降级配置
@@ -4667,11 +4667,11 @@ public class ProviderHystrixPayment8007 {
 
 3. 访问测试 8007 端口：[http://localhost:8007/hystrixTimeOut](http://localhost:8007/hystrixTimeOut)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-883--2S2OtLL4_ilvGg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-883--2S2OtLL4_ilvGg.png)
 
 4. 访问测试 80 端口：[http://localhost/hystrixTimeOut](http://localhost/hystrixTimeOut)，依然是报超时错误
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-892--hts6pa4haLzZlw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-892--hts6pa4haLzZlw.png)
 
 #### Ⅱ、消费者 80 fallback 容错机制（一般都放在消费端）
 
@@ -4792,7 +4792,7 @@ public class OrderFeignController {
 
 4. 测试：[http://localhost/hystrixTimeOut](http://localhost/hystrixTimeOut)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-11-902--_WaBmdwVmi8gjw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-11-902--_WaBmdwVmi8gjw.png)
 
 
 #### Ⅲ、通用 fallback 容错
@@ -4878,7 +4878,7 @@ public class OrderFeignController {
 
 3. 访问测试：[http://localhost/hystrixTimeOut2](http://localhost/hystrixTimeOut2)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-058--kGTTLAMn7hqY7g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-058--kGTTLAMn7hqY7g.png)
 
 #### Ⅳ、将 fallback 容错方法放到 service
 
@@ -4997,11 +4997,11 @@ public class OrderFeignFallbackController {
 
 4. 访问测试：[http://localhost/fallBack/hystrixOK](http://localhost/fallBack/hystrixOK)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-066--VuBzbQ7opOgs1A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-066--VuBzbQ7opOgs1A.png)
 
 5. 访问测试：[http://localhost/fallBack/hystrixTimeOut](http://localhost/fallBack/hystrixTimeOut)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-074--Dcr0uqBDPiRnNQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-074--Dcr0uqBDPiRnNQ.png)
 
 ### ⑥、服务熔断
 
@@ -5019,7 +5019,7 @@ public class OrderFeignFallbackController {
 
 1. 新建模块 cloud-provider-hystrix-payment8008
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-083--vHkWFF8S-U4q4Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-083--vHkWFF8S-U4q4Q.png)
 
 2. 修改 pom.xml
 
@@ -5251,19 +5251,19 @@ public class PaymentController {
 
 8. 测试正常访问：[http://localhost:8008/hystrixFallback?id=1](http://localhost:8008/hystrixFallback?id=1)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-099--5tTYntu3e8u34A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-099--5tTYntu3e8u34A.png)
 
 9. 测试错误访问：[http://localhost:8008/hystrixFallback?id=1](http://localhost:8008/hystrixFallback?id=1)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-114--23foFAAfaInbvw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-114--23foFAAfaInbvw.png)
 
 10. 重点：多测试几次错误的访问，再访问正确的地址，发现就算是正确的地址也会返回错误
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-129--P-3kOFKC4UClWA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-129--P-3kOFKC4UClWA.png)
 
 #### Ⅲ、大神结论
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-139--D0jlbMhhTMPGpQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-139--D0jlbMhhTMPGpQ.png)
 
 #### Ⅳ、熔断类型
 
@@ -5275,14 +5275,14 @@ public class PaymentController {
 
 1. 流程图
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-319--12ecvskKxF_jog.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-319--12ecvskKxF_jog.png)
 
 2. 断路器在什么情况下开始起作用涉及到断路器的三个重要参数：快照时间窗、请求总数阀值、错误百分比阀值。
    1. 快照时间窗：断路器确定是否打开需要统计一些请求和错误数据，而统计的时间范围就是快照时间窗，默认为最近的 10 秒。
    2. 请求总数阀值：在快照时间窗内，必须满足请求总数阀值才有资格熔断。默认为 20，意味着在 10 秒内，如果该 hystrix 命令的调用次数不足 20 次，即使所有的请求都超时或其他原因失败，断路器都不会打开。
    3. 错误百分比阀值：当请求总数在快照时间窗内超过了阀值，比如发生了 30 次调用，如果在这 30 次调用中，有 15 次发生了超时异常，也就是超过 50% 的错误百分比，在默认设定 50% 阀值情况下，这时候就会将断路器打开。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-340--WIefsDOH-1_pCQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-340--WIefsDOH-1_pCQ.png)
 
 3. 断路器开启或者关闭的条件
    1.   当满足一定的阀值的时候（默认 10 秒内超过 20 个请求次数）
@@ -5388,7 +5388,7 @@ public class PaymentController {
 
 #### Ⅰ、官网图例
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-351--E4A58y3WAbA8NQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-351--E4A58y3WAbA8NQ.png)
 
 #### Ⅱ、步骤说明
 
@@ -5417,7 +5417,7 @@ public class PaymentController {
 
 1. 新建模块 cloud-consumer-hystrix-dashboard9001
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-383--cT7EPFDWcBVEpg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-383--cT7EPFDWcBVEpg.png)
 
 2. 修改 pom.xml
 
@@ -5547,36 +5547,36 @@ public class ProviderHystrixPayment8008 {
 
 7. 启动项目，访问：[http://localhost:9001/hystrix](http://localhost:9001/hystrix)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-397--CNQmwnZLfT0A6Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-397--CNQmwnZLfT0A6Q.png)
 
 #### Ⅱ、断路器演示(服务监控 hystrixDashboard)
 
 1. 输入要监控的地址，如：[http://localhost:8008/hystrix.stream](http://localhost:8008/hystrix.stream)，点击 Monitor Stream
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-418--okq5Iv41xdwbhQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-418--okq5Iv41xdwbhQ.png)
 
 2. 进入监控页
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-499--sQmU7GRcGLojkQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-499--sQmU7GRcGLojkQ.png)
 
 3. 如何看？
    1. 7色：状态
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-805--PkZb1mxaTP9Jlg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-805--PkZb1mxaTP9Jlg.png)
 
    2. 1 圈：实心圆：共有两种含义。它通过颜色的变化代表了实例的健康程度，它的健康度从绿色<黄色<橙色<红色递减。该实心圆除了颜色的变化之外，它的大小也会根据实例的请求流量发生变化，流量越大该实心圆就越大。所以通过该实心圆的展示，就可以在大量的实例中快速的发现故障实例和高压力实例。
    3. 1 线：曲线：用来记录2分钟内流量的相对变化，可以通过它来观察到流量的上升和下降趋势。
    4. 整图说明
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-12-841--C1A9EQzocXJQ9Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-12-841--C1A9EQzocXJQ9Q.png)
 
    5. 整图说明2
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-160--ZBFfDNi8QobX0g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-160--ZBFfDNi8QobX0g.png)
 
 4. 搞懂一个才能看懂复杂的
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-260--94sTgAgOapTgPw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-260--94sTgAgOapTgPw.png)
 
 ## 2、
 
@@ -5594,18 +5594,18 @@ public class ProviderHystrixPayment8008 {
 
 1.  Cloud 全家桶中有个很重要的组件就是网关，在 1.x 版本中都是采用的 Zuul 网关；但在 2.x 版本中，zuul 的升级一直跳票，SpringCloud 最后自己研发了一个网关替代 Zuul，那就是 SpringCloud Gateway 一句话：gateway 是原 zuul 1.x 版的替代
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-290--MC-4zTz5FI-YNA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-290--MC-4zTz5FI-YNA.png)
 
 2. SpringCloud Gateway 是 Spring Cloud 的一个全新项目，基于 Spring 5.0+Spring Boot 2.0 和 Project Reactor 等技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。
 3. SpringCloud Gateway 作为 Spring Cloud 生态系统中的网关，目标是替代 Zuul，在 Spring Cloud 2.0 以上版本中，没有对新版本的 Zuul 2.0 以上最新高性能版本进行集成，仍然还是使用的 Zuul 1.x 非 Reactor 模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于 WebFlux 框架实现的，而 WebFlux 框架底层则使用了高性能的 Reactor 模式通信框架 Netty。
 4. Spring Cloud Gateway 的目标提供统一的路由方式且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/指标，和限流。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-444--2yT3WAj3vcidGQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-444--2yT3WAj3vcidGQ.png)
 
 5. 一句话：SpringCloud Gateway 使用的 Webflux 中的 reactor-netty 响应式编程组件，底层使用了 Netty 通讯框架。
 6. 源码架构
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-585--PhLKgbZpNsCipQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-585--PhLKgbZpNsCipQ.png)
 
 #### Ⅱ、能干嘛
 
@@ -5618,7 +5618,7 @@ public class ProviderHystrixPayment8008 {
 
 #### Ⅲ、微服务架构中网关在哪里
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-695--OIM7VkAXYjXVMQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-695--OIM7VkAXYjXVMQ.png)
 
 #### Ⅳ、SpringCloud Gateway 的特性
 
@@ -5648,7 +5648,7 @@ public class ProviderHystrixPayment8008 {
 4. container 运行时接受请求，并为每个请求分配一个线程（一般从线程池中获取空闲线程）然后调用 service()。
 5. container 关闭时调用 servlet destory() 销毁 servlet；
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-872--sCBSkiCo7a1zIA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-872--sCBSkiCo7a1zIA.png)
 
 上述模式的缺点：
 
@@ -5663,9 +5663,9 @@ public class ProviderHystrixPayment8008 {
 2. 但是，在 Servlet3.1 之后有了异步非阻塞的支持。而 WebFlux 是一个典型非阻塞异步的框架，它的核心是基于 Reactor 的相关 API 实现的。相对于传统的 web 框架来说，它可以运行在诸如 Netty，Undertow 及支持 Servlet3.1 的容器上。非阻塞式+函数式编程（Spring5 必须让你使用 java8） 
 3. Spring WebFlux 是 Spring 5.0 引入的新的响应式框架，区别于 Spring MVC，它不需要依赖 Servlet API，它是完全异步非阻塞的，并且基于 Reactor 来实现响应式流规范。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-893---PZd0WF0rvvW0A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-893---PZd0WF0rvvW0A.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-13-917--5Oz77n57xRokZg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-13-917--5Oz77n57xRokZg.png)
 
 ### ②、三大核心概念
 
@@ -5677,7 +5677,7 @@ public class ProviderHystrixPayment8008 {
    2. predicate 就是我们的匹配条件；
    3. 而 filter，就可以理解为一个无所不能的拦截器。有了这两个元素，再加上目标 uri，就可以实现一个具体的路由了
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-031--BOXjGvtIgpgnbg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-031--BOXjGvtIgpgnbg.png)
 
 ### ③、Gateway 工作流程
 
@@ -5689,13 +5689,13 @@ public class ProviderHystrixPayment8008 {
    4. Filter在“pre”类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等，
    5. 在“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控等有着非常重要的作用。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-185--f9Df5QO5-QXvdA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-185--f9Df5QO5-QXvdA.png)
 
 ### ④、入门配置
 
 1. 新建模块 cloud-gateway-gateway9527
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-293--al7KeI6yilh60A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-293--al7KeI6yilh60A.png)
 
 2. 修改 pom.xml
 
@@ -5807,23 +5807,23 @@ public class Gateway9527 {
 
 5. 启动项目
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-303--_X0a56XrRXT-sg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-303--_X0a56XrRXT-sg.png)
 
 6. 访问 8008：[http://localhost:8008/hystrixFallback?id=1](http://localhost:8008/hystrixFallback?id=1)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-308--0o7piVj3MljcFQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-308--0o7piVj3MljcFQ.png)
 
 7. 访问 8008：[http://localhost:8008/test/triangle](http://localhost:8008/test/triangle)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-315--U0uEfljKGTbzdA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-315--U0uEfljKGTbzdA.png)
 
 8. 访问 9527：[http://localhost:9527/hystrixFallback?id=1](http://localhost:9527/hystrixFallback?id=1)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-320--jCqLbcT8vHbCSw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-320--jCqLbcT8vHbCSw.png)
 
 9. 访问 9527：[http://localhost:9527/test/triangle](http://localhost:9527/test/triangle)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-328--1PGj-zreYySO1A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-328--1PGj-zreYySO1A.png)
 
 ### ⑤、通过微服务名实现动态路由
 
@@ -5905,17 +5905,17 @@ public JsonResult triangle() {
 
 3. 访问测试：[http://localhost:9527/test/getTest](http://localhost:9527/test/getTest)；会启动负载均衡
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-334--l0X4sVCwA6_aWQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-334--l0X4sVCwA6_aWQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-342--UUQouEB29fLg8Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-342--UUQouEB29fLg8Q.png)
 
 4. 访问测试：[http://localhost:9527/hystrixFallback?id=1](http://localhost:9527/hystrixFallback?id=1)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-351--3ZFOZ8jAmSo1gg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-351--3ZFOZ8jAmSo1gg.png)
 
 5. 访问测试：[http://localhost:9527/hystrix/triangle](http://localhost:9527/hystrix/triangle)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-358--0HevCnLkvIqnfw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-358--0HevCnLkvIqnfw.png)
 
 ### ⑥、Predicate 的使用
 
@@ -5925,7 +5925,7 @@ public JsonResult triangle() {
 
 - 启动 gateway9527，启动日志的显示：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-365--ICeOiUg2id-MFg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-365--ICeOiUg2id-MFg.png)
 
 #### Ⅱ、Route Predicate Factories 是什么
 
@@ -5934,7 +5934,7 @@ public JsonResult triangle() {
 3. Spring Cloud Gateway 创建 Route 对象时， 使用 RoutePredicateFactory 创建 Predicate 对象，Predicate 对象可以赋值给 Route。 Spring Cloud Gateway 包含许多内置的Route Predicate Factories。
 4. 所有这些谓词都匹配 HTTP 请求的不同属性。多种谓词工厂可以组合，并通过逻辑 and。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-375---TPN6exsJpB2xw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-375---TPN6exsJpB2xw.png)
 
 #### Ⅲ、常用的 Route Predicate
 
@@ -6120,15 +6120,15 @@ public class MyLoginGateWayFilter implements GlobalFilter, Ordered {
 
 2. 访问测试，不加参数：[http://localhost:9527/test/getTest](http://localhost:9527/test/getTest)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-401--XIR3xCUMvh1kDg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-401--XIR3xCUMvh1kDg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-407--jgJesX2dZMcY1A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-407--jgJesX2dZMcY1A.png)
 
 3. 访问测试，加参数：[http://localhost:9527/test/getTest?username=1](http://localhost:9527/test/getTest?username=1)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-414--gDoV7y1DjOlgDw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-414--gDoV7y1DjOlgDw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-422--klRAn1AXxjbOmg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-422--klRAn1AXxjbOmg.png)
 
 # 八、配置中心 Config
 
@@ -6151,7 +6151,7 @@ public class MyLoginGateWayFilter implements GlobalFilter, Ordered {
 3. 服务端也称为分布式配置中心，它是一个独立的微服务应用，用来连接配置服务器并为客户端提供获取配置信息，加密/解密信息等访问接口
 4. 客户端则是通过指定的配置中心来管理应用资源，以及与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息配置服务器默认采用 git 来存储配置信息，这样就有助于对环境配置进行版本管理，并且可以通过 git 客户端工具来方便的管理和访问配置内容。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-429--n60k_B5Y4u7LDw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-429--n60k_B5Y4u7LDw.png)
 
 #### Ⅲ、能干嘛
 
@@ -6170,11 +6170,11 @@ public class MyLoginGateWayFilter implements GlobalFilter, Ordered {
 1. 在 gitee 上创建一个仓库 SpringCloud-config
 2. 将仓库克隆到本地
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-441--nSr_1y2psvSPBw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-441--nSr_1y2psvSPBw.png)
 
 3. 在 SpringCloud-config 中创建 config 目录，然后在其中创建 yml 文件 payment-8001-8002.yml
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-448--RdVSStAwzLcyEw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-448--RdVSStAwzLcyEw.png)
 
 ```yaml
 # 服务端口号
@@ -6230,11 +6230,11 @@ eureka:
 
 4. 推送到仓库
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-453--aI_YjwUoB3rkzw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-453--aI_YjwUoB3rkzw.png)
 
 5. 新建 Module 模块 cloud-config-center3344，它即为 Cloud 的配置中心模块 cloudConfig Center
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-459--UNWmYDJmpJQLKw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-459--UNWmYDJmpJQLKw.png)
 
 6. 修改 pom.xml
 
@@ -6354,16 +6354,16 @@ public class ConfigCenter3344 {
 
 9. 修改 `C:\Windows\System32\drivers\etc\hosts` 文件，增加映射 `127.0.0.1  config-3344.com`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-468--petAy7Qzvvuoxg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-468--petAy7Qzvvuoxg.png)
 
 10. 先启动 eureka 7001、7002，再启动 cloud-config-center3344 模块
 11. 访问测试：[http://config-3344.com:3344/master/payment-8001-8002.yml](http://config-3344.com:3344/master/payment-8001-8002.yml)，正序输入路径，返回的是文件
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-474--3mnHBsL8y3ludw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-474--3mnHBsL8y3ludw.png)
 
 12. 访问测试：[http://config-3344.com:3344/payment-8001-8002/master](http://config-3344.com:3344/payment-8001-8002/master)，倒序输入路径且不输入文件后缀，返回的是 json
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-482--FjGwT36NiTGSyQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-482--FjGwT36NiTGSyQ.png)
 
 ### ③、Config 客户端配置与测试
 
@@ -6398,11 +6398,11 @@ mybatis-plus:
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-504--R24f2HZK9ANdnA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-504--R24f2HZK9ANdnA.png)
 
 2. 新建模块 cloud-config-client3355
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-511--zTSkbjL_xSuk9A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-511--zTSkbjL_xSuk9A.png)
 
 3. 修改 pom.xml
 
@@ -6553,7 +6553,7 @@ public class ConfigClientController {
 
 7. 访问测试：[http://localhost:3355/getConfig](http://localhost:3355/getConfig)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-519--NPv-tu49k33D9A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-519--NPv-tu49k33D9A.png)
 
 8. 问题随时而来，分布式配置的动态刷新问题
    1. Linux 运维修改 GitHub 上的配置文件内容做调整
@@ -6655,23 +6655,23 @@ public class ConfigClientController {
 
 5. 访问测试：[http://localhost:3355/getConfig](http://localhost:3355/getConfig)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-528--U3CWIhTMz52i4Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-528--U3CWIhTMz52i4Q.png)
 
 6. 修改 git 上的配置文件
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-540--KEGBfLBMxByGGA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-540--KEGBfLBMxByGGA.png)
 
 7. 第二次访问测试：[http://localhost:3355/getConfig](http://localhost:3355/getConfig)，没有发生变化
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-552--74PD75-b1LgKLA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-552--74PD75-b1LgKLA.png)
 
 8. 发送 Post 请求刷新 3355：[http://localhost:3355/actuator/refresh](http://localhost:3355/actuator/refresh)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-560--9cx6YWMc4qVaIQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-560--9cx6YWMc4qVaIQ.png)
 
 9. 第三次访问测试：[http://localhost:3355/getConfig](http://localhost:3355/getConfig)，发生了变化
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-569--Nm2PgER5SPnY9w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-569--Nm2PgER5SPnY9w.png)
 
 ### ⑤、想想还有什么问题？
 
@@ -6691,11 +6691,11 @@ public class ConfigClientController {
 1. Spring Cloud Bus 配合 Spring Cloud Config 使用可以实现配置的动态刷新。
 2. Spring Cloud Bus 是用来将分布式系统的节点与轻量级消息系统链接起来的框架，它整合了 Java 的事件处理机制和消息中间件的功能。Spring Clud Bus 目前支持 RabbitMQ 和 Kafka。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-578--g__jduTWWe4G5A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-578--g__jduTWWe4G5A.png)
 
 3. Spring Cloud Bus 能管理和传播分布式系统间的消息，就像一个分布式执行器，可用于广播状态更改、事件推送等，也可以当作微服务间的通信通道。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-14-817--Z5ItnLawVaiMzQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-14-817--Z5ItnLawVaiMzQ.png)
 
 4. 什么是总线：在微服务架构的系统中，通常会使用轻量级的消息代理来构建一个共用的消息主题，并让系统中所有微服务实例都连接上来。由于该主题中产生的消息会被所有实例监听和消费，所以称它为消息总线。在总线上的各个实例，都可以方便地广播一些需要让其他连接在该主题上的实例都知道的消息。
 5. 基本原理：ConfigClient 实例都监听 MQ 中同一个 topic(默认是 springCloudBus)。当一个服务刷新数据的时候，它会把这个信息放入到 Topic 中，这样其它监听同一 Topic 的服务就能得到通知，然后去更新自身的配置。

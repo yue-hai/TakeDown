@@ -239,73 +239,73 @@
         {
           "type": "file",
           "ctime": 1706839569110,
-          "path": "java/【其他】.md"
+          "path": "Java/【其他】.md"
         },
         {
           "type": "file",
           "ctime": 1706839576700,
-          "path": "java/01、JAVA 基础.md"
+          "path": "Java/01、JAVA 基础.md"
         },
         {
           "type": "file",
           "ctime": 1730878000777,
-          "path": "java/02、JDBC.md"
+          "path": "Java/02、JDBC.md"
         },
         {
           "type": "file",
           "ctime": 1706839589883,
-          "path": "java/07、IDEA中Maven和Git快速配置及使用.md",
+          "path": "Java/07、IDEA中Maven和Git快速配置及使用.md",
           "title": "07、Maven和Git"
         },
         {
           "type": "file",
           "ctime": 1706839595447,
-          "path": "java/08、SpringMVC.md"
+          "path": "Java/08、SpringMVC.md"
         },
         {
           "type": "file",
           "ctime": 1706839599929,
-          "path": "java/09、MyBatis.md"
+          "path": "Java/09、MyBatis.md"
         },
         {
           "type": "file",
           "ctime": 1706839605313,
-          "path": "java/10、SSM整合开发.md"
+          "path": "Java/10、SSM整合开发.md"
         },
         {
           "type": "file",
           "ctime": 1706839612935,
-          "path": "java/11、SpringBoot2.md"
+          "path": "Java/11、SpringBoot2.md"
         },
         {
           "type": "file",
           "ctime": 1706839625464,
-          "path": "java/12、MyBatisPlus.md"
+          "path": "Java/12、MyBatisPlus.md"
         },
         {
           "type": "file",
           "ctime": 1706839632858,
-          "path": "java/13、Redis.md"
+          "path": "Java/13、Redis.md"
         },
         {
           "type": "file",
           "ctime": 1706839637348,
-          "path": "java/14、SpringCloud.md"
+          "path": "Java/14、SpringCloud.md"
         },
         {
           "type": "file",
           "ctime": 1706839644157,
-          "path": "java/15、SpringCloudAlibaba.md"
+          "path": "Java/15、SpringCloudAlibaba.md"
         },
         {
           "type": "file",
           "ctime": 1706839648477,
-          "path": "java/16、设计模式.md"
+          "path": "Java/16、设计模式.md"
         },
         {
           "type": "file",
           "ctime": 1718346320149,
-          "path": "java/17、数据结构与算法.md"
+          "path": "Java/17、数据结构与算法.md"
         },
         {
           "type": "file",
@@ -315,64 +315,15 @@
         {
           "type": "file",
           "ctime": 1706839657269,
-          "path": "java/JUC 并发编程.md"
+          "path": "Java/JUC 并发编程.md"
         }
       ],
-      "title": "java"
+      "title": "Java"
     },
     {
       "type": "group",
       "ctime": 1706839318194,
       "items": [
-        {
-          "type": "group",
-          "ctime": 1706839373673,
-          "items": [
-            {
-              "type": "file",
-              "ctime": 1706839426612,
-              "path": "Web/JS 框架/jQuery.md"
-            },
-            {
-              "type": "file",
-              "ctime": 1706839412934,
-              "path": "Web/JS 框架/Ajax.md"
-            },
-            {
-              "type": "file",
-              "ctime": 1706839419398,
-              "path": "Web/JS 框架/Axios.md"
-            },
-            {
-              "type": "file",
-              "ctime": 1706839434601,
-              "path": "Web/JS 框架/Vue2.md"
-            },
-            {
-              "type": "file",
-              "ctime": 1706839441563,
-              "path": "Web/JS 框架/Vue3.md"
-            }
-          ],
-          "title": "JS 框架"
-        },
-        {
-          "type": "group",
-          "ctime": 1706839452868,
-          "items": [
-            {
-              "type": "file",
-              "ctime": 1706839464261,
-              "path": "Web/UI 组件库/Bootstrap 快速入门.md"
-            },
-            {
-              "type": "file",
-              "ctime": 1706839457902,
-              "path": "Web/UI 组件库/Ant Design Vue.md"
-            }
-          ],
-          "title": "UI 组件库"
-        },
         {
           "type": "group",
           "ctime": 1706839325318,
@@ -412,20 +363,69 @@
             {
               "type": "file",
               "ctime": 1730878106037,
-              "path": "Web/三件套 - 旧/01、HTML和CSS.md"
+              "path": "Web/三件套旧/01、HTML和CSS.md"
             },
             {
               "type": "file",
               "ctime": 1730878112269,
-              "path": "Web/三件套 - 旧/02、JavaScript.md"
+              "path": "Web/三件套旧/02、JavaScript.md"
             },
             {
               "type": "file",
               "ctime": 1730878120130,
-              "path": "Web/三件套 - 旧/03、JQuery.md"
+              "path": "Web/三件套旧/03、JQuery.md"
             }
           ],
-          "title": "三件套 - 旧"
+          "title": "三件套旧"
+        },
+        {
+          "type": "group",
+          "ctime": 1706839373673,
+          "items": [
+            {
+              "type": "file",
+              "ctime": 1706839426612,
+              "path": "Web/JS框架/jQuery.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1706839412934,
+              "path": "Web/JS框架/Ajax.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1706839419398,
+              "path": "Web/JS框架/Axios.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1706839434601,
+              "path": "Web/JS框架/Vue2.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1706839441563,
+              "path": "Web/JS框架/Vue3.md"
+            }
+          ],
+          "title": "JS框架"
+        },
+        {
+          "type": "group",
+          "ctime": 1706839452868,
+          "items": [
+            {
+              "type": "file",
+              "ctime": 1706839464261,
+              "path": "Web/UI组件库/Bootstrap 快速入门.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1706839457902,
+              "path": "Web/UI组件库/Ant Design Vue.md"
+            }
+          ],
+          "title": "UI组件库"
         },
         {
           "type": "file",
@@ -442,20 +442,20 @@
         {
           "type": "file",
           "ctime": 1706840097871,
-          "path": "linux/正则表达式.md"
+          "path": "Linux/正则表达式.md"
         },
         {
           "type": "file",
           "ctime": 1706840103954,
-          "path": "linux/Liunx 基础.md"
+          "path": "Linux/Liunx 基础.md"
         },
         {
           "type": "file",
           "ctime": 1706840108748,
-          "path": "linux/Shell 编程.md"
+          "path": "Linux/Shell 编程.md"
         }
       ],
-      "title": "linux"
+      "title": "Linux"
     },
     {
       "type": "group",
@@ -503,10 +503,10 @@
         {
           "type": "file",
           "ctime": 1706840145613,
-          "path": "python/Python 基础.md"
+          "path": "Python/Python 基础.md"
         }
       ],
-      "title": "python"
+      "title": "Python"
     },
     {
       "type": "group",

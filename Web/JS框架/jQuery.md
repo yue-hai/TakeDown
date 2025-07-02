@@ -2,7 +2,7 @@
 
 ## 一、JQuery 简介
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-39-680--BdNMHxNrq_LlKw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-39-680--BdNMHxNrq_LlKw.png)
 
 ## 二、下载引入
 
@@ -1605,11 +1605,11 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 ### 9、JQuery 扩展
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-150--uO-tuvVVwCJvZA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-150--uO-tuvVVwCJvZA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-382--ILpGUH_sz1ErbQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-382--ILpGUH_sz1ErbQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-576--VuVW3URDnXRoxA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-576--VuVW3URDnXRoxA.png)
 
 ### 10、【总结】
 
@@ -1726,7 +1726,7 @@ jQuery 选择器允许对 HTML 元素组或单个元素进行操作
 
 - 常用键盘按键对应的代码：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-791--TnnohSPX9R9O4Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-791--TnnohSPX9R9O4Q.png)
 
 ### 3、浏览器事件
 
@@ -2049,7 +2049,7 @@ $(".box ").on('click', function(){});
 1. jQuery 遍历，意为"移动"，用于根据其相对于其他元素的关系来"查找"（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。
 2. 下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%20%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-921--i8xU8-faarwjwQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--50-40-921--i8xU8-faarwjwQ.png)
 
 > - `<div>` 元素是 `<ul>` 的父元素，同时是其中所有内容的祖先。
 > - `<ul>` 元素是 `<li>` 元素的父元素，同时是 `<div>` 的子元素

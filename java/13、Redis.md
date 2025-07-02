@@ -1,6 +1,6 @@
 > [https://www.bilibili.com/video/BV1Rv41177Af](https://www.bilibili.com/video/BV1Rv41177Af)，感觉不太好
 > 
-> [尚硅谷_Redis6课件.docx](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/尚硅谷_Redis6课件.docx)
+> [尚硅谷_Redis6课件.docx](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/尚硅谷_Redis6课件.docx)
 > 
 > 可视化工具 AnotherRedisDesktopManager：[https://gitee.com/qishibo/AnotherRedisDesktopManager/releases](https://gitee.com/qishibo/AnotherRedisDesktopManager/releases)
 > 
@@ -20,21 +20,21 @@
 
 - Web1.0 的时代，数据访问量很有限，用一夫当关的高性能的单点服务器可以解决大部分问题
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-40-813--4GURRM3fIJOicw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-40-813--4GURRM3fIJOicw.png)
 
 ### ③、Web2.0 时代
 
 - 随着 Web2.0 的时代的到来，用户访问量大幅度提升，同时产生了大量的用户数据。加上后来的智能移动设备的普及，所有的互联网平台都面临了巨大的性能挑战
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-41-425--1ZWzTgoe5fdOjQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-41-425--1ZWzTgoe5fdOjQ.png)
 
 ### ④、解决 CPU 及内存压力
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-41-606--5xE5e0HcW1wIkg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-41-606--5xE5e0HcW1wIkg.png)
 
 ### ⑤、解决 IO 压力
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-41-797--Gri0e6FA7JXPrw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-41-797--Gri0e6FA7JXPrw.png)
 
 ## 2、NoSQL 数据库
 
@@ -61,7 +61,7 @@ NoSQL 不依赖业务逻辑方式存储，而以简单的 key-value 模式存储
 
 ### ④、Memcache
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-42-025--dB2OpUeZCzfVpA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-42-025--dB2OpUeZCzfVpA.png)
 
 1. 很早出现的 NoSql 数据库
 2. 数据都在内存中，一般不持久化
@@ -70,7 +70,7 @@ NoSQL 不依赖业务逻辑方式存储，而以简单的 key-value 模式存储
 
 ### ⑤、Redis
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-42-317--e7GJu72189rVQw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-42-317--e7GJu72189rVQw.png)
 
 
 1. 几乎覆盖了 Memcached 的绝大部分功能
@@ -80,7 +80,7 @@ NoSQL 不依赖业务逻辑方式存储，而以简单的 key-value 模式存储
 
 ### ⑥、MongoDB
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-42-463--gkCHm0K3ayczRA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-42-463--gkCHm0K3ayczRA.png)
 
 
 1. 高性能、开源、模式自由(schema  free)的**文档型数据库**
@@ -93,38 +93,38 @@ NoSQL 不依赖业务逻辑方式存储，而以简单的 key-value 模式存储
 
 ### ①、行式数据库
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-42-596--CwUL7F8kDw0RrQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-42-596--CwUL7F8kDw0RrQ.png)
 
 ### ②、列式数据库
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-42-783--X8oOCu2D3tcWdA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-42-783--X8oOCu2D3tcWdA.png)
 
 #### Ⅰ、Hbase
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-43-132--km6iHRrg3AJIdQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-43-132--km6iHRrg3AJIdQ.png)
 
 1. HBase 是 Hadoop 项目中的数据库。它用于需要对大量的数据进行随机、实时的读写操作的场景中。
 2. HBase 的目标就是处理数据量非常庞大的表，可以用普通的计算机处理超过 10 亿行数据，还可处理有数百万列元素的数据表。
 
 #### Ⅱ、Cassandra[kəˈsændrə]
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-43-414--JQsUXpfL9I5C5w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-43-414--JQsUXpfL9I5C5w.png)
 
 
 - Apache Cassandra 是一款免费的开源 NoSQL 数据库，其设计目的在于管理由大量商用服务器构建起来的庞大集群上的海量数据集(数据量通常达到 PB 级别)。在众多显著特性当中，Cassandra 最为卓越的长处是对写入及读取操作进行规模调整，而且其不强调主集群的设计思路能够以相对直观的方式简化各集群的创建与扩展流程。
 
 ## 4、图关系型数据库
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-43-693--KZT1kYKTvxa3kw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-43-693--KZT1kYKTvxa3kw.png)
 
 - 主要应用：社会关系，公共交通网络，地图及网络拓谱(n*(n-1)/2)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-43-833--rBD_Ko4UXluSiQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-43-833--rBD_Ko4UXluSiQ.png)
 
 ## 5、DB-Engines 数据库排名
 > [https://db-engines.com/en/ranking](https://db-engines.com/en/ranking)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-44-150--pDmkQ7xobkH4OA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-44-150--pDmkQ7xobkH4OA.png)
 
 # 二、Redis 概述安装
 ## 1、概述
@@ -144,11 +144,11 @@ NoSQL 不依赖业务逻辑方式存储，而以简单的 key-value 模式存储
 1. 高频次，热门访问的数据，降低数据库 IO
 2. 分布式架构，做 session 共享
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-44-321--7aV58gqNJVOhQA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-44-321--7aV58gqNJVOhQA.png)
 
 ### ②、多样的数据结构存储持久化数据
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-44-485--QKvl9kd2V00R4A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-44-485--QKvl9kd2V00R4A.png)
 
 ## 3、Redis 安装
 > Redis 官方网站：[http://redis.io](http://redis.io)
@@ -224,7 +224,7 @@ docker@VM-8-15-ubuntu:~$
 
 4. 创建目录：`/home/docker/docker/VOLUME/redis/`，作为挂载目录，在其中创建 `config`、`data`、`log`文件夹
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-44-728--TT0MwAtdSiSoBQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-44-728--TT0MwAtdSiSoBQ.png)
 
 5. 在 `config` 目录内创建 `redis.conf` 文件，编辑内容
 
@@ -659,7 +659,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 
 1. 端口 6379 从何而来：非智能机（九宫格键盘）merz（Alessia  Merz） 所对应的数字
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-44-889--AEAJ06nqmrw20g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-44-889--AEAJ06nqmrw20g.png)
 
 
 2. 默认 16 个数据库，类似数组下标从 0 开始，初始默认使用 0 号库
@@ -675,7 +675,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 2. 串行 vs 多线程 + 锁（memcached） vs 单线程 + 多路 IO 复用(Redis)
 3. 与 Memcache 三点不同：支持多数据类型，支持持久化，单线程 + 多路IO复用
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/图片1.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/图片1.gif)
 
 # 三、常用五大数据类型
 
@@ -712,7 +712,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 
 | 命令 | 说明 |
 | --- | --- |
-| `set <key> <value>` | 添加 key-value 键值对到数据库；若是 `set key1 100` 则会识别为数字值<br/>![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-099--hJer3yiUpFz7hQ.png)<br/>1. `*EX`：key 的超时秒数<br/>2. `*PX`：key 的超时毫秒数，与 EX 互斥<br/>3. `*EXAT`：：设置 key 过期的指定 Unix 时间（以秒为单位）；<br/>4. `*PXAT`：设置 key 过期的指定 Unix 时间（以毫秒为单位）；<br/>5. `*NX`：当数据库中 key 不存在时，可以将 key-value 添加数据库<br/>6. `*XX`：当数据库中 key 存在时，可以将 key-value 添加数据库，与 NX 参数互斥<br/>|
+| `set <key> <value>` | 添加 key-value 键值对到数据库；若是 `set key1 100` 则会识别为数字值<br/>![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-099--hJer3yiUpFz7hQ.png)<br/>1. `*EX`：key 的超时秒数<br/>2. `*PX`：key 的超时毫秒数，与 EX 互斥<br/>3. `*EXAT`：：设置 key 过期的指定 Unix 时间（以秒为单位）；<br/>4. `*PXAT`：设置 key 过期的指定 Unix 时间（以毫秒为单位）；<br/>5. `*NX`：当数据库中 key 不存在时，可以将 key-value 添加数据库<br/>6. `*XX`：当数据库中 key 存在时，可以将 key-value 添加数据库，与 NX 参数互斥<br/>|
 | `get <key>` | 根据 key 获取 value |
 | `setnx <key><value>` | 只有在 key 不存在时，才设置 key 的值 |
 | `mset <key1> <value1> <key2> <value2> ... ` | 同时设置一个或多个 key-value 对   |
@@ -740,7 +740,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 1. String 的数据结构为简单动态字符串(Simple Dynamic String，缩写SDS)。是可以修改的字符串，内部结构实现上类似于 Java 的 ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配.
 2. 如图中所示，内部为当前字符串实际分配的空间 capacity 一般要高于实际字符串长度 en。当字符串长度小于 1M 时，扩容都是加倍现有的空间，如果超过 1M，扩容时一次只会多扩 1M 的空间。需要注意的是字符串最大长度为 512M。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-190--PCKjuygzkfJUVw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-190--PCKjuygzkfJUVw.png)
 
 ## 3、Redis 列表(List)
 
@@ -750,7 +750,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 2. Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。
 3. 它的底层实际是个双向链表，对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-305--Hcg04ubRlIAeWQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-305--Hcg04ubRlIAeWQ.png)
 
 ### ②、常用命令
 
@@ -776,7 +776,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 5. 因为普通的链表需要的附加指针空间太大，会比较浪费空间。比如这个列表里存的只是 int 类型的数据，结构上还需要两个额外的指针 prev 和 next。
 6. Redis 将链表和 ziplist 结合起来组成了 quicklist。也就是将多个 ziplist 使用双向指针串起来使用。这样既满足了快速的插入删除性能，又不会出现太大的空间冗余。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-452--c5PCsS87YJ9BAg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-452--c5PCsS87YJ9BAg.png)
 
 ## 4、Redis 集合(Set)
 
@@ -824,21 +824,21 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 5. 主要有以下2种存储方式：
    1. 每次修改用户的某个属性需要，先反序列化改好后再序列化回去。开销较大。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-562--4Lr-r_deF1Rlew.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-562--4Lr-r_deF1Rlew.png)
 
    2. 用户 ID 数据冗余
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-708--zE-F9xKr2Gd01A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-708--zE-F9xKr2Gd01A.png)
 
 6. 通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-905--l2WBKwXhtfrZLA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-905--l2WBKwXhtfrZLA.png)
 
 ### ②、常用命令
 
 | 序号 | 命令及描述 |
 | --- | --- |
-| `HSET key field value [field value]` | 将哈希表 key 中的字段 field 的值设为 value 。<br/>![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-45-955--wbELlivSsASKTg.png)|
+| `HSET key field value [field value]` | 将哈希表 key 中的字段 field 的值设为 value 。<br/>![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-45-955--wbELlivSsASKTg.png)|
 | `HSETNX key field value` | 只有在键 field 不存在时，设置哈希表字段的值。 |
 | `HGET key field` | 获取存储在哈希表中指定字段的值。 |
 | `HLEN key` | 获取指定哈希表中字段的数量 |
@@ -903,7 +903,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
 - 对比有序链表和跳跃表，从链表中查询出 51
 1. 有序链表：要查找值为51的元素，需要从第一个元素开始依次查找、比较才能找到。共需要 6 次比较
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-068--f85CBSDn_l7lxg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-068--f85CBSDn_l7lxg.png)
 
 2. 跳跃表
    1. 从第 2 层开始，1 节点比 51 节点小，向后比较。
@@ -912,7 +912,7 @@ root@59d3e13e8f52:/data# redis-cli shutdown
    4. 在第 0 层，51 节点为要查找的节点，节点被找到，共查找 4 次。
    5. 从此可以看出跳跃表比有序链表效率要高
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-170--u6xGAXwPm0OyLw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-170--u6xGAXwPm0OyLw.png)
 
 # 四、Redis 配置文件介绍
 
@@ -1272,14 +1272,14 @@ aof-rewrite-incremental-fsync yes
 
 1. 现代计算机用二进制（位） 作为信息的基础单位， 1 个字节等于 8 位， 例如“abc”字符串是由 3 个字节组成， 但实际在计算机存储时将其用二进制表示， “abc”分别对应的 ASCII 码分别是 97、 98、 99， 对应的二进制分别是 01100001、 01100010 和 01100011，如下图
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-296--qdoJvGiNtKLvXQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-296--qdoJvGiNtKLvXQ.png)
 
 2. 合理地使用操作位能够有效地提高内存使用率和开发效率。
 3. Redis 提供了 Bitmaps 这个“数据类型”可以实现对位的操作：
 4. Bitmaps 本身不是一种数据类型， 实际上它就是字符串（key-value） ， 但是它可以对字符串的位进行操作。
 5. Bitmaps 单独提供了一套命令， 所以在 Redis 中使用 Bitmaps 和使用字符串的方法不太相同。 可以把 Bitmaps 想象成一个以位为单位的数组， 数组的每个单元只能存储 0 和 1， 数组的下标在 Bitmaps 中叫做偏移量。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-514--To6pB9ElCddVfA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-514--To6pB9ElCddVfA.png)
 
 ### ②、常用命令
 
@@ -1310,7 +1310,7 @@ aof-rewrite-incremental-fsync yes
 
 4. 设置键的第 offset 个位的值（从0算起） ， 假设现在有20个用户，userid=1， 6， 11， 15， 19的用户对网站进行了访问， 那么当前 Bitmaps 初始化结果如图
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-649--D1Tu2Py13e6JoQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-649--D1Tu2Py13e6JoQ.png)
 
 5. 在第一次初始化 Bitmaps 时， 假如偏移量非常大， 那么整个初始化过程执行会比较慢， 可能会造成 Redis 的阻塞。
 
@@ -1374,13 +1374,13 @@ aof-rewrite-incremental-fsync yes
       4. setbit unique:users:20201103 9 1
    3. 计算出两天都访问过网站的用户数量：`bitop and unique:users:and:20201104_03 unique:users:20201103 unique:users:20201104`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-787--K0ddPXbSSdXVlQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-787--K0ddPXbSSdXVlQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-46-924--ku8uhvQnHAbISw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-46-924--ku8uhvQnHAbISw.png)
 
    4. 计算出任意一天都访问过网站的用户数量（例如月活跃就是类似这种） ， 可以使用or求并集
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-109--zI6VlTZhzXwU3Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-109--zI6VlTZhzXwU3Q.png)
 
 ### ③、Bitmaps 与 set 对比
 
@@ -1432,7 +1432,7 @@ aof-rewrite-incremental-fsync yes
 2. 格式：`pfadd <key> <element> [element ...]`
 3. 实例：将所有元素添加到指定 HyperLogLog 数据结构中。如果执行命令后 HLL 估计的近似基数发生变化，则返回 1，否则返回 0
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-221---x2gLHPvs_JjZw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-221---x2gLHPvs_JjZw.png)
 
 #### Ⅱ、pfcount
 
@@ -1440,7 +1440,7 @@ aof-rewrite-incremental-fsync yes
 2. 格式：`pfcount <key> [key ...]`
 3. 实例：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-373--VxmPa6_ZzjQF9Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-373--VxmPa6_ZzjQF9Q.png)
 
 #### Ⅲ、pfmerge
 
@@ -1448,7 +1448,7 @@ aof-rewrite-incremental-fsync yes
 2. 格式：`pfmerge <destkey> <sourcekey> [sourcekey ...]`
 3. 实例：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-503--qW3xVH4O3z1aXw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-503--qW3xVH4O3z1aXw.png)
 
 ## 3、地理信息 Geospatial
 
@@ -1465,7 +1465,7 @@ aof-rewrite-incremental-fsync yes
 1. 功能：添加地理位置（经度，纬度，名称）
 2. 格式：`geoadd<key>< longitude><latitude><member> [longitude latitude member...]`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-643--mKibOINZsb8cNQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-643--mKibOINZsb8cNQ.png)
 
 3. 实例：
    1. 两极无法直接添加，一般会下载城市数据，直接通过 Java 程序一次性导入。
@@ -1473,7 +1473,7 @@ aof-rewrite-incremental-fsync yes
    3. 当坐标位置超出指定范围时，该命令将会返回一个错误。
    4. 已经添加的数据，是无法再次往里面添加的
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-844--AbrrB1pf32hJ0Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-844--AbrrB1pf32hJ0Q.png)
 
 #### Ⅱ、geopos
 
@@ -1481,7 +1481,7 @@ aof-rewrite-incremental-fsync yes
 2. 格式：`geopos <key> <member> [member...]`
 3. 实例：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-47-960--6OIMf5ZBxRct1A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-47-960--6OIMf5ZBxRct1A.png)
 
 #### Ⅲ、geodist
 
@@ -1494,7 +1494,7 @@ aof-rewrite-incremental-fsync yes
    4. ft 表示单位为英尺。
    5. 如果用户没有显式地指定单位参数， 那么 GEODIST 默认使用米作为单位
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-097--zWeAPMjH7QSewg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-097--zWeAPMjH7QSewg.png)
 
 #### Ⅳ、georadius
 
@@ -1502,7 +1502,7 @@ aof-rewrite-incremental-fsync yes
 2. 格式：`georadius <key> <longitude> <latitude> radius  m|km|ft|mi`，经度 纬度 距离 单位
 3. 实例：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-178--ifRRDBRL2Wa8aQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-178--ifRRDBRL2Wa8aQ.png)
 
 # 六、Redis Jedis 测试
 
@@ -1510,11 +1510,11 @@ aof-rewrite-incremental-fsync yes
 
 1. 父项目开始时设置依赖
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-323--QC7GMv3etzNPCA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-323--QC7GMv3etzNPCA.png)
 
 2. 创建子项目
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-379--tykaDVK_sKgAFQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-379--tykaDVK_sKgAFQ.png)
 
 3. 父项目 pom.xml 设置
 
@@ -1649,7 +1649,7 @@ public class TestController {
 
 6. 启动项目，访问测试：[http://127.0.0.1:9000/test/get](http://127.0.0.1:9000/test/get)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-464--ddDAi7tIE6KBig.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-464--ddDAi7tIE6KBig.png)
 
 ## 2、添加依赖
 
@@ -1737,7 +1737,7 @@ public class JedisController {
 
 2. 访问测试：[http://127.0.0.1:9000/redis/test](http://127.0.0.1:9000/redis/test)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-540--pe6tMI5uO1kREA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-540--pe6tMI5uO1kREA.png)
 
 ### ②、测试相关数据类型：Key
 
@@ -1771,7 +1771,7 @@ public JsonResult testKey(){
 
 2. 访问测试：[http://127.0.0.1:9000/redis/key](http://127.0.0.1:9000/redis/key)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-629--6PQpB7ZbAqNroQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-629--6PQpB7ZbAqNroQ.png)
 
 ### ③、测试相关数据类型：String
 
@@ -1803,7 +1803,7 @@ public JsonResult testString(){
 
 2. 访问测试：[http://127.0.0.1:9000/redis/string](http://127.0.0.1:9000/redis/string)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-751--u_fOg85kU9t76g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-751--u_fOg85kU9t76g.png)
 
 ### ④、测试相关数据类型：List
 
@@ -1836,7 +1836,7 @@ public JsonResult testList(){
 
 2. 访问测试：[http://127.0.0.1:9000/redis/list](http://127.0.0.1:9000/redis/list)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-890--U2VYQQz-RBJI7w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-890--U2VYQQz-RBJI7w.png)
 
 ### ⑤、测试相关数据类型：set
 
@@ -1868,7 +1868,7 @@ public JsonResult testSet(){
 
 2. 访问测试：[http://127.0.0.1:9000/redis/set](http://127.0.0.1:9000/redis/set)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-48-983--Dn7CKAKcLd6Y0w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-48-983--Dn7CKAKcLd6Y0w.png)
 
 ### ⑥、测试相关数据类型：hash
 
@@ -1907,7 +1907,7 @@ public JsonResult testHash(){
 
 2. 访问测试：[http://127.0.0.1:9000/redis/hash](http://127.0.0.1:9000/redis/hash)t，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-077--A_z5V9xfZjz1Nw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-077--A_z5V9xfZjz1Nw.png)
 
 ### ⑦、测试相关数据类型：zset
 
@@ -1947,7 +1947,7 @@ public JsonResult testZset(){
 
 2. 访问测试：[http://127.0.0.1:9000/redis/zset](http://127.0.0.1:9000/redis/zset)，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-164--x1UTTUn6_mF94A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-164--x1UTTUn6_mF94A.png)
 
 ## 5、完成一个手机验证码功能
 
@@ -1956,13 +1956,13 @@ public JsonResult testZset(){
 > 2、输入验证码，点击验证，返回成功或失败
 > 3、每个手机号每天只能输入 3 次
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/Pasted%20image%2020230726091818.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726091818.png)
 
 ### ①、创建项目，导入依赖
 
 1. 创建项目
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-287--9eGChkrczrof5g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-287--9eGChkrczrof5g.png)
 
 
 2. 父项目依赖，新增了 spring-boot-starter-thymeleaf
@@ -2391,15 +2391,15 @@ public class VerificationCodeController {
 
 ### ④、测试
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-421--H9OcKbY9IKSN_g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-421--H9OcKbY9IKSN_g.png)
 
 # 七、Redis 与 Spring Boot 简单整合
 
 ## 1、创建项目
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-544--m8H4vKQg-u8X0g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-544--m8H4vKQg-u8X0g.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-626--w2oe9kds1IvYfg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-626--w2oe9kds1IvYfg.png)
 
 ## 2、修改依赖文件
 
@@ -2977,7 +2977,7 @@ public class VerificationCodeController {
 
 - [https://blog.csdn.net/lydms/article/details/105224210](https://blog.csdn.net/lydms/article/details/105224210)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-777--WxUpf_3XZg1_JQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-777--WxUpf_3XZg1_JQ.png)
 
 # 八、Redis 事务
 
@@ -2994,31 +2994,31 @@ public class VerificationCodeController {
 2. 直到输入 `Exec` 后，Redis 会将之前的命令队列中的命令依次执行
 3. 组队的过程中可以通过 `discard` 来放弃组队
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-49-974--xwbmQ6hTb-qSsQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-49-974--xwbmQ6hTb-qSsQ.png)
 
 ---
 
 1. 组队成功，提交成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-094--34KntDRrVrPdCw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-094--34KntDRrVrPdCw.png)
 
 2. 组队阶段报错，提交失败
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-227--VsuyY9EzIbuv-A.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-227--VsuyY9EzIbuv-A.png)
 
 3. 组队成功，提交有成功有失败情况
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-375--h1rqL--GUv8PSw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-375--h1rqL--GUv8PSw.png)
 
 ## 3、事务的错误处理
 
 1. 组队阶段某个命令出现了报告错误，执行时整个队列都会被取消（编译时异常）。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-490--V-2w2YbnsoSScQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-490--V-2w2YbnsoSScQ.png)
 
 2. 执行阶段某个命令报出了错误，则只有报错的命令不会被执行，而其他的命令都会执行，不会回滚（执行时异常）。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-686--XMUFhLKUgnpHsA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-686--XMUFhLKUgnpHsA.png)
 
 ## 4、事务锁
 
@@ -3029,7 +3029,7 @@ public class VerificationCodeController {
 > 一个请求想给金额减1000
 
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-804--at3aGpP-fkfxMg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-804--at3aGpP-fkfxMg.png)
 
 ### ②、悲观锁
 
@@ -3037,7 +3037,7 @@ public class VerificationCodeController {
 2. 顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会 block 直到它拿到锁。
 3. 传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-50-953--vNnjf7UiH8uItw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-50-953--vNnjf7UiH8uItw.png)
 
 ### ③、乐观锁
 
@@ -3046,7 +3046,7 @@ public class VerificationCodeController {
 3. 乐观锁适用于多读的应用类型，这样可以提高吞吐量。
 4. Redis 就是利用这种 check-and-set 机制实现事务的。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-097--bGilIlGmTgWrew.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-097--bGilIlGmTgWrew.png)
 
 ### ④、监视 `WATCH key [key ...]`
 
@@ -3057,19 +3057,19 @@ public class VerificationCodeController {
 
 1. 开启窗口 1：开启乐观锁，开始事务，给 key 1 加 10
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-257--vnIt5v37eBpomg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-257--vnIt5v37eBpomg.png)
 
 2. 开启窗口 2：开启乐观锁，开始事务，给 key 1 加 10
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-315--GM5oGS58tln49Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-315--GM5oGS58tln49Q.png)
 
 3. 在窗口 1 提交事务，成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-432--xGnlWBGxXNkCEw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-432--xGnlWBGxXNkCEw.png)
 
 4. 在窗口 2 提交事务，报错
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-541--ZPW0fTc2BWZtGg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-541--ZPW0fTc2BWZtGg.png)
 
 ### ⑤、取消监视 `unwatch`
 
@@ -3107,7 +3107,7 @@ public class VerificationCodeController {
 
 ### ④、RDB 持久化流程
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-613--XhZUqqJ84Nr-Ow.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-613--XhZUqqJ84Nr-Ow.png)
 
 ### ⑤、配置文件中的 RDB 配置
 
@@ -3154,7 +3154,7 @@ dir /data
 3. 节省磁盘空间
 4. 恢复速度快
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-741--_na2z9Ryg6LKMw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-741--_na2z9Ryg6LKMw.png)
 
 ### ⑧、劣势
 
@@ -3169,7 +3169,7 @@ dir /data
 
 ### ⑩、小总结
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-51-868--FU1uwuBbXDqsiw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-51-868--FU1uwuBbXDqsiw.png)
 
 ## 2、Redis 持久化之 AOF
 
@@ -3187,7 +3187,7 @@ dir /data
 3. AOF 文件大小超过重写策略或手动重写时，会对 AOF 文件 rewrite 重写，压缩 AOF 文件容量；
 4. Redis 服务重启时，会重新 load 加载 AOF 文件中的写操作达到数据恢复的目的；
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-52-047--6b2LF4L0jqbbsA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-52-047--6b2LF4L0jqbbsA.png)
 
 ### ③、AOF 默认不开启
 
@@ -3282,14 +3282,14 @@ auto-aof-rewrite-min-size 64mb
 5. 主进程把 aof_rewrite_buf 中的数据写入到新的 AOF 文件。
 6. 使用新的 AOF 文件覆盖旧的 AOF 文件，完成 AOF 重写。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-52-220--5EFUaiVwGKNOdA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-52-220--5EFUaiVwGKNOdA.png)
 
 ### ⑧、优势
 
 1. 备份机制更稳健，丢失数据概率更低。
 2. 可读的日志文本，通过操作AOF稳健，可以处理误操作。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-52-370--N6ocH2zvPNPjBQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-52-370--N6ocH2zvPNPjBQ.png)
 
 ### ⑨、劣势
 
@@ -3298,7 +3298,7 @@ auto-aof-rewrite-min-size 64mb
 3. 存在个别 Bug，造成恢复不能。
 ### ⑩、小总结
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-52-515--jxNzT_zIm899Qw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-52-515--jxNzT_zIm899Qw.png)
 
 ## 3、用哪个好
 
@@ -3331,9 +3331,9 @@ auto-aof-rewrite-min-size 64mb
 1. 读写分离，性能扩展
 2. 容灾快速恢复
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-52-713--RXKdD8CDLALzUw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-52-713--RXKdD8CDLALzUw.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/Pasted%20image%2020230726091909.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726091909.png)
 
 ## 2、如何使用
 
@@ -3341,7 +3341,7 @@ auto-aof-rewrite-min-size 64mb
 
 1. 复制挂载的 redis 目录与其中的文件，记住 log 中的文件需要读写权限
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-52-855--nJF-ng7WWNzBDA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-52-855--nJF-ng7WWNzBDA.png)
 
 2. redis 作为主机（master）的挂载目录，redis2、redis3 作为从机（slaver）的挂载目录
 3. 修改 redis2、redis3 目录下 config 中的 redis.conf 文件，主要修改：
@@ -3460,7 +3460,7 @@ repl_backlog_first_byte_offset:1
 repl_backlog_histlen:5083
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-010--nzL29SyoX5K5wg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-010--nzL29SyoX5K5wg.png)
 
 9. 查看从机运行状态
 
@@ -3493,45 +3493,45 @@ repl_backlog_first_byte_offset:1
 repl_backlog_histlen:5083
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-124--F9cQ4gKnSB9nCg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-124--F9cQ4gKnSB9nCg.png)
 
 ## 3、测试主从复制
 
 1. 查看主机数据：无
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-233--2_UpRGUvBEKVyQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-233--2_UpRGUvBEKVyQ.png)
 
 2. 查看从机 1 数据：无
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-358--dgqwXvEjs9uwIA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-358--dgqwXvEjs9uwIA.png)
 
 3. 查看从机 2 数据：无
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-502--Er122bUGWU07YQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-502--Er122bUGWU07YQ.png)
 
 4. 在主机中新增数据
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-584--n6ptsY3jjE_1LA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-584--n6ptsY3jjE_1LA.png)
 
 5. 查看从机 1 数据，同步新增
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-709--GgetBvNoi9n-yw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-709--GgetBvNoi9n-yw.png)
 
 6. 查看从机 2 数据，同步新增
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-847--mzrpCs2Y-LcyZQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-847--mzrpCs2Y-LcyZQ.png)
 
 7. 删除主机中的数据
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-53-974--E-Q8QrgmEEbv-w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-53-974--E-Q8QrgmEEbv-w.png)
 
 8. 查看从机 1 数据，同步删除
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-083--h1qUAxAHv-1zPQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-083--h1qUAxAHv-1zPQ.png)
 
 9. 查看从机 2 数据，同步删除
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-176--hubvknD5cThFNw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-176--hubvknD5cThFNw.png)
 
 ## 4、常用 3 招
 
@@ -3545,7 +3545,7 @@ repl_backlog_histlen:5083
    1. 若是配置文件配置的，则重启后依然是从机，可以正常同步
    2. 若是命令配置的，则需重新进行配置
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-320--aJUtBRja7zuAhg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-320--aJUtBRja7zuAhg.png)
 
 ### ②、**薪火相传**
 
@@ -3554,9 +3554,9 @@ repl_backlog_histlen:5083
 3. 风险是一旦某个 slave 宕机，后面的 slave 都没法备份
 4. 主机挂了，从机还是从机，无法写数据了
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-451--cOJ_8vDtKs5gJA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-451--cOJ_8vDtKs5gJA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-621--TmIpJGIDrztpEg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-621--TmIpJGIDrztpEg.png)
 
 ### ③、反客为主
 
@@ -3564,7 +3564,7 @@ repl_backlog_histlen:5083
 2. 用 `slaveof  no one`  将从机变为主机。
 3. 配置文件中：`slave-priority 100`，当 master 不可用，Sentinel 会根据 slave 的优先级选举一个 master。最低的优先级的 slave，当选 master。而配置成 0，永远不会被选举。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-771--saN12l3YhBol5w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-771--saN12l3YhBol5w.png)
 
 ## 5、复制原理
 
@@ -3574,13 +3574,13 @@ repl_backlog_histlen:5083
 4. 增量复制：Master 继续将新的所有收集到的修改命令依次传给 slav，完成同步
 5. 但是只要是重新连接 master，一次完全同步（全量复制）将被自动执行
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-54-942--ji-eGOxqRUz35w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-54-942--ji-eGOxqRUz35w.png)
 
 ## 6、哨兵模式（sentinel）
 ### ①、是什么
 反客为主的自动版，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主库
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-103--nYROm8IJEL2Kzw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-103--nYROm8IJEL2Kzw.png)
 
 ### ②、如何使用
 
@@ -4685,44 +4685,44 @@ sentinel auth-pass mymaster 000123
 6. 启动从机 1：`docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 3000:3000 --name redis2 -v /home/docker/docker/VOLUME/redis2/config:/etc/redis -v /home/docker/docker/VOLUME/redis2/data:/data -v /home/docker/docker/VOLUME/redis2/log:/var/log/redis -d redis:6.2.1 redis-server /etc/redis/redis.conf`
 7. 进入 redis 终端后， 启动从机 1 的哨兵：`redis-sentinel /etc/redis/sentinel.conf`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-279--rpi9rM-QWfei3w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-279--rpi9rM-QWfei3w.png)
 
 8. 启动从机 2：`docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 9000:9000 --name redis3 -v /home/docker/docker/VOLUME/redis3/config:/etc/redis -v /home/docker/docker/VOLUME/redis3/data:/data -v /home/docker/docker/VOLUME/redis3/log:/var/log/redis -d redis:6.2.1 redis-server /etc/redis/redis.conf`
 9. 进入 redis 终端后，启动从机 2 的哨兵：`redis-sentinel /etc/redis/sentinel.conf`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-469--YSnLIQ70obOhtg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-469--YSnLIQ70obOhtg.png)
 
 10. 查看运行状态：`info replication`；进入指定端口号的服务：`redis-cli -p 3000`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-564--hYGVoC1VOIpUuQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-564--hYGVoC1VOIpUuQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-633--_-mk-CawsTIXxQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-633--_-mk-CawsTIXxQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-782--ciEGLEm7Qdiw-w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-782--ciEGLEm7Qdiw-w.png)
 
 11. 关闭主机
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-55-940--zvH4RZCZTix_gA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-55-940--zvH4RZCZTix_gA.png)
 
 12. 从机反应
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-062--PVwtQAlm2aK1WQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-062--PVwtQAlm2aK1WQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-179--dQZw0SFQIGs-rg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-179--dQZw0SFQIGs-rg.png)
 
 13. 再次查看运行状态：`info replication`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-310--yJKGDIMz8LYOcw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-310--yJKGDIMz8LYOcw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-465--CDo-hx0hXmjwbg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-465--CDo-hx0hXmjwbg.png)
 
 14. 重启主机
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-629--w_fzuZkpJ3jFTw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-629--w_fzuZkpJ3jFTw.png)
 
 15. 查看主机运行状态：`info replication`，主机变为了从机
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-695--pL5LQGqYJOYqlQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-695--pL5LQGqYJOYqlQ.png)
 
 ## 7、缺点：复制延时
 
@@ -4734,7 +4734,7 @@ sentinel auth-pass mymaster 000123
 2. 偏移量是指获得原主机数据最全的
 3. 每个 redis 实例启动后都会随机生成一个 40 位的 runid
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-799--AXp65v29rLK6Nw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-799--AXp65v29rLK6Nw.png)
 
 # 十一、Redis 集群
 
@@ -4750,7 +4750,7 @@ sentinel auth-pass mymaster 000123
 1. Redis 集群实现了对 Redis 的水平扩容，即启动 N 个 redis 节点，将整个数据库分布存储在这 N 个节点中，每个节点存储总数据的 1/N。
 2. Redis 集群通过分区（partition）来提供一定程度的可用性（availability）： 即使集群中有一部分节点失效或者无法进行通讯， 集群也可以继续处理命令请求。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/Pasted%20image%2020230726091936.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726091936.png)
 
 ## 3、集群的使用
 
@@ -4789,7 +4789,7 @@ cluster-node-timeout 15000
 
 1. 创建 6 个映射目录
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-56-915--3kY7jVPhAOsHug.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-56-915--3kY7jVPhAOsHug.png)
 
 2. 修改配置文件；例子是 3000 端口，其他也要修改
 
@@ -4829,7 +4829,7 @@ docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 80:8
 docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 9000:9000 --name redis9000 -v /home/docker/docker/VOLUME/redis9000/config:/etc/redis -v /home/docker/docker/VOLUME/redis9000/data:/data -v /home/docker/docker/VOLUME/redis9000/log:/var/log/redis -d redis:6.2.1 redis-server /etc/redis/redis.conf
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-055--kYYfLx_Tyav1WQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-055--kYYfLx_Tyav1WQ.png)
 
 ### ②、构建集群
 
@@ -4859,7 +4859,7 @@ root@4096974ccb6c:/data#
 
 ## 4、卡在等待集群加入
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-165--_ml2b7s8xuj1sQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-165--_ml2b7s8xuj1sQ.png)
 
 ### ①、原因
 
@@ -4915,27 +4915,27 @@ docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 9000
 3. 如 `redis-cli  -c –p 6379` 登入后，再录入、查询键值对可以自动重定向。
 4. 不在一个 slot 下的键值，是不能使用 mget、mset 等多键操作。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-317--pq-EmlCPoN_Vgg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-317--pq-EmlCPoN_Vgg.png)
 
 5. 可以通过 `{组名}` 来定义组的概念，从而使 key 中 `{}` 内相同内容的键值对放到一个 slot 中去。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-427--nysB7PzXDYb__Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-427--nysB7PzXDYb__Q.png)
 
 ### ③、查询集群中的值
 
 `CLUSTER GETKEYSINSLOT <slot> <count>`：返回 count 个 slot 槽中的键。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-532--nmms0WZ1z-7B9g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-532--nmms0WZ1z-7B9g.png)
 
 ## 7、故障恢复
 
 1. 如果主节点下线，从节点能否自动升为主节点？注意：15秒超时
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-630--J3LE6_VXZZFBuQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-630--J3LE6_VXZZFBuQ.png)
 
 2. 主节点恢复后，主从关系会如何？主节点回来变成从机。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-782--cB25de7Vq9aG-w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-782--cB25de7Vq9aG-w.png)
 
 3. 如果所有某一段插槽的主从节点都宕掉，redis服务是否还能继续?
    1. 如果某一段插槽的主从都挂掉，而 `cluster-require-full-coverage` 为 `yes` ，那么 ，整个集群都挂掉
@@ -4971,7 +4971,7 @@ docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 9000
 1. key 对应的数据在数据源并不存在，每次针对此 key 的请求从缓存获取不到，请求都会压到数据源，从而可能压垮数据源。
 2. 比如用一个不存在的用户 id 获取用户信息，不论缓存还是数据库都没有，若黑客利用此漏洞进行攻击可能压垮数据库。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/Pasted%20image%2020230726091955.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726091955.png)
 
 ### ②、解决方案
 
@@ -4992,7 +4992,7 @@ docker run --restart=always --log-opt max-size=100m --log-opt max-file=2 -p 9000
 
 key 对应的数据存在，但在 redis 中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端 DB 加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端 DB 压垮。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/Pasted%20image%2020230726092015.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092015.png)
 
 ### ②、解决方案
 
@@ -5008,7 +5008,7 @@ key 可能会在某些时间点被超高并发地访问，是一种非常“热�
    3. 当操作返回成功时，再进行 load db 的操作，并回设缓存，最后删除 mutex key；
    4. 当操作返回失败，证明有线程在 load db，当前线程睡眠一段时间再重试整个 get 缓存的方法。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-57-934--3eyDwu3K2jaMnw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-57-934--3eyDwu3K2jaMnw.png)
 
 ## 3、缓存雪崩
 
@@ -5019,11 +5019,11 @@ key 对应的数据存在，但在 redis 中过期，此时若有大量并发请
 
 - 正常访问
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-053--DknH4Z0-ocxhTg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-053--DknH4Z0-ocxhTg.png)
 
 - 缓存失效瞬间
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/Pasted%20image%2020230726092035.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092035.png)
 
 ### ②、解决方案
 
@@ -5056,7 +5056,7 @@ key 对应的数据存在，但在 redis 中过期，此时若有大量并发请
 
 | 命令                | 说明                                                                |
 | ------------------- | ------------------------------------------------------------------- |
-| `set <key> <value>` | 添加 key-value 键值对到数据库；若是 `set key1 100` 则会识别为数字值<br/><br/>![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-220--arZF0StkMgXC6g.png)<br/>1. `*EX`：key 的超时秒数；效果等同于 `SETEX key second value`<br/>2. `*PX`：key 的超时毫秒数，与 EX 互斥；效果等同于 `PSETEX key millisecond value`<br/>3. `*EXAT`：：设置 key 过期的指定 Unix 时间（以秒为单位）；<br/>4. `*PXAT`：设置 key 过期的指定 Unix 时间（以毫秒为单位）；<br/>5. `*NX`：当数据库中 key 不存在时，可以将 key-value 添加数据库<br/>6. `*XX`：当数据库中 key 存在时，可以将 key-value 添加数据库，与 NX 参数互斥<br/> |
+| `set <key> <value>` | 添加 key-value 键值对到数据库；若是 `set key1 100` 则会识别为数字值<br/><br/>![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-220--arZF0StkMgXC6g.png)<br/>1. `*EX`：key 的超时秒数；效果等同于 `SETEX key second value`<br/>2. `*PX`：key 的超时毫秒数，与 EX 互斥；效果等同于 `PSETEX key millisecond value`<br/>3. `*EXAT`：：设置 key 过期的指定 Unix 时间（以秒为单位）；<br/>4. `*PXAT`：设置 key 过期的指定 Unix 时间（以毫秒为单位）；<br/>5. `*NX`：当数据库中 key 不存在时，可以将 key-value 添加数据库<br/>6. `*XX`：当数据库中 key 存在时，可以将 key-value 添加数据库，与 NX 参数互斥<br/> |
 | `setex <key> <过期时间> <value>` | 设置键值的同时，设置过期时间，单位秒。 |
 | `setnx <key> <value>` | 只有在 key 不存在时，才设置 key 的值 |
 | `del <key>` | 删除指定的 key |
@@ -5067,7 +5067,7 @@ key 对应的数据存在，但在 redis 中过期，此时若有大量并发请
 2. 某一个客户端获取成功，执行业务逻辑：从 db 获取数据，放入缓存，执行完成释放锁 `del`
 3. 其他客户端等待重试，重新获取锁
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-225--oSIYmG4Y4Jsr4Q.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-225--oSIYmG4Y4Jsr4Q.png)
 
 ### ③、优化：使用 UUID 防误删
 
@@ -5080,7 +5080,7 @@ key 对应的数据存在，但在 redis 中过期，此时若有大量并发请
 
 解决：setnx 获取锁时，设置一个指定的唯一值（例如：uuid）；释放前获取这个值，判断是否自己的锁
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-381--L8oU-EDEigs42g.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-381--L8oU-EDEigs42g.png)
 
 ### ④、优化：LUA 脚本保证删除的原子性
 
@@ -5093,7 +5093,7 @@ key 对应的数据存在，但在 redis 中过期，此时若有大量并发请
 
 #### Ⅰ、LUA 脚本
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-538--mHzQ1w065A6gsQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-538--mHzQ1w065A6gsQ.png)
 
 
 1. Lua 是一个小巧的脚本语言，Lua 脚本可以很容易的被 C/C++ 代码调用，也可以反过来调用 C/C++ 的函数，Lua 并没有提供强大的库，一个完整的 Lua 解释器不过 200k，所以 Lua 不适合作为开发独立应用程序的语言，而是作为嵌入式脚本语言。
@@ -5109,7 +5109,7 @@ key 对应的数据存在，但在 redis 中过期，此时若有大量并发请
 4. redis 2.6 版本以后，通过 lua 脚本解决争抢问题，实际上是 redis 利用其单线程的特性，用任务队列的方式解决多任务并发问题。
 5. Lua 脚本详解：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-674--DdOMh1--5PyQIQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-674--DdOMh1--5PyQIQ.png)
 
 #### Ⅲ、SptingBoot 中使用 LUA 脚本
 
@@ -5272,25 +5272,25 @@ testLock();
 
 #### Ⅰ、`acl list` 展现用户权限列表
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-58-891--rzWllFM5mLrArw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-58-891--rzWllFM5mLrArw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-012--_MM3TuIKsv73ug.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-012--_MM3TuIKsv73ug.png)
 
 #### Ⅱ、`acl cat` 查看添加权限指令类别
 
 1. 查看添加权限指令类别
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-111--RSDCi89gyKrRTw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-111--RSDCi89gyKrRTw.png)
 
 2. 加参数类型名可以查看类型下具体命令
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-214--fAryg548zf2MiQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-214--fAryg548zf2MiQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-330--DsvRrFNOQDi8gw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-330--DsvRrFNOQDi8gw.png)
 
 #### Ⅲ、`acl whoami` 命令查看当前用户
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-416--5yWEeCkMX2fxRA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-416--5yWEeCkMX2fxRA.png)
 
 #### Ⅳ、`acl setuser` 命令创建和编辑用户 ACL
 
@@ -5313,7 +5313,7 @@ testLock();
    1. 本次没有指定任何规则。如果用户不存在，这将使用 just created 的默认属性来创建用户。
    2. 如果用户已经存在，则这个命令将不执行任何操作。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-683--WH44fsl7L_Kqzg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-683--WH44fsl7L_Kqzg.png)
 
 3. 设置用户名、密码、ACL 权限、并启用用户：`acl setuser yan on >123456 ~cached:* +get`
    1. 参数 1 ：用户名
@@ -5322,15 +5322,15 @@ testLock();
    4. 参数 4 ：可操作的键为：`cached:*`
    5. 参数 5 ：添加 get 指令到该用户可调用的指令中
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-780--mnGIAXNJ1nz0BQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-780--mnGIAXNJ1nz0BQ.png)
 
 4. 切换用户：`auth 用户名 密码`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--22-59-913--k-gT6DigMjLXJQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-59-913--k-gT6DigMjLXJQ.png)
 
 5. 验证权限
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-032--jNdyu1kPiTq_Pw.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-032--jNdyu1kPiTq_Pw.png)
 
 ## 2、IO 多线程
 
@@ -5346,7 +5346,7 @@ testLock();
 2. Redis 的多线程部分只是用来处理网络数据的读写和协议解析，执行命令仍然是单线程。之所以这么设计是不想因为多线程而变得复杂，需要去控制 key、lua、事务，LPUSH/LPOP 等等的并发问题。
 3. 整体的设计大体如下：
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-130--Nx8qyahH2uDdJQ.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-130--Nx8qyahH2uDdJQ.png)
 
 ### ③、开启 IO 多线程
 
@@ -5456,7 +5456,7 @@ Redis6新功能还有：
 
 ### ①、引入基本依赖
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-275--2JlXm9iI6Xk1pA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-275--2JlXm9iI6Xk1pA.png)
 
 ### ②、引入 `commons-pool2` 连接池
 
@@ -5552,7 +5552,7 @@ Redis6新功能还有：
 
 ### ③、项目结构
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-393--ybBH_K9hAtwuWg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-393--ybBH_K9hAtwuWg.png)
 
 ## 2、修改配置文件
 
@@ -5916,9 +5916,9 @@ public class TestController {
 
 ### ①、对 key 的操作
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-503--kT4jGT8MdfAWzA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-503--kT4jGT8MdfAWzA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-598--Tq9nXDEsXf7SRA.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-598--Tq9nXDEsXf7SRA.png)
 
 ### ②、对 hash 的操作
 
@@ -5990,9 +5990,9 @@ public JsonResult testHash(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-705--FIXha4i1aoUsKg.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-705--FIXha4i1aoUsKg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/2023-07-25-13--23-00-838--CRRg6B-bTN0l5w.png)
+![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--23-00-838--CRRg6B-bTN0l5w.png)
 
 
 

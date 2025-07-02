@@ -781,7 +781,7 @@ var 变量名 = {              // 空对象
 
 ## 1、Document 对象（重点）
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97%20-%20%E6%97%A7/attachments/016、Document对象.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97%E6%97%A7/attachments/016、Document对象.png)
 
 - Document 对象的理解：
 1. 第一点：Document 它管理了所有的 HTML 文档内容。
