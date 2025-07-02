@@ -5,9 +5,9 @@
 3. 解压 Maven 的核心程序。将 apache-maven-3.6.3-bin.zip 解压到一个非中文无空格的目录下。
 4. 配置环境变量。
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、配置环境变量1.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/03、配置环境变量1.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、配置环境变量2.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/04、配置环境变量2.png)
 
 5. 查看 Maven 版本信息验证安装是否正确
 ```java
@@ -79,24 +79,24 @@
 
 1. Idea 自带的 Maven 在 Idea 的安装目录的 plugins 目录中
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、Idea自带的Maven在Idea的安装目录的plugins目录中.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/02、Idea自带的Maven在Idea的安装目录的plugins目录中.png)
 
 2. 在自带的 Maven 里配置了本地仓库之后，打开 Idea 配置为我们自己配置的 Maven
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F05、配置我们自己安装的Maven.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/05、配置我们自己安装的Maven.png)
 
 3. 设置 Maven 自动导包
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F06、设置Maven自动导包.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/06、设置Maven自动导包.png)
 
 # 四、在 Idea 中创建 Maven 项目
 1. 创建 Java 工程
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、创建Java工程.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/07、创建Java工程.png)
 
 2. 点击 Next，配置要继承的模块（如果直接创建的是 Project 不存在这一项）、坐标（GAV）、路径。不同的 Idea 版本可能有所差别，我使用的是 2019.3.3的版本
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、创建Java工程2.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/08、创建Java工程2.png)
 
 3. 点击 Finish 即可创建成功
 4. 配置 Maven 的核心配置文件 pom.xml
@@ -126,17 +126,17 @@
 
 5. 点击右侧 Maven 查看依赖
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、配置Maven的核心配置文件pom.xml.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/09、配置Maven的核心配置文件pom.xml.png)
 
 6. 使用 Maven 的方式运行 Maven 工程
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、使用Maven的方式运行Maven工程.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/10、使用Maven的方式运行Maven工程.png)
 
 # 五、创建 Web 工程（了解）
 
 1. 创建简单的 Maven 工程，打包方式为 war 包
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、创建简单的Maven工程.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/11、创建简单的Maven工程.png)
 
 ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -156,33 +156,33 @@
 
 2. 点击 Project Structure
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、点击ProjectStructure.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/12、点击ProjectStructure.png)
 
 3. 选择对应的 Module，设置 Web 目录
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、选择对应的Module设置Web目录.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/13、选择对应的Module设置Web目录.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、选择对应的Module设置Web目录2.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/14、选择对应的Module设置Web目录2.png)
 
 4. 弹出提示框，选择版本后点击 OK
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F15、弹出提示框选择版本后点击OK.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/15、弹出提示框选择版本后点击OK.png)
 
 5. 生成 web.xml 文件
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F16、生成web.xml文件.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/16、生成web.xml文件.png)
 
 6. 设置存放 web 页面文件的目录后点击 OK
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F17、设置存放页面的目录的位置和名称.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/17、设置存放页面的目录的位置和名称.png)
 
 7. 发现项目中多了一个 web 目录，而且目录上有一个蓝点
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F18、发现项目中多了一个web目录而且目录上有一个蓝点.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/18、发现项目中多了一个web目录而且目录上有一个蓝点.png)
 
 8. 在 web 目录下创建 index.jsp 页面
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F19、在web目录下创建index.jsp页面.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/19、在web目录下创建index.jsp页面.png)
 
 9.  部署到 Tomcat 上运行
 
@@ -190,19 +190,19 @@
 
 1. 点击 Project Structure
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F20、点击ProjectStructure.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/20、点击ProjectStructure.png)
 
 2. 点击 Modules→➕→Import Module
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F21、点击%20Modules→➕→Import%20Module.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/21、点击%20Modules→➕→Import%20Module.png)
 
 3. 找到项目所在的位置
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F22、找到项目所在的位置.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/22、找到项目所在的位置.png)
 
 4. 选择 Import module from external model（从外部模型导入模块）→Maven→Finish
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F23、选择%20Import%20module%20from%20external%20model（从外部模型导入模块）→Maven→Finish.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/23、选择%20Import%20module%20from%20external%20model（从外部模型导入模块）→Maven→Finish.png)
 
 
 

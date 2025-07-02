@@ -83,7 +83,7 @@
 
 #### Ⅳ、本地下载
 
-1. NeoForge 1.20.1：[NeoForge-1.21.1-21.1.116.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FNeoForge-1.21.1-21.1.116.jar)
+1. NeoForge 1.20.1：[NeoForge-1.21.1-21.1.116.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/NeoForge-1.21.1-21.1.116.jar)
 
 ### ④、总结
 
@@ -129,14 +129,14 @@ apt install openjdk-17-jdk
 1. 下载地址：https://www.oracle.com/cn/java/technologies/downloads/
 2. 下载想要使用的版本，此处使用 java 21，选择 `x64 Compressed Archive`：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227141724.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240227141724.png)
 
 3. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
 4. 解压缩：`tar -zxvf jdk-21_linux-x64_bin.tar.gz`
 
 ### ②、本地下载
 
-1. java 21 压缩包下载：[jdk-21_linux-x64_bin.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fjdk-21_linux-x64_bin.zip)
+1. java 21 压缩包下载：[jdk-21_linux-x64_bin.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/jdk-21_linux-x64_bin.zip)
 2. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
 3. 解压缩：`unzip jdk-21_linux-x64_bin.zip`
 
@@ -205,11 +205,11 @@ cd game/Minecraft-forge
 
 4. 下载指定版本的模组加载器：https://files.minecraftforge.net/net/minecraftforge/forge/
 	1. 此处以 Forge `1.20.1` 版本进行演示
-	2. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fforge-1.20.1-47.2.0-installer.jar)
+	2. forge-1.20.1-47.2.0-installer 版本下载：[forge-1.20.1-47.2.0-installer.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/forge-1.20.1-47.2.0-installer.jar)
 
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227103945.png)
+![|675](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240227103945.png)
 
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227104008.png)
+![|675](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240227104008.png)
 
 5. 将上面下载的文件上传到 `/home/steam/game/Minecraft-forge` 目录中，此时该目录只有 `forge-1.20.1-47.2.0-installer.jar` 这一个文件
 6. 赋予权限：
@@ -281,16 +281,16 @@ online-mode=false
 1. LittleSkin 建议使用 CustomSkinLoader 作为皮肤加载 Mod，同时也支持其他所有支持 CustomSkinAPI 和传统皮肤加载方式的皮肤 Mod
 2. 将下载的 CustomSkinLoader 放入客户端的 Mod 目录，然后：[登录 littleskin 皮肤站](#12-2-2) 即可
 3. Forge 加载器 CustomSkinLoader 下载：
-	1. 1.20.6 +：[CustomSkinLoader_ForgeV3-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV3-14.22.jar)
-	2. 1.17.1 ~ 1.20.4：[CustomSkinLoader_ForgeV2-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV2-14.22.jar)
-	3. 1.8 ~ 1.16.5：[CustomSkinLoader_ForgeV1-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV1-14.22.jar)
-	4. 1.7.10：[CustomSkinLoader_14.6a.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_14.6a.jar)；该版本及以下 CustomSkinLoader 需要手动配置后才可加载来自 LittleSkin 的材质，请参考 LittleSkin 用户使用手册中的相关页面对 CustomSkinLoader 进行配置。 [点击这里查看 >>>](https://manual.littlesk.in/newbee/csl#%E7%89%88%E6%9C%AC-%E6%97%A9%E6%9C%9F)
-	5. 1.7.2：[CustomSkinLoader_12.9-HD.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_12.9-HD.jar)
-	6. 1.6.4：[CustomSkinLoader_12.9-HD.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_12.9-HD.jar)
+	1. 1.20.6 +：[CustomSkinLoader_ForgeV3-14.22.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_ForgeV3-14.22.jar)
+	2. 1.17.1 ~ 1.20.4：[CustomSkinLoader_ForgeV2-14.22.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_ForgeV2-14.22.jar)
+	3. 1.8 ~ 1.16.5：[CustomSkinLoader_ForgeV1-14.22.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_ForgeV1-14.22.jar)
+	4. 1.7.10：[CustomSkinLoader_14.6a.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_14.6a.jar)；该版本及以下 CustomSkinLoader 需要手动配置后才可加载来自 LittleSkin 的材质，请参考 LittleSkin 用户使用手册中的相关页面对 CustomSkinLoader 进行配置。 [点击这里查看 >>>](https://manual.littlesk.in/newbee/csl#%E7%89%88%E6%9C%AC-%E6%97%A9%E6%9C%9F)
+	5. 1.7.2：[CustomSkinLoader_12.9-HD.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_12.9-HD.jar)
+	6. 1.6.4：[CustomSkinLoader_12.9-HD.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_12.9-HD.jar)
 4. Fabric 加载器 CustomSkinLoader 下载：
-	1. 1.14 +：[CustomSkinLoader_Fabric-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_Fabric-14.22.jar)
+	1. 1.14 +：[CustomSkinLoader_Fabric-14.22.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_Fabric-14.22.jar)
 5. NeoForge 加载器 CustomSkinLoader 下载：
-	1. 1.20.2 +：[CustomSkinLoader_ForgeV3-14.22.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FCustomSkinLoader_ForgeV3-14.22.jar)
+	1. 1.20.2 +：[CustomSkinLoader_ForgeV3-14.22.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/CustomSkinLoader_ForgeV3-14.22.jar)
 
 ### ②、authlib-injector（不推荐）
 
@@ -702,15 +702,15 @@ white-list=false                   # 是否启用白名单。
 
 1. 客户端点击游戏版本：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305211640.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305211640.png)
 
 2. 然后点击 MOD 文件夹，会打开一个文件夹
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305211741.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305211741.png)
 
 3. 将其中的所有文件上传至游戏服务器根目录中的 `mods` 目录，启动服务器即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305211909.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305211909.png)
 
 4. 若是启动时报错，可能是因为这些 mod 中有客户端专属，而服务器不能安装的 mod，根据提示删除即可
 
@@ -784,67 +784,67 @@ gamerule keepInventory false
 
 1. 下载地址：https://hmcl.huangyuhui.net/download/
 2. 下载最新版本即可
-3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FHMCL-3.5.5.exe)
+3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/HMCL-3.5.5.exe)
 
 ### ②、<span id="12-2-2">登录 `littleskin` 皮肤站</span>
 
 1. 在皮肤站账册账号，使用皮肤：https://littleskin.cn
 2. HMCL 启动器中点击设置
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305194424.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305194424.png)
 
 3. 进入设置页后，点击下载，取消自动选择下载源，选择 BMCLAPI
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305194522.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305194522.png)
 
 4. 然后将按钮拖动至启动器，登录即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305194713.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305194713.png)
 
 ### ③、使用启动器下载游戏本体
 
 1. 点击版本列表
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305200733.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305200733.png)
 
 2. 点击安装新游戏版本，下载指定版本的游戏即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305200811.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305200811.png)
 
 ### ④、使用启动器下载整合包
 
 1. 点击版本列表
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305200733.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305200733.png)
 
 2. 点击安装新游戏版本，下载指定版本的游戏即
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305200811.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305200811.png)
 
 3. 选择整合包
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305202013.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305202013.png)
 
 4. 可以搜索指定的整合包，点击整合包进入
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305202403.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305202403.png)
 
 5. 选择对应游戏本体版本的整合包，然后点击下载
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305202456.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305202456.png)
 
 6. 下载完成后，点击返回，选择安装整合包
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305202744.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305202744.png)
 
 7. 导入本地整合包，然后选择刚才下载的整合包
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305202911.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305202911.png)
 
 8. 点击安装
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305202955.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305202955.png)
 
 9. 安装完选中即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305204819.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305204819.png)

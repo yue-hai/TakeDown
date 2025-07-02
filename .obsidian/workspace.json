@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0b3d14831b1395eb",
+        "id": "52edeea6191ec90c",
         "type": "tabs",
         "children": [
           {
-            "id": "b5db2041f0de2ffd",
+            "id": "818a1e0bccbc41d2",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -23,22 +23,7 @@
             }
           },
           {
-            "id": "18145564790a03ce",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "公司/创迹/SSC/SSC 购物车.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "SSC 购物车"
-            }
-          },
-          {
-            "id": "8c07ff8a98e4ee7a",
+            "id": "d8a3b25edc00e23e",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -53,12 +38,12 @@
             }
           },
           {
-            "id": "2f73f963025fb460",
+            "id": "8b34962644f15fb7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "其他/设备和工具.md",
+                "file": "其他/设备和工具/设备和工具.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
@@ -68,7 +53,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -131,7 +116,8 @@
               "title": "搜索"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -177,52 +163,53 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "2f73f963025fb460",
+  "active": "d8a3b25edc00e23e",
   "lastOpenFiles": [
-    "Docker/docker 应用部署.md",
-    "其他/设备和工具.md",
+    "其他/设备和工具/设备和工具.md",
     "Flutter/Flutter 基础.md",
-    "公司/创迹/SSC/SSC 购物车.md",
     "Android/Android 基础.md",
-    "Android/attachments/Pasted image 20250620100114.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725160410.png",
-    "公司/创迹/Smart/attachments/课题2_(DWH_LV4)数据做成.xlsx",
-    "公司/创迹/Smart/attachments/课题2_(DWH_LV4 数据做成).zip",
-    "公司/创迹/Smart/attachments/课题1（DWH数据清洗）.zip",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162446.png",
-    "公司/创迹/Smart/attachments/课题1（DWH数据清洗）.xlsx",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162340.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162318.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162254.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162230.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162149.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725162108.png",
-    "公司/创迹/Smart/attachments/Pasted image 20230725161841.png",
+    "SQL/MySql.md",
+    "公司/创迹/SSC/SSC 购物车.md",
+    "Web/【其他】.md",
+    "其他/设备和工具.md",
+    "其他/设备和工具/attachments/Pasted image 20241101104630.png",
+    "其他/设备和工具/attachments/Pasted image 20240918134318.png",
+    "其他/设备和工具/attachments/WakeOnLan.apk",
+    "其他/设备和工具/attachments/v2rayNG_1.8.25.apk",
+    "其他/设备和工具/attachments/steamguard.exe",
+    "其他/设备和工具/attachments/Snipaste_2024-09-14_10-01-27.png",
+    "其他/设备和工具/attachments/Snipaste_2024-09-14_10-01-27 1.png",
+    "其他/设备和工具/attachments/pulseaudio-module-xrdp-0.7.zip",
+    "其他/设备和工具/attachments/pulseaudio-17.0.tar.gz",
+    "其他/设备和工具/attachments/Pasted image 20241226101054.png",
+    "其他/设备和工具/attachments/Pasted image 20241226101009.png",
+    "其他/设备和工具/attachments/Pasted image 20241121125059.png",
+    "其他/设备和工具/attachments/Pasted image 20241121100626.png",
+    "其他/设备和工具/attachments/Pasted image 20241120185612.png",
+    "其他/设备和工具/attachments/Pasted image 20241120185558.png",
+    "其他/设备和工具/attachments/neo80三模-已修改.json",
+    "其他/设备和工具/attachments/neo80三模-初始版.json",
+    "其他/设备和工具/attachments/clashpremium-linux-amd64",
+    "其他/设备和工具/attachments",
+    "其他/设备和工具",
+    "java/JUC 并发编程.md",
+    "java/【其他】.md",
+    "Android/Kotlin 基础.md",
+    "其他/n2n/n2n 的安装配置.md",
+    "其他/n2n/n2n 的使用方法和问题.md",
+    "python/Python 基础.md",
+    "Docker/docker 应用部署.md",
+    "编程相关/Git.md",
+    "其他/软件使用/其他软件.md",
     "公司/创迹/Smart/Smart 基础.md",
     "公司/创迹/Smart/Smart 编程.md",
-    "公司/创迹/Smart/attachments",
-    "公司/创迹/Smart",
     "Docker/docker 编程应用部署.md",
     "Docker/docker 游戏应用部署.md",
     "attachments/default.json.md",
-    "attachments",
     "其他/游戏/我的世界 Minecraft 模组服务器.md",
     "其他/游戏/游戏服务器购买和设置.md",
-    "Docker/attachments/alist-desktop_3.38.0_amd64.deb",
-    "Docker/attachments/libssl.so.1.1",
-    "Docker/attachments/libcrypto.so.1.1",
     "标题.md",
-    "编程相关/Git.md",
     "Flutter/Dart 基础.md",
-    "其他/游戏/我的世界 Minecraft 原版服务器.md",
-    "java/01、JAVA 基础.md",
-    "java/【其他】.md",
-    "其他/游戏/饥荒联机版 Don't Starve 服务器.md",
-    "Web/JS 框架/Vue3.md",
-    "其他/n2n/n2n 的安装配置.md",
-    "_plugin/copilot/custom-prompts/内容续写.md",
-    "_plugin/copilot/custom-prompts/SEO专家 - 副本.md",
-    "java/17、数据结构与算法.md",
-    "Android/Kotlin 基础.md"
+    "其他/游戏/我的世界 Minecraft 原版服务器.md"
   ]
 }

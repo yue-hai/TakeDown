@@ -2,11 +2,11 @@
 
 > N2N 服务端软件 n2n-3.0 下载地址：https://github.com/ntop/n2n/releases/tag/3.0
 > 
-> N2N 服务端：[n2n-3.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-3.0.zip)
+> N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-3.0.zip)
 > 
 > N2N 客户端软件 EasyN2N 下载地址：https://bugxia.com/357.html
 > 
-> N2N 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n_client_windows_3.12_Pack_2.zip)
+> N2N 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n_client_windows_3.12_Pack_2.zip)
 
 ## 1、n2n 简介
 
@@ -36,7 +36,7 @@
 	2. `sudo ufw allow from any to any port 10092`
 	3. `sudo ufw allow from any to any port 10093`
 3. 这里假设 docker 已经安装好了，并且拉取了 ubuntu 的镜像
-4. 创建目录：`/home/docker/docker/volumes/n2n/n2n`，下载 N2N 服务端：[n2n-3.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-3.0.zip) 放入其中
+4. 创建目录：`/home/docker/docker/volumes/n2n/n2n`，下载 N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-3.0.zip) 放入其中
 5. 解压压缩包：`unzip n2n-3.0.zip`
 6. 创建容器，包括后台运行、端口映射、授权等：
 	1. 其中，`10091` 是作为 Manage 端口，而 `10092` 作为主要端口
@@ -140,10 +140,10 @@ kill -9 1711
 #### Ⅱ、查询 n2n edge 节点信息（使用 java 实现）
 
 > 1. 改为使用 java 实现的原因是之前的 py 脚本经常自己停止
-> 2. java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fyuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
+> 2. java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
 > 3. 若是使用 docker 部署的 n2n，需要将该程序部署到 docker 中
 
-1. 创建目录：`/home/docker/docker/volumes/n2n/n2n-query-yuehai-tool`，下载 java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fyuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+1. 创建目录：`/home/docker/docker/volumes/n2n/n2n-query-yuehai-tool`，下载 java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
 2. 进入 ubuntu-n2n-server 容器：
 
 ```shell
@@ -195,9 +195,9 @@ nohup java -jar yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar >> yuehai-too
 > 4. 若是使用 docker 部署的 n2n，需要将该程序部署到 docker 中
 
 1. 在 `/home/yan/apply/n2n/` 下创建目录 `n2n-edge-query`
-2. 在目录 `n2n-edge-query` 下上传服务端脚本文件：[n2n-edge-query-back.py](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-edge-query-back.py)
-3. 在目录 `n2n-edge-query` 下上传服务端页面文件：[n2n-edge-query-front.html](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-edge-query-front.html)
-4. 在目录 `n2n-edge-query` 下上传服务端页面样式文件：[n2n-edge-query-front-css.css](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-edge-query-front-css.css)
+2. 在目录 `n2n-edge-query` 下上传服务端脚本文件：[n2n-edge-query-back.py](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-edge-query-back.py)
+3. 在目录 `n2n-edge-query` 下上传服务端页面文件：[n2n-edge-query-front.html](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-edge-query-front.html)
+4. 在目录 `n2n-edge-query` 下上传服务端页面样式文件：[n2n-edge-query-front-css.css](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-edge-query-front-css.css)
 5. 若是没有安装 `python` 环境，则先安装：`sudo apt install python3`
 6. 打开一个 `screen` 终端：
 
@@ -218,7 +218,7 @@ python3 n2n-edge-query-back.py -d >> n2n-edge-query-back.log && echo "" >> n2n-e
 7. 按 `Ctrl + a + d` 可退出终端
 8. 访问测试：http://ip:10093/
 
-![|600](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240523165008.png)
+![|600](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240523165008.png)
 
 #### Ⅳ、查询 n2n edge 节点信息经常停止的解决（弃用）
 
@@ -329,7 +329,7 @@ echo "【$(date '+%Y-%m-%d %H:%M:%S')】：【查询 n2n edge 节点信息】后
 sudo usermod -aG sudo yan
 ```
 
-4. 创建目录：`/home/yan/apply/n2n/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-3.0.zip) 放入其中
+4. 创建目录：`/home/yan/apply/n2n/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-3.0.zip) 放入其中
 5. 解压压缩包：`unzip n2n-3.0.zip`
 6. 更新软件源、安装 vim、安装配置工具：``
 
@@ -397,9 +397,9 @@ root@f279e3b2bb3f:/#
 #### Ⅱ、查询 n2n edge 节点信息（使用 java 实现）
 
 > 1. 改为使用 java 实现的原因是上面的 py 脚本经常自己停止
-> 2. java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fyuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
+> 2. java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
 
-1. 创建目录：`/home/yan/apply/n2n/n2n-query-yuehai-tool`，下载 java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fyuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+1. 创建目录：`/home/yan/apply/n2n/n2n-query-yuehai-tool`，下载 java 工具类：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
 2. 安装 JDK 21；若是安装过程中让选择时区，第一次选择 5 是亚洲，第二次选择 69 是上海
 
 ```shell
@@ -446,29 +446,29 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-2. 下载 EasyN2N 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n_client_windows_3.12_Pack_2.zip)，解压后双击 `n2n.exe` 打开（若是被杀毒软件删除，请将其加入白名单）
+2. 下载 EasyN2N 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n_client_windows_3.12_Pack_2.zip)，解压后双击 `n2n.exe` 打开（若是被杀毒软件删除，请将其加入白名单）
 3. 配置：
 	1. 服务器：`服务器ip:10092`
 	2. 小组名称：所有人需要是一样的名称
 	3. 虚拟网 ip：最好设置为同一网段（也可以选择自动分配，分配的若不是同一网段，再自行修改）
 	4. 点击启动
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020241108093650.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020241108093650.png)
 
 5. 服务器右侧显示绿色对号即为连接成功
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020241108093723.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020241108093723.png)
 
 6. 启动后，点击小组名称后的按钮，可打开已连接的主机列表，双击列表项可显示延迟
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020241108093757.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020241108093757.png)
 
 ## 5、linux 客户端配置
 
 1. 服务端操作系统为：Ubuntu 22.04.3 LTS
 2. 开放端口：`10091`、`10092`
 3. 这里假设 docker 已经安装好了，并且拉取了 ubuntu 的镜像，当然如果不用 docker 也可以选择跳过这一大步
-4. 创建目录：`/home/docker/docker/volumes/n2n/n2n`，下载 N2N 服务端：[n2n-3.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n-3.0.zip) 放入其中
+4. 创建目录：`/home/docker/docker/volumes/n2n/n2n`，下载 N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n-3.0.zip) 放入其中
 5. 解压压缩包：`unzip n2n-3.0.zip`
 6. 创建容器，包括后台运行、端口映射、授权等：
 	1. 其中，`10091` 是作为 Manage 端口，而 `10092` 作为主要端口
@@ -570,14 +570,14 @@ yan@yan:~/apply/game/n2n/n2n$
 
 15. 此时在 windows 系统上同时连接上 n2n 客户端，点击小组名称后的按钮，打开已连接的主机列表，发现多了一个客户端，且虚拟 ip 与刚才设置的相同，即为连接成功，双击列表项查看延迟
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020241108093757.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020241108093757.png)
 
 ## 6、绕过 UDP 屏蔽
 
 > 1. 如果服务器在大陆外或国外，或者是家用网络，有可能会出现 UDP 屏蔽或 QoS
 > 2. 下面是一种解决方法：使用 gnb_udp_over_tcp 这个工具，实现将 UDP 数据转换为 TCP 进行传输，绕开 UDP 限制
 > 3. github 地址：https://github.com/gnbdev/gnb_udp_over_tcp
-> 4. 本地下载：[gnb_udp_over_tcp.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fgnb_udp_over_tcp.zip)
+> 4. 本地下载：[gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/gnb_udp_over_tcp.zip)
 
 ### ⓪、gnb_udp_over_tcp 命令解释
 
@@ -604,7 +604,7 @@ sudo ufw allow from any to any port 10095
 2. ubuntu 服务端先正常编译安装 n2n：
 	1. [使用 docker 安装服务端](#1-3-1)
 	2. [不使用 docker 安装服务端](#1-3-2)
-3. 下载上面的 [gnb_udp_over_tcp.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fgnb_udp_over_tcp.zip)，上传到服务器的对应目录中：
+3. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中：
 	1.  若是使用 docker 安装的，上传到：`/home/docker/docker/volumes/n2n/`
 	2. 若是不是使用 docker 安装的，上传到：`/home/yan/apply/n2n/`
 4. 进入对应目录
@@ -738,10 +738,10 @@ chmod 755 restart_process.sh
 
 ### ③、windows 客户端配置
 
-1. 下载上面的 [gnb_udp_over_tcp.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fgnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
+1. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
 2. 在目录中，按住键盘的 shift 键，然后点击鼠标右键，选择：在此处打开 Powershell 窗口
 
-![|625](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240809134147%201.png)
+![|625](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240809134147%201.png)
 
 3. 之后会弹出一个窗口，在其中输入以下内容并回车：
 	1. `-u`：表示启用 UDP 模式，即将接收到的 TCP 数据转换为 UDP 数据。
@@ -753,23 +753,23 @@ chmod 755 restart_process.sh
 .\gnb_udp_over_tcp.exe -u -l 10092 83.229.120.176 10095
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240809131849.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240809131849.png)
 
 4. 若是不想手动输入上面的命令，也可以直接双击目录的脚本 `run_gnb_udp_over_tcp.bat`，会自动执行该命令
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240809134324.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240809134324.png)
 
 5. 打开 n2n，服务端填写：`127.0.0.1:10092`，点击启动，等待时间会稍长一点，大概六七秒
 6. 等待右侧出现绿色对号，即为连接成功
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020241108103751.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020241108103751.png)
 
 ### ④、ubuntu 客户端配置
 
 1. ubuntu 客户端先正常编译安装 n2n：
 	1. [使用 docker 安装服务端](#1-3-1)
 	2. [不使用 docker 安装服务端](#1-3-2)
-2. 下载上面的 [gnb_udp_over_tcp.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fgnb_udp_over_tcp.zip)，上传到服务器的对应目录中
+2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中
 	1.  若是使用 docker 安装的，上传到：`/home/docker/docker/volumes/n2n/`
 	2. 若是不是使用 docker 安装的，上传到：`/home/yan/apply/n2n/`
 3. 进入对应目录：

@@ -4,7 +4,7 @@
 
 `yarn add ant-design-vue`
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FWeb%2FUI%20%E7%BB%84%E4%BB%B6%E5%BA%93%2Fattachments%2FPasted%20image%2020230725130116.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Web/UI%20%E7%BB%84%E4%BB%B6%E5%BA%93/attachments/Pasted%20image%2020230725130116.png)
 
 ## 2、修改 main.ts
 

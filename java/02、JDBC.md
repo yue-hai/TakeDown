@@ -5,7 +5,7 @@
 1. 持久化(persistence)：<font color="red">把数据保存到可掉电式存储设备中以供之后使用</font>。大多数情况下，特别是企业级应用，<font color="red">数据持久化意味着将内存中的数据保存到硬盘上</font>加以“固化”，<font color="red">而持久化的实现过程大多通过各种关系数据库来完成</font>。
 2. 持久化的主要应用是将内存中的数据存储在关系型数据库中，当然也可以存储在磁盘文件、XML数据文件中。
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F01、数据的持久化.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/01、数据的持久化.png)
 
 ## 2、Java 中的数据存储技术
 
@@ -22,15 +22,15 @@
 3. JDBC的目标是使Java程序员使用JDBC可以连接任何<font color="red">提供了JDBC驱动程序</font>的数据库系统，这样就使得程序员无需对特定的数据库系统的特点有过多的了解，从而大大简化和加快了开发过程。
 4. 如果没有 JDBC，那么 Java 程序访问数据库时是这样的：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、如果没有JDBC，那么Java程序访问数据库时是这样的.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/02、如果没有JDBC，那么Java程序访问数据库时是这样的.png)
 
 5. 有了 JDBC，Java 程序访问数据库时是这样的：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、有了JDBC，Java程序访问数据库时是这样的.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/03、有了JDBC，Java程序访问数据库时是这样的.png)
 
 6. 总结如下：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、JDBC总结如下.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/04、JDBC总结如下.png)
 
 ## 4、JDBC 体系结构
 1. JDBC接口（API）包括两个层次：
@@ -43,7 +43,7 @@
 
 - 补充：ODBC(Open Database Connectivity，开放式数据库连接)，是微软在Windows平台下推出的。使用者在程序中只需要调用ODBC API，由 ODBC 驱动程序将调用转换成为对特定的数据库的调用请求。
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F05、JDBC程序编写步骤.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/05、JDBC程序编写步骤.png)
 
 # 二、获取数据库连接
 
@@ -56,19 +56,19 @@
 	1. Oracle的驱动：`oracle.jdbc.driver.OracleDriver`
 	2. mySql的驱动： `com.mysql.jdbc.Driver`
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F06、JDBC驱动.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/06、JDBC驱动.png)
 
 3. 将上述 jar 包拷贝到 Java 工程的一个目录中，习惯上新建一个 lib 文件夹。
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、将上述jar包拷贝到Java工程的一个目录中，习惯上新建一个lib文件夹.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/07、将上述jar包拷贝到Java工程的一个目录中，习惯上新建一个lib文件夹.png)
 
 4. 在驱动 jar 上右键 --> Build Path --> Add to Build Path
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、导入jar包%201.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/08、导入jar包%201.png)
 
 5. 注意：如果是 Dynamic Web Project（动态的web项目）话，则是把驱动 jar 放到 WebContent（有的开发工具叫 WebRoot）目录中的 WEB-INF 目录中的 lib 目录下即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、如果是DynamicWebProject（动态的web项目）话，则是把驱动jar放到WebContent目录中的WEB-INF下.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/09、如果是DynamicWebProject（动态的web项目）话，则是把驱动jar放到WebContent目录中的WEB-INF下.png)
 
 ### 2、加载与注册JDBC驱动
 
@@ -86,7 +86,7 @@ DriverManager.registerDriver(com.mysql.jdbc.Driver)
 
 3. 通常不用显式调用 DriverManager 类的 `registerDriver()` 方法来注册驱动程序类的实例，因为 Driver 接口的驱动程序类都包含了静态代码块，在这个静态代码块中，会调用 `DriverManager.registerDriver()` 方法来注册自身的一个实例。下图是 MySQL 的 Driver 实现类的源码：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、MySQL的Driver实现类的源码.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/10、MySQL的Driver实现类的源码.png)
 
 ## 2、要素二：URL
 
@@ -100,7 +100,7 @@ DriverManager.registerDriver(com.mysql.jdbc.Driver)
 	4. <font color="red">子名称</font>：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名
 3. 举例：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、JDBCURL举例.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/11、JDBCURL举例.png)
 
 ### 2、几种常用数据库的 JDBC URL
 
@@ -312,7 +312,7 @@ public class Demo05 {
 	2. `PrepatedStatement`：SQL 语句被预编译并存储在此对象中，可以使用此对象多次高效地执行该语句。
 	3. `CallableStatement`：用于执行 SQL 存储过程
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、操作和访问数据库.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/12、操作和访问数据库.png)
 
 ## 2、使用 Statement 操作数据表的弊端
 
@@ -333,7 +333,7 @@ ResultSet executeQuery(String sql)
 5. <font color="red">对于 Java 而言，要防范 SQL 注入，只要用 PreparedStatement(从Statement扩展而来) 取代 Statement 就可以了。</font>
 6. 图例
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、用PreparedStatement取代Statement.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/13、用PreparedStatement取代Statement.png)
 
 ## 3、PreparedStatement 的使用
 
@@ -828,7 +828,7 @@ public class CustomersForQuery {
 	2. getString()
 	3. …
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、ResultSet与ResultSetMetaData.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/14、ResultSet与ResultSetMetaData.png)
 
 ### 2、ResultSetMetaData
 
@@ -842,7 +842,7 @@ public class CustomersForQuery {
 	6. `isNullable(int column)`：指示指定列中的值是否可以为 null。
 	7. `isAutoIncrement(int column)`：指示是否自动为指定列进行编号，这样这些列仍然是只读的。
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F15、ResultSetMetaData.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/15、ResultSetMetaData.png)
 
 3. 问题1：得到结果集后, 如何知道该结果集中有哪些列 ？ 列名是什么？
 	1. 需要使用一个描述 ResultSet 的对象， 即 ResultSetMetaData
@@ -852,7 +852,7 @@ public class CustomersForQuery {
 	3. 获取 ResultSet 每一列的列的别名是什么：调用 ResultSetMetaData 的getColumnLabel() 方法
 5. 查询操作的流程
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F16、ResultSetMetaData2.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/16、ResultSetMetaData2.png)
 
 ### 3、使用 ResultSet 与 ResultSetMetaData 的查询方法举例
 
@@ -1975,7 +1975,7 @@ public class Demo02 {
 2. Mysql 支持 4 种事务隔离级别。Mysql 默认的事务隔离级别为: REPEATABLE READ（3：可重复读）。
 3. 一般情况下我们使用的隔离级别都是：READ COMMITED（2：读已提交），因为不可重复读和幻读在我们看来都是正常且应该存在的
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F17、数据库提供的4种事务隔离级别.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/17、数据库提供的4种事务隔离级别.png)
 
 ### 3、在MySql中设置隔离级别
 
@@ -2024,7 +2024,7 @@ grant select,insert,delete,update on atguigudb.* to tom@localhost identified by'
 
 1. JDBC 结构
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F18、DAO及其相关实现类.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/18、DAO及其相关实现类.png)
 
 2. `jdbc.properties` 配置文件
 
@@ -2672,9 +2672,9 @@ class CustomersDaoImplTest {
 3. <font color="red">数据库连接池</font>负责分配、管理和释放数据库连接，它<font color="red">允许应用程序重复使用一个现有的数据库连接，而不是重新建立一个</font>。
 4. 数据库连接池在初始化时将创建一定数量的数据库连接放到连接池中，这些数据库连接的数量是由<font color="red">最小数据库连接数来设定</font>的。无论这些数据库连接是否被使用，连接池都将一直保证至少拥有这么多的连接数量。连接池的<font color="red">最大数据库连接数量</font>限定了这个连接池能占有的最大连接数，当应用程序向连接池请求的连接数超过最大连接数量时，这些请求将被加入到等待队列中。
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F19、数据库连接池.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/19、数据库连接池.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F20、数据库连接池的工作原理.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/20、数据库连接池的工作原理.png)
 
 ## 3、数据库连接池技术的优点
 
@@ -2703,7 +2703,7 @@ class CustomersDaoImplTest {
 	1. MySql 数据库的JDBC驱动：`mysql-connector-java-5.1.37-bin.jar`
 	2. c3p0 数据库连接池驱动：`c3p0-0.9.1.2.jar`
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F21、c3p0需导入的jar包.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/21、c3p0需导入的jar包.png)
 
 #### ①、方式一：显式的获取c3p0数据库连接池
 
@@ -2828,7 +2828,7 @@ public class Demo03 {
 	1. `Commons-dbcp.jar`：连接池的实现
 	2. `Commons-pool.jar`：连接池实现的依赖库
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F22、dbcp需导入的jar包.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/22、dbcp需导入的jar包.png)
 
 2. Tomcat 的连接池正是采用该连接池来实现的。该数据库连接池既可以与应用服务器整合使用，也可由应用程序独立使用。
 3. 数据源和数据库连接不同，数据源无需创建多个，它是产生数据库连接的工厂，因此整个应用只需要一个数据源即可。
@@ -2990,7 +2990,7 @@ public class Demo03 {
 1. Druid 是阿里巴巴开源平台上一个数据库连接池实现，它结合了 C3P0、DBCP、Proxool 等 DB 池的优点，同时加入了日志监控，可以很好的监控DB 池连接和 SQL 的执行情况，可以说是针对监控而生的 DB 连接池，<font color="red">可以说是目前最好的连接池之一</font>。
 2. Druid（德鲁伊）需导入的jar包
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F23、Druid（德鲁伊）需导入的jar包.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/23、Druid（德鲁伊）需导入的jar包.png)
 
 3. Druid（德鲁伊）连接池常用基本配置属性
 
@@ -3134,9 +3134,9 @@ public class Demo02 {
 	3. 工具类：`org.apache.commons.dbutils.DbUtils`
 3. Apache-DBUtils 需导入的 jar 包
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F24、Apache-DBUtils需导入的jar包.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/24、Apache-DBUtils需导入的jar包.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F25、Apache-DBUtils的接口.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/25、Apache-DBUtils的接口.png)
 
 ## 2、主要 API 的使用
 

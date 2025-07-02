@@ -20,7 +20,7 @@ tomcat:jre21
 docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163352.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163352.png)
 
 3. 停止并删除容器：
 
@@ -88,19 +88,19 @@ networks:
 1. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
 2. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163443.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163443.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163500.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163500.png)
 
 3. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163523.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163523.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163538.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163538.png)
 
 4. 再次访问：[http://172.17.0.1:8080/](http://172.17.0.1:8080/)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107163621.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163621.png)
 
 
 # 2、openJdk
@@ -455,7 +455,7 @@ networks:
 1. 我这里使用 heidisql 进行连接，其他不再做说明，这里要注意一下<font color="#00b0f0">蓝色箭头</font>数据库这里
 2. 使用 heidisql 连接 postgres 时，每次只能连接一个数据库，如果不指定数据库名称，默认连接到 `postgres` 数据库，想要连接到其他数据库，这里一定要指定一个数据库的名，比如：`test`
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250121105335.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250121105335.png)
 
 3. 连接进去后，可以使用以下命令查询当前连接的数据库名称，确定是不是想要连接的数据库
 
@@ -483,7 +483,7 @@ CREATE SCHEMA schema_name;
 
 7. 不想使用命令，也可以使用 idea 自带的数据库管理工具来创建：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250121105443.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250121105443.png)
 
 ## 4、从 mysql 迁移到 postgres
 
@@ -839,7 +839,7 @@ networks:
 
 1. 使用 Navicat 连接
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250107164736.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107164736.png)
 
 ## 4、插入中文报错
 
@@ -1164,11 +1164,11 @@ networks:
 
 1. 进入 consul 管理后台，创建几个配置，比如 `test/test.json`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164636.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164636.png)
 
 2. 点击 Tokens，点击复制 Secret ID
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164417.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164417.png)
 
 3. 使用 HTTP 接口请求数据：
 	1.  请求方式：GET
@@ -1201,7 +1201,7 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 
 1. 点击 Policies -> Create
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164725.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164725.png)
 
 2. name：该策略的名称，不和其他的策略重复即可
 3. Description (Optional)：该策略的描述，可随意填写
@@ -1225,11 +1225,11 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 	3. `deny`：拒绝访问
 8. 整体设置，点击 Save 保存即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164822.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164822.png)
 
 9. 保存后，策略中就会增加刚才保存的配置：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164847.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164847.png)
 
 #### Ⅰ、资源类型说明
 
@@ -1289,41 +1289,41 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 
 1. 1. 点击 Roles -> Create
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164905.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164905.png)
 
 2. name：该角色的名称，不和其他的角色重复即可
 3. Description (Optional)：该角色的描述，可随意填写
 4. Policies：执行的策略，选择刚才创建的策略
 5. 设置完毕后，点击 Save 保存即可
  
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114164945.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164945.png)
 
 5. 保存后，角色中就会增加刚才保存的配置：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114165010.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165010.png)
 
 ### ③、创建新 token
 
 1. 1. 点击 Tokens -> Create
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114165023.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165023.png)
 
 2. Description (Optional)：该 token 的描述，可随意填写
 3. Roles：选择角色，选择刚才创建的角色
 4. Policies：选择策略，因为配置了角色，可以不选择策略
 5. 设置完毕后，点击 Save 保存即可
  
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114165055.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165055.png)
 
 6. 保存后，token 中就会增加刚才保存的配置：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114165120.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165120.png)
 
 ### ④、使用新创建的 token 获取配置
 
 1. 选择刚才创建的 Token，点击复制 Secret ID
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FDocker%2Fattachments%2FPasted%20image%2020250114165142.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165142.png)
 
 3. 使用 HTTP 接口请求数据：
 	1.  请求方式：GET

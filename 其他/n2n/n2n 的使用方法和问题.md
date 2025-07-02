@@ -8,13 +8,13 @@
 
 ### ②、使用方式
 
-1. 下载 n2n 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2Fn2n_client_windows_3.12_Pack_2.zip)
+1. 下载 n2n 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n_client_windows_3.12_Pack_2.zip)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240819161741.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240819161741.png)
 
 2. 解压，然后双击其中的 `n2n.exe` 运行；<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240819162113.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240819162113.png)
 
 3. 复制上面的服务器地址到 n2n 服务器输入框中
 4. `虚拟网IP` 后面的选项请勾选，防止虚拟 ip 和别人重复
@@ -40,7 +40,7 @@
 
 1. 点击测试工具 -> NAT 检测，点击开始检测
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FPasted%20image%2020240819163053.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240819163053.png)
 
 2. 若是显示检测失败或结果不是下面的四种，请点击切换服务器，然后多次测试
 3. 若检测结果是 `Symmetric NAT`，说明当前机器是不可以使用 n2n 的，若想使用，请自行修改光猫，百度搜索：NAT 类型修改
@@ -63,7 +63,7 @@
 3. 和朋友一起联机的话，ip 前三位需要相同，比如：`192.168.1`，最后一位可选 `1 ~ 254`
 4. 挑一个没有被使用的就可以了
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FC8BDC8FFEE9C4793B8F32A08E6EBCBBC.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/C8BDC8FFEE9C4793B8F32A08E6EBCBBC.png)
 
 ## 4、windows 防火墙的问题
 
@@ -80,6 +80,6 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2Fn2n%2Fattachments%2FC80DC490867A47FDBD0E43F4BD2153D3.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/C80DC490867A47FDBD0E43F4BD2153D3.png)
 
 ## 5、

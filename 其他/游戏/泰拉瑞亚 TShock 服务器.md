@@ -32,7 +32,7 @@ wget https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-T
 
 5. 也可以本地下载后上传到 linux：
 	1. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
-	2. TShock 压缩包下载：[TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FTShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip)
+	2. TShock 压缩包下载：[TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip)
 6. 创建与 TShock 版本对应的目录，仅是为了方便管理
 
 ```shell

@@ -27,17 +27,17 @@
 
 ## 1、创建一个maven工程
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F01、创建一个maven工程.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/01、创建一个maven工程.png)
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F02、创建一个maven工程2.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/02、创建一个maven工程2.png)
 
 ## 2、修改 Maven 设置
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F04、修改Maven设置.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/04、修改Maven设置.png)
 
 ## 3、添加 web 构件
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F03、添加web构件.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/03、添加web构件.png)
 
 ## 4、引入项目依赖的jar包，pom.xml 文件：
 
@@ -228,7 +228,7 @@
 
 ## 6、创建数据库及数据库表
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F07、创建数据库及数据库表.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/07、创建数据库及数据库表.png)
 
 ## 7、编写 ssm 整合的关键配置文件
 
@@ -236,7 +236,7 @@
 
 1. 项目结构：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F08、项目结构.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/08、项目结构.png)
 
 2. web.xml
 
@@ -907,7 +907,7 @@
 
 # 五、查询
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F09、查询.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/09、查询.png)
 
 ## 1、查询逻辑
 
@@ -1624,11 +1624,11 @@
 
 - 此处有个 bug，查出来的数据顺序不对，说是乱序倒也不是乱序，不知道咋回事，以后再看看吧
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F11、查询的bug.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/11、查询的bug.png)
 
 # 六、新增
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F10、新增.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/10、新增.png)
 
 - 新增-逻辑
 
@@ -2456,7 +2456,7 @@
 
 # 七、修改
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F12、修改.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/12、修改.png)
 
 - 修改-逻辑
 
@@ -3255,7 +3255,7 @@
 
 # 八、删除
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F13、删除.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/13、删除.png)
 
 - 删除-逻辑
 
@@ -4112,4 +4112,4 @@
 
 # 九、总结
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2Fjava%2Fattachments%2F14、总结.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/java/attachments/14、总结.png)

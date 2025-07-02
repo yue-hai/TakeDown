@@ -23,11 +23,11 @@
 3. 由于 SQLite 嵌入到应用程序，省去了配置数据库服务器的开销，因此它又被归类为嵌入式数据库。
 4. 客户端与服务端分别操作的数据库
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230515133844.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230515133844.png)
 
 5. 客户端与服务端的多对一架构关系
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230515133857.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230515133857.png)
 
 ## 2、App 的工程结构
 
@@ -48,7 +48,7 @@
 	4. settings.gradle，该文件配置了需要编译哪些模块，以及依赖库的仓库地址。
 	5. local.properties，它是项目的本地配置文件。
 
-![|486](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230515134558.png)
+![|486](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230515134558.png)
 
 ### ②、编译配置文件 build.gradle
 
@@ -57,7 +57,7 @@
 3. 模块级别的 build.gradle 对应于具体模块，每个模块都有自己的 build.gradle，它指定了当前模块的详细编译规则。
 4. gradle 文件采用了 Gradle 工具完成编译构建操作，每个版本的 Android Studio 都有对应的 Gradle 版本。只有二者的版本正确对应，工程才能被正确的编译
 
-![|227](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230515135631.png)
+![|227](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230515135631.png)
 
 5. app 模块的 build.gradle
 
@@ -179,7 +179,7 @@ include ':03_advancedcontrols'
 	5. android:theme，指定 App 的显示风格。
 3. `application` 节点下面还有个 `activity` 节点，他是活动页面的注册声明，只有在其中正确配置了 `activity` 节点，才能在运行时访问对应的活动页面。
 
-![|296](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417125817.png)
+![|296](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417125817.png)
 
 ```Kotlin
 <?xml version="1.0" encoding="utf-8"?>
@@ -242,7 +242,7 @@ include ':03_advancedcontrols'
 
 1. 页面布局与逻辑代码分离
 
-![|684](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230515141621.png)
+![|684](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230515141621.png)
 
 2. 把 App 的界面设计与代码逻辑分开，不仅参考了网站的 WEB 前后端分离，还有下列几点好处。
 	1. 使用 XML 文件描述 APP 界面，可以很方便地在 Android Studio 上预览界面效果。
@@ -252,14 +252,14 @@ include ':03_advancedcontrols'
 4. 若想增加横屏时的布局样式，需创建 `res/layout-land` 目录，在其中创建和 `res/layout` 中心相通文件名的文件
 5. 利用 `XML` 标记描绘应用界面，使用 `JAVA（Kotlin）` 代码书写程序逻辑
 
-![|386](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417130212.png)
+![|386](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417130212.png)
 
 ### ②、利用 XML 标记描绘应用界面
 
 1. 凡是 XML 标签都由标签头与标签尾组成，标签头以左右尖括号包括标签名称，形如 `<TextView>`；标签尾在左尖括号后面插入斜杆，以此同标签头区分开，形如 `</TextView>`。
 2. 标签头允许在标签名称后面添加各种属性取值，而标签尾不允许添加任何属性
 
-![|407](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417140616.png)
+![|407](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417140616.png)
 
 
 ```Kotlin
@@ -295,7 +295,7 @@ include ':03_advancedcontrols'
 </LinearLayout>
 ```
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417140651.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417140651.png)
 
 ### ③、使用Java代码书写程序逻辑
 
@@ -331,7 +331,7 @@ class MainActivity : AppCompatActivity() {
 
 1. 在 `layout` 下创建一个窗口文件 `yuehai.xml`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417143741.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417143741.png)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -369,7 +369,7 @@ class MainActivity : AppCompatActivity() {
 
 2. 在 `res/values/strings.xml` 处定义的数据可在别处进行引用
 
-![|331](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417164008.png)
+![|331](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417164008.png)
 
 ```xml
 <resources>
@@ -589,7 +589,7 @@ class MainActivity : AppCompatActivity() {
 3. 设置文本颜色：`android:textColor="#F44336"`
 4. 在 `layout` 下创建窗口文件 `layout.xml`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230417160550.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230417160550.png)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1325,14 +1325,14 @@ class Activity02:AppCompatActivity() {
 7. `onRestart`：重启活动。重新加载内存中的页面数据。
 8. `onNewIntent`：重用已有的活动实例
 
-![|631](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230419105744.png)
+![|631](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230419105744.png)
 
 ### ②、各状态之间的切换过程
 
 1. 打开新页面的方法调用顺序为：`onCreate → onStart → onResume`
 2. 关闭旧页面的方法调用顺序为：`onPause → onStop → onDestroy`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230419105858.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230419105858.png)
 
 ## 3、`Activity` 的启动模式
 
@@ -1342,11 +1342,11 @@ class Activity02:AppCompatActivity() {
 
 1. 某 App 先后打开两个活动，此时活动栈的变动情况如下图所示。
 
-![|648](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230419110418.png)
+![|648](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230419110418.png)
 
 2. 依次结束已打开的两个活动，此时活动栈的变动情况如下图所示
 
-![|615](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230419110428.png)
+![|615](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230419110428.png)
 
 ### ②、静态设置
 
@@ -1840,7 +1840,7 @@ class Activity03: AppCompatActivity() {
 </shape>
 ```
 
-![|292](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230515165103.png)
+![|292](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230515165103.png)
 
 6. 指定某几个角为圆角
 
@@ -1869,7 +1869,7 @@ class Activity03: AppCompatActivity() {
 	1. 当图片被横向拉伸时，只会拉伸纵向选中的区域，没有选中的区域不会被拉伸
 	2. 当图片被纵向拉伸时，只会拉伸横向选中的区域，没有选中的区域不会被拉伸
 
-![|330](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230516091542.png)
+![|330](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230516091542.png)
 
 ### ④、状态列表图形
 
@@ -1905,7 +1905,7 @@ class Activity03: AppCompatActivity() {
 2. 又因为 `CompoundButton` 类本身继承了 `Button` 类，故以上几种按钮同时具备 `Button` 的属性和方法
 3. 下图描述了复合按钮的继承关系：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230516094727.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230516094727.png)
 
 4. `CompoundButton` 在 XML 文件中主要使用下面两个属性。
 	1. `checked`：指定按钮的勾选状态，true 表示勾选，false 表示未勾选。默认未勾选。
@@ -2020,9 +2020,9 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
 4. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517101102.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517101102.png)
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517101121.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517101121.png)
 
 ### ③、开关按钮 Switch
 
@@ -2138,9 +2138,9 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
 6. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517101230.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517101230.png)
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517101243.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517101243.png)
 
 ### ④、单选按钮 RadioButton
 
@@ -2309,9 +2309,9 @@ class SelectButtonActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
 7. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517101402.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517101402.png)
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517101414.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517101414.png)
 
 ## 3、文本输入
 
@@ -2425,7 +2425,7 @@ class EdiTextActivity: AppCompatActivity() {
 
 8. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517100722.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517100722.png)
 
 ### ②、焦点变更监听器
 
@@ -2543,7 +2543,7 @@ class EdiTextActivity: AppCompatActivity(), View.OnFocusChangeListener, View.OnC
 
 6. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517100752.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517100752.png)
 
 ### ③、文本变化监听器
 
@@ -2740,8 +2740,8 @@ class EdiTextActivity: AppCompatActivity(), View.OnFocusChangeListener, View.OnC
 
 5. 效果
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517100408.png)
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517100434.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517100408.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517100434.png)
 
 ## 4、对话框
 
@@ -2885,9 +2885,9 @@ class DialogBoxAlertDialogActivity: AppCompatActivity() {
 
 7. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517095848.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517095848.png)
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517095926.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517095926.png)
 
 ### ②、日期对话框 DatePickerDialog
 
@@ -3037,9 +3037,9 @@ class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDate
 
 7. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517105509.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517105509.png)
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517105517.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517105517.png)
 
 ### ③、时间对话框 TimePickerDialog
 
@@ -3243,9 +3243,9 @@ class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDate
 
 5. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517111627.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517111627.png)
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230517111634.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230517111634.png)
 
 # 五、`Android` 高级控件
 
@@ -3259,7 +3259,7 @@ class DialogBoxAlertDialogActivity: AppCompatActivity(), DatePickerDialog.OnDate
 	2. `dialog`：在页面中部弹出列表对话框，对话框风格
 3. 分别对应 `SpinnerMode` 属性设置为 `dropdown` 或者 `dialog`
 
-![|533](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230506084743.png)
+![|533](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230506084743.png)
 
 4. Spinner 组件一共有两个，一个是本身的 `Spinner`，一个是 `android.support.v7.widget.AppCompatSpinner`
 	1. 两者的区别在于 v7 内的 Spinner 是兼容低版本的
@@ -3403,7 +3403,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 
 10. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508111847.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508111847.png)
 
 ### ②、适配器 Adapte
 
@@ -3412,7 +3412,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 3. 适配器负责从数据集合中取出对应的数据显示到条目布局上
 4. 如下图直观的表达了 Data、Adapter、View 三者的关系
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230504164626.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230504164626.png)
 
 ### ③、适配器 Adapte 继承结构
 
@@ -3421,7 +3421,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 3. `ArrayAdapter` 支持泛型操作，最为简单，但是只能展示一行字。
 4. `SimpleAdapter` 虽然名称为 simple，但是用法功能还是很强大的，基本上我们在敲代码时都要与这个打交道
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230504164732.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230504164732.png)
 
 ### ③、复用 convertVie
 
@@ -3432,7 +3432,7 @@ class SpinnerDropdownActivity: AppCompatActivity(), AdapterView.OnItemSelectedLi
 5. 即：第 1 个 Item 离开屏幕是有过程的，会有 1 个第 1 个 Item 的下半部分和第 8 个 Item 上半部分同时在屏幕中显示的状态，此时仍无法使用缓存的 View，只能继续用新创建的视图 View
 6. 实例演示，设：屏幕只能显示 5 个 Item，那么 ListView 只会创建（5+1）个 Item 的视图；当第 1 个 Item 完全离开屏幕后才会回收至缓存从而复用（用于显示第 7 个 Item）
 
-![|685](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230504165416.png)
+![|685](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230504165416.png)
 
 ### ④、数组适配器 ArrayAdapte
 
@@ -3638,7 +3638,7 @@ class SpinnerDropdownSimpleAdapterActivity: AppCompatActivity(), AdapterView.OnI
 
 5. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508111742.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508111742.png)
 
 ### ⑥、基本适配器 BaseAdapter
 
@@ -3983,7 +3983,7 @@ class SpinnerDropdownBaseAdapter: AppCompatActivity(), AdapterView.OnItemSelecte
 
 8. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508111651.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508111651.png)
 
 ## 2、列表类视图
 
@@ -4217,7 +4217,7 @@ class ListViewActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeListe
 
 9. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508111558.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508111558.png)
 
 ### ②、网格视图 GridView
 
@@ -4245,7 +4245,7 @@ class ListViewActivity: AppCompatActivity(), CompoundButton.OnCheckedChangeListe
 
 4. GridView 拉伸模式效果
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508103548.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508103548.png)
 
 #### Ⅱ、代码例子
 
@@ -4389,7 +4389,7 @@ class GridViewActivity: AppCompatActivity(), AdapterView.OnItemClickListener {
 
 9. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508111453.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508111453.png)
 
 ## 3、翻页类视图
 
@@ -4597,11 +4597,11 @@ class ViewPagerActivity: AppCompatActivity() {
 
 8. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508163515.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508163515.png)
 
 9. 翻页过程
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508163544.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508163544.png)
 
 ### ②、翻页标签栏 PagerTabStrip
 
@@ -4872,11 +4872,11 @@ class ViewPagerTapStripActivity: AppCompatActivity(), ViewPager.OnPageChangeList
 
 8. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230509100825.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230509100825.png)
 
 9. 翻页过程
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230509100928.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230509100928.png)
 
 ## 4、Fragment
 
@@ -4888,18 +4888,18 @@ class ViewPagerTapStripActivity: AppCompatActivity(), ViewPager.OnPageChangeList
 4. Fragment 的布局文件和代码使用起来和 Activity 基本无异。除了继承自 Fragment 与入口方法 onCreateView 两点，其他地方类似活动页面代码。
 5. 传统的 Activity 并不能很好的处理大屏问题，所以急需一个碎片化的东西能够划区域的展示内容，且有属于自己的独立可操作空间，所以就出现了 Fragment
 
-![|583](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230510101016.png)
+![|583](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230510101016.png)
 
 6. Fragment 的注册方式有两种：
 	1. 静态注册：在 xml 中引入
 	2. 动态注册：通过 java 代码的方式引入
 7. Fragment 的生命周期
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230510105618.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230510105618.png)
 
 8. Fragment 与 Activity 生命周期的对比
 
-![|340](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230510105736.png)
+![|340](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230510105736.png)
 
 ### ②、静态注册
 
@@ -5041,7 +5041,7 @@ class FragmentStaticActivity: AppCompatActivity() {
 
 6. 效果
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230510124044.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230510124044.png)
 
 ### ③、动态注册
 
@@ -5053,7 +5053,7 @@ class FragmentStaticActivity: AppCompatActivity() {
 2. Activity 向 Fragment 传递数据：使用Java语言描述的话，最关键的两个函数是 `setArguments` 和 `getArguments`；向fragment 中传递数据使用 Bundle，同时需要动态添加 fragment
 3. 相比较于上面的传递数据的方式，<font color="#ff0000">EventBus</font> 就好用多了
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230510132520.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230510132520.png)
 
 4. 在想<font color="#245bdb">接收数据</font>的类中注册为 `Subscriber(订阅者)`
 5. <font color="#6425d0">发送数据</font>的类就不用注册了，直接只是用 `post()` 方法发送数据即可。
@@ -5323,11 +5323,11 @@ class FragmentDynamicActivity: AppCompatActivity(), ViewPager.OnPageChangeListen
 
 7. 结果显示
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230511085838.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230511085838.png)
 
 8. 翻页过程
 
-![|435](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230511085935.png)
+![|435](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230511085935.png)
 
 # 六、`Android` 数据存储 `SharedPreferences`
 
@@ -6069,7 +6069,7 @@ class PictureActivity: AppCompatActivity() {
 	2. 不方便通过 intent 传递的数据，如位图对象，非字符串的集合对象等。
 	3. 容易因频繁分配内存而导致内存泄漏的对象，如 Handler 处理器实例等。
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420104855.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230420104855.png)
 
 3. 通过 Application 实现对全局内存的读写：
 4. 写一个继承自 Application 的类 MyApplication。该类要采用单例模式
@@ -6205,7 +6205,7 @@ class SharedPreferences02: AppCompatActivity() {
 3. 上面提到的 SQLite 可以操作自身的数据库，而 `ContentProvider` 则是作为中间接口，通过 `SQLiteOpenHelper` 和 `SQLiteDatabase` 间接操控数据库，实现为其他应用提供数据的功能。
 4. 场景：比如微信读取手机通讯录
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420132956.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230420132956.png)
 
 ## 2、使用举例
 
@@ -6524,9 +6524,9 @@ class UserDBHelper(
 
 3. 创建 `UserInfoProvider` 继承 `ContentProvider`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420142041.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230420142041.png)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420142150.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230420142150.png)
 
 ```Kotlin
 package com.yuehai.contentProviderServer.contentProvider
@@ -6803,11 +6803,11 @@ class ContentProviderClinet01: AppCompatActivity() {
 
 1. 服务端
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230512123201.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230512123201.png)
 
 2. 客户端
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230512123308.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230512123308.png)
 
 ## 3、运行时动态申请权限
 
@@ -7230,17 +7230,17 @@ class PermissionHungryActivity: AppCompatActivity() {
 1. 手机中通讯录的主要表结构有：
 2. `raw_contacts` 表：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230512155543.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230512155543.png)
 
 3. `data` 表：记录了用户的通讯录所有数据，包括手机号，显示名称等
 	1. 里面的 `mimetype_id` 表示不同的数据类型，这与表 `mimetypes` 表中的 `id` 相对应
 	2. `raw_contact_id` 与上面的 `raw_contacts` 表中的 id 相对应。
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230512155551.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230512155551.png)
 
 4. `mimetypes` 表：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230512155605.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230512155605.png)
 
 ### ②、代码例子
 
@@ -7624,7 +7624,7 @@ class Broadcast01: AppCompatActivity() {
 2. 这些接收器默认是都能够接受到指定广播并且是之间的顺序按照注册的先后顺序，也可以通过指定优先级来指定顺序。
 3. 先收到广播的接收器 A，既可以让其他接收器继续收听广播，也可以中断广播不让其他接收器收听。
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230421094256.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230421094256.png)
 
 4. 定义广播接收器，继承 `BroadcastReceiver`，实现 `onReceive` 方法；定义 `OrderAReceiver` 和 `OrderBReceiver` 两个广播接收器
 
@@ -8638,7 +8638,7 @@ class StartServiceActivity: AppCompatActivity() {
 	3. `MessageQueue`：消息队列，主要用来存放 Handler 发送过来的消息。
 	4. `Looper`：消息循环，不断的从 MessageQueue 中抽取 Message 并执行。
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230421192055.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230421192055.png)
 
 5. 创建获取天气的线程 `WeatherThread`，继承 `: Thread` 类
 
@@ -9581,7 +9581,7 @@ implementation "androidx.navigation:navigation-ui-ktx:2.4.0"
 
 2. 创建导航图：在 `res` 目录下新建 `navigation` 目录，然后右键 `navigation` 目录，点击新建，选择 `navigation` 资源文件，名称随意，一般为 `nav_graph.xml`
 
-![|725](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230922101151.png)
+![|725](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230922101151.png)
 
 3. 创建主 `Activity` 的布局文件 `main_activity.xml` 与代码文件 `MainActivity`，这是本项目唯一一个 `Activity`
 
@@ -10143,11 +10143,11 @@ class SettingsFragment: Fragment() {
 1. 修改文件 `res/values/themes.xml`
 2. 标签 `style` 的属性 `parent` 一开始可能为： `Theme.MaterialComponents.DayNight.DarkActionBar`，即深色标题栏
 
-![|310](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508083412.png)
+![|310](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508083412.png)
 
 4. 要使其隐藏可修改为：`Theme.MaterialComponents.DayNight.NoActionBar`
 
-![|310](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230508083306.png)
+![|310](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230508083306.png)
 
 ### ②、`res/values/themes.xml` 内容介绍
 
@@ -10249,7 +10249,7 @@ myText.setTypeface(Typeface.MONOSPACE);
 
 1. 将字体文件放在 `assets` 目录中
 
-![|682](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231227152014.png)
+![|682](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231227152014.png)
 
 2. java 代码 TextView 设置：
 
@@ -10262,7 +10262,7 @@ myTextView.setTypeface(typeface);
 
 1. 安卓8.0后，在工程目录 `res` 下，创建一个 `font` 文件夹，把字体文件放入文件夹中，如图：
 
-![|267](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231227152230.png)
+![|267](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231227152230.png)
 
 2. xml 中 TextView 设置：
 
@@ -10323,7 +10323,7 @@ if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
 1. 在 `res` 目录下新建 `anim` 目录，然后右键 `anim` 目录，点击新建，选择 `Animation` 资源文件，名称随意，本次为 `enter_left_slide`
 
-![|725](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230922112559.png)
+![|725](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230922112559.png)
 
 2. 打开 `enter_left_slide.xml` 文件，编写动画代码
 
@@ -10897,14 +10897,14 @@ fun animateTextShrinkBack(): AnimatorSet{
 
 6. 效果：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F动画3.gif)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/动画3.gif)
 
 #### Ⅲ、上面动画的简化板
 
 > 1. `ObjectAnimator.ofFloat()` 和 `ValueAnimator.ofFloat()` 都可以传递多个参数
 > 2. 所以回弹效果不用分开写，向方法中传入多个参数即可
 > 3. 动画效果略有修改
-> 4. 字体文件：[NotoSansCJKjp-Black.ttf](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FNotoSansCJKjp-Black.ttf)
+> 4. 字体文件：[NotoSansCJKjp-Black.ttf](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/NotoSansCJKjp-Black.ttf)
 
 1. 积分增加 icon 图标 `ic_poc_points_up`，同上
 2. 向右箭头 icon 图标 `ic_poc_chevron_right`，同上
@@ -11303,13 +11303,13 @@ private fun animateChevronAndTextMove(): AnimatorSet{
 
 7. 效果：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F动画9.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/动画9.gif)
 
 #### Ⅳ、上面动画的更加简化板
 
 > 1. 可以发现上面的方法都很相似
 > 2. 所以我们可以把共通的部分抽取出来，做成一个方法
-> 3. 字体文件：[NotoSansCJKjp-Black.ttf](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FNotoSansCJKjp-Black.ttf)
+> 3. 字体文件：[NotoSansCJKjp-Black.ttf](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/NotoSansCJKjp-Black.ttf)
 
 1. 积分增加 icon 图标 `ic_poc_points_up`，同上
 2. 向右箭头 icon 图标 `ic_poc_chevron_right`，同上
@@ -11488,7 +11488,7 @@ private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): V
 
 7. 效果：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F动画9.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/动画9.gif)
 
 ### ③、自定义 ConstraintLayout 动态剪切控件
 
@@ -11496,7 +11496,7 @@ private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): V
 > 2. 划入时倍率文字并不是和蒙版一起从右侧滑入
 > 3. 而是倍率文字本来就在页面中，只不过不显示；蒙版滑入时，被蒙版覆盖的倍率文字才会显示出来，滑出时同理
 > 4. 具体的样式请看下面的效果图
-> 5. 字体文件：[NotoSansCJKjp-Black.ttf](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FNotoSansCJKjp-Black.ttf)
+> 5. 字体文件：[NotoSansCJKjp-Black.ttf](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/NotoSansCJKjp-Black.ttf)
 
 1. 积分增加 icon 图标 `ic_poc_points_up`
 
@@ -11898,11 +11898,11 @@ private fun animateTextSizeChange(textView: TextView, vararg textSize: Float): V
 
 7. 效果：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F动画11.gif)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/动画11.gif)
 
 8. 滑入和滑出部分慢放效果：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F动画12.gif)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/动画12.gif)
 
 ### ④、SpringAnimation 弹簧动画库
 
@@ -12002,15 +12002,15 @@ iconAnimation!!.setStartValue(1280f)
 iconAnimation!!.start()
 ```
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F1、020-10000.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/1、020-10000.gif)
 
 2. 阻尼：0.75，刚度：200f
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F2、075-200.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/2、075-200.gif)
 
 3. 阻尼：0.5，刚度：200f
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F3、050-200.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/3、050-200.gif)
 
 ### ⑤、Interpolator 插值器
 
@@ -12037,7 +12037,7 @@ iconAnimation!!.start()
 3. 当没有为动画设置插值器时，系统默认会帮你设置加减速插值器 `AccelerateDecelerateInterpolator`
 4. 来看下使用了插值器的效果是什么样的，此效果是设置了 `BounceInterpolator` 的样子，在临近消失时有弹跳效果：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F动画1.gif)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/动画1.gif)
 
 5. 来看下 `BounceInterpolator` 的源码：
 
@@ -12161,15 +12161,15 @@ class MyBounceInterpolator: Interpolator {
 
 1. drawable 右击 new -> vector asset
 
-![|650](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230518092027.png)
+![|650](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230518092027.png)
 
 2. 选择 icon AS 中没有时需要导入 svg 或者 psd
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230518092055.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230518092055.png)
 
 3. drawable 会生成对应 name 的图标文件 （可以点击左侧 line 7 颜色后选择颜色）
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230518092125.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230518092125.png)
 
 4. 在对应的控件中引入就可以了：`android:src="@drawable/ic_up"`
 
@@ -12227,14 +12227,14 @@ class MyBounceInterpolator: Interpolator {
 
 2. 效果：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231208141804.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231208141804.png)
 
 ### ④、svg 转安卓 xml 形状图片
 
-1. 有一个 svg 文件：[咖啡师.svg](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F咖啡师.svg)，我将其保存在了 D 盘根目录
+1. 有一个 svg 文件：[咖啡师.svg](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/咖啡师.svg)，我将其保存在了 D 盘根目录
 2. 在安卓项目中，右键 `res/drawable` 目录，选择新建 -> Vectro Asset
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222090652.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231222090652.png)
 
 3. 在弹出来的 Asset Studio 弹窗中
 	1. 选择 Asset type 的第二项，Local file (SVG, PSD)
@@ -12242,15 +12242,15 @@ class MyBounceInterpolator: Interpolator {
 	3. 在 Nane 输入框中修改名称
 	4. 在 Size 输入框中修改尺寸
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222091415.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231222091415.png)
 
 4. 修改完后，点击下一步，在新页面中点击完成
 
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222091439.png)
+![|675](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231222091439.png)
 
 5. 此时 xml 形状图片就被添加进来了
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222091532.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231222091532.png)
 
 ### ⑤、figma 导出图片对应的安卓资源文件夹
 
@@ -12857,7 +12857,7 @@ object AuthApiService {
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-![|668](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231026102417.png)
+![|668](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231026102417.png)
 
 #### Ⅱ、在代码中动态修改控件的宽高
 
@@ -14100,7 +14100,7 @@ class GuideScanDialog : BaseGuidePocDialog() {
 2. 鼠标键盘操作：`https://github.com/Genymobile/scrcpy/blob/master/doc/shortcuts.md`
 3. 给安装目录设置环境变量；也可以不设置，每次进入解压目录执行命令也可
 
-![|527](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230425162439.png)
+![|527](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230425162439.png)
 
 4. 手机记得开启 usb 调试
 5. 断开所有 wifi 连接设备：`adb disconnect`
@@ -14135,7 +14135,7 @@ class GuideScanDialog : BaseGuidePocDialog() {
 6. 此时手机端会提醒安装一个 app，同意就是了
 7. 安装完成后命令行应该会显示这样：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230425164606.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230425164606.png)
 
 8. 不要关闭此命令行窗口，再开启一个 scrcpy 的命令行窗口
 9. 以上面的方式连接 scrcpy 即可
@@ -14177,48 +14177,48 @@ class GuideScanDialog : BaseGuidePocDialog() {
 
 > 电脑软件下载网址：https://www.dev47apps.com/
 > 
-> 电脑软件：[DroidCam.Setup](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FDroidCam.Setup.6.5.2.exe)
+> 电脑软件：[DroidCam.Setup](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/DroidCam.Setup.6.5.2.exe)
 > 
-> 手机端软件：[DroidCam](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FDroidCam.apk)
+> 手机端软件：[DroidCam](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/DroidCam.apk)
 
 1. 电脑与手机端分别安装软件
 2. 手机端进入下方页面，记录端口号
 
-![|250](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2F4A13FF6FFC900441630FD400F9D43B98.jpg)
+![|250](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/4A13FF6FFC900441630FD400F9D43B98.jpg)
 
 3. 电脑端打开 DroidCamApp 软件，选择 USB 连接，选择自己的手机，填入端口号，点击 `Start` 进行连接
 
-![|240](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420084259.png)
+![|240](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230420084259.png)
 
 4. 连接成功后：
 
-![|315](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020230420084501.png)
+![|315](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020230420084501.png)
 
 ### ③、连接手机使其作为外放音响 1 SoundWire（不推荐）
 
-> 电脑端：[SoundWire_Server_setup7-8-10.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FSoundWire_Server_setup7-8-10.zip)
+> 电脑端：[SoundWire_Server_setup7-8-10.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/SoundWire_Server_setup7-8-10.zip)
 > 
-> 安卓端：[SoundWire_Free.apk](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FSoundWire_Free.apk)
+> 安卓端：[SoundWire_Free.apk](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/SoundWire_Free.apk)
 > 
 > 推荐使用下面的 SyncAudio
 
 1. 电脑手机下载安装上面的软件
 2. 电脑端打开软件，防火墙点击允许
 
-![|418](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141708.png)
+![|418](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231023141708.png)
 
 3. 在 Input Select 选择输出音频，选一个未使用的
 4. 之后再到Windows音量中修改输出设备，选择你在软件中勾选的输出源
 
-![|413](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141752.png)
+![|413](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231023141752.png)
 
 5. 手机端在中间的方框中输入本地 IP，回车键即可连接
 
-![|325](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231023141820.png)
+![|325](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231023141820.png)
 
 ### ④、连接手机使其作为外放音响 2 SyncAudio
 
-> 电脑端下载：[SyncAudio(同步听) 1.0.3.7z](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FSyncAudio%28%E5%90%8C%E6%AD%A5%E5%90%AC%29%201.0.3.7z)
+> 电脑端下载：[SyncAudio(同步听) 1.0.3.7z](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/SyncAudio%28%E5%90%8C%E6%AD%A5%E5%90%AC%29%201.0.3.7z)
 
 1. 电脑端下载上面的软件，解压，双击打开
 2. 使用手机任意软件扫描二维码即可
@@ -14242,19 +14242,19 @@ class GuideScanDialog : BaseGuidePocDialog() {
 > 
 > https://github.com/m9rco/Genymotion_ARM_Translation
 > 
-> [Genymotion-ARM-Translation_for_4.3.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FGenymotion-ARM-Translation_for_4.3.zip)
+> [Genymotion-ARM-Translation_for_4.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Genymotion-ARM-Translation_for_4.3.zip)
 > 
-> [Genymotion-ARM-Translation_for_4.4.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FGenymotion-ARM-Translation_for_4.4.zip)
+> [Genymotion-ARM-Translation_for_4.4.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Genymotion-ARM-Translation_for_4.4.zip)
 > 
-> [Genymotion-ARM-Translation_for_5.1.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FGenymotion-ARM-Translation_for_5.1.zip)
+> [Genymotion-ARM-Translation_for_5.1.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Genymotion-ARM-Translation_for_5.1.zip)
 > 
-> [Genymotion-ARM-Translation_for_6.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FGenymotion-ARM-Translation_for_6.0.zip)
+> [Genymotion-ARM-Translation_for_6.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Genymotion-ARM-Translation_for_6.0.zip)
 > 
 > [Genymotion-ARM-Translation_for_7.X.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2Genymotion-ARM-Translation_for_7.X.zipp)
 > 
-> [Genymotion-ARM-Translation_for_8.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FGenymotion-ARM-Translation_for_8.0.zip)
+> [Genymotion-ARM-Translation_for_8.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Genymotion-ARM-Translation_for_8.0.zip)
 > 
-> [Genymotion-ARM-Translation_for_9.0.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FGenymotion-ARM-Translation_for_9.0.zip)
+> [Genymotion-ARM-Translation_for_9.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Genymotion-ARM-Translation_for_9.0.zip)
 
 1. 下载 Genymotion_ARM_Translation
 2. 解压 `Genymotion_ARM_Translation-master`，进入 `package` 目录，将对应安卓版本的压缩包拖到模拟器中（<font color="#ff0000">注意电脑中 Genymotion_ARM_Translation 保存的目录不可以是中文</font>）
@@ -14297,7 +14297,7 @@ genymotion:/sdcard/Download #
 
 - 无法启动，报错：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152707.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231019152707.png)
 
 ##### （2）、原因 1：虚拟网卡问题
 
@@ -14305,11 +14305,11 @@ genymotion:/sdcard/Download #
 3. 解决方案：
 4. 在 Windows 下打开控制面板，按照路径：控制面板 --> 网络和 Internet --> 网络和共享中心 --> 更改适配器选项
 
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152919.png)
+![|675](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231019152919.png)
 
 5. 将被 `VirtualBox Host-Only Nerwork` 创建的所有连接关闭，然后打开最大的那个即可
 
-![|675](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231019152956.png)
+![|675](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231019152956.png)
 
 ##### （3）、原因 2：未正常关闭
 
@@ -14317,9 +14317,9 @@ genymotion:/sdcard/Download #
 2. 选择未正常关闭的设备
 3. 点击清楚，清楚未正常关闭状态即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020240308181725.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020240308181725.png)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020240308181742.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020240308181742.png)
 
 #### Ⅲ、genymotion 更改模拟器的存放路径
 
@@ -14394,7 +14394,7 @@ genymotion:/sdcard/Download #
 1. 进入手机的开发者选项，勾选：USB 调试
 2. 勾选：“仅充电”模式下允许 ADB 调试
 
-![|261](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020240903083653.png)
+![|261](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020240903083653.png)
 
 3. 连接电脑，手机弹窗选择：传输文件
 4. 使用 ADB 连接输入命令：
@@ -14447,7 +14447,7 @@ adb disconnect 手机ip:端口号
 
 1. idea 点击文件 -> 设置 -> 构建、执行、部署 -> 调试器，进入以下页面，拉到最下面
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222102826.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231222102826.png)
 
 2. 选择：`Use existing manually managed server`，因为ADB 默认使用的端口号是 `5037`，所以设置为 `5037` 即可
 3. 但是，这个选项不可以设置为 `5037` 即以下，只能设置为 `5038` 即以上（我不知道为什么会这样）
@@ -14456,7 +14456,7 @@ adb disconnect 手机ip:端口号
 6. 重启电脑
 7. 命令行窗口中，输入 `adb start-server`，显示 `daemon not running; starting now at tcp:5038` 即为配置完成
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020231222103427.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020231222103427.png)
 
 ### ②、idea 打开安卓 xml 布局文件时会卡死
 
@@ -14470,7 +14470,7 @@ adb disconnect 手机ip:端口号
 1. 点击文件 -> 设置，搜索 Emmet
 2. 取消勾选 `启用 XML/HTML Emmett (E)`
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020241023085809.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020241023085809.png)
 
 
 ### ③、
@@ -14490,7 +14490,7 @@ adb disconnect 手机ip:端口号
 
 ### ②、idea 中设置 gradle 目录
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020250507151734.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020250507151734.png)
 
 ## 6、应用签名
 
@@ -14511,7 +14511,7 @@ keytool -genkey -v -keystore flutter-key.jks -keyalg RSA -keysize 2048 -validity
 	8. `-alias flutter-key`：为新生成的密钥对（及其证书）在密钥库中指定一个唯一的别名，此处别名为 `flutter-key`
 3. 执行命令后，会要求输入一些值，这些值很重要，需要保存起来以备以后使用：
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2FAndroid%2Fattachments%2FPasted%20image%2020250620100114.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Android/attachments/Pasted%20image%2020250620100114.png)
 
 4. 密钥库文件 `flutter-key.jks` 生成之后，将其放在 `android/app` 目录下，和 `app/build.gradle.kts` 在同一目录
 5. 然后在同一个目录中创建 `key.properties` 文件，在其中填入以下内容：

@@ -31,14 +31,14 @@ apt install openjdk-17-jdk
 1. 下载地址：https://www.oracle.com/cn/java/technologies/downloads/
 2. 下载想要使用的版本，此处使用 java 21，选择 `x64 Compressed Archive`：
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227141724.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240227141724.png)
 
 3. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
 4. 解压缩：`tar -zxvf jdk-21_linux-x64_bin.tar.gz`
 
 ### ②、本地下载
 
-1. java 21 压缩包下载：[jdk-21_linux-x64_bin.zip](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fjdk-21_linux-x64_bin.zip)
+1. java 21 压缩包下载：[jdk-21_linux-x64_bin.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/jdk-21_linux-x64_bin.zip)
 2. 上传到服务器目录：`/home/steam/IDE/Java/JDK/`
 3. 解压缩：`unzip jdk-21_linux-x64_bin.zip`
 
@@ -112,11 +112,11 @@ cd game/Minecraft
 	4. spigot服务端：https://hub.spigotmc.org/jenkins/job/BuildTools/
 	5. sponge服务端：https://www.spongepowered.org/
 5. 这里使用 papermc 服务端，访问 papermc 官网，选择版本下载；此处以 `1.20.1` 版本进行演示
-	1. paper-1.20.1-196 版本下载：[paper-1.20.1-196.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fpaper-1.20.1-196.jar)
+	1. paper-1.20.1-196 版本下载：[paper-1.20.1-196.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/paper-1.20.1-196.jar)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240226163637.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240226163637.png)
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240227090220.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240227090220.png)
 
 7. 将上面下载的文件上传到 `/home/steam/game/Minecraft` 目录中，此时该目录只有 `paper-1.20.1-196.jar` 这一个文件
 8. 赋予权限：
@@ -202,7 +202,7 @@ online-mode=false
 > 我使用的皮肤站：https://littleskin.cn
 
 1. 下载 `authlib-injector`，将其上传至 `/home/steam/game/Minecraft/plugins/` 中
-	1. authlib-injector-1.2.5 下载：[authlib-injector-1.2.5.jar](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2Fauthlib-injector-1.2.5.jar)
+	1. authlib-injector-1.2.5 下载：[authlib-injector-1.2.5.jar](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/authlib-injector-1.2.5.jar)
 2. 进入 `/home/steam/game/Minecraft` 目录
 
 ```shell
@@ -436,29 +436,29 @@ enable-rcon=false
 
 1. 下载地址：https://hmcl.huangyuhui.net/download/
 2. 下载最新版本即可
-3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FHMCL-3.5.5.exe)
+3. 本地 HMCL-3.5.5 下载：[HMCL-3.5.5.exe](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/HMCL-3.5.5.exe)
 
 ### ②、登录 `littleskin` 皮肤站
 
 1. 在皮肤站账册账号，使用皮肤：https://littleskin.cn
 2. HMCL 启动器中点击设置
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305194424.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305194424.png)
 
 3. 进入设置页后，点击下载，取消自动选择下载源，选择 BMCLAPI
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305194522.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305194522.png)
 
 4. 然后将按钮拖动至启动器，登录即可
 
-![](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305194713.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305194713.png)
 
 ### ③、使用启动器下载游戏本体
 
 1. 点击版本列表
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305200733.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305200733.png)
 
 2. 点击安装新游戏版本，下载指定版本的游戏即可
 
-![|700](https://tool.yuehai.fun:63/file/downloadPublicFile?basePathType=takeDown&subPath=%2F%E5%85%B6%E4%BB%96%2F%E6%B8%B8%E6%88%8F%2Fattachments%2FPasted%20image%2020240305200811.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020240305200811.png)
