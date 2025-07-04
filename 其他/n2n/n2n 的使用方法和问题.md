@@ -8,24 +8,25 @@
 
 ### ②、使用方式
 
-1. 下载 n2n 客户端：[n2n_client_windows_3.12_Pack_2.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n_client_windows_3.12_Pack_2.zip)
+1. 下载 n2n 客户端，解压密码：`yuehai`：[n2n_client_windows_3.12-密码-yuehai.7z](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/n2n_client_windows_3.12-密码-yuehai.7z)
+2. 或者在群里下载：
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240819161741.png)
 
-2. 解压，然后双击其中的 `n2n.exe` 运行；<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
+3. 解压，然后双击其中的 `n2n.exe` 运行；<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/n2n/attachments/Pasted%20image%2020240819162113.png)
 
-3. 复制上面的服务器地址到 n2n 服务器输入框中
-4. `虚拟网IP` 后面的选项请勾选，防止虚拟 ip 和别人重复
+4. 复制上面的服务器地址到 n2n 服务器输入框中
+5. `虚拟网IP` 后面的选项请勾选，防止虚拟 ip 和别人重复
 	1. <font color="#ff0000">虚拟网 ip 前三位要保证和一起联机的朋友相同</font>
 	2. 最后一位 1 ~ 255，随意选择；若是自动分配的前三位不同，请取消勾选自动分配，手动修改虚拟 ip
-5. <font color="#ff0000">小组名称需要一摸一样</font>
+6. <font color="#ff0000">小组名称需要一摸一样</font>
 
 ![](attachments/Pasted%20image%2020250626153531.png)
 
-1. 点击启动，有时等待时间会稍长一点，等待期间<font color="#ff0000">不要按重启按钮</font>，不然要再等 2 分钟左右才能连接上
-2. 服务器 ip 后面显示绿色对号即为连接成功
+7. 点击启动，有时等待时间会稍长一点，等待期间<font color="#ff0000">不要按重启按钮</font>，不然要再等 2 分钟左右才能连接上
+8. 服务器 ip 后面显示绿色对号即为连接成功
 
 ![](attachments/Pasted%20image%2020250626153637.png)
 
