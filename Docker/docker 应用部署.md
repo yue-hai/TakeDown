@@ -4091,6 +4091,98 @@ felinae98/nonebot-bison
 ![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107151702.png)
 
 
+# 505、icepage/aujc 获取京东 cookie
+
+> 1. 项目 github：https://github.com/icepage/AutoUpdateJdCookie
+> 2. dockerHub 地址：https://hub.docker.com/r/icepage/aujc
+
+## 1、介绍
+
+1. 获取京东 cookie，并自动更新到青龙
+
+## 2、第一次运行，创建配置文件
+
+1. 创建配置目录：`/vol1/1000/docker/script/aujc/config` 并进入
+
+```shell
+cd /vol1/1000/docker/script/aujc/config/
+```
+
+2. 创建配置文件 `config.py`
+
+```shell
+touch config.py
+```
+
+3. 启动一次性容器生成 `config.py` 配置
+
+```shell
+docker run -i --rm \
+-v $PWD/config.py:/app/config.py \
+icepage/aujc python make_config.py
+```
+
+4. 根据提示输入内容：
+5. 结束后，会将配置写入 `config.py` 文件
+
+## 4、docker 部署
+
+1. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-v /vol1/1000/docker/script/aujc/config/config.py:/app/config.py \
+icepage/aujc:latest
+```
+
+2. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 aujc 的服务
+    aujc:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: icepage/aujc:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: aujc
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/script/aujc/config/config.py:/app/config.py
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+3. 等待定时执行即可
+
+## 5、手动执行
+
+1. 上面已经部署的情况下，进入容器终端
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711083943.png)
+
+2. 执行命令：`python main.py`
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711084003.png)
+
+## 6、访问
+
+1. 无 web 页面，无法访问
+
+
 
 
 # 【----------------主机模式 ----------------】
