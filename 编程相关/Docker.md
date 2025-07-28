@@ -4076,7 +4076,18 @@ sudo systemctl restart docker
 
 ### ④、
 
-## 3、
+## 3、查看日志
+
+### ①、查看容器的最新 100 条日志并实时更新
+
+```shell
+docker logs -f --tail 100 [容器名或id]
+```
+
+### ②、
+
+### ③、
+
 
 ## 4、
 
