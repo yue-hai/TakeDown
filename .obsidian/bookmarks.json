@@ -173,8 +173,28 @@
           "items": [
             {
               "type": "file",
+              "ctime": 1754541548522,
+              "path": "其他/设备和工具/windows.md"
+            },
+            {
+              "type": "file",
               "ctime": 1751418577853,
-              "path": "其他/设备和工具/设备和工具.md"
+              "path": "其他/设备和工具/llinux.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1754541556773,
+              "path": "其他/设备和工具/android.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1754541623236,
+              "path": "其他/设备和工具/飞牛fnos.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1754541563532,
+              "path": "其他/设备和工具/键盘.md"
             }
           ],
           "title": "设备和工具"
