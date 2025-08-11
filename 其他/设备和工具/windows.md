@@ -489,7 +489,92 @@ public class WakeOnLan {
 
 6. 点击确定，重启即可
 
-## 5、
+## 5、双系统时修改启动加载器显示名称
+
+1. 使用管理员打开 cmd
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811085034.png)
+
+2. 输入命令查看 Windows 启动加载器详情：`bcdedit`
+
+```shell
+C:\Windows\system32>bcdedit
+
+Windows 启动管理器
+--------------------
+标识符                  {bootmgr}
+device                  partition=\Device\HarddiskVolume1
+path                    \EFI\Microsoft\Boot\bootmgfw.efi
+description             Windows Boot Manager
+locale                  zh-CN
+inherit                 {globalsettings}
+default                 {current}
+resumeobject            {7711a715-75da-11f0-b0e8-90f261811765}
+displayorder            {current}
+                        {428b9c43-7501-11f0-9541-d5809271f2b2}
+toolsdisplayorder       {memdiag}
+timeout                 5
+
+Windows 启动加载器
+-------------------
+标识符                  {current}
+device                  partition=C:
+path                    \Windows\system32\winload.efi
+description             主用系统 windows 10 ltsc 2021
+locale                  zh-CN
+inherit                 {bootloadersettings}
+recoverysequence        {945bde32-75da-11f0-8f22-aa33128f1ccf}
+displaymessageoverride  Recovery
+recoveryenabled         Yes
+isolatedcontext         Yes
+allowedinmemorysettings 0x15000075
+osdevice                partition=C:
+systemroot              \Windows
+resumeobject            {7711a715-75da-11f0-b0e8-90f261811765}
+nx                      OptIn
+bootmenupolicy          Standard
+
+Windows 启动加载器
+-------------------
+标识符                  {428b9c43-7501-11f0-9541-d5809271f2b2}
+device                  partition=F:
+path                    \Windows\system32\winload.efi
+description             国产游戏 windows 10 ltsc 2021
+locale                  zh-CN
+inherit                 {bootloadersettings}
+recoverysequence        {5e342cb9-7501-11f0-a6b1-d3805224f578}
+displaymessageoverride  Recovery
+recoveryenabled         Yes
+isolatedcontext         Yes
+allowedinmemorysettings 0x15000075
+osdevice                partition=F:
+systemroot              \Windows
+resumeobject            {428b9c42-7501-11f0-9541-d5809271f2b2}
+nx                      OptIn
+bootmenupolicy          Standard
+
+C:\Windows\system32>
+```
+
+3. description 字段就是在开机选择界面看到的名字，输入命令进行修改：
+
+```shell
+bcdedit /set {current} description "主用系统 windows 10 ltsc 2021"
+```
+
+## 6、双系统时修改默认系统和等待时间
+
+1. `Windows + R` 打开运行，输入 `msconfig` 后点击确定，打开 系统配置 窗口
+2. 切换到 引导 (Boot) 选项卡
+3. 单击选中希望作为默认系统的那个选项，点击 设为默认值 (Set as default) 按钮
+4. 在右侧的 超时 (Timeout) 框里，可以设置选择界面的等待时间（单位是秒，例如 5 或 10 秒）
+5. 点击 确定 即可
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811090125.png)
+
+## 7、
+
+## 8、
 
 # 六、问题记录
 
@@ -721,7 +806,53 @@ PS D:\>
 7. 双击 bat 文件。生成的 3.jpg 即为图种
 8. 要解压图种只需更改后缀名为 `.rar`，然后解压即可
 
-## 5、
+## 5、ltsc 安装 `.msixbundle` 或 `.msix` 应用包
+
+1. 将安装包放到磁盘根目录，比如：`E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle`
+2. 使用管理员打开 PowerShell
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811083002.png)
+
+3. 输入命令安装软件：
+
+```shell
+Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
+```
+
+4. 如果提示：此程序包依赖于一个找不到的框架
+
+```shell
+PS C:\Windows\system32> Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"                             Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              Windows 无法安装程序包 32669SamG.ModernFlyouts_0.9.3.0_x64__pcy8vm99wrpcg，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.VCLibs.140.00.UWPDesktop”(具有中性或 x64 处理器体系结构，最低版本为 14.0.29231.0)。
+当前已安装的名称为“Microsoft.VCLibs.140.00.UWPDesktop”的框架为: {}注意: 有关其他信息，请在事件日志中查找 [ActivityId] 50b5dcb5-09db-0004-e135-ba50db09dc01，或使用命令行 Get-AppPackageLog -ActivityID 50b5dcb5-09db-0004-e135-ba50db09dc01
+
+所在位置 行:1 字符: 1
++ Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (E:\ModernFlyout...tral.Msixbundle:String) [Add-AppxPackage], IOException
+    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
+
+PS C:\Windows\system32>
+```
+
+5. 原因是该系统缺少一个必要的 依赖项 或 公共组件，首先下载并安装缺失的 VCLibs 运行库：[Microsoft.VCLibs.x64.14.00.Desktop.appx](https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx)
+6. 将下载的运行库安装包也放入到磁盘根目录，比如：`E:\Microsoft.VCLibs.x64.14.00.Desktop.appx`
+7. 输入命令安装运行库：
+
+```shell
+Add-AppxPackage -Path "E:\Microsoft.VCLibs.x64.14.00.Desktop.appx"
+```
+
+8. 如果安装成功，再次输入命令安装软件：
+
+```shell
+Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
+```
+
+## 6、
+
+## 7、
+
+## 8、
 
 # 八、命令使用
 
