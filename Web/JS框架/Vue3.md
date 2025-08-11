@@ -2936,7 +2936,29 @@ npm config set registry https://registry.npmjs.org
 npm config get registry
 ```
 
-### ②、
+### ②、配置免安装 nodejs 环境变量
+
+1. 下载NodeJS免安装版本zip：http://nodejs.cn/download/
+2. 解压，比如解压后路径为：`E:\apply\devTools\Environments\Web\nodejs\node-v22.16.0-win-x64`
+3. 配置系统变量：`NODEJS_HOME`
+
+```shell
+E:\apply\devTools\Environments\Web\nodejs\node-v22.16.0-win-x64
+```
+
+4. 配置 path 变量：
+
+```shell
+%NODEJS_HOME%
+```
+
+5. 查看是否配置成功：`node -v`
+
+```shell
+C:\Users\yan>node -v
+v22.16.0
+```
+
 
 ### ③、
 
