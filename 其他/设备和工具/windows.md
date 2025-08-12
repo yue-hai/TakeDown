@@ -574,7 +574,7 @@ bcdedit /set {current} description "主用系统 windows 10 ltsc 2021"
 
 ## 7、删除右键菜单项
 
-### ①、启用 BitLocker(B)
+### ①、删除启用 BitLocker(B)
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811095013.png)
 
@@ -603,9 +603,50 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 
 ## 8、添加右键菜单项
 
+### ①、为所有文件类型添加 Notepad3
+
+1. 添加 reg 脚本：[Notepad3_Add_SubMenu.reg](attachments/Notepad3_Add_SubMenu.reg)，清理 reg 脚本：[Notepad3_Remove_Menu.reg](attachments/Notepad3_Remove_Menu.reg)
+2. 如不想使用脚本，可手动修改注册表：
+3. `Windows + R` 打开运行，输入 `regedit` 后点击确定，打开 注册表编辑器 窗口
+4. 进入注册表路径：`HKEY_CLASSES_ROOT\*\shell`
+5. 在左侧的树状目录中，右键点击 shell 项，选择 新建 -> 项(K)，将这个新建的项命名为您想在菜单上看到的文字，例如：用 Notepad3 编辑
+6. 添加图标：
+	1. 选中刚刚创建的 用 Notepad3 编辑 项，在右侧空白处，右键点击 -> 新建 -> 字符串值(S)，将这个字符串值命名为 Icon
+	2. 双击 Icon，在 数值数据 中输入 Notepad3 程序 Notepad3.exe 的完整路径。例如：E:\apply\devTools\TextEditor\Notepad3\Notepad3.exe,这会让菜单项旁边显示程序的图标
+7. 新建 command 项：
+	1. 在左侧目录中，右键点击刚创建的 用 Notepad3 编辑 项，选择 新建 -> 项(K)，将这个新建的子项命名为 command
+	2. 单击选中 command 项，在右侧窗口中，会有一个名为 (默认) 的值。双击它
+	3. 在弹出的 编辑字符串 对话框的 数值数据 一栏中，输入 Notepad3 的完整路径，并在后面加上 "%1"（包含英文双引号）
+	4. 例如："E:\apply\devTools\TextEditor\Notepad3\Notepad3.exe" "%1"
+	5. 点击确定保存
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250812112346.png)
+
+### ②、
+
 ## 9、设置开发环境变量脚本
 
 1. 脚本下载：[setup_env.ps1](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/setup_env.ps1)
+2. 如果无法运行，查看当前的执行策略：`Get-ExecutionPolicy`
+3. 如果是 `Restricted` 的话，将其更改为 `RemoteSigned`，在确认中输入 A 表示确定修改
+
+```PowerShell
+PS C:\Windows\system32> Get-ExecutionPolicy
+Restricted
+PS C:\Windows\system32> Set-ExecutionPolicy RemoteSigned
+
+执行策略更改
+执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170
+中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?
+[Y] 是(Y)  [A] 全是(A)  [N] 否(N)  [L] 全否(L)  [S] 暂停(S)  [?] 帮助 (默认值为“N”): A
+PS C:\Windows\system32> Get-ExecutionPolicy
+RemoteSigned
+PS C:\Windows\system32>
+```
+
+1. 修改完毕后，重新执行脚本
+2. 
+3. 1
 
 ```shell
 # ==================================================
@@ -613,10 +654,23 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 #  使用方法：以管理员身份右键点击此 .ps1 文件，选择 使用 PowerShell 运行
 # ==================================================
 
+# 阶段一：管理员权限自我检查与提升
+# ==================================================
+# 获取当前用户的身份信息
+$currentUser = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
+# 检查当前用户角色是否为 "管理员"
+if (-not $currentUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    # 如果不是管理员，则准备以管理员权限重新启动当前脚本
+    $arguments = "& '" + $myinvocation.mycommand.definition + "'"
+    Start-Process powershell -Verb runAs -ArgumentList $arguments
+    # 退出当前的非管理员进程
+    exit
+}
+
 # 定义注册表路径，方便复用
 $RegPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
 
-# 阶段一：设置独立的 HOME 变量
+# 阶段二：设置独立的 HOME 变量
 # 为各个开发工具（如 Git、Java 等）设置一个独立的、指向其安装根目录的 HOME 变量
 # 这样做的好处是，当未来升级工具版本时（例如 JDK 从 21 升级到 22），只需要修改这一处的路径即可
 # 而 Path 变量中对它的引用（%JAVA_HOME%\bin）无需任何改动，极大地简化了维护工作
@@ -638,7 +692,7 @@ Set-ItemProperty -Path $RegPath -Name "FLUTTER_HOME" -Value "E:\apply\devTools\E
 Set-ItemProperty -Path $RegPath -Name "PYTHON_HOME" -Value "E:\apply\devTools\Environments\Python\python-3.13.5-embed-amd64"
 
 
-# 阶段二：安全地向系统 Path 变量追加路径
+# 阶段三：安全地向系统 Path 变量追加路径
 # Path 变量是系统查找命令的依据，直接覆盖会导致系统命令失效，因此必须采用 追加 模式
 # 为了避免反复运行脚本导致路径重复，本阶段采用 读取 -> 检查 -> 追加 的幂等性逻辑，确保脚本可安全地重复执行
 
@@ -718,7 +772,7 @@ else {
 }
 
 
-# 阶段三：结束提示
+# 阶段四：结束提示
 Write-Host ""
 Write-Host "✅ 所有环境变量配置完成！请重启电脑或注销后生效。" -ForegroundColor Green
 ```
