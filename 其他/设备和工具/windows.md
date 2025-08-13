@@ -627,8 +627,9 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 ## 9、设置开发环境变量脚本
 
 1. 脚本下载：[setup_env.ps1](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/setup_env.ps1)
-2. 如果无法运行，查看当前的执行策略：`Get-ExecutionPolicy`
-3. 如果是 `Restricted` 的话，将其更改为 `RemoteSigned`，在确认中输入 A 表示确定修改
+2. 如果无法运行，查看当前的执行策略：
+3. 使用管理员打开 PowerShell，输入： `Get-ExecutionPolicy`
+4. 如果是 `Restricted` 的话，将其更改为 `RemoteSigned`，在确认中输入 A 表示确定修改
 
 ```PowerShell
 PS C:\Windows\system32> Get-ExecutionPolicy
