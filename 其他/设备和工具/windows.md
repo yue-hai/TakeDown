@@ -394,7 +394,17 @@ public class WakeOnLan {
 
 ![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241112131503.png)
 
-## 3、
+## 3、重新获取新的动态 IP 地址
+
+```PowerShell
+# 去除网卡的动态IP地址
+ipconfig /release
+
+# 为网卡重新动态分配 IP 地址
+ipconfig /renew
+```
+
+## 4、
 
 
 # 五、系统设置
