@@ -717,23 +717,154 @@ slmgr -dlv
 
 ![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090858.png)
 
-## 4、
+## <span id="6-4">4、ltsc 安装 `.msixbundle` 或 `.msix` 应用包</span>
 
+### ①、正常安装
+
+1. 将安装包放到磁盘根目录，比如：`E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle`
+2. 使用管理员打开 PowerShell
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811083002.png)
+
+3. 输入命令安装软件：
+
+```PowerShell
+Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
+```
+
+4. 如果提示：此程序包依赖于一个找不到的框架
+
+```PowerShell
+PS C:\Windows\system32> Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"                             
+Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              
+Windows 无法安装程序包 32669SamG.ModernFlyouts_0.9.3.0_x64__pcy8vm99wrpcg，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.VCLibs.140.00.UWPDesktop”(具有中性或 x64 处理器体系结构，最低版本为 14.0.29231.0)。
+当前已安装的名称为“Microsoft.VCLibs.140.00.UWPDesktop”的框架为: {}
+注意: 有关其他信息，请在事件日志中查找 [ActivityId] 50b5dcb5-09db-0004-e135-ba50db09dc01，或使用命令行 Get-AppPackageLog -ActivityID 50b5dcb5-09db-0004-e135-ba50db09dc01
+
+所在位置 行:1 字符: 1
++ Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (E:\ModernFlyout...tral.Msixbundle:String) [Add-AppxPackage], IOException
+    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
+
+PS C:\Windows\system32>
+```
+
+5. 原因是该系统缺少一个必要的 依赖项 或 公共组件，首先下载并安装缺失的 VCLibs 运行库：
+	1. 网络下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx)
+	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
+6. 将下载的运行库安装包也放入到磁盘根目录，比如：`E:\Microsoft.VCLibs.x64.14.00.Desktop.appx`
+7. 输入命令安装运行库：
+
+```PowerShell
+Add-AppxPackage -Path "E:\Microsoft.VCLibs.x64.14.00.Desktop.appx"
+```
+
+8. 如果安装成功，再次输入命令安装软件：
+
+```PowerShell
+Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
+```
+
+### ②、其他报错
+
+#### Ⅰ、查看卸载软件包和依赖
+
+1. 根据名称查看已经安装的的应用包，这两个分别是 `Microsoft.VCLibs.140.00.UWPDesktop` 的 `x64` 和 `x86` 版本
+
+```PowerShell
+PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00*"
+
+Name              : Microsoft.VCLibs.140.00.UWPDesktop
+Publisher         : CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+Architecture      : X64
+ResourceId        :
+Version           : 14.0.33728.0
+PackageFullName   : Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe
+InstallLocation   : C:\Program Files\WindowsApps\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe
+IsFramework       : True
+PackageFamilyName : Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe
+PublisherId       : 8wekyb3d8bbwe
+IsResourcePackage : False
+IsBundle          : False
+IsDevelopmentMode : False
+NonRemovable      : False
+IsPartiallyStaged : False
+SignatureKind     : Store
+Status            : Ok
+
+Name              : Microsoft.VCLibs.140.00.UWPDesktop
+Publisher         : CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+Architecture      : X86
+ResourceId        :                                                                                                     
+Version           : 14.0.33728.0                                                                                        PackageFullName   : Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x86__8wekyb3d8bbwe                                  InstallLocation   : C:\Program Files\WindowsApps\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x86__8wekyb3d8bbwe     
+IsFramework       : True                                                                                                PackageFamilyName : Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe                                                    
+PublisherId       : 8wekyb3d8bbwe                                                                                       IsResourcePackage : False                                                                                               
+IsBundle          : False                                                                                               IsDevelopmentMode : False                                                                                               
+NonRemovable      : False                                                                                               IsPartiallyStaged : False                                                                                               
+SignatureKind     : Store                                                                                               
+Status            : Ok                                                                                                                                                                                            
+PS C:\Windows\system32>
+```
+
+2. 使用 `Remove-AppxPackage` 卸载应用包，此处提示由两个应用包依赖于本应用，需要先卸载这两个应用包才可以
+
+```PowerShell
+PS C:\Windows\system32> Remove-AppxPackage -Package "Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe"
+Remove-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。
+Windows 无法删除框架 Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe，因为程序包  32669SamG.ModernFl
+youts Microsoft.Edge.GameAssist 当前依赖于该框架。如果删除所有依赖于该框架的程序包，则会自动删除该框架。
+注意: 有关其他信息，请在事件日志中查找 [ActivityId] 24293e96-0bf0-000c-095f-2924f00bdc01，或使用命令行 Get-AppPackageLo
+g -ActivityID 24293e96-0bf0-000c-095f-2924f00bdc01
+所在位置 行:1 字符: 1
++ Remove-AppxPackage -Package "Microsoft.VCLibs.140.00.UWPDesktop_14.0. ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (Microsoft.VCLib...__8wekyb3d8bbwe:String) [Remove-AppxPackage], IOException
+    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.RemoveAppxPackageCommand
+
+PS C:\Windows\system32>
+```
+
+3. 卸载这两个依赖的应用程序
+
+```PowerShell
+PS C:\Windows\system32> Get-AppxPackage *ModernFlyouts* | Remove-AppxPackage
+PS C:\Windows\system32> Get-AppxPackage *Microsoft.Edge.GameAssist* | Remove-AppxPackage
+```
+
+4. 卸载这 `Microsoft.VCLibs.140.00.UWPDesktop`，包括 `x64` 和 `x86` 版本
+
+```PowerShell
+PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00.UWPDesktop" | Remove-AppxPackage
+```
+
+#### Ⅱ、缺少 `Microsoft.UI.Xaml.2.8`
+
+1. 网络下载 [Microsoft.UI.Xaml-2.8.6](https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.8.6)，此链接会下载一个 `.nupkg` 文件，需要将其后缀名改为 `.zip`，然后解压，在 `tools\AppX\x64\Release` 目录下找到 `Microsoft.UI.Xaml.2.8.appx` 文件
+2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](attachments/)
+3. 下载后使用上面的命令进行安装
+
+```PowerShell
+PS C:\Windows\system32> Add-AppxPackage -Path "E:\bundle.msixbundle"                                                    
+Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              
+Windows 无法安装程序包 28017CharlesMilette.TranslucentTB_2025.1.0.0_x64__v826wp6bftszj，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.UI.Xaml.2.8”(具有中性或 x64 处理器体系结构，最低版本为 8.2310.30001.0)。
+当前已安装的名称为“Microsoft.UI.Xaml.2.8”的框架为: {}
+注意: 有关其他信息，请在事件日志中查找 [ActivityId] 24293e96-0bf0-0004-738f-2924f00bdc01，或使用命令行 Get-AppPackageLog -ActivityID 24293e96-0bf0-0004-738f-2924f00bdc01
+
+所在位置 行:1 字符: 1
++ Add-AppxPackage -Path "E:\bundle.msixbundle"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (E:\bundle.msixbundle:String) [Add-AppxPackage], IOException
+    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
+
+PS C:\Windows\system32>
+```
+
+## 5、
 
 # 七、软件使用
 
 
-
-## 2、大小写锁定提示
-
-1. 在微软商店中搜索：`ModernFlyouts`
-2. 或进入官网：https://modernflyouts-community.github.io/
-
-![|600](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240902150244.png)
-
-3. 安装完毕后，打开软件，点击锁定键浮出控件模块，启动即可
-
-![|600](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240902150435.png)
 
 ## 3、使用 2fauth 保存 steam 手机令牌验证码
 
@@ -835,146 +966,6 @@ PS D:\>
 7. 双击 bat 文件。生成的 3.jpg 即为图种
 8. 要解压图种只需更改后缀名为 `.rar`，然后解压即可
 
-## 5、ltsc 安装 `.msixbundle` 或 `.msix` 应用包
-
-1. 将安装包放到磁盘根目录，比如：`E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle`
-2. 使用管理员打开 PowerShell
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811083002.png)
-
-3. 输入命令安装软件：
-
-```PowerShell
-Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
-```
-
-4. 如果提示：此程序包依赖于一个找不到的框架
-
-```PowerShell
-PS C:\Windows\system32> Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"                             
-Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              
-Windows 无法安装程序包 32669SamG.ModernFlyouts_0.9.3.0_x64__pcy8vm99wrpcg，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.VCLibs.140.00.UWPDesktop”(具有中性或 x64 处理器体系结构，最低版本为 14.0.29231.0)。
-当前已安装的名称为“Microsoft.VCLibs.140.00.UWPDesktop”的框架为: {}
-注意: 有关其他信息，请在事件日志中查找 [ActivityId] 50b5dcb5-09db-0004-e135-ba50db09dc01，或使用命令行 Get-AppPackageLog -ActivityID 50b5dcb5-09db-0004-e135-ba50db09dc01
-
-所在位置 行:1 字符: 1
-+ Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (E:\ModernFlyout...tral.Msixbundle:String) [Add-AppxPackage], IOException
-    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
-
-PS C:\Windows\system32>
-```
-
-5. 原因是该系统缺少一个必要的 依赖项 或 公共组件，首先下载并安装缺失的 VCLibs 运行库：
-	1. 网络下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx)
-	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
-6. 将下载的运行库安装包也放入到磁盘根目录，比如：`E:\Microsoft.VCLibs.x64.14.00.Desktop.appx`
-7. 输入命令安装运行库：
-
-```PowerShell
-Add-AppxPackage -Path "E:\Microsoft.VCLibs.x64.14.00.Desktop.appx"
-```
-
-8. 如果安装成功，再次输入命令安装软件：
-
-```PowerShell
-Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
-```
-
-## 6、ltsc 安装 `.msixbundle` 或 `.msix` 应用包 其他报错
-
-### ①、查看卸载软件包和依赖
-
-1. 根据名称查看已经安装的的应用包，这两个分别是 `Microsoft.VCLibs.140.00.UWPDesktop` 的 `x64` 和 `x86` 版本
-
-```PowerShell
-PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00*"
-
-Name              : Microsoft.VCLibs.140.00.UWPDesktop
-Publisher         : CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-Architecture      : X64
-ResourceId        :
-Version           : 14.0.33728.0
-PackageFullName   : Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe
-InstallLocation   : C:\Program Files\WindowsApps\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe
-IsFramework       : True
-PackageFamilyName : Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe
-PublisherId       : 8wekyb3d8bbwe
-IsResourcePackage : False
-IsBundle          : False
-IsDevelopmentMode : False
-NonRemovable      : False
-IsPartiallyStaged : False
-SignatureKind     : Store
-Status            : Ok
-
-Name              : Microsoft.VCLibs.140.00.UWPDesktop
-Publisher         : CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-Architecture      : X86
-ResourceId        :                                                                                                     
-Version           : 14.0.33728.0                                                                                        PackageFullName   : Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x86__8wekyb3d8bbwe                                  InstallLocation   : C:\Program Files\WindowsApps\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x86__8wekyb3d8bbwe     
-IsFramework       : True                                                                                                PackageFamilyName : Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe                                                    
-PublisherId       : 8wekyb3d8bbwe                                                                                       IsResourcePackage : False                                                                                               
-IsBundle          : False                                                                                               IsDevelopmentMode : False                                                                                               
-NonRemovable      : False                                                                                               IsPartiallyStaged : False                                                                                               
-SignatureKind     : Store                                                                                               
-Status            : Ok                                                                                                                                                                                            
-PS C:\Windows\system32>
-```
-
-2. 使用 `Remove-AppxPackage` 卸载应用包，此处提示由两个应用包依赖于本应用，需要先卸载这两个应用包才可以
-
-```PowerShell
-PS C:\Windows\system32> Remove-AppxPackage -Package "Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe"
-Remove-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。
-Windows 无法删除框架 Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe，因为程序包  32669SamG.ModernFl
-youts Microsoft.Edge.GameAssist 当前依赖于该框架。如果删除所有依赖于该框架的程序包，则会自动删除该框架。
-注意: 有关其他信息，请在事件日志中查找 [ActivityId] 24293e96-0bf0-000c-095f-2924f00bdc01，或使用命令行 Get-AppPackageLo
-g -ActivityID 24293e96-0bf0-000c-095f-2924f00bdc01
-所在位置 行:1 字符: 1
-+ Remove-AppxPackage -Package "Microsoft.VCLibs.140.00.UWPDesktop_14.0. ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (Microsoft.VCLib...__8wekyb3d8bbwe:String) [Remove-AppxPackage], IOException
-    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.RemoveAppxPackageCommand
-
-PS C:\Windows\system32>
-```
-
-3. 卸载这两个依赖的应用程序
-
-```PowerShell
-PS C:\Windows\system32> Get-AppxPackage *ModernFlyouts* | Remove-AppxPackage
-PS C:\Windows\system32> Get-AppxPackage *Microsoft.Edge.GameAssist* | Remove-AppxPackage
-```
-
-4. 卸载这 `Microsoft.VCLibs.140.00.UWPDesktop`，包括 `x64` 和 `x86` 版本
-
-```PowerShell
-PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00.UWPDesktop" | Remove-AppxPackage
-```
-
-### ②、缺少 `Microsoft.UI.Xaml.2.8`
-
-1. 网络下载 [Microsoft.UI.Xaml-2.8.6](https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.8.6)，此链接会下载一个 `.nupkg` 文件，需要将其后缀名改为 `.zip`，然后解压，在 `tools\AppX\x64\Release` 目录下找到 `Microsoft.UI.Xaml.2.8.appx` 文件
-2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](attachments/)
-3. 下载后使用上面的命令进行安装
-
-```PowerShell
-PS C:\Windows\system32> Add-AppxPackage -Path "E:\bundle.msixbundle"                                                    
-Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              
-Windows 无法安装程序包 28017CharlesMilette.TranslucentTB_2025.1.0.0_x64__v826wp6bftszj，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.UI.Xaml.2.8”(具有中性或 x64 处理器体系结构，最低版本为 8.2310.30001.0)。
-当前已安装的名称为“Microsoft.UI.Xaml.2.8”的框架为: {}
-注意: 有关其他信息，请在事件日志中查找 [ActivityId] 24293e96-0bf0-0004-738f-2924f00bdc01，或使用命令行 Get-AppPackageLog -ActivityID 24293e96-0bf0-0004-738f-2924f00bdc01
-
-所在位置 行:1 字符: 1
-+ Add-AppxPackage -Path "E:\bundle.msixbundle"
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (E:\bundle.msixbundle:String) [Add-AppxPackage], IOException
-    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
-
-PS C:\Windows\system32>
-```
 
 ### ③、
 
