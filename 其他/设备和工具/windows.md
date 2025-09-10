@@ -722,61 +722,6 @@ slmgr -dlv
 
 # 七、软件使用
 
-## 1、SubtitleEdit 字幕处理
-
-#### Ⅰ、语音识别 Whisper 设置为简体中文
-
-1. 点击视频 -> 语音识别 Whisper
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240107201712.png)
-
-2. 点击高级
-
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240107201738.png)
-
-3. 在弹出的页面中添加参数：`--initial_prompt 以下是普通话的句子`
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240107201850.png)
-
-4. 点击确定即可
-
-#### Ⅱ、Whisper 和 Vosk/Kaldi 的区别
-
-##### （1）、Whisper
-
-1. 开发者：Whisper 是由 OpenAI 开发的一个语音识别模型
-2. 技术基础：Whisper 使用了深度学习模型，特别是基于 Transformer 架构的模型。它可以处理多种语言，并且在噪音较大的环境下也能保持较高的准确率
-3. 准确性：Whisper 通常能够提供非常高的语音识别准确性，特别是在处理多语言和口音时表现突出
-4. 硬件要求：由于 Whisper 是一个深度学习模型，它对硬件的要求较高，尤其是在本地运行时，通常需要强大的 GPU 支持
-5. 适用场景：Whisper 适合用于需要高准确度和多语言支持的项目，特别是在有较大计算资源的情况下
-
-##### （2）、Vosk/Kaldi
-
-1. 开发者：Kaldi 是一个开源的语音识别工具包，广泛应用于学术界和工业界；Vosk 是基于 Kaldi 的一个轻量级语音识别库
-2. 技术基础：Kaldi 使用的是传统的语音识别技术，结合了统计模型和深度学习的方法。Vosk 作为 Kaldi 的衍生项目，专注于提供易于使用的接口
-3. 准确性：Vosk/Kaldi 的准确性通常依赖于具体的模型和训练数据。虽然它们的准确性可能不如 Whisper 在复杂场景中的表现，但在特定任务中仍然非常可靠
-4. 硬件要求：与 Whisper 相比，Vosk/Kaldi 对硬件的要求较低，可以在普通的 CPU 上运行，非常适合嵌入式系统或资源受限的环境
-5. 适用场景：Vosk/Kaldi 适合用于资源受限的场景或不需要极高精度的应用，如嵌入式设备、实时处理等
-
-##### （3）、总结
-
-1. 如果有强大的硬件资源，并且需要处理多语言或噪音较大的音频，那么 Whisper 是更好的选择
-2. 如果资源有限，或是在嵌入式系统中应用，Vosk/Kaldi 会是更合适的选择
-
-#### Ⅲ、b 站上传时提示字幕格式不正确
-
-> 原因：有空行，即时间下面的一行应该跟着字幕内容，但是此处却为空
-
-1. 将字幕内容复制到 word
-2. 点击查找，然后点击特殊格式
-3. 查找一个任意数字和三个段落标记：
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240315100518.png)
-
-4. 符号表示为：`^#^p^p^p`
-5. 找到空行后，可以添加空格，也可以直接删掉时间
-
-#### Ⅳ、
 
 
 ## 2、大小写锁定提示
