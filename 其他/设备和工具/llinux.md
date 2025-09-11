@@ -1885,47 +1885,6 @@ chmod 755 mount-unmount-disks.sh
 
 ## 7、软件使用
 
-### ①、linux 下使用 clash
-
-1. 下载 clash 客户端，一般个人的64位电脑下载 clashpremium-linux-amd64 即可
-	1. github 下载： [clash 客户端](https://github.com/DustinWin/clash-tools/tree/main/ClashPremium-release)
-	2. 本地 2023.08.17 版：[clashpremium-linux-amd64](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/clashpremium-linux-amd64)
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231226134647.png)
-
-2. 在 linux 中创建 clash 目录，然后进入
-
-```shell
-mkdir ~/clash; cd ~/clash
-```
-
-3. 将下载的文件传输到该目录中，<font color="#ff0000">并重命名为 clash</font>
-4. 下载 Clash 配置文件，指令从这里获取：[ikuuu.org](https://ikuuu.org/user/tutorial?os=linux&client=clash##)
-
-```shell
-wget -O config.yaml "https://hpzzf.no-mad-world.club/link/3lzOUap8OTzIV0QA?clash=3"
-```
-
-5. 执行 `./clash -d .` 即可启动 Clash，同时启动 HTTP 代理和 Socks5 代理。
-	1. `-d [string]`：设置配置目录
-	2. `-ext-ctl [string]`：覆盖外部控制器地址
-	3. `-ext-ui [string]`：覆盖外部UI目录
-	4. `-f [string]`：指定配置文件
-	5. `-secret [string]`：覆盖 RESTful API 的密钥
-	6. `-t`：测试配置并退出
-	7. `-v`：显示当前Clash版本
-6. 如提示权限不足，请执行 `chmod +x clash`
-7. 浏览器访问 [Clash Dashboard](https://clash.razord.top/) 可以进行切换节点、测延迟等操作。Host: `127.0.0.1`，端口: `9090`
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231226135801.png)
-
-8. 设置系统代理：以 Ubuntu 19.04 为例：
-	1. 打开系统设置，选择网络，点击网络代理右边的 ⚙ 按钮
-	2. 选择手动，填写 `HTTP`、`HTTPS`、`Socks` 代理为 `127.0.0.1:7890`
-	3. 即可启用系统代理
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231226140038.png)
-
 ### ②、使用 V2Ray 搭建 vpn
 
 #### Ⅰ、ubuntu 搭建 V2Ray 服务端
