@@ -1,6 +1,4 @@
-# 一、Ubuntu
-
-## 1、系统安装
+# 一、系统安装
 
 1. 桌面版镜像下载：https://cn.ubuntu.com/download/desktop
 2. 可使用 rufus 创建启动盘：https://rufus.ie/zh/
@@ -39,9 +37,9 @@
 
 11. 接下来根据提示重启即登录即可
 
-## 2、用户和密码
+# 二、用户和密码
 
-### ①、新安装的系统修改 root 密码
+## 1、新安装的系统修改 root 密码
 
 1. ubuntu 默认的 root 用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的 root 密码，如果想查看 root 密码，那么直接设置的 root 密码即可。
 2. 使用安装时候的用户登录进入终端，在终端输入命令：`sudo passwd root`
@@ -57,9 +55,9 @@ passwd: password updated successfully # 密码更新成功
 4. root 密码设置完成了，输入：`su root`
 5. 切换到 root 用户，能切换到证明修改成功
 
-### ②、Ubuntu 下创建新用户
+## 2、Ubuntu 下创建新用户
 
-#### Ⅰ、`adduer`
+### ①、`adduer`
 
 - 对应着删除用户的命令：`deluser`
 
@@ -83,7 +81,7 @@ sudo adduser 新用户名
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020230725150747.png)
 
-#### Ⅱ、`useradd`
+### ②、`useradd`
 
 - 对应着删除用户的命令：`userdel`
 
@@ -117,7 +115,7 @@ sudo usermod -d /home/tt 上面新建的用户名
    3. `-s`： 指定用户登录时的shell版本
    4. `-M`： 不创建主目录
 
-### ③、给予普通用户 `sudo` 权限
+## 3、给予普通用户 `sudo` 权限
 
 - 使用 root 用户或者拥有 `sudo` 权限的用户执行下面的命令
 
@@ -125,9 +123,9 @@ sudo usermod -d /home/tt 上面新建的用户名
 sudo usermod -aG sudo 普通用户的用户名
 ```
 
-### ④、修改用户密码
+## 4、修改用户密码
 
-#### Ⅰ、修改当前用户的密码
+### ①、修改当前用户的密码
 
 1. 打开终端，然后输入以下命令：
 
@@ -137,7 +135,7 @@ passwd
 
 2. 系统会提示输入当前的密码（如果有的话），然后输入新密码并进行确认。
 
-#### Ⅱ、修改其他用户的密码
+### ②、修改其他用户的密码
 
 1. 如果是管理员或有 sudo 权限，可以为其他用户设置密码。打开终端，然后使用以下命令：
 
@@ -147,7 +145,7 @@ sudo passwd 用户名
 
 2. 将“用户名”替换为想要修改密码的用户名。系统将提示输入新的密码。
 
-#### Ⅲ、在无法登录的情况下重置密码（恢复模式）
+### ③、在无法登录的情况下重置密码（恢复模式）
 
 1. 如果无法登录，可以通过 Ubuntu 的恢复模式重置密码：
 2. 重新启动的电脑。
@@ -158,7 +156,7 @@ sudo passwd 用户名
 7. 使用 passwd 用户名 命令来设置新密码。
 8. 重启系统。
 
-### ⑤、更改文件所有者
+## 5、更改文件所有者
 
 1. 查看文件列表，发现此时 `privkey1.pem` 的所有者是 root
 
@@ -216,7 +214,7 @@ drwxr-xr-x 4 yan yan 4096 Aug 30 13:40 ../
 yan@yuehai:~/apply/yuehai-tool/https_certificate$ 
 ```
 
-### ⑥、使普通用户执行 sudo 命令不用输入密码
+## 6、使普通用户执行 sudo 命令不用输入密码
 
 1. 使用 root 用户打开 sudoers 文件进行编辑：
 
@@ -240,11 +238,12 @@ yan ALL=(ALL) NOPASSWD: /home/yan/apply/file/FreeFileSync/sava/batch/start_backu
 3. 修改完毕后保存退出即可
 4. 这种配置方式适用于那些需要频繁自动执行某些管理任务而不希望每次都输入密码的场景。但使用时要注意，允许无密码执行特定命令会增加安全风险，因此需要确保该命令的执行不会对系统安全构成威胁
 
-### ⑦、
+## 7、
 
-## 3、用户登录
 
-### ①、启用 SSH
+# 三、用户登录
+
+## 1、启用 SSH
 
 1. 更新软件源
 
@@ -295,7 +294,7 @@ yan@yan:~/桌面/clash$ sudo systemctl status ssh
 lines 1-22/22 (END)
 ```
 
-### ②、开启 ssh 可以使用 root 用户登录
+## 2、开启 ssh 可以使用 root 用户登录
 
 1. 已经安装了 `openssh-server` 软件包，启用了 SSH
 2. 修改配置文件 `/etc/ssh/sshd_config`：
@@ -313,7 +312,7 @@ PermitRootLogin yes
 
 3. 重启服务：`sudo systemctl restart ssh`
 
-### ③、开启桌面可以使用 root 用户登录
+## 3、开启桌面可以使用 root 用户登录
 
 1. 在设置完 root 用户的密码之后
 2. 注释这两个文件的对应代码 `/etc/pam.d/gdm-autologin`、`/etc/pam.d/gdm-password`：
@@ -355,9 +354,9 @@ tty -s && mesg n || true
 
 ![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231226102848.png)
 
-### ④、通过 Windows 远程桌面连接 Ubuntu 桌面
+## 4、通过 Windows 远程桌面连接 Ubuntu 桌面
 
-#### Ⅰ、Ubuntu 中安装 xrdp
+### ①、Ubuntu 中安装 xrdp
 
 1. 更新软件源
 
@@ -385,7 +384,7 @@ sudo ufw allow from any to any port 3389 proto tcp
 
 5. 以上就是 Ubuntu 系统中的所有操作。
 
-#### Ⅱ、Windows 系统远程桌面连接
+### ②、Windows 系统远程桌面连接
 
 1. 在 Windows 系统中，首先点击搜索框，然后输入关键字 `remote`，再在搜索结果中点击“远程桌面连接”应用。
 
@@ -401,9 +400,9 @@ sudo ufw allow from any to any port 3389 proto tcp
 
 4. 没有问题的话，这样就可以登录进去了
 
-### ⑤、通过 Windows 远程桌面连接 Ubuntu 桌面问题记录
+## 5、通过 Windows 远程桌面连接 Ubuntu 桌面问题记录
 
-#### Ⅰ、Windows 远程连接后没有声音
+### ①、Windows 远程连接后没有声音
 
 > 1. pulseaudio-module-xrdp：xrdp 音频重定向模块，https://github.com/neutrinolabs/pulseaudio-module-xrdp/wiki/README
 > 	1. v0.7 下载：[pulseaudio-module-xrdp-0.7.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/pulseaudio-module-xrdp-0.7.zip)
@@ -411,7 +410,7 @@ sudo ufw allow from any to any port 3389 proto tcp
 > 	1. 17.0 下载：[pulseaudio-17.0.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/pulseaudio-17.0.tar.gz)
 > 3. 上面两个安装过程中会出现很多依赖的问题，善用 gpt 排查
 
-##### （1）、pulseaudio 编译安装
+#### Ⅰ、pulseaudio 编译安装
 
 1. 查看原有的 `pulseaudio` 版本：
 
@@ -524,7 +523,7 @@ source ~/.bashrc
 pulseaudio --version
 ```
 
-##### （2）、pulseaudio-module-xrdp 编译安装
+#### Ⅱ、pulseaudio-module-xrdp 编译安装
 
 1. 下载上面的 `pulseaudio-module-xrdp-0.7.zip` 并解压到目录：`/home/yan/apply/tools/pulseaudio-module-xrdp-0.7/`，
 2. 安装 PulseAudio 编译的依赖项，可能不完整，需根据提示安装缺失的包：
@@ -575,7 +574,7 @@ module-xrdp-source.so
 yan@yan:~/apply/tools/pulseaudio$ 
 ```
 
-##### （3）、启动
+#### Ⅲ、启动
 
 1. 重新启动 PulseAudio：
 
@@ -592,7 +591,7 @@ pulseaudio --start
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240326144331.png)
 
-##### （4）、创建桌面文件 pulseaudio-xrdp.desktop
+#### Ⅳ、创建桌面文件 pulseaudio-xrdp.desktop
 
 > 1. 桌面文件 `pulseaudio-xrdp.desktop` 在 xrdp 环境中起着自动启动 PulseAudio 模块的作用。
 > 2. 这个文件遵循 XDG Autostart 规范，它允许在用户登录并启动桌面环境时自动执行特定的脚本或应用程序。
@@ -638,7 +637,7 @@ GenericName=PulseAudio XRDP Module Loader
 4. 按 `ctrl + s` 保存，再按 `ctrl + x` 退出 nano 即可
 5. 之后连接 `xrdp` 桌面时即会自动启动 xrdp pulseaudio 音频重定向
 
-##### （5）、解决 pulseaudio 警告
+#### Ⅴ、解决 pulseaudio 警告
 
 > W: 【pulseaudio】 caps.c: Normally all extra capabilities would be dropped now, but that's impossible because PulseAudio was built without capabilities support.
 > 
@@ -703,7 +702,7 @@ pulseaudio 17.0-6-g84f5
 yan@yan:~/apply/tools/pulseaudio/build$ 
 ```
 
-#### Ⅱ、远程登录后弹出需要验证的窗口
+### ②、远程登录后弹出需要验证的窗口
 
 1. 有时候登录后还弹出一个如下图所示的认证窗口，那么还需要再输入一次密码来认证，这样显得有点麻烦。
 
@@ -728,9 +727,9 @@ ResultActive=yes
 
 4. 重启 Ubuntu 系统后，再远程登录就不会弹出这个窗口了
 
-#### Ⅲ、画面卡顿
+### ③、画面卡顿
 
-##### （1）、调整 Xrdp 配置参数
+#### Ⅰ、调整 Xrdp 配置参数
 
 1. 首先查看两个值：输入以下两个命令，三个值分别是：最小值、默认值、最大值
 
@@ -750,7 +749,7 @@ tcp_send_buffer_bytes=4194304
 tcp_recv_buffer_bytes=6291456
 ```
 
-##### （2）、调整系统参数
+#### Ⅱ、调整系统参数
 
 1. 调整系统参数，临时生效
 
@@ -770,27 +769,27 @@ net.core.wmem_max = 8388608
 4. 然后执行：`sudo sysctl -p`
 5. 重启 xrdp 服务使其生效：`sudo systemctl restart xrdp`
 
-#### Ⅳ、无法复制
+### ④、无法复制
 
 1. 重启 xrdp 或是注销用户后重新登录可恢复功能
 
-#### Ⅴ、远程登录后是黑屏状态
+### ⑤、远程登录后是黑屏状态
 
 1. 如果远程登录后并没有出现 Ubuntu 桌面而是黑屏状态，那么可能是已经有用户登录进去了
 2. 需要先把之前的用户退出来（Log Out），如果更直接一点就是重启 Ubuntu 系统
 
 ![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225153222.png)
 
-### ⑥、使用 `lastb` 查看登录失败尝试记录
+## 6、使用 `lastb` 查看登录失败尝试记录
 
-#### Ⅰ、`lastb` 的介绍
+### ①、`lastb` 的介绍
 
 1. `lastb` 是 Linux 系统中用于查看登录失败尝试记录的命令。它从 `/var/log/btmp` 文件中读取信息，并以易读的格式显示。`lastb` 对应于 `last`，但专注于显示失败的登录尝试记录
 2. `lastb` 是分析暴力破解和异常登录行为的重要工具，可用来追踪恶意登录尝试的来源。结合其他安全工具（如 `fail2ban`），能够有效提升服务器的安全性
 3. 用途：显示所有用户的失败登录尝试。
 4. 日志来源：`/var/log/btmp` 文件，记录所有失败的登录事件。
 
-#### Ⅱ、`lastb` 的基本用法
+### ②、`lastb` 的基本用法
 
 1. 显示失败登录记录：
 	1. 用户名（`root` 或 `dell`）
@@ -828,15 +827,15 @@ sudo lastb | grep "Nov 20"
 sudo truncate -s 0 /var/log/btmp
 ```
 
-#### Ⅲ、相关日志文件
+### ③、相关日志文件
 
 1. `/var/log/btmp`：存储失败登录尝试的二进制日志文件。
 2. `/var/log/auth.log` 或 `/var/log/secure`：记录认证相关的所有日志（成功和失败）
 3. 通过 `lastb`，管理员可以快速审查系统的登录安全状况。
 
-### ⑦、使用 `fail2ban` 屏蔽 SSH 爆破
+## 7、使用 `fail2ban` 屏蔽 SSH 爆破
 
-#### Ⅰ、`fail2ban` 的介绍
+### ①、`fail2ban` 的介绍
 
 1. `Fail2Ban` 是一个开源的入侵防护工具，主要用于保护 Linux 系统免受暴力破解和其他恶意登录行为的威胁。它通过监控日志文件（如 SSH、HTTP、FTP 等服务的日志），检测登录失败尝试，并根据预定义规则自动阻止可疑的 IP 地址
 2. 主要功能：
@@ -849,7 +848,7 @@ sudo truncate -s 0 /var/log/btmp
 	3. FTP
 	4. 邮件服务
 
-#### Ⅱ、核心配置文件
+### ②、核心配置文件
 
 1. 主配置文件：
 	1. `/etc/fail2ban/jail.conf` 或 `/etc/fail2ban/jail.local`
@@ -858,7 +857,7 @@ sudo truncate -s 0 /var/log/btmp
 	1. `/var/log/fail2ban.log`：记录 Fail2Ban 的运行日志。
 	2. `/var/log/auth.log` 或 `/var/log/secure`：被监控的日志文件。
 
-#### Ⅲ、常用命令
+### ③、常用命令
 
 1. 查看 `fail2ban` 状态：
 
@@ -914,7 +913,7 @@ sudo systemctl stop fail2ban
 sudo systemctl restart fail2ban
 ```
 
-#### Ⅳ、简单使用
+### ④、简单使用
 
 1. 更新软件源
 
@@ -1012,21 +1011,20 @@ Status for the jail: sshd
 yan@yan:~$ 
 ```
 
-### ⑧、
+## 8、
 
-### ⑨、
 
-## 4、端口设置
+# 四、端口设置
 
-### ①、查看已经开启的端口：
+## 1、查看已经开启的端口：
 
 ```shell
 sudo ufw status numbered
 ```
 
-### ②、Ubuntu 开启或关闭指定端口
+## 2、Ubuntu 开启或关闭指定端口
 
-#### Ⅰ、开启指定端口
+### ①、开启指定端口
 
 1. 比如要开启 3389 `tcp` 和 `udp` 端口：
 
@@ -1046,7 +1044,7 @@ sudo ufw allow from any to any port 3389 proto tcp
 sudo ufw allow from any to any port 3389 proto udp
 ```
 
-#### Ⅱ、关闭指定端口
+### ②、关闭指定端口
 
 1. 查看当前 UFW 的规则列表：
 
@@ -1097,7 +1095,7 @@ sudo ufw delete allow from any to any port 3389 proto udp
 sudo ufw delete [规则编号]
 ```
 
-### ③、Ubuntu 开启所有端口
+## 3、Ubuntu 开启所有端口
 
 1. 允许所有传入和传出的连接：使用 iptables 命令来允许所有传入和传出的连接。执行以下命令来清除所有已有的规则，并允许所有连接：
 
@@ -1137,13 +1135,13 @@ sudo sh -c 'ip6tables-save > /etc/iptables/rules.v6'
 
 8. 这样，在系统重启后，防火墙规则将会从这些文件加载，使更改保持生效。
 
-### ④、使用 nc（netcat）工具测试网络连通性
+## 4、使用 nc（netcat）工具测试网络连通性
 
 > 服务端：测试的机器，本次测试就是为了测试此机器的网络连通性
 > 
 > 客户端：帮助测试的机器，用于测试服务端的端口是否可以联通
 
-#### Ⅰ、测试 TCP 连接
+### ①、测试 TCP 连接
 
 1. 在服务器端，打开一个端口监听，例如监听 9001 端口：
 
@@ -1159,7 +1157,7 @@ nc [服务器IP地址] 9001
 
 3. 如果连接成功，可以在客户端输入文本，然后在服务器端看到相同的文本，这表明 TCP 连接是成功的。
 
-#### Ⅱ、测试 UDP 连接
+### ②、测试 UDP 连接
 
 1. 在服务器端，使用 -u 选项监听一个 UDP 端口，例如监听 9001 端口：
 
@@ -1175,15 +1173,14 @@ nc -u [服务器IP地址] 9001
 
 3. 客户端和服务器端可以相互发送和接收消息，验证 UDP 连接。
 
-### ⑤、
+## 5、
 
-### ⑥、
 
-## 5、系统设置
+# 五、系统设置
 
-### ①、配置环境变量
+## 1、配置环境变量
 
-#### Ⅰ、单用户使用
+### ①、单用户使用
 
 1. 下载对应环境的二进制文件并解压到指定位置，如：`/home/yan/IDE/Java/JDK/jdk-21.0.2/`
 
@@ -1217,7 +1214,7 @@ source ~/.bashrc
 java -version
 ```
 
-#### Ⅱ、多用户使用
+### ②、多用户使用
 
 1. 创建 `/usr/lib/jvm` 目录
 
@@ -1264,7 +1261,7 @@ sudo chmod +x /usr/lib/jvm/jdk-21.0.2/bin/*
 java -version
 ```
 
-### ②、将应用软件加入启动器和桌面快捷方式
+## 2、将应用软件加入启动器和桌面快捷方式
 
 > ubuntu下桌面配置文件 `*.desktop` 存放路径为 `/usr/share/applications` 
 > 
@@ -1319,7 +1316,7 @@ Categories=Application;Development;
 
 4. 快捷键 `ctrl + s` 保存，快捷键 `ctrl + x` 退出
 
-### ③、启动默认开启小键盘
+## 3、启动默认开启小键盘
 
 1. 打开终端，运行以下命令来编辑 `/etc/X11/xinit/xinitrc` 文件：
 
@@ -1336,7 +1333,7 @@ sudo nano /etc/X11/xinit/xinitrc
 4. 保存并关闭文件（使用 `Ctrl + O` 保存，`Ctrl + X` 退出）。
 5. 重新启动系统。
 
-### ④、设置系统时区
+## 4、设置系统时区
 
 1. 查看当前时区：`timedatectl`
 	1. 下面的这个输出表示系统当前设置的时区是 `Etc/UTC`。
@@ -1381,7 +1378,7 @@ System clock synchronized: yes
 yan@yuehai:~/apply/n2n-edge-query-check$ 
 ```
 
-### ⑤、定时任务
+## 5、定时任务
 
 1. 首先编写需要定时执行的脚本 `nano /home/yan/apply/crontab_test.sh`：
 
@@ -1425,11 +1422,11 @@ sudo service cron restart
 sudo systemctl restart cron
 ```
 
-### ⑥、
+## 6、
 
-## 6、问题记录
+# 六、问题记录
 
-### ①、使用 dos2unix 转换换行符格式
+## 1、使用 dos2unix 转换换行符格式
 
 1. 报错信息：
 
@@ -1465,7 +1462,7 @@ sudo apt update
 apt install dos2unix
 ```
 
-### ②、使用 sed 转换换行符格式
+## 2、使用 sed 转换换行符格式
 
 1. 上面是使用 dos2unix 转换的，也可以直接使用 `sed` 命令进行替换：
 
@@ -1473,7 +1470,7 @@ apt install dos2unix
 sed -i 's/\r$//' run_jar.sh
 ```
 
-### ③、查看一个目录以及其中所有文件和子目录的总大小
+## 3、查看一个目录以及其中所有文件和子目录的总大小
 
 1. 基本命令：
 	1.  `-s`：表示汇总指定目录的总大小
@@ -1497,9 +1494,9 @@ du -h /path/to/directory
 du -h --max-depth=1 /path/to/directory
 ```
 
-### ④、解决 Ubuntu 不能挂载移动硬盘问题
+## 4、解决 Ubuntu 不能挂载移动硬盘问题
 
-#### Ⅰ、问题
+### ①、问题
 
 1. 挂载硬盘时无法挂载
 2. 并报错：
@@ -1508,7 +1505,7 @@ du -h --max-depth=1 /path/to/directory
 Error mounting /dev/sda1 at /media/XXXX: Command-line `mount -t "ntfs" -o
 ```
 
-#### Ⅱ、解决
+### ②、解决
 
 1. 在终端输入如下命令，查看分区挂载情况
 
@@ -1700,7 +1697,7 @@ sudo ntfsfix /dev/sdb2
 \
 5. 再次插入移动硬盘即可正常使用
 
-### ⑤、定时挂载和卸载硬盘的脚本
+## 5、定时挂载和卸载硬盘的脚本
 
 1. 在目录 `/home/yan/apply/file/YottaMaster/` 中创建日志文件：`mount-unmount-disks.log`
 
@@ -1881,9 +1878,10 @@ chmod 755 mount-unmount-disks.sh
 	5. 星期几（Day of the Week）：0 ~ 7 或使用星期名称的缩写（0和7都代表星期日，1代表星期一，等等）代表一周中的哪一天执行任务。
 8. 在编辑完 `crontab` 后，保存并退出编辑器，`crontab` 会自动安装新的计划任务。可以通过 `crontab -l` 命令查看当前的 `crontab` 任务列表，以确认任务已正确设置
 
-### ⑥、
+## 6、
 
-## 7、软件使用
+
+# 七、软件使用
 
 ### ②、使用 V2Ray 搭建 vpn
 
@@ -3835,9 +3833,9 @@ sudo smartctl -T permissive -s on /dev/sda
 
 ### ⑨、
 
-## 8、命令使用
+# 八、命令使用
 
-### ①、nano 和 vim
+## 1、nano 和 vim
 
 1. 在新安装的 Ubuntu 桌面中，`nano` 是自带的简单易用的文本编辑器，和 `vim` 类似
 2. 它提供了基本的编辑功能和快捷键，如复制、粘贴、查找和替换等。可以通过以下命令来打开文件并使用 `nano` 编辑器：
@@ -3867,9 +3865,9 @@ nano 文件名
 | Ctrl + V | 向下滚动一屏。                                                              |
 | Ctrl + Y | 向上滚动一屏。                                                              |
 
-### ②、`screen` 多重视窗管理程序
+## 2、`screen` 多重视窗管理程序
 
-#### Ⅰ、介绍
+### ①、介绍
 
 1. `GNU Screen` 简称 `Screen` 或 `screen`，源自 GNU 计划，其官网：[GNU Screen](https://www.gnu.org/software/screen/)。
 2. 初始版本早在1987年就发布，目前的最新稳定版本是：4.8.0（2020年2月5日）。所以，你现在使用的 screen 命令，其实三十年前就有人在使用了。
@@ -3880,7 +3878,7 @@ nano 文件名
 5. 多窗口：在 `screen` 环境下，所有的会话都独立的运行，并拥有各自的编号、输入、输出和窗口缓存。用户可以通过快捷键在不同的窗口下切换，并可以自由的重定向各个窗口的输入和输出。
 6. 会话共享：`screen` 可以让一个或多个用户从不同终端多次登录一个会话，并共享会话的所有特性（比如可以看到完全相同的输出）。它同时提供了窗口访问权限的机制，可以对窗口进行密码保护。
 
-#### Ⅱ、安装 `screen`
+### ②、安装 `screen`
 
 1. 更新软件源
 
@@ -3898,7 +3896,7 @@ yum install screen
 apt install screen
 ```
 
-#### Ⅲ、状态介绍
+### ③、状态介绍
 
 1. 通常情况下，screen 创建的虚拟终端，有两个工作模式：
 	1. `Attached`：表示当前 `screen` 正在作为主终端使用，为活跃状态。
@@ -3917,9 +3915,9 @@ steam@yan:~$
 
 2. 通常情况下，不需要关注上面的状态。
 
-#### Ⅳ、基础命令
+### ④、基础命令
 
-##### （1）、帮助查询
+#### Ⅰ、帮助查询
 
 1. screen 的帮助文档实在是过于详细，以至于查个命令，可能要查几分钟
 2. 但是你可以直接使用帮助命令，查询自己需要的命令:
@@ -3974,7 +3972,7 @@ Options:
 steam@yan:~$ 
 ```
 
-##### （2）、终端列表
+#### Ⅱ、终端列表
 
 1. 怎么查看已经存在的 screen 终端呢？很简单，使用命令：
 
@@ -4004,7 +4002,7 @@ No Sockets found in /run/screen/S-yan.
 yan@yan:~$ 
 ```
 
-##### （3）、新建终端
+#### Ⅲ、新建终端
 
 1. 新建终端有三种方式：
 	1. 输入 `screen` 回车，即可新建一个虚拟终端，但是这样的名称太乱
@@ -4016,7 +4014,7 @@ yan@yan:~$
 3. 创建好虚拟终端后，会新建一个空白的 Terminal，这个就是新的虚拟终端了
 4. 运行你的程序，按 `Ctril + a`，再按 `d`，即可保持这个 `screen` 到后台并回到主终端
 
-##### （4）、回到 `screen` 终端
+#### Ⅳ、回到 `screen` 终端
 
 1. 在主终端使用 `-R` 或者 `-r` 命令即可：
 
@@ -4040,7 +4038,7 @@ steam@yan:~$
 
 3. 如果使用大写 的 `-R`，和 `-r` 类似，但是没有对应名称的 PID 或者 Name 时，会自动创建新的虚拟终端。
 
-##### （5）、清除终端
+#### Ⅴ、清除终端
 
 1. 有时候，我们的进程已经“守护”完毕，不需要这个虚拟终端了，也就是需要释放资源，如何操作呢？
 2. 比较推荐的方法，是进入对应虚拟终端，然后输入：
@@ -4058,7 +4056,7 @@ exit
 screen -S [pid/Name] -X quit
 ```
 
-##### （6）、不进入 `screen` 终端的情况下执行命令
+#### Ⅵ、不进入 `screen` 终端的情况下执行命令
 
 1. 使用 `stuff` 指令向指定 `screen` 终端发送字符：
 
@@ -4099,14 +4097,14 @@ echo "$(date)：帕鲁服务器 1 已启动" >> $path/yuehai_server.log
 	3. `-p 0`：选择会话中的窗口编号，这里是选择窗口编号为 0 的窗口；可以不加，默认选择会话的第一个窗口
 	4. `-X stuff`：在选定的窗口中发送字符。
 
-### ③、使用 sftp 命令从 linux 服务器下载文件
+## 3、使用 sftp 命令从 linux 服务器下载文件
 
-#### Ⅰ、sftp 介绍
+### ①、sftp 介绍
 
 1. SFTP（SSH File Transfer Protocol）是一种安全的文件传输协议，它在 SSH 协议的基础上提供文件访问、文件传输和文件管理功能
 2. 与 FTP 相比，SFTP 提供了加密的网络通信，保证数据在传输过程中的安全性
 
-#### Ⅱ、启动一个 SFTP 会话
+### ②、启动一个 SFTP 会话
 
 ```shell
 sftp -oPort=端口号 username@hostname
@@ -4122,9 +4120,9 @@ sftp -oPort=端口号 username@hostname
 exit
 ```
 
-#### Ⅲ、常用指令
+### ③、常用指令
 
-##### （1）、控制远程文件指令
+#### Ⅰ、控制远程文件指令
 
 1. `pwd`：查看当前所在的远程目录路径
 
@@ -4184,7 +4182,7 @@ rm file_name
 chmod 0755 file_name
 ```
 
-##### （2）、控制本地文件指令
+#### Ⅱ、控制本地文件指令
 
 1. `lpwd`：查看当前所在的本地目录路径
 
@@ -4214,7 +4212,7 @@ Local working directory: /home/yan/download
 sftp> 
 ```
 
-##### （3）、下载上传文件指令
+#### Ⅲ、下载上传文件指令
 
 1. `get`：下载文件：从远程机器到本地机器
 	1. 如果未指定本地文件名，文件将以远程文件同名保存到当前本地目录
@@ -4252,15 +4250,15 @@ mput *
 mput /home/yan/桌面/音乐/【纯音乐】/*.flac
 ```
 
-### ④、实时进程监控工具 top
+## 4、实时进程监控工具 top
 
-#### Ⅰ、启动 `top`
+### ①、启动 `top`
 
 1. 只需在终端中输入 `top`，按 Enter 键即可启动
 
-#### Ⅱ、输出信息介绍
+### ②、输出信息介绍
 
-##### （0）、例子
+#### Ⅰ、例子
 
 ```shell
 yan@yan:~/apply/tools/yuehai-tool$ top
@@ -4302,7 +4300,7 @@ MiB Swap:  0.0/2048.0   [                                                       
      32 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3                           
 ```
 
-##### （1）、top 命令的输出头部
+#### Ⅱ、top 命令的输出头部
 
 ```shell
 top - 08:40:54 up 14:54,  2 users,  load average: 0.01, 0.04, 0.04
@@ -4312,7 +4310,7 @@ top - 08:40:54 up 14:54,  2 users,  load average: 0.01, 0.04, 0.04
 2. `2 users`：系统上有 2 个用户登录
 3. `load average: 0.01, 0.04, 0.04`：这些数字分别代表过去 1 分钟、5 分钟和 15 分钟的平均负载。负载平均值越低，表明系统越空闲
 
-##### （2）、任务（任务）
+#### Ⅲ、任务（任务）
 
 ```shell
 任务: 377 total,   1 running, 376 sleeping,   0 stopped,   0 zombie
@@ -4324,7 +4322,7 @@ top - 08:40:54 up 14:54,  2 users,  load average: 0.01, 0.04, 0.04
 4. `0 stopped`：没有进程被停止
 5. `0 zombie`：没有僵尸进程
 
-##### （3）、CPU 使用情况（%Cpu(s)）
+#### Ⅳ、CPU 使用情况（%Cpu(s)）
 
 ```shell
 %Cpu(s):  0.0 us,  0.0 sy,  0.0 ni, 99.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
@@ -4339,7 +4337,7 @@ top - 08:40:54 up 14:54,  2 users,  load average: 0.01, 0.04, 0.04
 7. `0.0 si`：处理软件中断的 CPU 百分比
 8. `0.0 st`：被偷走的时间（在虚拟环境中被用于服务其他虚拟机的时间）
 
-##### （4）、内存使用情况
+#### Ⅴ、内存使用情况
 
 ```shell
 MiB Mem :  4.5/29811.0  [|||                                                                           ]
@@ -4349,7 +4347,7 @@ MiB Swap:  0.0/2048.0   [                                                       
 1. `MiB Mem : 4.5/29811.0`：从总共 29811 MiB 内存中，有 4.5 MiB 正在使用
 2. `MiB Swap: 0.0/2048.0`：从总共 2048 MiB 交换空间中，有 0.0 MiB 正在使用
 
-##### （5）、进程列表
+#### Ⅵ、进程列表
 
 ```shell
  进程号 USER      PR  NI    VIRT    RES    SHR    %CPU  %MEM     TIME+ COMMAND                           
@@ -4374,49 +4372,49 @@ MiB Swap:  0.0/2048.0   [                                                       
 	1. containerd 容器运行时，使用了 0.7% 的 CPU 和 0.1% 的内存
 	2. top: top 命令本身，占用 0.3% 的 CPU
 
-#### Ⅲ、排序进程
+### ③、排序进程
 
 1. 在 `top` 界面中，可以按特定的列进行排序，如 CPU 使用率或内存使用：
 2. 按 `%CPU` 排序：按 `P`，即 `Ctrl + p`
 3. 按内存使用排序：按 `M`，即 `Ctrl + m`
 
-#### Ⅳ、杀死进程
+### ④、杀死进程
 
 1. 如果需要结束某个进程，可以在 `top` 中直接操作：
 2. 按 `k`，然后输入想要结束的进程的 PID（进程ID），并确认。
 
-#### Ⅴ、搜索进程
+### ⑤、搜索进程
 
 1. 可以通过进程名搜索特定进程：
 2. 按 `o`（小写字母 O），然后输入 `COMMAND=<进程名>`，如 `COMMAND=bash`
 
-#### Ⅵ、改变更新间隔
+### ⑥、改变更新间隔
 
 1. 默认情况下，`top` 每几秒更新一次数据，可以调整这个间隔：
 2. 在运行 `top` 时，可以按 `d`，然后输入想要的更新频率（秒数）。
 
-#### Ⅶ、显示或隐藏特定列
+### ⑦、显示或隐藏特定列
 
 1. `top` 可以定制显示或隐藏的信息：
 2. 按 `f` 进入字段管理界面，使用方向键选择要显示或隐藏的字段，按 `d` 或 `s` 来选择。
 
-#### Ⅷ、切换显示模式
+### ⑧、切换显示模式
 
 1. 可以在不同的显示模式之间切换，以便更好地查看信息：
 2. 按 `1` 可以查看每个 CPU 的详细利用率。
 3. 按 `V` （即 `Ctrl + v`）可以按树状结构显示进程。
 
-#### Ⅸ、退出 `top`
+### ⑨、退出 `top`
 
 1. 简单地按 `q`（退出键）即可退出 `top` 界面。
 
-### ⑤、套接字信息检索工具 `ss`
+## 5、套接字信息检索工具 `ss`
 
 > ss (socket statistics) 命令是一个非常强大的工具，用于检索有关 Linux 中的套接字的信息。
 > 
 > 它可以显示类似于 netstat 的信息，但比 netstat 更快，因为它直接从内核空间获取数据，而不需要读取和解析 /proc 目录
 
-#### Ⅰ、基本选项
+### ①、基本选项
 
 1. - `-t`：显示 TCP 套接字
 2. `-u`：显示 UDP 套接字
@@ -4426,7 +4424,7 @@ MiB Swap:  0.0/2048.0   [                                                       
 6. `-p`：显示使用套接字的进程 ID 和程序名称
 7. `-s`：输出套接字使用概况统计。
 
-#### Ⅱ、高级选项
+### ②、高级选项
 
 1. `-e`：显示扩展信息，这包括时间戳、内存、selinux 等
 2. `-m`：显示套接字的内存使用情况
@@ -4435,7 +4433,7 @@ MiB Swap:  0.0/2048.0   [                                                       
 5. `-6`：仅显示 IPv6 的套接字
 6. `-d`：仅显示处于断开状态的套接字
 
-#### Ⅲ、过滤和查询
+### ③、过滤和查询
 
 > `ss` 命令也支持使用过滤表达式来查询特定的连接或套接字。例如：
 
@@ -4456,7 +4454,7 @@ ss -ltup
 ss dst 192.168.1.1:ssh
 ```
 
-#### Ⅳ、使用实例
+### ④、使用实例
 
 1. 列出所有活动的 TCP 连接：
 
@@ -4488,9 +4486,9 @@ ss -ltup
 ss -ntp | grep 10000
 ```
 
-### ⑥、处理压缩文件和目录常用的命令
+## 6、处理压缩文件和目录常用的命令
 
-#### Ⅰ、tar 命令
+### ①、tar 命令
 
 1. tar（tape archive）命令是用于创建、维护、修改以及提取文件的工具，它可以处理 `.tar` 文件（归档），并且可以与 gzip 或 bzip2 等压缩程序结合使用来创建 `.tar.gz` 或 `.tar.bz2` 文件。
 2. 常用参数：
@@ -4527,7 +4525,7 @@ tar -xvf 归档文件名.tar 想要提取的目录或文件名/
 tar -xzvf 归档文件名.tar.gz 想要提取的目录或文件名/
 ```
 
-#### Ⅱ、gzip 和 gunzip 命令
+### ②、gzip 和 gunzip 命令
 
 1. gzip 用于压缩文件，而 gunzip 用于解压文件。
 2. 常用参数：
@@ -4558,7 +4556,7 @@ gzip -d filename.gz
 tar -czvf 归档文件名.tar 想要打包的目录或文件名/
 ```
 
-#### Ⅲ、zip 和 unzip 命令
+### ③、zip 和 unzip 命令
 
 1. zip 是另一种常用的压缩工具，用于创建 `.zip` 文件。unzip 用于解压这些文件。
 2. 常用参数：
@@ -4579,7 +4577,7 @@ zip -r 归档文件名.zip 想要打包的目录或文件名/
 unzip 归档文件名.zip -d 想要解压到的目录/
 ```
 
-### ⑦、查看 Ubuntu 系统和内核的版本
+## 7、查看 Ubuntu 系统和内核的版本
 
 1. 查看系统版本方式一：
 
@@ -4620,7 +4618,7 @@ Linux yan 6.2.0-26-generic #26~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Jul 13 16:
 yan@yan:~$ 
 ```
 
-### ⑧、 软连接（符号链接）ln
+## 8、软连接（符号链接）ln
 
 1. 在 Linux 中，软连接（也称为符号链接或 symlink）是一种特殊的文件，它指向系统中的另一个文件或目录。
 2. 软连接类似于 Windows 系统中的快捷方式。通过软连接，可以快速访问目标文件或目录，而无需关心其物理位置。
@@ -4660,9 +4658,9 @@ rm -r ~/Desktop/documents_symlink
 	2. 软件配置：在配置某些软件时，可能需要为配置文件创建软连接，以便在不同版本或环境中复用相同的配置。
 	3. 开发环境：在开发过程中，可能会使用软连接来管理不同项目中的共享资源或库文件。
 
-### ⑨、解压与压缩 zip 文件
+## 9、解压与压缩 zip 文件
 
-#### Ⅰ、zip 压缩
+### ①、zip 压缩
 
 1. 更新软件源：
 
@@ -4701,7 +4699,7 @@ zip -r 压缩文件名 要压缩的目录名1/ 要压缩的目录名2/ ...
 zip -P 000123 压缩文件名 要压缩的文件名1 要压缩的文件名2 ...
 ```
 
-#### Ⅱ、unzip 解压
+### ②、unzip 解压
 
 1. 更新软件源：
 
@@ -4754,9 +4752,9 @@ Archive:  Test_2.zip
 unzip -P 000123 压缩文件名
 ```
 
-### ⑩、复制 cp、rsync
+## 10、复制 cp、rsync
 
-#### Ⅰ、cp
+### ①、cp
 
 1. `cp` 命令用于复制文件或目录，基本语法如下：
 	1. `-r` 或 `--recursive`：递归复制整个目录
@@ -4781,7 +4779,7 @@ cp file.txt /path/to/destination/
 cp -r /path/to/source/ /path/to/destination/
 ```
 
-#### Ⅱ、rsync
+### ②、rsync
 
 1. 如果还没有安装 `rsync`，可以通过以下命令安装：
 
@@ -4845,9 +4843,9 @@ rsync -av --delete /path/to/source /path/to/destination/
 rsync -av --dry-run /path/to/source /path/to/destination/
 ```
 
-### ⑪、移动 mv
+## 11、移动 mv
 
-#### Ⅰ、基本语法
+### ①、基本语法
 
 1. `mv` 命令用于移动文件或目录，或重命名文件或目录，基本语法如下：
 	1. `-i` 或 `--interactive`：在覆盖文件之前提示用户确认
@@ -4871,19 +4869,13 @@ mv file.txt /path/to/destination/
 mv oldname.txt newname.txt
 ```
 
-#### Ⅱ、
+### ②、
 
-### ⑫、
+## 12、
 
-### ⑬、
+# 九、一些脚本
 
-### ⑭、
-
-### ⑮、
-
-## 9、一些脚本
-
-### ①、复制云服务器的文件到本地
+## 1、复制云服务器的文件到本地
 
 1. 自动输入密码
 2. `--delete`：全同步，删除本地目录中相比远程目录多余的文件，即保持本地目录和远程目录一致
@@ -4918,22 +4910,7 @@ expect {
 EOF
 ```
 
-### ②、
-
-### ③、
-
-### ④、
-
-## 10、
+## 2、
 
 
-# 二、
-
-# 三、
-
-# 四、
-
-# 五、
-
-# 六、
-
+# 十、
