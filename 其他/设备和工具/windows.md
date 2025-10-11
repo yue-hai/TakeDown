@@ -917,7 +917,59 @@ tree /f > darknetf.txt
 7. 双击 bat 文件。生成的 3.jpg 即为图种
 8. 要解压图种只需更改后缀名为 `.rar`，然后解压即可
 
-## 3、
+## 3、通过 cmd 获取某些网站可以预览、无法下载的资源
+
+> 以爱给网为例：https://www.aigei.com/sound/class/qq_jing_di/
+
+1. 打开控制台，预览声音，网络请求中会出现音频文件
+
+![|500](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020251011123409.png)
+
+2. 右键该请求，选择复制 -> 以 cURL (cmd) 格式复制
+
+![|500](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020251011123511.png)
+
+```shell
+curl ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b729c09f767d535e.mp3?e=1760160780^&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:CVr-eRcdqn2gLgBwZoK18Aqrkts=^" ^
+  -H ^"accept: */*^" ^
+  -H ^"accept-language: zh-CN,zh;q=0.9^" ^
+  -b ^"gei_d_u=664df51754674f2c9f72c3936b9a4ec1; gei_d_1=d9e38d327d1093e8e9fe6c30791b90c76367fe0b6efae9ace9b1a8eb9f87599a1fc521cc0a60b6d26e54e6e05527fdd4adeeb3407743645d4ce89a49c36722ff; geiweb-v=zZ+S93HA1QcNkkNJGckJp5QLH0wUK6kAC99QLh9hBmj8dueOXrcBZmuvpKWhH9us; hhhssi1ill1i=d89037fbbf0de26496d141afd6fc3987; oOO0OO0oOO00oo0o=true; OooOO000oOOO00o=ef1690003aa14958a386a9c92f32feff^" ^
+  -H ^"priority: i^" ^
+  -H ^"range: bytes=0-^" ^
+  -H ^"referer: https://www.aigei.com/^" ^
+  -H ^"sec-ch-ua: ^\^"Google Chrome^\^";v=^\^"141^\^", ^\^"Not?A_Brand^\^";v=^\^"8^\^", ^\^"Chromium^\^";v=^\^"141^\^"^" ^
+  -H ^"sec-ch-ua-mobile: ?0^" ^
+  -H ^"sec-ch-ua-platform: ^\^"Windows^\^"^" ^
+  -H ^"sec-fetch-dest: audio^" ^
+  -H ^"sec-fetch-mode: no-cors^" ^
+  -H ^"sec-fetch-site: same-site^" ^
+  -H ^"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36^"
+```
+
+3. 将其粘贴到一个空白文本文件中，在开头的 curl 后面加上一个 `-o downloaded.mp3` 参数，后缀根据类型不同进行修改，表示将输出保存为文件
+
+```shell
+curl -o downloaded.mp3 ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b729c09f767d535e.mp3?e=1760160780^&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:CVr-eRcdqn2gLgBwZoK18Aqrkts=^" ^
+  -H ^"accept: */*^" ^
+  -H ^"accept-language: zh-CN,zh;q=0.9^" ^
+  -b ^"gei_d_u=664df51754674f2c9f72c3936b9a4ec1; gei_d_1=d9e38d327d1093e8e9fe6c30791b90c76367fe0b6efae9ace9b1a8eb9f87599a1fc521cc0a60b6d26e54e6e05527fdd4adeeb3407743645d4ce89a49c36722ff; geiweb-v=zZ+S93HA1QcNkkNJGckJp5QLH0wUK6kAC99QLh9hBmj8dueOXrcBZmuvpKWhH9us; hhhssi1ill1i=d89037fbbf0de26496d141afd6fc3987; oOO0OO0oOO00oo0o=true; OooOO000oOOO00o=ef1690003aa14958a386a9c92f32feff^" ^
+  -H ^"priority: i^" ^
+  -H ^"range: bytes=0-^" ^
+  -H ^"referer: https://www.aigei.com/^" ^
+  -H ^"sec-ch-ua: ^\^"Google Chrome^\^";v=^\^"141^\^", ^\^"Not?A_Brand^\^";v=^\^"8^\^", ^\^"Chromium^\^";v=^\^"141^\^"^" ^
+  -H ^"sec-ch-ua-mobile: ?0^" ^
+  -H ^"sec-ch-ua-platform: ^\^"Windows^\^"^" ^
+  -H ^"sec-fetch-dest: audio^" ^
+  -H ^"sec-fetch-mode: no-cors^" ^
+  -H ^"sec-fetch-site: same-site^" ^
+  -H ^"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36^"
+```
+
+4. 将修改完的命令粘贴到 cmd 命令窗口中，回车执行，文件就会被下载到对应目录
+
+![|500](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020251011124025.png)
+
+## 4、
 
 # 八、硬件驱动 AMD 
 
