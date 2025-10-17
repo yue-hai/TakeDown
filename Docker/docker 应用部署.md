@@ -3082,6 +3082,84 @@ networks:
 2. 初次访问创建自己的账号，之后关闭允许新用户注册
 3. 管理员页面，输入上面的管理员密钥进入：https://vaultwarden.demo.com:8080/admin
 
+## 4、客户端
+
+### ①、客户端说明
+
+1. 浏览器插件为 Bitwarden 密码管理器：https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb
+2. 安卓为：Bitwarden，[Bitwarden_2025.8.0 下载](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Bitwarden_2025.8.0.apk)
+
+### ②、录入 2fauth 两步验证码
+
+#### Ⅰ、直接在网站设定时录入
+
+1. 给网站设定两步验证码时，出现二维码后，打开浏览器扩展，选择编辑，直接点击按钮扫描二维码即可
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251017110259.png)
+
+#### Ⅱ、录入 2fauth 密钥
+
+1. 如果部署了 2fauth，并且使用 2fauth 保存了两步验证码，也可以复制密钥导入到 Bitwarden 中
+2. 默认 OTP 类型一般都是 TOTP，所以一般直接将密钥粘贴到  Bitwarden 中即可
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251017110625.png)
+
+#### Ⅲ、TOTP 基于时间的验证码
+
+1. 这是最常见的情况，标准的 TOTP 是 6 位数、sha1 算法、30 秒周期。如果服务商提供了不同的参数，可以这样构建字符串：
+2. 基础格式: `otpauth://totp/服务名称:用户名?secret=密钥`
+3. 添加自定义参数：
+	1. 码长 (Digits)：`&digits=参数`，例如 `&digits=8` 就是 8 位数
+	2. 算法 (Algorithm)：`&algorithm=参数`，例如 `&algorithm=SHA256`
+	3. 没有周期参数
+4. 完整示例： 假设一个服务提供了以下信息：
+	4. 密钥：`IQZVREOMI3XQWNDP`
+	5. 码长：8
+	6. 算法：sha256
+	7. 周期：60秒
+5. 则需要构造并粘贴到 Bitwarden 的字符串就是：
+
+```shell
+otpauth://totp/我的测试两步验证:用户名?secret=IQZVREOMI3XQWNDP&algorithm=SHA256&digits=8
+```
+
+#### Ⅳ、HOTP (基于计数器的验证码)
+
+1. HOTP 不基于时间，而是基于一个递增的计数器。每次使用一个码，计数器就会加一
+2. 基础格式: `otpauth://hotp/服务名称:用户名?secret=密钥&counter=初始计数值`
+3. 添加自定义参数和上面相同：
+	1. 码长 (Digits)：`&digits=参数`，例如 `&digits=8` 就是 8 位数
+	2. 算法 (Algorithm)：`&algorithm=参数`，例如 `&algorithm=SHA256`
+	3. 周期 (Period)：`&period=参数`，例如 `&period=60` 就是 60 秒刷新一次
+4. 完整示例： 假设一个服务提供了以下信息：
+	4. 密钥：`IQZVREOMI3XQWNDP`
+	5. 码长：8
+	6. 算法：sha256
+	7. 周期：60秒
+5. 则需要构造并粘贴到 Bitwarden 的字符串就是：
+
+```shell
+otpauth://hotp/我的测试两步验证:用户名?secret=IQZVREOMI3XQWNDP&counter=1&algorithm=SHA256&digits=8&period=60
+```
+
+1. 当在 Bitwarden 中保存了 HOTP 密钥后，验证码旁边会出现一个刷新按钮，需要手动点击它来生成下一个有效的验证码
+
+#### Ⅴ、Steam Guard (专用验证码)
+
+1. 这是一种专门用于 Steam 平台的验证码类型，它不遵循公开的 TOTP 或 HOTP 标准，而是使用 Valve 自己的算法。它生成的验证码是 5 位，由大写字母和数字组成，每 30 秒刷新一次
+2. 基础格式：`steam://密钥`
+3. 注意：Steam 类型的格式非常简洁，它使用自己独有的 `steam://` 协议头，后面直接跟密钥即可，不需要像 otpauth 那样包含服务名称和用户名等额外信息
+4. 添加自定义参数：Steam 验证码的算法是固定的，没有任何可以自定义的参数。码长、算法、周期都是内建好的，无法修改
+5. 完整示例： 假设从 Steam 获取的共享密钥 shared_secret 是这样：`BK4W3KEQZUWIFU6YUBJRKZCVJRXVZSRXSZ`
+6. 则需要构造并粘贴到 Bitwarden 的字符串就是：
+
+```shell
+steam://BK4W3KEQZUWIFU6YUBJRKZCVJRXVZSRXSZ
+```
+
+1. 当在 Bitwarden 中保存了 `steam://` 格式的密钥后，验证码区域会自动生成与官方 Steam 令牌应用完全一致的 5 位字母数字混合验证码
+
+
 
 # 406、vlmcsd windows 激活 KMS 服务器
 
