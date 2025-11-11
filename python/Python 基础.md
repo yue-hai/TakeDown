@@ -4534,7 +4534,7 @@ C:\Users\10222148\AppData\Local\Programs\Python\Python311\python.exe "D:\Idea\sa
 1. 访问官网：前往 [Python 官网 Windows 下载页面](https://www.python.org/downloads/windows/)
 2. 选择版本：找到需要的 Python 版本，在文件列表中选择 Windows embeddable package (64-bit) 并下载，它是一个 .zip 压缩包
 
-![|700](attachments/Pasted%20image%2020250625102353.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020250625102353.png)
 
 3. 解压文件：将下载的 .zip 包解压到希望的目录，例如：`D:\tools\python-3.12`
 4. 用浏览器访问：https://bootstrap.pypa.io/get-pip.py，在页面上右键 -> 另存为，将 `get-pip.py` 文件保存到刚刚解压的 Python 目录里，即 `D:\tools\python-3.12`
