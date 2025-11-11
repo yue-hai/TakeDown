@@ -615,7 +615,7 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 
 ### ①、为所有文件类型添加 Notepad3
 
-1. 添加 reg 脚本：[Notepad3_Add_SubMenu.reg](attachments/Notepad3_Add_SubMenu.reg)，清理 reg 脚本：[Notepad3_Remove_Menu.reg](attachments/Notepad3_Remove_Menu.reg)
+1. 添加 reg 脚本：[Notepad3_Add_SubMenu.reg](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Notepad3_Add_SubMenu.reg)，清理 reg 脚本：[Notepad3_Remove_Menu.reg](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Notepad3_Remove_Menu.reg)
 2. 如不想使用脚本，可手动修改注册表：
 3. `Windows + R` 打开运行，输入 `regedit` 后点击确定，打开 注册表编辑器 窗口
 4. 进入注册表路径：`HKEY_CLASSES_ROOT\*\shell`
@@ -752,7 +752,7 @@ PS C:\Windows\system32>
 
 5. 原因是该系统缺少一个必要的 依赖项 或 公共组件，首先下载并安装缺失的 VCLibs 运行库：
 	1. 网络下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx)
-	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
+	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
 6. 将下载的运行库安装包也放入到磁盘根目录，比如：`E:\Microsoft.VCLibs.x64.14.00.Desktop.appx`
 7. 输入命令安装运行库：
 
@@ -841,7 +841,7 @@ PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00.UWPDeskto
 #### Ⅱ、缺少 `Microsoft.UI.Xaml.2.8`
 
 1. 网络下载 [Microsoft.UI.Xaml-2.8.6](https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.8.6)，此链接会下载一个 `.nupkg` 文件，需要将其后缀名改为 `.zip`，然后解压，在 `tools\AppX\x64\Release` 目录下找到 `Microsoft.UI.Xaml.2.8.appx` 文件
-2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](attachments/)
+2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/)
 3. 下载后使用上面的命令进行安装
 
 ```PowerShell

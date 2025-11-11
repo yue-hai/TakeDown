@@ -165,7 +165,7 @@ docker run -d \
 itzg/minecraft-server:latest
 ```
 
-1. 使用 `docker-compose.yml` 部署：
+3. 使用 `docker-compose.yml` 部署：
 
 ```yaml
 # 定义所有要管理的服务（容器）
@@ -426,7 +426,7 @@ exit 0
 chmod 755 minecraft_server_manager.sh
 ```
 
-5. 用方式：
+5. 使用方式：
 	1. 参数 1：执行方式，启动=start、重启=restart、停止=stop、备份=backup
 	2. 参数 2：docker 容器名称
 	3. 参数 3：游戏服务器所在目录
@@ -452,10 +452,381 @@ chmod 755 minecraft_server_manager.sh
 
 7. 使用 cronicle 设置定时执行：
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617131001.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617131001.png)
+
+## 6、查看整合包服务器类型
+
+1. 打开启动脚本 `run.sh`，查看其中的内容
+2. 如果是 Neoforge，路径中会包含 `libraries/net/neoforged/neoforge/...`，配置为：`TYPE: "NEOFORGE"`
+
+```shell
+java @user_jvm_args.txt @libraries/net/neoforged/neoforge/21.1.192/unix_args.txt "$@"
+```
+
+3. 如果是 Forge，路径中会包含 `net/minecraftforge/forge`，配置为：`TYPE: "FORGE"`
+
+```shell
+java @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.1.0/unix_args.txt "$@"
+```
+
+4. 如果是 Fabric，会直接运行一个名为 `fabric-server-launch.jar` 的文件，配置为：`TYPE: "FABRIC"`
+
+```shell
+java -jar fabric-server-launch.jar --nogui
+```
+
+5. 如果是 Quilt，会直接运行一个名为 `quilt-server-launch.jar` 的文件，配置为：`TYPE: "QUILT"`
+
+```shell
+java -jar quilt-server-launch.jar --nogui
+```
+
+6. 如果是 Paper / Purpur，会直接运行一个以 `paper.jar` 或 `purpur.jar` 结尾的文件，配置为：`TYPE: "PAPER"`
+
+```shell
+java -Xms2G -Xmx8G -jar paper-1.20.4-420.jar --nogui
+```
+
+7. 如果是 Spigot，会直接运行一个以 `spigot.jar` 结尾的文件，配置为：`TYPE: "SPIGOT"`
+
+```shell
+java -jar spigot-1.20.1.jar --nogui
+```
+
+8. 如果是 Vanilla (原版服务器) ，会直接运行 `server.jar`，配置为：`TYPE: "VANILLA"`
+
+```shell
+java -Xmx2G -Xms1G -jar server.jar nogui
+```
+
+## 6、查看整合包游戏本体版本
+
+### ①、检查核心文件名和文件夹（最推荐）
+
+1. 这是最直接、最可靠的方法，因为服务器文件本身通常就包含了版本信息
+2. 针对 `NeoForge/Forge` 服务器：
+	1. 检查 libraries 目录：根据启动脚本路径 `.../libraries/net/neoforged/neoforge/...`，仔细查看这个 libraries 文件夹的结构。在它的上层或同级目录中，经常能找到与 Minecraft 版本相关的路径
+	2. 检查 mods 文件夹：打开 mods 文件夹，查看里面所有 `.jar` 文件的文件名。绝大多数 Mod 的文件名都会遵循 `[Mod名称]-[Mod版本]-[Minecraft版本].jar` 的格式。
+	3. 例如，可能会看到：`jei-1.20.1-15.2.0.27.jar`、`oculus-mc1.20.1-1.6.4.jar`、`create-1.20.1-0.5.1.f.jar`
+	4. 如果大部分 Mod 文件名中都包含 1.20.1，那么游戏版本几乎可以肯定是 1.20.1。这是判断整合包游戏版本最快的方法之一
+3. 针对其他类型的服务器：
+4. Fabric：与 Forge 类似，最佳方法是查看 mods 文件夹里 Mod 的文件名来确定统一的游戏版本
+5. Paper / Spigot / Purpur：
+	1. 这种服务器类型最简单。在主目录中，会直接找到一个核心 `.jar` 文件，版本号就写在文件名里
+	2. 例如：`paper-1.20.4-420.jar` -> 游戏版本就是 1.20.4
+
+### ②、查看日志文件（如果运行过）
+
+1. 如果曾经成功启动过一次服务器（即使是启动失败了），它也会生成日志文件
+2. 在服务器文件夹中找到 logs 文件夹，打开最新的日志文件，通常是 latest.log
+3. 在文件最开始的几行，会清晰地看到类似下面的信息：
+
+```shell
+[10:30:00] [main/INFO]: Starting minecraft server version 1.20.1
+[10:30:00] [main/INFO]: Loading properties
+[10:30:00] [main/INFO]: This server is running NeoForge version 21.1.192
+```
+
+4. 第一行就明确指出了 Minecraft 的游戏版本是 1.20.1
 
 
+# 2、minecraft 我的世界 openjdk
 
+> 1. 项目 github：
+> 2. dockerHub 地址：`https://hub.docker.com/_/openjdk`
+
+## 1、介绍
+
+1. 使用 openjdk 镜像而不是 `itzg/docker-minecraft-server` 的原因是，当加载器类型是 `NEOFORGE` 时，`itzg/docker-minecraft-server` 会在每次重启容器时都重新检测下载 `neoForge`
+2. 就算之前已经下载成功、依赖都完整，也会重新检测下载，并且下载失败，即使开启了代理也极少下载成功
+
+```shell
+[init] ERROR failed to install Forge
+```
+
+## 3、docker 首次部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/game/minecraft/mechanomania`
+	2. 将服务器文件放入、解压
+	3. 给与 `run.sh` 执行权限：`chmod 755 /vol1/1000/docker/game/minecraft/mechanomania/run.sh`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d -it \
+-p 25565:25565 \
+-v /vol1/1000/docker/game/minecraft/mechanomania:/data \
+--network yuehai-net \
+--restart unless-stopped \
+--name game-mc-mechanomania \
+openjdk:21
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 game-mc-mechanomania 的服务
+    game-mc-mechanomania:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: openjdk:21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: game-mc-mechanomania
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 保持容器开启，以便能进入
+        stdin_open: true
+        # 保持容器的终端开启，以便能与之交互
+        tty: true
+        # 定义端口映射规则
+        ports:
+            # Minecraft 游戏服务器的标准端口
+            - "25565:25565"
+        # 定义数据卷挂载规则，用于持久化存储游戏世界和配置
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/game/minecraft/mechanomania:/data
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+4. 进入容器：
+
+```shell
+docker exec -it game-mc-mechanomania bash
+```
+
+5. 进入 `/data` 目录，然后运行 `run.sh` 脚本
+
+```shell
+# 进入游戏目录
+cd data
+
+# 运行启动脚本
+./run.sh
+```
+
+6. 之后操作和正常 linux 启动 mc 服务器相同，直到可以成功启动、客户端可以连接成功后，停止并删除容器
+
+## 4、docker 部署、自动运行
+
+1. 去掉保持容器开启的参数，添加执行 `run.sh` 的命令，用于在启动容器时自动启动服务器
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 25565:25565 \
+-v /vol1/1000/docker/game/minecraft/mechanomania:/data \
+-w /data \
+--network yuehai-net \
+--cpus="4.0" \
+--restart unless-stopped \
+--name game-mc-mechanomania \
+openjdk:21 \
+/data/run.sh
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 game-mc-mechanomania 的服务
+    game-mc-mechanomania:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: openjdk:21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: game-mc-mechanomania
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Minecraft 游戏服务器的标准端口
+            - "25565:25565"
+        # 定义数据卷挂载规则，用于持久化存储游戏世界和配置
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/game/minecraft/mechanomania:/data
+        # 设置容器的工作目录为 /data
+        working_dir: /data
+        # 指定容器启动后要执行的命令
+        command: /data/run.sh
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+        # 资源限制配置
+        deploy:
+            resources:
+                limits:
+                    # 限制此容器最多可以使用 4 个 CPU 核心
+                    cpus: '4.0'
+                reservations:
+                    # 为此容器至少保留 1 个 CPU 核心
+                    cpus: '1.0'
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 5、常用配置项修改
+
+
+# 3、Terraria 泰拉瑞亚 (tModLoader)
+
+> 1.  项目 github：https://github.com/jacob-smile/tmodloader-docker
+> 2.  dockerHub 地址：https://hub.docker.com/r/jacobsmile/tmodloader1.4
+
+## 1、介绍
+
+1.  `jacobsmile/tmodloader1.4` 是一个为 tModLoader 1.4 设计的、功能强大且高度自动化的 Docker 镜像。它极大地简化了搭建和管理一个带 Mod 的泰拉瑞亚服务器的过程，特别适合需要快速部署和轻松维护大量 Mod 的场景。
+2.  它的主要特点包括：
+    1.  **全自动 Mod 管理**：核心亮点功能。只需提供 Steam 创意工坊的 Mod ID，容器启动时即可自动下载并启用所有指定的 Mod，彻底告别手动下载和上传 `.tmod` 文件的繁琐过程。
+    2.  **环境变量驱动配置**：服务器的所有关键设置，如世界名称、密码、最大玩家数、游戏难度、欢迎语等，均可通过 Docker 环境变量进行配置，无需手动编辑任何配置文件，实现了高度的可移植性和自动化。
+    3.  **自动世界生成**：当指定的世界文件不存在时，服务器会根据环境变量自动创建一个符合要求（大小、难度、种子）的新世界，简化了服务器的首次启动流程。
+    4.  **数据持久化**：通过挂载数据卷，可以将世界、Mod、配置文件等关键数据安全地保存在宿主机上，确保容器在更新、迁移或重建后数据万无一失。
+    5.  **现代化的服务器交互**：提供了更安全、更推荐的 `docker exec ... inject` 命令来与服务器控制台交互，避免了 `docker attach` 可能带来的意外关闭风险。
+
+## 3、常用参数
+
+### ①、核心与必要参数
+
+| 参数 | 示例 | 说明 |
+| :--- | :--- | :--- |
+| -p | `-p 41992:7777/tcp` | **端口映射**<br>将主机的 41992 端口映射到容器的 7777 端口，这是 tModLoader 服务器的默认端口，用于玩家连接。 |
+| -v | `-v /path/to/data:/data` | **数据持久化**<br>将容器内保存所有游戏数据（世界、Mod、配置、日志等）的 `/data` 目录挂载到你主机的指定路径。 |
+| -e TMOD\_WORLDNAME | `-e TMOD_WORLDNAME="MyWorld"` | **世界名称**。必需！指定服务器加载或创建的世界文件名。 |
+
+### ②、服务器与世界配置参数
+
+| 参数 | 示例 | 说明 |
+| :--- | :--- | :--- |
+| -e TMOD\_DIFFICULTY | `-e TMOD_DIFFICULTY="2"` | **游戏难度**<br>`0`=普通, `1`=专家, `2`=大师, `3`=旅行。 |
+| -e TMOD\_WORLDSIZE | `-e TMOD_WORLDSIZE="3"` | **世界大小**<br>`1`=小, `2`=中, `3`=大。 |
+| -e TMOD\_WORLDSEED | `-e TMOD_WORLDSEED="DockerPower"` | **世界种子**。用于生成新世界的种子码。 |
+| -e TMOD\_MOTD | `-e TMOD_MOTD="Welcome!"` | **服务器欢迎语**。玩家进入游戏后看到的欢迎信息。 |
+| -e TMOD\_LANGUAGE | `-e TMOD_LANGUAGE="zh-Hans"` | **服务器语言**。设置服务器日志和后台消息为简体中文。 |
+| -e TMOD\_AUTOSAVE\_INTERVAL | `-e TMOD_AUTOSAVE_INTERVAL="15"` | **自动保存间隔**。单位是分钟。 |
+| -e TMOD\_SHUTDOWN\_MESSAGE | `-e TMOD_SHUTDOWN_MESSAGE="Server is closing..."` | **关闭前通知**。服务器关闭前发送给所有玩家的消息。 |
+
+### ③、玩家与权限管理参数
+
+| 参数 | 示例 | 说明 |
+| :--- | :--- | :--- |
+| -e TMOD\_MAXPLAYERS | `-e TMOD_MAXPLAYERS="16"` | **最大玩家数**。设置服务器能同时容纳的最大玩家数量。 |
+| -e TMOD\_PASS | `-e TMOD_PASS="your_password"` | **服务器密码**。为服务器设置一个连接密码。 |
+
+### ④、Mod 管理参数 (核心功能)
+
+| 参数 | 示例 | 说明 |
+| :--- | :--- | :--- |
+| -e TMOD\_AUTODOWNLOAD | `-e TMOD_AUTODOWNLOAD="id1,id2,id3"` | **自动下载 Mod**<br>填入一个或多个 Mod 的 Steam 创意工坊 ID，用逗号分隔。容器启动时会自动下载它们。 |
+| -e TMOD\_ENABLEDMODS | `-e TMOD_ENABLEDMODS="id1,id2,id3"` | **自动启用 Mod**<br>填入需要启用的 Mod 的 ID 列表，同样用逗号分隔。通常这个列表和上面的下载列表保持一致。 |
+
+## 4、docker 部署
+
+1.  为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/game/terraria/yuehai-2025-10-27/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d -it \
+-p 7777:7777/tcp \
+-v /vol1/1000/docker/game/terraria/yuehai-2025-10-27/data:/data \
+-e TMOD_WORLDNAME='月海-2025-10-27' \
+-e TMOD_PASS=000123 \
+-e TMOD_MAXPLAYERS=16 \
+-e TMOD_MOTD='月海的 Terraria' \
+-e TMOD_SHUTDOWN_MESSAGE='服务器即将关闭，请保存进度并退出游戏' \
+-e TMOD_AUTOSAVE_INTERVAL=15 \
+-e TMOD_LANGUAGE=zh-Hans \
+-e TMOD_WORLDSIZE=3 \
+-e TMOD_DIFFICULTY=2 \
+-e TMOD_AUTODOWNLOAD='3564381714,3436582116,...' \
+-e TMOD_ENABLEDMODS='3564381714,3436582116,...' \
+--network yuehai-net \
+--restart=unless-stopped \
+--name game-terraria-tmodloader \
+jacobsmile/tmodloader1.4:latest
+```
+
+3.  使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+	# 定义一个名为 game-terraria-tmodloader 的服务
+	game-terraria-tmodloader:
+		# 指定该服务使用的 Docker 镜像及其标签（版本）
+		image: jacobsmile/tmodloader1.4:latest
+		# 设置容器的固定名称，方便识别和管理
+		container_name: game-terraria-tmodloader
+		# 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+		restart: unless-stopped
+		# 定义端口映射规则
+		ports:
+			- "7777:7777/tcp"
+		# 定义数据卷挂载规则，用于持久化存储游戏世界和配置
+		volumes:
+			# 数据目录
+			- /vol1/1000/docker/game/terraria/yuehai-2025-10-27/data:/data
+		# 定义环境变量
+		environment:
+			# 世界名称
+			- TMOD_WORLDNAME='月海-2025-10-27'
+			# 密码
+			- TMOD_PASS=000123
+			# 最大玩家数量
+			- TMOD_MAXPLAYERS=16
+			# 欢迎消息
+			- TMOD_MOTD='月海的 Terraria'
+			# 服务器关闭前的通知消息
+			- TMOD_SHUTDOWN_MESSAGE='服务器即将关闭，请保存进度并退出游戏'
+			# 自动保存间隔(分钟)
+			- TMOD_AUTOSAVE_INTERVAL=15
+			# 设置服务器语言为简体中文
+			- TMOD_LANGUAGE=zh-Hans
+			
+			# 世界大小 1=Small, 2=Medium, 3=Large
+			- TMOD_WORLDSIZE=3
+			# 游戏难度 0=Normal, 1=Expert, 2=Master, 3=Journey
+			- TMOD_DIFFICULTY=2
+			
+			# 自动从 Steam 创意工坊下载 Mod，填入 Mod 的工坊 ID，用逗号分隔
+			- TMOD_AUTODOWNLOAD=3564381714,3436582116,3013540385
+			# 自动启用 Mod，填入 Mod 的工坊 ID，用逗号分隔
+			- TMOD_ENABLEDMODS=3564381714,3436582116,3013540385
+		# 为容器分配一个伪终端（pseudo-TTY），用于交互式会话
+		tty: true
+		# 保持标准输入（stdin）开启，与 tty 配合使用
+		stdin_open: true
+		# 定义此服务要连接的网络
+		networks:
+			- yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+	# 定义一个名为 yuehai-net 的网络配置
+	yuehai-net:
+		# 将此网络声明为外部网络，表示它已由其他服务或手动创建
+		external: true
+```
 
 
 

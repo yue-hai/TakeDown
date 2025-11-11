@@ -288,7 +288,7 @@ location /oneNav {
 
 1. 如果 docker 中已经定义了网络 `yuehai-net`，并且 nginx 容器和需要代理的容器创建时已经指定了使用该网络 `--network yuehai-net`，那么就可以使用自定义网络的方式进行代理；当然名字不是固定的，自定义即可
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617092724.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617092724.png)
 
 1. 同样是点击主机 -> 代理服务 -> 添加代理服务
 
@@ -298,7 +298,7 @@ location /oneNav {
 	1. 转发主机/IP：使用容器的名称，比如：xunlei
 	2. 转发端口：使用容器的内部端口，比如迅雷的内部端口是 2345
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617092837.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617092837.png)
 
 
 # 1、docker 可视化 portainer-ce
@@ -474,7 +474,7 @@ apt-get update && apt-get install -y fonts-wqy-zenhei fonts-arphic-ukai
 2. 搜索 Reduce Accept-Language
 3. 设置为 Enabled 后重启
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617093427.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617093427.png)
 
 
 # 3、clash
@@ -1307,7 +1307,7 @@ docker logs qbittorrent
 1. 如果 nginx 和 qbittorrent 加入了同一个 docker 网络，那么代理起来会方便很多
 2. 填入 qbittorrent 的容器名和端口号即可
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617095408.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617095408.png)
 
 ## 5、使用 nginx 代理 2
 
@@ -1581,7 +1581,7 @@ tcp://ip:22000, quic://ip:22000
 tcp://127.0.0.1:22000, quic://127.0.0.1:22000
 ```
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617095915.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617095915.png)
 
 ## 3、访问
 
@@ -1685,7 +1685,7 @@ networks:
 
 1. 在 nginx 中点击添加代理，详细内容中和其他代理相同，不再详细说明
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617100922.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617100922.png)
 
 2. 配置完成后，访问d代理地址会出现如下提示：
 
@@ -1877,11 +1877,11 @@ sudo docker exec onlyoffice /var/www/onlyoffice/documentserver/npm/json -f /etc/
 	4. 服务器内部请求 ONLYOFFICE Docs 的地址：即 ONLYOFFICE 的局域网地址：`http://onlyoffice/`
 	5. ONLYOFFICE Docs 内部请求服务器的地址：即 nextcloud 的地址，从这里获取文件：`http://nextcloud/`
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617102332.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617102332.png)
 
 10. 点击保存即可集成，成功后下方会显示常用设置等
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617102348.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617102348.png)
 
 ## 7、修改 Nextcloud 集成 Onlyoffice 后的页面的样式
 
@@ -2190,11 +2190,11 @@ docker exec onlyoffice sudo sed 's,autostart=false,autostart=true,' -i /etc/supe
 
 1. 在 nginx 中点击添加代理，详细内容中和其他代理相同，不再详细说明
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617103017.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617103017.png)
 
 1. 点击高级，填入以下自定义 Nginx 配置
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617103038.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617103038.png)
 
 ```nginx
 # 定义一个 location 块，匹配所有进入的请求 (/)
@@ -2677,319 +2677,7 @@ networks:
 3. 初次访问需注册管理员账号密码
 
 
-# 401、LobeChat  AI 前端工具
-
-> 1. 官网：https://lobehub.com/zh/docs/self-hosting/start
-> 2. 项目 github：https://github.com/lobehub/lobe-chat
-> 3. dockerHub 地址：https://hub.docker.com/r/lobehub/lobe-chat
-
-## 1、介绍
-
-1. LobeChat 是一款由 LobeHub 团队开发的开源聊天前端，专为对接大语言模型（如 OpenAI、DeepSeek 等）设计。它以简洁美观的界面、强大的自定义能力和丰富的插件系统著称，支持通过 Docker 快速本地化部署。
-2. 核心功能：
-3. 多模型支持：
-	1. 可无缝切换 OpenAI、DeepSeek、Claude 等主流模型（需兼容 OpenAI API 格式）。
-	2. 支持自定义模型名称（如 deepseek-chat）。
-4. 插件系统：
-	1. 内置插件市场，支持联网搜索、图像生成、代码解释器等扩展功能。
-	2. 可开发自定义插件（基于 TypeScript + React）。
-5. 对话管理：
-	1. 会话历史记录自动保存，支持多标签页管理。
-	2. 可导出/导入对话数据（Markdown 或 JSON 格式）。
-6. 界面与交互：
-	1. 响应式设计，适配 PC、平板和手机端。
-	2. 支持 Markdown 渲染、代码高亮、LaTeX 公式。
-	3. 主题切换（亮色/暗色模式）。
-7. 安全控制：
-	1. 支持密码保护、IP 白名单限制访问。
-	2. 敏感词过滤和对话内容审查机制。
-
-| 组件          | 说明                                                                 |
-|---------------|----------------------------------------------------------------------|
-| 前端框架      | Next.js（React） + Ant Design                                       |
-| 状态管理      | Zustand                                                             |
-| 插件系统      | 基于 `@lobehub/chat-plugins` SDK                                    |
-| 部署方式      | Docker 容器化 / Vercel 一键部署                                     |
-| 兼容性        | 要求模型 API 兼容 OpenAI 的 `/v1/chat/completions` 接口格式         |
-
-## 2、docker 部署
-
-1. 该应用所有数据都保存在浏览器，所以不需要配置挂载目录
-2. 使用 docker run 部署：
-
-```shell
-docker run -d \
--p 3210:3210 \
---network yuehai-net \
---restart=unless-stopped \
---name lobe-chat \
-lobehub/lobe-chat:latest
-```
-
-3. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 lobe-chat 的服务
-    lobe-chat:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: lobehub/lobe-chat:latest
-        # 设置容器的固定名称，方便识别和管理
-        container_name: lobe-chat
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义端口映射规则
-        ports:
-            # Lobe Chat 的 Web UI 端口
-            - "3210:3210"
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-
-## 4、访问
-
-1. 访问：[http://127.0.0.1:3210](http://127.0.0.1:3210)
-
-
-# 402、Memos 开源、轻量级的备忘录服务
-
-> 1. 项目 github：https://github.com/usememos/memos
-> 2. dockerHub 地址：https://hub.docker.com/r/neosmemo/memos
-
-## 1、介绍
-
-1. Memos 是一个轻量级的开源备忘录应用，适合用于个人知识管理、日记记录或团队协作等场景。
-2. 它以其简单易用、轻量化、高度定制化的特点，成为许多用户钟爱的工具
-3. Memos 的核心功能：
-4. **简洁的用户界面**：以简约风格设计，专注于高效记录。
-5. **富文本支持**：支持 Markdown 语法，方便格式化内容。
-6. **多终端同步**：支持多设备无缝访问。
-7. **数据私有化**：用户可以完全掌控数据，特别适合需要隐私保护的场景。
-8. **插件支持**：提供多种扩展功能，比如搜索、分类、标签管理等
-
-## 2、docker 部署
-
-1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 数据目录：`/vol1/1000/docker/tool/memos/data`
-2. 使用 docker run 部署：
-
-```shell
-docker run -d \
--p 5230:5230 \
--v /vol1/1000/docker/tool/memos/data:/var/opt/memos \
---network yuehai-net \
---restart=unless-stopped \
---name memos \
-neosmemo/memos:latest
-```
-
-3. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 memos 的服务
-    memos:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: neosmemo/memos:latest
-        # 设置容器的固定名称，方便识别和管理
-        container_name: memos
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义端口映射规则
-        ports:
-            # Memos 的 Web UI 端口
-            - "41042:5230"
-        # 定义数据卷挂载规则
-        volumes:
-            # 数据目录
-            - /vol1/1000/docker/tool/memos/data:/var/opt/memos
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-
-## 3、访问
-
-1. 访问：[http://127.0.0.1:5230](http://127.0.0.1:5230)
-2. 初次访问需设定管理员账号密码
-
-
-# 403、onenav 开源的导航管理工具
-
-> 1. 项目 github：https://github.com/helloxz/onenav
-> 2. dockerHub 地址：https://hub.docker.com/r/helloz/onenav
-
-## 1、介绍
-
-1. OneNav 是一个基于 PHP + SQLite 开发的简洁、轻量级的书签管理导航系统。它的设计目标是提供一个简洁高效的导航页面，适用于个人或团队使用，方便管理和访问常用网站。
-2. OneNav 的主要特点：
-	1. 轻量级：使用 PHP 作为后端，无需复杂的配置，直接可用。
-	2. 数据库支持：支持 SQLite 和 MySQL，适应不同的使用需求。
-	3. 简洁 UI：前端采用简洁美观的设计，用户体验良好。
-	4. 支持分类管理：可以对书签进行分类管理，方便查找和使用。
-	5. 多用户支持：部分版本支持多用户管理，可用于团队协作。
-	6. 开源项目：OneNav 是一个开源项目，可以自由修改和扩展。
-3. 适用场景：
-	1. 个人导航页：用于管理个人常用的网站链接，提高访问效率。
-	2. 公司/团队内部导航：作为团队内部的书签管理工具，方便共享常用资源。
-	3. 开发者工具集合：可以整理各种 API 文档、开发工具网站等，提高开发效率。
-
-## 2、docker 部署
-
-1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/vol1/1000/docker/tool/onenav/data`
-2. 使用 docker run 部署：
-
-```shell
-docker run -d \
--p 80:80 \
--v /vol1/1000/docker/tool/onenav/data:/data/wwwroot/default/data \
---network yuehai-net \
---restart=unless-stopped
---name onenav \
-helloz/onenav:latest
-```
-
-3. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 onenav 的服务
-    onenav:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: helloz/onenav:latest
-        # 设置容器的固定名称，方便识别和管理
-        container_name: onenav
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义端口映射规则
-        ports:
-            # OneNav 的 Web UI 端口
-            - "80:80"
-        # 定义数据卷挂载规则
-        volumes:
-            # 数据目录
-            - /vol1/1000/docker/tool/onenav/data:/data/wwwroot/default/data
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-
-## 3、访问
-
-1. 访问：[http://101.200.86.248:80/](http://101.200.86.248:80/)
-2. 初次访问需注册管理员账号密码
-
-# 404、Nexterm 基于浏览器的服务器管理工具
-
-> 1. 项目 github：https://github.com/gnmyt/Nexterm
-> 2. dockerHub 地址：https://hub.docker.com/r/germannewsmaker/nexterm
-
-## 1、介绍
-
-1.  Nexterm 是一个多功能的终端应用程序，专为提高开发者在使用命令行时的效率而设计。它通常包括如下几个关键功能：
-2. **多标签和拆分视图**：用户可以在一个窗口中打开多个标签，每个标签可以进一步拆分为多个视图，方便同时监控和操作多个会话
-3. **高度可定制**：Nexterm 提供丰富的定制选项，包括主题、快捷键和布局等，用户可以根据个人喜好调整这些设置
-4. **集成开发环境功能**：此应用程序可能集成了代码编辑器、版本控制系统以及其他开发工具，使其不仅仅是一个简单的终端模拟器，而是一个全面的开发环境
-5. **插件和扩展支持**：通过支持插件和扩展，Nexterm 允许用户添加新功能或集成其他工具，以扩展其核心功能
-6. **跨平台兼容性**：Nexterm 设计之初就考虑到了跨平台使用的需求，通常支持 Windows、MacOS 和各种 Linux 发行版
-7. **高级命令行功能**：可能包括内置的命令行搜索、历史记录管理和自动完成等功能，以提升用户的工作效率
-8. Nexterm 旨在为开发者提供一个强大而高效的工作环境，通过以上的功能帮助用户简化和优化日常的开发任务。不过需要注意的是，关于 Nexterm 的具体信息可能因版本和开发社区的持续更新而有所变动
-
-## 2、docker 部署
-
-1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/vol1/1000/docker/tool/nexterm/data`
-2. 使用 docker run 部署：
-
-```shell
-docker run -d \
--p 6989:6989 \
--e ENCRYPTION_KEY="xxx" \
--v /vol1/1000/docker/tool/nexterm/data:/app/data \
---network yuehai-net \
---restart=unless-stopped \
---name nexterm \
-germannewsmaker/nexterm:latest
-```
-
-3. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 nexterm 的服务
-    nexterm:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: germannewsmaker/nexterm:latest
-        # 设置容器的固定名称，方便识别和管理
-        container_name: nexterm
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义端口映射规则
-        ports:
-            # NextSSH/NexTerm 的 Web UI 端口
-            - "6989:6989"
-        # 定义环境变量
-        environment:
-            # 加密密钥，可以使用 openssl rand -hex 32 生成
-            - ENCRYPTION_KEY=xxx
-		# 定义数据卷挂载规则
-        volumes:
-            # 数据目录
-            - /vol1/1000/docker/tool/nexterm/data:/app/data
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-
-## 3、访问
-
-1. 访问：[http://127.0.0.1:6989](http://127.0.0.1:6989)
-2. 初次访问需设定管理员账号密码
-
-
-# 405、vaultwarden 密码管理器
+# 401、vaultwarden 密码管理器
 
 > 1. 项目 github：https://github.com/dani-garcia/vaultwarden
 > 2. dockerHub 地址：https://hub.docker.com/r/vaultwarden/server
@@ -3142,7 +2830,7 @@ otpauth://totp/我的测试两步验证:用户名?secret=IQZVREOMI3XQWNDP&algori
 otpauth://hotp/我的测试两步验证:用户名?secret=IQZVREOMI3XQWNDP&counter=1&algorithm=SHA256&digits=8&period=60
 ```
 
-1. 当在 Bitwarden 中保存了 HOTP 密钥后，验证码旁边会出现一个刷新按钮，需要手动点击它来生成下一个有效的验证码
+6. 当在 Bitwarden 中保存了 HOTP 密钥后，验证码旁边会出现一个刷新按钮，需要手动点击它来生成下一个有效的验证码
 
 #### Ⅴ、Steam Guard (专用验证码)
 
@@ -3157,11 +2845,87 @@ otpauth://hotp/我的测试两步验证:用户名?secret=IQZVREOMI3XQWNDP&counte
 steam://BK4W3KEQZUWIFU6YUBJRKZCVJRXVZSRXSZ
 ```
 
-1. 当在 Bitwarden 中保存了 `steam://` 格式的密钥后，验证码区域会自动生成与官方 Steam 令牌应用完全一致的 5 位字母数字混合验证码
+7. 当在 Bitwarden 中保存了 `steam://` 格式的密钥后，验证码区域会自动生成与官方 Steam 令牌应用完全一致的 5 位字母数字混合验证码
 
 
+# 402、onenav 开源的导航管理工具
 
-# 406、vlmcsd windows 激活 KMS 服务器
+> 1. 项目 github：https://github.com/helloxz/onenav
+> 2. dockerHub 地址：https://hub.docker.com/r/helloz/onenav
+
+## 1、介绍
+
+1. OneNav 是一个基于 PHP + SQLite 开发的简洁、轻量级的书签管理导航系统。它的设计目标是提供一个简洁高效的导航页面，适用于个人或团队使用，方便管理和访问常用网站。
+2. OneNav 的主要特点：
+	1. 轻量级：使用 PHP 作为后端，无需复杂的配置，直接可用。
+	2. 数据库支持：支持 SQLite 和 MySQL，适应不同的使用需求。
+	3. 简洁 UI：前端采用简洁美观的设计，用户体验良好。
+	4. 支持分类管理：可以对书签进行分类管理，方便查找和使用。
+	5. 多用户支持：部分版本支持多用户管理，可用于团队协作。
+	6. 开源项目：OneNav 是一个开源项目，可以自由修改和扩展。
+3. 适用场景：
+	1. 个人导航页：用于管理个人常用的网站链接，提高访问效率。
+	2. 公司/团队内部导航：作为团队内部的书签管理工具，方便共享常用资源。
+	3. 开发者工具集合：可以整理各种 API 文档、开发工具网站等，提高开发效率。
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/vol1/1000/docker/tool/onenav/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 80:80 \
+-v /vol1/1000/docker/tool/onenav/data:/data/wwwroot/default/data \
+--network yuehai-net \
+--restart=unless-stopped
+--name onenav \
+helloz/onenav:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 onenav 的服务
+    onenav:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: helloz/onenav:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: onenav
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # OneNav 的 Web UI 端口
+            - "80:80"
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/tool/onenav/data:/data/wwwroot/default/data
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://101.200.86.248:80/](http://101.200.86.248:80/)
+2. 初次访问需注册管理员账号密码
+
+
+# 403、vlmcsd windows 激活 KMS 服务器
 
 > 1. 项目 github：https://github.com/mikolatero/docker-vlmcsd
 > 2. dockerHub 地址：https://hub.docker.com/r/mikolatero/vlmcsd
@@ -3193,7 +2957,7 @@ docker run -d \
 mikolatero/vlmcsd:latest
 ```
 
-1. 使用 `docker-compose.yml` 部署：
+2. 使用 `docker-compose.yml` 部署：
 
 ```yaml
 # 定义所有要管理的服务（容器）
@@ -3244,28 +3008,35 @@ networks:
 2. 一部分 Windows 激活密钥：
 
 ```shell
+# Windows Vista Enterprise
+VKK3X-68KWM-X2YGT-QR4M6-4BWMV
+
+# Windows 7 Professional
+FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4
+
+# Windows 8 Pro
+NG4HW-VH26C-733KW-K6F98-J8CK4
+# Windows 8.1 Pro
+GCRJD-8NW9H-F2CDX-CCM8D-9D6T9
+
 # win10 & win11 Pro（专业版）
 W269N-WFGWX-YVC9B-4J6C9-T83GX
-
+# Windows 10 Enterprise LTSB 2016
+DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ
 # Windows 11 Enterprise LTSC 2024 & Windows 10 Enterprise LTSC 2021 & Windows 10 Enterprise LTSC 2019
 M7XTQ-FN8P6-TTKYV-9D4CC-J462D
 
 # Windows Server 2016 Standard	
 WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY
-# Windows Server 2016 Datacenter
-CB7KF-BWN84-R7R2Y-793K2-8XDDG
-# Windows Server 2016 Essentials
-JCKRF-N37P4-C2D82-9YXRT-4M63B
-
 #Windows Server 2019 Standard
 N69G4-B89J2-4G8F4-WWYCC-J464C
-#Windows Server 2019 Datacenter
-WMDGN-G9PQG-XVVXX-R3X43-63DFG
-#Windows Server 2019 Essentials
-WVDHN-86M7X-466P6-VHXV7-YY726
+# Windows Server 2022 Standard
+VDYBN-27WPP-V4HQT-9VMD4-VMK7H
+# Windows Server 2025 Standard
+TVRH6-WHNXV-R9WG3-9XRFY-MY832
 ```
 
-1. Windows 激活方式：
+3. Windows 激活方式：
 
 ```shell
 # 安装 Windows 11 专业版对应的 GVLK 密钥
@@ -3293,8 +3064,8 @@ slmgr /xpr
 | Office LTSC Professional Plus 2021 | FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH |
 | Office LTSC Standard 2021          | KDX7X-BNVR8-TXXGX-4Q7Y8-78VT3 |
 
-1. office 激活方式：
-2. 进入 office 的安装目录，这个目录通常是下面中的一个（取决于 office 版本和位数）：
+3. office 激活方式：
+4. 进入 office 的安装目录，这个目录通常是下面中的一个（取决于 office 版本和位数）：
 	1. 64位 office: `C:\Program Files\Microsoft Office\Office16`
 	2. 32位 office: `C:\Program Files (x86)\Microsoft Office\Office16`
 
@@ -3322,15 +3093,537 @@ cscript ospp.vbs /dstatus
 2. 方案一：删除注册表项：`KEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\SppExtComObj.exe`
 	1. win+R 键打开运行窗口，输入：regedit
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617105718.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617105718.png)
 
-1. 方案二：下载 Office Tool 运行起来，按照下面图片所示点击操作就可以了：
+3. 方案二：下载 Office Tool 运行起来，按照下面图片所示点击操作就可以了：
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617105733.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617105733.png)
 
 ### ②、
 
 ### ③、
+
+
+# 404、Memos 开源、轻量级的备忘录服务
+
+> 1. 项目 github：https://github.com/usememos/memos
+> 2. dockerHub 地址：https://hub.docker.com/r/neosmemo/memos
+
+## 1、介绍
+
+1. Memos 是一个轻量级的开源备忘录应用，适合用于个人知识管理、日记记录或团队协作等场景。
+2. 它以其简单易用、轻量化、高度定制化的特点，成为许多用户钟爱的工具
+3. Memos 的核心功能：
+4. **简洁的用户界面**：以简约风格设计，专注于高效记录。
+5. **富文本支持**：支持 Markdown 语法，方便格式化内容。
+6. **多终端同步**：支持多设备无缝访问。
+7. **数据私有化**：用户可以完全掌控数据，特别适合需要隐私保护的场景。
+8. **插件支持**：提供多种扩展功能，比如搜索、分类、标签管理等
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/tool/memos/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 5230:5230 \
+-v /vol1/1000/docker/tool/memos/data:/var/opt/memos \
+--network yuehai-net \
+--restart=unless-stopped \
+--name memos \
+neosmemo/memos:stable
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 memos 的服务
+    memos:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: neosmemo/memos:stable
+        # 设置容器的固定名称，方便识别和管理
+        container_name: memos
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Memos 的 Web UI 端口
+            - "41042:5230"
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/tool/memos/data:/var/opt/memos
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:5230](http://127.0.0.1:5230)
+2. 初次访问需设定管理员账号密码
+
+
+# 405、LobeChat  AI 前端工具
+
+> 1. 官网：https://lobehub.com/zh/docs/self-hosting/start
+> 2. 项目 github：https://github.com/lobehub/lobe-chat
+> 3. dockerHub 地址：https://hub.docker.com/r/lobehub/lobe-chat
+
+## 1、介绍
+
+1. LobeChat 是一款由 LobeHub 团队开发的开源聊天前端，专为对接大语言模型（如 OpenAI、DeepSeek 等）设计。它以简洁美观的界面、强大的自定义能力和丰富的插件系统著称，支持通过 Docker 快速本地化部署。
+2. 核心功能：
+3. 多模型支持：
+	1. 可无缝切换 OpenAI、DeepSeek、Claude 等主流模型（需兼容 OpenAI API 格式）。
+	2. 支持自定义模型名称（如 deepseek-chat）。
+4. 插件系统：
+	1. 内置插件市场，支持联网搜索、图像生成、代码解释器等扩展功能。
+	2. 可开发自定义插件（基于 TypeScript + React）。
+5. 对话管理：
+	1. 会话历史记录自动保存，支持多标签页管理。
+	2. 可导出/导入对话数据（Markdown 或 JSON 格式）。
+6. 界面与交互：
+	1. 响应式设计，适配 PC、平板和手机端。
+	2. 支持 Markdown 渲染、代码高亮、LaTeX 公式。
+	3. 主题切换（亮色/暗色模式）。
+7. 安全控制：
+	1. 支持密码保护、IP 白名单限制访问。
+	2. 敏感词过滤和对话内容审查机制。
+
+| 组件          | 说明                                                                 |
+|---------------|----------------------------------------------------------------------|
+| 前端框架      | Next.js（React） + Ant Design                                       |
+| 状态管理      | Zustand                                                             |
+| 插件系统      | 基于 `@lobehub/chat-plugins` SDK                                    |
+| 部署方式      | Docker 容器化 / Vercel 一键部署                                     |
+| 兼容性        | 要求模型 API 兼容 OpenAI 的 `/v1/chat/completions` 接口格式         |
+
+## 2、docker 部署
+
+1. 该应用所有数据都保存在浏览器，所以不需要配置挂载目录
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 3210:3210 \
+--network yuehai-net \
+--restart=unless-stopped \
+--name lobe-chat \
+lobehub/lobe-chat:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 lobe-chat 的服务
+    lobe-chat:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: lobehub/lobe-chat:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: lobe-chat
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Lobe Chat 的 Web UI 端口
+            - "3210:3210"
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:3210](http://127.0.0.1:3210)
+
+## 4、部署数据库版
+
+> 数据库版可以使用多端同步、多用户、知识库对话等功能
+> 
+> 但是需要再额外配置：Postgres 数据库、S3 存储服务（如 minio）、身份验证服务（如 GitHub NextAuth）
+
+### ①、pgvector 带向量插件的 postgres 数据库
+
+1. 自行部署
+2. 设置容器名：`code-postgres-pgvector`
+3. 创建数据库：`lobe-chat`
+
+### ②、S3 存储服务 minio
+
+1. 自行部署
+2. 容器名：`code-minio`
+3. 创建储存桶：`files`，并将其权限设定为公开 `public`
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024093009.png)
+
+### ③、GitHub NextAuth 身份验证服务
+
+1. 在 github 创建应用：https://github.com/settings/apps
+2. 重要的配置：
+	1. `Homepage URL`：`https://域名:端口`，要填写 lobe-chat 的访问地址，外网使用就要填写外网
+	2. `Callback URL`：`https://域名:端口/api/auth/callback/github`，验证回调，访问地址 + 后缀
+	3. 其他配置随意
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111151935.png)
+
+3. 填写完毕后，点击下方的 Generate a private key
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251022164638.png)
+
+4. 创建成功后，顶部会显示 `Client ID`，将其记下，之后使用
+5. 点击下方的 Generate a new client secret，生成一个 `Client secrets`，复制后记到别处，之后使用
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251022164953.png)
+
+### ④、部署数据库版 lobe-chat
+
+1. 该应用所有数据都保存在数据库和对象存储器中，所以不需要配置挂载目录
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 41045:3210 \
+-e APP_URL=应用 URL \
+-e KEY_VAULTS_SECRET=安全密钥，随机生成的 32 字节字符串 \
+-e NEXT_AUTH_SECRET=安全密钥，随机生成的 32 字节字符串 \
+-e NEXTAUTH_URL=NextAuth.js 认证回调地址 \
+-e NEXT_AUTH_SSO_PROVIDERS=github \
+-e AUTH_GITHUB_ID=GitHub OAuth 应用的客户端 ID \
+-e AUTH_GITHUB_SECRET=GitHub OAuth 应用的客户端密钥 \
+-e DATABASE_URL=数据库连接字符串 \
+-e S3_ACCESS_KEY_ID=minio 的用户名 \
+-e S3_SECRET_ACCESS_KEY=minio 的用户密钥 \
+-e S3_ENDPOINT=lobe-chat 前端向 minio 上传文件时使用的地址 \
+-e S3_BUCKET=（不是桶名称）minio 的公共访问域名前缀 \
+-e S3_PUBLIC_DOMAIN=minio 的公共访问域名 \
+-e S3_REGION=us-east-1 \
+-e S3_FORCE_PATH_STYLE=true \
+--sysctl net.ipv6.conf.all.disable_ipv6=1 \
+--sysctl net.ipv6.conf.default.disable_ipv6=1 \
+--network yuehai-net \
+--restart=unless-stopped \
+--name lobe-chat \
+lobehub/lobe-chat-database:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 lobe-chat 的服务
+    lobe-chat:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: lobehub/lobe-chat-database:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: lobe-chat
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义要在容器内设置的内核参数 (sysctls)，这是一项高级配置
+        sysctls:
+            # 为容器内当前所有的网络接口禁用 IPv6 协议
+            net.ipv6.conf.all.disable_ipv6: 1
+            # 为容器内未来可能创建的任何新网络接口设置默认禁用 IPv6，这确保了即使在容器运行中添加了新网络，IPv6 依然是禁用的
+            net.ipv6.conf.default.disable_ipv6: 1
+        # 定义端口映射规则
+        ports:
+            # lobe-chat 的服务端口映射
+            - "41045:3210"
+        # 定义环境变量
+        environment:
+            # 应用 URL，访问地址
+            - APP_URL=
+            # 安全密钥，随机生成的 32 字节字符串
+            - KEY_VAULTS_SECRET=
+            - NEXT_AUTH_SECRET=
+            
+            # NextAuth.js 认证回调地址
+            - NEXTAUTH_URL=
+            # SSO 登录配置；启用 GitHub 作为单点登录提供商
+            - NEXT_AUTH_SSO_PROVIDERS=github
+            # GitHub OAuth 应用的客户端 ID
+            - AUTH_GITHUB_ID=
+            # GitHub OAuth 应用的客户端密钥
+            - AUTH_GITHUB_SECRET=
+            
+            # 数据库连接字符串
+            - DATABASE_URL=
+            
+            # S3 对象存储 minio；minio 的用户名
+            - S3_ACCESS_KEY_ID=
+            # minio 的用户密钥
+            - S3_SECRET_ACCESS_KEY=
+            # lobe-chat 前端向 minio 上传文件时使用的地址，比如：https://minio.a.com
+            - S3_ENDPOINT=
+            # 【问题点】这个并不是 minio 的桶名称，lobe-chat 中桶名称好像是写死的 files
+            # 这个配置的作用是：发送上传文件到 minio 的请求时，在 S3_ENDPOINT 配置的域名中加入这个前缀
+            # 比如，最终上传文件的请求地址会变成 https://b.minio.a.com/files/xxxxxx
+            - S3_BUCKET=b
+            # minio 的公共访问域名，用于 lobe-chat 前端、ai 模型等外部访问存储的文件
+            # 根据上面的问题，这里的域名是经过拼接的，如：https://b.minio.a.com
+            - S3_PUBLIC_DOMAIN=
+            # S3 服务的区域，通常用于指定数据中心位置
+            - S3_REGION=us-east-1
+            # S3 URL 的格式，强制使用路径风格
+            - S3_FORCE_PATH_STYLE=true
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+### ⑤、为 lobe-chat 创建代理
+
+1. 确保申请了 `*.a.com` 或 `lobe-chat-database.a.com` 的 sll 证书
+2. 设置代理和选择 ssl 证书
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153128.png)
+
+3. 点击高级选项卡，输入以下自定义 Nginx 配置
+
+```nginx
+# 定义一个 location 块，匹配所有进入的请求 (/)
+location / {
+    # 将请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+    proxy_pass http://lobe-chat:3210;
+    
+    # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
+    # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
+    # $scheme 变量的值是 http 或 https
+    proxy_set_header X-Forwarded-Proto $scheme;
+    # 设置 HTTP 头部 Host，将原始请求中的 Host 头部传递给后端服务器
+    # $http_host 变量包含了客户端请求中的 Host 头部信息
+    proxy_set_header Host $http_host;
+    # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
+    # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
+    proxy_set_header X-Real-IP $remote_addr;
+    # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
+    # $http_range 变量包含了客户端请求中的 Range 头部信息
+    proxy_set_header Range $http_range;
+    # 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
+    # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
+    proxy_set_header If-Range $http_if_range;
+    
+    # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
+    # 这通常在后端应用自己能正确处理重定向 URL 时使用
+    proxy_redirect off;
+    # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+    # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
+    client_max_body_size 20000m;
+}
+```
+
+4. 点击保存
+5. 尝试访问：https://lobe-chat-database.a.com
+6. 如果上面的配置没有问题的话，是可以访问、进行文字对话的，只是无法上传文件
+7. 接下来处理无法上传文件的问题
+
+### ⑥、为 minio 创建代理
+
+1. 申请 `b.minio.a.com` 的 sll 证书
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153341.png)
+
+2. 设置代理和选择 ssl 证书
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153421.png)
+
+3. 点击高级选项卡，输入以下自定义 Nginx 配置
+
+```nginx
+location / {
+    # 将请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+    proxy_pass http://code-minio:9000;
+    
+    # 【关键修改】
+    # 将 Host 头部固定为 minio 服务的地址，确保 MinIO 能正确识别请求来源，避免 CORS 问题
+    # 按理说 $http_host 也可以，但测试发现这样的话 minio 收不到端口号，导致报错
+    proxy_set_header Host "b.minio.a.com";
+    
+    # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
+    # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
+    # $scheme 变量的值是 http 或 https
+    proxy_set_header X-Forwarded-Proto $scheme;
+    # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
+    # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
+    proxy_set_header X-Real-IP $remote_addr;
+    # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
+    # $http_range 变量包含了客户端请求中的 Range 头部信息
+    proxy_set_header Range $http_range;
+    # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
+    proxy_set_header If-Range $http_if_range;
+}
+```
+
+4. 点击保存
+5. 重新进入 lobe-chat
+6. 如果没有问题的话，现在可以正常上传文件了
+
+## 6、申请谷歌 gemini Api key
+
+### ①、密钥申请及使用
+
+1. 进入 aistudio：https://aistudio.google.com
+2. 点击 Get API key
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153608.png)
+
+3. 点击 创建API密钥，在弹窗中出入密钥名和项目名，没有项目就创建一个
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153718.png)
+
+4. 创建完成后，复制 key 到 lobe-chat 中，然后回到 aistudio 首页，点击复制 Gemini 2.5 Pro 的模型名，同样复制到 lobe-chat 中
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153757.png)
+
+5. 测试 Gemini 2.5 Pro 模型是否可以使用
+	1. 如果可用，那就成功了，结束
+	2. 如果提示：很抱歉，当前 Token 用量或请求次数已达该密钥的配额(quota)上限，请增加该密钥的配额或稍后再试，则表示 Google API 密钥还没有激活，继续进行下面的步骤
+
+```json
+{
+    "error": {
+        "code": 429,
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0 Please retry in 38.914015765s.",
+        "status": "RESOURCE_EXHAUSTED"
+    },
+    "provider": "google"
+}
+```
+
+### ②、为 Google 项目绑定支付信息
+
+> 原因： Google 在 2024 年更改了其 API 政策。现在，即使用户只想使用免费套餐，Google 也强制要求必须为其 Google Cloud 项目绑定一个有效的支付方式（例如信用卡）
+> 
+> 目的：这是为了防止 API 被滥用
+> 
+> 现状：在绑定支付方式之前，API 密钥的免费配额就是 0，所以发起的任何请求都会立即失败，并返回 429 Quota Exceeded (limit: 0)，这是必须的一步，否则 API 密钥无法使用
+
+1. 前往 [Google Cloud Console](https://console.cloud.google.com/?authuser=3) （确保登录的是创建 API 密钥的那个 Google 账户）
+2. 在顶部，选择与 Google AI Studio 密钥关联的那个项目
+3. 在左侧菜单中，找到并点击 结算 (Billing)
+4. 按照提示，关联一个结算账号或添加一种付款方式（例如信用卡）
+5. 绑定支付方式后，Google 不会立即收费。仍然可以享受 Google AI 提供的免费额度（例如 gemini-1.5-flash 每天有免费调用次数）。只有当用完了免费额度并继续使用时，才会产生费用
+6. 完成绑定后，API 配额 limit: 0 限制一般会在几分钟内解除
+7. 一开始是免费试用阶段。在此阶段，如果赠金用完或过期，不点击**激活**升级为付费账户，那么服务会自动停止，不会扣信用卡里的钱
+8. 一旦点击**激活**升级为付费账户，它就会转为自动扣费（后付费）模式，这时就不能设置成额度用完自动停机了。不过，可以设置一个预算提醒，当费用快达到设定的金额时，系统会发送警告邮件，收到邮件后可以立即手动去停用服务
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153917.png)
+
+
+# 406、Nexterm 基于浏览器的服务器管理工具
+
+> 1. 项目 github：https://github.com/gnmyt/Nexterm
+> 2. dockerHub 地址：https://hub.docker.com/r/germannewsmaker/nexterm
+
+## 1、介绍
+
+1.  Nexterm 是一个多功能的终端应用程序，专为提高开发者在使用命令行时的效率而设计。它通常包括如下几个关键功能：
+2. **多标签和拆分视图**：用户可以在一个窗口中打开多个标签，每个标签可以进一步拆分为多个视图，方便同时监控和操作多个会话
+3. **高度可定制**：Nexterm 提供丰富的定制选项，包括主题、快捷键和布局等，用户可以根据个人喜好调整这些设置
+4. **集成开发环境功能**：此应用程序可能集成了代码编辑器、版本控制系统以及其他开发工具，使其不仅仅是一个简单的终端模拟器，而是一个全面的开发环境
+5. **插件和扩展支持**：通过支持插件和扩展，Nexterm 允许用户添加新功能或集成其他工具，以扩展其核心功能
+6. **跨平台兼容性**：Nexterm 设计之初就考虑到了跨平台使用的需求，通常支持 Windows、MacOS 和各种 Linux 发行版
+7. **高级命令行功能**：可能包括内置的命令行搜索、历史记录管理和自动完成等功能，以提升用户的工作效率
+8. Nexterm 旨在为开发者提供一个强大而高效的工作环境，通过以上的功能帮助用户简化和优化日常的开发任务。不过需要注意的是，关于 Nexterm 的具体信息可能因版本和开发社区的持续更新而有所变动
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/vol1/1000/docker/tool/nexterm/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 6989:6989 \
+-e ENCRYPTION_KEY="xxx" \
+-v /vol1/1000/docker/tool/nexterm/data:/app/data \
+--network yuehai-net \
+--restart=unless-stopped \
+--name nexterm \
+germannewsmaker/nexterm:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 nexterm 的服务
+    nexterm:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: germannewsmaker/nexterm:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: nexterm
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # NextSSH/NexTerm 的 Web UI 端口
+            - "6989:6989"
+        # 定义环境变量
+        environment:
+            # 加密密钥，可以使用 openssl rand -hex 32 生成
+            - ENCRYPTION_KEY=xxx
+		# 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/tool/nexterm/data:/app/data
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:6989](http://127.0.0.1:6989)
+2. 初次访问需设定管理员账号密码
 
 
 # 407、NextChat AI 前端工具
@@ -3495,7 +3788,7 @@ networks:
 
 1. 点击工具箱 -> 推送设置，选择自定义推送，然后下面的任务结果通知选择、任务推送开关全部打开
 
-![]https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617110004.png)
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617110004.png)
 
 2. 点击工具箱 -> 自定义推送：
 3. 请求方法选择 `POST`
@@ -4171,100 +4464,6 @@ felinae98/nonebot-bison
 ![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107151702.png)
 
 
-# 505、icepage/aujc 获取京东 cookie
-
-> 1. 项目 github：https://github.com/icepage/AutoUpdateJdCookie
-> 2. dockerHub 地址：https://hub.docker.com/r/icepage/aujc
-
-## 1、介绍
-
-1. 获取京东 cookie，并自动更新到青龙
-
-## 2、第一次运行，创建配置文件
-
-1. 创建配置目录：`/vol1/1000/docker/script/aujc/config` 并进入
-
-```shell
-cd /vol1/1000/docker/script/aujc/config/
-```
-
-2. 创建配置文件 `config.py`
-
-```shell
-touch config.py
-```
-
-3. 启动一次性容器生成 `config.py` 配置
-
-```shell
-docker run -i --rm \
--v $PWD/config.py:/app/config.py \
-icepage/aujc python make_config.py
-```
-
-4. 根据提示输入内容：
-5. 结束后，会将配置写入 `config.py` 文件
-
-## 4、docker 部署
-
-1. 使用 docker run 部署：
-
-```shell
-docker run -d \
--v /vol1/1000/docker/script/aujc/config/config.py:/app/config.py \
-icepage/aujc:latest
-```
-
-2. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 aujc 的服务
-    aujc:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: icepage/aujc:latest
-        # 设置容器的固定名称，方便识别和管理
-        container_name: aujc
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义数据卷挂载规则
-        volumes:
-            # 数据目录
-            - /vol1/1000/docker/script/aujc/config/config.py:/app/config.py
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-
-3. 等待定时执行即可
-
-## 5、手动执行
-
-1. 上面已经部署的情况下，进入容器终端
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711083943.png)
-
-2. 执行命令：`python main.py`
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711084003.png)
-
-## 6、访问
-
-1. 无 web 页面，无法访问
-
-
-
-
 # 【----------------主机模式 ----------------】
 
 
@@ -4444,30 +4643,48 @@ services:
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/home/docker/docker/volumes/homeassistant/config`
-2. 使用 docker 部署：
-	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	2. `-v`：指定挂载目录
-		1. `-v /etc/localtime:/etc/localtime:ro`：将宿主机的本地时间文件挂载到容器中的相同位置，确保两者的时间一致
-		2. `-v /run/dbus:/run/dbus:ro`：允许容器以只读方式访问宿主机的 /run/dbus 目录，从而可以使用 DBus 服务；DBus 是 Linux 中用于进程间通信的系统，许多硬件访问功能，包括蓝牙服务，依赖于 DBus 服务
-	3. `--privileged=true`：扩大容器的权限解决挂载目录没有权限的问题
-	4. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
-	5. `--net=host`：使容器使用宿主机的网络；如果不启用此选项，则无法获取路由器信息
+	1. 配置目录：`/vol1/1000/docker/host-mode/homeassistant/config`
+2. 使用 docker run 部署：
 
 ```shell
 docker run -d \
 -e TZ="Asia/Shanghai" \
--v /home/docker/docker/volumes/homeassistant/config:/config \
+-v /vol1/1000/docker/host-mode/homeassistant/config:/config \
 -v /run/dbus:/run/dbus:ro \
---device=/dev/bus/usb:/dev/bus/usb \
---device=/dev/ttyAMA0:/dev/ttyAMA0 \
---device=/dev/ttyACM0:/dev/ttyACM0 \
---device=/dev/hci0:/dev/hci0 \
 --privileged=true \
 --restart=unless-stopped \
 --net=host \
 --name=home-assistant \
-homeassistant/home-assistant
+ghcr.io/home-assistant/home-assistant:stable
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 home-assistant 的服务
+    home-assistant:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: ghcr.io/home-assistant/home-assistant:stable
+        # 设置容器的固定名称，方便识别和管理
+        container_name: home-assistant
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 启用特权模式，赋予容器几乎所有主机的 root 能力（请谨慎使用，仅在必要时开启）
+        privileged: true
+        # 直接使用主机的网络堆栈，容器将共享主机的 IP 地址和端口空间
+        network_mode: host
+        # 定义环境变量
+        environment:
+            # 设置容器的时区为亚洲/上海
+            - TZ=Asia/Shanghai
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 允许容器可以使用 DBus 服务；DBus 是 Linux 中用于进程间通信的系统，许多硬件访问功能，包括蓝牙服务，依赖于 DBus 服务
+            - /run/dbus:/run/dbus:ro
+            # 配置目录
+            - /vol1/1000/docker/host-mode/homeassistant/config:/config
 ```
 
 ## 3、访问
@@ -4479,7 +4696,7 @@ homeassistant/home-assistant
 
 > 直接配置 nginx 后访问会提示：`400: Bad Request`
 
-1. 先停止容器，然后在挂载目录 `/home/docker/docker/volumes/homeassistant/config` 中找到文件 `configuration.yaml` 并编辑，再末尾加入以下内容，设置信任 ip：
+1. 先停止容器，然后在挂载目录 `/vol1/1000/docker/host-mode/homeassistant/config` 中找到文件 `configuration.yaml` 并编辑，再末尾加入以下内容，设置信任 ip：
 	1. `192.168.31.0/24`：家里的其他设备
 	2. `172.17.0.0/16`：docker，比如 nginx 
 	3. `127.0.0.1`：本地访问
@@ -4630,3 +4847,102 @@ unzip hacs.zip -d hacs/
 4. 选择账号集成，再选择排除模式，不选择任何设备，点击提交，就可以成功添加
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108112043.png)
+
+
+# 【----------------无需端口号 ----------------】
+
+
+# 2000、icepage/aujc 获取京东 cookie
+
+> 1. 项目 github：https://github.com/icepage/AutoUpdateJdCookie
+> 2. dockerHub 地址：https://hub.docker.com/r/icepage/aujc
+
+## 1、介绍
+
+1. 获取京东 cookie，并自动更新到青龙
+
+## 2、第一次运行，创建配置文件
+
+1. 创建配置目录：`/vol1/1000/docker/script/aujc/config` 并进入
+
+```shell
+cd /vol1/1000/docker/script/aujc/config/
+```
+
+2. 创建配置文件 `config.py`
+
+```shell
+touch config.py
+```
+
+3. 启动一次性容器生成 `config.py` 配置
+
+```shell
+docker run -i --rm \
+-v $PWD/config.py:/app/config.py \
+icepage/aujc python make_config.py
+```
+
+4. 根据提示输入内容：
+5. 结束后，会将配置写入 `config.py` 文件
+
+## 4、docker 部署
+
+1. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-v /vol1/1000/docker/script/aujc/config/config.py:/app/config.py \
+icepage/aujc:latest
+```
+
+2. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 aujc 的服务
+    aujc:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: icepage/aujc:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: aujc
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/script/aujc/config/config.py:/app/config.py
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+3. 等待定时执行即可
+
+## 5、手动执行
+
+1. 上面已经部署的情况下，进入容器终端
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711083943.png)
+
+2. 执行命令：`python main.py`
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711084003.png)
+
+## 6、访问
+
+1. 无 web 页面，无法访问
+
+
+
+

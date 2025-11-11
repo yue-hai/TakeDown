@@ -1,109 +1,4 @@
-# 1、tomcat
-
-## 1、首次创建容器
-
-1. 使用 docker 部署：
-
-```shell
-docker run -d \
--p 8080:8080 \
---name code-tomcat9 \
-tomcat:jre21
-```
-
-## 2、复制数据，并设置映射目录
-
-1. 在宿主机创建目录：`/home/docker/docker/volumes/tomcat/tomcat9`
-2. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：
-
-```shell
-docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
-```
-
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163352.png)
-
-3. 停止并删除容器：
-
-```shell
-# 停止：
-docker stop code-tomcat9
-
-# 删除：
-docker rm code-tomcat9
-```
-
-4. 使用 docker run 部署，重新启动容器，并设置映射目录：
-
-```shell
-docker run -d \
--p 8080:8080 \
--v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
---network yuehai-net \
---restart=unless-stopped
---name code-tomcat9 \
-tomcat:jre21
-```
-
-5. 使用 `docker-compose.yml` 部署：
-
-```yaml
-# 定义所有要管理的服务（容器）
-services:
-    # 定义一个名为 code-tomcat9 的服务
-    code-tomcat9:
-        # 指定该服务使用的 Docker 镜像及其标签（版本）
-        image: tomcat:jre21
-        # 设置容器的固定名称，方便识别和管理
-        container_name: code-tomcat9
-        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
-        restart: unless-stopped
-        # 定义端口映射规则
-        ports:
-            # Tomcat 的默认 HTTP 端口
-            - "8080:8080"
-        # 定义数据卷挂载规则
-        volumes:
-            # 数据目录
-            - /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat
-        # 定义此服务要连接的网络
-        networks:
-            # 将此服务连接到名为 yuehai-net 的网络
-            - yuehai-net
-
-# 在文件末尾定义此 Compose 文件中使用的所有网络
-networks:
-    # 定义一个名为 yuehai-net 的网络配置
-    yuehai-net:
-        # 将此网络声明为外部网络
-        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
-        external: true
-```
-
-## 3、访问
-
-4. 访问测试：[http://127.0.0.1:8080/](http://127.0.0.1:8080/)
-
-## 4、显示 404 的解决方法
-
-1. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
-2. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
-
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163443.png)
-
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163500.png)
-
-3. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
-
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163523.png)
-
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163538.png)
-
-4. 再次访问：[http://172.17.0.1:8080/](http://172.17.0.1:8080/)
-
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163621.png)
-
-
-# 2、openJdk
+# 1、openJdk
 
 ## 1、openJdk 21
 
@@ -264,6 +159,111 @@ networks:
         # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
         external: true
 ```
+
+
+# 2、tomcat
+
+## 1、首次创建容器
+
+1. 使用 docker 部署：
+
+```shell
+docker run -d \
+-p 8080:8080 \
+--name code-tomcat9 \
+tomcat:jre21
+```
+
+## 2、复制数据，并设置映射目录
+
+1. 在宿主机创建目录：`/home/docker/docker/volumes/tomcat/tomcat9`
+2. 将容器内的 `/usr/local/tomcat` 目录复制到宿主机上：
+
+```shell
+docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
+```
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163352.png)
+
+3. 停止并删除容器：
+
+```shell
+# 停止：
+docker stop code-tomcat9
+
+# 删除：
+docker rm code-tomcat9
+```
+
+4. 使用 docker run 部署，重新启动容器，并设置映射目录：
+
+```shell
+docker run -d \
+-p 8080:8080 \
+-v /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat \
+--network yuehai-net \
+--restart=unless-stopped
+--name code-tomcat9 \
+tomcat:jre21
+```
+
+5. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 code-tomcat9 的服务
+    code-tomcat9:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: tomcat:jre21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-tomcat9
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Tomcat 的默认 HTTP 端口
+            - "8080:8080"
+        # 定义数据卷挂载规则
+        volumes:
+            # 数据目录
+            - /home/docker/docker/volumes/tomcat/tomcat9/tomcat:/usr/local/tomcat
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问测试：[http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+
+## 4、显示 404 的解决方法
+
+1. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
+2. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163443.png)
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163500.png)
+
+3. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163523.png)
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163538.png)
+
+4. 再次访问：[http://172.17.0.1:8080/](http://172.17.0.1:8080/)
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163621.png)
 
 
 # 10、pgadmin4 PostgreSQL 的 web 管理工具
@@ -1023,6 +1023,115 @@ networks:
 2. 密码在配置文件中设置，用户名默认为 `default`
 
 
+# 31、minio 开源的 S3 兼容对象存储服务器
+
+> 1. 项目 github：https://github.com/minio/minio
+> 2. dockerHub 地址：https://hub.docker.com/r/minio/minio
+
+## 1、介绍
+
+1. minio/minio 是 MinIO 的官方 Docker 镜像。MinIO 是一个高性能、与 Amazon S3 API 兼容的开源对象存储服务器。它允许在自己的硬件上构建私有的、自托管的对象存储服务，类似于 AWS S3，但完全由自己控制
+2. 它的主要特点包括：
+3. S3 API 兼容性：完全实现了 Amazon S3 的 API 接口，这意味着为 S3 设计的大量应用程序、库和工具（如备份软件、SDKs 等）都可以无缝地与 MinIO 一起使用
+4. 高性能：专为高性能工作负载设计，能够处理大量的并发读写操作，非常适合用于数据分析、机器学习、日志存储、备份归档等场景
+5. 可伸缩性与弹性：支持从单节点部署到跨多个服务器的大型分布式集群部署，可以通过简单地添加更多节点来水平扩展存储容量和性能
+6. 数据保护与冗余：提供了强大的数据保护机制，如纠删码（Erasure Coding），即使部分硬盘或服务器发生故障，也能保证数据的完整性和可用性，同时还能检测并修复静默数据损坏（Bitrot protection）
+7. 简洁的管理界面：内置了一个简单易用的 Web 管理控制台，方便您创建存储桶（Buckets）、上传/下载对象（文件）、管理用户和访问策略
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/services/nosql/minio/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 9001:9001 \
+-v /vol1/1000/docker/services/nosql/minio/data:/data \
+-e MINIO_ROOT_USER= \
+-e MINIO_ROOT_PASSWORD= \
+-e MINIO_CORS_ALLOW_ORIGIN= \
+-e MINIO_COMPATIBILITY_ACL=on \
+--network yuehai-net \
+--restart unless-stopped \
+--name code-minio \
+minio/minio:RELEASE.2025-04-22T22-12-26Z \
+server /data --console-address ":9001"
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 minio 的服务
+    code-minio:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+        # 设置容器的固定名称，方便识别和管理
+        container_name: code-minio
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # S3 API 端口，防止泄露，关闭该端口，只使用经过代理的方式
+            # - "9000:9000"
+            # MinIO Web 控制台端口
+            - "9001:9001"
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/services/nosql/minio/data:/data
+        # 定义环境变量
+        environment:
+            # 设置 MinIO 管理员用户名
+            - MINIO_ROOT_USER=
+            # 设置 MinIO 管理员密码
+            - MINIO_ROOT_PASSWORD=
+            # 关键：CORS 跨域许可，允许来自指定域的请求访问 MinIO 服务
+            - MINIO_CORS_ALLOW_ORIGIN=
+            # 告诉 MinIO 重新启用 ACL 功能
+            - MINIO_COMPATIBILITY_ACL=on
+        # 指定容器启动时执行的命令和参数：启动服务器并指定控制台使用 9001 端口
+        command: server /data --console-address ":9001"
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:9001](http://127.0.0.1:9001)
+2. 初次访问需设定管理员账号密码
+
+## 4、创建储存桶
+
+1. 进入 web 页面后，点击左侧 Buckets
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083111.png)
+
+2. 在新页面中输入储存桶名称后，点击 Create Bucket 即可创建
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083202.png)
+
+3. 创建完成后，再次点击左侧 Buckets，选择刚才创建的储存桶
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083402.png)
+
+4. 进入后可以进行一些管理操作
+
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083402.png)
+
+
 # 40、consul 分布式系统的服务发现和配置
 
 ## 1、介绍
@@ -1350,11 +1459,913 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 ]
 ```
 
-# 八、
 
-# 九、
+# 82、redroid 在 Docker 中运行的安卓系统
 
-# 十、
+> 1. 项目 github：[https://github.com/remote-android/redroid-doc](https://github.com/remote-android/redroid-doc)
+> 2.  dockerHub 地址：[https://hub.docker.com/r/erstt/redroid](https://hub.docker.com/r/erstt/redroid)
+> 3. 教程地址：https://club.fnnas.com/forum.php?mod=viewthread&tid=36386
+
+## 1、介绍
+
+1.  `redroid` 是一个创新的项目，它允许在 Docker 容器中运行一个完整的安卓操作系统。这使得在服务器或个人电脑上部署、管理和访问安卓环境变得前所未有的简单和高效。
+2.  它的主要特点包括：
+    1.  **容器化安卓**：将安卓系统封装在容器中，实现了快速部署、资源隔离和易于迁移的特性。
+    2.  **高性能与 GPU 加速**：通过直接映射宿主机的 `/dev/dri` 等设备，`redroid` 可以利用宿主机的 GPU 进行硬件加速渲染，为图形密集型应用和游戏提供流畅的体验。
+    3.  **无缝的 ADB 访问**：通过标准的 ADB (Android Debug Bridge) 协议进行连接和管理，开发者和用户可以像操作实体安卓设备一样安装应用、执行命令和调试程序。
+    4.  **高度可定制**：社区提供了多种预构建的镜像，可以根据需求选择是否包含 Magisk、Google 服务等，满足不同的使用场景。
+    5.  **云原生友好**：非常适合在云服务器上部署，用于云游戏、应用自动化测试、移动应用托管等场景。
+3. 需要先安装一个驱动 `androidboot.use_memfd=memfd`，具体请看教程，飞牛的话直接在应用商店安装 `binder_linux` 即可
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111125436.png)
+
+## 2、Docker 部署
+
+1.  为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+    1.  数据目录：`/vol1/1000/docker/services/other/redroid/data`
+2.  使用 `docker run` 部署：
+
+```shell
+docker run -d -it \
+-p 5555:5555 \
+-v /vol1/1000/docker/services/other/redroid/data:/data \
+--device /dev/dri \
+--device /dev/binder \
+--privileged \
+--network yuehai-net \
+--restart unless-stopped \
+--name redroid \
+erstt/redroid:11.0.0_ndk_magisk_litegapps_ChromeOS \
+androidboot.redroid_gpu_mode=host \
+androidboot.use_memfd=1
+```
+
+3.  使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 redroid 的服务
+    redroid:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: erstt/redroid:11.0.0_ndk_magisk_ChromeOS
+        # 设置容器的固定名称，方便识别和管理
+        container_name: redroid
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 启用特权模式，赋予容器几乎所有主机的 root 能力（请谨慎使用，仅在必要时开启）
+        privileged: true
+        # 保持容器的终端开启，以便能与之交互
+        tty: true
+        # 允许与容器的标准输入进行交互。tty 和 stdin_open 通常需要同时设置为 true，以确保可以附加(attach)到容器并进行操作
+        stdin_open: true
+        # 将宿主机的设备文件映射到容器内部。这是实现硬件加速的关键
+        devices:
+            # 映射 DRI (Direct Rendering Infrastructure) 设备。这是 Linux 系统中 GPU 的标准接口，允许容器直接将图形渲染指令提交给宿主机的 GPU 驱动
+            - /dev/dri
+            # 映射 binder 设备。这是安卓系统独有的进程间通信（IPC）机制，是所有APP和服务能够互相沟通的基石。将宿主机的 binder 驱动映射进去，可以获得比容器内模拟 binder 更高的性能和稳定性
+            - /dev/binder
+        # 定义端口映射规则
+        ports:
+            # adb 端口映射
+            - 5555:5555
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # # 数据目录
+            - /vol1/1000/docker/services/other/redroid/data:/data
+        # 指定容器启动时执行的命令和参数
+        command:
+            # 关键参数：设置 GPU 模式为 host，即直接使用宿主机的 GPU 进行渲染，实现硬件加速
+            - androidboot.redroid_gpu_mode=host
+            # 使用 memfd (memory file descriptor) 来替代老旧的 ashmem 共享内存机制，以兼容较新的 Linux 内核，提高内存管理效率
+            - androidboot.use_memfd=1
+            # 启用 ARM 架构原生桥接执行能力（针对64位应用）
+            #- ro.enable.native.bridge.exec64=1
+            # 指定用于实现原生桥接的具体库文件为 libhoudini.so。这两条命令组合起来，就是告诉安卓系统：“当你遇到 ARM 架构的应用时，请调用 houdini 这个翻译程序来运行它。”
+            #- ro.dalvik.vm.native.bridge=libhoudini.so
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+
+```
+
+## 3、访问
+
+1. `redroid` 容器本身没有图形界面访问端口，需要通过 ADB (Android Debug Bridge) 连接它，然后可以使用 `scrcpy` 等工具来显示和控制其图形界面
+2.  连接 ADB：
+```shell
+adb connect 192.168.1.5:5555
+```
+
+3. scrcpy 控制：
+
+```shell
+scrcpy --tcpip=192.168.1.5:5555
+```
+
+## 4、问题记录
+
+### ①、设置代理
+
+1. 可能是我设备硬件的问题，部署的这个 redroid 无法打开 wifi，clash 等软件也不能使用，不过还好有另外的办法
+2. 首先需要有可以使用的代理地址，比如部署在别处的 clash，假设代理地址是：`192.168.1.1:5555`
+3. 通过 adb 连接 redroid：
+
+```shell
+adb connect 192.168.1.5:5555
+```
+
+4. 设置代理，执行后，整个 Redroid 系统的网络流量（包括浏览器、B站等所有应用）都会开始通过设置的代理服务器
+
+```shell
+adb shell settings put global http_proxy 192.168.1.1:7890
+```
+
+5. 取消代理：
+
+```shell
+adb shell settings put global http_proxy ""
+```
+
+### ②、无法登录谷歌商店
+
+#### Ⅰ、报错现象
+
+1. redroid 中登录谷歌商店提示：此设备未获得 Play 保护机制认证
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251030112022.png)
+
+#### Ⅱ、原因
+
+1. 这是一个在非标准或未经授权的 Android 环境中比较常见的问题，这通常是由以下几个核心原因造成的：
+2. 什么是 Play 保护机制认证？
+	1. 这是 Google 用来确保安卓设备安全、可靠并能正确运行 Google 应用和服务的一套标准流程
+	2. 所有正规的手机、平板制造商（如三星、小米、OPPO等）在发布设备前，都必须通过 Google 的一系列兼容性测试（CTS - Compatibility Test Suite）。通过测试后，设备才能预装 Google Play 商店及其他 GMS (Google Mobile Services) 应用
+	3. 这个认证确保了设备的软硬件符合 Google 的规范，保护用户免受恶意软件的侵害，并保证应用生态的一致性
+3. 为什么 redroid 会触发这个提示？
+	1. Redroid 本质上是一个在 Linux 容器（Docker/LXC）中运行的安卓系统。它提供了一个虚拟化的、非物理的安卓环境
+	2. 这种环境没有经过 Google 官方的硬件认证流程。在 Google 看来，您的这个“设备”是未知的、未经认证的
+	3. 因此，当您尝试登录 Google Play 商店时，Google 的服务器会检查设备的认证状态，发现它不在认证列表中，便会出于安全考虑，阻止 Google 服务在其上运行
+
+#### Ⅲ、解决
+
+1. Google 为开发者和高级用户提供了一个后门，允许手动将未经认证的设备 ID 注册到自己的 Google 账户下
+2. 获取 GSF ID (Google Service Framework ID)：需要在 redroid 容器中找到这个唯一的设备标识符。通常可以通过安装一个名为 Device ID 的应用来获取，或者使用 adb 命令：
+
+```shell
+# 进入 redroid 的 adb shell
+adb shell
+
+# 执行以下命令查询 GSF ID
+settings get secure android_id
+```
+
+3. 请注意，有时 android_id 并不直接是 GSF ID，但通常可以通过一些应用查询到
+4. 访问 Google 注册页面：在浏览器中打开 Google 的设备注册页面：https://www.google.com/android/uncertified/
+5. 提交 ID：登录自己的 Google 账户，然后将获取到的 GSF ID 输入并提交
+6. 重启并清除数据: 注册成功后，通常需要几分钟到几小时才能生效。之后，可能需要清除 Google Play 商店和 Google 服务框架的缓存和数据，然后重启 redroid 容器再尝试登录
+
+### ③、设置分辨率
+
+1. 确保有超级管理员权限，打开终端模拟器
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/PixPin_2025-11-04_15-51-38.png)
+
+2. 输入以下命令
+
+```shell
+# 获取 root 权限
+su
+# 设置横纵尺寸
+wm size 1080x1920
+# 设置 dpi
+wm density 420
+```
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/PixPin_2025-11-04_15-56-13.png)
+
+### ④、
+
+## 5、
+
+
+# 83、n2n 虚拟局域网
+
+> 1. 项目 github：https://github.com/ntop/n2n/tree/3.0
+> 2. dockerHub 地址：https://hub.docker.com/r/jonnyan404/n2n-v3
+> 3. N2N 服务端软件 n2n-3.0：
+> 	1. github 下载地址：https://github.com/ntop/n2n/releases/tag/3.0
+> 	2. 本地下载：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/n2n-3.0.zip)
+> 4. N2N 客户端软件 EasyN2N：
+> 	1. 下载地址：https://bugxia.com/357.html
+> 	2. 本地下载：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)
+> 5.  java 查询程序：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
+
+## 1、端口说明
+
+1. 端口：41900、41983、41984
+2. 41900：java 查询程序使用端口
+3. 41983 (TCP, Supernode 的 -t 端口)：
+	1. 角色：Supernode (超级节点) 的管理和协调端口
+	2. 用途：Edge (边缘) 节点启动时，必须主动连接此 TCP 端口。它专门用于处理控制信令：包括节点注册、上报状态、获取网络中其他节点的地址信息，以及在 Supernode 协助下协商 P2P 通信。这个端口不传输实际的 VPN 业务数据
+4. 41984 (UDP, Edge 的 -p 端口)：
+	1. 角色：Edge (边缘节点) 的本地数据端口
+	2. 用途：这是 Edge 节点在自己设备上绑定的 UDP 端口，用于收发所有实际的 VPN 业务数据。当两个 Edge 节点成功建立 P2P 连接后，它们加密后的数据流就通过各自的这个端口（或其 NAT 映射端口）直接传输
+
+## 2、介绍
+
+1. N2N（Node to Node）是一种点对点（P2P）网络连接协议，用于在网络中直接连接节点（计算机或设备），而无需通过中心服务器。N2N 协议允许网络中的节点之间直接通信，这种直接连接方式可以提供更高的性能和更好的隐私保护。
+2. N2N 协议的特点包括：
+	1. **点对点连接**：N2N 允许节点之间直接建立连接，无需经过中心服务器，从而减少了网络通信的中间环节，提高了通信效率。
+	2. **加密通信**：N2N 支持对通信数据进行加密，保护通信内容的隐私和安全。
+	3. **灵活性**：N2N 协议可以在不同的网络环境中使用，包括局域网、广域网和互联网，提供了灵活的网络连接方式。
+	4. **开放性**：N2N 是一个开放的协议，可以被集成到各种应用和系统中，为不同的场景提供点对点连接的能力。
+3. N2N 协议可以用于构建各种点对点的网络应用，例如直接设备之间的通信、对等网络文件共享、实时音视频通话等。在实际应用中，N2N 协议通常与其他网络技术和安全机制结合使用，以构建更加安全、高效的点对点通信系统。
+4. 当然也可以用来改善游戏联机网络
+5. 本次安装配置基于 N2N 的 V3 版本，具体区别请参考：[N2N版本选择介绍（v1\v2\v2s\v3区别\使用方法教程\免费服务器）](https://bugxia.com/n2n_version_intro)
+6. 本次配置主要是以 Linux ubuntu 为服务端、Windows 为客户端
+
+## 3、服务端超级节点部署
+
+### ①、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/home/docker/volumes/services/other/n2n/config/`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 41900:41900 \
+-p 41983:5645/udp \
+-p 41984:7777/tcp \
+-p 41984:7777/udp \
+-e START_TYPE=supernode \
+-v /home/docker/volumes/services/other/n2n/config:/app/config \
+--network yuehai-net \
+--name n2n-supernode \
+jonnyan404/n2n-v3:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 n2n-supernode 的服务
+    n2n-supernode:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: jonnyan404/n2n-v3:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: n2n-supernode
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # java 查询程序使用端口
+            - "41900:41900"
+            # Supernode (超级节点) 的管理和协调端口
+            - "41983:5645/udp"
+            # Edge (边缘节点) 的本地数据端口
+            - "41984:7777/tcp"
+            - "41984:7777/udp"
+        # 定义环境变量
+        environment:
+            # 设置 n2n 的启动类型为 supernode，即表明此容器将作为超级节点运行
+            - START_TYPE=supernode
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 配置目录
+            - /home/docker/volumes/services/other/n2n/config:/app/config
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+### ②、ubuntu 直接安装
+
+1. 服务端操作系统为：Ubuntu 22.04.3 LTS
+2. 开放端口：`41983`、`41984`
+	1. `sudo ufw allow from any to any port 41983`
+	2. `sudo ufw allow from any to any port 41984`
+3. 创建目录：`/home/yan/app/internet/NetworkTools/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/n2n-3.0.zip) 放入其中
+4. 解压压缩包：`unzip n2n-3.0.zip`
+5. 更新软件源、安装 vim、安装配置工具：``
+
+```shell
+# 更新软件源：
+sudo apt-get update
+
+# 安装 vim：
+sudo apt-get install -y vim
+
+# 安装配置工具：
+sudo apt-get install -y autoconf automake libtool make pkg-config
+```
+
+6. 进入 n2n 目录：
+
+```shell
+cd /home/yan/app/internet/NetworkTools/n2n/
+```
+
+7. 依次进行下述每一行命令：
+
+```shell
+# 将 autogen.sh 脚本设为可执行
+chmod +x autogen.sh
+
+# 执行 autogen.sh 脚本，这个脚本通常负责设置或预处理编译环境，生成配置脚本等
+./autogen.sh
+
+# 执行 configure 脚本，这个脚本根据系统环境和用户提供的选项，生成适合当前系统的 Makefile 文件
+./configure
+
+# 编译源代码并安装
+# 'make' 命令根据前面生成的 Makefile 来编译源代码，生成可执行文件或库文件
+# 'make install' 命令则是将编译好的文件安装到指定位置，通常是系统的标准目录下，比如 /usr/local/bin
+make && sudo make install
+```
+
+8. 创建并编辑配置文件：`vim supernode.conf`，写入下述内容，然后保存退出：
+
+```shell
+-t=41983
+-p=41984
+```
+
+9. 运行 supernode：
+
+```shell
+sudo supernode ./supernode.conf
+```
+
+10. 检查 supernode 是否在后台运行：
+
+```shell
+ps -ef|grep supernode
+```
+
+```shell
+root@f279e3b2bb3f:/# ps -ef|grep supernode
+nobody      1711       1  0 08:34 ?        00:00:00 supernode ./supernode.conf
+root        1725    1715  0 08:47 pts/1    00:00:00 grep --color=auto supernode
+root@f279e3b2bb3f:/# 
+```
+
+## 4、客户端边缘节点使用
+
+### ①、windows 客户端使用
+
+1. 防火墙规则允许 `ipv4\ipv6` 入站：输入快捷键 `windows + x + a` 以<font color="#ff0000">管理员模式</font>打开 powershell，执行下面命令就可以开启 v4 和 v6 的入站规则，出站默认就开启的不需要操作
+
+```shell
+netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any dir=in action=allow
+
+netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
+```
+
+2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143000.png)
+
+3. 配置：
+	1. 服务器：`服务器ip:41984`
+	2. 小组名称：所有人需要是一样的名称
+	3. 虚拟网 ip：最好设置为同一网段（也可以选择自动分配，分配的若不是同一网段，再自行修改）
+	4. 点击启动
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111134832.png)
+
+4. 服务器右侧显示绿色对号即为连接成功
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251107161831.png)
+
+5. 启动后，点击小组名称后的按钮，可打开已连接的主机列表，双击列表项可显示延迟
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131138.png)
+
+### ②、linux 客户端使用
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/services/other/n2n/config/`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-e N2N_SERVER_HOST=服务器IP:41984 \
+-e N2N_IP=192.168.2.2 \
+-e N2N_COMMUNITY=000123 \
+-e N2N_KEY=000123 \
+-v /vol1/1000/docker/services/other/n2n/config:/app/config \
+--device /dev/net/tun:/dev/net/tun \
+--net=host \
+--cap-add=NET_ADMIN \
+--name n2n-edge \
+jonnyan404/n2n-v3:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 n2n-edge 的服务
+    n2n-edge:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: jonnyan404/n2n-v3:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: n2n-edge
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 直接使用主机的网络堆栈，容器将共享主机的 IP 地址和端口空间
+        network_mode: host
+        # 添加 Linux 内核能力
+        cap_add:
+            # 赋予容器进行网络相关管理操作的权限，例如创建网络接口
+            - NET_ADMIN
+        # 将宿主机的设备映射到容器内部
+        devices:
+            # 映射 TUN 设备，这是 VPN 类应用所必需的虚拟网络接口
+            - /dev/net/tun:/dev/net/tun
+        # 定义环境变量
+        environment:
+            # 设置 Supernode (超级节点) 的地址和端口
+            - N2N_SERVER_HOST=服务器IP:41984
+            # 设置此 edge 节点在 n2n 网络中的静态 IP 地址
+            - N2N_IP=192.168.2.2
+            # 设置 n2n 网络的社区名称（相当于群组名）
+            - N2N_COMMUNITY=000123
+            # 设置 n2n 网络的加密密钥，一般和社区名称相同
+            - N2N_KEY=000123
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 配置目录
+            - /vol1/1000/docker/services/other/n2n/config:/app/config
+```
+
+## 5、查询 n2n edge 节点信息
+
+### ①、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. jar 包目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool/`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-e TZ=Asia/Shanghai \
+-v /home/docker/volumes/services/other/n2n-query-yuehai-tool:/container/path \
+--network=container:n2n-supernode \
+--restart=unless-stopped \
+--name n2n-query-yuehai-tool \
+openjdk:21 \
+java -jar /container/path/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 n2n-query-yuehai-tool 的服务
+    n2n-query-yuehai-tool:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: openjdk:21
+        # 设置容器的固定名称，方便识别和管理
+        container_name: n2n-query-yuehai-tool
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 设置网络模式，此容器将直接使用 n2n-supernode 服务的网络，共享同一个 IP 地址和端口空间
+        # 请确保 n2n-supernode 这个容器名称正确
+        network_mode: "service:n2n-supernode"
+        # 定义环境变量
+        environment:
+            # 设置容器的时区为上海
+            - TZ=Asia/Shanghai
+        # 定义数据卷挂载规则
+        volumes:
+            # jar 包目录
+            - /home/docker/volumes/services/other/n2n-query-yuehai-tool:/container/path
+        # 指定容器启动时执行的命令：运行指定的 Jar 文件
+        command: java -jar /container/path/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+### ②、ubuntu 直接安装
+
+1. 创建目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+2. 安装 JDK 21；若是安装过程中让选择时区，第一次选择 5 是亚洲，第二次选择 69 是上海
+
+```shell
+apt install openjdk-21-jdk
+```
+
+3. 通过检查 Java 版本来验证是否成功安装了 JDK
+
+```shell
+java -version
+```
+
+4. 出现如下输出表示安装成功
+
+```shell
+root@734c23cee573:/# java -version
+openjdk version "21.0.4" 2024-07-16
+OpenJDK Runtime Environment (build 21.0.4+7-Ubuntu-1ubuntu224.04)
+OpenJDK 64-Bit Server VM (build 21.0.4+7-Ubuntu-1ubuntu224.04, mixed mode, sharing)
+root@734c23cee573:/# 
+```
+
+5. 进入 `/home/docker/volumes/services/other/n2n-query-yuehai-tool` 目录
+
+```shell
+cd /home/docker/volumes/services/other/n2n-query-yuehai-tool
+```
+
+6. 启动 jar：
+
+```shell
+nohup java -jar yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar >> yuehai-tool.log 2>&1 &
+```
+
+### ③、访问
+
+1. 访问测试：http://ip:41900/static/n2n-edge-query.html
+
+## 6、绕过 UDP 屏蔽
+
+> 1. 如果服务器在大陆外或国外，或者是家用网络，有可能会出现 UDP 屏蔽或 QoS
+> 2. 下面是一种解决方法：使用 gnb_udp_over_tcp 这个工具，实现将 UDP 数据转换为 TCP 进行传输，绕开 UDP 限制
+> 3. github 地址：https://github.com/gnbdev/gnb_udp_over_tcp
+> 4. 本地下载：[gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)
+
+### ⓪、gnb_udp_over_tcp 命令解释
+
+1. udp 转为 tcp；服务端使用，用于将 n2n 的 udp 数据转为 tcp，经由监听的 TCP 端口发出
+
+```shell
+gnb_udp_over_tcp -t -l 监听的TCP端口 UDP源地址 UDP源端口
+```
+
+2. tcp 转为 udp；客户端使用，用于将接收的服务端发送过来的的 tcp 数据转为 udp，然后转发给本地的 n2n 使用
+
+```shell
+gnb_udp_over_tcp -u -l 监听的UDP端口 TCP源地址 TCP源端口
+```
+
+### ①、服务端超级节点配置
+
+#### Ⅰ、ubuntu 服务端配置
+
+1. 服务端先正常编译安装 n2n 服务端，然后开启 `41985` 端口，作为转发端口
+
+```shell
+sudo ufw allow from any to any port 41985
+```
+
+2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+3. 进入对应目录
+
+```shell
+cd /home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/
+```
+
+4. 解压：
+
+```shell
+unzip gnb_udp_over_tcp.zip
+```
+
+5. 进入目录 `gnb_udp_over_tcp/bin/Linux_x86_64/`
+
+```shell
+cd gnb_udp_over_tcp/bin/Linux_x86_64/
+```
+
+6. 给予权限：
+
+```shell
+chmod 755 gnb_udp_over_tcp
+```
+
+7. 创建日志文件：
+
+```shell
+touch gnb_udp_over_tcp.log
+```
+
+8. 使用 nohup 后台运行：
+	1. `-t`：表示启用 TCP 模式，即将 UDP 数据转换为 TCP 数据
+	2. `-l 41985`：`-l` 参数后跟的是监听的 TCP 端口号，这里设置为 41985，表示该服务将监听端口 41985 上的 TCP 连接
+	3. `127.0.0.1`：这是 UDP 源地址，这里使用的是本地回环地址（localhost），指的是本机
+	4. `41984`：<font color="#ff0000">n2n 使用的端口</font>，即监听的 UDP 源端口，UDP 数据将从这个端口接收
+
+```shell
+nohup ./gnb_udp_over_tcp -t -l 41985 127.0.0.1 41984 >> gnb_udp_over_tcp.log 2>&1 &
+```
+
+9. 查看进程的详细信息：
+
+```shell
+ps aux | grep gnb_udp_over_tcp
+```
+
+```shell
+ps aux | grep gnb_udp_over_tcp
+yan        56574  1.3  0.0   2940  1624 pts/0    S    08:51   0:01 ./gnb_udp_over_tcp -t -l 41985 127.0.0.1 41984
+yan        56680  0.0  0.0   6432   712 pts/0    S+   08:53   0:00 grep --color=auto gnb_udp_over_tcp
+
+yan@yuehai:~/apply/n2n/gnb_udp_over_tcp/bin/Linux_x86_64$ 
+```
+
+10. 结束后台进程：
+
+```shell
+kill 56574
+```
+
+11. 但是这个办法有一个问题，就是长时间运行后，n2n 就无法连接成功了，现在的解决办法是定时重启
+
+#### Ⅱ、ubuntu 服务端定时重启脚本
+
+1. 进入对应目录，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+
+```shell
+cd /home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/
+```
+
+2. 创建脚本 `restart_process.sh` 和日志文件 `restart_process.log`：
+
+```shell
+touch restart_process.sh restart_process.log
+```
+
+3. 编写内容（注意程序路径）：
+
+```shell
+#!/bin/bash
+
+# 定义程序路径
+file_path="/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/gnb_udp_over_tcp/bin/Linux_x86_64"
+
+# 杀死现有的后台程序进程
+pkill -f 'gnb_udp_over_tcp -t -l 41985'
+
+# 等待几秒确保进程已完全停止
+sleep 5
+
+# 添加一个空行
+echo "" >> "${file_path}/gnb_udp_over_tcp.log"
+# 分隔符
+echo "----------------------------------------------------------------" >> "${file_path}/gnb_udp_over_tcp.log"
+# 向文件中写入重启时间
+echo "【$(date "+%Y-%m-%d %H:%M:%S")】重启完成" >> "${file_path}/gnb_udp_over_tcp.log"
+
+# 重新启动程序
+nohup ${file_path}/gnb_udp_over_tcp -t -l 41985 127.0.0.1 41984 >> "${file_path}/gnb_udp_over_tcp.log" 2>&1 &
+
+# 向文件中写入重启时间
+echo "【$(date "+%Y-%m-%d %H:%M:%S")】重启完成" >> "${file_path}/restart_process.log"
+```
+
+4. 给予权限：
+
+```shell
+chmod 755 restart_process.sh
+```
+
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令（注意程序路径）：
+
+```shell
+# 定时重启 gnb_udp_over_tcp，每天每 30 分钟执行一次
+*/30 * * * * /home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/gnb_udp_over_tcp/bin/Linux_x86_64/restart_process.sh
+```
+
+### ②、客户端边缘节点配置
+
+#### Ⅰ、windows 客户端配置
+
+1. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
+2. 在目录中，按住键盘的 shift 键，然后点击鼠标右键，选择：在此处打开 Powershell 窗口
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131416.png)
+
+3. 之后会弹出一个窗口，在其中输入以下内容并回车：
+	1. `-u`：表示启用 UDP 模式，即将接收到的 TCP 数据转换为 UDP 数据
+	2. `-l 41984`：<font color="#ff0000">n2n 使用的端口</font>，`-l` 参数后跟的是监听的 UDP 端口号，这里设置为 41984，表示该服务将监听端口 41984 上的 UDP 数据
+	3. `83.229.120.176`：这是 TCP 源地址，即服务端的 IP 地址；<font color="#ff0000">请根据要连接的服务端自行修改这个参数</font>
+	4. `41985`：这是服务端监听的 TCP 端口号
+
+```shell
+.\gnb_udp_over_tcp.exe -u -l 41984 83.229.120.176 41985
+```
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131819.png)
+
+4. 若是不想手动输入上面的命令，也可以直接双击目录的脚本 `run_gnb_udp_over_tcp.bat`，会自动执行该命令；但是这种脚本的方式有时会失败，如果失败，需手动输入命令
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111132220.png)
+
+5. 打开 n2n，服务端填写：`127.0.0.1:41984`，点击启动，等待时间会稍长一点，大概六七秒
+6. 等待右侧出现绿色对号，即为连接成功
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111132524.png)
+
+#### Ⅱ、ubuntu 客户端配置
+
+1. 客户端先正常编译安装 n2n 客户端
+2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+3. 进入对应目录：
+
+```shell
+cd /home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/
+```
+
+4. 解压：
+
+```shell
+unzip gnb_udp_over_tcp.zip
+```
+
+5. 进入目录 `gnb_udp_over_tcp/bin/Linux_x86_64/`
+
+```shell
+cd gnb_udp_over_tcp/bin/Linux_x86_64/
+```
+
+6. 给予权限：
+
+```shell
+chmod 755 gnb_udp_over_tcp
+```
+
+7. 创建日志文件：
+
+```shell
+touch gnb_udp_over_tcp.log
+```
+
+8. 使用 nohup 后台运行：
+	1. `-u`：表示启用 UDP 模式，即将 TCP 数据转换为 UDP 数据
+	2. `-l 41985`：`-l` 参数后跟的是监听的 TCP 端口号，这里设置为 41985，表示该服务将监听端口 41985 上的 TCP 连接
+	3. `127.0.0.1`：这是 UDP 源地址，这里使用的是本地回环地址（localhost），指的是本机
+	4. `41984`：<font color="#ff0000">n2n 使用的端口</font>，即监听的 UDP 源端口，UDP 数据将从这个端口接收
+
+```shell
+nohup ./gnb_udp_over_tcp -u -l 41984 83.229.120.176 41985 > gnb_udp_over_tcp.log 2>&1 &
+```
+
+9. 查看进程的详细信息：
+
+```shell
+ps aux | grep gnb_udp_over_tcp
+```
+
+```shell
+yan@yan:~/apply/game/n2n/gnb_udp_over_tcp/bin/Linux_x86_64$ ps aux | grep gnb_udp_over_tcp
+yan       983515  1.8  0.0   3076  1664 ?        S    15:31   0:09 /home/yan/apply/game/n2n/gnb_udp_over_tcp/bin/Linux_x86_64/gnb_udp_over_tcp -u -l 41984 83.229.120.176 41985
+yan       984195  0.0  0.0  17888  2560 pts/0    S+   15:39   0:00 grep --color=auto gnb_udp_over_tcp
+
+yan@yan:~/apply/game/n2n/gnb_udp_over_tcp/bin/Linux_x86_64$ 
+```
+
+10. 结束后台进程：
+
+```shell
+kill 983515
+```
+
+#### Ⅲ、ubuntu 客户端定时重启脚本
+
+1. 进入对应目录，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+
+```shell
+cd /home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/
+```
+
+2. 创建脚本 `restart_process.sh` 和日志文件 `restart_process.log`：
+
+```shell
+touch restart_process.sh restart_process.log
+```
+
+3. 编写内容：
+
+```shell
+#!/bin/bash
+
+# 定义文件路径
+file_path="/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/gnb_udp_over_tcp/bin/Linux_x86_64"
+
+# 杀死现有的后台程序进程
+pkill -f 'gnb_udp_over_tcp -u -l 41984'
+
+# 等待几秒确保进程已完全停止
+sleep 5
+
+# 重新启动程序
+nohup ${file_path}/gnb_udp_over_tcp -u -l 41984 83.229.120.176 41985 > "${file_path}/gnb_udp_over_tcp.log" 2>&1 &
+
+# 向文件中写入重启时间
+echo "【$(date "+%Y-%m-%d %H:%M:%S")】重启完成" >> "${file_path}/restart_process.log"
+```
+
+4. 给予权限：
+
+```shell
+chmod 755 restart_process.sh
+```
+
+5. 设置定时执行：
+6. 在终端中输入 `crontab -e`，这将打开个人 `crontab` 文件进行编辑
+7. 在 `crontab` 文件中添加一行，指定时间和要执行的命令：
+
+```shell
+# 定时重启 gnb_udp_over_tcp，每天每 30 分钟执行一次
+*/30 * * * * /home/docker/docker/volumes/n2n/gnb_udp_over_tcp/bin/Linux_x86_64/restart_process.sh
+```
+
+## 7、n2n 的使用方法和问题
+
+### ①、服务器列表
+
+| 服务器地址                | 更新时间       | 归属  | 是否需要 udp 转发 | 备注                     |
+| -------------------- | ---------- | --- | ----------- | ---------------------- |
+| 101.200.86.248:41984 | 2024/12/17 | 月海  | 否           | 可用，但是只有 3m 带宽，人多了可能会卡顿 |
+
+### ②、点击启动后没有马上显示成功
+
+1. 连接时，从点击启动到连接成功有时等待时间会稍长一点，等待 10 秒左右看看
+2. 当在连接成功的状态下，点击停止断开连接后马上再点击启动（或点击重启），并不会马上重连，需要等待 1 ~ 2 分钟，这是服务器机制问题，等待即可
+
+### ③、NAT 类型问题
+
+1. 点击测试工具 -> NAT 检测，点击开始检测
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143709.png)
+
+2. 若是显示检测失败或结果不是下面的四种，请点击切换服务器，然后多次测试
+3. 若检测结果是 `Symmetric NAT`，说明当前机器是不可以使用 n2n 的，若想使用，请自行修改光猫，百度搜索：NAT 类型修改
+	1. [家用路由器修改NAT1](https://www.bilibili.com/read/cv22212682/)
+	2. [网络类型NAT3改NAT1 基于（联通）光猫桥接、路由器红米AX5、win10系统](https://blog.csdn.net/qq_46648437/article/details/113747066)
+	3. [如何提升NAT类型，NAT提升至full_cone，设置光猫](https://blog.csdn.net/weixin_42168194/article/details/106037065)
+4. 若不是 `Symmetric NAT`，而是其他三种，说明无法连接的原因不在这里
+5. 几种常见的 NAT 类型：
+	4. Full Cone
+	5. Restricted Cone
+	6. Port Restricted Cone
+	7. Symmetric NAT
+
+### ④、虚拟 ip 冲突
+
+1. 进入下面的网址查看一下 ip 是不是已经被使用了：
+	1. 若是使用服务器地址 101.200.86.248 连接：[查询 n2n edge 节点列表](http://101.200.86.248:41900/static/n2n-edge-query.html)
+	2. 其他的服务器地址，则修改下面连接中的 ip 进行访问：http://ip:41900/static/n2n-edge-query.html
+2. ip 是唯一的，ip 相同时即使小组不同也会导致冲突，无法连接
+3. 和朋友一起联机的话，ip 前三位需要相同，比如：`192.168.1`，最后一位可选 `1 ~ 254`
+4. 挑一个没有被使用的就可以了
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144005.png)
+
+### ⑤、windows 防火墙的问题
+
+1. 右键开始菜单，选择以**管理员模式**打开 `powershell`，执行下面命令就可以开启 v4 和 v6 的入站规则
+2. 开启 v4 的入站规则
+
+```shell
+netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any dir=in action=allow
+```
+
+3. 开启 v6 的入站规则
+
+```shell
+netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
+```
+
+![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144121.png)
+
+### ⑥、
+
+## 8、
 
 
 
