@@ -12,8 +12,8 @@
 
 # 三、git 地址
 
-1. [n2n 笔记 github 地址](https://gitee.com/yuehaiyan/TakeDown/tree/master/其他/教程/n2n)
-2. [n2n 笔记 gitee 地址](https://github.com/yue-hai/TakeDown/tree/master/其他/教程/n2n)
+1. [n2n 笔记 github 地址](https://github.com/yue-hai/TakeDown/tree/master/其他/教程/n2n)
+2. [n2n 笔记 gitee 地址](https://gitee.com/yuehaiyan/TakeDown/tree/master/其他/教程/n2n)
 
 # 四、
 
