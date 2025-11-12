@@ -1832,7 +1832,13 @@ root@f279e3b2bb3f:/#
 
 ## 4、客户端边缘节点使用
 
-### ①、windows 客户端使用
+### ①、服务器列表
+
+| 服务器地址                | 更新时间       | 归属  | 是否需要 udp 转发 | 备注                     |
+| -------------------- | ---------- | --- | ----------- | ---------------------- |
+| 101.200.86.248:41984 | 2024/12/17 | 月海  | 否           | 可用，但是只有 3m 带宽，人多了可能会卡顿 |
+
+### ②、windows 客户端使用
 
 1. 防火墙规则允许 `ipv4\ipv6` 入站：输入快捷键 `windows + x + a` 以<font color="#ff0000">管理员模式</font>打开 powershell，执行下面命令就可以开启 v4 和 v6 的入站规则，出站默认就开启的不需要操作
 
@@ -1862,7 +1868,7 @@ netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any 
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131138.png)
 
-### ②、linux 客户端使用
+### ③、linux 客户端使用
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
 	1. 数据目录：`/vol1/1000/docker/services/other/n2n/config/`
@@ -2304,20 +2310,14 @@ chmod 755 restart_process.sh
 */30 * * * * /home/docker/docker/volumes/n2n/gnb_udp_over_tcp/bin/Linux_x86_64/restart_process.sh
 ```
 
-## 7、n2n 的使用方法和问题
+## 7、n2n 的常见问题解决
 
-### ①、服务器列表
-
-| 服务器地址                | 更新时间       | 归属  | 是否需要 udp 转发 | 备注                     |
-| -------------------- | ---------- | --- | ----------- | ---------------------- |
-| 101.200.86.248:41984 | 2024/12/17 | 月海  | 否           | 可用，但是只有 3m 带宽，人多了可能会卡顿 |
-
-### ②、点击启动后没有马上显示成功
+### ①、点击启动后没有马上显示成功
 
 1. 连接时，从点击启动到连接成功有时等待时间会稍长一点，等待 10 秒左右看看
 2. 当在连接成功的状态下，点击停止断开连接后马上再点击启动（或点击重启），并不会马上重连，需要等待 1 ~ 2 分钟，这是服务器机制问题，等待即可
 
-### ③、NAT 类型问题
+### ②、NAT 类型问题
 
 1. 点击测试工具 -> NAT 检测，点击开始检测
 
@@ -2335,7 +2335,7 @@ chmod 755 restart_process.sh
 	6. Port Restricted Cone
 	7. Symmetric NAT
 
-### ④、虚拟 ip 冲突
+### ③、虚拟 ip 冲突
 
 1. 进入下面的网址查看一下 ip 是不是已经被使用了：
 	1. 若是使用服务器地址 101.200.86.248 连接：[查询 n2n edge 节点列表](http://101.200.86.248:41900/static/n2n-edge-query.html)
@@ -2346,7 +2346,7 @@ chmod 755 restart_process.sh
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144005.png)
 
-### ⑤、windows 防火墙的问题
+### ④、windows 防火墙的问题
 
 1. 右键开始菜单，选择以**管理员模式**打开 `powershell`，执行下面命令就可以开启 v4 和 v6 的入站规则
 2. 开启 v4 的入站规则
@@ -2362,6 +2362,8 @@ netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any 
 ```
 
 ![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144121.png)
+
+### ⑤、
 
 ### ⑥、
 

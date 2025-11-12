@@ -49,23 +49,6 @@
       "items": [
         {
           "type": "group",
-          "ctime": 1738823355481,
-          "items": [
-            {
-              "type": "file",
-              "ctime": 1738823376938,
-              "path": "其他/n2n/n2n 的安装配置.md"
-            },
-            {
-              "type": "file",
-              "ctime": 1738823382185,
-              "path": "其他/n2n/n2n 的使用方法和问题.md"
-            }
-          ],
-          "title": "n2n"
-        },
-        {
-          "type": "group",
           "ctime": 1706839157963,
           "items": [
             {
@@ -130,6 +113,35 @@
         },
         {
           "type": "group",
+          "ctime": 1762908782035,
+          "items": [
+            {
+              "type": "group",
+              "ctime": 1762908790199,
+              "items": [
+                {
+                  "type": "file",
+                  "ctime": 1762909615221,
+                  "path": "其他/教程/n2n/n2n 的服务端部署.md"
+                },
+                {
+                  "type": "file",
+                  "ctime": 1762909609337,
+                  "path": "其他/教程/n2n/n2n 的使用方法.md"
+                },
+                {
+                  "type": "file",
+                  "ctime": 1762909600711,
+                  "path": "其他/教程/n2n/n2n 的常见问题解决.md"
+                }
+              ],
+              "title": "n2n"
+            }
+          ],
+          "title": "教程"
+        },
+        {
+          "type": "group",
           "ctime": 1706839103323,
           "items": [
             {
@@ -163,11 +175,6 @@
           "title": "文件处理"
         },
         {
-          "type": "file",
-          "ctime": 1706839214240,
-          "path": "其他/设备和工具.md"
-        },
-        {
           "type": "group",
           "ctime": 1751418518694,
           "items": [
@@ -198,6 +205,11 @@
             }
           ],
           "title": "设备和工具"
+        },
+        {
+          "type": "file",
+          "ctime": 1706839214240,
+          "path": "其他/设备和工具.md"
         }
       ],
       "title": "其他"
