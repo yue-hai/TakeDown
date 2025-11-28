@@ -4,20 +4,20 @@
 ## 1、下载
 > 官网：https://www.python.org/
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303105734.png)
+![](attachments/Pasted%20image%2020230303105734.png)
 
 ## 2、安装
 1. 双击下载好的 Python 安装包
 2. 勾选左下角 `Add Python 3.7 to PATH` 选项，然后选择 `Install now` 立刻安装 Python
 3. 默认安装
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303105855.png)
+![](attachments/Pasted%20image%2020230303105855.png)
 
 4. 自定义安装
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303105912.png)
+![](attachments/Pasted%20image%2020230303105912.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303105926.png)
+![](attachments/Pasted%20image%2020230303105926.png)
 
 5. 安装完成
 
@@ -25,7 +25,7 @@
 1. 点击电脑左下角开始按钮，输入 cmd 进入到 windows 的命令行模式。在命令行中输入 Python，正确显示 Python 版本，即表示 Python 安装成功
 2. 如果在命令行中输入 python 出现如下错误
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110044.png)
+![](attachments/Pasted%20image%2020230303110044.png)
 
 3. 可能是因为在安装 Python 的过程中没有勾选 `Add Python 3.7 to PATH` 选项，此时需要手动对 Python 进行配置
 
@@ -33,19 +33,19 @@
 > 注意：如果在安装过程中，已经勾选了 `Add Python 3.7 to PATH` 选项，并且在 cmd 命令模式下输入 python 指令不报错，就不需要再手动的配置Python
 1. 右键 此电脑 --> 选择 属性
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110430.png)
+![](attachments/Pasted%20image%2020230303110430.png)
 
 2. 选择 高级系统设置 --> 环境变量 --> 找到并且双击 Path
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110446.png)
+![](attachments/Pasted%20image%2020230303110446.png)
 
 3. 双击 Path ,在弹框里点击新建，找到Python的安装目录，把路径添加进去
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110504.png)
+![](attachments/Pasted%20image%2020230303110504.png)
 
 4. 这里新添加的路径 `E:\python` 是 Python 安装好以后， Python.exe 这个可执行文件所在的目录
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110529.png)
+![](attachments/Pasted%20image%2020230303110529.png)
 
 # 二、pip 的使用
 > pip 是一个现代的，通用的 Python 包管理工具。提供了对 Python 包的查找、下载、安装、卸载的功能，便于我们对 Python 的资源包进行管理。
@@ -58,16 +58,16 @@
 1. 在 windows 命令行里，输入 `pip -V` 可以查看 pip 的版本。
 2. 如果在命令行里，运行 `pip -V` 出现如下提示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110044.png)
+![](attachments/Pasted%20image%2020230303110044.png)
 
 3. 可能是因为在安装 python 的过程中未勾选 `Add Python 3.7 to PATH` 选项，需要手动的配置 pip 的环境变量。
 4. 右键 此电脑 --> 环境变量 --> 找到并且双击 Path --> 在弹窗里点击新建 --> 找到 pip 的安装目录，把路径添加进去。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110847.png)
+![](attachments/Pasted%20image%2020230303110847.png)
 
 5. 这里新添加的路径 `E:\python\Scripts` 是 Python 安装好以后， pip.exe 这个可执行文件所在的目录。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303110920.png)
+![](attachments/Pasted%20image%2020230303110920.png)
 
 ## 3、使用 pip 管理 Python 包
 
@@ -96,7 +96,7 @@
 
 使用 python 指令运行后缀为 .py 的 python 文件
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303111400.png)
+![](attachments/Pasted%20image%2020230303111400.png)
 
 ## 3、Pycharm
 
@@ -104,19 +104,19 @@
 
 1. 创建工程
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303112528.png)
+![](attachments/Pasted%20image%2020230303112528.png)
 
 2. 创建完成：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303125141.png)
+![](attachments/Pasted%20image%2020230303125141.png)
 
 3. 创建 python 代码文件
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303125258.png)
+![](attachments/Pasted%20image%2020230303125258.png)
 
 4. 编写代码
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303125724.png)
+![](attachments/Pasted%20image%2020230303125724.png)
 
 # 四、Python 基础
 
@@ -231,12 +231,12 @@ print(name)
 ## 2、数据类型
 1. 程序中：在 Python 里为了应对不同的业务需求，也把数据分为不同的类型。 如下图所示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303134507.png)
+![](attachments/Pasted%20image%2020230303134507.png)
 
 2. 在 python 中，只要定义了一个变量，而且它有数据，那么它的类型就已经确定了，不需要咱们开发者主动的去说明它的类型，<font color="#c00000">系统会自动辨别</font>。也就是说在使用的时候：<font color="#c00000">变量没有类型，数据才有类型</font>。
 3. 比如下面的示例里，a 的类型可以根据数据来确认，但是我们没法预测变量 b 的类型
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303134728.png)
+![](attachments/Pasted%20image%2020230303134728.png)
 
 4. 如果临时想要查看一个变量存储的数据类型，可以使用 `type(变量的名字)`，来查看变量存储的数据类型
 
@@ -323,7 +323,7 @@ print(type(name))
 
 ### ⑥、位运算符
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230310094140.png)
+![](attachments/Pasted%20image%2020230310094140.png)
 
 ## 4、输入输出
 
@@ -685,7 +685,7 @@ print(type(c1 + 10), c1 + 10)
 	1. 从左到右索引默认 0 开始的，最大范围是字符串长度少 1
 	2. 从右到左索引默认 -1 开始的，最大范围是字符串开头
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303151801.png)
+![](attachments/Pasted%20image%2020230303151801.png)
 
 3. 如果你要实现从字符串中获取一段子字符串的话，可以使用 `[头下标:尾下标]` 来截取相应的字符串，其中下标是从 0 开始算起，可以是正数或负数，下标可以为空表示取到头或尾。`[头下标:尾下标]` 获取的子字符串<font color="#c00000">包含头下标的字符</font>，但<font color="#c00000">不包含尾下标的字符</font>；不论正序还是倒序，但是从左到右
 
@@ -959,7 +959,7 @@ YUEHAI-月海 yuehai-月海
 3. <font color="#c00000">列表用 `[ ]` 标识，是 python 最通用的复合数据类型。</font>
 4. 列表中值的切割也可以用到变量 `[头下标:尾下标]` ，就可以截取相应的列表，从左到右索引默认 0 开始，从右到左索引默认 -1 开始，下标可以为空表示取到头或尾。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230303154545.png)
+![](attachments/Pasted%20image%2020230303154545.png)
 
 5. 加号 `+` 是列表连接运算符，星号 `*` 是重复操作
 
@@ -1761,7 +1761,7 @@ print "函数外是全局变量 : ", total
 
 1. 模块结构
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230306162442.png)
+![](attachments/Pasted%20image%2020230306162442.png)
 
 2. 创建 module 包，在其中创建 testModule.py 文件
 
@@ -1833,15 +1833,15 @@ module2 -> testModule1
 
 1. 在 PyCharm中，点击右下角 python，然后点击解释器设置
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307105308.png)
+![](attachments/Pasted%20image%2020230307105308.png)
 
 2. 在弹出来的页面中点击软件包上方的 +
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307105451.png)
+![](attachments/Pasted%20image%2020230307105451.png)
 
 3. 在弹出来的页面中输入包名，点击安装即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307105717.png)
+![](attachments/Pasted%20image%2020230307105717.png)
 
 ## 6、一些内置函数
 
@@ -1936,7 +1936,7 @@ file.write('yuehai月海')
 file.close()
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307093501.png)
+![](attachments/Pasted%20image%2020230307093501.png)
 
 ## 3、文件的序列化
 
@@ -2321,7 +2321,7 @@ YueHai: name=月海, age=17
 	2. 实际传入父类的子类对象进行工作
 	3. 即：以父类做定义声明、以子类做实际工作，用以获得同一行为，不同状态
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307144725.png)
+![](attachments/Pasted%20image%2020230307144725.png)
 
 3. 下面父类 Animal 的 speak 方法，是空实现，这种设计的含义是：
 	1. 父类用来确定有哪些方法
@@ -2330,15 +2330,15 @@ YueHai: name=月海, age=17
 5. 抽象类：含有抽象方法的类称之为抽象类
 6. 抽象方法：方法体是空实现的（pass）称之为抽象方法
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307144912.png)
+![](attachments/Pasted%20image%2020230307144912.png)
 
 7. 抽象类就好比定义一个标准，包含了一些抽象的方法，要求子类必须实现
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307145132.png)
+![](attachments/Pasted%20image%2020230307145132.png)
 
 8. 配合多态，完成：抽象的父类设计（设计标准）、具体的子类实现（实现标准）
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307145138.png)
+![](attachments/Pasted%20image%2020230307145138.png)
 
 ## 6、类型注解
 
@@ -2598,7 +2598,7 @@ yue_hai2('言')
 2. PySpark 是由 Spark 官方开发的 Python 语言第三方库。
 3. Python 开发者可以使用 pip 程序快速的安装 PySpark 并像其它三方库那样直接使用。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307152212.png)
+![](attachments/Pasted%20image%2020230307152212.png)
 
 4. Python 应用场景和就业方向是十分丰富的，其中，最为亮点的方向为：大数据开发和人工智能
 
@@ -2606,7 +2606,7 @@ yue_hai2('言')
 
 1. 安装 PySpark 库
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307153211.png)
+![](attachments/Pasted%20image%2020230307153211.png)
 
 2. 构建 PySpark 执行环境入口对象：想要使用 PySpark 库完成数据处理，首先需要构建一个执行环境入口对象。PySpark 的执行环境入口对象是：类 SparkContext 的类对象
 
@@ -2646,13 +2646,13 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 
 3. SparkContext 类对象，是 PySpark 编程中一切功能的入口。PySpark 的编程，主要分为如下三大步骤：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307155028.png)
+![](attachments/Pasted%20image%2020230307155028.png)
 
 4. 通过 SparkContext 对象，完成数据输入
 5. 输入数据后得到 RDD 对象，对 RDD 对象进行迭代计算
 6. 最终通过 RDD 对象的成员方法，完成数据输出工作
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307155129.png)
+![](attachments/Pasted%20image%2020230307155129.png)
 
 ## 3、数据输入
 
@@ -2667,7 +2667,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 	1. 准备数据到 RDD -> RDD 迭代计算 -> RDD 导出为 list、文本文件等
 	2. 即：源数据 -> RDD -> 结果数据
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307160304.png)
+![](attachments/Pasted%20image%2020230307160304.png)
 
 ### ②、掌握 PySpark 数据输入的 2 种方法
 
@@ -2704,7 +2704,7 @@ print(myFileRdd.collect())
 sc.stop()
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307163123.png)
+![](attachments/Pasted%20image%2020230307163123.png)
 
 
 ## 4、数据计算
@@ -2918,7 +2918,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 5. 下载 winutils.exe，并放入 Hadoop 解压文件夹的 bin 目录内：https://raw.githubusercontent.com/steveloughran/winutils/master/hadoop-3.0.0/bin/winutils.exe
 6. 下载 hadoop.dll，并放入 `:C:/Windows/System32` 文件夹内：https://raw.githubusercontent.com/steveloughran/winutils/master/hadoop-3.0.0/bin/hadoop.dll
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230308125646.png)
+![](attachments/Pasted%20image%2020230308125646.png)
 
 # 十一、网络爬虫
 
@@ -2943,7 +2943,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 3. 舆情监控
 4. 竞争对手监控
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230308131014.png)
+![](attachments/Pasted%20image%2020230308131014.png)
 
 ### ④、爬虫分类？
 
@@ -3011,7 +3011,7 @@ content = response.read().decode('utf-8')
 print(content)
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230308140157.png)
+![](attachments/Pasted%20image%2020230308140157.png)
 
 ### ②、HTTPResponse 类型的 6 个方法
 
@@ -3083,13 +3083,13 @@ urllib.request.urlretrieve('https://tse2-mm.cn.bing.net/th/id/OIP-C.xVSeWqBAc8GC
 # 下载视频
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230308151937.png)
+![](attachments/Pasted%20image%2020230308151937.png)
 
 ### ④、请求对象的定制
 
 1. url 的组成
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230308153503.png)
+![](attachments/Pasted%20image%2020230308153503.png)
 
 2. UA 介绍：User Agent 中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本。浏览器内核、浏览器渲染引擎、浏览器语言、浏览器插件等
 
@@ -3120,7 +3120,7 @@ response = urllib.request.urlopen(request)
 print(response.read().decode('utf8'))
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230308155403.png)
+![](attachments/Pasted%20image%2020230308155403.png)
 
 ### ⑤、编解码
 
@@ -3696,7 +3696,7 @@ with open('daili.html', 'w', encoding='utf-8') as fp:
 
 1. 安装 `lxml` 库
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230309150649.png)
+![](attachments/Pasted%20image%2020230309150649.png)
 
 2. 导入 lxml.etree：`from lxml import etree`
 3. `etree.parse()` 解析本地文件：`html_tree = etree.parse('XX.html')`
@@ -3799,7 +3799,7 @@ for result in resultList:
     urllib.request.urlretrieve(result, f'./save/{uuid.uuid4()}.jpg')
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230310152552.png)
+![](attachments/Pasted%20image%2020230310152552.png)
 
 ### ②、JsonPath
 
@@ -3823,11 +3823,11 @@ for result in resultList:
 	5. 查看谷歌浏览器版本：谷歌浏览器右上角‐‐>帮助‐‐>关于
 	6. pip install selenium
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/edgedriver_win64.zip)
+![](attachments/edgedriver_win64.zip)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230313083559.png)
+![](attachments/Pasted%20image%2020230313083559.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230313084414.png)
+![](attachments/Pasted%20image%2020230313084414.png)
 
 4. selenium 的使用步骤？
 	1. 导入：from selenium import webdriver
@@ -3867,7 +3867,7 @@ content = browser.page_source
 print(content)
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230313092210.png)
+![](attachments/Pasted%20image%2020230313092210.png)
 
 ### ③、元素定位
 
@@ -3877,9 +3877,9 @@ print(content)
 
 1. 选择器
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230313100305.png)
+![](attachments/Pasted%20image%2020230313100305.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230313100315.png)
+![](attachments/Pasted%20image%2020230313100315.png)
 
 ```python
 # -*- coding: utf-8 -*-
@@ -4231,7 +4231,7 @@ D:\Idea\save\python\0_study\01_python\venv\Scripts\python.exe "D:\Idea\save\pyth
 进程已结束,退出代码0
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/save.png)
+![](attachments/save.png)
 
 ## 5、requests
 
@@ -4419,7 +4419,7 @@ print(requests.text)
 
 > Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中
 
-[scrapy.pdf](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/05.scrapy.pdf)
+[scrapy.pdf](attachments/05.scrapy.pdf)
 
 # 十二、第三方包
 
@@ -4455,11 +4455,11 @@ line.render()
 
 2. 执行后会生成一个 html 文件
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307111043.png)
+![](attachments/Pasted%20image%2020230307111043.png)
 
 3. 在浏览器中打开：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020230307111123.png)
+![](attachments/Pasted%20image%2020230307111123.png)
 
 ### ②、地图
 
@@ -4534,7 +4534,7 @@ C:\Users\10222148\AppData\Local\Programs\Python\Python311\python.exe "D:\Idea\sa
 1. 访问官网：前往 [Python 官网 Windows 下载页面](https://www.python.org/downloads/windows/)
 2. 选择版本：找到需要的 Python 版本，在文件列表中选择 Windows embeddable package (64-bit) 并下载，它是一个 .zip 压缩包
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Python/attachments/Pasted%20image%2020250625102353.png)
+![|700](attachments/Pasted%20image%2020250625102353.png)
 
 3. 解压文件：将下载的 .zip 包解压到希望的目录，例如：`D:\tools\python-3.12`
 4. 用浏览器访问：https://bootstrap.pypa.io/get-pip.py，在页面上右键 -> 另存为，将 `get-pip.py` 文件保存到刚刚解压的 Python 目录里，即 `D:\tools\python-3.12`
