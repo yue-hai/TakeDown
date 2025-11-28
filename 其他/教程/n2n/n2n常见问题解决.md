@@ -7,7 +7,7 @@
 
 1. 点击测试工具 -> NAT 检测，点击开始检测
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143709.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111143709.png)
 
 1. 若是显示检测失败或结果不是下面的四种，请点击切换服务器，然后多次测试
 2. 若检测结果是 `Symmetric NAT`，说明当前机器是不可以使用 n2n 的，若想使用，请自行修改光猫，百度搜索：NAT 类型修改
@@ -30,7 +30,7 @@
 3. 和朋友一起联机的话，ip 前三位需要相同，比如：`192.168.1`，最后一位可选 `1 ~ 254`
 4. 挑一个没有被使用的就可以了
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144005.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111144005.png)
 
 ### ④、windows 防火墙的问题
 
@@ -47,7 +47,7 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144121.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111144121.png)
 
 ### ⑤、
 

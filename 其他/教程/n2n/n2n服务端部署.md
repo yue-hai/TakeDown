@@ -2,11 +2,11 @@
 > 2. dockerHub 地址：https://hub.docker.com/r/jonnyan404/n2n-v3
 > 3. N2N 服务端软件 n2n-3.0：
 > 	1. github 下载地址：https://github.com/ntop/n2n/releases/tag/3.0
-> 	2. 本地下载：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/n2n-3.0.zip)
+> 	2. 本地下载：[n2n-3.0.zip](../../../Docker/attachments/n2n-3.0.zip)
 > 4. N2N 客户端软件 EasyN2N：
 > 	1. 下载地址：https://bugxia.com/357.html
-> 	2. 本地下载：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)
-> 5.  java 查询程序：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
+> 	2. 本地下载：[EasyN2N_3.3.zip](../../../Docker/attachments/EasyN2N_3.3.zip)
+> 5.  java 查询程序：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](../../../Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
 
 ## 1、端口说明
 
@@ -103,7 +103,7 @@ networks:
 2. 开放端口：`41983`、`41984`
 	1. `sudo ufw allow from any to any port 41983`
 	2. `sudo ufw allow from any to any port 41984`
-3. 创建目录：`/home/yan/app/internet/NetworkTools/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/n2n-3.0.zip) 放入其中
+3. 创建目录：`/home/yan/app/internet/NetworkTools/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](../../../Docker/attachments/n2n-3.0.zip) 放入其中
 4. 解压压缩包：`unzip n2n-3.0.zip`
 5. 更新软件源、安装 vim、安装配置工具：``
 
@@ -186,9 +186,9 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
+2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](../../../Docker/attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143000.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111143000.png)
 
 3. 配置：
 	1. 服务器：`服务器ip:41984`
@@ -196,15 +196,15 @@ netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any 
 	3. 虚拟网 ip：最好设置为同一网段（也可以选择自动分配，分配的若不是同一网段，再自行修改）
 	4. 点击启动
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111134832.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111134832.png)
 
 4. 服务器右侧显示绿色对号即为连接成功
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251107161831.png)
+![](../../../Docker/attachments/Pasted%20image%2020251107161831.png)
 
 5. 启动后，点击小组名称后的按钮，可打开已连接的主机列表，双击列表项可显示延迟
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131138.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111131138.png)
 
 ### ③、linux 客户端使用
 
@@ -270,7 +270,7 @@ services:
 ### ①、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. jar 包目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool/`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+	1. jar 包目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool/`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](../../../Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
 2. 使用 docker run 部署：
 
 ```shell
@@ -314,7 +314,7 @@ services:
 
 ### ②、ubuntu 直接安装
 
-1. 创建目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+1. 创建目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](../../../Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
 2. 安装 JDK 21；若是安装过程中让选择时区，第一次选择 5 是亚洲，第二次选择 69 是上海
 
 ```shell
@@ -358,7 +358,7 @@ nohup java -jar yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar >> yuehai-too
 > 1. 如果服务器在大陆外或国外，或者是家用网络，有可能会出现 UDP 屏蔽或 QoS
 > 2. 下面是一种解决方法：使用 gnb_udp_over_tcp 这个工具，实现将 UDP 数据转换为 TCP 进行传输，绕开 UDP 限制
 > 3. github 地址：https://github.com/gnbdev/gnb_udp_over_tcp
-> 4. 本地下载：[gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)
+> 4. 本地下载：[gnb_udp_over_tcp.zip](../../../Docker/attachments/gnb_udp_over_tcp.zip)
 
 ### ⓪、gnb_udp_over_tcp 命令解释
 
@@ -384,7 +384,7 @@ gnb_udp_over_tcp -u -l 监听的UDP端口 TCP源地址 TCP源端口
 sudo ufw allow from any to any port 41985
 ```
 
-2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+2. 下载上面的 [gnb_udp_over_tcp.zip](../../../Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
 3. 进入对应目录
 
 ```shell
@@ -508,10 +508,10 @@ chmod 755 restart_process.sh
 
 #### Ⅰ、windows 客户端配置
 
-1. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
+1. 下载上面的 [gnb_udp_over_tcp.zip](../../../Docker/attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
 2. 在目录中，按住键盘的 shift 键，然后点击鼠标右键，选择：在此处打开 Powershell 窗口
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131416.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111131416.png)
 
 3. 之后会弹出一个窗口，在其中输入以下内容并回车：
 	1. `-u`：表示启用 UDP 模式，即将接收到的 TCP 数据转换为 UDP 数据
@@ -523,21 +523,21 @@ chmod 755 restart_process.sh
 .\gnb_udp_over_tcp.exe -u -l 41984 83.229.120.176 41985
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131819.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111131819.png)
 
 4. 若是不想手动输入上面的命令，也可以直接双击目录的脚本 `run_gnb_udp_over_tcp.bat`，会自动执行该命令；但是这种脚本的方式有时会失败，如果失败，需手动输入命令
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111132220.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111132220.png)
 
 5. 打开 n2n，服务端填写：`127.0.0.1:41984`，点击启动，等待时间会稍长一点，大概六七秒
 6. 等待右侧出现绿色对号，即为连接成功
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111132524.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111132524.png)
 
 #### Ⅱ、ubuntu 客户端配置
 
 1. 客户端先正常编译安装 n2n 客户端
-2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+2. 下载上面的 [gnb_udp_over_tcp.zip](../../../Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
 3. 进入对应目录：
 
 ```shell
@@ -659,7 +659,7 @@ chmod 755 restart_process.sh
 
 1. 点击测试工具 -> NAT 检测，点击开始检测
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143709.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111143709.png)
 
 2. 若是显示检测失败或结果不是下面的四种，请点击切换服务器，然后多次测试
 3. 若检测结果是 `Symmetric NAT`，说明当前机器是不可以使用 n2n 的，若想使用，请自行修改光猫，百度搜索：NAT 类型修改
@@ -682,7 +682,7 @@ chmod 755 restart_process.sh
 3. 和朋友一起联机的话，ip 前三位需要相同，比如：`192.168.1`，最后一位可选 `1 ~ 254`
 4. 挑一个没有被使用的就可以了
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144005.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111144005.png)
 
 ### ④、windows 防火墙的问题
 
@@ -699,7 +699,7 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144121.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111144121.png)
 
 ### ⑤、
 

@@ -26,7 +26,7 @@
 2. 官方项目主页： https://www.android-x86.org
 3. 进入后点击 Download，选择对应的版本目录，然后选择对应的镜像进行下载即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130021.png)
+![|700](attachments/Pasted%20image%2020250807130021.png)
 
 ### ②、创建虚拟机
 

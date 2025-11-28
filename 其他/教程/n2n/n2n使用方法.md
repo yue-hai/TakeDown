@@ -14,9 +14,9 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
+2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](../../../Docker/attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143000.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111143000.png)
 
 3. 配置：
 	1. 服务器：`服务器ip:41984`
@@ -24,15 +24,15 @@ netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any 
 	3. 虚拟网 ip：最好设置为同一网段（也可以选择自动分配，分配的若不是同一网段，再自行修改）
 	4. 点击启动
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111134832.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111134832.png)
 
 4. 服务器右侧显示绿色对号即为连接成功
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251107161831.png)
+![](../../../Docker/attachments/Pasted%20image%2020251107161831.png)
 
 5. 启动后，点击小组名称后的按钮，可打开已连接的主机列表，双击列表项可显示延迟
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131138.png)
+![](../../../Docker/attachments/Pasted%20image%2020251111131138.png)
 
 ### ③、linux 客户端使用
 
