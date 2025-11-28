@@ -377,6 +377,218 @@ location / {
 ```
 
 
+# 11、Hoppscotch API 调用工具
+
+> 1. 项目 github：https://github.com/hoppscotch/hoppscotch
+> 2. dockerHub 地址：https://hub.docker.com/r/hoppscotch/hoppscotch
+
+## 1、介绍
+
+1. 一款完全开源、基于 Web 的 API 测试工具，响应速度极快，界面简洁美观
+2. 无需安装：作为一款 Web 应用，您可以直接在浏览器中使用，非常轻量
+3. 功能全面：支持 REST、GraphQL 和 WebSocket 等多种协议
+4. 易于迁移：支持导入 Postman 的数据集合，方便快速上手
+5. PWA 支持：可以作为渐进式 Web 应用（PWA）安装到桌面，实现类似原生应用的体验，同时保持低资源占用
+
+## 2、docker 部署
+
+1. 在宿主机创建目录，作为配置文件存放目录：`/vol1/1000/docker/services/frontend/hoppscotch`
+2. 在该目录下创建配置文件：`hoppscotch.env`，并输入以下内容，需自己对应修改
+
+```env
+#----------------------- Backend Config (后端配置) ------------------------------#
+
+# 数据库配置
+# 格式: postgresql://<用户>:<密码>@<主机服务名>:<端口>/<数据库名>
+DATABASE_URL="postgresql://xxx@xxx:5432/xxx"
+
+# 认证令牌配置
+# JWT 密钥，用于用户会话安全，请务必保密
+JWT_SECRET="xxx"
+# 会话密钥，同样需要保密
+SESSION_SECRET="xxx"
+# 数据加密密钥，用于加密数据库中的敏感信息
+DATA_ENCRYPTION_KEY="xxx"
+# 令牌盐复杂度，默认值通常即可
+TOKEN_SALT_COMPLEXITY=12
+# 令牌有效期（毫秒），默认值通常即可
+MAGIC_LINK_TOKEN_VALIDITY=900000     # 15分钟
+REFRESH_TOKEN_VALIDITY=2592000000    # 30天
+ACCESS_TOKEN_VALIDITY=900000         # 15分钟
+
+# 应用域名配置
+# 访问 Hoppscotch 的公网域名
+REDIRECT_URL=https://xxx
+# 允许的请求来源列表，多个域名用逗号分隔
+WHITELISTED_ORIGINS=https://xxx,https://xxx/admin,https://xxx/backend
+# 允许的重定向域名列表，多个域名用逗号分隔
+VITE_ALLOWED_AUTH_PROVIDERS=EMAIL
+
+# 第三方登录配置，可选，如不需要可留空
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+GITHUB_CLIENT_ID=""
+GITHUB_CLIENT_SECRET=""
+MICROSOFT_CLIENT_ID=""
+MICROSOFT_CLIENT_SECRET=""
+
+# 邮件服务配置，填写自己的 SMTP 服务信息，这是实现邮箱登录功能的关键，必须填写
+# 格式: smtp://<用户名>:<密码>@<SMTP服务器地址>:<端口>
+MAILER_SMTP_URL="smtp://xxx:xxx@smtp.qq.com:587"
+# 希望邮件中显示的发件人地址
+MAILER_ADDRESS_FROM="xxx"
+
+# 速率限制配置
+RATE_LIMIT_TTL=60 # 单位: 秒
+RATE_LIMIT_MAX=100 # 每个 IP 每分钟的最大请求数
+
+#----------------------- Frontend Config (前端配置) ------------------------------#
+
+# 基础 URL 配置
+VITE_BASE_URL=https://xxx
+VITE_SHORTCODE_BASE_URL=https://xxx
+VITE_ADMIN_URL=https://xxx/admin
+
+# 后端接口 URL 配置，这里会告诉前端界面去哪里找后端服务
+VITE_BACKEND_GQL_URL=https://xxx/backend/graphql
+VITE_BACKEND_WS_URL=wss://xxx/backend/graphql
+VITE_BACKEND_API_URL=https://xxx/backend/v1
+
+# 服务条款链接，可选
+VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
+VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
+
+# 子路径访问模式，必须为 true
+# 这是为了让 hoppscotch/hoppscotch 一体化镜像能正常工作
+ENABLE_SUBPATH_BASED_ACCESS=true
+```
+
+3. 使用 docker run 部署数据库迁移服务：
+
+```shell
+docker run --rm \
+--env-file /vol1/1000/docker/services/frontend/hoppscotch/hoppscotch.env \
+--entrypoint sh \
+--network yuehai-net \
+--name hoppscotch-migrate \
+hoppscotch/hoppscotch:latest \
+-c "npx prisma migrate deploy"
+```
+
+4. 使用 docker run 部署 Hoppscotch 主服务：
+
+```shell
+docker run -d \
+-p 80:80 \
+--env-file /vol1/1000/docker/services/frontend/hoppscotch/hoppscotch.env \
+--network yuehai-net \
+--restart=unless-stopped \
+--name hoppscotch-app \
+hoppscotch/hoppscotch:latest
+```
+
+5. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 数据库迁移服务，用于在启动主应用前执行数据库迁移、初始化等任务
+    hoppscotch-migrate:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: hoppscotch/hoppscotch:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: hoppscotch-migrate
+        # 定义容器的重启策略：运行一次就退出
+        restart: "no"
+        # 指定外部环境变量文件的路径。容器将从这个文件中加载所有配置
+        env_file:
+            - ./hoppscotch.env
+        # 覆盖镜像的默认入口点。这里设置为 sh，意味着容器启动后会运行一个 shell 解释器
+        entrypoint: sh
+        # 指定容器启动时执行的命令：执行数据库结构同步
+        command: -c "npx prisma migrate deploy"
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+    
+    # Hoppscotch 主服务，用于提供 API 测试和管理功能
+    hoppscotch:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: hoppscotch/hoppscotch:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: hoppscotch-app
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Web 访问端口
+            - "80:80"
+        # 指定外部环境变量文件的路径。容器将从这个文件中加载所有配置
+        env_file:
+            - ./hoppscotch.env
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+        # 定义服务间的依赖关系
+        depends_on:
+            # 此服务依赖于 hoppscotch-migrate 服务
+            hoppscotch-migrate:
+                # 启动条件：只有当 hoppscotch-migrate 服务成功执行完毕并退出（退出码为0）后，此服务才会开始启动
+                condition: service_completed_successfully
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:80](http://127.0.0.1:80)，可进入匿名首页，此时可临时使用，数据不会保存
+2. 访问：[http://127.0.0.1:80/admin](http://127.0.0.1:80/admin)，进入管理员后台，初次访问会进行初始化设置
+3. 选择 SMTP
+
+![](attachments/Pasted%20image%2020251128161348.png)
+
+4. 输入项目发送邮件的邮箱地址和 SMTP 连接信息，输入的信息和配置文件上的一样，这个邮箱会作为初始的管理员
+
+![](attachments/Pasted%20image%2020251128161417.png)
+
+5. 配置后成功，等待重启，
+6. 重启完成后，输入邮箱进行登录，会收到一条邮件，点击邮件中的地址即可登录，登录成功后进入管理员后台，可进行设置
+7. 访问：[http://127.0.0.1:80](http://127.0.0.1:80)，再次进入首页，此时可正常使用，
+
+![](attachments/Pasted%20image%2020251128161720.png)
+
+## 4、问题记录
+
+### ①、无法继承父集合参数设置
+
+#### Ⅰ、报错现象
+
+1. 父目录中设置了请求头、授权等信息
+
+![](attachments/Pasted%20image%2020251128162542.png)
+
+2. 目录中的接口也设置了继承父目录中设置，但是实际请求中并没有携带这些参数
+
+![](attachments/Pasted%20image%2020251128162605.png)
+
+#### Ⅱ、原因
+
+1. 不知道
+
+#### Ⅲ、解决
+
+1. 将这个接口移动到其他目录，再移动回来就可以了
+
+### ②、
+
 # 20、postgres 数据库
 
 ## 1、介绍
