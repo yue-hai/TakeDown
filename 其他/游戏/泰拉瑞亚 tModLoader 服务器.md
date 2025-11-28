@@ -32,7 +32,7 @@ wget https://github.com/tModLoader/tModLoader/releases/download/v2023.12.2.5/tMo
 
 5. 也可以本地下载后上传到 linux：
 	1. <font color="#ff0000">若是版本更新了，请注意并修改版本号</font>
-	2. tModLoader v2023.12.2.5 版本下载：[tModLoader-v2023.12.2.5.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/tModLoader-v2023.12.2.5.zip)
+	2. tModLoader v2023.12.2.5 版本下载：[tModLoader-v2023.12.2.5.zip](attachments/tModLoader-v2023.12.2.5.zip)
 6. 创建与 tModLoader 版本对应的目录，仅是为了方便管理
 
 ```shell

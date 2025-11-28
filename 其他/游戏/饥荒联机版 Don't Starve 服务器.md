@@ -86,7 +86,7 @@ cd "/home/steam/Steam/steamapps/common/Don't Starve Together Dedicated Server/bi
 3. 打开文件资源管理器，进入：文档 -> Klei -> DoNotStarveTogetger -> （一串数字） -> Cluster_1（后面的数字表示是第几个服务器）
 4. 进入 Cluster_1，所有文件复制到服务器的 `/home/steam/.klei/DoNotStarveTogether/Cluster_1/` 目录中
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020230502172147.png)
+![](attachments/Pasted%20image%2020230502172147.png)
 
 ## 2、服务器 token
 
@@ -97,9 +97,9 @@ cd "/home/steam/Steam/steamapps/common/Don't Starve Together Dedicated Server/bi
 5. 点击添加新服务器按钮
 6. 复制出现的令牌码 ```pds-g^KU_......```，粘贴入 `cluster_token.txt` 文件中
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020230502173321.png)
+![](attachments/Pasted%20image%2020230502173321.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020230502173401.png)
+![](attachments/Pasted%20image%2020230502173401.png)
 
 ## 3、设置管理员
 
@@ -107,9 +107,9 @@ cd "/home/steam/Steam/steamapps/common/Don't Starve Together Dedicated Server/bi
 2. 点击左下角的账号
 3. 复制 KLEI 用户 ID 到此文件中，可添加多个管理员，每个一行
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020230502173424.png)
+![](attachments/Pasted%20image%2020230502173424.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E6%B8%B8%E6%88%8F/attachments/Pasted%20image%2020230502173345.png)
+![](attachments/Pasted%20image%2020230502173345.png)
 
 ## 4、mod
 
