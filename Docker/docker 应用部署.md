@@ -4625,7 +4625,7 @@ services:
 1. 访问：[http://127.0.0.1:19999](http://127.0.0.1:19999)
 
 
-# 1002、homeassistant 智能家居平台
+# 1002、home-assistant 智能家居平台
 
 > 1. 项目 github：https://github.com/home-assistant/core
 > 2. dockerHub 地址：https://hub.docker.com/r/homeassistant/home-assistant
@@ -4643,13 +4643,13 @@ services:
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/vol1/1000/docker/host-mode/homeassistant/config`
+	1. 配置目录：`/vol1/1000/docker/host-mode/home-assistant/config`
 2. 使用 docker run 部署：
 
 ```shell
 docker run -d \
 -e TZ="Asia/Shanghai" \
--v /vol1/1000/docker/host-mode/homeassistant/config:/config \
+-v /vol1/1000/docker/host-mode/home-assistant/config:/config \
 -v /run/dbus:/run/dbus:ro \
 --privileged=true \
 --restart=unless-stopped \
@@ -4684,7 +4684,7 @@ services:
             # 允许容器可以使用 DBus 服务；DBus 是 Linux 中用于进程间通信的系统，许多硬件访问功能，包括蓝牙服务，依赖于 DBus 服务
             - /run/dbus:/run/dbus:ro
             # 配置目录
-            - /vol1/1000/docker/host-mode/homeassistant/config:/config
+            - /vol1/1000/docker/host-mode/home-assistant/config:/config
 ```
 
 ## 3、访问
@@ -4696,7 +4696,7 @@ services:
 
 > 直接配置 nginx 后访问会提示：`400: Bad Request`
 
-1. 先停止容器，然后在挂载目录 `/vol1/1000/docker/host-mode/homeassistant/config` 中找到文件 `configuration.yaml` 并编辑，再末尾加入以下内容，设置信任 ip：
+1. 先停止容器，然后在挂载目录 `/vol1/1000/docker/host-mode/home-assistant/config` 中找到文件 `configuration.yaml` 并编辑，再末尾加入以下内容，设置信任 ip：
 	1. `192.168.31.0/24`：家里的其他设备
 	2. `172.17.0.0/16`：docker，比如 nginx 
 	3. `127.0.0.1`：本地访问
@@ -4705,8 +4705,9 @@ services:
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 192.168.31.0/24
+    - 192.168.1.0/24
     - 172.17.0.0/16
+    - 172.18.0.0/16
     - 127.0.0.1
 ```
 
@@ -4730,12 +4731,260 @@ http:
   trusted_proxies:
     - 192.168.31.0/24
     - 172.17.0.0/16
-    - 127.0.0.1
+    - 172.18.0.0/16
+	- 127.0.0.1
 ```
 
 3. 保存后，重新启动容器，就可以通过 nginx 代理的地址访问了
 
-## 5、连接 Network UPS Tools
+## 5、集成 hacs
+
+### ①、hacs 介绍
+
+1. HACS (Home Assistant Community Store) 是一个为 Home Assistant 提供的第三方集成管理工具，它允许用户轻松安装、更新和管理社区开发的集成、插件、主题和自定义卡片。
+2. 通过 HACS，用户可以访问不在官方 Home Assistant 集成目录中的众多额外内容，这些内容通常由独立开发者或者爱好者社区提供。
+3. HACS 的主要特点包括：
+	1. 易于安装和管理：HACS 提供了一个用户友好的界面，使得安装、更新和浏览社区开发的集成和插件变得简单。
+	2. 广泛的可用内容：用户可以通过 HACS 安装各种自定义集成和插件，包括天气插件、设备控制、社交媒体集成等。
+	3. 自动更新：HACS 可以自动检测安装的集成和插件的更新，使得维护和更新变得更加便捷。
+	4. 社区支持：由于 HACS 是一个社区驱动的项目，用户可以得到社区的支持和指导，同时也能贡献自己的创建。
+
+### ②、集成 hacs
+
+1.  下载 hacs 源码：
+	1. github 最新版下载：[Releases · hacs/integration](https://github.com/hacs/integration/releases)
+	2. 本地  v2.0.1 版下载：[hacs.zip](attachments/hacs.zip)
+
+![|700](attachments/Pasted%20image%2020250108111816.png)
+
+2. 在挂载目录 `/home/docker/docker/volumes/home-assistant/config` 下再创建 `custom_components` 目录，将下载的文件上传到此目录中：
+
+![](attachments/Pasted%20image%2020250108111831.png)
+
+3. 解压 hacs.zip
+
+```shell
+unzip hacs.zip -d hacs/
+```
+
+1. 解压完毕后，重启容器，进入 home-assistant 管理页面，点击设置 -> 设备与服务
+
+![|700](attachments/Pasted%20image%2020250108111847.png)
+
+5. 点击添加集成：
+
+![|700](attachments/Pasted%20image%2020250108111857.png)
+
+6. 搜索 `hacs`，选择后勾选所有选项，然后点击提交：
+
+![|499](attachments/Pasted%20image%2020250108111908.png)
+
+![](attachments/Pasted%20image%2020250108111918.png)
+
+7. 等待一段时间后，提示需要点击中间的链接跳转到 GitHub 进行验证，复制下面验证码填入 GitHub 进行验证
+
+![|700](attachments/Pasted%20image%2020250108111932.png)
+
+8. 验证完成后，刷新一下，左侧出现 HACS 选项，进入即可安装各种插件与设备链接
+
+![|700](attachments/Pasted%20image%2020250108111944.png)
+
+## 6、集成米家
+
+> 需完成上面的集成 hacs
+
+### ①、介绍
+
+#### Ⅰ、Xiaomi Home 是什么
+
+1. Xiaomi Home 是一个由 小米官方提供并支持 的 Home Assistant 集成组件
+2. 它的核心作用是作为一座官方桥梁，让用户能够通过标准和安全的方式，将自己小米账号下的智能设备接入 Home Assistant 系统。这个集成严格遵循小米的物联网协议规范 MIoT-Spec-V2，并通过小米云服务进行通信
+3. 与社区开发者维护的第三方集成不同，它的官方身份意味着更高的稳定性和安全性承诺
+
+#### Ⅱ、其他主流的小米集成都有什么？(与官方版的区别)
+
+1. 为了更好地理解官方 Xiaomi Home 的定位，我们必须将它与社区中另外两个广受欢迎的集成进行对比：
+2. Xiaomi Miot Auto (第三方社区版)：
+	1. 身份：这是目前功能最强大、设备支持最广泛的第三方社区集成。它也是通过模拟米家APP与小米云端通信，但提供了更多灵活性
+	2. 核心区别：最大的优势在于其 自动/本地/云端 的混合控制模式。它会优先尝试通过局域网本地控制设备，以获得最快的响应速度；当本地控制不可用时，再自动切换到云端控制。对于绝大多数用户来说，这提供了最佳的使用体验
+3. Xiaomi Miio (Home Assistant 内置集成)：
+	1. 身份：这是 Home Assistant 官方内置 的基础小米集成
+	2. 核心区别：它完全依赖 本地（LAN） 通信，不经过小米云端，响应速度快且不依赖外网。但缺点是配置繁琐，需要手动获取每一个设备的 Token（一个复杂的认证密钥），且支持的设备种类相对有限
+
+#### Ⅲ、官方 Xiaomi Home 集成的优势是什么
+
+1. 官方支持与安全性：作为官方产品，它在安全性和隐私保护方面遵循小米的标准流程。采用 OAuth 2.0 授权登录，Home Assistant 不会存储小米账号密码，更为安全
+2. 稳定性与规范性：集成完全基于小米标准的 MIoT-Spec-V2 协议开发，理论上只要是符合此规范的新设备，都能获得良好的支持，未来的兼容性和稳定性有官方保障
+3. 安装配置简单：无需任何复杂的 token 获取步骤，只需像授权其他第三方应用一样登录小米账号即可，对新手非常友好
+
+#### Ⅳ、使用官方 Xiaomi Home 集成能做什么
+
+1. 一旦配置完成，就可以实现以下核心功能：
+2. 统一管理: 在 Home Assistant 的仪表盘中，将你的小米智能灯、空气净化器、插座等设备与来自其他生态（如苹果 HomeKit、涂鸦、宜家等）的设备放在一起，进行统一的查看和控制
+3. 实现跨生态自动化：这是接入 Home Assistant 的最大价值所在。可以创建强大的自动化场景，例如：
+	1. 安防联动：当 Zigbee 门窗传感器（非小米生态）被打开时，通过 Xiaomi Home 集成点亮小米走廊的吸顶灯
+	2. 环境联动：当 Home Assistant 检测到天气预报即将下雨时，通过 Xiaomi Home 集成关闭小米的智能窗户
+	3. 模式化控制：创建一个影院模式自动化，可以一键关闭 Aqara 窗帘、调暗飞利浦 Hue 灯光，并打开小米电视
+
+### ②、集成米家 Xiaomi Home
+
+1. 在 hacs 中搜索 `Xiaomi Home`，进入后点击 download
+
+![](attachments/Pasted%20image%2020251117112730.png)
+
+2. 下载完成后，点击设置，顶部会多出来一个项目，提示需要重启容器
+
+![](attachments/Pasted%20image%2020241218123733.png)
+
+3. 重新容器后，进入设置 -> 设备与服务 -> 添加集成，搜索 `xiaomi`，选择 `Xiaomi Home`
+
+![](attachments/Pasted%20image%2020251117113001.png)
+
+4. 同意风险，一直选择下一步即可
+
+![](attachments/Pasted%20image%2020251117123158.png)
+
+5. 到这个界面后，点击蓝色连接进行登录，会跳转到新页面，输入账号、密码、验证码进行登录
+
+![](attachments/Pasted%20image%2020251117123411.png)
+
+![](attachments/Pasted%20image%2020251117123448.png)
+
+6. 点击确认授权后，可能会报错，此时替换报错页面的地址为自己本地 Home Assistant 的地址即可
+	1. 比如我自己本地 Home Assistant 的地址为：`http://192.168.1.5:8123/config/integrations/dashboard`
+	2. 那么就将这里的 `http://homeassistant.local:8123/` 替换为 `http://192.168.1.5:8123/` 即可
+
+![](attachments/Pasted%20image%2020251117123629.png)
+
+![](attachments/Pasted%20image%2020251117123735.png)
+
+7. 替换完成后刷新进入，就可以正常显示内容了，选择全部设备然后点击下一步
+
+![](attachments/Pasted%20image%2020251117123830.png)
+
+8. 点击跳过即完成配置
+
+![](attachments/Pasted%20image%2020251117123843.png)
+
+9. 最终完成的效果
+
+![](attachments/Pasted%20image%2020251117124141.png)
+
+### ③、获取小米 token
+
+#### Ⅰ、原因
+
+1. 有些小米设备通过 Xiaomi Home 是不能控制、获取数据的，比如使用蓝牙的设备：小米体脂秤、小米温度湿度计3
+2. 此时就需要通过 Xiaomi BLE 进行添加，但是通过 Xiaomi BLE 进行添加就需要小米 token
+
+#### Ⅱ、获取方式
+
+1. 我找到了两种方式，一种是 Xiaomi BLE 官方推荐的 `token_extractor`，通过账号密码直接获取 token；但是因为两步验证的原因，这种方式好像失效了
+	1. github 地址：https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor
+	2. 本地下载：[token_extractor.exe](attachments/token_extractor.exe)
+2. 另一种是在  `token_extractor` 的基础上修改的，使用二维码进行登录，可以绕过两步验证，我这里使用的是第二种
+	1. 帖子地址：https://bbs.hassbian.com/thread-29644-1-1.html
+	2. 本地下载：[token_extractor-qr.exe](attachments/token_extractor-qr.exe)
+
+#### Ⅲ、获取小米 token
+
+1. 下载 [token_extractor-qr.exe](attachments/token_extractor-qr.exe)，双击打开，会提示：
+
+```shell
+Server (one of: cn, de, us, ru, tw, sg, in, i2) Leave empty to check all available:
+```
+
+2. 此时输入：`cn`，表示是中国地区，然后回车确认
+3. 此时会自动弹出一个二维码，使用手机扫码登录
+
+![](attachments/Pasted%20image%2020251118095246.png)
+
+4. 登录成功后，token_extractor-qr 中会输出信息，这个需保存下来，以后使用
+
+```json
+Server (one of: cn, de, us, ru, tw, sg, in, i2) Leave empty to check all available:
+cn
+
+Logging in via QR code...
+Starting QR code login...
+{'code': 0,
+ 'desc': '成功',
+ 'description': '成功',
+ 'loginUrl': 'https}
+QR code saved as temp_qr.png, please scan it with your Xiaomi device.
+QR code displayed. Please scan it with your Xiaomi device.
+Waiting for login...
+Long polling URL: https://ak.lp.account.xiaomi
+Long polling timed out, retrying...
+Long polling timed out, retrying...
+Long polling timed out, retrying...
+Long polling timed out, retrying...
+Login successful!
+Response data:
+{}
+Fetching service token...
+Service token obtained successfully
+Logged in.
+
+Devices found for server "cn" 
+   ---------
+   NAME:     空调伴侣
+   ID:       
+   MAC:      
+   IP:       
+   TOKEN:    
+   MODEL:    
+   ---------
+   NAME:     Mijia Smart Temperature and Humidity Monitor 3
+   ID:       blt.
+   BLE KEY:  
+   MAC:      
+   TOKEN:    
+   MODEL:    
+   ---------
+
+
+Press ENTER to finish
+```
+
+#### Ⅳ、token 信息说明
+
+1. 主要信息在 `Devices found for server "cn"` 中，表示设备信息列表：
+2. wifi 设备信息列表：
+	1. `NAME: 空调伴侣`：这是在米家 App中给这个设备设置的名称，可以帮助快速识别是哪个设备
+	2. `ID: `：设备的唯一标识符（Device ID 或 DID），由小米分配
+	3. `MAC: `：设备的物理网络地址（MAC Address）。对于排查网络问题很有用
+	4. `IP: `：设备当前在你的局域网中的 IP 地址。如果路由器没有设置静态 IP 绑定，这个地址可能会在设备重启后改变
+	5. `TOKEN: `：<font color="#ff0000">这是最重要的信息；</font> 这个 Token 是一个32位的字符串，是 Home Assistant（或其他第三方应用）通过本地局域网控制该设备时所需的密码或密钥。每个设备的 Token 都是独一无二的
+	6. `MODEL: `：设备的型号代码。这个代码精确地定义了设备的类型和功能，Home Assistant 的集成会根据这个 model 代码来加载对应的控制模块
+
+```json
+NAME:     空调伴侣
+ID:       
+MAC:      
+IP:       
+TOKEN:    
+MODEL:    
+```
+
+3. 除了上面那些，还会看到一些非 Wi-Fi 设备的信息，比如：
+	1. `ID: blt.`：这个前缀 blt 表明它是一个蓝牙（Bluetooth Low Energy）设备
+	2. `BLE KEY: `：这是蓝牙加密通信的密钥（Bind Key）。当 Home Assistant 通过蓝牙集成（如 Xiaomi BLE）连接这类设备时，需要这个密钥来解密设备广播的数据（比如温度、湿度读数）
+
+```json
+NAME:     Mijia Smart Temperature and Humidity Monitor 3
+ID:       blt.
+BLE KEY:  
+MAC:      
+TOKEN:    
+MODEL:    
+```
+
+### ④、
+
+## 7、连接其他设备
+
+### ①、连接 Network UPS Tools
 
 1. 编辑 `upsd.conf` 文件
 
@@ -4752,7 +5001,7 @@ LISTEN 0.0.0.0 3493
 LISTEN :: 3493
 ```
 
-3. 保存修改后，进入 homeassistant 管理页面，点击设置 -> 设备与服务
+3. 保存修改后，进入 home-assistant 管理页面，点击设置 -> 设备与服务
 
 ![|700](attachments/Pasted%20image%2020250108111608.png)
 
@@ -4776,78 +5025,259 @@ LISTEN :: 3493
 
 ![|700](attachments/Pasted%20image%2020250108111705.png)
 
-## 6、集成 hacs
 
-#### Ⅰ、hacs 介绍
+### ②、
 
-1. HACS (Home Assistant Community Store) 是一个为 Home Assistant 提供的第三方集成管理工具，它允许用户轻松安装、更新和管理社区开发的集成、插件、主题和自定义卡片。
-2. 通过 HACS，用户可以访问不在官方 Home Assistant 集成目录中的众多额外内容，这些内容通常由独立开发者或者爱好者社区提供。
-3. HACS 的主要特点包括：
-	1. 易于安装和管理：HACS 提供了一个用户友好的界面，使得安装、更新和浏览社区开发的集成和插件变得简单。
-	2. 广泛的可用内容：用户可以通过 HACS 安装各种自定义集成和插件，包括天气插件、设备控制、社交媒体集成等。
-	3. 自动更新：HACS 可以自动检测安装的集成和插件的更新，使得维护和更新变得更加便捷。
-	4. 社区支持：由于 HACS 是一个社区驱动的项目，用户可以得到社区的支持和指导，同时也能贡献自己的创建。
+## 8、其他问题记录
 
-#### Ⅱ、集成 hacs
+### ①、给小米体脂秤添加重量单位 斤
 
-1.  下载 hacs 源码：
-	1. github 最新版下载：[Releases · hacs/integration](https://github.com/hacs/integration/releases)
-	2. 本地  v2.0.1 版下载：[hacs.zip](attachments/hacs.zip)
+1. 小米体脂秤2 的单位中是没有斤的，单位选项里只提供了国际通用的质量单位，如千克（kg）、克（g）、磅（lb）、盎司（oz）等，并没有提供斤这个单位，现在添加这个单位
+2. 先复制实体标识符，比如这里的：`sensor.mi_body_composition_scale_6577_weight`
 
-![|700](attachments/Pasted%20image%2020250108111816.png)
+![](attachments/Pasted%20image%2020251117125212.png)
 
-2. 在挂载目录 `/home/docker/docker/volumes/homeassistant/config` 下再创建 `custom_components` 目录，将下载的文件上传到此目录中：
+3. 点击设置 -> 设备与服务 -> 辅助元素 -> 创建辅助元素，选择 Template 模板，然后再次选择 传感器
 
-![](attachments/Pasted%20image%2020250108111831.png)
+![](attachments/Pasted%20image%2020251117124849.png)
 
-3. 解压 hacs.zip
+![](attachments/Pasted%20image%2020251117125019.png)
+
+4. 输入以下内容：
+	1. 名称：传感器名称，如 `小米体脂秤2（斤）`
+	2. 状态：模板公式，如：`{{ states('实体标识符') | float(0) * 2 }}`，中间的实体标识符需要替换为上面复制的值
+	3. 度量单位：希望这个新传感器显示的单位
+	4. 设备类别：空
+	5. 状态类：测量值，表明该传感器提供的是一个随时间变化的测量值
+	6. 设备：选择小米体脂秤2，将其挂靠在它所属的物理设备下，便于管理
+
+![](attachments/Pasted%20image%2020251117131040.png)
+
+5. 完成后点击提交，小米体脂秤2 的传感器中就会出现刚才添加的 小米体脂秤2（斤）
+
+![](attachments/Pasted%20image%2020251117131129.png)
+
+### ②、
+
+## 10、ESPHome 蓝牙代理
+
+### ①、原因
+
+1. 集成米家后，因为我的服务器没有蓝牙，所以接收不到一些需要蓝牙才能接收的信息，比如小米体脂秤、温度湿度计等
+2. 所以这里用 ESPHome 蓝牙代理的方式接收这些设备广播的蓝牙信号，然后再经过 Home Assistant 统一处理 
+
+### ②、介绍
+
+1. ESP32 蓝牙代理是一个小型的硬件设备，它能监听周边的蓝牙信号，然后通过 Wi-Fi 网络将这些信号转发给 Home Assistant 主机，从而极大地扩展智能家居系统的蓝牙覆盖范围，具体可以：
+	1. 解决蓝牙距离限制： Home Assistant 主机（比如树莓派或服务器）自身的蓝牙信号范围有限。如果你牙设备（如温度计、智能锁）距离主机太远，就无法稳定连接
+	2. 信号转换与中继： ESP32 蓝牙代理就像一个信号中继站。把它放置在蓝牙设备附近，它会捕捉到这些设备的蓝牙广播信号
+	3. 通过 Wi-Fi 传输： 捕捉到信号后，ESP32 设备并不会自己处理这些信息，而是利用其 Wi-Fi 功能，将原始的蓝牙数据打包，通过家庭无线网络发送给 Home Assistant 主机
+	4. Home Assistant 集中处理： Home Assistant 接收到来自一个或多个蓝牙代理的数据后，会进行统一处理和解析，就如同这些蓝牙设备直接连接到了主机一样。这使得即使设备遍布家里的各个角落，也能稳定地控制和接收它们的数据
+2. ESPHome 是一个开源项目，它能用非常简单的配置文件（而非复杂的编程代码）为 ESP32 和 ESP8266 这类微控制器创建自定义固件
+	1. 简化物联网设备开发： 传统上，为 ESP32 这类芯片编程需要使用 C++ 等语言，学习曲线较陡。ESPHome 的出现极大地降低了门槛
+	2. 使用 YAML 配置： 只需要编写一个 YAML 文件，在里面描述硬件（比如这是一个按钮、这是一个温湿度传感器）以及希望它实现的功能（比如按下按钮后，通过 Home Assistant 打开一盏灯）
+	3. 自动生成固件： ESPHome 会读取 YAML 配置文件，然后自动为编译生成一个可以直接刷入 ESP32 设备的固件文件
+	4. 与 Home Assistant 无缝集成： ESPHome 被 Home Assistant 的开发公司 Nabu Casa 收购并维护，因此它与 Home Assistant 的集成是原生且极其顺畅的。 刷写了 ESPHome 固件的设备可以被 Home Assistant 自动发现并集成
+3. 也就是说： 可以利用 ESPHome 这个强大的平台，为一块通用的 ESP32 硬件轻松地制作并刷入一个专门的蓝牙代理固件
+4. 一旦刷入了这种固件，这块原本普通的 ESP32 硬件就成了我们所需要的、专为 Home Assistant 服务的 蓝牙信号中继站
+5. 总结来说，核心逻辑链是：
+	1. 硬件载体： ESP32 开发板 (如 ESP32 USB Dongle)
+	2. 制作工具： ESPHome (用于生成固件)
+	3. 最终成品： 一个能为 Home Assistant 工作的蓝牙代理设备
+
+### ③、购买硬件 ESP32 USB Dongle
+
+1. 按理来说只要是通用的 ESP32 硬件就可以，这里推荐 ESP32 USB Dongle 或者 M5Stack ATOM Lite
+	1. ESP32 USB Dongle：usb 式，小巧方便，便宜，但是功能单一
+	2. M5Stack ATOM Lite：方块式，体积较大，需额外独立供电，价格稍贵，不过功能丰富扩展性强
+2. 我购买的是 ESP32 USB Dongle，这个场景使用它都够了，某宝随便搜索一款即可
+
+![](attachments/Pasted%20image%2020251117132603.png)
+
+### ④、首次刷写系统
+
+> 好像可以直接进行第 ⑤ 步
+
+1. 将 ESP32 USB Dongle 插到 windows 电脑的 usb 接口上，然后打开网页：[ESPHome 网页刷机工具](https://web.esphome.io/)
+2. 连接到 ATOM Lite：
+	1. 点击的 CONNECT 按钮，然后浏览器会弹出一个小窗口，列出电脑上所有的串口设备
+	2. 这时应该能看到一个名字里带有 USB-SERIAL 或类似字样的选项 (Windows 上通常叫 COM 加一个数字)。选中它，然后点击连接
+	3. 如果连接成功，网页上的按钮会变成 DISCONNECT，并显示已连接
+
+![](attachments/Pasted%20image%2020251117142504.png)
+
+3. 选择并安装固件：
+	1. 连接成功后，网页上会出现一个新的按钮 PREPARE FOR INSTALLATION，点击它
+	2. 在接下来的界面中，点击 INSTALL
+	3. 它会弹出一个列表，选择要安装的固件版本，要选择 Bluetooth Proxy
+	4. 点击 INSTALL 按钮
+4. 配置 Wi-Fi：
+	1. 安装程序会开始，过一会儿，会弹出一个窗口，需要输入自己家里的 Wi-Fi 名称 (SSID) 和 Wi-Fi 密码
+	2. 请准确输入，这样 ATOM Lite 才能连接到家里的网络
+	3. 输入后点击 CONNECT
+5. 等待完成：
+	4. 程序会自动完成剩下的安装工作。会看到日志在滚动，进度条在前进
+	5. 整个过程大约需要 1-2 分钟
+
+![](attachments/Pasted%20image%2020251117143101.png)
+
+### ⑤、修改配置，重新刷写系统
+
+> 编译固件可能需要外网环境，如果失败开下梯子试试
+
+1. 自部署 `esphome`，用于修改配置，默认端口号：6052
+2. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置目录：`/vol1/1000/docker/host-mode/home-esp/config`
+3. 使用 docker run 部署：
 
 ```shell
-unzip hacs.zip -d hacs/
+docker run -d \
+-v /vol1/1000/docker/host-mode/home-esp/config:/config \
+--restart=unless-stopped \
+--net=host \
+--name=home-esp \
+esphome/esphome:latest
 ```
 
-4. 解压完毕后，重启容器，进入 homeassistant 管理页面，点击设置 -> 设备与服务
+4. 使用 `docker-compose.yml` 部署：
 
-![|700](attachments/Pasted%20image%2020250108111847.png)
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 home-esp 的服务
+    home-esp:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: esphome/esphome:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: home-esp
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 直接使用主机的网络堆栈，容器将共享主机的 IP 地址和端口空间
+        network_mode: host
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 配置目录
+            - /vol1/1000/docker/host-mode/home-esp/config:/config
+```
 
-5. 点击添加集成：
+5. 部署完成后，将 ESP32 USB Dongle 插到服务器的 usb 接口上，然后打开项目地址：[http://127.0.0.1:6052](http://127.0.0.1:6052)
+6. 此时页面上应该有一个设备卡片
+	1. 点击 Take Control，会出现一个弹窗
+	2. 在弹窗中输入 ESP32 设备名、wifi 名、wifi 密码
+	3. 然后再次点击 Take Control
 
-![|700](attachments/Pasted%20image%2020250108111857.png)
+![](attachments/Pasted%20image%2020251117165215.png)
 
-6. 搜索 `hacs`，选择后勾选所有选项，然后点击提交：
+7. 完成后，卡片会发生变化，点击 EDIT，编辑配置文件
 
-![|499](attachments/Pasted%20image%2020250108111908.png)
+![](attachments/Pasted%20image%2020251117165542.png)
 
-![](attachments/Pasted%20image%2020250108111918.png)
+8. 输入下面的配置文件，然后点击右上角的 SAVE，然后再点击 INSTALL
 
-7. 等待一段时间后，提示需要点击中间的链接跳转到 GitHub 进行验证，复制下面验证码填入 GitHub 进行验证
+```yaml
+# ESPHome 配置的根节点，所有配置都从此开始
+esphome:
+    # 定义设备在网络中的唯一主机名（hostname）
+    # 它会是设备的 .local 域名（例如 esphome-web-200874.local），也是 ESPHome 用来识别设备的 ID
+    name: esphome-web-200874
+    
+    # 定义设备在 Home Assistant 前端界面中显示的友好名称，方便你识别它的用途
+    friendly_name: 蓝牙代理
 
-![|700](attachments/Pasted%20image%2020250108111932.png)
+# 声明该固件是为 ESP32 平台编译的
+esp32:
+    # 指定 ESP32 开发板的类型，esp32dev 是一个通用的选项，适用于绝大多数标准的 ESP32 开发板
+    board: esp32dev
+    
+    # 指定固件使用的底层开发框架
+    framework:
+        # 使用 Arduino 框架，这是 ESPHome 在 ESP32 上最常用且功能最全的框架
+        type: arduino
 
-8. 验证完成后，刷新一下，左侧出现 HACS 选项，进入即可安装各种插件与设备链接
+# --- 核心功能：蓝牙代理和主动扫描 ---
+# 将该设备的核心功能定义为一个 Home Assistant 的蓝牙代理
+bluetooth_proxy:
+# 启用 ESP32 的低功耗蓝牙（BLE）跟踪器，这是蓝牙代理工作的基础，负责扫描周边的蓝牙设备
+esp32_ble_tracker:
+    # 配置蓝牙扫描的具体参数
+    scan_parameters:
+        # 设置为主动扫描模式，该模式下，设备会主动向发现的蓝牙设备请求更多信息（如设备名称），而非仅仅被动接收广播
+        # 这能让 Home Assistant 发现和识别更多的设备类型
+        active: true
 
-![|700](attachments/Pasted%20image%2020250108111944.png)
+# --- 基础功能 ---
+# 启用 ESPHome 的原生 API 服务，这是设备与 Home Assistant 进行高效、实时通信的生命线，必须启用
+api:
+# 启用日志功能，可以通过 Home Assistant 的后台查看设备的实时运行日志，对于排查连接、运行等问题非常有用
+logger:
 
-## 7、集成米家
+# 启用Over-The-Air（空中下载）更新功能
+ota:
+    # 指定使用 ESPHome 原生的 OTA 方式
+    # 这允许之后直接通过 Wi-Fi 在 Home Assistant 界面中为该设备更新固件，无需再用 USB 线连接电脑，极其方便
+    platform: esphome
 
-> 需完成上面的集成 hacs
+# 配置设备的 Wi-Fi 连接
+wifi:
+    # 设置要连接的 Wi-Fi 网络名称(SSID)
+    # !secret 语法表示该值从一个名为 secrets.yaml 的独立文件中读取，这是为了保护隐私和方便管理密码的最佳实践
+    ssid: !secret wifi_ssid
+    # 设置 Wi-Fi 的密码，同样使用 secret 方式读取
+    password: !secret wifi_password
+```
 
-1. 在 hacs 中搜索 `Xiaomi Miot Auto`，进入后点击 download
+![](attachments/Pasted%20image%2020251117165707.png)
 
-![|700](attachments/Pasted%20image%2020250108112003.png)
+9. 成功后，日志中会出现 `Bluetooth Proxy` 
 
-2. 下载完成后，点击设置 -> 小米模块，会提示需要重启容器
+### ⑥、添加设备
 
-![|700](attachments/Pasted%20image%2020250108112017.png)
+1. 返回 home-assistant，进入设置 -> 设备与服务，正常的话会出现多个设备，将他们都添加配置即可：
+	1. ESPHome：即 ESP32 USB Dongle 硬件的后台服务
+	2. Bluetooth：也代表蓝牙代理服务，一般和 ESPHome 成对出现
+	3. Temperature/Humidity Sensor F5B8：小米温度湿度计3
+	4. ibeacon：某个正在广播 iBeacon 信号的设备，可能代表小米体脂秤
 
-3. 重新容器后，进入设置 -> 添加集成，搜索 `xiaomi`，选择 `Xiaomi Miot Auto`
+![](attachments/Pasted%20image%2020251118084425.png)
 
-![|700](attachments/Pasted%20image%2020250108112031.png)
+2. 如果没有出现 Bluetooth，且接收不到蓝牙信号，需进入 `configuration.yaml` 并添加 `bluetooth:`，完整配置：
 
-4. 选择账号集成，再选择排除模式，不选择任何设备，点击提交，就可以成功添加
+```yaml
+# Loads default set of integrations. Do not remove.
+default_config:
 
-![](attachments/Pasted%20image%2020250108112043.png)
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
 
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.1.0/24
+    - 172.18.0.0/16
+    - 127.0.0.1
+
+# 强制启用 Home Assistant 的蓝牙集成
+bluetooth:
+```
+
+3. 小米蓝牙设备添加完成后，会出现在 Xiaomi BLE 中：
+
+![](attachments/Pasted%20image%2020251118085238.png)
+
+4. 如果正常，就会开始接收信号了，比如 小米温度湿度计3：
+
+![](attachments/Pasted%20image%2020251118085351.png)
+
+5. 某些设备添加时，可能需要 token 密钥等，获取方式请看上面的 获取小米 token
+
+### ⑦、
+
+### ⑧、
 
 # 【----------------无需端口号 ----------------】
 
