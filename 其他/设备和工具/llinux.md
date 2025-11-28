@@ -5,35 +5,35 @@
 3. 在 bios 中选择从启动盘打开，但是有的 bios 需要关闭安全启动；一般是 boot 选项下的 `Secure Boot` 选项，修改为 `Disabled` 禁用
 4. 在 bios 选择从启动盘打开后，选择第一项：`Try or Install Ubuntu`，然后按回车
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225150729.png)
+![|655](attachments/Pasted%20image%2020231225150729.png)
 
 5. 在下一个屏幕中，单击 `Install Ubuntu`
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225150824.png)
+![|655](attachments/Pasted%20image%2020231225150824.png)
 
 6. 选择喜欢的键盘布局，然后单击下一步
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225150914.png)
+![|655](attachments/Pasted%20image%2020231225150914.png)
 
 7. 在这一步中，我们必须选择安装类型。有两个选项，普通安装和最小安装，然后单击下一步
 	1. 在普通安装中，将安装所有 GUI 相关的应用程序，
 	2. 在最小安装中只会安装基本的应用程序。
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225151000.png)
+![|655](attachments/Pasted%20image%2020231225151000.png)
 
 8. 在这一步中，将提示我们选择安装类型。这里的安装类型指的是分区方案。以下是两种安装类型
 	1. `Erase Disk and Install Ubuntu`：它将删除整个磁盘，并将自动创建分区。
 	2. `Something else`：创建自定义分区方案。如果是 Ubuntu Linux 的新手，那么建议选择第一个选项
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225151211.png)
+![|655](attachments/Pasted%20image%2020231225151211.png)
 
 9. 根据当前的地区选择位置，它将相应地配置时区。
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225151259.png)
+![|655](attachments/Pasted%20image%2020231225151259.png)
 
 10. 创建用户并设置主机名；在此步骤中，指定本地用户名及其密码，指定系统的主机名。我们会在安装系统后使用该用户。
 
-![|655](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225151331.png)
+![|655](attachments/Pasted%20image%2020231225151331.png)
 
 11. 接下来根据提示重启即登录即可
 
@@ -79,7 +79,7 @@ sudo adduser 新用户名
    4. `–conf`： 在创建用户时使用指定的configuration文件。
    5. `–force-badname`： 默认在创建用户时会进行/etc/adduser.conf中的正则表达式检查用户名是否合法，如果想使用弱检查，则使用这个选项，如果不想检查，可以将/etc/adduser.conf中相关选项屏蔽。如：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020230725150747.png)
+![](attachments/Pasted%20image%2020230725150747.png)
 
 ### ②、`useradd`
 
@@ -352,7 +352,7 @@ tty -s && mesg n || true
 
 4. 测试：注销当前用户后在登录界面选择“未列出”，然后输入用户名和密码登录，如下图所示：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231226102848.png)
+![|700](attachments/Pasted%20image%2020231226102848.png)
 
 ## 4、通过 Windows 远程桌面连接 Ubuntu 桌面
 
@@ -388,15 +388,15 @@ sudo ufw allow from any to any port 3389 proto tcp
 
 1. 在 Windows 系统中，首先点击搜索框，然后输入关键字 `remote`，再在搜索结果中点击“远程桌面连接”应用。
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225153003.png)
+![|700](attachments/Pasted%20image%2020231225153003.png)
 
 2. 在弹出的远程桌面连接的窗口中，先输入 Ubuntu 服务器的 IP 地址，然后点击“连接”按钮去连接服务器
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225153047.png)
+![|700](attachments/Pasted%20image%2020231225153047.png)
 
 3. 在随后弹出的登录界面中，需要先填入 Ubuntu 服务器的用户名和密码，然后再点击“OK”按钮
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225153111.png)
+![|700](attachments/Pasted%20image%2020231225153111.png)
 
 4. 没有问题的话，这样就可以登录进去了
 
@@ -405,9 +405,9 @@ sudo ufw allow from any to any port 3389 proto tcp
 ### ①、Windows 远程连接后没有声音
 
 > 1. pulseaudio-module-xrdp：xrdp 音频重定向模块，https://github.com/neutrinolabs/pulseaudio-module-xrdp/wiki/README
-> 	1. v0.7 下载：[pulseaudio-module-xrdp-0.7.zip](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/pulseaudio-module-xrdp-0.7.zip)
+> 	1. v0.7 下载：[pulseaudio-module-xrdp-0.7.zip](attachments/pulseaudio-module-xrdp-0.7.zip)
 > 2. pulseaudio-module-xrdp 依赖 pulseaudio：https://www.freedesktop.org/wiki/Software/PulseAudio/Download/
-> 	1. 17.0 下载：[pulseaudio-17.0.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/pulseaudio-17.0.tar.gz)
+> 	1. 17.0 下载：[pulseaudio-17.0.tar.gz](attachments/pulseaudio-17.0.tar.gz)
 > 3. 上面两个安装过程中会出现很多依赖的问题，善用 gpt 排查
 
 #### Ⅰ、pulseaudio 编译安装
@@ -589,7 +589,7 @@ pulseaudio --start
 2. 手动启动加载脚本：`/home/yan/apply/tools/pulseaudio-module-xrdp-0.7/instfiles/load_pa_modules.sh`
 3. 此时在 设置 -> 声音 中，输入和输出设备应该都显示 `xrdp`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240326144331.png)
+![](attachments/Pasted%20image%2020240326144331.png)
 
 #### Ⅳ、创建桌面文件 pulseaudio-xrdp.desktop
 
@@ -706,7 +706,7 @@ yan@yan:~/apply/tools/pulseaudio/build$
 
 1. 有时候登录后还弹出一个如下图所示的认证窗口，那么还需要再输入一次密码来认证，这样显得有点麻烦。
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225153514.png)
+![|700](attachments/Pasted%20image%2020231225153514.png)
 
 2. 如果不想弹出这个认证窗口，可以在 Ubuntu 中执行下面的命令：
 
@@ -778,7 +778,7 @@ net.core.wmem_max = 8388608
 1. 如果远程登录后并没有出现 Ubuntu 桌面而是黑屏状态，那么可能是已经有用户登录进去了
 2. 需要先把之前的用户退出来（Log Out），如果更直接一点就是重启 Ubuntu 系统
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231225153222.png)
+![|700](attachments/Pasted%20image%2020231225153222.png)
 
 ## 6、使用 `lastb` 查看登录失败尝试记录
 
@@ -1891,7 +1891,7 @@ chmod 755 mount-unmount-disks.sh
 
 1. 开放 `10010` 端口
 
-![|388](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241121100626.png)
+![|388](attachments/Pasted%20image%2020241121100626.png)
 
 2. 通过官方脚本来安装 V2Ray，这个脚本会自动配置好 V2Ray
 
@@ -2129,15 +2129,15 @@ mzz2017/v2raya
 
 #### Ⅳ、手机端使用 V2Ray
 
-> 软件下载：[v2rayNG_1.8.25.apk](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/v2rayNG_1.8.25.apk)
+> 软件下载：[v2rayNG_1.8.25.apk](attachments/v2rayNG_1.8.25.apk)
 
 1. 打开软件，点击右上角 + 号
 
-![|254](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240627153200.png)
+![|254](attachments/Pasted%20image%2020240627153200.png)
 
 2. 选择：`手动输入[Vmess]`
 
-![|229](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240627153220.png)
+![|229](attachments/Pasted%20image%2020240627153220.png)
 
 3. 依照下面的图片填入内容：
 	1. 地址：服务器的 ip 
@@ -2147,12 +2147,12 @@ mzz2017/v2raya
 	5. 传入协议：选择 `ws`，即 `WebSocket ` 协议
 	6. path：之前配置文件 `/usr/local/etc/v2ray/config.json` 的 `streamSettings.wsSettings.path`
 
-![|258](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241121125059.png)
+![|258](attachments/Pasted%20image%2020241121125059.png)
 
 4. 点击右上角 `√` 号保存
 5. 选择刚才创建的配置，点击连接即可
 
-![|229](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240627153020.png)
+![|229](attachments/Pasted%20image%2020240627153020.png)
 
 #### Ⅴ、windows 端使用 V2Ray
 
@@ -2160,15 +2160,15 @@ mzz2017/v2raya
 
 1. 打开软件，点击左上角 `服务器` 按钮
 
-![|625](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240627153707.png)
+![|625](attachments/Pasted%20image%2020240627153707.png)
 
 2. 选择：`添加[Vmess]服务器`
 
-![|625](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240627153728.png)
+![|625](attachments/Pasted%20image%2020240627153728.png)
 
 3. 填入参数，内容与上面的手机端相同
 
-![|625](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240627153807.png)
+![|625](attachments/Pasted%20image%2020240627153807.png)
 
 4. 点击确定，即可使用，软件会自动连接
 
@@ -2189,13 +2189,13 @@ mzz2017/v2raya
 2. 进入解压目录，启动应用：`./syncthing`
 3. 启动成功后，进入网址即可：`http://localhost:8384`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240624160538.png)
+![](attachments/Pasted%20image%2020240624160538.png)
 
 4. 先点击添加远程设备，设备 ID 点击右上角操作 -> 显示设备 ID 获取；设备之间要互相绑定才可以
 5. 再点击添加文件夹，<font color="#ff0000">文件夹 ID</font> 必须唯一，不同设备间根据 <font color="#ff0000">文件夹 ID</font> 进行同步
 6. 添加完文件夹后，需点击共享，选择想要同步该文件夹的设备，点击保存即可开始同步
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240624161051.png)
+![](attachments/Pasted%20image%2020240624161051.png)
 
 #### Ⅲ、设置开机自启
 
@@ -2307,13 +2307,13 @@ sudo systemctl daemon-reload
 
 1. 点击：操作 -> 设置 -> GUI，勾选使用 HTTPS 连接到 GUI，点击保存
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241101104348.png)
+![|700](attachments/Pasted%20image%2020241101104348.png)
 
 2. 然后重启服务，重启完成后，重新访问主页
 3. 但是此时会显示：您的连接不是私密连接
 4. 点击高级然后选择：继续前往127.0.0.1（不安全），可以进入主页
 
-![|450](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241101104647.png)
+![|450](attachments/Pasted%20image%2020241101104647.png)
 
 5. 但是每次都这样选择太麻烦了，我们可以将 syncthing 自签的证书换成我们自己的，这样就不会有这个提示了
 
@@ -2367,19 +2367,19 @@ sudo chown yan:yan https-cert.pem https-key.pem
 
 1. 点击操作 -> 高级
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241120185037.png)
+![|700](attachments/Pasted%20image%2020241120185037.png)
 
 2. 在弹窗中选择文件夹 -> 想要设置为仅新增的文件夹
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241120185309.png)
+![|700](attachments/Pasted%20image%2020241120185309.png)
 
 3. 在打开的选项中，勾选 `Ignore Delete`；需要注意的是，这个选项只是忽略了删除命令，当文件被覆盖时，可能会引起旧文件的丢失。所以建议与版本控制一同使用，以防万一。
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241120185558.png)
+![|700](attachments/Pasted%20image%2020241120185558.png)
 
 4. 在最下方点击保存：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241120185612.png)
+![|700](attachments/Pasted%20image%2020241120185612.png)
 
 5. 设置完毕
 
@@ -2414,7 +2414,7 @@ sudo chown yan:yan https-cert.pem https-key.pem
 
 1. 官网：https://freefilesync.org/download.php
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718092505.png)
+![|675](attachments/Pasted%20image%2020240718092505.png)
 
 2. 下载完成后，使用 tar 命令提取：
 
@@ -2491,7 +2491,7 @@ yan@yan:~/apply/file/FreeFileSync$
 
 6. 安装完成后，桌面上会多出来两个图标：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718093931.png)
+![](attachments/Pasted%20image%2020240718093931.png)
 
 7. 绿色的 `FreeFileSync` 是 FreeFileSync 主程序
 8. 红色的 `RealTimeSync` 是自动同步程序，启动后，若指定目录中的文件发生变化，则会执行对应脚本
@@ -2516,7 +2516,7 @@ yan@yan:~/apply/file/FreeFileSync$
 	14. 目标文件与源文件不同的列表
 	15. 同步动作统计
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718124000.png)
+![|700](attachments/Pasted%20image%2020240718124000.png)
 
 3. 打开过滤器，在排除项中加入以下内容：
 	1. 因为是将 FreeFileSync 和 Syncthing 结合使用，所以同步的目录中有 Syncthing 创建的目录
@@ -2528,13 +2528,13 @@ yan@yan:~/apply/file/FreeFileSync$
 */.stversions/*
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241119162520.png)
+![|700](attachments/Pasted%20image%2020241119162520.png)
 
 4. 点击同步设置，改为镜像模式：
 	1. 因为多端文件的同步使用的是 Syncthing，FreeFileSync 只是作为文件备份工具来使用，所以使用镜像模式
 	2. 四种模式的区别请参照第一节
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718130803.png)
+![|700](attachments/Pasted%20image%2020240718130803.png)
 
 5. 关于上面的使用数据库文件来检测变化的作用：
 	1. 当启用使用数据库文件的选项时，FreeFileSync 会创建一个数据库来记录文件和文件夹的状态信息。这些信息包括文件的大小、修改时间和其他元数据。通过这种方式，每次同步时 FreeFileSync 只需要比较当前文件状态与数据库中记录的状态，从而确定哪些文件发生了变化。这种方法的优势包括：
@@ -2552,26 +2552,26 @@ yan@yan:~/apply/file/FreeFileSync$
 	3. 具体的同步细节再上面的同步设置中
 	4. 可以选择多个目录，也可以一对多
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718131152.png)
+![|700](attachments/Pasted%20image%2020240718131152.png)
 
 7. 此时点击同步按钮即可开始同步
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718131527.png)
+![|700](attachments/Pasted%20image%2020240718131527.png)
 
 8. 点击保存可以将本次的设置保存下来，以便下次使用
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718131619.png)
+![|700](attachments/Pasted%20image%2020240718131619.png)
 
 #### Ⅴ、使用 RealTimeSync 自动同步文件
 
 1. 点击绿色的 `FreeFileSync` 打开软件
 2. 先选择刚才保存的配置，然后点击上方的另存为批处理作业
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718131908.png)
+![|700](attachments/Pasted%20image%2020240718131908.png)
 
 3. 可以选择以最小化运行以及忽略错误，点击另存为保存
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718132037.png)
+![|700](attachments/Pasted%20image%2020240718132037.png)
 
 4. 点击红色的 `RealTimeSync` 打开软件
 5. 首先选择要监视变化的目录，一般和上面选择同步的原始目录相同
@@ -2581,7 +2581,7 @@ yan@yan:~/apply/file/FreeFileSync$
 /home/yan/apply/file/FreeFileSync/FreeFileSync /home/yan/apply/file/FreeFileSync/sava/SyncSettings.ffs_batch
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240718132846.png)
+![|700](attachments/Pasted%20image%2020240718132846.png)
 
 7. 最后的选项运行命令之前最小的空闲时间（以秒计），表示如果监测到了目录中的内容发生了变化，延迟执行命令的时间
 8. 点击开始，即可启动后台任务，当程序监测到了目录中的内容发生了变化，就会执行同步操作
@@ -2668,7 +2668,7 @@ echo "" >> "$path/synchronize_logs.log"
 bash /home/yan/apply/file/FreeFileSync/sava/record_logs.sh /home/yan/桌面/内存/文档资料/ /media/yan/hc330-10t-A/内存/文档资料/
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241119165725.png)
+![|700](attachments/Pasted%20image%2020241119165725.png)
 
 #### Ⅷ、定时执行同步任务
 

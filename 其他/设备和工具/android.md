@@ -244,8 +244,6 @@
 4. 但是在点击确定之后，重新点击再听，就是一个默认的声音了
 5. 并且这时有电话打入，声音也是这个默认的声音
 
-![|254](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250826081640.png)
-
 ### ②、原因
 
 1. 权限问题
@@ -269,11 +267,11 @@
 1. 确认已经给与 MiXplorer root 权限
 2. 进入 MiXplorer，打开设置，点击高级，勾选  Root 权限
 
-![|254](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250827142434.png)
+![|254](attachments/Pasted%20image%2020250827142434.png)
 
 3. 进入根目录，确认当前模式是 RW，若不是，点击菜单进行修改
 
-![|254](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250827142545.png)
+![|254](attachments/Pasted%20image%2020250827142545.png)
 
 4. 进入媒体文件所在目录：
 	1. `/system/product/media/audio/`：较新的系统
@@ -283,7 +281,7 @@
 7. 完成所有操作后，为了系统安全，可以再通过文件管理器的挂载功能，将系统分区恢复为 **只读 (RO)** 状态
 8. 重启手机
 
-![|254](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250827143136.png)
+![|254](attachments/Pasted%20image%2020250827143136.png)
 
 ## 2、
 

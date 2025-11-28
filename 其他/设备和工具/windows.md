@@ -6,19 +6,19 @@
 
 1. 右键我的电脑，选择管理
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023091142.png)
+![|700](attachments/Pasted%20image%2020231023091142.png)
 
 2. 点击计算机管理 -> 系统工具 -> 本地用户和组 -> 用户
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023091703.png)
+![|700](attachments/Pasted%20image%2020231023091703.png)
 
 3. 选择想要设置的用户（比如 yan），右键选择设置密码，弹窗选择继续
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023091806.png)
+![|700](attachments/Pasted%20image%2020231023091806.png)
 
 4. 在弹出的弹窗中，不输入任何内容，直接点击确定
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023091917.png)
+![|700](attachments/Pasted%20image%2020231023091917.png)
 
 5. 完成
 
@@ -32,34 +32,34 @@
 
 1. 设置中搜索远程，点击远程桌面设置
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806085625.png)
+![|700](attachments/Pasted%20image%2020250806085625.png)
 
 2. 进入后，点击启用远程桌面，在弹出的弹窗中点击确认
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806085638.png)
+![|700](attachments/Pasted%20image%2020250806085638.png)
 
 3. 同一个页面中，点击下方的 选择可远程访问这台电脑的用户
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806085737.png)
+![|675](attachments/Pasted%20image%2020250806085737.png)
 
 4. 点击添加
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806085810.png)
+![|700](attachments/Pasted%20image%2020250806085810.png)
 
 5. 点击高级
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806085830.png)
+![|700](attachments/Pasted%20image%2020250806085830.png)
 
 6. 点击立即查找，在下方出现的列表中选择想要使用远程桌面的用户，点击确定
 	1. 之后进行远程桌面的使用时，账号和密码就是现在选择的这个用户的账号和密码
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806085857.png)
+![|700](attachments/Pasted%20image%2020250806085857.png)
 
 7. 再次点击确定即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806090103.png)
+![|700](attachments/Pasted%20image%2020250806090103.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250806090116.png)
+![|700](attachments/Pasted%20image%2020250806090116.png)
 
 ### ②、远程桌面时打开远程设备的任务管理器
 
@@ -71,17 +71,17 @@
 
 1. `win + r` ，弹出运行窗口，输入：`secpol.msc`，打开本地安全策略
 
-![|394](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023092257.png)
+![|394](attachments/Pasted%20image%2020231023092257.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023092314.png)
+![|700](attachments/Pasted%20image%2020231023092314.png)
 
 2. 选择安全设置 -> 本地策略 -> 安全选项
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023092411.png)
+![|700](attachments/Pasted%20image%2020231023092411.png)
 
 3. 拉到最后，选中倒数第四个：帐户：使用空密码的本地帐户只允许进行控制台登录
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023092541.png)
+![|700](attachments/Pasted%20image%2020231023092541.png)
 
 4. 双击打开，选择已禁用，点击应用，然后点击确定即可
 
@@ -92,15 +92,15 @@
 1. 登录管理员账户
 2. 右键点击此电脑，然后点击管理
 
-![|305](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912084203.png)
+![|305](attachments/Pasted%20image%2020240912084203.png)
 
 3. 选择：系统工具 -> 班底用户和组 -> 用户，选择被禁止登录的用户，双击打开
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912084600.png)
+![|700](attachments/Pasted%20image%2020240912084600.png)
 
 4. 将账户已锁定取消勾选，点击应用，然后点击确定即可；我这里显示点不了是因为使用的不是管理员账户，管理员账户没有这个问题
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912084632.png)
+![|700](attachments/Pasted%20image%2020240912084632.png)
 
 5. 重新登录该用户即可
 
@@ -108,19 +108,19 @@
 
 1.  按住 Shift 键 ，点击右下角电源按钮，然后点击：重启，进入 Windows 高级启动选项界面
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912084936.png)
+![|700](attachments/Pasted%20image%2020240912084936.png)
 
 2. 选择：疑难解答
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912085042.png)
+![|700](attachments/Pasted%20image%2020240912085042.png)
 
 3. 选择：高级选项
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912085053.png)
+![|700](attachments/Pasted%20image%2020240912085053.png)
 
 4. 选择：命令提示符，进入命令提示符界面
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912085102.png)
+![|700](attachments/Pasted%20image%2020240912085102.png)
 
 5. 输入 `net user` 列出当前计算机的所有账户，根据下面的图片可以看到有一个 `Administrator` 账户
 
@@ -132,22 +132,22 @@ net user
 	1. 这条命令的作用是将 `Administrator` 账户设置为活动状态，使其可以登录到Windows系统。
 	2. 通常，系统默认情况下，`Administrator` 账户是禁用的，以增加系统的安全性
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912085240.png)
+![|700](attachments/Pasted%20image%2020240912085240.png)
 
 7. 命令执行完成后，关闭命令提示符界面
 8. 点击：继续，正常启动计算机后，再次使用正确的密码就可以正常登录了
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912085416.png)
+![|700](attachments/Pasted%20image%2020240912085416.png)
 
 ## 4、更改登录尝试失败后的锁定持续时间
 
 1. `Windows + R` 打开运行，输入 `secpol.msc` 后点击确定，打开本地安全策略窗口
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912085926.png)
+![|700](attachments/Pasted%20image%2020240912085926.png)
 
 2. 第一个选项：允许管理员帐户锁定，建议关闭，这样普通用户的账号被锁定后，可以登录管理员账号解锁；<font color="#ff0000">但是这样做最好设置管理员账号禁止远程登录</font>
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240912090217.png)
+![|700](attachments/Pasted%20image%2020240912090217.png)
 
 3. 第三个选项：账户锁定阈值，若是永远不想让账户被锁定，将其改为 0 即可
 4. 第二、四个选项根据个人喜好设置
@@ -186,15 +186,15 @@ net user
 1. 开机按住 F2 或者 <font color="#ff0000">DEL</font> 进入 bios，这是针对华硕主板，其它主板可以自行百度。
 2. 切换语言-简体中文，进入高级设置（Advanced），找到：高级电源管理设置（APM Configuration）
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918133750.png)
+![|700](attachments/Pasted%20image%2020240918133750.png)
 
 3. 将 PCI-E 设备唤醒（Power On By PCI-E），设置为启用：Enabled
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918133933.png)
+![|700](attachments/Pasted%20image%2020240918133933.png)
 
 4. 保存退出，操作完成后计算机会自动开机，等待 2 秒开机。
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918134001.png)
+![|700](attachments/Pasted%20image%2020240918134001.png)
 
 5. 至此主板 BIOS 设置完毕，继续进行下面的设置
 
@@ -202,37 +202,37 @@ net user
 
 1. 右键我的电脑，选择管理
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918134318.png)
+![|700](attachments/Pasted%20image%2020240918134318.png)
 
 2. 找到网络设配器，找到自己的网卡，网卡是和 cpu 关联，一般是在最上面的，切记别选中带有 wifi 字样的，wol 唤醒是通过网线将数据传输到主板从而进行唤起计算器，所以要找到有线网络的网卡
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918134452.png)
+![|700](attachments/Pasted%20image%2020240918134452.png)
 
 3. 双击网卡打开属性面板，进入高级设置，找到唤醒魔包，将其启用
 
-![|461](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918134947.png)
+![|461](attachments/Pasted%20image%2020240918134947.png)
 
 4. 再选择电源管理设置，勾选：允许这个装置唤醒计算机
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918135036.png)
+![](attachments/Pasted%20image%2020240918135036.png)
 
 ### ④、关闭快速启动功能
 
 1. 鼠标右键点击 Windows 开始菜单 ，并选择：电源选项
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918135400.png)
+![](attachments/Pasted%20image%2020240918135400.png)
 
 2. 在弹出来的设置页面中选择：其他电源设置
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918135509.png)
+![|700](attachments/Pasted%20image%2020240918135509.png)
 
 3. 在弹出来的控制面板页面中选择：选择电源按钮的功能
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918135654.png)
+![|700](attachments/Pasted%20image%2020240918135654.png)
 
 4. 在新的控制面板页面中，先点击：更改当前不可用的设置，然后<font color="#ff0000">取消勾选：启用快速启动</font>
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918135801.png)
+![|700](attachments/Pasted%20image%2020240918135801.png)
 
 5. <font color="#ff0000">点击保存更改</font>
 
@@ -240,11 +240,11 @@ net user
 
 1. 右键开始菜单，选择运行，输入：cmd，打开命令行工具
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918140126.png)
+![](attachments/Pasted%20image%2020240918140126.png)
 
 2. 输入：`ipconfig/all` 查看本机相关网络参数，记录下网卡对应的物理地址（mac 地址）和 ipv4 地址，<font color="#ff0000">端口默认为 9</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240918140544.png)
+![](attachments/Pasted%20image%2020240918140544.png)
 
 ### ⑥、网络唤醒
 
@@ -252,7 +252,7 @@ net user
 
 1. 输入 mac 地址、ip 地址、端口号即可，可以使用下面的工具
 2. 使用网站：https://www.depicus.com/wake-on-lan/woli
-3. 或者 app：[WakeOnLan.apk](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/WakeOnLan.apk)
+3. 或者 app：[WakeOnLan.apk](attachments/WakeOnLan.apk)
 4. 或者自己实现代码：
 
 ```java
@@ -367,11 +367,11 @@ public class WakeOnLan {
 
 1. 打开任务管理器，选择详细信息，这次查看 QQ 的端口号，可以看到 PID 为 `8020`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231222101725.png)
+![](attachments/Pasted%20image%2020231222101725.png)
 
 2. 根据这个 PID 来查询其信息：`netstat -ano | find "8028"`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231222102248.png)
+![](attachments/Pasted%20image%2020231222102248.png)
 
 3. 其中第二列就是 QQ 这个进程使用的所有的端口号
 
@@ -379,20 +379,20 @@ public class WakeOnLan {
 
 1. 当新安装系统时，电脑通知中会出现这个选项
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Snipaste_2024-09-14_10-01-27.png)
+![|675](attachments/Snipaste_2024-09-14_10-01-27.png)
 
 2. 若是此时没有选择允许，之后想要手动开启，可进行如下操作：
 3. 点击设置 -> 网络和 Internet -> 网络和共享中心
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241112131333.png)
+![|700](attachments/Pasted%20image%2020241112131333.png)
 
 4. 再选择更改高级共享设置
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241112131416.png)
+![|700](attachments/Pasted%20image%2020241112131416.png)
 
 5. 将启用网络发现打开，然后点击保存更改即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020241112131503.png)
+![|700](attachments/Pasted%20image%2020241112131503.png)
 
 ## 3、重新获取新的动态 IP 地址
 
@@ -416,7 +416,7 @@ ipconfig /renew
 3. 打开它后双击打开 `InitialKeyboardIndicators`，默认数值是 `2147483648`
 4. 弹出编辑字符串，在数值数据中输入 `2`，单击确定；在这里 2 的意思是“默认启开小键盘
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530124920.png)
+![|700](attachments/Pasted%20image%2020240530124920.png)
 
 5. 设置完成后重启电脑即可
 
@@ -466,15 +466,15 @@ ipconfig /renew
 1. 打开控制面板
 2. 选择：`控制面板\时钟和区域`，点击：更改日期、时间或数字格式
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125212.png)
+![|700](attachments/Pasted%20image%2020240530125212.png)
 
 3. 在弹窗中点击管理，然后点击：更改系统区域设置
 
-![|461](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125309.png)
+![|461](attachments/Pasted%20image%2020240530125309.png)
 
 4. 在当前系统区域设置中，选择：**中文(简体，中国)**
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125432.png)
+![|415](attachments/Pasted%20image%2020240530125432.png)
 
 5. 点击确定，重启即可
 
@@ -483,19 +483,19 @@ ipconfig /renew
 1. 打开控制面板
 2. 选择：`控制面板\时钟和区域`，点击：更改日期、时间或数字格式
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125212.png)
+![|700](attachments/Pasted%20image%2020240530125212.png)
 
 3. 在弹窗中点击管理，然后点击：更改系统区域设置
 
-![|461](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125309.png)
+![|461](attachments/Pasted%20image%2020240530125309.png)
 
 4. 在当前系统区域设置中，选择：**中文(简体，中国)**
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125432.png)
+![|415](attachments/Pasted%20image%2020240530125432.png)
 
 5. 查看下方的 `Beta 版` 是否勾选，若是勾选则`取消勾选`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240530125558.png)
+![](attachments/Pasted%20image%2020240530125558.png)
 
 6. 点击确定，重启即可
 
@@ -503,7 +503,7 @@ ipconfig /renew
 
 1. 使用管理员打开 cmd
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811085034.png)
+![|700](attachments/Pasted%20image%2020250811085034.png)
 
 2. 输入命令查看 Windows 启动加载器详情：`bcdedit`
 
@@ -580,13 +580,13 @@ bcdedit /set {current} description "主用系统 windows 10 ltsc 2021"
 4. 在右侧的 超时 (Timeout) 框里，可以设置选择界面的等待时间（单位是秒，例如 5 或 10 秒）
 5. 点击 确定 即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811090125.png)
+![](attachments/Pasted%20image%2020250811090125.png)
 
 ## 7、删除右键菜单项
 
 ### ①、删除启用 BitLocker(B)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811095013.png)
+![](attachments/Pasted%20image%2020250811095013.png)
 
 1. `Windows + R` 打开运行，输入 `regedit` 后点击确定，打开 注册表编辑器 窗口
 2. 在注册表编辑器中，导航到以下路径：
@@ -615,7 +615,7 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 
 ### ①、为所有文件类型添加 Notepad3
 
-1. 添加 reg 脚本：[Notepad3_Add_SubMenu.reg](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Notepad3_Add_SubMenu.reg)，清理 reg 脚本：[Notepad3_Remove_Menu.reg](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Notepad3_Remove_Menu.reg)
+1. 添加 reg 脚本：[Notepad3_Add_SubMenu.reg](attachments/Notepad3_Add_SubMenu.reg)，清理 reg 脚本：[Notepad3_Remove_Menu.reg](attachments/Notepad3_Remove_Menu.reg)
 2. 如不想使用脚本，可手动修改注册表：
 3. `Windows + R` 打开运行，输入 `regedit` 后点击确定，打开 注册表编辑器 窗口
 4. 进入注册表路径：`HKEY_CLASSES_ROOT\*\shell`
@@ -630,13 +630,13 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 	4. 例如："E:\apply\devTools\TextEditor\Notepad3\Notepad3.exe" "%1"
 	5. 点击确定保存
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250812112346.png)
+![](attachments/Pasted%20image%2020250812112346.png)
 
 ### ②、
 
 ## 9、设置开发环境变量脚本
 
-1. 脚本下载：[setup_env.ps1](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/setup_env.ps1)
+1. 脚本下载：[setup_env.ps1](attachments/setup_env.ps1)
 2. 如果无法运行，查看当前的执行策略：
 3. 使用管理员打开 PowerShell，输入： `Get-ExecutionPolicy`
 4. 如果是 `Restricted` 的话，将其更改为 `RemoteSigned`，在确认中输入 A 表示确定修改
@@ -695,27 +695,27 @@ slmgr -dlv
 
 1. 按下 `Win + R` 组合键，打开运行，然后输入 `regedit` 命令，再按回车，打开注册表编辑器
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090204.png)
+![](attachments/Pasted%20image%2020240820090204.png)
 
 2. 注册表编辑器窗口，依次展开到以下路径：`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings`
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090327.png)
+![|700](attachments/Pasted%20image%2020240820090327.png)
 
 3. 在 `Settings` 右侧空白处，点击右键，选择：新建 -> DWORD(32 位)值(D)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090429.png)
+![|700](attachments/Pasted%20image%2020240820090429.png)
 
 4. 新建的 DWORD(32 位)值(D) 命名为 `FlightSettingsMaxPauseDays`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090540.png)
+![](attachments/Pasted%20image%2020240820090540.png)
 
 5. 双击打开 `FlightSettingsMaxPauseDays` 编辑窗口，基数选择十进制，数值数据输入你想暂停更新的的天数，比如设置 3000 天，再点击确定
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090708.png)
+![](attachments/Pasted%20image%2020240820090708.png)
 
 6. `Win+I` 快捷键打开设置，选择：更新和安全 -> Windows 更新 -> 高级选项，设置暂停更新的截止日期
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240820090858.png)
+![|700](attachments/Pasted%20image%2020240820090858.png)
 
 ## <span id="6-4">4、ltsc 安装 `.msixbundle` 或 `.msix` 应用包</span>
 
@@ -724,7 +724,7 @@ slmgr -dlv
 1. 将安装包放到磁盘根目录，比如：`E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle`
 2. 使用管理员打开 PowerShell
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250811083002.png)
+![|700](attachments/Pasted%20image%2020250811083002.png)
 
 3. 输入命令安装软件：
 
@@ -752,7 +752,7 @@ PS C:\Windows\system32>
 
 5. 原因是该系统缺少一个必要的 依赖项 或 公共组件，首先下载并安装缺失的 VCLibs 运行库：
 	1. 网络下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx)
-	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
+	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
 6. 将下载的运行库安装包也放入到磁盘根目录，比如：`E:\Microsoft.VCLibs.x64.14.00.Desktop.appx`
 7. 输入命令安装运行库：
 
@@ -841,7 +841,7 @@ PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00.UWPDeskto
 #### Ⅱ、缺少 `Microsoft.UI.Xaml.2.8`
 
 1. 网络下载 [Microsoft.UI.Xaml-2.8.6](https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.8.6)，此链接会下载一个 `.nupkg` 文件，需要将其后缀名改为 `.zip`，然后解压，在 `tools\AppX\x64\Release` 目录下找到 `Microsoft.UI.Xaml.2.8.appx` 文件
-2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/)
+2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](attachments/)
 3. 下载后使用上面的命令进行安装
 
 ```PowerShell
@@ -870,7 +870,7 @@ PS C:\Windows\system32>
 
 1. 目录窗口视图
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240511090819.png)
+![|675](attachments/Pasted%20image%2020240511090819.png)
 
 2. 查看目录结构（文件夹）：在当前要操作的文件夹目录下输入命令 `tree`，此时得到目录下树形的目录结构。默认情况下只显示“文件夹”而不显示文件。
 
@@ -878,7 +878,7 @@ PS C:\Windows\system32>
 tree
 ```
 
-![|474](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240511091131.png)
+![|474](attachments/Pasted%20image%2020240511091131.png)
 
 1. 查看目录结构（包括文件）：使用参数 `/f` 将以层次的结构显示所有文件夹及文件的名称。
 
@@ -886,7 +886,7 @@ tree
 tree /f
 ```
 
-![|481](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240511091256.png)
+![|481](attachments/Pasted%20image%2020240511091256.png)
 
 #### Ⅱ、导出目录结构
 
@@ -904,7 +904,7 @@ tree /f > darknet.txt
 tree /f > darknetf.txt
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020240511092214.png)
+![|700](attachments/Pasted%20image%2020240511092214.png)
 
 ## 2、图种制作
 
@@ -923,11 +923,11 @@ tree /f > darknetf.txt
 
 1. 打开控制台，预览声音，网络请求中会出现音频文件
 
-![|500](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020251011123409.png)
+![|500](attachments/Pasted%20image%2020251011123409.png)
 
 2. 右键该请求，选择复制 -> 以 cURL (cmd) 格式复制
 
-![|500](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020251011123511.png)
+![|500](attachments/Pasted%20image%2020251011123511.png)
 
 ```shell
 curl ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b729c09f767d535e.mp3?e=1760160780^&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:CVr-eRcdqn2gLgBwZoK18Aqrkts=^" ^
@@ -967,7 +967,7 @@ curl -o downloaded.mp3 ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b72
 
 4. 将修改完的命令粘贴到 cmd 命令窗口中，回车执行，文件就会被下载到对应目录
 
-![|500](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020251011124025.png)
+![|500](attachments/Pasted%20image%2020251011124025.png)
 
 ## 4、
 
@@ -977,20 +977,20 @@ curl -o downloaded.mp3 ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b72
 
 1. amd 显卡驱动安装完之后，在资源管理器右键会显示 amd 的菜单：
 
-![|481](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023093010.png)
+![|481](attachments/Pasted%20image%2020231023093010.png)
 
 1. 去除方式：
 2. `win + r` ，弹出运行窗口，输入：`regedit.exe`，打开注册表
 
-![|750](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023093512.png)
+![|750](attachments/Pasted%20image%2020231023093512.png)
 
 1. 在地址栏输入：`计算机\HKEY_CLASSES_ROOT\Directory\background\shellex\ContextMenuHandlers\ACE`，点击进入 `ACE`
 
-![|750](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023093748.png)
+![|750](attachments/Pasted%20image%2020231023093748.png)
 
 1. 删除 `ACE` 下的这个数值文件即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020231023093902.png)
+![|700](attachments/Pasted%20image%2020231023093902.png)
 
 # 九、
 

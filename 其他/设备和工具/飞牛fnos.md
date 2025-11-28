@@ -26,19 +26,19 @@
 2. 官方项目主页： https://www.android-x86.org
 3. 进入后点击 Download，选择对应的版本目录，然后选择对应的镜像进行下载即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130021.png)
+![|700](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130021.png)
 
 ### ②、创建虚拟机
 
 1. 正常创建即可，没有选择硬件直通
 
-![|530](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130200.png)
+![|530](attachments/Pasted%20image%2020250807130200.png)
 
-![|530](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130229.png)
+![|530](attachments/Pasted%20image%2020250807130229.png)
 
-![|530](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130242.png)
+![|530](attachments/Pasted%20image%2020250807130242.png)
 
-![|530](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130249.png)
+![|530](attachments/Pasted%20image%2020250807130249.png)
 
 ### ③、安装系统镜像
 
@@ -49,7 +49,7 @@
 	3. Installation - Install Android-x86 to harddisk： 安装模式，这会将安卓系统永久性地安装到为虚拟机分配的虚拟硬盘上
 	4. Advanced options...：高级选项。里面通常包含一些特殊的启动模式，比如无图形界面启动、指定显卡驱动（VESA）启动等，主要用于解决兼容性问题
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130431.png)
+![](attachments/Pasted%20image%2020250807130431.png)
 
 3. 磁盘分区：选择第一个选项 Create/Modify partitions 并按回车后，按照以下步骤操作：
 	1. 选择分区表类型： 提示：Do you want to use GPT? (您想使用 GPT 分区表吗？)。对于 Android-x86 来说，选择 No (不使用) 通常兼容性更好，它会使用传统的 MBR 分区方案
@@ -64,37 +64,37 @@
 	6. 完成以上操作后，就会返回到这个 Choose Partition 界面
 	7. 这时，刚才创建的那个分区（例如 vda1 或 sda1）就会出现在列表中了。只需选中新出现的那个分区，然后选择 `< OK >`，就可以继续下一步的文件系统格式化和安装过程了
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807130720.png)
+![](attachments/Pasted%20image%2020250807130720.png)
 
 4. 格式化磁盘分区：选择 ext4
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131208.png)
+![](attachments/Pasted%20image%2020250807131208.png)
 
 5. 是否启动引导程序：必须选择 `< Yes >`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131242.png)
+![](attachments/Pasted%20image%2020250807131242.png)
 
 6. 决定安卓的 `/system` 分区（系统核心文件所在的区域）在安装后是否可以被修改：推荐选择 `< Yes >`，然后选择直接进入系统或者重启
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131346.png)
+![](attachments/Pasted%20image%2020250807131346.png)
 
 7. GRUB 启动引导加载器：这表示系统安装成功，选择第一个选项然后按回车，即可进入系统
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131533.png)
+![](attachments/Pasted%20image%2020250807131533.png)
 
 ### ④、修改分辨率
 
 1. 重启虚拟机，进入 GRUB 启动引导加载器页面时，按 `e`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131533.png)
+![](attachments/Pasted%20image%2020250807131533.png)
 
 2. 此时会进入 GRUB 的编辑模式，选中第一项，再次按 `e`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131810.png)
+![](attachments/Pasted%20image%2020250807131810.png)
 
 3. 进入编辑命令行后，在最后加一个空格，然后输入想要的分辨率，如：`video=1920x1080`，然后按回车确认，再按 `b` 启动系统即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807131855.png)
+![](attachments/Pasted%20image%2020250807131855.png)
 
 ### ⑤、开启 adb 远程连接
 
@@ -166,7 +166,7 @@ setprop service.adb.tcp.port 5555
 	2. 选择 CPU Configuration (CPU 设置)
 	3. 找到 SVM Mode，确保它被设置为 Enabled (开启)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807134201.png)
+![](attachments/Pasted%20image%2020250807134201.png)
 
 3. 开启 IOMMU：
 	1. 进入 Advanced (高级) 选项卡
@@ -174,7 +174,7 @@ setprop service.adb.tcp.port 5555
 	3. 进入 NBIO Common Options (北桥通用选项)
 	4. 找到 IOMMU，确保它被设置为 Enabled (开启)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807134157.png)
+![](attachments/Pasted%20image%2020250807134157.png)
 
 4. 启用 Above 4G Decoding（最重要）：
 	1. 进入 Advanced (高级) 选项卡
@@ -182,7 +182,7 @@ setprop service.adb.tcp.port 5555
 	3. 找到 Above 4G Decoding，将它设置为 Enabled (开启)
 	4. 通常启用了 Above 4G Decoding 之后，在同一个 PCI Subsystem Settings 菜单下，会出现 Re-Size BAR Support 的选项，保持其为 Disabled (关闭)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807134510.png)
+![](attachments/Pasted%20image%2020250807134510.png)
 
 5. 禁用 CSM（如果前三步都无效）
 	1. 进入 Boot (启动) 选项卡
@@ -321,23 +321,23 @@ yan@yuehai:~$ lspci -k -s 07:00.1
 
 1. 设置虚拟机名称和系统
 
-![|680](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807135444.png)
+![|680](attachments/Pasted%20image%2020250807135444.png)
 
 2. 设置虚拟机主要参数
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807135613.png)
+![](attachments/Pasted%20image%2020250807135613.png)
 
 3. 添加存储空间
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807135704.png)
+![](attachments/Pasted%20image%2020250807135704.png)
 
 4. 添加网卡
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807135715.png)
+![](attachments/Pasted%20image%2020250807135715.png)
 
 5. 设置硬件直通：此处我选择了 5600g 集成的 核显和声卡，由上面的命令得到的结果
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/%E5%85%B6%E4%BB%96/%E8%AE%BE%E5%A4%87%E5%92%8C%E5%B7%A5%E5%85%B7/attachments/Pasted%20image%2020250807135756.png)
+![](attachments/Pasted%20image%2020250807135756.png)
 
 ### ⑤、安装系统镜像
 
