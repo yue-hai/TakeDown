@@ -1,6 +1,6 @@
 > [B 站尚硅谷视频](https://www.bilibili.com/video/BV1uK411H7on/?p=68&spm_id_from=pageDriver&vd_source=b55e15966ca689b32671d4aa387cab01)
 > 
-> [尚硅谷前端_ES6.pdf](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/尚硅谷前端_ES6.pdf)
+> [尚硅谷前端_ES6.pdf](attachments/尚硅谷前端_ES6.pdf)
 
 # 一、ECMASript 相关介绍
 
@@ -8,7 +8,7 @@
 
  ECMA（European Computer Manufacturers Association）中文名称为欧洲计算机制 造商协会，这个组织的目标是评估、开发和认可电信和计算机标准。1994 年后该 组织改名为 Ecma 国际。  
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-16-861--7dWDchtM-93w_Q.png)
+![image.png](attachments/2023-07-25-13--09-16-861--7dWDchtM-93w_Q.png)
 
 ## 2、什么是 ECMAScript
 
@@ -28,7 +28,7 @@ ECMAScript 是由 Ecma 国际通过 ECMA-262 标准化的脚本程序设计语�
 > 
 >  注：从 ES6 开始，每年发布一个版本，版本号比年份最后一位大 1  
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-17-514--1f8ENp9t60O5MQ.png)
+![image.png](attachments/2023-07-25-13--09-17-514--1f8ENp9t60O5MQ.png)
 
 ## 5、谁在维护 ECMA-262
 
@@ -177,7 +177,7 @@ const 关键字用来声明常量，const 声明有以下特点
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-17-531--rzV4U1Oq1W_02g.png)
+![image.png](attachments/2023-07-25-13--09-17-531--rzV4U1Oq1W_02g.png)
 
 ## 3、变量的解构赋值
 
@@ -237,7 +237,7 @@ const 关键字用来声明常量，const 声明有以下特点
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-17-648--qHPrIi-vmbkEYg.png)
+![image.png](attachments/2023-07-25-13--09-17-648--qHPrIi-vmbkEYg.png)
 
 ## 4、模板字符串
 
@@ -290,7 +290,7 @@ const 关键字用来声明常量，const 声明有以下特点
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-17-778--AhtjEBH8oyiHeA.png)
+![image.png](attachments/2023-07-25-13--09-17-778--AhtjEBH8oyiHeA.png)
 
 ## 5、简化对象写法
 
@@ -351,7 +351,7 @@ ES6 允许在大括号里面，直接写入变量和函数，作为对象的属�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-17-941--ytNcc3Wxbee06g.png)
+![image.png](attachments/2023-07-25-13--09-17-941--ytNcc3Wxbee06g.png)
 
 ## 6、箭头函数
 
@@ -450,7 +450,7 @@ ES6 允许在大括号里面，直接写入变量和函数，作为对象的属�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-021--Z4iNKsXB8A3SPg.png)
+![image.png](attachments/2023-07-25-13--09-18-021--Z4iNKsXB8A3SPg.png)
 
 ## 7、函数参数默认值
 
@@ -527,7 +527,7 @@ ES6 允许在大括号里面，直接写入变量和函数，作为对象的属�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-177--7UEmPLZSRwFZKQ.png)
+![image.png](attachments/2023-07-25-13--09-18-177--7UEmPLZSRwFZKQ.png)
 
 ## 8、 rest 参数
 
@@ -578,7 +578,7 @@ ES6 允许在大括号里面，直接写入变量和函数，作为对象的属�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-274--OYNyDGcfQj9KXg.png)
+![image.png](attachments/2023-07-25-13--09-18-274--OYNyDGcfQj9KXg.png)
 
 ## 9、spread 扩展运算符
 
@@ -627,7 +627,7 @@ ES6 允许在大括号里面，直接写入变量和函数，作为对象的属�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-369--WsFx8E658KqAlA.png)
+![image.png](attachments/2023-07-25-13--09-18-369--WsFx8E658KqAlA.png)
 
 ## 10、Symbol
 
@@ -691,7 +691,7 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-528--GSi9wk_2iMw5Qw.png)
+![image.png](attachments/2023-07-25-13--09-18-528--GSi9wk_2iMw5Qw.png)
 
 ### ②、对象添加 Symbol 类型的属性
 
@@ -761,13 +761,13 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-823--TQvU2oq7RNohrg.png)
+![image.png](attachments/2023-07-25-13--09-18-823--TQvU2oq7RNohrg.png)
 
 ### ③、Symbol 内置值
 
 除了定义自己使用的 Symbol 值以外，ES6 还提供了 11 个内置的 Symbol 值，指向语言内部使用的方法。可以称这些方法为魔术方法，因为它们会在特定的场景下自动执行
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-18-999--s-P1-W9WrNPuqQ.png)
+![image.png](attachments/2023-07-25-13--09-18-999--s-P1-W9WrNPuqQ.png)
 
 ## 11、迭代器
 
@@ -841,9 +841,9 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-234--a_7JSDHSxdRAuw.png)
+![image.png](attachments/2023-07-25-13--09-19-234--a_7JSDHSxdRAuw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-358--Jh_IufeLGYV6Ug.png)
+![image.png](attachments/2023-07-25-13--09-19-358--Jh_IufeLGYV6Ug.png)
 
 ### ②、自己实现迭代器
 
@@ -929,7 +929,7 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-449--GLG7qUS6pufVaA.png)
+![image.png](attachments/2023-07-25-13--09-19-449--GLG7qUS6pufVaA.png)
 
 ## 12、生成器
 
@@ -1005,7 +1005,7 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-536--vIQ4ukqx00HyMg.png)
+![image.png](attachments/2023-07-25-13--09-19-536--vIQ4ukqx00HyMg.png)
 
 ### ②、生成器参数的传递
 
@@ -1071,7 +1071,7 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-624--aZ_wf6XR_u5RwA.png)
+![image.png](attachments/2023-07-25-13--09-19-624--aZ_wf6XR_u5RwA.png)
 
 ### ③、生成器案例解决回调地狱
 
@@ -1148,7 +1148,7 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-769--gBHvOb2_rNtLGw.png)
+![image.png](attachments/2023-07-25-13--09-19-769--gBHvOb2_rNtLGw.png)
 
 ### ④、依照顺序调用指定函数获得数据
 
@@ -1226,7 +1226,7 @@ Symbol 特点：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-19-872--zEVygpAtHaivvg.png)
+![image.png](attachments/2023-07-25-13--09-19-872--zEVygpAtHaivvg.png)
 
 ## 13、Promise
 
@@ -1317,7 +1317,7 @@ Promise有三种状态：
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-20-039--Azm8kJzLeUwf9Q.png)
+![image.png](attachments/2023-07-25-13--09-20-039--Azm8kJzLeUwf9Q.png)
 
 ### ②、Promise 封装读取文件
 
@@ -1337,7 +1337,7 @@ fs.readFile("13、Promise.html", (err, data) => {
 })
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-20-181--asPZGfnh7tpalw.png)
+![image.png](attachments/2023-07-25-13--09-20-181--asPZGfnh7tpalw.png)
 
 #### Ⅱ、使用 Promise 封装
 
@@ -1373,7 +1373,7 @@ promise.then(function(value){
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-20-343--WibTZe-ilkD2nA.png)
+![image.png](attachments/2023-07-25-13--09-20-343--WibTZe-ilkD2nA.png)
 
 ##### （2）、失败
 
@@ -1407,7 +1407,7 @@ promise.then(function(value){
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-20-445--GS_lNY6l6j73Rg.png)
+![image.png](attachments/2023-07-25-13--09-20-445--GS_lNY6l6j73Rg.png)
 
 ### ③、Promise 封装 AJAX
 
@@ -1481,7 +1481,7 @@ promise.then(function(value){
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-20-598--0WEx208v22wVaQ.png)
+![image.png](attachments/2023-07-25-13--09-20-598--0WEx208v22wVaQ.png)
 
 ### ④、`Promise.prototype.then` 方法
 
@@ -1537,11 +1537,11 @@ promise.then(function(value){
 
 1. then 方法的返回结果是 Promise 对象, 对象状态由回调函数的执行结果决定
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-20-768--aOmU5-ZJu1sbMA.png)
+![image.png](attachments/2023-07-25-13--09-20-768--aOmU5-ZJu1sbMA.png)
 
 2. 如果回调函数中返回的结果是 非 promise 类型的属性, 状态为成功, 返回值为对象的成功的值
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-21-996--E_y7rAEzYILkkg.png)
+![image.png](attachments/2023-07-25-13--09-21-996--E_y7rAEzYILkkg.png)
 
 ```html
 <!DOCTYPE html>
@@ -1655,7 +1655,7 @@ fs.readFile("./resources/为学.md", (err, data) => {
 })
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-22-331--NSIDgCKfniPcFw.png)
+![image.png](attachments/2023-07-25-13--09-22-331--NSIDgCKfniPcFw.png)
 
 #### Ⅱ、Promise
 
@@ -1703,7 +1703,7 @@ promise.then((val) => {
 })
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-22-485--mJtTtNmxpBkxjQ.png)
+![image.png](attachments/2023-07-25-13--09-22-485--mJtTtNmxpBkxjQ.png)
 
 ### ⑥、`Promise.prototype.catch` 方法
 
@@ -1755,7 +1755,7 @@ promise.then((val) => {
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-22-630--A9s4PhAeCGhZVg.png)
+![image.png](attachments/2023-07-25-13--09-22-630--A9s4PhAeCGhZVg.png)
 
 ## 14、Set（集合）
 
@@ -1832,7 +1832,7 @@ ES6 提供了新的数据结构 Set（集合）。它类似于数组，但成员
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-22-721--Zpkfnqn-oEKx7w.png)
+![image.png](attachments/2023-07-25-13--09-22-721--Zpkfnqn-oEKx7w.png)
 
 ### ②、案例：去重、交集、并集、差集
 
@@ -1896,7 +1896,7 @@ ES6 提供了新的数据结构 Set（集合）。它类似于数组，但成员
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-014--diboPBlszkZgaw.png)
+![image.png](attachments/2023-07-25-13--09-23-014--diboPBlszkZgaw.png)
 
 ## 15、Map（键值对的集合）
 
@@ -1974,7 +1974,7 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-176--F3dM_AQiTlV3gA.png)
+![image.png](attachments/2023-07-25-13--09-23-176--F3dM_AQiTlV3gA.png)
 
 ## 16、class 类
 
@@ -2035,7 +2035,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-291--8MN33Co1yVfCQw.png)
+![image.png](attachments/2023-07-25-13--09-23-291--8MN33Co1yVfCQw.png)
 
 ### ②、class 类方式
 
@@ -2089,7 +2089,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-393--2xKpTE_psLgvxQ.png)
+![image.png](attachments/2023-07-25-13--09-23-393--2xKpTE_psLgvxQ.png)
 
 ### ③、static 定义静态方法和属性
 
@@ -2147,7 +2147,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-545--fbfvVtBeDPDHIA.png)
+![image.png](attachments/2023-07-25-13--09-23-545--fbfvVtBeDPDHIA.png)
 
 #### Ⅱ、class 类
 
@@ -2215,7 +2215,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-666--cWNRf8YpGuEPfg.png)
+![image.png](attachments/2023-07-25-13--09-23-666--cWNRf8YpGuEPfg.png)
 
 ### ④、extends 继承父类
 
@@ -2377,7 +2377,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-759--6whuF4ZQYRE60Q.png)
+![image.png](attachments/2023-07-25-13--09-23-759--6whuF4ZQYRE60Q.png)
 
 ## 17、数值扩展
 
@@ -2431,7 +2431,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-898--NZWG6Yofng93TA.png)
+![image.png](attachments/2023-07-25-13--09-23-898--NZWG6Yofng93TA.png)
 
 ### ②、二进制和八进制
 
@@ -2487,7 +2487,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-23-973--eNkZkgiaVi5WjA.png)
+![image.png](attachments/2023-07-25-13--09-23-973--eNkZkgiaVi5WjA.png)
 
 ### ④、Number.parseInt() 与 Number.parseFloat()：字符串转整数、字符串转小数
 
@@ -2532,13 +2532,13 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-093--x5YlC2Lc0iCdbg.png)
+![image.png](attachments/2023-07-25-13--09-24-093--x5YlC2Lc0iCdbg.png)
 
 ### ⑤、Math.trunc()：去除一个数的小数部分
 
 - `Math.trunc()`：去除一个数的小数部分，返回整数部分
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-160--EDyBeZTkUp5O7Q.png)
+![image.png](attachments/2023-07-25-13--09-24-160--EDyBeZTkUp5O7Q.png)
 
 ```html
 <!DOCTYPE html>
@@ -2634,7 +2634,7 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-325--h4QDEsZtdWvYtA.png)
+![image.png](attachments/2023-07-25-13--09-24-325--h4QDEsZtdWvYtA.png)
 
 ## 19、模块化
 
@@ -2711,7 +2711,7 @@ export function play(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-475--1fo8x8YDu3WPXA.png)
+![image.png](attachments/2023-07-25-13--09-24-475--1fo8x8YDu3WPXA.png)
 
 #### Ⅱ、统一暴露
 
@@ -2766,7 +2766,7 @@ export{
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-564--mqDY8RaNyS14RA.png)
+![image.png](attachments/2023-07-25-13--09-24-564--mqDY8RaNyS14RA.png)
 
 #### Ⅲ、默认暴露
 
@@ -2834,7 +2834,7 @@ export{
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-665--j3M_emhHuKmSFA.png)
+![image.png](attachments/2023-07-25-13--09-24-665--j3M_emhHuKmSFA.png)
 
 ### ⑤、引入数据语法汇总
 
@@ -3080,7 +3080,7 @@ console.log(m03.name);
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-758--O3vbJ7v5JqvdBw.png)
+![image.png](attachments/2023-07-25-13--09-24-758--O3vbJ7v5JqvdBw.png)
 
 ## 2、指数操作符
 
@@ -3117,7 +3117,7 @@ console.log(m03.name);
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-24-971--MGk9H-oQstIBug.png)
+![image.png](attachments/2023-07-25-13--09-24-971--MGk9H-oQstIBug.png)
 
 # 四、ECMASript 8 新特性
 
@@ -3183,7 +3183,7 @@ async 和 await 两种语法结合可以让异步代码像同步代码一样
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-070--52WTYbnoTVNnog.png)
+![image.png](attachments/2023-07-25-13--09-25-070--52WTYbnoTVNnog.png)
 
 ### ②、`await` 表达式
 
@@ -3274,7 +3274,7 @@ async function main(){
 main();
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-173--LvXUDRFMzu2a0g.png)
+![image.png](attachments/2023-07-25-13--09-25-173--LvXUDRFMzu2a0g.png)
 
 ### ④、`async` 和 `await` 结合发送AJAX请求
 
@@ -3344,21 +3344,21 @@ main();
 
 1. `Object.keys`：获取对象所有的键
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-330--HI2A3eaknE1V_Q.png)
+![image.png](attachments/2023-07-25-13--09-25-330--HI2A3eaknE1V_Q.png)
 
 2. `Object.values`：获取对象所有的值
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-437--z8L4UXzuK__hWA.png)
+![image.png](attachments/2023-07-25-13--09-25-437--z8L4UXzuK__hWA.png)
 
 3. `Object.entries`：返回对象自身可遍历属性 `[key,value]` 的数组
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-543--jurLHnfJczqPdg.png)
+![image.png](attachments/2023-07-25-13--09-25-543--jurLHnfJczqPdg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-635--AVQzVGI0Aw-JUw.png)
+![image.png](attachments/2023-07-25-13--09-25-635--AVQzVGI0Aw-JUw.png)
 
 4. `Object.getOwnPropertyDescriptors`：返回对象属性的描述对象
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-730--LfNHPqheQyGmaw.png)
+![image.png](attachments/2023-07-25-13--09-25-730--LfNHPqheQyGmaw.png)
 
 ```html
 <!DOCTYPE html>
@@ -3460,7 +3460,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-896--mYseDczHiZkTWA.png)
+![image.png](attachments/2023-07-25-13--09-25-896--mYseDczHiZkTWA.png)
 
 ## 2、spread 扩展运算符
 
@@ -3502,7 +3502,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-25-973--ONdNYjVf0vHqiQ.png)
+![image.png](attachments/2023-07-25-13--09-25-973--ONdNYjVf0vHqiQ.png)
 
 ## 3、正则表达式扩展
 
@@ -3558,7 +3558,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-091--XqgX9wVuCHD6Bg.png)
+![image.png](attachments/2023-07-25-13--09-26-091--XqgX9wVuCHD6Bg.png)
 
 2. 有分组时的情况
 
@@ -3606,7 +3606,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-188--bBbRCnUYpsPyrQ.png)
+![image.png](attachments/2023-07-25-13--09-26-188--bBbRCnUYpsPyrQ.png)
 
 ### ②、断言
 
@@ -3651,7 +3651,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-258--eS9cy5tup98GXw.png)
+![image.png](attachments/2023-07-25-13--09-26-258--eS9cy5tup98GXw.png)
 
 ### ③、dotAll 模式
 
@@ -3705,7 +3705,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-379--2NuCWnk7bR-BxQ.png)
+![image.png](attachments/2023-07-25-13--09-26-379--2NuCWnk7bR-BxQ.png)
 
 
 2. dotAll 模式里的标记 `s`  改变了这种行为  ，使得 `.` 不止匹配任何单字符，还匹配回车，允许了行终止符出现
@@ -3758,7 +3758,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-486--tRMyx9Y4COqY8w.png)
+![image.png](attachments/2023-07-25-13--09-26-486--tRMyx9Y4COqY8w.png)
 
 # 六、ECMASript 10 新特性
 
@@ -3817,7 +3817,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-614--TOO7LmvKouTjMw.png)
+![image.png](attachments/2023-07-25-13--09-26-614--TOO7LmvKouTjMw.png)
 
 ## 2、数组方法扩展
 
@@ -3936,7 +3936,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-781--2ZG2HoG3Q6b4yQ.png)
+![image.png](attachments/2023-07-25-13--09-26-781--2ZG2HoG3Q6b4yQ.png)
 
 ## 4、Symbol 扩展
 
@@ -4053,7 +4053,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-879--VwjSDgoQapp64Q.png)
+![image.png](attachments/2023-07-25-13--09-26-879--VwjSDgoQapp64Q.png)
 
 ## 2、Promise 方法扩展
 
@@ -4108,7 +4108,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-26-979--AtgN9MAEEEWu0A.png)
+![image.png](attachments/2023-07-25-13--09-26-979--AtgN9MAEEEWu0A.png)
 
 ## 3、字符串方法扩展 matchAll
 
@@ -4171,7 +4171,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-27-110--ILCQwnGJEcsASQ.png)
+![image.png](attachments/2023-07-25-13--09-27-110--ILCQwnGJEcsASQ.png)
 
 2. 使用扩展运算符对其进行展开
 
@@ -4230,7 +4230,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-27-204--Q5IoW5shhW7MiA.png)
+![image.png](attachments/2023-07-25-13--09-27-204--Q5IoW5shhW7MiA.png)
 
 ## 4、可选链操作符
 
@@ -4289,7 +4289,7 @@ Rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-27-350--RkdC3Co1gwoghg.png)
+![image.png](attachments/2023-07-25-13--09-27-350--RkdC3Co1gwoghg.png)
 
 ## 5、动态 import 导入
 
@@ -4339,7 +4339,7 @@ btn.addEventListener("click",function(){
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-27-424--Z_hKCYzNFr3LcQ.png)
+![image.png](attachments/2023-07-25-13--09-27-424--Z_hKCYzNFr3LcQ.png)
 
 ## 6、大整数 `BigInt`
 
@@ -4385,7 +4385,7 @@ btn.addEventListener("click",function(){
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-27-558--tIV6QR3CUBusNg.png)
+![image.png](attachments/2023-07-25-13--09-27-558--tIV6QR3CUBusNg.png)
 
 ## 7、绝对全局对象 `globalThis`
 
@@ -4422,5 +4422,5 @@ btn.addEventListener("click",function(){
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-27-702--nvhH8YJ1ZIbYsg.png)
+![image.png](attachments/2023-07-25-13--09-27-702--nvhH8YJ1ZIbYsg.png)
 

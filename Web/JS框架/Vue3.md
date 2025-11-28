@@ -2,7 +2,7 @@
 > 
 > [B 站尚硅谷 vue3 视频](https://www.bilibili.com/video/BV1Zy4y1K7SH)
 > 
-> [vue3快速上手.md](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/vue3快速上手.md)
+> [vue3快速上手.md](attachments/vue3快速上手.md)
 
 # 一、Vue3 简介
 
@@ -98,7 +98,7 @@ export default {
 
 3. 工程结构
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725125500.png)
+![](attachments/Pasted%20image%2020230725125500.png)
 
 ## 2、使用 vite 创建
 
@@ -111,9 +111,9 @@ export default {
    3. 真正的按需编译，不再等待整个应用编译完成。
 5. 传统构建 与 vite构建对比图
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725124852.png)
+![](attachments/Pasted%20image%2020230725124852.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230725124900.png)
+![](attachments/Pasted%20image%2020230725124900.png)
 
 ```bash
 ## 创建工程
@@ -150,7 +150,7 @@ npm install
 npm run dev
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-149--QzNcMeyS2cO3Ig.png)
+![image.png](attachments/2023-07-25-12--51-14-149--QzNcMeyS2cO3Ig.png)
 
 # 三、常用组合式 Composition API
 
@@ -431,15 +431,15 @@ proxy.name = 'tom'
    2. `context`：上下文对象
       1. `attrs`：值为对象，包含：组件外部传递过来，但没有在 props 配置中声明的属性，相当于 `this.$attrs`。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-617--mV2cK_8I0AedBQ.png)
+![image.png](attachments/2023-07-25-12--51-14-617--mV2cK_8I0AedBQ.png)
 
       2. `emit`：分发自定义事件的函数，相当于 `this.$emit`。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-631--2f2t6MlpcZtoUg.png)
+![image.png](attachments/2023-07-25-12--51-14-631--2f2t6MlpcZtoUg.png)
 
       3. `slots`：收到的插槽内容，相当于 `this.$slots`。
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-642--_5dIAMrOsRKu3A.png)
+![image.png](attachments/2023-07-25-12--51-14-642--_5dIAMrOsRKu3A.png)
 
 ---
 
@@ -729,7 +729,7 @@ export default {
 
 ### ①、vue2.x 的生命周期
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230726143217.png)
+![](attachments/Pasted%20image%2020230726143217.png)
 
 ### ②、vue3.0 的生命周期
 
@@ -870,7 +870,7 @@ export default {
 
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230726143534.png)
+![](attachments/Pasted%20image%2020230726143534.png)
 
 ## 9、自定义 `hook` 函数
 
@@ -1248,7 +1248,7 @@ export default {
 
 ## 5、`provide` 与 `inject`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020230726143721.png)
+![](attachments/Pasted%20image%2020230726143721.png)
 
 1. 作用：实现祖与后代组件间通信
 2. 套路：父组件有一个 `provide` 选项来提供数据，后代组件有一个 `inject` 选项来开始使用这些数据
@@ -1454,17 +1454,17 @@ export default {
 
 使用传统 OptionsAPI 中，新增或者修改一个需求，就需要分别在 `data`、`methods`、`computed` 里修改 。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/f84e4e2c02424d9a99862ade0a2e4114~tplv-k3u1fbpfcp-watermark.gif)
+![](attachments/f84e4e2c02424d9a99862ade0a2e4114~tplv-k3u1fbpfcp-watermark.gif)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/e5ac7e20d1784887a826f6360768a368~tplv-k3u1fbpfcp-watermark.gif)
+![](attachments/e5ac7e20d1784887a826f6360768a368~tplv-k3u1fbpfcp-watermark.gif)
 
 ## 2、Composition API 的优势
 
 我们可以更加优雅的组织我们的代码，函数。让相关功能的代码更加有序的组织在一起。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/bc0be8211fc54b6c941c036791ba4efe~tplv-k3u1fbpfcp-watermark.gif)
+![](attachments/bc0be8211fc54b6c941c036791ba4efe~tplv-k3u1fbpfcp-watermark.gif)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.gif)
+![](attachments/6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.gif)
 
 # 六、新的组件
 
@@ -1822,7 +1822,7 @@ Vue.directive('focus', {
 1. 进入网站，选择矢量图
 2. 点击下载，可下载 SVG 文件或者 SVG 代码
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-657--91ZQUe9R8oEEzg.png)
+![image.png](attachments/2023-07-25-12--51-14-657--91ZQUe9R8oEEzg.png)
 
 ### ①、直接使用
 
@@ -2035,7 +2035,7 @@ Vue.directive('focus', {
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-684--OVWnWW2tEZ3agg.png)
+![image.png](attachments/2023-07-25-12--51-14-684--OVWnWW2tEZ3agg.png)
 
 ---
 
@@ -2265,7 +2265,7 @@ module.exports = defineConfig({
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-702--2oHxwv9uw-5Mtg.png)
+![image.png](attachments/2023-07-25-12--51-14-702--2oHxwv9uw-5Mtg.png)
 
 4. 修改文件 main.js
 
@@ -2286,7 +2286,7 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-742--vsgChq3cI8Qqiw.png)
+![image.png](attachments/2023-07-25-12--51-14-742--vsgChq3cI8Qqiw.png)
 
 5. 在目录 components 中创建目录 SvgIcon ，在其中创建组件 baseSvgIcon.vue
 
@@ -2362,7 +2362,7 @@ createApp(App).component('svg-icon', SvgIcon).mount('#app')
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-776--Ui2g4H5cufv-EA.png)
+![image.png](attachments/2023-07-25-12--51-14-776--Ui2g4H5cufv-EA.png)
 
 ## 2、使用 axios
 
@@ -2458,7 +2458,7 @@ module.exports = defineConfig({
 
 5. 结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/2023-07-25-12--51-14-811--tCvWd6v948M0Jg.png)
+![image.png](attachments/2023-07-25-12--51-14-811--tCvWd6v948M0Jg.png)
 
 ## 3、vue3 vite 使用 pinia
 
@@ -3161,7 +3161,7 @@ location / {
 2. 这里我们先看看vite官方文档的解释：https://vitejs.bootcss.com/guide/assets.html
 3. 我们看到实际上我们不希望资源文件被 wbpack 编译可以把图片放到 public 目录会更省事，不管是开发环境还是生产环境，可以始终以根目录保持图片路径的一致，这点跟 webpack 是一致的
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/Web/JS%E6%A1%86%E6%9E%B6/attachments/Pasted%20image%2020240905131130.png)
+![|675](attachments/Pasted%20image%2020240905131130.png)
 
 4. 看到这里，也许问题就解决了，如果在 vite 确实需要将静态文件放在 assets，我们再往下看：
 5. 这里我们先假设：

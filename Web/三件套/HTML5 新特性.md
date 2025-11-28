@@ -24,7 +24,7 @@ HTML.5 提供了播放音频文件的标准
 </html>
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-59-469--4CaFhR3jFC1caw.png)
+![image.png](attachments/2023-07-25-13--09-59-469--4CaFhR3jFC1caw.png)
 
 ## 3、标签
 
@@ -290,7 +290,7 @@ Internet Explorer 9、Firefox、 Chrome、 Safari 以及 Opera 支持地理定�
 ---
 
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Web/%E4%B8%89%E4%BB%B6%E5%A5%97/attachments/2023-07-25-13--09-59-892--p4kvgWY4RYJYkA.png)
+![image.png](attachments/2023-07-25-13--09-59-892--p4kvgWY4RYJYkA.png)
 
 ```html
 <!DOCTYPE html>
