@@ -452,7 +452,7 @@ chmod 755 minecraft_server_manager.sh
 
 7. 使用 cronicle 设置定时执行：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617131001.png)
+![](attachments/Pasted%20image%2020250617131001.png)
 
 ## 6、查看整合包服务器类型
 

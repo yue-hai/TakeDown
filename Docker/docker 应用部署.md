@@ -93,28 +93,28 @@ networks:
 
 1. 申请并配置阿里云 DNS 访问密钥：会进入 [RAM 访问控制](https://ram.console.aliyun.com/profile/access-keys) 页面；点击左侧的授权，然后点击新增授权
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108083754.png)
+![](attachments/Pasted%20image%2020250108083754.png)
 
 2. 在右侧弹窗中：
 	1. 授权主体勾选 **RAM 用户**类型的角色
 	2. 权限策略中搜索 `AliyunDNSFullAccess`，然后勾选（我这里已经有了所以不能勾选）
 	3. 点击确认新增授权
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108083825.png)
+![](attachments/Pasted%20image%2020250108083825.png)
 
 3. 权限设置完成后，进入 [RAM 访问控制](https://ram.console.aliyun.com/profile/access-keys) 页面：
 	1. 若是其他应用（比如 ddns-go）使用时已经创建过了，直接使用之前创建的 AccessKey ID 和 AccessKey Secret 即可
 	2. 若是没有，继续下面的步骤进行创建：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108083857.png)
+![|700](attachments/Pasted%20image%2020250108083857.png)
 
 4. 勾选**我确认知晓云账号 AccessKey 安全风险**，然后点击**继续使用云账号AccessKey**
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108083922.png)
+![](attachments/Pasted%20image%2020250108083922.png)
 
 5. 选择**创建AccessKey**，同样确认风险
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108083957.png)
+![|700](attachments/Pasted%20image%2020250108083957.png)
 
 6. 验证身份后，记得保存 AccessKey ID 和 AccessKey Secret，否则一旦关闭页面，只能重新创建
 
@@ -122,7 +122,7 @@ networks:
 
 1. 进入 nginx-proxy-manager 页面后，点击 **SSL 证书**，然后点击**添加 SSL 证书**，再选择 **Let's Encrypt**
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084028.png)
+![|700](attachments/Pasted%20image%2020250108084028.png)
 
 2. 在添加 Let's Encrypt 证书弹窗中：
 	1. 域名可以设置泛域名，如：`*.yuehai.fun`
@@ -132,7 +132,7 @@ networks:
 	5. 证书内容：填入上一节创建的 AccessKey ID 和 AccessKey Secret
 	6. 等待时间(秒)：120 ~ 240 即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084109.png)
+![](attachments/Pasted%20image%2020250108084109.png)
 
 3. 点击保存，等待几分钟即可
 
@@ -144,11 +144,11 @@ networks:
 ip addr show docker0
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084146.png)
+![](attachments/Pasted%20image%2020250108084146.png)
 
 2. 点击主机 -> 代理服务 -> 添加代理服务
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084201.png)
+![|700](attachments/Pasted%20image%2020250108084201.png)
 
 3. 比如我给部署的迅雷设置一个代理：
 	1. 域名：外部访问时的域名；因为是泛解析的域名，所以三级域名可以随便设置，指向迅雷即可
@@ -157,11 +157,11 @@ ip addr show docker0
 	4. 转发端口：部署的迅雷的端口，迅雷默认是 `2345`
 	5. 缓存资源、阻止常见漏洞、支持 WebSockets 一般都开启即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084347.png)
+![](attachments/Pasted%20image%2020250108084347.png)
 
 4. 点击 SSL，选择上面申请的证书
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084403.png)
+![](attachments/Pasted%20image%2020250108084403.png)
 
 5. 强制SSL、支持HTTP/2、启用了HSTS、HSTS 子域一般都开启即可
 6. 点击保存，即可；因为端口号我们修改过，所以要加上 8080 或者 8443 的端口号：
@@ -204,11 +204,11 @@ sudo ufw allow from 172.0.0.0/8
 1. nginx 挂载的路径是：`/home/docker/docker/volumes/nginx-proxy-manager/data:/data`，我们需要将静态资源的目录放在 `/data` 下
 2. 在 `/data` 下创建目录： `/web/oneNav-theme-yuehai/`，将 vue 打包后的文件放入其中
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250218123840.png)
+![](attachments/Pasted%20image%2020250218123840.png)
 
 3. 点击主机 -> 代理服务 -> 添加代理服务
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084201.png)
+![|700](attachments/Pasted%20image%2020250108084201.png)
 
 4. 设置一个代理：
 	1. 域名：本服务器的 ip
@@ -217,7 +217,7 @@ sudo ufw allow from 172.0.0.0/8
 	4. 转发端口：80，如果不可用，自定义其他的端口也可以
 	5. 缓存资源、阻止常见漏洞、支持 WebSockets 不要开启
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250220162617.png)
+![](attachments/Pasted%20image%2020250220162617.png)
 
 5. 点击自定义位置：
 	1. 定义位置：`/oneNav`，根据自定需求更改
@@ -236,7 +236,7 @@ location /oneNav {
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250218123921.png)
+![](attachments/Pasted%20image%2020250218123921.png)
 
 7. 设置完毕后，点击保存即可
 8. 最后访问：http://127.0.0.1/oneNav
@@ -245,60 +245,60 @@ location /oneNav {
 
 1. 点击通信规则 -> 添加通信规则
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084713.png)
+![|700](attachments/Pasted%20image%2020250108084713.png)
 
 2. 详情页面：
 	1. 名字：这个通信规则的名字，仅作为标识符使用
 	2. 满足任何要求：规则页面中满足任意即可访问
 	3. 授权访问主机：暂不知作用
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084741.png)
+![](attachments/Pasted%20image%2020250108084741.png)
 
 3. 授权用户页面：
 	1. 账号：启用时需要输入的账号
 	2. 密码：启用时需要输入的密码
 	3. 可以设置多个，有一个输入正确了即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084759.png)
+![](attachments/Pasted%20image%2020250108084759.png)
 
 4. 规则页面：
 	1. allow：**允许**；设置为 `all` 表示允许所有 ip，单独设置则为白名单
 	2. deny：**禁止**； 设置为 `all` 表示禁止所有 ip，单独设置则为黑名单
 	3. 可以设置多个，规则将按照它们定义的顺序执行
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084825.png)
+![](attachments/Pasted%20image%2020250108084825.png)
 
 5. 设置完成后，点击保存即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084841.png)
+![|700](attachments/Pasted%20image%2020250108084841.png)
 
 6. 进入代理服务页面，选择一个代理设置
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084855.png)
+![|700](attachments/Pasted%20image%2020250108084855.png)
 
 7. 点击编辑，通信规则选择刚刚设置的规则名称，然后点击保存即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084915.png)
+![](attachments/Pasted%20image%2020250108084915.png)
 
 8. 访问上面设置了通信规则的代理服务地址，浏览器上方会弹出账号密码输入框，输入上面在授权用户页面设置的账号密码即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084933.png)
+![](attachments/Pasted%20image%2020250108084933.png)
 
 ## 10、设置代理服务，使用自定义网络的方式
 
 1. 如果 docker 中已经定义了网络 `yuehai-net`，并且 nginx 容器和需要代理的容器创建时已经指定了使用该网络 `--network yuehai-net`，那么就可以使用自定义网络的方式进行代理；当然名字不是固定的，自定义即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617092724.png)
+![](attachments/Pasted%20image%2020250617092724.png)
 
 1. 同样是点击主机 -> 代理服务 -> 添加代理服务
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108084201.png)
+![|700](attachments/Pasted%20image%2020250108084201.png)
 
 1. 其他设置都和上面相同，不同的地方：
 	1. 转发主机/IP：使用容器的名称，比如：xunlei
 	2. 转发端口：使用容器的内部端口，比如迅雷的内部端口是 2345
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617092837.png)
+![](attachments/Pasted%20image%2020250617092837.png)
 
 
 # 1、docker 可视化 portainer-ce
@@ -474,7 +474,7 @@ apt-get update && apt-get install -y fonts-wqy-zenhei fonts-arphic-ukai
 2. 搜索 Reduce Accept-Language
 3. 设置为 Enabled 后重启
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617093427.png)
+![](attachments/Pasted%20image%2020250617093427.png)
 
 
 # 3、clash
@@ -709,15 +709,15 @@ jeessy/ddns-go
 
 1. 进入页面后，选择阿里云，然后点击 `创建 AccessKey`，会进入 [RAM 访问控制](https://ram.console.aliyun.com/profile/access-keys) 页面
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111017.png)
+![|700](attachments/Pasted%20image%2020250108111017.png)
 
 2. 勾选**我确认知晓云账号 AccessKey 安全风险**，然后点击**继续使用云账号AccessKey**
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111030.png)
+![](attachments/Pasted%20image%2020250108111030.png)
 
 3. 选择**创建AccessKey**，同样确认风险
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111041.png)
+![](attachments/Pasted%20image%2020250108111041.png)
 
 4. 验证身份后，保存创建的 AccessKey ID 和 AccessKey Secret，否则一旦关闭，只能重新创建
 
@@ -725,7 +725,7 @@ jeessy/ddns-go
 
 1. 拿到 AccessKey ID 和 AccessKey Secret 后，填入 ddns-go 中，TTL 保持自动即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111057.png)
+![|700](attachments/Pasted%20image%2020250108111057.png)
 
 2. IPv4 设置中：
 	1. 是否启用：勾选表示启用
@@ -738,7 +738,7 @@ jeessy/ddns-go
 https://myip.ipip.net, https://ddns.oray.com/checkip, https://ip.3322.net, https://4.ipw.cn, https://v4.yinghualuo.cn/bejson
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111126.png)
+![|700](attachments/Pasted%20image%2020250108111126.png)
 
 ## 5、通知渠道
 
@@ -750,7 +750,7 @@ https://myip.ipip.net, https://ddns.oray.com/checkip, https://ip.3322.net, https
 https://sctapi.ftqq.com/[SendKey].send?title=域名更新结果：#{ipv4Result}&desp=当前IPv4地址：#{ipv4Addr}；当前域名：#{ipv4Result}
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111149.png)
+![|700](attachments/Pasted%20image%2020250108111149.png)
 
 2. 当 ip 变化时，ddns-go 会重新解析域名并发送通知
 
@@ -772,7 +772,7 @@ http://www.pushplus.plus/send/
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111217.png)
+![|700](attachments/Pasted%20image%2020250108111217.png)
 
 3. 当 ip 变化时，ddns-go 会重新解析域名并发送通知
 
@@ -885,7 +885,7 @@ docker exec -it openlist ./openlist admin set NEW_PASSWORD
 3. 访问：`http://127.0.0.1:5244`，进入主页面；输入账号 `admin` 以及刚才设置的密码进行登录
 4. 点击管理可进行网盘的设置等，具体查看文档
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108091446.png)
+![|700](attachments/Pasted%20image%2020250108091446.png)
 
 ## 4、nginx 代理配置
 
@@ -952,9 +952,9 @@ location / {
 > 2. 不如直接安装 docker 版
 
 1. 桌面版需要购买，50元，请在 AList-desktop gui 桌面版官网选择购买
-2. 在官网下载对应的 linux 版本到目录，比如我放在了：`/home/yan/apply/file/alist-desktop/` 目录下，或点击此处下载：[alist-desktop_3.38.0_amd64.deb](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/alist-desktop_3.38.0_amd64.deb)
+2. 在官网下载对应的 linux 版本到目录，比如我放在了：`/home/yan/apply/file/alist-desktop/` 目录下，或点击此处下载：[alist-desktop_3.38.0_amd64.deb](attachments/alist-desktop_3.38.0_amd64.deb)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108091543.png)
+![](attachments/Pasted%20image%2020250108091543.png)
 
 3. 更新软件源：
 
@@ -1030,8 +1030,8 @@ OpenSSL 3.0.2 15 Mar 2022 (Library: OpenSSL 3.0.2 15 Mar 2022)
 
 ### ②、仅引用  `libssl.so.1.1` 库
 
-> 1. [libssl.so.1.1](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/libssl.so.1.1)
-> 2. [libcrypto.so.1.1](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/libcrypto.so.1.1)
+> 1. [libssl.so.1.1](attachments/libssl.so.1.1)
+> 2. [libcrypto.so.1.1](attachments/libcrypto.so.1.1)
 
 1. 下载上方的 libssl.so.1.1 和 libcrypto.so.1.1，上传到目录，比如我放在了：`/home/yan/apply/file/alist-desktop/` 目录下
 2. 创建符号链接；前面的路径是文件所在的路径，后面的路径是要连接到的路径
@@ -1051,7 +1051,7 @@ alist-desktop
 
 ### ③、安装  `libssl.so.1.1` 库
 
-> [openssl-1.1.1g.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/openssl-1.1.1g.tar.gz)
+> [openssl-1.1.1g.tar.gz](attachments/openssl-1.1.1g.tar.gz)
 
 1. 进入目录：
 
@@ -1307,7 +1307,7 @@ docker logs qbittorrent
 1. 如果 nginx 和 qbittorrent 加入了同一个 docker 网络，那么代理起来会方便很多
 2. 填入 qbittorrent 的容器名和端口号即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617095408.png)
+![](attachments/Pasted%20image%2020250617095408.png)
 
 ## 5、使用 nginx 代理 2
 
@@ -1378,7 +1378,7 @@ location / {
 2. 我找了找，没找到解决办法，这里再提供另一个解决办法
 3. 上面 4 中的配置不再需要，nginx 中仅配置代理即可
 
-![|474](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108100020.png)
+![|474](attachments/Pasted%20image%2020250108100020.png)
 
 4. 本地进入 qbittorrent 的管理页，点击设置 -> WebUI，勾选**对 IP 子网白名单中的客户端跳过身份验证**，并设置如下内容：
 	1. 最重要的是 `172.17.0.0/16` 这一条，对 docker 应用的 ip 设置白名单
@@ -1392,7 +1392,7 @@ location / {
 
 5. 向下翻，取消勾选**启用跨站请求伪造 (CSRF) 保护**
 
-![|550](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108100058.png)
+![|550](attachments/Pasted%20image%2020250108100058.png)
 
 6. 点击保存即可
 
@@ -1471,15 +1471,15 @@ networks:
 1. 访问迅雷迅雷群晖提取版网页： [http://127.0.0.1:2345](http://127.0.0.1:2345)
 2. 扫码或使用账号密码登录
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108091117.png)
+![|700](attachments/Pasted%20image%2020250108091117.png)
 
 3. 输入内测邀请码（经过测试 <font color="#ff0000">迅雷牛通</font> 内测码有效）
 
-![|425](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108091129.png)
+![|425](attachments/Pasted%20image%2020250108091129.png)
 
 4. 登录完成后，点击新建任务，就可以添加连接进行下载
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108091142.png)
+![|700](attachments/Pasted%20image%2020250108091142.png)
 
 
 # 104、syncthing 中心化的、点对点的文件同步应用
@@ -1581,7 +1581,7 @@ tcp://ip:22000, quic://ip:22000
 tcp://127.0.0.1:22000, quic://127.0.0.1:22000
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617095915.png)
+![](attachments/Pasted%20image%2020250617095915.png)
 
 ## 3、访问
 
@@ -1685,11 +1685,11 @@ networks:
 
 1. 在 nginx 中点击添加代理，详细内容中和其他代理相同，不再详细说明
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617100922.png)
+![](attachments/Pasted%20image%2020250617100922.png)
 
 2. 配置完成后，访问d代理地址会出现如下提示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101208.png)
+![](attachments/Pasted%20image%2020250108101208.png)
 
 3. 这是代理成功了，但是我们需要修改 Nextcloud 的配置文件，添加信任域名并修改配置
 	1. 此处假设代理后的地址为：`https://nextcloud.demo.com:8080`
@@ -1833,17 +1833,17 @@ php occ maintenance:repair --include-expensive
 ## 6、Nextcloud 集成 Onlyoffice
 
 > 1. 需要部署 Onlyoffice
-> 2. 这里采用离线安装的方式，因为我的应用商店无法访问，插件下载：[onlyoffice.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/onlyoffice.tar.gz)
+> 2. 这里采用离线安装的方式，因为我的应用商店无法访问，插件下载：[onlyoffice.tar.gz](attachments/onlyoffice.tar.gz)
 > 3. 如果可以访问应用商店，直接搜索 Onlyoffice 安装
 
 1. 进入 Nextcloud 应用商店下载插件：https://apps.nextcloud.com/
 2. 搜索 Onlyoffice
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108100948.png)
+![|700](attachments/Pasted%20image%2020250108100948.png)
 
 3. 向下拉，选择一个版本进行下载
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101004.png)
+![|700](attachments/Pasted%20image%2020250108101004.png)
 
 4. 下载完成后，将其上传到挂载的 `/vol1/1000/docker/file/document-processing/nextcloud/custom_apps` 目录中
 5. 进入该目录，然后将 Onlyoffice 插件解压：
@@ -1868,7 +1868,7 @@ sudo docker exec onlyoffice /var/www/onlyoffice/documentserver/npm/json -f /etc/
 
 8. 进入 Nextcloud 页面，点击头像 -> 应用 -> 你的应用，会多出来一个 ONLYOFFICE，点击后面的启用来启用插件
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101034.png)
+![|700](attachments/Pasted%20image%2020250108101034.png)
 
 9. 启用成功后，点击头像 -> 管理设置，也会多出来一个 ONLYOFFICE，点击进入，填写 ONLYOFFICE Docs 地址和密钥
 	1. ONLYOFFICE Docs 地址：表示外网可以访问的 ONLYOFFICE 地址，即 nginx 代理之后的地址
@@ -1877,17 +1877,17 @@ sudo docker exec onlyoffice /var/www/onlyoffice/documentserver/npm/json -f /etc/
 	4. 服务器内部请求 ONLYOFFICE Docs 的地址：即 ONLYOFFICE 的局域网地址：`http://onlyoffice/`
 	5. ONLYOFFICE Docs 内部请求服务器的地址：即 nextcloud 的地址，从这里获取文件：`http://nextcloud/`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617102332.png)
+![](attachments/Pasted%20image%2020250617102332.png)
 
 10. 点击保存即可集成，成功后下方会显示常用设置等
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617102348.png)
+![](attachments/Pasted%20image%2020250617102348.png)
 
 ## 7、修改 Nextcloud 集成 Onlyoffice 后的页面的样式
 
 1. Nextcloud 集成 Onlyoffice 后默认的页面是这样的，上面还有一个工具栏，看着很不舒服，现在把他去掉
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101122.png)
+![|700](attachments/Pasted%20image%2020250108101122.png)
 
 2. 进入挂载目录：`/vol1/1000/docker/file/document-processing/nextcloud/custom_apps/onlyoffice/css/editor.css`，编辑：
 3. 在顶部添加：
@@ -1926,7 +1926,7 @@ chown -R 33:33 /vol1/1000/docker/file/document-processing/nextcloud/custom_apps/
 
 6. 修改后的页面显示：按住 shift 刷新浏览器：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101143.png)
+![|700](attachments/Pasted%20image%2020250108101143.png)
 
 ## 7、应用整理
 
@@ -1936,29 +1936,29 @@ chown -R 33:33 /vol1/1000/docker/file/document-processing/nextcloud/custom_apps/
 
 1. 介绍：笔记，支持 markdown
 2. 商店地址：https://apps.nextcloud.com/apps/notes
-3. 本地下载：[notes-v4.11.0.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/notes-v4.11.0.tar.gz)
+3. 本地下载：[notes-v4.11.0.tar.gz](attachments/notes-v4.11.0.tar.gz)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101326.png)
+![|700](attachments/Pasted%20image%2020250108101326.png)
 
 ### ②、Draw.io
 
 1. 介绍：在线图表工具，文件直接保存到 Nextcloud
 2. 商店地址：https://apps.nextcloud.com/apps/drawio
-3. 本地下载：[drawio-v3.0.3.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/drawio-v3.0.3.tar.gz)
+3. 本地下载：[drawio-v3.0.3.tar.gz](attachments/drawio-v3.0.3.tar.gz)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101434.png)
+![|700](attachments/Pasted%20image%2020250108101434.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101444.png)
+![|700](attachments/Pasted%20image%2020250108101444.png)
 
 ### ③、Mind Map
 
 1. 介绍：思维导图
 2. 商店地址：https://apps.nextcloud.com/apps/files_mindmap
-3. 本地下载：[files_mindmap-0.0.31.tar.gz](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/files_mindmap-0.0.31.tar.gz)
+3. 本地下载：[files_mindmap-0.0.31.tar.gz](attachments/files_mindmap-0.0.31.tar.gz)
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101527.png)
+![|675](attachments/Pasted%20image%2020250108101527.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101536.png)
+![|700](attachments/Pasted%20image%2020250108101536.png)
 
 ### ④、快捷命令
 
@@ -2162,7 +2162,7 @@ networks:
 
 1. 访问：[http://127.0.0.1:80](http://127.0.0.1:80)，出现下面页面则部署成功
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108101959.png)
+![|700](attachments/Pasted%20image%2020250108101959.png)
 
 1. 执行下面两条命令，启动 onlyoffice 的测试示例页面；<font color="#ff0000">这仅是测试示例页面，正式环境不要开启</font>：
 
@@ -2174,27 +2174,27 @@ docker exec onlyoffice sudo sed 's,autostart=false,autostart=true,' -i /etc/supe
 
 3. 点击 `GO TOTESTEXAMPLE` 按钮，可进入测试示例页面
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108102030.png)
+![|700](attachments/Pasted%20image%2020250108102030.png)
 
 4. 在测试示例页面，可选择语言，选择后地址栏上会带上参数：`lang=zh`，建议将此时的地址存为书签，因为语言的设置并不会保存，只能以地址参数设置
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108102044.png)
+![|700](attachments/Pasted%20image%2020250108102044.png)
 
 5. 可尝试新建或上传一个文档，测试可用性
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108102100.png)
+![|700](attachments/Pasted%20image%2020250108102100.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108102112.png)
+![|700](attachments/Pasted%20image%2020250108102112.png)
 
 ## 4、Nginx 代理 配置
 
 1. 在 nginx 中点击添加代理，详细内容中和其他代理相同，不再详细说明
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617103017.png)
+![](attachments/Pasted%20image%2020250617103017.png)
 
 1. 点击高级，填入以下自定义 Nginx 配置
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617103038.png)
+![](attachments/Pasted%20image%2020250617103038.png)
 
 ```nginx
 # 定义一个 location 块，匹配所有进入的请求 (/)
@@ -2266,7 +2266,7 @@ nano local.json
 "autoAssembly": { "enable": true, "interval": "5m" },
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108102127.png)
+![|700](attachments/Pasted%20image%2020250108102127.png)
 
 5. 重启即可
 
@@ -2537,7 +2537,7 @@ jellyfin/jellyfin:latest
 
 1. 进入控制台后，点击媒体库，然后点击添加媒体库
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108104150.png)
+![|700](attachments/Pasted%20image%2020250108104150.png)
 
 2. 之后选择类型、名称、文件夹、各种设置即可
 
@@ -2548,11 +2548,11 @@ jellyfin/jellyfin:latest
 1. 各种客户端可点击上面的链接进行下载
 2. 若是想在浏览器观看，则进入服务器后，点击服务器名称
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108104208.png)
+![|700](attachments/Pasted%20image%2020250108104208.png)
 
 3. 即可查看设定的媒体库
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108104221.png)
+![|700](attachments/Pasted%20image%2020250108104221.png)
 
 ## 6、https 设置
 
@@ -2561,11 +2561,11 @@ jellyfin/jellyfin:latest
 1. 将生成的 `mykeystore.p12` 文件复制到挂载的目录下，比如 `/home/docker/docker/volumes/jellyfin/config/certificate/`
 2. jellyfin 控制台中，选择网络，点击启用 https
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108104244.png)
+![|700](attachments/Pasted%20image%2020250108104244.png)
 
 3. 在 HTTPS 设置中，选择刚才复制的 `mykeystore.p12` 文件，填入证书密码，然后重启服务器即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108104304.png)
+![|700](attachments/Pasted%20image%2020250108104304.png)
 
 4. 成功后访问 https 端口：[https://127.0.0.1:8920](https://127.0.0.1:8920)
 
@@ -2775,7 +2775,7 @@ networks:
 ### ①、客户端说明
 
 1. 浏览器插件为 Bitwarden 密码管理器：https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb
-2. 安卓为：Bitwarden，[Bitwarden_2025.8.0 下载](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Bitwarden_2025.8.0.apk)
+2. 安卓为：Bitwarden，[Bitwarden_2025.8.0 下载](attachments/Bitwarden_2025.8.0.apk)
 
 ### ②、录入 2fauth 两步验证码
 
@@ -2783,14 +2783,14 @@ networks:
 
 1. 给网站设定两步验证码时，出现二维码后，打开浏览器扩展，选择编辑，直接点击按钮扫描二维码即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251017110259.png)
+![](attachments/Pasted%20image%2020251017110259.png)
 
 #### Ⅱ、录入 2fauth 密钥
 
 1. 如果部署了 2fauth，并且使用 2fauth 保存了两步验证码，也可以复制密钥导入到 Bitwarden 中
 2. 默认 OTP 类型一般都是 TOTP，所以一般直接将密钥粘贴到  Bitwarden 中即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251017110625.png)
+![](attachments/Pasted%20image%2020251017110625.png)
 
 #### Ⅲ、TOTP 基于时间的验证码
 
@@ -3093,11 +3093,11 @@ cscript ospp.vbs /dstatus
 2. 方案一：删除注册表项：`KEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\SppExtComObj.exe`
 	1. win+R 键打开运行窗口，输入：regedit
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617105718.png)
+![](attachments/Pasted%20image%2020250617105718.png)
 
 3. 方案二：下载 Office Tool 运行起来，按照下面图片所示点击操作就可以了：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617105733.png)
+![](attachments/Pasted%20image%2020250617105733.png)
 
 ### ②、
 
@@ -3279,7 +3279,7 @@ networks:
 2. 容器名：`code-minio`
 3. 创建储存桶：`files`，并将其权限设定为公开 `public`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024093009.png)
+![](attachments/Pasted%20image%2020251024093009.png)
 
 ### ③、GitHub NextAuth 身份验证服务
 
@@ -3289,16 +3289,16 @@ networks:
 	2. `Callback URL`：`https://域名:端口/api/auth/callback/github`，验证回调，访问地址 + 后缀
 	3. 其他配置随意
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111151935.png)
+![](attachments/Pasted%20image%2020251111151935.png)
 
 3. 填写完毕后，点击下方的 Generate a private key
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251022164638.png)
+![](attachments/Pasted%20image%2020251022164638.png)
 
 4. 创建成功后，顶部会显示 `Client ID`，将其记下，之后使用
 5. 点击下方的 Generate a new client secret，生成一个 `Client secrets`，复制后记到别处，之后使用
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251022164953.png)
+![](attachments/Pasted%20image%2020251022164953.png)
 
 ### ④、部署数据库版 lobe-chat
 
@@ -3410,7 +3410,7 @@ networks:
 1. 确保申请了 `*.a.com` 或 `lobe-chat-database.a.com` 的 sll 证书
 2. 设置代理和选择 ssl 证书
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153128.png)
+![](attachments/Pasted%20image%2020251111153128.png)
 
 3. 点击高级选项卡，输入以下自定义 Nginx 配置
 
@@ -3457,11 +3457,11 @@ location / {
 
 1. 申请 `b.minio.a.com` 的 sll 证书
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153341.png)
+![](attachments/Pasted%20image%2020251111153341.png)
 
 2. 设置代理和选择 ssl 证书
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153421.png)
+![](attachments/Pasted%20image%2020251111153421.png)
 
 3. 点击高级选项卡，输入以下自定义 Nginx 配置
 
@@ -3503,15 +3503,15 @@ location / {
 1. 进入 aistudio：https://aistudio.google.com
 2. 点击 Get API key
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153608.png)
+![](attachments/Pasted%20image%2020251111153608.png)
 
 3. 点击 创建API密钥，在弹窗中出入密钥名和项目名，没有项目就创建一个
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153718.png)
+![](attachments/Pasted%20image%2020251111153718.png)
 
 4. 创建完成后，复制 key 到 lobe-chat 中，然后回到 aistudio 首页，点击复制 Gemini 2.5 Pro 的模型名，同样复制到 lobe-chat 中
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153757.png)
+![](attachments/Pasted%20image%2020251111153757.png)
 
 5. 测试 Gemini 2.5 Pro 模型是否可以使用
 	1. 如果可用，那就成功了，结束
@@ -3545,7 +3545,7 @@ location / {
 7. 一开始是免费试用阶段。在此阶段，如果赠金用完或过期，不点击**激活**升级为付费账户，那么服务会自动停止，不会扣信用卡里的钱
 8. 一旦点击**激活**升级为付费账户，它就会转为自动扣费（后付费）模式，这时就不能设置成额度用完自动停机了。不过，可以设置一个预算提醒，当费用快达到设定的金额时，系统会发送警告邮件，收到邮件后可以立即手动去停用服务
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111153917.png)
+![](attachments/Pasted%20image%2020251111153917.png)
 
 
 # 406、Nexterm 基于浏览器的服务器管理工具
@@ -3670,11 +3670,11 @@ yidadaa/chatgpt-next-web:latest
 1. 访问：[http://127.0.0.1:3000](http://127.0.0.1:3000)
 2. 进入网址后会自动弹出提示，点击箭头处提示：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250312101212.png)
+![|700](attachments/Pasted%20image%2020250312101212.png)
 
 3. 输入密码，仅在第一行填入部署时使用 CODE 设置的密码即可：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250312101227.png)
+![](attachments/Pasted%20image%2020250312101227.png)
 
 4. 登录成功后即可正常使用
 5. 因为上面部署时只配置了 deepseek 的 api_key，所以只能使用 deepseek，要使用其他 ai，可以增加其他 ai 的配置
@@ -3686,12 +3686,12 @@ yidadaa/chatgpt-next-web:latest
 
 1. 代理服务设置：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250312101259.png)
+![](attachments/Pasted%20image%2020250312101259.png)
 
 2. 因为 Next.js 的 Server Actions 安全验证机制与反向代理配置的可能冲突，增加以下配置：
 	1. 主要的配置项为：`proxy_set_header X-Forwarded-Host $host:1443;`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250312101623.png)
+![](attachments/Pasted%20image%2020250312101623.png)
 
 ```nginx
 location / {
@@ -3788,7 +3788,7 @@ networks:
 
 1. 点击工具箱 -> 推送设置，选择自定义推送，然后下面的任务结果通知选择、任务推送开关全部打开
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250617110004.png)
+![](attachments/Pasted%20image%2020250617110004.png)
 
 2. 点击工具箱 -> 自定义推送：
 3. 请求方法选择 `POST`
@@ -3810,7 +3810,7 @@ http://www.pushplus.plus/send/
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108110714.png)
+![|700](attachments/Pasted%20image%2020250108110714.png)
 
 7. 点击测试可查看是否设置成功，点击提交进行保存
 8. 设置完成后，可以执行一个任务查看是否可以正常推送
@@ -3958,7 +3958,7 @@ lxml
 
 6. 安装方式：点击创建依赖，选择对应的依赖类型，勾选自动拆分，将上面的依赖名复制进名称中即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108110424.png)
+![](attachments/Pasted%20image%2020250108110424.png)
 
 7. 如果添加依赖库出现安装失败和提示源问题，使用 ssh 工具进入青龙面板容器，执行下面的代码：
 
@@ -3968,7 +3968,7 @@ npm config set registry https://registry.npmmirror.com/
 
 8. 耐心等待安装即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108110442.png)
+![|700](attachments/Pasted%20image%2020250108110442.png)
 
 9. 如果有的任务执行失败，可以查看日志是不是依赖报错：
 
@@ -4005,7 +4005,7 @@ Node.js v20.15.1
 10. 此处报错 `Error: Cannot find module 'cloud189-sdk'`，说明没有 `cloud189-sdk` 的依赖
 11. 此时就下载这个依赖即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108110459.png)
+![](attachments/Pasted%20image%2020250108110459.png)
 
 12. 如果不知道是什么类型的依赖，都试试就好了
 
@@ -4051,15 +4051,15 @@ Node.js v20.15.1
 2. 登录京东，建议使用手机短信验证码登录，此方式 cookie 有效时长大概 31 天，其他登录方式比较短
 3. 点击我的，选择第一个封包 `my.m.jd.com`，找到 cookie 并全部复制
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250702110132.png)
+![|700](attachments/Pasted%20image%2020250702110132.png)
 
 4. 将复制的内容保存到文档中，用查找功能找到里面 `pt_key=xxxx;pt_pin=xxxx;` 这一部分的内容即可(英文分号 `;` 一定不要漏了)，cookie 不要泄露给别人，比如：
 
-![|525](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250702110205.png)
+![|525](attachments/Pasted%20image%2020250702110205.png)
 
 5. 将刚刚截取的 `pt_key=xxx; pt_pin=xxx` 添加至青龙面板的环境变量，名称写 `JD_COOKIE` (一定要写这个)
 
-![|270](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250702110225.png)
+![|270](attachments/Pasted%20image%2020250702110225.png)
 
 6. 京东 cookie 获取并配置完毕，执行脚本即可
 
@@ -4259,7 +4259,7 @@ mlikiowa/napcat-docker:latest
 2. TOKEN 是创建 docker 容器时指定的，如果没有指定，查找挂载目录的 `/config/webui.json` 文件中，填入 `token` 字段的值即可
 3. 登录成功后，点击 `QR Code`，使用想要作为机器人的 QQ 扫描登录即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105258.png)
+![](attachments/Pasted%20image%2020250108105258.png)
 
 4. 扫描并且确认后，等待几面就会自动进入管理页面
 
@@ -4267,7 +4267,7 @@ mlikiowa/napcat-docker:latest
 
 1. 点击日志查看，可以看到登录的 QQ 号接收的消息，私聊和群聊都可以看到
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105417.png)
+![|700](attachments/Pasted%20image%2020250108105417.png)
 
 ## 5、将 NapCatQQ 作为 java 端的 WebSocket 服务器
 
@@ -4275,14 +4275,14 @@ mlikiowa/napcat-docker:latest
 	1. 名称：比如：`将 NapCatQQ 作为 java 端的 WebSocket 服务器`
 	2. 类型：WebSocket 服务器
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105436.png)
+![](attachments/Pasted%20image%2020250108105436.png)
 
 2. 勾选启用
 3. 主机使用默认 `0.0.0.0`，不用修改
 4. 端口修改为 3003、3004 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
 5. 其他默认，不用修改，点击确定
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105626.png)
+![](attachments/Pasted%20image%2020250108105626.png)
 
 6. 在 java 中，使用 `ws://ip:3003` 连接服务器
 
@@ -4359,7 +4359,7 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 	1. 名称：比如：`将 NapCatQQ 作为 java 端的 http 服务器`
 	2. 类型：HTTP 服务器
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250110092528.png)
+![](attachments/Pasted%20image%2020250110092528.png)
 
 2. 勾选启用
 3. 端口修改为 3003、3004 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
@@ -4367,7 +4367,7 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 5. CORS 和 WS 可以关闭
 6. 其他默认，不用修改，点击确定
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250110092539.png)
+![](attachments/Pasted%20image%2020250110092539.png)
 
 7. 开启后，可通过 ip 和 端口，调用其接口，实现各种操作
 
@@ -4436,7 +4436,7 @@ felinae98/nonebot-bison
 	1. 名称：比如：`接入 onebot11 的服务端`
 	2. 类型：WebSocket 客户端
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105850.png)
+![](attachments/Pasted%20image%2020250108105850.png)
 
 2. 勾选启用
 3. URL 填入：`ws://172.17.0.1:8080/onebot/v11/ws`
@@ -4444,7 +4444,7 @@ felinae98/nonebot-bison
 	2. 我是在同一个机器的 docker 下部署的，所以 `172.17.0.1` 指向本机地址，即类似 `127.0.0.1`
 4. 其他默认，不用修改，点击确定
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105926.png)
+![](attachments/Pasted%20image%2020250108105926.png)
 
 5. NapCatQQ 与 nonebot-bison 成功建立链接时，日志上会显示 connect open
 
@@ -4457,11 +4457,11 @@ felinae98/nonebot-bison
 
 1. NapCatQQ 与 nonebot-bison 成功建立链接后，可以私聊 `/后台管理` 获取后台管理地址
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108105948.png)
+![|700](attachments/Pasted%20image%2020250108105948.png)
 
 2. 也可以直接在群里 @，然后发送指令进行管理：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107151702.png)
+![](attachments/Pasted%20image%2020250107151702.png)
 
 
 # 【----------------主机模式 ----------------】
@@ -4754,11 +4754,11 @@ LISTEN :: 3493
 
 3. 保存修改后，进入 homeassistant 管理页面，点击设置 -> 设备与服务
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111608.png)
+![|700](attachments/Pasted%20image%2020250108111608.png)
 
 4. 正常的话，已发现中就会有 Network UPS Tools (NUT)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111622.png)
+![|700](attachments/Pasted%20image%2020250108111622.png)
 
 5. 点击添加，输入完参数后点击提交即可
 	1. 主机：`172.17.0.1`
@@ -4766,15 +4766,15 @@ LISTEN :: 3493
 	3. 用户名：ups 的用户名
 	4. 密码：ups 的密码
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111640.png)
+![|700](attachments/Pasted%20image%2020250108111640.png)
 
 6. 添加成功后，会显示在设备中
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111736.png)
+![|700](attachments/Pasted%20image%2020250108111736.png)
 
 7. 点击概览，也会显示 ups 的信息
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111705.png)
+![|700](attachments/Pasted%20image%2020250108111705.png)
 
 ## 6、集成 hacs
 
@@ -4792,13 +4792,13 @@ LISTEN :: 3493
 
 1.  下载 hacs 源码：
 	1. github 最新版下载：[Releases · hacs/integration](https://github.com/hacs/integration/releases)
-	2. 本地  v2.0.1 版下载：[hacs.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/hacs.zip)
+	2. 本地  v2.0.1 版下载：[hacs.zip](attachments/hacs.zip)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111816.png)
+![|700](attachments/Pasted%20image%2020250108111816.png)
 
 2. 在挂载目录 `/home/docker/docker/volumes/homeassistant/config` 下再创建 `custom_components` 目录，将下载的文件上传到此目录中：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111831.png)
+![](attachments/Pasted%20image%2020250108111831.png)
 
 3. 解压 hacs.zip
 
@@ -4808,25 +4808,25 @@ unzip hacs.zip -d hacs/
 
 4. 解压完毕后，重启容器，进入 homeassistant 管理页面，点击设置 -> 设备与服务
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111847.png)
+![|700](attachments/Pasted%20image%2020250108111847.png)
 
 5. 点击添加集成：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111857.png)
+![|700](attachments/Pasted%20image%2020250108111857.png)
 
 6. 搜索 `hacs`，选择后勾选所有选项，然后点击提交：
 
-![|499](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111908.png)
+![|499](attachments/Pasted%20image%2020250108111908.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111918.png)
+![](attachments/Pasted%20image%2020250108111918.png)
 
 7. 等待一段时间后，提示需要点击中间的链接跳转到 GitHub 进行验证，复制下面验证码填入 GitHub 进行验证
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111932.png)
+![|700](attachments/Pasted%20image%2020250108111932.png)
 
 8. 验证完成后，刷新一下，左侧出现 HACS 选项，进入即可安装各种插件与设备链接
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108111944.png)
+![|700](attachments/Pasted%20image%2020250108111944.png)
 
 ## 7、集成米家
 
@@ -4834,19 +4834,19 @@ unzip hacs.zip -d hacs/
 
 1. 在 hacs 中搜索 `Xiaomi Miot Auto`，进入后点击 download
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108112003.png)
+![|700](attachments/Pasted%20image%2020250108112003.png)
 
 2. 下载完成后，点击设置 -> 小米模块，会提示需要重启容器
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108112017.png)
+![|700](attachments/Pasted%20image%2020250108112017.png)
 
 3. 重新容器后，进入设置 -> 添加集成，搜索 `xiaomi`，选择 `Xiaomi Miot Auto`
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108112031.png)
+![|700](attachments/Pasted%20image%2020250108112031.png)
 
 4. 选择账号集成，再选择排除模式，不选择任何设备，点击提交，就可以成功添加
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250108112043.png)
+![](attachments/Pasted%20image%2020250108112043.png)
 
 
 # 【----------------无需端口号 ----------------】
@@ -4933,11 +4933,11 @@ networks:
 
 1. 上面已经部署的情况下，进入容器终端
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711083943.png)
+![|700](attachments/Pasted%20image%2020250711083943.png)
 
 2. 执行命令：`python main.py`
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250711084003.png)
+![|700](attachments/Pasted%20image%2020250711084003.png)
 
 ## 6、访问
 

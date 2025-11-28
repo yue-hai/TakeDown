@@ -183,7 +183,7 @@ tomcat:jre21
 docker cp code-tomcat9:/usr/local/tomcat/ /home/docker/docker/volumes/tomcat/tomcat9/
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163352.png)
+![](attachments/Pasted%20image%2020250107163352.png)
 
 3. 停止并删除容器：
 
@@ -251,19 +251,19 @@ networks:
 1. 若是显示 404，则查看防火墙 10100 端口；若端口已开放，则：
 2. 查看映射目录的 `webapps` 和 `webapps.dist` 目录；若 `webapps` 为空 `webapps.dist` 不为空
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163443.png)
+![](attachments/Pasted%20image%2020250107163443.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163500.png)
+![](attachments/Pasted%20image%2020250107163500.png)
 
 3. 删除 `webapps` 目录，将 `webapps.dist` 目录重命名为 `webapps`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163523.png)
+![](attachments/Pasted%20image%2020250107163523.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163538.png)
+![](attachments/Pasted%20image%2020250107163538.png)
 
 4. 再次访问：[http://172.17.0.1:8080/](http://172.17.0.1:8080/)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107163621.png)
+![|700](attachments/Pasted%20image%2020250107163621.png)
 
 
 # 10、pgadmin4 PostgreSQL 的 web 管理工具
@@ -455,7 +455,7 @@ networks:
 1. 我这里使用 heidisql 进行连接，其他不再做说明，这里要注意一下<font color="#00b0f0">蓝色箭头</font>数据库这里
 2. 使用 heidisql 连接 postgres 时，每次只能连接一个数据库，如果不指定数据库名称，默认连接到 `postgres` 数据库，想要连接到其他数据库，这里一定要指定一个数据库的名，比如：`test`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250121105335.png)
+![](attachments/Pasted%20image%2020250121105335.png)
 
 3. 连接进去后，可以使用以下命令查询当前连接的数据库名称，确定是不是想要连接的数据库
 
@@ -483,7 +483,7 @@ CREATE SCHEMA schema_name;
 
 7. 不想使用命令，也可以使用 idea 自带的数据库管理工具来创建：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250121105443.png)
+![](attachments/Pasted%20image%2020250121105443.png)
 
 ## 4、从 mysql 迁移到 postgres
 
@@ -839,7 +839,7 @@ networks:
 
 1. 使用 Navicat 连接
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250107164736.png)
+![|700](attachments/Pasted%20image%2020250107164736.png)
 
 ## 4、插入中文报错
 
@@ -1117,19 +1117,19 @@ networks:
 
 1. 进入 web 页面后，点击左侧 Buckets
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083111.png)
+![](attachments/Pasted%20image%2020251024083111.png)
 
 2. 在新页面中输入储存桶名称后，点击 Create Bucket 即可创建
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083202.png)
+![](attachments/Pasted%20image%2020251024083202.png)
 
 3. 创建完成后，再次点击左侧 Buckets，选择刚才创建的储存桶
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083402.png)
+![](attachments/Pasted%20image%2020251024083402.png)
 
 4. 进入后可以进行一些管理操作
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251024083402.png)
+![|700](attachments/Pasted%20image%2020251024083402.png)
 
 
 # 40、consul 分布式系统的服务发现和配置
@@ -1273,11 +1273,11 @@ networks:
 
 1. 进入 consul 管理后台，创建几个配置，比如 `test/test.json`
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164636.png)
+![|700](attachments/Pasted%20image%2020250114164636.png)
 
 2. 点击 Tokens，点击复制 Secret ID
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164417.png)
+![|700](attachments/Pasted%20image%2020250114164417.png)
 
 3. 使用 HTTP 接口请求数据：
 	1.  请求方式：GET
@@ -1310,7 +1310,7 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 
 1. 点击 Policies -> Create
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164725.png)
+![|700](attachments/Pasted%20image%2020250114164725.png)
 
 2. name：该策略的名称，不和其他的策略重复即可
 3. Description (Optional)：该策略的描述，可随意填写
@@ -1334,11 +1334,11 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 	3. `deny`：拒绝访问
 8. 整体设置，点击 Save 保存即可
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164822.png)
+![|700](attachments/Pasted%20image%2020250114164822.png)
 
 9. 保存后，策略中就会增加刚才保存的配置：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164847.png)
+![](attachments/Pasted%20image%2020250114164847.png)
 
 #### Ⅰ、资源类型说明
 
@@ -1398,41 +1398,41 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
 
 1. 1. 点击 Roles -> Create
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164905.png)
+![|700](attachments/Pasted%20image%2020250114164905.png)
 
 2. name：该角色的名称，不和其他的角色重复即可
 3. Description (Optional)：该角色的描述，可随意填写
 4. Policies：执行的策略，选择刚才创建的策略
 5. 设置完毕后，点击 Save 保存即可
  
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114164945.png)
+![|700](attachments/Pasted%20image%2020250114164945.png)
 
 5. 保存后，角色中就会增加刚才保存的配置：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165010.png)
+![](attachments/Pasted%20image%2020250114165010.png)
 
 ### ③、创建新 token
 
 1. 1. 点击 Tokens -> Create
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165023.png)
+![|700](attachments/Pasted%20image%2020250114165023.png)
 
 2. Description (Optional)：该 token 的描述，可随意填写
 3. Roles：选择角色，选择刚才创建的角色
 4. Policies：选择策略，因为配置了角色，可以不选择策略
 5. 设置完毕后，点击 Save 保存即可
  
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165055.png)
+![|700](attachments/Pasted%20image%2020250114165055.png)
 
 6. 保存后，token 中就会增加刚才保存的配置：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165120.png)
+![](attachments/Pasted%20image%2020250114165120.png)
 
 ### ④、使用新创建的 token 获取配置
 
 1. 选择刚才创建的 Token，点击复制 Secret ID
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020250114165142.png)
+![|700](attachments/Pasted%20image%2020250114165142.png)
 
 3. 使用 HTTP 接口请求数据：
 	1.  请求方式：GET
@@ -1477,7 +1477,7 @@ curl --location --request GET 'http://ip:8500/v1/kv/test/test.json' \
     5.  **云原生友好**：非常适合在云服务器上部署，用于云游戏、应用自动化测试、移动应用托管等场景。
 3. 需要先安装一个驱动 `androidboot.use_memfd=memfd`，具体请看教程，飞牛的话直接在应用商店安装 `binder_linux` 即可
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111125436.png)
+![](attachments/Pasted%20image%2020251111125436.png)
 
 ## 2、Docker 部署
 
@@ -1602,7 +1602,7 @@ adb shell settings put global http_proxy ""
 
 1. redroid 中登录谷歌商店提示：此设备未获得 Play 保护机制认证
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251030112022.png)
+![](attachments/Pasted%20image%2020251030112022.png)
 
 #### Ⅱ、原因
 
@@ -1638,7 +1638,7 @@ settings get secure android_id
 
 1. 确保有超级管理员权限，打开终端模拟器
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/PixPin_2025-11-04_15-51-38.png)
+![](attachments/PixPin_2025-11-04_15-51-38.png)
 
 2. 输入以下命令
 
@@ -1651,7 +1651,7 @@ wm size 1080x1920
 wm density 420
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/PixPin_2025-11-04_15-56-13.png)
+![](attachments/PixPin_2025-11-04_15-56-13.png)
 
 ### ④、
 
@@ -1664,11 +1664,11 @@ wm density 420
 > 2. dockerHub 地址：https://hub.docker.com/r/jonnyan404/n2n-v3
 > 3. N2N 服务端软件 n2n-3.0：
 > 	1. github 下载地址：https://github.com/ntop/n2n/releases/tag/3.0
-> 	2. 本地下载：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/n2n-3.0.zip)
+> 	2. 本地下载：[n2n-3.0.zip](attachments/n2n-3.0.zip)
 > 4. N2N 客户端软件 EasyN2N：
 > 	1. 下载地址：https://bugxia.com/357.html
-> 	2. 本地下载：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)
-> 5.  java 查询程序：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
+> 	2. 本地下载：[EasyN2N_3.3.zip](attachments/EasyN2N_3.3.zip)
+> 5.  java 查询程序：[yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar)
 
 ## 1、端口说明
 
@@ -1765,7 +1765,7 @@ networks:
 2. 开放端口：`41983`、`41984`
 	1. `sudo ufw allow from any to any port 41983`
 	2. `sudo ufw allow from any to any port 41984`
-3. 创建目录：`/home/yan/app/internet/NetworkTools/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/n2n-3.0.zip) 放入其中
+3. 创建目录：`/home/yan/app/internet/NetworkTools/n2n/`，下载 N2N 服务端：[n2n-3.0.zip](attachments/n2n-3.0.zip) 放入其中
 4. 解压压缩包：`unzip n2n-3.0.zip`
 5. 更新软件源、安装 vim、安装配置工具：``
 
@@ -1848,9 +1848,9 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
+2. 下载 EasyN2N 客户端：[EasyN2N_3.3.zip](attachments/EasyN2N_3.3.zip)，解压后双击 `EasyN2N.exe` 打开（若是被杀毒软件删除，请将其加入白名单）<font color="#ff0000">若是被杀毒软件误删，请加入白名单</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143000.png)
+![](attachments/Pasted%20image%2020251111143000.png)
 
 3. 配置：
 	1. 服务器：`服务器ip:41984`
@@ -1858,15 +1858,15 @@ netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any 
 	3. 虚拟网 ip：最好设置为同一网段（也可以选择自动分配，分配的若不是同一网段，再自行修改）
 	4. 点击启动
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111134832.png)
+![](attachments/Pasted%20image%2020251111134832.png)
 
 4. 服务器右侧显示绿色对号即为连接成功
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251107161831.png)
+![](attachments/Pasted%20image%2020251107161831.png)
 
 5. 启动后，点击小组名称后的按钮，可打开已连接的主机列表，双击列表项可显示延迟
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131138.png)
+![](attachments/Pasted%20image%2020251111131138.png)
 
 ### ③、linux 客户端使用
 
@@ -1932,7 +1932,7 @@ services:
 ### ①、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. jar 包目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool/`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+	1. jar 包目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool/`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
 2. 使用 docker run 部署：
 
 ```shell
@@ -1976,7 +1976,7 @@ services:
 
 ### ②、ubuntu 直接安装
 
-1. 创建目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
+1. 创建目录：`/home/docker/volumes/services/other/n2n-query-yuehai-tool`，下载 java 工具类 [yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar](attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar) 放入其中
 2. 安装 JDK 21；若是安装过程中让选择时区，第一次选择 5 是亚洲，第二次选择 69 是上海
 
 ```shell
@@ -2020,7 +2020,7 @@ nohup java -jar yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar >> yuehai-too
 > 1. 如果服务器在大陆外或国外，或者是家用网络，有可能会出现 UDP 屏蔽或 QoS
 > 2. 下面是一种解决方法：使用 gnb_udp_over_tcp 这个工具，实现将 UDP 数据转换为 TCP 进行传输，绕开 UDP 限制
 > 3. github 地址：https://github.com/gnbdev/gnb_udp_over_tcp
-> 4. 本地下载：[gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)
+> 4. 本地下载：[gnb_udp_over_tcp.zip](attachments/gnb_udp_over_tcp.zip)
 
 ### ⓪、gnb_udp_over_tcp 命令解释
 
@@ -2046,7 +2046,7 @@ gnb_udp_over_tcp -u -l 监听的UDP端口 TCP源地址 TCP源端口
 sudo ufw allow from any to any port 41985
 ```
 
-2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+2. 下载上面的 [gnb_udp_over_tcp.zip](attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
 3. 进入对应目录
 
 ```shell
@@ -2170,10 +2170,10 @@ chmod 755 restart_process.sh
 
 #### Ⅰ、windows 客户端配置
 
-1. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
+1. 下载上面的 [gnb_udp_over_tcp.zip](attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
 2. 在目录中，按住键盘的 shift 键，然后点击鼠标右键，选择：在此处打开 Powershell 窗口
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131416.png)
+![](attachments/Pasted%20image%2020251111131416.png)
 
 3. 之后会弹出一个窗口，在其中输入以下内容并回车：
 	1. `-u`：表示启用 UDP 模式，即将接收到的 TCP 数据转换为 UDP 数据
@@ -2185,21 +2185,21 @@ chmod 755 restart_process.sh
 .\gnb_udp_over_tcp.exe -u -l 41984 83.229.120.176 41985
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111131819.png)
+![](attachments/Pasted%20image%2020251111131819.png)
 
 4. 若是不想手动输入上面的命令，也可以直接双击目录的脚本 `run_gnb_udp_over_tcp.bat`，会自动执行该命令；但是这种脚本的方式有时会失败，如果失败，需手动输入命令
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111132220.png)
+![](attachments/Pasted%20image%2020251111132220.png)
 
 5. 打开 n2n，服务端填写：`127.0.0.1:41984`，点击启动，等待时间会稍长一点，大概六七秒
 6. 等待右侧出现绿色对号，即为连接成功
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111132524.png)
+![](attachments/Pasted%20image%2020251111132524.png)
 
 #### Ⅱ、ubuntu 客户端配置
 
 1. 客户端先正常编译安装 n2n 客户端
-2. 下载上面的 [gnb_udp_over_tcp.zip](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+2. 下载上面的 [gnb_udp_over_tcp.zip](attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
 3. 进入对应目录：
 
 ```shell
@@ -2321,7 +2321,7 @@ chmod 755 restart_process.sh
 
 1. 点击测试工具 -> NAT 检测，点击开始检测
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111143709.png)
+![](attachments/Pasted%20image%2020251111143709.png)
 
 2. 若是显示检测失败或结果不是下面的四种，请点击切换服务器，然后多次测试
 3. 若检测结果是 `Symmetric NAT`，说明当前机器是不可以使用 n2n 的，若想使用，请自行修改光猫，百度搜索：NAT 类型修改
@@ -2344,7 +2344,7 @@ chmod 755 restart_process.sh
 3. 和朋友一起联机的话，ip 前三位需要相同，比如：`192.168.1`，最后一位可选 `1 ~ 254`
 4. 挑一个没有被使用的就可以了
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144005.png)
+![](attachments/Pasted%20image%2020251111144005.png)
 
 ### ④、windows 防火墙的问题
 
@@ -2361,7 +2361,7 @@ netsh advfirewall firewall add rule name= "All ICMP V4" protocol=icmpv4:any,any 
 netsh advfirewall firewall add rule name= "All ICMP V6" protocol=icmpv6:any,any dir=in action=allow
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Docker/attachments/Pasted%20image%2020251111144121.png)
+![](attachments/Pasted%20image%2020251111144121.png)
 
 ### ⑤、
 
