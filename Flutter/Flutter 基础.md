@@ -10,15 +10,15 @@
 
 1. 进入官网，下载 SDK：https://flutter.cn/docs/get-started/install/windows
 
-![|725](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020230926125318.png)
+![|725](attachments/Pasted%20image%2020230926125318.png)
 
 2. 将下载下来的文件解压，并将 `bin` 目录配置到系统变量中
 
-![|550](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020230926125515.png)
+![|550](attachments/Pasted%20image%2020230926125515.png)
 
 3. 打开命令行窗口，执行：`flutter --version`、`dart --version`，出现如下信息则配置成功
 
-![|775](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020230926130052.png)
+![|775](attachments/Pasted%20image%2020230926130052.png)
 
 4. 如是提示网络问题，则看下面的将下载源改为国内源
 
@@ -28,63 +28,63 @@
 	1. `PUB_HOSTED_URL`、`https://pub.flutter-io.cn`
 	2. `FLUTTER_STORAGE_BASE_URL`、`https://storage.flutter-io.cn`
 
-![|641](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020230926130339.png)
+![|641](attachments/Pasted%20image%2020230926130339.png)
 
 ## 3、使用 idea 创建 flutter 项目
 
 1. idea 安装两个插件 `Flutter`、`Dart`
 
-![|725](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020230926131825.png)
+![|725](attachments/Pasted%20image%2020230926131825.png)
 
 2. 点击新建，创建一个 `flutter` 项目
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020230926131950.png)
+![|700](attachments/Pasted%20image%2020230926131950.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016155909.png)
+![|700](attachments/Pasted%20image%2020231016155909.png)
 
 3. 项目创建完成，结构说明：
 
-![|632](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016163227.png)
+![|632](attachments/Pasted%20image%2020231016163227.png)
 
 ## 4、连接手机或模拟器安卓测试
 
 1. 某个模拟器
 
-![|925](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016160123.png)
+![|925](attachments/Pasted%20image%2020231016160123.png)
 
 2. idea 会自动连接到模拟器，点击运行安装软件
 
-![|950](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016160239.png)
+![|950](attachments/Pasted%20image%2020231016160239.png)
 
 3. 安装完成
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016160354.png)
+![](attachments/Pasted%20image%2020231016160354.png)
 
 4. 进入软件
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016160410.png)
+![](attachments/Pasted%20image%2020231016160410.png)
 
 5. 热重载与开发者工具
 
-![|571](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017095401.png)
+![|571](attachments/Pasted%20image%2020231017095401.png)
 
 ## 5、使用命令启动并安装项目
 
 1. 在连接到机器的情况下
 
-![|1175](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016161205.png)
+![|1175](attachments/Pasted%20image%2020231016161205.png)
 
 2. 进入终端，执行：
 	1. `flutter run`，它将默认使用第一个设备进行安装和运行
 	2. `flutter run -d all`：它会将应用程序安装在所有连接的设备上
 
-![|1000](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016161500.png)
+![|1000](attachments/Pasted%20image%2020231016161500.png)
 
 4. 安装完成：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016161534.png)
+![](attachments/Pasted%20image%2020231016161534.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231016161543.png)
+![|700](attachments/Pasted%20image%2020231016161543.png)
 
 5. 在使用命令安装项目的情况下，在此终端窗口中，按下以下按键，将会执行不同操作：
 
@@ -112,7 +112,7 @@
 
 - `flutterSDK路径\bin\cache\dart-sdk`
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231127090935.png)
+![|700](attachments/Pasted%20image%2020231127090935.png)
 
 ## 8、
 
@@ -129,7 +129,7 @@
 2. 注意，默认计数器示例可能随着编辑器 Flutter 插件的版本变化而变化，本例中会介绍计数器示例的全部代码，所以不会对本示例产生影响。
 3. 我们先运行创建的工程，效果如图所示：
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231115131326.png)
+![|360](attachments/Pasted%20image%2020231115131326.png)
 
 4. 该计数器示例中，每点击一次右下角带 `+` 号的悬浮按钮，屏幕中央的数字就会加1。
 5. 在这个示例中，主要 Dart 代码是在 `lib/main.dart` 文件中，下面是它的源码：
@@ -460,7 +460,7 @@ if (color != null)
 
 4. 而 Image 内部会通过 RawImage 来渲染图片、Text 内部会通过 RichText 来渲染文本，所以最终的 Widget 树、Element 树、渲染树结构如图下所示：
 
-![|850](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017092643.png)
+![|850](attachments/Pasted%20image%2020231017092643.png)
 
 5. 这里需要注意：
 	1. 三棵树中，Widget 和 Element 是一一对应的，但并不和 RenderObject 一一对应。比如 `StatelessWidget` 和 `StatefulWidget` 都没有对应的 `RenderObject`。
@@ -516,7 +516,7 @@ class Echo extends StatelessWidget  {
 
 6. 运行后效果：
 
-![|300](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017093352.png)
+![|300](attachments/Pasted%20image%2020231017093352.png)
 
 #### Ⅱ、Context
 
@@ -551,7 +551,7 @@ class ContextRoute extends StatelessWidget  {
 
 3. 运行后效果如图：
 
-![|420](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017093716.png)
+![|420](attachments/Pasted%20image%2020231017093716.png)
 
 ### ⑤、StatefulWidget 有状态组件
 
@@ -733,7 +733,7 @@ I/flutter ( 5436): dispose
 	7. `dispose()`：当 `State` 对象从树中被永久移除时调用；通常在此回调中释放资源。
 10. `StatefulWidget` 生命周期如图所示：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017100448.png)
+![|700](attachments/Pasted%20image%2020231017100448.png)
 
 ### ⑦、在 widget 树中获取State对象
 
@@ -823,7 +823,7 @@ Builder(builder: (context) {
 
 7. 上面示例运行后，点击”显示SnackBar“，效果如图所示：
 
-![|400](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017101253.png)
+![|400](attachments/Pasted%20image%2020231017101253.png)
 
 #### Ⅱ、通过 GlobalKey
 
@@ -973,7 +973,7 @@ class CupertinoTestRoute extends StatelessWidget  {
 
 4. 下面是在 iPhoneX 上页面效果截图：
 
-![|400](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017104451.png)
+![|400](attachments/Pasted%20image%2020231017104451.png)
 
 ### ⑩、总结
 
@@ -999,7 +999,7 @@ class CupertinoTestRoute extends StatelessWidget  {
 5. 接下来，我们将通过创建三个简单示例 TapboxA、TapboxB 和 TapboxC 来说明管理状态的不同方式。 
 6. 这些例子功能是相似的：创建一个盒子，当点击它时，盒子背景会在绿色与灰色之间切换。状态 `_active` 确定颜色：绿色为 true ，灰色为 false，如图所示：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231115152243.png)
+![|700](attachments/Pasted%20image%2020231115152243.png)
 
 7. 下面的例子将使用 `GestureDetector` 来识别点击事件，关于该 `GestureDetector` 的详细内容我们将在后面“事件处理”一章中介绍
 
@@ -1099,7 +1099,7 @@ class _TapboxAState extends State<TapboxA> {
 
 6. 效果：
 
-![|416](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画8.gif)
+![|416](attachments/动画8.gif)
 
 ### ③、父 Widget 管理子 Widget 的状态
 
@@ -1240,7 +1240,7 @@ class MyApp extends StatelessWidget {
 
 7. 效果：
 
-![|416](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画9.gif)
+![|416](attachments/动画9.gif)
 
 ### ④、混合状态管理
 
@@ -1424,7 +1424,7 @@ class MyApp extends StatelessWidget {
 
 6. 效果：
 
-![|416](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画10.gif)
+![|416](attachments/动画10.gif)
 
 7. 另一种实现可能会将高亮状态导出到父组件，但同时保持 `_active` 状态为内部状态，但如果你要将该 `TapBox` 给其他人使用，可能没有什么意义。 开发人员只会关心该框是否处于 Active 状态，而不在乎高亮显示是如何管理的，所以应该让 TapBox 内部处理这些细节。
 
@@ -1678,9 +1678,9 @@ class SettingRoute extends StatelessWidget {
 
 12. 效果：
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025105505.png)
+![|362](attachments/Pasted%20image%2020231025105505.png)
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025105511.png)
+![|362](attachments/Pasted%20image%2020231025105511.png)
 
 ### ②、MaterialPageRoute
 
@@ -1875,15 +1875,15 @@ class SettingRoute extends StatelessWidget {
 
 5. 效果：刚打开 HomeRoute 主页面
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025133841.png)
+![|362](attachments/Pasted%20image%2020231025133841.png)
 
 6. 进入 SettingRoute 页面
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025133851.png)
+![|362](attachments/Pasted%20image%2020231025133851.png)
 
 7. 点击按钮返回 HomeRoute 页面
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025133900.png)
+![|362](attachments/Pasted%20image%2020231025133900.png)
 
 ### ⑤、命名路由
 
@@ -2177,15 +2177,15 @@ class SettingRoute extends StatelessWidget {
 
 5. 刚进入主页时
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025141120.png)
+![|362](attachments/Pasted%20image%2020231025141120.png)
 
 6. 进入 SettingRoute 页面
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025141131.png)
+![|362](attachments/Pasted%20image%2020231025141131.png)
 
 7. 返回 HomeRoute 页面
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025141141.png)
+![|362](attachments/Pasted%20image%2020231025141141.png)
 
 #### Ⅳ、路由生成钩子
 
@@ -2389,7 +2389,7 @@ flutter:
 1. 在 Flutter 项目的根目录中，导航到 `.../android/app/src/main/res` 目录，里面包含了各种资源文件夹
 2. 如 `mipmap-hdpi` 已包含占位符图像 ic_launcher.png，见下图：
 
-![|253](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231116101636.png)
+![|253](attachments/Pasted%20image%2020231116101636.png)
 
 3. 只需按照 Android 开发人员指南中的说明， 将其替换为所需的资源，并遵守每种屏幕密度（dpi）的建议图标大小标准。
 4. 注意：如果重命名 `.png` 文件，则还必须在 `AndroidManifest.xml` 的 `<application>` 标签的 `android:icon` 属性中更新名称
@@ -2399,7 +2399,7 @@ flutter:
 1. 在 Flutter 项目的根目录中，导航到 `.../ios/Runner`。
 2. 该目录中 `Assets.xcassets/AppIcon.appiconset` 已经包含占位符图片，见下图， 只需将它们替换为适当大小的图片，保留原始文件名称
 
-![|280](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231116101932.png)
+![|280](attachments/Pasted%20image%2020231116101932.png)
 
 ##### （3）、更新启动页
 
@@ -2407,7 +2407,7 @@ flutter:
 2. 此启动页将持续到 Flutter 渲染应用程序的第一帧时。
 3. 注意：这意味着如果不在应用程序的 `main()` 方法中调用 `runApp` 函数 （或者更具体地说，如果不调用`window.render` 去响应 `window.onDrawFrame` ）的话， 启动屏幕将永远持续显示。
 
-![|204](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231116102151.png)
+![|204](attachments/Pasted%20image%2020231116102151.png)
 
 ##### （4）、Android 更新启动页
 
@@ -2422,7 +2422,7 @@ flutter:
 3. 如果使用不同的文件名，那还必须更新同一目录中的 `Contents.json` 文件，图片的具体尺寸可以查看苹果官方的标准。
 4. 也可以通过打开 Xcode 完全自定义 storyboard。在 Project Navigator 中导航到 `Runner/Runner` 然后通过打开 Assets.xcassets 拖入图片，或者通过在 LaunchScreen.storyboard 中使用 Interface Builder 进行自定义，如下图所示。
 
-![|725](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231116102613.png)
+![|725](attachments/Pasted%20image%2020231116102613.png)
 
 ### ④、平台共享 assets
 
@@ -2515,7 +2515,7 @@ class TextComponent extends StatelessWidget {
 }
 ```
 
-![|725](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017112137.png)
+![|725](attachments/Pasted%20image%2020231017112137.png)
 
 | 属性 | 介绍 |
 | ---- | ---- |
@@ -2605,7 +2605,7 @@ class TextComponent extends StatelessWidget {
 }
 ```
 
-![|725](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017112052.png)
+![|725](attachments/Pasted%20image%2020231017112052.png)
 
 ### ③、DefaultTextStyle 默认样式
 
@@ -2695,7 +2695,7 @@ class TextComponent extends StatelessWidget {
 1. 要将字体文件打包到应用中，和使用其他资源一样
 2. 要先将字体文件复制到目录中，如：
 
-![|373](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017152218.png)
+![|373](attachments/Pasted%20image%2020231017152218.png)
 
 3. 然后在 `pubspec.yaml` 中声明它：
 
@@ -2786,7 +2786,7 @@ class TextComponent extends StatelessWidget {
 }
 ```
 
-![|750](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017131341.png)
+![|750](attachments/Pasted%20image%2020231017131341.png)
 
 ## 2、Button 按钮
 
@@ -2884,9 +2884,9 @@ class ElevatedButtonComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017135246.png)
+![|700](attachments/Pasted%20image%2020231017135246.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017135256.png)
+![|700](attachments/Pasted%20image%2020231017135256.png)
 
 ### ②、TextButton 文本按钮
 
@@ -2976,9 +2976,9 @@ class TextButtonComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017140640.png)
+![|700](attachments/Pasted%20image%2020231017140640.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017140650.png)
+![|700](attachments/Pasted%20image%2020231017140650.png)
 
 ### ③、OutlinedButton 轮廓按钮
 
@@ -3072,9 +3072,9 @@ class OutlinedButtonComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017141725.png)
+![|700](attachments/Pasted%20image%2020231017141725.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017141738.png)
+![|700](attachments/Pasted%20image%2020231017141738.png)
 
 ### ④、IconButton 图标按钮
 
@@ -3172,9 +3172,9 @@ class IconButtonComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017143844.png)
+![|700](attachments/Pasted%20image%2020231017143844.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017143850.png)
+![|700](attachments/Pasted%20image%2020231017143850.png)
 
 ### ⑤、带图标的按钮
 
@@ -3274,9 +3274,9 @@ class ButtonWithIconComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017144522.png)
+![|700](attachments/Pasted%20image%2020231017144522.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017144531.png)
+![|700](attachments/Pasted%20image%2020231017144531.png)
 
 ## 3、图片及 ICON
 
@@ -3299,7 +3299,7 @@ class ButtonWithIconComponent extends StatelessWidget {
 
 1. 将图片复制到目录中
 
-![|379](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017151915.png)
+![|379](attachments/Pasted%20image%2020231017151915.png)
 
 2. 然后在 `pubspec.yaml` 中的 flutter 部分声明图片
 
@@ -3408,7 +3408,7 @@ class LoadImagesFromAssetComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017152700.png)
+![|700](attachments/Pasted%20image%2020231017152700.png)
 
 ##### （2）、从网络加载图片
 
@@ -3494,7 +3494,7 @@ class LoadImagesFromNetworkComponent extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017153437.png)
+![|700](attachments/Pasted%20image%2020231017153437.png)
 
 #### Ⅲ、参数
 
@@ -3524,7 +3524,7 @@ const Image({
 	6. `none`：图片没有适应策略，会在显示空间内显示图片，如果图片比显示空间大，则显示空间只会显示图片中间部分。
 4. 对一个宽高相同的头像图片应用不同的 `fit` 值：
 
-![|400](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017153745.png)
+![|400](attachments/Pasted%20image%2020231017153745.png)
 
 11. `color` 和 `colorBlendMode`：在图片绘制时可以对每一个像素进行颜色混合处理，`color` 指定混合色，而 `colorBlendMode` 指定混合模式，下面是一个简单的示例：
 
@@ -3537,11 +3537,11 @@ Image(
 );
 ```
 
-![|204](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017153935.png)
+![|204](attachments/Pasted%20image%2020231017153935.png)
 
 12. `repeat`：当图片本身大小小于显示空间时，指定图片的重复规则。简单示例如下
 
-![|158](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017154004.png)
+![|158](attachments/Pasted%20image%2020231017154004.png)
 
 #### Ⅳ、Image 缓存
 
@@ -3664,7 +3664,7 @@ class MaterialDesignIconFont1Component extends StatelessWidget {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017160214.png)
+![|700](attachments/Pasted%20image%2020231017160214.png)
 
 4. 通过这个示例可以看到，使用图标就像使用文本一样，但是这种方式需要我们提供每个图标的码点，这对开发者并不友好，所以，Flutter 封装了 IconData 和 Icon 来专门显示字体图标，上面的例子也可以用如下方式实现：
 5. Icons 类中包含了所有 Material Design 图标的 IconData 静态变量定义
@@ -3894,9 +3894,9 @@ class SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute> 
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017164807.png)
+![|700](attachments/Pasted%20image%2020231017164807.png)
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231017164814.png)
+![|700](attachments/Pasted%20image%2020231017164814.png)
 
 ### ②、属性及外观
 
@@ -4078,7 +4078,7 @@ class TextFieldComponent extends StatelessWidget {
 }
 ```
 
-![|400](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231019153255.png)
+![|400](attachments/Pasted%20image%2020231019153255.png)
 
 #### Ⅲ、获取输入内容
 
@@ -4964,7 +4964,7 @@ class _LinearProgressIndicatorComponentState extends State<LinearProgressIndicat
 }
 ```
 
-![|394](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231020160120.png)
+![|394](attachments/Pasted%20image%2020231020160120.png)
 
 ### ③、CircularProgressIndicator 圆形进度条
 
@@ -5098,7 +5098,7 @@ class _CircularProgressIndicatorComponentState extends State<CircularProgressInd
 }
 ```
 
-![|394](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231020160041.png)
+![|394](attachments/Pasted%20image%2020231020160041.png)
 
 ### ④、自定义尺寸
 
@@ -5212,7 +5212,7 @@ class _ProgressIndicatorSizeComponentState extends State<ProgressIndicatorSizeCo
 }
 ```
 
-![|394](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231020161209.png)
+![|394](attachments/Pasted%20image%2020231020161209.png)
 
 # 四、布局类组件
 
@@ -5342,7 +5342,7 @@ class ConstrainedBoxComponent extends StatelessWidget {
 }
 ```
 
-![|438](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023144103.png)
+![|438](attachments/Pasted%20image%2020231023144103.png)
 
 ### ④、SizedBox 给子元素指定固定的宽高
 
@@ -5398,7 +5398,7 @@ ConstrainedBox(
 
 2. 上面我们有父子两个 `ConstrainedBox`，他们的约束条件不同，运行后效果如图所示：
 
-![|220](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023145029.png)
+![|220](attachments/Pasted%20image%2020231023145029.png)
 
 3. 最终显示效果是宽 90，高 60，也就是说是子 `ConstrainedBox` 的 `minWidth` 生效，而 `minHeight` 是父 `ConstrainedBox` 生效。单凭这个例子，我们还总结不出什么规律，我们将上例中父子约束条件换一下：
 
@@ -5414,7 +5414,7 @@ ConstrainedBox(
 
 4. 运行效果如图所示：
 
-![|220](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023145029.png)
+![|220](attachments/Pasted%20image%2020231023145029.png)
 
 5. 最终的显示效果仍然是 90，高 60，效果相同，但意义不同，因为此时 `minWidth` 生效的是父 `ConstrainedBox` ，而 `minHeight` 是子 `ConstrainedBox` 生效。
 6. 通过上面示例，我们发现有多重限制时，对于 `minWidth` 和 `minHeight` 来说，是取父子中相应数值较大的。
@@ -5442,7 +5442,7 @@ ConstrainedBox(
 
 3. 上面代码中，如果没有中间的 `UnconstrainedBox`，那么根据上面所述的多重限制规则，那么最终将显示一个 90×100 的红色框。但是由于 `UnconstrainedBox` 去除了父 `ConstrainedBox` 的限制，则最终会按照子 `ConstrainedBox` 的限制来绘制 `redBox`，即 90×20，如图所示：
 
-![|150](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023145917.png)
+![|150](attachments/Pasted%20image%2020231023145917.png)
 
 4. 但是，请注意 `UnconstrainedBox` 对父组件限制的“去除”并非是真正的去除：上面例子中虽然红色区域大小是 90×20，但上方仍然有 80 的空白空间。也就是说父限制的 `minHeight(100.0)` 仍然是生效的，只不过它不影响最终子元素 `redBox` 的大小，但仍然还是占有相应的空间，可以认为此时的父 `ConstrainedBox` 是作用于子 `UnconstrainedBox` 上，而 `redBox` 只受子 `ConstrainedBox` 限制，这一点请务必注意。
 5. 那么有什么方法可以彻底去除父 `ConstrainedBox` 的限制吗？答案是否定的！请牢记，任何时候子组件都必须遵守其父组件的约束，所以在此提示，在定义一个通用的组件时，如果要对子组件指定约束，那么一定要注意，因为一旦指定约束条件，子组件自身就不能违反约束。
@@ -5467,7 +5467,7 @@ ConstrainedBox(
 
 8. 上面代码运行后，效果如图所示：
 
-![|522](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023150056.png)
+![|522](attachments/Pasted%20image%2020231023150056.png)
 
 9. 我们会发现右侧 `loading` 按钮大小并没有发生变化！这正是因为 `AppBar` 中已经指定了 `actions` 按钮的约束条件，所以我们要自定义 `loading` 按钮大小，就必须通过 `UnconstrainedBox` 来 “去除” 父元素的限制，代码如下：
 
@@ -5491,7 +5491,7 @@ AppBar(
 
 10. 运行后效果如图所示：
 
-![|518](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023150341.png)
+![|518](attachments/Pasted%20image%2020231023150341.png)
 
 11. 生效了！实际上将 `UnconstrainedBox` 换成 `Center` 或者 `Align` 也是可以的，至于为什么，我们会在后面布局原理相关的章节中解释。
 12. 另外，需要注意，`UnconstrainedBox` 虽然在其子组件布局时可以取消约束（子组件可以为无限大），但是 `UnconstrainedBox` 自身是受其父组件约束的，所以当 `UnconstrainedBox` 随着其子组件变大后，`如果UnconstrainedBox` 的大小超过它父组件约束时，也会导致溢出报错，比如：
@@ -5511,7 +5511,7 @@ Column(
 
 13. 文本已经超过屏幕宽度，溢出了
 
-![|696](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023150430.png)
+![|696](attachments/Pasted%20image%2020231023150430.png)
 
 ## 3、线性布局（Row和Column）
 
@@ -5615,7 +5615,7 @@ Column(
 
 3. 实际运行结果
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023153047.png)
+![|360](attachments/Pasted%20image%2020231023153047.png)
 
 4. 解释：
 	1. 第一个 `Row` 很简单，默认为居中对齐；
@@ -5727,7 +5727,7 @@ class FlexLayoutTestRoute extends StatelessWidget {
 
 3. 运行效果如图：
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023153900.png)
+![|360](attachments/Pasted%20image%2020231023153900.png)
 
 ## 5、流式布局（Wrap、Flow）
 
@@ -5743,7 +5743,7 @@ Row(
 
 2. 运行效果如图所示
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023154138.png)
+![|360](attachments/Pasted%20image%2020231023154138.png)
 
 3. 可以看到，右边溢出部分报错。这是因为 `Row` 默认只有一行，如果超出屏幕不会折行。
 4. 我们把超出屏幕显示范围会自动折行的布局称为流式布局。
@@ -5803,7 +5803,7 @@ Wrap(
 
 5. 运行效果如图所示：
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023154846.png)
+![|360](attachments/Pasted%20image%2020231023154846.png)
 
 ### ②、Flow
 
@@ -5877,7 +5877,7 @@ class TestFlowDelegate extends FlowDelegate {
 
 6. 运行效果
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023155408.png)
+![](attachments/Pasted%20image%2020231023155408.png)
 
 7. 可以看到我们主要的任务就是实现 `paintChildren`，它的主要任务是确定每个子 `widget` 位置。
 8. 由于 `Flow` 不能自适应子 `widget` 的大小，我们通过在 `getSize` 返回一个固定大小来指定 `Flow` 的大小。
@@ -6034,7 +6034,7 @@ class StackPositionedComponent extends StatelessWidget {
 
 2. 结果：
 
-![|387](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231023165229.png)
+![|387](attachments/Pasted%20image%2020231023165229.png)
 
 ## 7、对齐与相对定位（Align）
 
@@ -6128,7 +6128,7 @@ class AlignComponent extends StatelessWidget {
 
 3. 效果：
 
-![|375](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024110902.png)
+![|375](attachments/Pasted%20image%2020231024110902.png)
 
 4. 我们通过 `Alignment.topRight` 将控件定位在 `Container` 的右上角。那 `Alignment.topRight` 是什么呢？通过源码我们可以看到其定义如下
 
@@ -6173,7 +6173,7 @@ Align(
 
 8. 我们可以先想象一下运行效果：将 `Alignment(2,0.0)` 带入上述坐标转换公式，可以得到 FlutterLogo 的实际偏移坐标为`（90，30）`。实际运行如图所示
 
-![|218](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024111729.png)
+![|218](attachments/Pasted%20image%2020231024111729.png)
 
 ### ③、FractionalOffset
 
@@ -6203,7 +6203,7 @@ Container(
 
 5. 实际运行效果如图所示：
 
-![|178](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024112023.png)
+![|178](attachments/Pasted%20image%2020231024112023.png)
 
 6. 我们将 `FractionalOffset(0.2, 0.6)` 带入坐标转换公式得 FlutterLogo 实际偏移为`（12，36）`，和实际运行效果吻合。
 
@@ -6247,7 +6247,7 @@ DecoratedBox(
 
 4. 运行效果如图所示：
 
-![|516](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024123420.png)
+![|516](attachments/Pasted%20image%2020231024123420.png)
 
 ## 8、LayoutBuilder
 
@@ -6328,7 +6328,7 @@ class ResponsiveColumn extends StatelessWidget {
 
 4. 效果：
 
-![|375](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024134927.png)
+![|375](attachments/Pasted%20image%2020231024134927.png)
 
 ## 9、获取组件大小和坐标
 
@@ -6494,7 +6494,7 @@ class PaddingComponent extends StatelessWidget {
 
 2. 效果：
 
-![|353](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024142938.png)
+![|353](attachments/Pasted%20image%2020231024142938.png)
 
 ## 2、装饰容器（DecoratedBox）
 
@@ -6619,7 +6619,7 @@ class DecoratedBoxComponent extends StatelessWidget {
 
 2. 效果
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024143832.png)
+![|378](attachments/Pasted%20image%2020231024143832.png)
 
 ## 3、变换（Transform）
 
@@ -6697,7 +6697,7 @@ class TransformComponent extends StatelessWidget {
 
 3. 运行效果如图所示：
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024144245.png)
+![|378](attachments/Pasted%20image%2020231024144245.png)
 
 4. 关于矩阵变换的相关内容属于线性代数范畴，此处不做讨论；由于矩阵变化时发生在绘制时，而无需重新布局和构建等过程，所以性能很好
 
@@ -6785,7 +6785,7 @@ class TransformComponent extends StatelessWidget {
 
 2. 效果：
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024144728.png)
+![|378](attachments/Pasted%20image%2020231024144728.png)
 
 ### ③、旋转
 
@@ -6889,7 +6889,7 @@ class TransformComponent extends StatelessWidget {
 
 2. 效果：
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024145256.png)
+![|378](attachments/Pasted%20image%2020231024145256.png)
 
 ### ④、缩放
 
@@ -6996,7 +6996,7 @@ class TransformComponent extends StatelessWidget {
 
 2. 效果：
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024145418.png)
+![|378](attachments/Pasted%20image%2020231024145418.png)
 
 ### ⑤、Transform 注意事项
 
@@ -7070,7 +7070,7 @@ class Transform2Component extends StatelessWidget {
 
 2. 效果：
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024145718.png)
+![|378](attachments/Pasted%20image%2020231024145718.png)
 
 3. 由于第一个 `Text` 应用变换(放大)后，其在绘制时会放大，但其占用的空间依然为红色部分，所以第二个 `Text` 会紧挨着红色部分，最终就会出现文字重合。
 4. 由于矩阵变化只会作用在绘制阶段，所以在某些场景下，在 UI 需要变化时，可以直接通过矩阵变化来达到视觉上的 UI 改变，而不需要去重新触发 build 流程，这样会节省 layout 的开销，所以性能会比较好。
@@ -7101,7 +7101,7 @@ Row(
 
 4. 效果如图所示：
 
-![|314](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024145946.png)
+![|314](attachments/Pasted%20image%2020231024145946.png)
 
 5. 由于 `RotatedBox` 是作用于 `layout` 阶段，所以子组件会旋转 90 度（而不只是绘制的内容），`decoration` 会作用到子组件所占用的实际空间上，所以最终就是上图的效果，可以和前面 `Transform.rotat`e 示例对比理解
 
@@ -7216,7 +7216,7 @@ class ContainerComponent extends StatelessWidget {
 
 2. 效果：
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024150818.png)
+![|378](attachments/Pasted%20image%2020231024150818.png)
 
 3. 可以看到 `Container` 具备多种组件的功能，通过查看 `Container` 源码，我们会很容易发现它正是前面我们介绍过的多种组件组合而成。在 Flutter 中，Container 组件也正是组合优先于继承的实例
 
@@ -7344,7 +7344,7 @@ class ClipComponent extends StatelessWidget {
 
 3. 运行效果如图所示
 
-![|378](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024155529.png)
+![|378](attachments/Pasted%20image%2020231024155529.png)
 
 ### ②、自定义裁剪（CustomClipper）
 
@@ -7385,7 +7385,7 @@ DecoratedBox(
 
 4. 运行效果如图所示：
 
-![|186](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024155959.png)
+![|186](attachments/Pasted%20image%2020231024155959.png)
 
 5. 可以看到我们的剪裁成功了，但是图片所占用的空间大小仍然是 60×60（红色区域），这是因为组件大小是是在 layout 阶段确定的，而剪裁是在之后的绘制阶段进行的，所以不会影响组件的大小，这和 `Transform` 原理是相似的。
 6. `ClipPath` 可以按照自定义的路径实现剪裁，它需要自定义一个 `CustomClipper<Path>` 类型的 `Clipper`，定义方式和 `MyClipper` 类似，只不过 `getClip` 需要返回一个 `Path`，不再赘述。
@@ -7405,7 +7405,7 @@ Padding(
 
 2. 运行效果如图所示：
 
-![|696](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024160237.png)
+![|696](attachments/Pasted%20image%2020231024160237.png)
 
 3. 可以看到右边溢出了 45 像素。
 4. 上面只是一个例子，理论上我们经常会遇到子元素的大小超过他父容器的大小的情况，比如一张很大图片要在一个较小的空间显示，根据 Flutter 的布局协议，父组件会将自身的最大显示空间作为约束传递给子组件，子组件应该遵守父组件的约束，如果子组件原始大小超过了父组件的约束区域，则需要进行一些缩小、裁剪或其他处理，而不同的组件的处理方式是特定的，比如 `Text` 组件，如果它的父组件宽度固定，高度不限的话，则默认情况下 `Text` 会在文本到达父组件宽度的时候换行。
@@ -7459,7 +7459,7 @@ Widget wContainer(BoxFit boxFit) {
 
 5. 运行后效果如图所示：
 
-![|202](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231024160802.png)
+![|202](attachments/Pasted%20image%2020231024160802.png)
 
 6. 因为父 `Container` 要比子 `Container` 小，所以当没有指定任何适配方式时，子组件会按照其真实大小进行绘制，所以第一个蓝色区域会超出父组件的空间，因而看不到红色区域。
 7. 第二个我们指定了适配方式为 `BoxFit.contain`，含义是按照子组件的比例缩放，尽可能多的占据父组件空间，因为子组件的长宽并不相同，所以按照比例缩放适配父组件后，父组件能显示一部分。
@@ -7633,9 +7633,9 @@ class ScaffoldDrawerComponent extends StatelessWidget {
 
 7. 最终效果所示：
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025151616.png)
+![|362](attachments/Pasted%20image%2020231025151616.png)
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025151626.png)
+![|362](attachments/Pasted%20image%2020231025151626.png)
 
 8. 上面代码中我们用到了如下组件：
 
@@ -7686,7 +7686,7 @@ Scaffold(
 
 3. 代码运行效果如图所示：
 
-![|261](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025152040.png)
+![|261](attachments/Pasted%20image%2020231025152040.png)
 
 4. 代码中打开抽屉菜单的方法在 `ScaffoldState` 中，通过 `Scaffold.of(context)` 可以获取父级最近的 `Scaffold` 组件的 `State` 对象
 
@@ -7701,7 +7701,7 @@ Scaffold(
 1. 我们可以通过 `Scaffold` 的 `bottomNavigationBar` 属性来设置底部导航，如本节开始示例所示，我们通过 `Material` 组件库提供的 `BottomNavigationBar` 和 `BottomNavigationBarItem` 两种组件来实现 `Material` 风格的底部导航栏。
 2. 可以看到上面的实现代码非常简单，所以不再赘述，但是如果我们想实现如下图所示效果的底部导航栏应该怎么做呢？
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025152615.png)
+![|360](attachments/Pasted%20image%2020231025152615.png)
 
 3. `Material` 组件库中提供了一个 `BottomAppBar` 组件，它可以和 `FloatingActionButton` 配合实现这种“打洞”效果，源码如下：
 
@@ -7762,7 +7762,7 @@ floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 	3. `Sliver` 中对子组件（`RenderBox`）按需进行构建和布局，然后确认自身的位置、绘制等信息，保存在 `geometry` 中（一个 `SliverGeometry` 类型的对象）。
 9. 比如有一个 `ListView`，大小撑满屏幕，假设它有 100 个列表项（都是 `RenderBox`）且每个列表项高度相同，结构如图所示：
 
-![|530](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025153857.png)
+![|530](attachments/Pasted%20image%2020231025153857.png)
 
 10. 图中白色区域为设备屏幕，也是 `Scrollable` 、 `Viewport` 和 `Sliver` 所占用的空间，三者所占用的空间重合
 11. 父子关系为：`Sliver` 父组件为 `Viewport`，`Viewport` 的 父组件为 `Scrollable` 。
@@ -7980,7 +7980,7 @@ class SingleChildScrollViewComponent extends StatelessWidget {
 
 2. 效果：
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025162350.png)
+![|362](attachments/Pasted%20image%2020231025162350.png)
 
 ## 3、ListView 列表组件
 
@@ -8162,7 +8162,7 @@ class ListViewBuilderComponent extends StatelessWidget {
 
 3. 运行效果如图所示：
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025164241.png)
+![|362](attachments/Pasted%20image%2020231025164241.png)
 
 ### ③、ListView.separated 分割组件
 
@@ -8245,7 +8245,7 @@ class ListViewBuilderComponent extends StatelessWidget {
 
 3. 运行效果如图所示：
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231025164940.png)
+![|362](attachments/Pasted%20image%2020231025164940.png)
 
 ### ④、ListView 原理
 
@@ -8365,9 +8365,9 @@ class _InfiniteListViewComponentState extends State<InfiniteListViewComponent> {
 
 3. 运行后效果如图所示：
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231106100141.png)
+![|362](attachments/Pasted%20image%2020231106100141.png)
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231106100150.png)
+![|362](attachments/Pasted%20image%2020231106100150.png)
 
 ### ⑦、表头
 
@@ -8500,7 +8500,7 @@ class _HeaderListViewComponentState extends State<HeaderListViewComponent> {
 
 3. 效果：
 
-![|361](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231106165957.png)
+![|361](attachments/Pasted%20image%2020231106165957.png)
 
 ## 4、滚动监听及控制
 
@@ -8708,9 +8708,9 @@ class _ScrollControllerComponentState extends State<ScrollControllerComponent> {
 
 4. 结果
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231107124424.png)
+![|362](attachments/Pasted%20image%2020231107124424.png)
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231107124432.png)
+![|362](attachments/Pasted%20image%2020231107124432.png)
 
 #### Ⅲ、滚动位置恢复
 
@@ -9001,7 +9001,7 @@ class _ScrollNotificationComponentState extends State<ScrollNotificationComponen
 
 2. 效果：
 
-![|369](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231108143721.png)
+![|369](attachments/Pasted%20image%2020231108143721.png)
 
 ## 5、AnimatedList 动画列表组件
 
@@ -9328,7 +9328,7 @@ class SliverGridDelegateWithFixedCrossAxisCountComponent extends StatelessWidget
 ```
 5. 效果：
 
-![|363](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231113150724.png)
+![|363](attachments/Pasted%20image%2020231113150724.png)
 
 ### ③、SliverGridDelegateWithMaxCrossAxisExtent
 
@@ -9435,7 +9435,7 @@ class SliverGridDelegateWithMaxCrossAxisExtentComponent extends StatelessWidget 
 
 3. 效果
 
-![|363](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231113152404.png)
+![|363](attachments/Pasted%20image%2020231113152404.png)
 
 ### ④、GridView.count
 
@@ -9608,7 +9608,7 @@ class _GridViewBuilderComponentState extends State<GridViewBuilderComponent> {
 
 6. 效果：
 
-![|363](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231113160015.png)
+![|363](attachments/Pasted%20image%2020231113160015.png)
 
 ## 7、PageView 与页面缓存
 
@@ -9716,7 +9716,7 @@ class _PageComponentState extends State<PageComponent> {
 
 2. 效果
 
-![|362](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画.gif)
+![|362](attachments/动画.gif)
 
 ### ③、页面缓存
 
@@ -9860,11 +9860,11 @@ class _AutomaticKeepAliveComponentState extends State<AutomaticKeepAliveComponen
 
 2. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画%201.gif)
+![|700](attachments/动画%201.gif)
 
 3. 代码很简单，我们只需要提供一个 `wantKeepAlive`，它会表示 `AutomaticKeepAlive` 是否需要缓存当前列表项；另外我们必须在 `build` 方法中调用一下 `super.build(context)`，该方法实现在 `AutomaticKeepAliveClientMixin` 中，功能就是根据当前 `wantKeepAlive` 的值给 `AutomaticKeepAlive` 发送消息，`AutomaticKeepAlive` 收到消息后就会开始工作，如图所示：
 
-![|600](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231114101153.png)
+![|600](attachments/Pasted%20image%2020231114101153.png)
 
 4. 需要注意，如果我们采用 `PageView.custom` 构建页面时没有给列表项包装 `AutomaticKeepAlive` 父组件，则上述方案不能正常工作，因为此时 `Client` 发出消息后，找不到 `Server`，404 了
 
@@ -9891,7 +9891,7 @@ TabBarView({
 
 1. `TabBar` 为 `TabBarView` 的导航标题，如图所示：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231114102651.png)
+![|700](attachments/Pasted%20image%2020231114102651.png)
 
 2. `TabBar` 有很多配置参数，通过这些参数我们可以定义 `TabBar` 的样式，很多属性都是在配置 `indicator` 和 `label`，拿上图来举例，`Label` `是每个Tab` 的文本，`indicator` 指 “历史” 下面的白色下划线。
 
@@ -10055,7 +10055,7 @@ class _TabBarViewComponentState extends State<TabBarViewComponent> with SingleTi
 
 2. 效果
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画1.gif)
+![|415](attachments/动画1.gif)
 
 ### ④、使用默认控制器
 
@@ -10214,7 +10214,7 @@ class _CustomScrollView1ComponentState extends State<CustomScrollView1Component>
 
 3. 运行效果如图所示：
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画2.gif)
+![|415](attachments/动画2.gif)
 
 4. 页面中有两个 `ListView`，各占可视区域一半高度，虽然能够显式出来，但每一个 `ListView` 只会响应自己可视区域中滑动，实现不了我们想要的效果。
 5. 之所以会这样的原因是两个 `ListView` 都有自己独立的 `Scrollable` 、 `Viewport` 和 `Sliver`，既然如此，我们自己创建一个共用的 `Scrollable` 和 `Viewport` 对象，然后再将两个 `ListView` 对应的 `Sliver` 添加到这个共用的 `Viewport` 对象中就可以实现我们想要的效果了。
@@ -10319,11 +10319,11 @@ class _CustomScrollView2ComponentState extends State<CustomScrollView2Component>
 
 7. 效果：
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画3.gif)
+![|415](attachments/动画3.gif)
 
 8. 综上，`CustomScrollView` 的主要功能是提供一个公共的 `Scrollable` 和 `Viewport`，来组合多个 `Sliver`，`CustomScrollView` 的结构如图所示：
 
-![|600](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231114145921.png)
+![|600](attachments/Pasted%20image%2020231114145921.png)
 
 ### ②、Flutter 中常用的 Sliver
 
@@ -10427,9 +10427,9 @@ Material(
 
 5. 运行效果如图所示：
 
-![|320](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231114150955.png)
+![|320](attachments/Pasted%20image%2020231114150955.png)
 
-![|320](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231114151004.png)
+![|320](attachments/Pasted%20image%2020231114151004.png)
 
 ### ④、SliverToBoxAdapter
 
@@ -10503,7 +10503,7 @@ class _SliverToBoxAdapterComponentState extends State<SliverToBoxAdapterComponen
 
 2. 效果：
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画4.gif)
+![|415](attachments/动画4.gif)
 
 3. 注意，上面的代码是可以正常运行的，但是如果将 `PageView` 换成一个滑动方向和 `CustomScrollView` 一致的 `ListView` 则不会正常工作！
 4. 原因是：`CustomScrollView` 组合 `Sliver` 的原理是为所有子 `Sliver` 提供一个共享的 `Scrollable`，然后统一处理指定滑动方向的滑动事件，如果 `Sliver` 中引入了其他的 `Scrollable`，则滑动事件便会冲突。
@@ -10754,7 +10754,7 @@ class _SliverPersistentHeaderComponentState extends State<SliverPersistentHeader
 
 #### Ⅱ、效果
 
-![|415](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画5.gif)
+![|415](attachments/动画5.gif)
 
 #### Ⅲ、一些注意点
 
@@ -10873,7 +10873,7 @@ class _WillPopScopeComponentState extends State<WillPopScopeComponent> {
 
 4. 效果：
 
-![|409](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画6.gif)
+![|409](attachments/动画6.gif)
 
 ## 2、数据共享（InheritedWidget）
 
@@ -11042,7 +11042,7 @@ class MyApp extends StatelessWidget {
 
 6. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画7.gif)
+![|700](attachments/动画7.gif)
 
 ### ③、didChangeDependencies 注意事项
 
@@ -11395,7 +11395,7 @@ class _ProviderRouteState extends State<ProviderRoute> {
 
 5. 运行示例后效果如图所示：
 
-![|423](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画11.gif)
+![|423](attachments/动画11.gif)
 
 #### Ⅲ、说明
 
@@ -11404,7 +11404,7 @@ class _ProviderRouteState extends State<ProviderRoute> {
 3. 由于购物车数据是通常是会在整个 APP 中共享的，比如会跨路由共享。如果我们将 `ChangeNotifierProvider` 放在整个应用的 Widget 树的根上，那么整个 APP 就可以共享购物车的数据了，这时 `ChangeNotifierProvider` 的优势将会非常明显。
 4. 虽然上面的例子比较简单，但它却将 Provider 的原理和流程体现的很清楚，下图是 Provider 的原理图：
 
-![|500](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231116144523.png)
+![|500](attachments/Pasted%20image%2020231116144523.png)
 
 5. Model 变化后会自动通知 `ChangeNotifierProvider`（订阅者），`ChangeNotifierProvider` 内部会重新构建 `InheritedWidget`，而依赖该 `InheritedWidget` 的子孙 Widget 就会更新。
 6. 我们可以发现使用 Provider，将会带来如下收益：
@@ -11787,7 +11787,7 @@ static const int _bluePrimaryValue = 0xFF2196F3;
 
 4. 我们可以根据 shadeXX 来获取具体索引的颜色。`Colors.blue.shade50` 到 `Colors.blue.shade900` 的色值从浅蓝到深蓝渐变，效果如图所示：
 
-![|320](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231117150148.png)
+![|320](attachments/Pasted%20image%2020231117150148.png)
 
 ### ③、主题（Theme）
 
@@ -11918,7 +11918,7 @@ class _ThemeTestRouteState extends State<ThemeTestRoute> {
 
 2. 运行后点击右下角悬浮按钮则可以切换主题，如图所示：
 
-![|412](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画12.gif)
+![|412](attachments/动画12.gif)
 
 3. 可以通过局部主题覆盖全局主题，正如代码中通过 `Theme` 为第二行图标指定固定颜色（黑色）一样，这是一种常用的技巧，Flutter 中会经常使用这种方法来自定义子树主题。那么为什么局部主题可以覆盖全局主题？这主要是因为 widget 中使用主题样式时是通过 `Theme.of(BuildContext context)` 来获取的，我们看看其简化后的代码：
 
@@ -12072,7 +12072,7 @@ class _ValueListenableState extends State<ValueListenableRoute> {
 
 2. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画14.gif)
+![|700](attachments/动画14.gif)
 
 3. 可以看见，功能正常实现了，同时控制台只在页面打开时 build 了一次，点击 + 按钮的时候只是`ValueListenableBuilder` 重新构建了子组件树，而整个页面并没有重新 build ，因此日志面板只打印了一次  build  。
 4. 因此尽可能让 `ValueListenableBuilder` 只构建依赖数据源的 `widget`，这样的话可以缩小重新构建的范围，也就是说 `ValueListenableBuilder` 的拆分粒度应该尽可能细。
@@ -12248,7 +12248,7 @@ class _FutureBuilderComponentState extends State<FutureBuilderComponent> {
 
 4. 效果：
 
-![|413](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画15.gif)
+![|413](attachments/动画15.gif)
 
 5. 注意：示例的代码中，每次组件重新 build 都会重新发起请求，因为每次的 `future` 都是新的，实践中我们通常会有一些缓存策略，常见的处理方式是在 `future` 成功后将 `future` 缓存，这样下次 build 时，就不会再重新发起异步任务。
 6. 上面代码中我们在 builder 中根据当前异步任务状态 `ConnectionState` 来返回不同的 widget。`ConnectionState` 是一个枚举类，定义如下：
@@ -12393,7 +12393,7 @@ class _StreamBuilderComponentState extends State<StreamBuilderComponent> {
 
 3. 效果：
 
-![|413](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画16.gif)
+![|413](attachments/动画16.gif)
 
 ## 7、对话框详解
 
@@ -12546,7 +12546,7 @@ class _AlertDialogComponentState extends State<AlertDialogComponent> {
 
 3. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画17.gif)
+![|700](attachments/动画17.gif)
 
 4. 示例运行后，我们点击对话框“取消”按钮或遮罩，控制台就会输出"点击了取消"，如果点击“确定”按钮，控制台就会输出"点击了确定"。
 5. 注意：如果 `AlertDialog` 的内容过长，内容将会溢出，这在很多时候可能不是我们期望的，所以如果对话框内容过长时，可以用 `SingleChildScrollView` 将内容包裹起来。
@@ -12687,7 +12687,7 @@ class _SimpleDialogComponentState extends State<SimpleDialogComponent> {
 
 3. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画18.gif)
+![|700](attachments/动画18.gif)
 
 4. 列表项组件我们使用了 `SimpleDialogOption` 组件来包装了一下，它相当于一个 `TextButton`，只不过按钮文案是左对齐的，并且 `padding` 较小
 
@@ -12847,7 +12847,7 @@ class _DialogComponentState extends State<DialogComponent> {
 
 5. 运行效果如图所示：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画19.gif)
+![|700](attachments/动画19.gif)
 
 ### ②、对话框打开动画及遮罩
 
@@ -13077,7 +13077,7 @@ class _CustomDialogViewComponentState extends State<CustomDialogViewComponent> {
 
 10. 效果：
 
-![|411](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画20.gif)
+![|411](attachments/动画20.gif)
 
 ### ③、对话框实现原理
 
@@ -13117,7 +13117,7 @@ Future<T?> showGeneralDialog<T extends Object?>({
 1. 我们在用户选择删除一个文件时，会询问是否删除此文件；在用户选择一个文件夹是，应该再让用户确认是否删除子文件夹。
 2. 为了在用户选择了文件夹时避免二次弹窗确认是否删除子目录，我们在确认对话框底部添加一个“同时删除子目录？”的复选框，如图所示：
 
-![|320](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231121132353.png)
+![|320](attachments/Pasted%20image%2020231121132353.png)
 
 3. 现在就有一个问题：如何管理复选框的选中状态？习惯上，我们会在路由页的 `State` 中来管理选中状态，我们可能会写出如下这样的代码：
 
@@ -13413,7 +13413,7 @@ class _AlertDialogCheckboxComponentState extends State<AlertDialogCheckboxCompon
 
 6. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画21.gif)
+![|700](attachments/动画21.gif)
 
 #### Ⅲ、使用 StatefulBuilder 方法
 
@@ -14027,7 +14027,7 @@ class _ShowModalBottomSheetComponentState extends State<ShowModalBottomSheetComp
 
 4. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画22.gif)
+![|700](attachments/动画22.gif)
 
 #### Ⅱ、Loading 框
 
@@ -14160,7 +14160,7 @@ class _LoadingDialogComponentState extends State<LoadingDialogComponent> {
 
 4. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画23.gif)
+![|700](attachments/动画23.gif)
 
 #### Ⅲ、日历选择器 Material 风格
 
@@ -14277,7 +14277,7 @@ class _ShowDatePickerComponentState extends State<ShowDatePickerComponent> {
 
 4. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画24.gif)
+![|700](attachments/动画24.gif)
 
 #### Ⅳ、日历选择器 iOS 风格
 
@@ -14433,7 +14433,7 @@ class _ShowCupertinoModalPopupComponentState extends State<ShowCupertinoModalPop
 
 4. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画25.gif)
+![|700](attachments/动画25.gif)
 
 # 八、事件处理与通知
 
@@ -14567,7 +14567,7 @@ class _ListenerComponentState extends State<ListenerComponent> {
 
 5. 效果：
 
-![|419](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画26.gif)
+![|419](attachments/动画26.gif)
 
 6. 指在蓝色矩形区域内移动即可看到当前指针偏移，当触发指针事件时，参数 `PointerDownEvent`、 `PointerMoveEvent`、 `PointerUpEvent` 都是 `PointerEvent` 的子类，`PointerEvent` 类中包括当前指针的一些信息，注意 Pointer，即“指针”， 指事件的触发者，可以是鼠标、触摸板、手指。
 7. 如：
@@ -14706,7 +14706,7 @@ class _GestureDetector1ComponentState extends State<GestureDetector1Component> {
 
 4. 效果：
 
-![|439](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画27.gif)
+![|439](attachments/动画27.gif)
 
 5. 在模拟器上检测不到双击双击事件，上面的效果图是我连接手机测试的
 6. 注意： 当同时监听 `onTap` 和 `onDoubleTap` 事件时，当用户触发 `tap` 事件时，会有 200 毫秒左右的延时，这是因为当用户点击完之后很可能会再次点击以触发双击事件，所以 `GestureDetector` 会等一段时间来确定是否为双击事件。如果用户只监听了 `onTap`（没有监听 `onDoubleTap`）事件时，则没有延时
@@ -14832,7 +14832,7 @@ class _GestureDetector2ComponentState extends State<GestureDetector2Component> {
 
 6. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画28.gif)
+![|700](attachments/动画28.gif)
 
 #### Ⅲ、缩放
 
@@ -14923,7 +14923,7 @@ class _GestureDetector3ComponentState extends State<GestureDetector3Component> {
 
 4. 效果：
 
-![|439](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画29.gif)
+![|439](attachments/动画29.gif)
 
 ### ②、GestureRecognizer 针事件转换
 
@@ -15037,7 +15037,7 @@ class _GestureRecognizerComponentState extends State<GestureRecognizerComponent>
 
 6. 效果：
 
-![|412](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画30.gif)
+![|412](attachments/动画30.gif)
 
 7. 注意：使用 `GestureRecognizer` 后一定要调用其 `dispose()` 方法来释放资源（主要是取消内部的计时器）。
 
@@ -15964,7 +15964,7 @@ class LoginComponent extends StatelessWidget {
 
 7. 效果：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画31.gif)
+![|700](attachments/动画31.gif)
 
 ## 6、通知 Notification
 
@@ -16111,7 +16111,7 @@ class MyNotification extends Notification {
 5. 注意：代码中注释的部分是不能正常工作的，因为这个 `context` 是根 Context，而 `NotificationListener` 是监听的子树，所以我们通过 Builder 来构建 `ElevatedButton`，来获得按钮位置的 `context`。
 6. 运行效果如图所示：
 
-![|260](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231128145714.png)
+![|260](attachments/Pasted%20image%2020231128145714.png)
 
 ### ③、阻止通知冒泡
 
@@ -16366,7 +16366,7 @@ class _FileOperationComponentState extends State<FileOperationComponent> {
 
 5. 效果：
 
-![|401](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画32.gif)
+![|401](attachments/动画32.gif)
 
 6. 上面代码比较简单，不再赘述，需要说明的是，本示例只是为了演示文件读写，而在实际开发中，如果要存储一些简单的数据，使用 `shared_preferences` 插件会比较简单。
 
@@ -16561,7 +16561,7 @@ class _HttpClientComponentState extends State<HttpClientComponent> {
 
 3. 效果：
 
-![|401](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画33.gif)
+![|401](attachments/动画33.gif)
 
 ### ③、HttpClient 配置
 
@@ -16582,7 +16582,7 @@ class _HttpClientComponentState extends State<HttpClientComponent> {
 
 1. Http 协议的认证（Authentication）机制可以用于保护非公开资源。如果 Http 服务器开启了认证，那么用户在发起请求时就需要携带用户凭据，如果你在浏览器中访问了启用 Basic 认证的资源时，浏览就会弹出一个登录框，如图：
 
-![|400](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231129132448.png)
+![|400](attachments/Pasted%20image%2020231129132448.png)
 
 2. 我们先看看 Basic 认证的基本过程：
 3. 客户端发送 http 请求给服务器，服务器验证该用户是否已经登录验证过了，如果没有的话，  服务器会返回一个401 Unauthozied 给客户端，并且在响应 header 中添加一个 “WWW-Authenticate” 字段，例如：
@@ -16894,7 +16894,7 @@ class _HttpDioComponentState extends State<HttpDioComponent> {
 
 3. 效果：
 
-![|401](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画33.gif)
+![|401](attachments/动画33.gif)
 
 ## 4、使用 WebSockets
 
@@ -17182,7 +17182,7 @@ class _WebSocketsComponentState extends State<WebSocketsComponent> {
 
 3. 效果：
 
-![|395](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画34.gif)
+![|395](attachments/动画34.gif)
 
 4. 上面的例子比较简单，不再赘述。我们现在思考一个问题，假如我们想通过 WebSocket 传输二进制数据应该怎么做（比如要从服务器接收一张图片）？
 5. 我们发现 `StreamBuilder` 和 `Stream` 都没有指定接收类型的参数，并且在创建 WebSocket 链接时也没有相应的配置，貌似没有什么办法……
@@ -17236,7 +17236,7 @@ class SocketRoute extends StatelessWidget {
 2. 可以看到，使用 Socket 需要我们自己实现 Http 协议（需要自己实现和服务器的通信过程），本例只是一个简单示例，没有处理重定向、cookie 等。
 3. 运行后效果如图所示：
 
-![|360](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231201144144.png)
+![|360](attachments/Pasted%20image%2020231201144144.png)
 
 4. 可以看到响应内容分两个部分，第一部分是响应头，第二部分是响应体，服务端可以根据请求信息动态来输出响应体。
 5. 由于本示例请求头比较简单，所以响应体和浏览器中访问的会有差别，可以补充一些请求头(如user-agent)来看看输出的变化。
@@ -17432,7 +17432,7 @@ flutter packages pub run build_runner watch
 
 1. idea 安装 FlutterJsonBeanFactory 插件
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231215092814.png)
+![](attachments/Pasted%20image%2020231215092814.png)
 
 2. 获得一个 json：http://101.200.86.248:9001/hello/helloTest
 
@@ -17446,22 +17446,22 @@ flutter packages pub run build_runner watch
 
 3. 当然可以选择把这个 json 存起来，保证以后能找到
 
-![|382](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231215093430.png)
+![|382](attachments/Pasted%20image%2020231215093430.png)
 
 4. 在想要生成的目录上右键 -> 新建 -> JsonToDartBeanAction
 
-![|530](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231215095553.png)
+![|530](attachments/Pasted%20image%2020231215095553.png)
 
 5. 在弹出的窗口中输入想要生成的类名和 `json` 字符串；左下角有个 `null-able` ，如果勾选，表示我们创建的类的属性都是可空的；如果没有勾选，则生成的是不可空的
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231215095654.png)
+![|700](attachments/Pasted%20image%2020231215095654.png)
 
 6. 点击 Make ，开始将我们输入的 Json 转换为类
 	1. 生成的类名，会将我们的输入的类名，再加上 Entity 后缀；
 	2. 会生成一个 `generated` 目录，里面包含了最终产物和中间产物；
 	3. 插件也是用了 `json_serializable` 这样的库或原理；
 
-![|543](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231215095945.png)
+![|543](attachments/Pasted%20image%2020231215095945.png)
 
 7. 生成的文件中：
 	1. `json_convert_content.dart` 和 `json_field.dart` 是用于 JSON 序列化和反序列化的基础类
@@ -17567,7 +17567,7 @@ class _HttpDioJsonComponentState extends State<HttpDioJsonComponent> {
 
 9. 效果：
 
-![|356](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画1%201.gif)
+![|356](attachments/动画1%201.gif)
 
 ## <span id="9-9">9、使用 `shared_preferences` 包数据持久化</span>
 
@@ -17763,7 +17763,7 @@ class _SharedPreferencesExampleState extends State<SharedPreferencesExample> {
 
 7. 效果展示
 
-![|555](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231215104352.png)
+![|555](attachments/Pasted%20image%2020231215104352.png)
 
 8. 获取持久化数据中所有存入的 key
 
@@ -18060,7 +18060,7 @@ class _ScaleAnimationComponentState extends State<ScaleAnimationComponent> with 
 
 3. 效果：
 
-![|386](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画35.gif)
+![|386](attachments/动画35.gif)
 
 4. 上面代码中 `addListener()` 函数调用了 `setState()`，所以每次动画生成一个新的数字时，当前帧被标记为脏(dirty)，这会导致 widget 的 `build()` 方法再次被调用
 5. 而在 `build()` 中，改变 Image 的宽高，因为它的高度和宽度现在使用的是 `animation.value`，所以就会逐渐放大。
@@ -18095,7 +18095,7 @@ class _ScaleAnimationComponentState extends State<ScaleAnimationComponent> with 
 
 2. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画36.gif)
+![](attachments/动画36.gif)
 
 #### Ⅱ、使用 AnimatedWidget 简化
 
@@ -18479,7 +18479,7 @@ class _GrowTransitionStatusListenerComponentState extends State<GrowTransitionSt
 
 7. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画37.gif)
+![](attachments/动画37.gif)
 
 ## 3、自定义路由切换动画
 
@@ -18687,7 +18687,7 @@ class FadeRouteSettingComponent extends StatelessWidget {
 
 4. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画38.gif)
+![](attachments/动画38.gif)
 
 5. 虽然上面的两种方法都可以实现自定义切换动画，但实际使用时应优先考虑使用 `PageRouteBuilder`，这样无需定义一个新的路由类，使用起来会比较方便。但是有些时候 `PageRouteBuilder` 是不能满足需求的，例如在应用过渡动画时我们需要读取当前路由的一些属性，这时就只能通过继承 `PageRoute` 的方式了
 6. 举个例子，假如我们只想在打开新路由时应用动画，而在返回时不使用动画，那么我们在构建过渡动画时就必须判断当前路由 `isActive` 属性是否为 `true`，代码如下：
@@ -18715,7 +18715,7 @@ Widget buildTransitions(BuildContext context, Animation<double> animation,
 
 1. 比如现在有一个头像组件，初始的时候是一个圆形的小图，我们想实现点击后查看大图的功能，为了有较好的体验，小图变成大图和大图变回小图时我们分别执行一个“飞行”过渡动画，效果如图所示：
 
-![|346](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/9-2.2ae3da70.gif)
+![|346](attachments/9-2.2ae3da70.gif)
 
 2. 要实现上面的动画效果，最简单的方式就是使用 Flutter 的 Hero 动画，但是为了理解 Hero 动画原理，先不使用 Hero 动画，而是通过之前章节所学的知识来实现一下这个效果。
 3. 简单分析后有一个思路：首先我们先确定小图和大图的位置和大小，动画的话用一个 Stack，然后通过 Positioned 来设置每一帧的组件位置和大小，实现如下：
@@ -19041,7 +19041,7 @@ class HeroSettingComponent extends StatelessWidget {
 
 8. 效果：
 
-![|365](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画39.gif)
+![|365](attachments/动画39.gif)
 
 9. 我们可以看到，实现 Hero 动画只需要用 Hero 组件将要共享的 widget 包装起来，并提供一个相同的 tag 即可，中间的过渡帧都是 Flutter 框架自动完成的。必须要注意， 前后路由页的共享 Hero 的 <font color="#ff0000">tag</font> 必须是相同的，Flutter 框架内部正是通过 tag 来确定新旧路由页 widget 的对应关系的。
 10. Hero 动画的原理比较简单，Flutter 框架知道新旧路由页中共享元素的位置和大小，所以根据这两个端点，在动画执行过程中求出过渡时的插值（中间态）即可，而感到幸运的是，这些事情不需要我们自己动手，Flutter 已经帮我们做了，实际上，Flutter Hero 动画的实现原理和我们在本章开始自实现的原理是差不多的，有兴趣可以去看 Hero 动画相关的源码。
@@ -19232,7 +19232,7 @@ class _StaggerRouteComponentState extends State<StaggerRouteComponent> with Tick
 
 3. 效果：
 
-![|365](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画40.gif)
+![|365](attachments/动画40.gif)
 
 ## 6、动画切换组件（AnimatedSwitcher）
 
@@ -19358,7 +19358,7 @@ class _AnimatedSwitcherCounterRouteState extends State<AnimatedSwitcherCounterRo
 
 3. 效果：
 
-![|386](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画41.gif)
+![|386](attachments/动画41.gif)
 
 4. 注意：`AnimatedSwitcher` 的新旧 `child`，如果类型相同，则 `Key` 必须不相等
 
@@ -19478,7 +19478,7 @@ AnimatedSwitcher(
 
 5. 运行后，我截取动画执行过程中的一帧，如图所示：
 
-![|295](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231207095229.png)
+![|295](attachments/Pasted%20image%2020231207095229.png)
 
 6. 上图中 “0” 从左侧滑出，而 “1” 从右侧滑入。
 7. 可以看到，我们通过这种巧妙的方式实现了类似路由进场切换的动画，实际上 Flutter 路由切换也正是通过 `AnimatedSwitcher` 来实现的。
@@ -19569,7 +19569,7 @@ AnimatedSwitcher(
 
 4. 运行后如图所示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/9-2.2ae3da70%201.gif)
+![](attachments/9-2.2ae3da70%201.gif)
 
 5. 上图中 “0” 从底部滑出，而 “1” 从顶部滑入。可以尝试给 `SlideTransitionX` 的 `direction` 取不同的值来查看运行效果。
 
@@ -19758,7 +19758,7 @@ class _AnimatedDecoratedComponentState extends State<AnimatedDecoratedComponent>
 
 3. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画42.gif)
+![](attachments/动画42.gif)
 
 4. 点击后，按钮背景色会从蓝色向红色过渡。上面的代码虽然实现了我们期望的功能，但是代码却比较复杂。
 5. 稍加思考后，我们就可以发现，`AnimationController` 的管理以及 `Tween` 更新部分的代码都是可以抽象出来的，如果我们这些通用逻辑封装成基类，那么要实现动画过渡组件只需要继承这些基类，然后定制自身不同的代码（比如动画每一帧的构建方法）即可，这样将会简化代码。
@@ -20119,7 +20119,7 @@ class _AnimatedWidgetsTestState extends State<AnimatedWidgetsTest> {
 
 3. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画43.gif)
+![](attachments/动画43.gif)
 
 # 十一、自定义组件
 
@@ -20321,7 +20321,7 @@ class _GradientButtonRouteState extends State<GradientButtonRoute> {
 
 2. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画44.gif)
+![](attachments/动画44.gif)
 
 ## 3、组合实例旋转动画：TurnBox
 
@@ -20472,7 +20472,7 @@ class _TurnBoxRouteState extends State<TurnBoxRoute> {
 
 5. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画46.gif)
+![](attachments/动画46.gif)
 
 ### ③、
 
@@ -20661,7 +20661,7 @@ dependencies:
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214135012.png)
+![](attachments/Pasted%20image%2020231214135012.png)
 
 3. 执行命令：`flutter pub global run intl_utils:generate`，使得 `intl` 包根据上面的语言文件生成代码：
 	1. `intl` 目录：这个目录包含了 Dart 代码文件，用于处理应用程序的国际化（Internationalization），其中的文件包括：
@@ -20670,7 +20670,7 @@ dependencies:
 		3. `messages_zh.dart`：这个文件包含了中文（Chinese）本地化消息的定义和静态方法。
 	2. `l10n.dart` 文件：这个文件是一个便捷的导出文件，用于导出 `messages_all.dart` 中的 `initializeMessages` 函数和 `Messages` 类，以便在应用程序中使用
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214135903.png)
+![](attachments/Pasted%20image%2020231214135903.png)
 
 4. 修改主启动类 `main.dart` 文件中的 `MaterialApp` 组件，添加 `localizationsDelegates` 和 `supportedLocales` 属性：
 	1. 与 `MaterialApp` 类为入口的应用不同，对基于 `WidgetsApp` 类为入口的应用程序进行国际化时，不需要 `GlobalMaterialLocalizations.delegate`
@@ -20770,7 +20770,7 @@ class LocalizationsComponent extends StatelessWidget {
 
 6. 效果：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/动画47.gif)
+![](attachments/动画47.gif)
 
 ### ③、获取当前区域 Locale
 
@@ -20820,7 +20820,7 @@ Locale Function(List<Locale> locales, Iterable<Locale> supportedLocales)
 
 9. 在较新的 Android 系统中，用户可以设置一个语言列表，这样一来，支持多语言的应用就会得到这个列表，应用通常的处理方式就是按照列表的顺序依次尝试加载相应的 Locale，如果某一种语言加载成功则会停止。下图是 Android 系统中设置语言列表的截图
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214152525.png)
+![](attachments/Pasted%20image%2020231214152525.png)
 
 10. 在 Flutter 中，应该优先使用 `localeListResolutionCallback`，当然你不必担心 Android 系统的差异性，如果在低版本的 Android 系统中， Flutter 会自动处理这种情况，这时 Locale 列表只会包含一项
 
@@ -20953,7 +20953,7 @@ localeListResolutionCallback:
 2. Element 就是 Widget 在 UI 树具体位置的一个实例化对象，大多数 Element 只有唯一的 `renderObject`，但还有一些 Element 会有多个子节点，如继承自 `RenderObjectElement` 的一些类，比如 `MultiChildRenderObjectElement`。最终所有 Element 的 `RenderObject` 构成一棵树，我们称之为”Render Tree“即”渲染树“。
 3. 总结一下，我们可以认为 Flutter 的 UI 系统包含三棵树：Widget 树、Element 树、渲染树。他们的依赖关系是：Element 树根据 Widget 树生成，而渲染树又依赖于 Element 树，如图所示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214094057.png)
+![](attachments/Pasted%20image%2020231214094057.png)
 
 4. 现在我们重点看一下 Element，Element 的生命周期如下：
 	1. Framework 调用 `Widget.createElement` 创建一个 Element 实例，记为 `element`
@@ -21061,9 +21061,9 @@ class CustomHome extends Widget {
 
 8. 现在就可以将 `CustomHome` 添加到 widget 树了，我们在一个新路由页创建它，最终效果如下如图所示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214104401.png)
+![](attachments/Pasted%20image%2020231214104401.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214104406.png)
+![](attachments/Pasted%20image%2020231214104406.png)
 
 9. 点击按钮则按钮文本会随机排序。
 10. 对于问题 2，答案当然也是肯定的，Flutter 引擎提供的 API 是原始且独立的，这个与操作系统提供的 API 类似，上层 UI 框架设计成什么样完全取决于设计者，完全可以将 UI 框架设计成 Android 风格或 iOS 风格，但这些事 Google 不会再去做，我们也没必要再去搞这一套，这是因为响应式的思想本身是很棒的，之所以提出这个问题，是因为做与不做是一回事，但知道能不能做是另一回事，这能反映出我们对知识的理解程度。
@@ -21421,7 +21421,7 @@ void update(VoidCallback fn) {
 
 1. 本节介绍了 Flutter App 从启动到显示到屏幕上的主流程，重点是 Flutter 的渲染流程，如图：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231214124830.png)
+![](attachments/Pasted%20image%2020231214124830.png)
 
 2. 需要说明的是 build 过程和 layout 过程是可以交替执行的，这个我们在介绍 LayoutBuilder 一节时已经解释过了。
 3. 我们需要对整个渲染流程有个大概印象，后面我们会详细介绍，不过在深入介绍渲染管线之前，我们得仔细的了解一下 `Element` 、`BuildContext` 和 `RenderObject` 三个类。
@@ -21513,38 +21513,38 @@ flutter pub run flutter_launcher_icons:main
 
 - 问题：提示守护进程被终止，同时左上角选择设备的下拉框消失
 
-![|291](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231103100144.png)
+![|291](attachments/Pasted%20image%2020231103100144.png)
 
 ### ②、解决：
 
 1. 在工具栏上添加一个功能控件：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122085721.png)
+![|700](attachments/Pasted%20image%2020231122085721.png)
 
 2. 添加方法为：
 3. 右键工具栏，选择自定义工具栏
 
-![|253](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122085759.png)
+![|253](attachments/Pasted%20image%2020231122085759.png)
 
 4. 选择一个控件，新添加的控件会出现在他的后面
 
-![|584](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122090035.png)
+![|584](attachments/Pasted%20image%2020231122090035.png)
 
 5. 点击上方的 `+` 号，然后选择添加操作
 
-![|584](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122090113.png)
+![|584](attachments/Pasted%20image%2020231122090113.png)
 
 6. 搜索 `Refresh`，或者选择：`插件 -> Flutter -> Refresh`，选择后，点击确定
 
-![|557](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122090351.png)
+![|557](attachments/Pasted%20image%2020231122090351.png)
 
 7. 此时就会多出来选择的 `Refresh`
 
-![|584](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122090430.png)
+![|584](attachments/Pasted%20image%2020231122090430.png)
 
 8. 点击确定关闭弹窗，工具栏就会多出一个 `Refresh`
 
-![|566](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231122090522.png)
+![|566](attachments/Pasted%20image%2020231122090522.png)
 
 9. 点击 `Refresh`，等待一会，设备列表就会被刷新
 
@@ -21554,11 +21554,11 @@ flutter pub run flutter_launcher_icons:main
 
 1. 示例：
 
-![|341](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231127093740.png)
+![|341](attachments/Pasted%20image%2020231127093740.png)
 
 2. 产生的问题：连接安卓等设备调试会报错
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231127093849.png)
+![|700](attachments/Pasted%20image%2020231127093849.png)
 
 ### ②、解决
 
@@ -21572,7 +21572,7 @@ flutter pub run flutter_launcher_icons:main
 	3. 我试了 `kotlin` 不行
 3. 结果：
 
-![|306](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020231127103507.png)
+![|306](attachments/Pasted%20image%2020231127103507.png)
 
 ## 3、初次编译时一直显示：`Running Gradle task 'assembleDebug'...`
 
@@ -21592,18 +21592,18 @@ Running Gradle task 'assembleDebug'...
 
 1. 进入 android 项目，打开 `gradle-wrapper.properties` 文件，查看使用的 gradle 版本
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020250417125710.png)
+![|700](attachments/Pasted%20image%2020250417125710.png)
 
 2. 下载对应的 gradle 版本，比如从 [腾讯gradle镜像](https://mirrors.cloud.tencent.com/gradle/) 下载对应上面版本的 gradle：
 
-![|676](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020250417125932.png)
+![|676](attachments/Pasted%20image%2020250417125932.png)
 
 3. 下载完毕后：
 	1. 进入：`C:/Users/用户名/.gradle/wrapper/dists` 目录
 	2. 然后进入对应 gradle 版本的目录
 	3. 其中会有一个随机字符串的目录名，点击进入，然后将下载的 gradle 复制到其中
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Flutter/attachments/Pasted%20image%2020250417130701.png)
+![|700](attachments/Pasted%20image%2020250417130701.png)
 
 4. 解压复制的 gradle 压缩文件，然后 flutter 中重新 run app 即可
 
