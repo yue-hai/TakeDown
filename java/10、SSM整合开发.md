@@ -27,17 +27,17 @@
 
 ## 1、创建一个maven工程
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、创建一个maven工程.png)
+![](attachments/01、创建一个maven工程.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、创建一个maven工程2.png)
+![](attachments/02、创建一个maven工程2.png)
 
 ## 2、修改 Maven 设置
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/04、修改Maven设置.png)
+![](attachments/04、修改Maven设置.png)
 
 ## 3、添加 web 构件
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/03、添加web构件.png)
+![](attachments/03、添加web构件.png)
 
 ## 4、引入项目依赖的jar包，pom.xml 文件：
 
@@ -228,7 +228,7 @@
 
 ## 6、创建数据库及数据库表
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/07、创建数据库及数据库表.png)
+![](attachments/07、创建数据库及数据库表.png)
 
 ## 7、编写 ssm 整合的关键配置文件
 
@@ -236,7 +236,7 @@
 
 1. 项目结构：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/08、项目结构.png)
+![](attachments/08、项目结构.png)
 
 2. web.xml
 
@@ -907,7 +907,7 @@
 
 # 五、查询
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/09、查询.png)
+![](attachments/09、查询.png)
 
 ## 1、查询逻辑
 
@@ -1624,11 +1624,11 @@
 
 - 此处有个 bug，查出来的数据顺序不对，说是乱序倒也不是乱序，不知道咋回事，以后再看看吧
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/11、查询的bug.png)
+![](attachments/11、查询的bug.png)
 
 # 六、新增
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/10、新增.png)
+![](attachments/10、新增.png)
 
 - 新增-逻辑
 
@@ -2456,7 +2456,7 @@
 
 # 七、修改
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/12、修改.png)
+![](attachments/12、修改.png)
 
 - 修改-逻辑
 
@@ -3255,7 +3255,7 @@
 
 # 八、删除
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/13、删除.png)
+![](attachments/13、删除.png)
 
 - 删除-逻辑
 
@@ -4112,4 +4112,4 @@
 
 # 九、总结
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/14、总结.png)
+![](attachments/14、总结.png)

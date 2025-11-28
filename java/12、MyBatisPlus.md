@@ -1,6 +1,6 @@
 > [MyBatisPlus 官网](https://baomidou.com/pages/779a6e/#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8)
 > 
-> [MyBatisPlus（SpringBoot版）.pdf](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/MyBatisPlus（SpringBoot版）.pdf)
+> [MyBatisPlus（SpringBoot版）.pdf](attachments/MyBatisPlus（SpringBoot版）.pdf)
 
 # 一、MyBatis-Plus简介
 
@@ -32,7 +32,7 @@
 
 ## 4、框架结构
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-103--ecQQNjdOs47sPA.png)
+![image.png](attachments/2023-07-25-13--22-22-103--ecQQNjdOs47sPA.png)
 
 ## 5、代码及文档地址
 
@@ -46,25 +46,25 @@
 
 ## 1、创建表
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-701---kA5pCYQZ11eSg.png)
+![image.png](attachments/2023-07-25-13--22-22-701---kA5pCYQZ11eSg.png)
 
 ## 2、添加数据
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-715--Ue-XRqSLljGPPg.png)
+![image.png](attachments/2023-07-25-13--22-22-715--Ue-XRqSLljGPPg.png)
 
 ## 3、创建Spring Boot工程
 
 ### ①、Spring Boot 项目设置
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-728--ElRO0JOAkH3L8Q.png)
+![image.png](attachments/2023-07-25-13--22-22-728--ElRO0JOAkH3L8Q.png)
 
 ### ②、引入依赖
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-747--XDKuLO9seyOBAg.png)
+![image.png](attachments/2023-07-25-13--22-22-747--XDKuLO9seyOBAg.png)
 
 ### ③、项目结构
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-777--9h4bZy5CTL2XMw.png)
+![image.png](attachments/2023-07-25-13--22-22-777--9h4bZy5CTL2XMw.png)
 
 ### ④、配置文件
 
@@ -100,7 +100,7 @@ mybatis-plus:
 
 ### ⑤、创建实体类
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-22-800--RkI9g0o3hncvoA.png)
+![image.png](attachments/2023-07-25-13--22-22-800--RkI9g0o3hncvoA.png)
 
 ```java
 package com.study.mybatisplus.bean;
@@ -124,7 +124,7 @@ public class User {
 
 ### ⑥、创建 mapper 接口
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-019--CphUx0Po0b3AVQ.png)
+![image.png](attachments/2023-07-25-13--22-23-019--CphUx0Po0b3AVQ.png)
 
 ```java
 package com.study.mybatisplus.mapper;
@@ -144,7 +144,7 @@ public interface UserMapper extends BaseMapper<User> {
 
 ### ⑦、在启动类中设置 mapper接口所在的包
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-188--UfG2rVcXzNbOBQ.png)
+![image.png](attachments/2023-07-25-13--22-23-188--UfG2rVcXzNbOBQ.png)
 
 ```java
 package com.study.mybatisplus;
@@ -170,7 +170,7 @@ public class MybatisplusApplication {
 
 ### ⑧、编写测试类
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-348--bh8OvoWBfpcSDQ.png)
+![image.png](attachments/2023-07-25-13--22-23-348--bh8OvoWBfpcSDQ.png)
 
 ```java
 package com.study.mybatisplus;
@@ -388,7 +388,7 @@ public void testInsert(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-468---WMG1u6j_QHepA.png)
+![image.png](attachments/2023-07-25-13--22-23-468---WMG1u6j_QHepA.png)
 
 ## 2、删除 `deleteById、deleteBatchIds、`
 
@@ -524,7 +524,7 @@ public void testSelectList(){
 2. 也可以通过 `mybatis-plus.mapper-locations` 配置自定义路径
 
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-593--YXafMMcG7QgdAg.png)
+![image.png](attachments/2023-07-25-13--22-23-593--YXafMMcG7QgdAg.png)
 
 ### ①、在 mapper 接口中创建方法
 ```java
@@ -588,7 +588,7 @@ public void testSelectMapById(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-790--CxlIIeCXTb2ekw.png)
+![image.png](attachments/2023-07-25-13--22-23-790--CxlIIeCXTb2ekw.png)
 
 ## 6、通用 Service
 
@@ -817,7 +817,7 @@ public class User {
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-893--bwuR-6yq68vWrQ.png)
+![image.png](attachments/2023-07-25-13--22-23-893--bwuR-6yq68vWrQ.png)
 
 ```java
 /**
@@ -835,7 +835,7 @@ public void testInsert(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-23-980--TIo7NDIDxS-rUw.png)
+![image.png](attachments/2023-07-25-13--22-23-980--TIo7NDIDxS-rUw.png)
 
 ### ②、通过 @TableId 解决问题
 
@@ -877,7 +877,7 @@ public class User {
 2. 此时若只在实体类属性 id 上添加注解 `@TableId`，则会抛出异常 Unknown column 'id' in 'field list'，即 MyBatis-Plus 仍然会将 id 作为表的主键
 3. 而表中表示主键的是字段 uid 此时需要通过 `@TableId` 注解的 value 属性，指定表中的主键字段，`@TableId("uid")` 或 `@TableId(value="uid")`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-092--C66jqo0beYgtCA.png)
+![image.png](attachments/2023-07-25-13--22-24-092--C66jqo0beYgtCA.png)
 
 ```java
 package com.study.mybatisplus.bean;
@@ -959,7 +959,7 @@ mybatis-plus:
 1. 若实体类中的属性和表中的字段不满足情况 1；例如实体类属性 name，表中字段 username
 2. 此时需要在实体类属性上使用 `@TableField("username")` 设置属性所对应的字段名
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-211--4endT3k5sWn2qA.png)
+![image.png](attachments/2023-07-25-13--22-24-211--4endT3k5sWn2qA.png)
 
 ```java
 package com.study.mybatisplus.bean;
@@ -1005,7 +1005,7 @@ public class User {
 
 1. 在表中新建字段，并使其默认值为 0
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-315--rhjyOFgVNExwAA.png)
+![image.png](attachments/2023-07-25-13--22-24-315--rhjyOFgVNExwAA.png)
 
 2. 实体类中新建属性，增加注解，添加构造函数
 
@@ -1069,7 +1069,7 @@ public void testInsert(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-412--mXV3SH0fkqhLZA.png)
+![image.png](attachments/2023-07-25-13--22-24-412--mXV3SH0fkqhLZA.png)
 
 
 4. 测试查询；只能查到逻辑删除字段为 0 的值
@@ -1085,7 +1085,7 @@ public void userSelectList(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-529--RXPVG4beJiC0zA.png)
+![image.png](attachments/2023-07-25-13--22-24-529--RXPVG4beJiC0zA.png)
 
 5. 测试删除
 
@@ -1103,11 +1103,11 @@ public void testDeleteById(){
 
 6. 查看日志，虽然调用的是删除方法，但 sql 语句是修改
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-674--BudwJGt7X-YHqg.png)
+![image.png](attachments/2023-07-25-13--22-24-674--BudwJGt7X-YHqg.png)
 
 7. 数据库中对应数据的逻辑删除字段变为 1
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-799--mAUBh9Ia7itaKQ.png)
+![image.png](attachments/2023-07-25-13--22-24-799--mAUBh9Ia7itaKQ.png)
 
 8. 再次查询，查不到被逻辑删除的字段
 
@@ -1123,7 +1123,7 @@ public void userSelectList(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-24-888--uyyPs7XzDc1FrQ.png)
+![image.png](attachments/2023-07-25-13--22-24-888--uyyPs7XzDc1FrQ.png)
 
 # 五、条件构造器 `wapper` 和常用接口
 
@@ -1137,7 +1137,7 @@ public void userSelectList(){
          - LambdaQueryWrapper ：用于 Lambda 语法使用的查询、删除 Wrapper
          - LambdaUpdateWrapper ： 用于 Lambda 语法使用的修改 Wrapper
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-030--HaqgCliSVg4KIw.png)
+![image.png](attachments/2023-07-25-13--22-25-030--HaqgCliSVg4KIw.png)
 
 | 链式方法 | 作用 |
 | --- | --- |
@@ -1188,12 +1188,12 @@ public void selectListTest(){
 
 - 查询结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-208--vaHIhm99tPEq_w.png)
+![image.png](attachments/2023-07-25-13--22-25-208--vaHIhm99tPEq_w.png)
 
 
 - 数据库数据
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-341--i1JPBohGYQwyeg.png)
+![image.png](attachments/2023-07-25-13--22-25-341--i1JPBohGYQwyeg.png)
 
 ### ②、组装排序条件
 
@@ -1217,9 +1217,9 @@ public void selectListTest02(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-432--44K96OggcNpeww.png)
+![image.png](attachments/2023-07-25-13--22-25-432--44K96OggcNpeww.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-534--bY50cXEdnhW58g.png)
+![image.png](attachments/2023-07-25-13--22-25-534--bY50cXEdnhW58g.png)
 
 ### ③、组装删除条件
 
@@ -1239,9 +1239,9 @@ public void selectListTest03(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-631--zAHuVpWTTrXAhQ.png)
+![image.png](attachments/2023-07-25-13--22-25-631--zAHuVpWTTrXAhQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-717--bm115Gla6N0mew.png)
+![image.png](attachments/2023-07-25-13--22-25-717--bm115Gla6N0mew.png)
 
 ### ④、组装修改条件
 
@@ -1280,13 +1280,13 @@ public void selectListTest04(){
 
 - 修改前
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-25-866--vIr-hzTIb8nu6w.png)
+![image.png](attachments/2023-07-25-13--22-25-866--vIr-hzTIb8nu6w.png)
 
 - 修改后
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-001--uQhLPOH9hfuQSg.png)
+![image.png](attachments/2023-07-25-13--22-26-001--uQhLPOH9hfuQSg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-217--dFE8BZS6ZzVouw.png)
+![image.png](attachments/2023-07-25-13--22-26-217--dFE8BZS6ZzVouw.png)
 
 ### ⑤、 条件的优先级
 
@@ -1329,13 +1329,13 @@ public void selectListTest05(){
 
 - 修改前
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-341--bkRzmhkyX7BCwg.png)
+![image.png](attachments/2023-07-25-13--22-26-341--bkRzmhkyX7BCwg.png)
 
 - 修改后
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-424--JODOaqO6AP1fwg.png)
+![image.png](attachments/2023-07-25-13--22-26-424--JODOaqO6AP1fwg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-541--M0fMei8toOARmg.png)
+![image.png](attachments/2023-07-25-13--22-26-541--M0fMei8toOARmg.png)
 
 ### ⑥、查询指定字段
 
@@ -1354,9 +1354,9 @@ public void selectListTest06(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-697--FGWNsCanwn7dRQ.png)
+![image.png](attachments/2023-07-25-13--22-26-697--FGWNsCanwn7dRQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-850--bBoM59nc3YdcWw.png)
+![image.png](attachments/2023-07-25-13--22-26-850--bBoM59nc3YdcWw.png)
 
 ### ⑦、实现子查询
 
@@ -1375,9 +1375,9 @@ public void selectListTest07(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-26-983--PS9ANgu8CUPytA.png)
+![image.png](attachments/2023-07-25-13--22-26-983--PS9ANgu8CUPytA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-088--tf6qWQMue7DS7g.png)
+![image.png](attachments/2023-07-25-13--22-27-088--tf6qWQMue7DS7g.png)
 
 ## 3、UpdateWrapper ： 修改条件封装
 
@@ -1408,20 +1408,20 @@ public void test01(){
 
 - 修改前
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-315--AexeOMPAPopcCg.png)
+![image.png](attachments/2023-07-25-13--22-27-315--AexeOMPAPopcCg.png)
 
 - 修改后
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-440--JqxpSpCiHK4vLg.png)
+![image.png](attachments/2023-07-25-13--22-27-440--JqxpSpCiHK4vLg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-584--jHYbzr2VxN0IFA.png)
+![image.png](attachments/2023-07-25-13--22-27-584--jHYbzr2VxN0IFA.png)
 
 ## 4、condition
 
 > 在真正开发的过程中，组装条件是常见的功能，而这些条件数据来源于用户输入，是可选的，因此我们在组装这些条件时，必须先判断用户是否选择了这些条件，若选择则需要组装该条件，若没有选择则一定不能组装，以免影响 SQL 执行的结果
 > 我们可以使用带 condition 参数的重载方法构建查询条件；当条件不满足时，不会组装该条件；这里只判断了 username，没有判断 ageBegin 和 ageEnd
 
-> ![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-707--_vjm20_w44qPLA.png)
+> ![image.png](attachments/2023-07-25-13--22-27-707--_vjm20_w44qPLA.png)
 
 ```java
 @Test
@@ -1446,7 +1446,7 @@ public void test01(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-835--yl8uOlKHB0h6ng.png)
+![image.png](attachments/2023-07-25-13--22-27-835--yl8uOlKHB0h6ng.png)
 
 ## 5、LambdaQueryWrapper ：用于 Lambda 语法使用的查询 Wrapper
 
@@ -1474,7 +1474,7 @@ public void LambdaQueryWrapperTest(){
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-27-898--zA8_1DUy5zRrYw.png)
+![image.png](attachments/2023-07-25-13--22-27-898--zA8_1DUy5zRrYw.png)
 
 ## 6、LambdaUpdateWrapper ： 用于 Lambda 语法使用的修改 Wrapper
 
@@ -1507,13 +1507,13 @@ public void LambdaUpdateWrapper(){
 
 - 修改前
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-023--rjuLbh7WGhNrPg.png)
+![image.png](attachments/2023-07-25-13--22-28-023--rjuLbh7WGhNrPg.png)
 
 - 修改后
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-100--qDxDukEOBB9_Aw.png)
+![image.png](attachments/2023-07-25-13--22-28-100--qDxDukEOBB9_Aw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-183--WSsoXc_DMmcAVg.png)
+![image.png](attachments/2023-07-25-13--22-28-183--WSsoXc_DMmcAVg.png)
 
 # 六、插件
 
@@ -1521,7 +1521,7 @@ public void LambdaUpdateWrapper(){
 
 ### ①、添加配置类
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-273--2CS6Q-w-RKGEyg.png)
+![image.png](attachments/2023-07-25-13--22-28-273--2CS6Q-w-RKGEyg.png)
 
 ```java
 package com.study.mybatisplus.config;
@@ -1581,7 +1581,7 @@ public void test01(){
 
 ### ③、测试结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-427--hxcdG4Hkd4ZujA.png)
+![image.png](attachments/2023-07-25-13--22-28-427--hxcdG4Hkd4ZujA.png)
 
 ## 2、xml 自定义分页
 
@@ -1633,7 +1633,7 @@ public void test02(){
 
 ### ④、测试结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-520--miQqHESK7-lz5A.png)
+![image.png](attachments/2023-07-25-13--22-28-520--miQqHESK7-lz5A.png)
 
 ## 3、乐观锁
 
@@ -1672,7 +1672,7 @@ CREATE TABLE t_product (
 INSERT INTO t_product (id, NAME, price) VALUES (1, '外星人笔记本', 100);
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-610--_IvDrFHWk-9rtw.png)
+![image.png](attachments/2023-07-25-13--22-28-610--_IvDrFHWk-9rtw.png)
 
 #### Ⅲ、添加实体类
 
@@ -1765,9 +1765,9 @@ public class testConcurrentUpdate {
 
 #### Ⅵ、测试结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-726--jZR8AvQxBhW-vg.png)
+![image.png](attachments/2023-07-25-13--22-28-726--jZR8AvQxBhW-vg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-823--exf9P3WkmbRBgw.png)
+![image.png](attachments/2023-07-25-13--22-28-823--exf9P3WkmbRBgw.png)
 
 ### ⑤、乐观锁实现流程
 
@@ -1919,9 +1919,9 @@ public class testConcurrentUpdate {
 
 #### Ⅴ、测试结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-28-913--MpJCvGRTwnvAbA.png)
+![image.png](attachments/2023-07-25-13--22-28-913--MpJCvGRTwnvAbA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-053--EesyPrbzoLQE0w.png)
+![image.png](attachments/2023-07-25-13--22-29-053--EesyPrbzoLQE0w.png)
 
 #### Ⅵ、优化流程
 
@@ -1958,9 +1958,9 @@ public void testConcurrentUpdate02() {
 
 - 结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-220--GEeGn3I5BZ3tBQ.png)
+![image.png](attachments/2023-07-25-13--22-29-220--GEeGn3I5BZ3tBQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-340--P97DkE_zI4-hog.png)
+![image.png](attachments/2023-07-25-13--22-29-340--P97DkE_zI4-hog.png)
 
 # 七、通用枚举
 
@@ -1968,7 +1968,7 @@ public void testConcurrentUpdate02() {
 
 ## 1、数据库表添加字段 sex
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-443--5HwHDn-vpCCQ3g.png)
+![image.png](attachments/2023-07-25-13--22-29-443--5HwHDn-vpCCQ3g.png)
 
 ## 2、创建通用枚举类型
 
@@ -2076,7 +2076,7 @@ public void test01(){
 
 ## 6、测试结果
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-562--3wyxffKq9LqMTw.png)
+![image.png](attachments/2023-07-25-13--22-29-562--3wyxffKq9LqMTw.png)
 
 # 八、代码生成器
 
@@ -2138,11 +2138,11 @@ public class generatorTest {
 
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-639--tOIIdYv64kZyug.png)
+![image.png](attachments/2023-07-25-13--22-29-639--tOIIdYv64kZyug.png)
 
 ## 3、生成成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-754--5X0kbHeIxVbpvw.png)
+![image.png](attachments/2023-07-25-13--22-29-754--5X0kbHeIxVbpvw.png)
 
 ## 4、添加配置文件
 
@@ -2247,14 +2247,14 @@ public class GeneratorApplication {
 
 > [http://127.0.0.1:8080/generator/tProduct/hello](http://127.0.0.1:8080/generator/tProduct/hello)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-863--mSqS2Xg3WNidJA.png)
+![image.png](attachments/2023-07-25-13--22-29-863--mSqS2Xg3WNidJA.png)
 
 # 九、多数据源
 
 > 适用于多种场景：纯粹多库、 读写分离、 一主多从、 混合模式等
 > [https://baomidou.com/pages/a61e1b/#%E6%96%87%E6%A1%A3-documentation](https://baomidou.com/pages/a61e1b/#%E6%96%87%E6%A1%A3-documentation)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-29-994--P2lAG8F645CaDg.png)
+![image.png](attachments/2023-07-25-13--22-29-994--P2lAG8F645CaDg.png)
 
 ## 1、引入依赖
 
@@ -2479,7 +2479,7 @@ void testTestdb() {
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-30-105--6l0WR-Xr_2F-SA.png)
+![image.png](attachments/2023-07-25-13--22-30-105--6l0WR-Xr_2F-SA.png)
 
 ### ②、testdb
 
@@ -2491,7 +2491,7 @@ void testProductService() {
 }
 ```
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-30-203--nz9RK3VcNTh0dQ.png)
+![image.png](attachments/2023-07-25-13--22-30-203--nz9RK3VcNTh0dQ.png)
 
 # 十、MyBatisX 插件
 
@@ -2499,39 +2499,39 @@ void testProductService() {
 
 ## 1、安装插件
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-30-383--ylbEtg5KI1q9vQ.png)
+![image.png](attachments/2023-07-25-13--22-30-383--ylbEtg5KI1q9vQ.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-30-510--aRX__mruyCe0qw.png)
+![image.png](attachments/2023-07-25-13--22-30-510--aRX__mruyCe0qw.png)
 
 ## 2、代码快速生成
 
 1. 使用 idea Datebase 模块连接数据库
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-30-805--kJPEvMURZj-35w.png)
+![image.png](attachments/2023-07-25-13--22-30-805--kJPEvMURZj-35w.png)
 
 2. 连接
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-082--uQsvNtYdkCDyaw.png)
+![image.png](attachments/2023-07-25-13--22-31-082--uQsvNtYdkCDyaw.png)
 
 3. 连接成功
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-167--3PY6UGukJtH4QQ.png)
+![image.png](attachments/2023-07-25-13--22-31-167--3PY6UGukJtH4QQ.png)
 
 4. 右键点击数据库表，选择 MybatisX-Generator
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-338--tzQTq4GNV4sQcQ.png)
+![image.png](attachments/2023-07-25-13--22-31-338--tzQTq4GNV4sQcQ.png)
 
 5. 设置表
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-456--Wh23qvj8eDdFig.png)
+![image.png](attachments/2023-07-25-13--22-31-456--Wh23qvj8eDdFig.png)
 
 6. 代码生成器配置
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-567--7bKrqiP3N39XJw.png)
+![image.png](attachments/2023-07-25-13--22-31-567--7bKrqiP3N39XJw.png)
 
 7. 点击生成
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-671--Ucj0HX4HYePEBQ.png)
+![image.png](attachments/2023-07-25-13--22-31-671--Ucj0HX4HYePEBQ.png)
 
 ## 3、方法生成
 
@@ -2541,33 +2541,33 @@ void testProductService() {
    3. 删除：delete
    4. 查询：select
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-31-846--pvPnnCf1RBtOvQ.png)
+![image.png](attachments/2023-07-25-13--22-31-846--pvPnnCf1RBtOvQ.png)
 
 2. 选择该提示，按快捷键 `alt + enter` ，点击弹出的 `[MybatisX] Generate Mybatis Sql`
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-034--eivONcY4GwLtBw.png)
+![image.png](attachments/2023-07-25-13--22-32-034--eivONcY4GwLtBw.png)
 
 3. 此时 MybatisX 则会自动在接口与映射文件中生成代码
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-162--sAa-1p3vqUToFA.png)
+![image.png](attachments/2023-07-25-13--22-32-162--sAa-1p3vqUToFA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-311--W43X4UbbhOgpdQ.png)
+![image.png](attachments/2023-07-25-13--22-32-311--W43X4UbbhOgpdQ.png)
 
 ## 4、方法生成-组合条件
 ### ①、查询全部：直接写条件
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-466--2GmOgiGvEcKaiA.png)
+![image.png](attachments/2023-07-25-13--22-32-466--2GmOgiGvEcKaiA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-561--HoweNXjlREggFA.png)
+![image.png](attachments/2023-07-25-13--22-32-561--HoweNXjlREggFA.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-689--dyX3tZdyStwicw.png)
+![image.png](attachments/2023-07-25-13--22-32-689--dyX3tZdyStwicw.png)
 
 ### ②、查询部分
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-32-847--1aOPyJwXylvhSw.png)
+![image.png](attachments/2023-07-25-13--22-32-847--1aOPyJwXylvhSw.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-33-037--czptQAG_0xYg9A.png)
+![image.png](attachments/2023-07-25-13--22-33-037--czptQAG_0xYg9A.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-33-159--OiQiJAU5r1qoTg.png)
+![image.png](attachments/2023-07-25-13--22-33-159--OiQiJAU5r1qoTg.png)
 
-![image.png](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/2023-07-25-13--22-33-423--XaSbVqtOF12Z-A.png)
+![image.png](attachments/2023-07-25-13--22-33-423--XaSbVqtOF12Z-A.png)

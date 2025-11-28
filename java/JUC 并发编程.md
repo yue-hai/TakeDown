@@ -1,6 +1,6 @@
 ## 零、思维导图
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/diagram.jpg)
+![](attachments/diagram.jpg)
 
 ## 一、
 

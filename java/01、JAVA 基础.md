@@ -24,7 +24,7 @@
 2. JRE：Java Runtime Environment（Java运行环境，运行Java程序所需）
 3. JVM：JAVA Virtual Machine（Java虚拟机，跨平台等所需）
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、JDK、JRE、JVM.png)
+![|700](attachments/01、JDK、JRE、JVM.png)
 
 ## 4、Java开发环境
 
@@ -34,7 +34,7 @@
 2. 在Java文件夹中创建Java-8u271-windows-x64文件夹
 3. 在Java-8u271-windows-x64文件夹中创建jdk、jre文件夹
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、创建安装Java的目录.png)
+![](attachments/02、创建安装Java的目录.png)
 
 4. 下载电脑对应版本的jdk-8u271-windows-x64，双击打开
 5. 点击下一步，在安装位置后选择更改，选择刚才创建的jdk文件夹
@@ -45,7 +45,7 @@
 10. 在系统变量中选择Path，点击编辑
 11. 点击新建，输入：%JAVA_HOME%\bin，再次点击新建，输入：%JAVA_HOME%\jre\bin
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/03、Java环境变量的设置.png)
+![|700](attachments/03、Java环境变量的设置.png)
 
 12. 完成
 13. 打开控制台，输入 `javac` 与 `java -version` 测试是否成功
@@ -71,15 +71,15 @@ public class HelloWorld{
 
 3. 编译 Java 文件：打开 `HelloWorld.Java` 文件所在的文件夹，在路径前输入：`cmd+空格`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/04、打开控制台.png)
+![](attachments/04、打开控制台.png)
 
 1. 在控制台输入：`javac HelloWorld.Java`，回车
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/05、编译Java文件.png)
+![|700](attachments/05、编译Java文件.png)
 
 4. 会生成 `HelloWorld.class` 文件，接着在控制台输入：`java HelloWorld`
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/06、运行Java文件，输出语句.png)
+![|700](attachments/06、运行Java文件，输出语句.png)
 
 ## 6、需要注意的问题
 
@@ -144,7 +144,7 @@ public class HelloWorld{
 
 - Java中大部分的关键字：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、标识符、关键字.png)
+![|700](attachments/01、标识符、关键字.png)
 
 ## 2、数据类型
 
@@ -154,7 +154,7 @@ public class HelloWorld{
 	1. 基本类型（primitive type）
 	2. 引用类型（reference type）
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、数据类型.png)
+![|700](attachments/02、数据类型.png)
 
 |数据类型|名称|说明|最小值|最大值|默认值|补充|
 |--|--|--|--|--|--|--|
@@ -548,15 +548,15 @@ public class Doc {
  
 1. 在需要 Debug 的代码最面前单击，建立 Debug 点，可以设置多个
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/03、Debug01.png)
+![|700](attachments/03、Debug01.png)
 
 2. 选择方法名右键并右键，点击 Debug
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/04、Debug02.png)
+![|700](attachments/04、Debug02.png)
 
 3. Debug 界面按钮
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/05、Debug03.png)
+![|700](attachments/05、Debug03.png)
 
 # 三、Java 流程控制
 
@@ -838,7 +838,7 @@ switch(expression){ //判断表达式
 
 7. 另，流程控制的源码，代码文件与反编译文件的对比，<font color="red">字符的本质还是数字</font>
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、switch多选择结构，源码.png)
+![|700](attachments/01、switch多选择结构，源码.png)
 
 ## 4、循环结构
 
@@ -1193,7 +1193,7 @@ public class CommandLine {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、命令行传参.png)
+![|700](attachments/01、命令行传参.png)
 
 ## 4、可变参数
 
@@ -1263,7 +1263,7 @@ public class Demo04 {
 }
 ```
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、递归.png)
+![|675](attachments/02、递归.png)
 
 ## 6、作业，计算器
 
@@ -1446,7 +1446,7 @@ arr[3] = 4;
 arr[4] = 5;
 ```
 
-![|625](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、内存分析.png)
+![|625](attachments/01、内存分析.png)
 
 ### ③、三种初始化
 
@@ -1615,7 +1615,7 @@ public class Demo06 {
 }
 ```
 
-![|400](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、多维数组.png)
+![|400](attachments/02、多维数组.png)
 
 4. 打印二维数组
 
@@ -1735,7 +1735,7 @@ public class Demo10 {
 	2. 把具有不同值的元素和行列及值记录在一个小规模的数组中，从而缩小程序的规模
 3. 如下图，左边是原始数组，右边是稀疏数组
 
-![|625](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/03、稀疏数组.png)
+![|625](attachments/03、稀疏数组.png)
 
 ```java
    //稀疏数组实例
@@ -1922,7 +1922,7 @@ public class Demo10 {
 
 ### ④、类成员访问修饰符与访问能力之间的关系
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、类成员访问修饰符与访问能力之间的关系.png)
+![|675](attachments/01、类成员访问修饰符与访问能力之间的关系.png)
 
 ### ⑤、总结
 
@@ -2307,7 +2307,7 @@ Process finished with exit code 0
 8. 堆中的 `Pet` 对象调用堆中方法区中的 `Pet` 方法，此时 `Pet` 方法数值为初始化还没被赋值
 9. 将方法区中 `Application` 的 `cat` 属性赋值给堆中的 `Pet` 对象
 
-![|675](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、创建对象的内存分析.png)
+![|675](attachments/02、创建对象的内存分析.png)
 
 ## 4、面向对象的三大特性
 
@@ -2965,7 +2965,7 @@ Hello, this is an anonymous inner class!
 1. Java 把异常当作对象来处理，并定义一个基类 `java.lang.Throwable` 作为所有异常的超类
 2. 在 Java API 中已经定义了许多异常类，这些异常分为两大类，错误 `Error` 和异常 `Exception`
    
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/03、异常体系结构.png)
+![|700](attachments/03、异常体系结构.png)
 
 ### ④、Error 异常
 
@@ -3476,7 +3476,7 @@ Thread.currentThread().setPriority(Thread.NORM_PRIORITY);  -->  优先级设置�
 5. <font color="red">阻塞</font>：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出 CPU 并临时中止自己的执行，进入阻塞状态
 6. <font color="red">死亡</font>：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/01、线程的生命周期.png)
+![|700](attachments/01、线程的生命周期.png)
 
 ## 4、<font color="red">线程的同步</font>
 
@@ -3488,7 +3488,7 @@ Thread.currentThread().setPriority(Thread.NORM_PRIORITY);  -->  优先级设置�
 2. 问题描述：假如有三个进程进来，但是只剩 1 张票，进程 1 过来判断剩余的车票大于一于是执行，执行过程中被阻塞的时候进程 2、3 也进来了，此时进程 1 还没有来得及打印车票，总票数也还没有减少，于是进程 2、3 也执行，所以左后会有 0 票以及 -1 票的出现
 3. 问题原因：当多条语句在操作同一个线程共享数据时，一个线程对多条语句只执行了一部分，还没有执行完，另一个线程参与进来执行。导致共享数据的错误。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/02、线程的同步.png)
+![](attachments/02、线程的同步.png)
 
 4. 解决：对多条操作共享数据的语句，只能让一个线程都执行完，在执行过程中，其他线程不可以参与执行。
 
@@ -3676,7 +3676,7 @@ public class Test {
 2. 局限性：操作同步代码时，只能有一个线程参与，其他线程等待，相当于是一个单线程的过程，效率低。
 3. 同步原理分析：所有线程运行到锁前面时开始抢夺锁，谁枪到谁运行锁里的方法块，当此线程处理完锁中的代码块后释放锁，其他等待的线程才再次开始抢夺锁。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/03、线程的同步原理.png)
+![](attachments/03、线程的同步原理.png)
 
 #### Ⅳ、同步的范围
 
@@ -4104,7 +4104,7 @@ public class StringTest {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/04、String方法内存区解释.jpg)
+![|700](attachments/04、String方法内存区解释.jpg)
 
 6. String 对象的创建
 
@@ -4125,7 +4125,7 @@ String s3 = new String(char[] a);
 String s4 = new String(char[] a,int startIndex,int count);
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/05、创建字符串方式的区别.png)
+![|700](attachments/05、创建字符串方式的区别.png)
 
 7. 字符串对象是如何存储的
 
@@ -4150,7 +4150,7 @@ public class demo02 {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/06、字符串对象是如何存储的.png)
+![|700](attachments/06、字符串对象是如何存储的.png)
 
 8. 字符串对象是如何存储的2
 
@@ -4181,7 +4181,7 @@ public class deno03 {
 }
 ```
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/07、字符串对象是如何存储的2.png)
+![|700](attachments/07、字符串对象是如何存储的2.png)
 
 9. 面试题：`String s = new String("abc");` 方式创建对象，在内存中创建了几个对象？
 	1.  两个
@@ -4222,7 +4222,7 @@ public class demo01 {
 }
 	```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/08、字符串的特性.jpg)
+![](attachments/08、字符串的特性.jpg)
 
 ### ②、String 类常用方法
 
@@ -4532,7 +4532,7 @@ public class demo08 {
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/08、StringBuilder方法链.png)
+![](attachments/08、StringBuilder方法链.png)
 
 #### Ⅲ、`StringBuffer`、`StringBuilder` 常用方法
 
@@ -4754,7 +4754,7 @@ public class demo05 {
 
 8. SimpleDateFormat中的符号说明：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/09、SimpleDateFormat中的符号.png)
+![](attachments/09、SimpleDateFormat中的符号.png)
 
 #### Ⅳ、Calendar（日历）类
 
@@ -4834,7 +4834,7 @@ public class demo06 {
 7. 第三次引入的 API 是成功的，并且 Java 8 中引入的 <font color="red">java.time</font> API 已经纠正了过去的缺陷，将来很长一段时间内它都会为我们服务。
 8. Java 8 吸收了 Joda-Time 的精华，以一个新的开始为 Java 创建优秀的 API。新的 `java.time` 中包含了所有关于<font color="red">本地日期（LocalDate）、本地时间（LocalTime）、本地日期时间（LocalDateTime）、时区（ZonedDateTime）和持续时间（Duration）的类。</font>历史悠久的 Date 类新增了 `toInstant()` 方法，用于把 Date 转换成新的表示形式。这些新增的本地化时间日期 API 大大简化了日期时间和本地化的管理。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/10、JDK%208中新日期时间API.png)
+![](attachments/10、JDK%208中新日期时间API.png)
 
 ### ②、LocalDate、LocalTime、LocalDateTime
 
@@ -4846,7 +4846,7 @@ public class demo06 {
 5. 注：ISO-8601 日历系统是国际标准化组织制定的现代公民的日期和时间的表示法，也就是公历。
 6. <font color="red">具体方法：三个类都可以用</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/11、JDK%208中新日期时间API的方法.png)
+![](attachments/11、JDK%208中新日期时间API的方法.png)
 
 ```java
 public class demo07 {
@@ -4937,7 +4937,7 @@ public class demo07 {
 5. 时间戳是指格林威治时间 1970 年 01 月 01 日 00 时 00 分 00 秒(北京时间 1970 年 01 月 01 日 08 时 00 分 00 秒)起至现在的总秒数。
 6. `Instant` 中的方法：类似于 `java.util.Date` 类
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/12、Instant中的方法.png)
+![](attachments/12、Instant中的方法.png)
 
 ```java
 public class demo08 {
@@ -4973,7 +4973,7 @@ public class demo08 {
 5. <font color="red">自定义的格式。如：ofPattern(“yyyy-MM-dd hh:mm:ss”)</font>
 6. 具体方法：类似于 `SimpleDateFormat`
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/13、DateTimeFormatter方法.png)
+![](attachments/13、DateTimeFormatter方法.png)
 
 ```java
 public class demo09 {
@@ -5087,7 +5087,7 @@ System.out.println("下一个工作日是：" + localDate);
 
 ### ⑥、与传统日期处理的转换
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/14、与传统日期处理的转换.png)
+![](attachments/14、与传统日期处理的转换.png)
 
 ## 4、Java 比较器
 
@@ -5335,7 +5335,7 @@ Process finished with exit code 0
 3. `void gc()`：该方法的作用是请求系统进行垃圾回收。至于系统是否立刻回收，则取决于系统中垃圾回收算法的实现以及系统执行时的情况。
 4. `String getProperty(String key)`：该方法的作用是获得系统中属性名为 key 的属性对应的值。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/15、系统中常见方法.png)
+![](attachments/15、系统中常见方法.png)
 
 ```java
 public class demo03 {
@@ -5417,7 +5417,7 @@ public class demo04 {
 3. 构造器：`BigInteger(String val)`：根据字符串构建 BigInteger 对象
 4. BigInteger 类常用方法：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/16、BigInteger类常见方法.png)
+![](attachments/16、BigInteger类常见方法.png)
 
 ```java
 public class demo05 {
@@ -5444,7 +5444,7 @@ Process finished with exit code 0
    2. `public BigDecimal(String val)`
 4. BigDecimal 类常用方法：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/17、BigDecimal类常见方法.png)
+![](attachments/17、BigDecimal类常见方法.png)
 
 ```java
 public class demo06 {
@@ -5589,7 +5589,7 @@ enum Season02{
 3. `toString()`：返回当前枚举类对象常量的名称
 4. 其他的主要方法：
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/18、Enum类的主要方法.png)
+![|700](attachments/18、Enum类的主要方法.png)
 
 ```java
 public class demo02 {
@@ -5969,14 +5969,14 @@ public class demo01{
 @interface MyAnnotation2{ }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/19、JDK%20中的元注解@Retention.png)
+![](attachments/19、JDK%20中的元注解@Retention.png)
 
 #### Ⅲ、@Target
 
 1. `@Target`: 用于修饰 Annotation 定义, 用于指定被修饰的 Annotation 能用于修饰哪些程序元素。 
 2. `@Target` 也包含一个名为 value 的成员变量。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/20、JDK%20中的元注解@Target.png)
+![](attachments/20、JDK%20中的元注解@Target.png)
 
 #### Ⅳ、@Documented
 
@@ -5995,7 +5995,7 @@ public class demo01{
 2. 当一个 Annotation 类型被定义为运行时 Annotation 后，该注解才是运行时可见，当 class 文件被载入时保存在 class 文件中的 Annotation 才会被虚拟机读取
 3. 程序可以调用 AnnotatedElement 对象的如下方法来访问 Annotation 信息
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/21、利用反射获取注解信息.png)
+![](attachments/21、利用反射获取注解信息.png)
 
 ### ⑥、JDK 8 中注解的新特性
 
@@ -6005,7 +6005,7 @@ public class demo01{
 	2. MyAnnotation 的 Target 和 Retention 和 MyAnnotation 相同
 3. 可重复注解示例：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/22、可重复注解示例.png)
+![](attachments/22、可重复注解示例.png)
 
 4. **类型注解：** JDK1.8 之后，关于元注解 `@Target` 的参数类型 ElementType 枚举值多了两个：TYPE_PARAMETER和TYPE_USE。
 5. 在 Java 8 之前，注解只能是在声明的地方所使用，Java8 开始，注解可以应用在任何地方。
@@ -6034,7 +6034,7 @@ public class demo01{
 6. 集合、数组都是对多个数据进行储存操作的结构，简称java容器：此时的储存，主要指的是内存层面的存储，不涉及到持久化的存储（.txt、.jpg、avi、数据库等）
 7. 集合的使用场景
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/23、集合的使用场景.png)
+![](attachments/23、集合的使用场景.png)
 
 7. Java 集合可分为 **Collection** 和 **Map** 两种体系
 8.  **Collection接口**：单列数据，定义了存取一组对象的方法的集合
@@ -6042,13 +6042,13 @@ public class demo01{
 	1. Set： 储存无序、不可重复的集合 --> 类似高中数学的“集合”；**实现类：HashSet、LinkedHashSet、TreeSet**
 9.  Collection 接口继承树
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/25、Collection接口继承树.png)
+![](attachments/25、Collection接口继承树.png)
 
 10. **Map接口**：双列数据，保存具有映射关系“key-value对”的集合 --> 高中函数：y = f(x)
 	1. 类似高中函数：y = f(x)，有一对一、一对多的关系；**实现类：HashMap、LinkedHashMap、TreeMap、Hashtable、Properties**
 11. Map 接口继承树
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/26、Map接口继承树.png)
+![](attachments/26、Map接口继承树.png)
 
 ## 2、Collection 接口方法
 
@@ -6242,7 +6242,7 @@ class Person{
 
 1. Iterator 接口的方法
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/27、Iterator接口的方法.png)
+![](attachments/27、Iterator接口的方法.png)
 
 ```java
 /**
@@ -6304,7 +6304,7 @@ while (coll.iterator().hasNext()){
 
 2. 迭代器的执行原理
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/28、迭代器的执行原理.png)
+![](attachments/28、迭代器的执行原理.png)
 
 #### Ⅱ、Iterator 接口 emove() 方法
 
@@ -6354,7 +6354,7 @@ public class demo03 {
 3. 遍历集合的底层调用 Iterator 完成操作。
 4. foreach 还可以用来遍历数组。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/29、使用foreach循环遍历集合元素.png)
+![](attachments/29、使用foreach循环遍历集合元素.png)
 
 ```java
 public class demo04 {
@@ -6592,7 +6592,7 @@ public class demo01 {
 		2. jdk 8 ：原来的元素依然在数组中，指向元素a（7头插法，8尾插法，七上八下）
 6. 如果两个元素的 equals() 方法返回 true，但它们的 hashCode() 返回值不相等，hashSet 将会把它们存储在不同的位置，但依然可以添加成功。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/30、Set实现类之一：HashSet底层也是数组.png)
+![](attachments/30、Set实现类之一：HashSet底层也是数组.png)
 
 ##### （2）、重写 hashCode() 方法的基本原则
 
@@ -6622,7 +6622,7 @@ public class demo01 {
 3. <font color="red">LinkedHashSet插入性能略低于 HashSet</font>，但在迭代遍历访问 Set 里的全部元素时有很好的性能。
 4. LinkedHashSet 不允许集合元素重复
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/31、Set实现类之二：LinkedHashSet.png)
+![](attachments/31、Set实现类之二：LinkedHashSet.png)
 
 #### Ⅳ、Set 实现类之三：TreeSet
 
@@ -6642,7 +6642,7 @@ public class demo01 {
 	8. SortedSet tailSet(fromElement)
 5. TreeSet 两种排序方法：<font color="red">自然排序</font>和<font color="red">定制排序</font>。默认情况下，TreeSet 采用自然排序。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/32、Set实现类之三：TreeSet.png)
+![](attachments/32、Set实现类之三：TreeSet.png)
 
 ##### （2）、排序：自然排序
 
@@ -6872,7 +6872,7 @@ public static List duplicateList(List list) {
 7. 其中，<font color="red">HashMap 是 Map 接口使用频率最高的实现类</font>
 8. Map 接口继承树
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/33、Map接口继承树.png)
+![](attachments/33、Map接口继承树.png)
 
 9. **Map结构的理解：**
 	1.  Map 中的 key：无序的、不可重复的，使用 Set 存储所有的 key；key 所在的类要重写 equals() 和 hashCode() 方法（以 HashMap 为例） 
@@ -6880,7 +6880,7 @@ public static List duplicateList(List list) {
 	3.  一个键值对：一个 key 和一个 value 构成了一个 Entry 对象
 	4.  Map 中的 Entry：无序的、不可重复的，使用 Set 存储所有的 Entry
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/34、Map接口的理解.png)
+![](attachments/34、Map接口的理解.png)
 
 ### ②、Map 接口的常用方法
 
@@ -7068,7 +7068,7 @@ map.put(key1,value1);
 4. jdk 7 的结构只有：数组 + 链表
 5. Jdk 8 中底层结构：数组 + 链表 + 红黑树 --> 当数组中的某一个索引位置上的元素以链表形式存在的数据个数 > 8 且当前数组的长度 > 64 时，此时此索引位置上的所有数据改为使用红黑树存储
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/35、HashMap的存储结构.png)
+![](attachments/35、HashMap的存储结构.png)
 
 ### ④、Map 实现类之二：LinkedHashMap
 
@@ -7394,7 +7394,7 @@ public class demo01 {
 
 3. 同步控制：Collections 类中提供了多个 `synchronizedXxx()` 方法，该方法可使将指定集合包装成线程同步的集合，从而可以解决多线程并发访问集合时的线程安全问题
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/36、Collections常用方法：同步控制.png)
+![](attachments/36、Collections常用方法：同步控制.png)
 
 ```java
 public class demo02 {
@@ -7408,7 +7408,7 @@ public class demo02 {
 
 4. Enumeration 接口是 Iterator 迭代器的 “古老版本”
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/37、Enumeration.png)
+![](attachments/37、Enumeration.png)
 
 # 十一、泛型
 
@@ -7451,11 +7451,11 @@ public class demo01 {
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/38、在集合中没有泛型时.png)
+![](attachments/38、在集合中没有泛型时.png)
 
 8. **在集合中有泛型时：**
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/39、在集合中有泛型时.png)
+![](attachments/39、在集合中有泛型时.png)
 
 ## 2、在集合中使用泛型
 
@@ -7632,7 +7632,7 @@ class Person implements Comparable<Person>{
 	4. T 只能是类，不能用基本数据类型填充。但可以使用包装类填充
 	5. 把一个集合中的内容限制为一个特定的数据类型，这就是 generics 背后的核心思想
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/40、自定义泛型结构.png)
+![](attachments/40、自定义泛型结构.png)
 
 ### ②、自定义泛型类、泛型接口
 
@@ -8030,7 +8030,7 @@ class Student04 extends Person04{
 3. <font color="red">想要在 Java 程序中表示一个真实存在的文件或目录，那么必须有一个 File 对象，但是 Java 程序中的一个 File 对象，可能没有一个真实存在的文件或目录。</font>
 4. File 对象可以作为参数传递给流的构造器
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/41、File相对文件路径.png)
+![|700](attachments/41、File相对文件路径.png)
 
 ### ②、常用构造器
 
@@ -8041,7 +8041,7 @@ class Student04 extends Person04{
 3. <font color="red">public File(File parent,String child)</font>：根据一个父 File 对象和子文件路径创建 File 对象
 4. 一般 Java 文件的相对路径在主 Project 目录下：相对路径：hello.txt
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/41、File相对文件路径%201.png)
+![|700](attachments/41、File相对文件路径%201.png)
 
 ```java
 // 此时创建的file仅仅只是内存中的对象而已，与磁盘中的文件没有任何关系
@@ -8281,7 +8281,7 @@ public class Demo05 {
    1. <font color="red">输入 input</font>：读取外部数据（磁盘、光盘等存储设备的数据）到程序（内存）中。
    2. <font color="red">输出 output</font>：将程序（内存）数据输出到磁盘、光盘等存储设备中。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/43、IO流原理.png)
+![](attachments/43、IO流原理.png)
 
 ### ②、流的分类
 
@@ -8293,11 +8293,11 @@ public class Demo05 {
 	1. **节点流：**直接从数据源或目的地读写数据
 	2. **处理流：**不直接连接到数据源或目的地，而是“连接”在已存在的流（节点流或处理流）之上，通过对数据的处理为程序提供更为强大的读写功能。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/46、节点流.png)
+![](attachments/46、节点流.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/47、处理流.png)
+![](attachments/47、处理流.png)
 
-![|625](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/44、流的分类.png)
+![|625](attachments/44、流的分类.png)
 
 1. Java 的 IO 流共涉及 40 多个类，实际上非常规则，都是从如下 4 个<font color="red">抽象基类</font>派生的。
 2. 由这四个类派生出来的子类名称都是以其父类名作为子类名后缀。
@@ -8309,7 +8309,7 @@ public class Demo05 {
 
 6. IO 流体系
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/45、IO流体系.png)
+![](attachments/45、IO流体系.png)
 
 ### ③、抽象基类的具体分类
 
@@ -8785,7 +8785,7 @@ class Copy{
 5. `flush()` 方法的使用：手动将 buffer 中内容写入文件
 6. 如果是带缓冲区的流对象的 `close()` 方法，不但会关闭流，还会在关闭流之前刷新缓冲区，关闭后不能再写出
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/48、缓冲流.png)
+![](attachments/48、缓冲流.png)
 
 ### ③、缓冲流（字节输入输出流）
 
@@ -8998,7 +8998,7 @@ public class Demo04 {
    1. <font color="red">InputStreamReader：将InputStream（字节输入流）转换为Reader（字符输入流）</font>
    2. <font color="red">OutputStreamWriter：将Writer（字符输出流）转换为OutputStream（字节输出流）</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/50、转换流.png)
+![](attachments/50、转换流.png)
 
 ### ②、InputStreamReader（字符输入流）
 
@@ -9014,7 +9014,7 @@ public InputStreamReader(InputStream in)
 public InputSreamReader(InputStream in,String charsetName)
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/49、转换流：InputStreamReader.png)
+![](attachments/49、转换流：InputStreamReader.png)
 
 4. 文件的转码读取
 
@@ -9142,7 +9142,7 @@ public class Demo02 {
 7. 在标准 UTF-8 编码中，超出基本多语言范围（BMP-Basic Multilingual Plane）的字符被编码为 4 字节格式，但是在修正的 UTF-8 编码中，他们由代理编码对（surrogatepairs）表示，然后这些代理编码对在序列中分别重新编码，结果标准 UTF-8 编码中需要 4 个字节的字符，在修正的 UTF-8 编码中将需要 6 个字节
 8. GBK 等双字节编码方式，用最高位是 1 或 0 表示两个字节和一个字节。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/51、在Unicode出现之前的编码.png)
+![](attachments/51、在Unicode出现之前的编码.png)
 
 9. Unicode 不完美，这里就有三个问题:
 	1. 一个是，我们已经知道，英文字母只用一个字节表示就够了
@@ -9151,12 +9151,12 @@ public class Demo02 {
 10. 面向传输的众多 UTF（UCS Transfer Format）标准出现了，顾名思义，<font color="red">UTF-8 就是每次 8 个位传输数据，UTF-16 就是每次 16 个位。</font>这是为传输而设计的编码，并使编码无国界，这样就可以显示全世界上所有文化的字符了。
 11. <font color="red">Unicode 只是定义了一个庞大的、全球通用的字符集，并为每个字符规定了唯一确定的编号，具体存储成什么样的字节流，取决于字符编码方案。</font>推荐的 Unicode 编码是 UTF-8 和 UTF-16。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/52、字符编码：Unicode与UTF-8编码方式.png)
+![](attachments/52、字符编码：Unicode与UTF-8编码方式.png)
 
 12. ANSI 编码，通常指的是平台的默认编码，例如英文操作系统中是 ISO-8859-1，中文系统是 GBK
 13. Unicode 字符集只是定义了字符的集合和唯一编号，Unicode 编码，则是对 UTF-8、UCS-2/UTF-16 等具体编码方案的统称而已，并不是具体的编码方案。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/53、字符编码：ANSI编码.png)
+![](attachments/53、字符编码：ANSI编码.png)
 
 ## 6、标准输入、输出流（处理流之三）
 
@@ -9871,9 +9871,9 @@ Path path = Paths.get("index.html");
 
 ### ②、网络通信协议
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/58、网络通信协议.png)
+![](attachments/58、网络通信协议.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/59、网络通信协议2.png)
+![](attachments/59、网络通信协议2.png)
 
 ## 3、通信要素 1：IP 和端口号
 
@@ -9898,7 +9898,7 @@ Path path = Paths.get("index.html");
 	3. <font color="red">动态/私有端口：</font>49152~65535。
 5. 端口号与 IP 地址的组合得出一个网络套接字：Socket
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/60、IP和端口号.png)
+![](attachments/60、IP和端口号.png)
 
 ### ③、InetAddress 类
 
@@ -9929,7 +9929,7 @@ public String getHostAddress()：返回 IP 地址字符串（以文本表现形�
 public boolean isReachable(int timeout)：测试是否可以达到该地址
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/61、域名如何转化为IP地址.png)
+![](attachments/61、域名如何转化为IP地址.png)
 
 ```java
 public class Demo01 {
@@ -9984,11 +9984,11 @@ public class Demo01 {
 	5. 发送数据结束时<font color="red">无需释放资源，开销小，速度快</font>
 3. TCP 三次握手
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/62、TCP三次握手.png)
+![](attachments/62、TCP三次握手.png)
 
 4. TCP 四次挥手
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/63、TCP四次挥手.png)
+![](attachments/63、TCP四次挥手.png)
 
 ### ④、Socket
 
@@ -10030,7 +10030,7 @@ public Socket(String host,int port)
 
 - Java 语言的基于套接字编程分为服务端编程和客户端编程，其通信模型如图所示：
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/64、基于TCP的Socket通信.png)
+![](attachments/64、基于TCP的Socket通信.png)
 
 ### ②、客户端 Socket 的工作过程
 
@@ -10370,7 +10370,7 @@ public class Demo04 {
 
 ### ⑤、TCP 网络编程总结
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/65、TCP网络编程.png)
+![](attachments/65、TCP网络编程.png)
 
 ## 6、UDP 网络编程
 
@@ -10508,7 +10508,7 @@ public URL(String protocol, String host, int port, String file);
 
 2. URL 类的构造器都声明抛出非运行时异常，必须要对这一异常进行处理，通常是用 `try-catch` 语句进行捕获。
 
-![|700](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/66、URL类构造器.png)
+![|700](attachments/66、URL类构造器.png)
 
 ### ③、URL 类常用方法
 
@@ -10560,7 +10560,7 @@ public OutputSteram getOutputStream( )throws IOException
 4. 也就是说，URI 是以一种抽象的，高层次概念定义统一资源标识，而 URL 和 URN 则是具体的资源标识的方式。URL 和 URN 都是一种 URI。
 5. 在 Java 的 URI 中，一个 URI 实例可以代表绝对的，也可以是相对的，只要它符合 URI 的语法规则。而 URL 类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/67、URI、URL和URN的区别.png)
+![](attachments/67、URI、URL和URN的区别.png)
 
 ### ⑥、小结
 
@@ -10579,7 +10579,7 @@ public OutputSteram getOutputStream( )throws IOException
 1. Reflection（反射）是被视为<font color="red">动态语言</font>的关键，反射机制允许程序在执行期借助于 Reflection API 取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
 2. 加载完类之后，在堆内存的方法区中就产生了一个 Class 类型的对象（一个类只有一个 Class 对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。<font color="red">这个对象就像一面镜子，透过这个镜子看到类的结构，所以，我们形象的称之为：反射。</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/68、反射.png)
+![](attachments/68、反射.png)
 
 ### ②、动态语言 vs 静态语言
 
@@ -10749,7 +10749,7 @@ public final Class getClass()
 	4. **换句话说，Class 类的实例就对应着一个运行时类**
 	5. 加载到内存中的运行时类，会缓存一定的时间。在此时间之内，我们可以通过不同的方式来获取此运行时类。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/69、反射的理解.png)
+![](attachments/69、反射的理解.png)
 
 3. 对象照镜子后可以得到的信息：某个类的属性、方法和构造器、某个类到底实现了哪些接口。对于每个类而言，JRE 都为其保留一个不变的 Class 类型的对象。一个 Class 对象包含了特定某个结构（`class/interface/enum/annotation/primitive type/void/[]`）的有关信息。
 	1. Class 本身也是一个类
@@ -10881,7 +10881,7 @@ System.out.println(c10 == c11);
 
 - 类的加载过程：当程序主动使用某个类时，如果该类还未被加载到内存中，则系统会通过如下三个步骤来对该类进行初始化。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/70、类的加载过程.png)
+![](attachments/70、类的加载过程.png)
 
 ### ②、类的加载与 ClassLoader 的理解
 
@@ -10935,14 +10935,14 @@ class A {
 	1. **类加载的作用：** 将 class 文件字节码内容加载到内存中，并将这些静态数据<font color="red">转换成方法区的运行时数据结构</font>，然后在堆中生成一个代表这个类的 `java.lang.Class` 对象，作为方法区中类数据的访问入口。
 	2. **类缓存：** 标准的 JavaSE 类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，它将维持加载（缓存）一段时间。不过 JVM 垃圾回收机制可以回收这些 Class 对象。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/71、类加载器的作用.png)
+![](attachments/71、类加载器的作用.png)
 
 ### ④、了解：ClassLoader
 
 1. 类加载器作用是用来把类（class）装载进内存的。
 2. JVM 规范定义了如下类型的类的加载器。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/72、类加载器.png)
+![](attachments/72、类加载器.png)
 
 ```java
  //1.获取一个系统类加载器
@@ -11037,7 +11037,7 @@ public class Demo06 {
 	2. 向构造器的形参中传递一个对象数组进去，里面包含了构造器中所需的各个参数。
 	3. 通过 Constructor 实例化对象。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/73、创建运行时类的对象.png)
+![](attachments/73、创建运行时类的对象.png)
 
 4. 以上是反射机制应用最多的地方。
 
@@ -11574,7 +11574,7 @@ public class InterfaceTest {
 1. 通过 Class 类的 `getMethod(String name,Class…parameterTypes)` 方法取得一个 `Method` 对象，并设置此方法操作时所需要的参数类型。
 2. 之后使用 `Object invoke(Object obj, Object[] args)` 进行调用，并向方法中传递要设置的obj对象的参数信息。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/74、调用运行时类的指定结构.png)
+![](attachments/74、调用运行时类的指定结构.png)
 
 3. `Object invoke(Object obj, Object … args)`：
 	1. `.Object` 对应原方法的返回值，若原方法无返回值，此时返回 null
@@ -11833,7 +11833,7 @@ static Class<?> getProxyClass(ClassLoader loader, Class<?>... interfaces)
 static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h) 
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/75、Java动态代理相关API.png)
+![](attachments/75、Java动态代理相关API.png)
 
 ### ③、动态代理步骤
 
@@ -11854,11 +11854,11 @@ public Object invoke(Object theProxy, Method method, Object[] params) throws Thr
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/76、动态代理步骤1.png)
+![](attachments/76、动态代理步骤1.png)
 
 2. 创建被代理的类以及接口
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/77、动态代理步骤2.png)
+![](attachments/77、动态代理步骤2.png)
 
 3. 通过 Proxy 的静态方法：`newProxyInstance(ClassLoader loader, Class[]interfaces,InvocationHandler h)` 创建一个Subject接口代理
 
@@ -11976,18 +11976,18 @@ public class Demo02 {
 1. AOP：在运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程。
 2. 前面介绍的 `Proxy` 和 `InvocationHandler`，很难看出这种动态代理的优势，下面介绍一种更实用的动态代理机制
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/78、动态代理与AOP1.png)
+![](attachments/78、动态代理与AOP1.png)
 
 3. 改进后的说明：代码段 1、代码段 2、代码段3和深色代码段分离开了，但代码段 1、2、3 又和一个特定的方法 A 耦合了！最理想的效果是：代码块 1、2、3 既可以执行方法 A，又无须在程序中以硬编码的方式直接调用深色代码的方法
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/79、动态代理与AOP2.png)
+![](attachments/79、动态代理与AOP2.png)
 
 ### ⑤、总结
 
 1. 使用 Proxy 生成一个动态代理时，往往并不会凭空产生一个动态代理，这样没有太大的意义。通常都是为指定的目标对象生成动态代理
 2. 这种动态代理在 AOP 中被称为 AOP 代理，AOP 代理可代替目标对象，AOP 代理包含了目标对象的全部方法。但 AOP 代理中的方法与目标对象的方法存在差异：<font color="red">AOP 代理里的方法可以在执行目标方法之前、之后插入一些通用处理</font>
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/80、动态代理与AOP总结.png)
+![](attachments/80、动态代理与AOP总结.png)
 
 # 十五、
 
@@ -12017,7 +12017,7 @@ public class Demo02 {
    2. 相比较串行的流，并行的流可以很大程度上提高程序的执行效率。
    3. Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。Stream API 可以声明性地通过 parallel() 与 sequential() 在并行流与顺序流之间进行切换
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092210.png)
+![](attachments/Pasted%20image%2020230726092210.png)
 
 ## 1、Lambda 表达式
 
@@ -12032,9 +12032,9 @@ public class Demo02 {
 2. 左侧：指定了 Lambda 表达式需要的参数列表
 3. 右侧：指定了 Lambda 体，是抽象方法的实现逻辑，也即Lambda 表达式要执行的功能。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092303.png)
+![](attachments/Pasted%20image%2020230726092303.png)
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092326.png)
+![](attachments/Pasted%20image%2020230726092326.png)
 
 ### ③、类型推断
 
@@ -12042,13 +12042,13 @@ public class Demo02 {
 2. Lambda 表达式中无需指定类型，程序依然可以编译，这是因为 javac 根据程序的上下文，在后台推断出了参数的类型。
 3. Lambda 表达式的类型依赖于上下文环境，是由编译器推断出来的。这就是所谓的“类型推断”。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092355.png)
+![](attachments/Pasted%20image%2020230726092355.png)
 
 ### ④、例子
 
 1. 语法格式一：无参，无返回值
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092408.png)
+![](attachments/Pasted%20image%2020230726092408.png)
 
 ```java
 /**
@@ -12077,11 +12077,11 @@ public void test01(){
 
 2. 语法格式二：Lambda 需要一个参数，但是没有返回值。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092422.png)
+![](attachments/Pasted%20image%2020230726092422.png)
 
 3. 语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”（由 2 更加简化而来）
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092436.png)
+![](attachments/Pasted%20image%2020230726092436.png)
 
 ```java
 /**
@@ -12117,7 +12117,7 @@ public void test02(){
 
 4. 语法格式四：Lambda 若只需要一个参数时，参数的小括号可以省略
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092455.png)
+![](attachments/Pasted%20image%2020230726092455.png)
 
 ```java
 /**
@@ -12152,7 +12152,7 @@ public void test04(){
 
 5. 语法格式五：Lambda 需要两个或以上的参数，多条执行语句，并且可以有返回值
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092509.png)
+![](attachments/Pasted%20image%2020230726092509.png)
 
 ```java
 /**
@@ -12185,7 +12185,7 @@ public void test05(){
 
 6. 语法格式六：当Lambda 体只有一条语句时，return 与大括号若有，都可以省略（可由 3 更加简化而来）
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092523.png)
+![](attachments/Pasted%20image%2020230726092523.png)
 
 ```java
 /**
@@ -12258,7 +12258,7 @@ public interface Runnable {
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092549.png)
+![](attachments/Pasted%20image%2020230726092549.png)
 
 ### ④、自定义函数式接口
 
@@ -12293,7 +12293,7 @@ public void test01(){
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092606.png)
+![](attachments/Pasted%20image%2020230726092606.png)
 
 #### Ⅱ、`Predicate<T>` 断定型接口
 
@@ -12342,13 +12342,13 @@ public void test02(){
 }
 ```
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092641.png)
+![](attachments/Pasted%20image%2020230726092641.png)
 
 ### ⑤、作为参数传递 Lambda 表达式
 
 作为参数传递 Lambda 表达式：为了将 Lambda 表达式作为参数传递，接收Lambda 表达式的参数类型必须是与该 Lambda 表达式兼容的函数式接口的类型
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726092720.png)
+![](attachments/Pasted%20image%2020230726092720.png)
 
 ### ⑥、Java 内置四大核心函数式接口
 
@@ -12857,7 +12857,7 @@ public class ArrayReference_01 {
 2. 中间操作：一个中间操作链，对数据源的数据进行处理
 3. 终止操作(终端操作)：一旦执行终止操作，就执行中间操作链，并产生结果。之后，不会再被使用
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726093332.png)
+![](attachments/Pasted%20image%2020230726093332.png)
 
 ### ⑤、创建 Stream
 
@@ -13739,7 +13739,7 @@ public class _02_Instant {
 
 - 时间戳是指格林威治时间 1970 年 01 月 01 日 00 时 00 分 00 秒(北京时间 1970 年 01 月 01 日 08 时 00 分 00 秒)起至现在的总秒数。
 
-![](https://openlist.yuehai.fun:63/d/TakeDown/Java/attachments/Pasted%20image%2020230726093207.png)
+![](attachments/Pasted%20image%2020230726093207.png)
 
 ### ⑤、格式化与解析日期或时间 `DateTimeFormatter`
 
