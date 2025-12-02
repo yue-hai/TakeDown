@@ -1602,7 +1602,54 @@ PS D:\OneDrive\文档资料\TakeDown>
 git reset --hard HEAD
 ```
 
-## 11、
+## 11、使用 git lfs
+
+### ①、git lfs 做了什么
+
+1. 告诉 LFS 要管理哪些文件：通过 `git lfs track` 命令，指定文件类型（如 `*.psd`、`*.mp4`）或特定文件夹。这个配置会保存在一个叫 `.gitattributes` 的文本文件中
+2.  提交时发生的变化：当 `git add` 一个大文件时，Git LFS 会介入。它将大文件上传到一个独立的 LFS 存储服务器（对于 GitHub，就是 GitHub 的 LFS 服务器），然后在 Git 仓库里，用一个几十字节的指针文件（Pointer File）来替换掉原来的大文件
+3. 推送 (Push)：当 `git push` 到 GitHub 时，实际只推送了轻量级的代码和那个指针文件，所以速度非常快。LFS 会在后台确保大文件也已经上传到了 LFS 服务器
+4. 克隆/拉取 (Clone/Pull)：当 `git clone` 或 `git pull` 这个仓库时，Git 会先下载常规文件和指针文件。然后，Git LFS 客户端会读取指针文件，从 LFS 服务器上把真正的大文件下载到本地工作区
+
+### ②、便携版 git 使用 git lfs
+
+1. 进入 Git LFS 的 GitHub Releases 页面：https://github.com/git-lfs/git-lfs/releases
+2. 根据自己电脑的版本进行选择：
+	1. 本地下载：[git-lfs-windows-amd64-v3.7.1.zip](attachments/git-lfs-windows-amd64-v3.7.1.zip)
+
+![|425](attachments/Pasted%20image%2020251202131838.png)
+
+3. 下载后解压，将其中的 `git-lfs.exe` 复制到 `git目录\mingw64\libexec\git-core` 中
+
+![|700](attachments/Pasted%20image%2020251202132422.png)
+
+4. 复制完成后， 进入想要使用 git lfs 的仓库，然后执行命令初始化 git lfs
+
+```shell
+git lfs install
+```
+
+5. 追踪文件：
+
+```shell
+# 追踪常见的大文件类型
+# 追踪所有 .zip, .exe, .apk, .psd, .mp4 文件
+git lfs track "*.zip" "*.exe" "*.apk" "*.psd" "*.mp4"
+
+# 追踪指定名称的目录：
+git lfs track "**/attachments_lfs/*"
+```
+
+6. `git lfs track` 命令会更新或创建 `.gitattributes` 文件记得将其提交到仓库，让规则生效
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+### ⑥、
+
 
 ## 12、
 
