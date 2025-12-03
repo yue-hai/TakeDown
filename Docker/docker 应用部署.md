@@ -3817,6 +3817,233 @@ location / {
 3. 这样配置完成后，就不会报错了，可正常对话
 
 
+# 408、snappymail 自部署全功能邮件服务器
+
+> 1. 项目 github：https://github.com/the-djmaze/snappymail
+> 2. dockerHub 地址：https://hub.docker.com/r/djmaze/snappymail
+
+## 1、介绍
+
+1. SnappyMail 是 RainLoop 的一个现代化、积极维护的分支（Fork）。它继承了 RainLoop 轻量、快速的优点，并在 UI、安全性和功能上做了大量优化。可以说是目前自托管 Webmail 客户端的最佳选择之一
+2. 特点：
+	1. 现代化界面：UI 干净、响应式，体验接近现代的商业邮箱
+	2. 非常轻量：基于 PHP，无需数据库即可运行（默认使用文件存储），资源占用极低
+	3. 速度快：应用加载和邮件同步速度都很快
+	4. 易于部署：官方提供 Docker 镜像，配置简单
+	5. 功能强大：支持多账户、PGP 加密、两步验证(2FA)等
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 数据目录：`/vol1/1000/docker/tool/snappymail/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+-p 8888:8888 \
+-e PUID=1000 \
+-e PGID=1001 \
+-e TZ=Asia/Shanghai \
+-e DEBUG=true \
+-e http_proxy=http://192.168.1.1:7890 \
+-e https_proxy=http://192.168.1.1:7890 \
+-e all_proxy=socks5://192.168.1.1:7891 \
+-e HTTP_PROXY=http://192.168.1.1:7890 \
+-e HTTPS_PROXY=http://192.168.1.1:7890 \
+-e ALL_PROXY=socks5://192.168.1.1:7891 \
+-e NO_PROXY="localhost,127.0.0.1,192.168.0.0/16,*.lan" \
+-v /vol1/1000/docker/tool/snappymail/data:/var/lib/snappymail \
+--network yuehai-net \
+--restart=unless-stopped \
+--name snappymail \
+djmaze/snappymail:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 snappymail 的服务
+    snappymail:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: djmaze/snappymail:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: snappymail
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # snappymail 的 Web 访问端口
+            - "8888:8888"
+        environment:
+            # 设置运行用户 ID，以避免权限问题
+            - PUID=1000
+            # 设置运行组 ID，以避免权限问题
+            - PGID=1001
+            # 设置容器的时区为亚洲/上海
+            - TZ=Asia/Shanghai
+            # 启用调试模式，输出更多日志信息以便排查问题
+            - DEBUG=true
+            # 设置 HTTP 代理端口
+            - http_proxy=http://192.168.1.1:7890
+            - https_proxy=http://192.168.1.1:7890
+            - all_proxy=socks5://192.168.1.1:7891
+            - HTTP_PROXY=http://192.168.1.1:7890
+            - HTTPS_PROXY=http://192.168.1.1:7890
+            - ALL_PROXY=socks5://192.168.1.1:7891
+            # 设置不进行代理的 ip（例如局域网内部地址）
+            - NO_PROXY=localhost,127.0.0.1,192.168.0.0/16,*.lan
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 数据目录
+            - /vol1/1000/docker/tool/snappymail/data:/var/lib/snappymail
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:8888?admin](http://127.0.0.1:8888?admin)，进入管理员页面
+2. 在 `/vol1/1000/docker/tool/snappymail/data/_data_/_default_/admin_password.txt` 中获取自动生成的密码
+3. 使用管理员账号密码进行登录：
+	1. 账号：`admin`
+	2. 密码：文件中自动生成的密码
+
+![|550](attachments/Pasted%20image%2020251203134437.png)
+
+4. 登录后，首先修改管理员账号密码
+
+![|700](attachments/Pasted%20image%2020251203134452.png)
+
+## 4、使用
+
+### ①、添加 QQ 邮箱
+
+#### Ⅰ、申请应用授权码
+
+1. 进入 QQ 邮箱，点击账号与安全
+
+![|700](attachments/Pasted%20image%2020251203095839.png)
+
+2. 进入后，点击安全设置，开启 `IMAP/SMTP` 服务，然后点击生成授权码
+
+![|700](attachments/Pasted%20image%2020251203100052.png)
+
+3. 进入后，进行验证
+
+![|700](attachments/Pasted%20image%2020251203100542.png)
+
+4. 验证成功后，会显示授权码；<font color="#ff0000">一定要复制到别处保存，否则离开这个页面就再也找不回来了</font>
+
+![|700](attachments/Pasted%20image%2020251203100943.png)
+
+5. 保存完毕后，点击返回安全设置，点击设备管理 -> 授权码管理，可以看到所有生成的授权码
+
+![|700](attachments/Pasted%20image%2020251203101540.png)
+
+#### Ⅱ、snappymail 中添加 QQ 邮箱域名
+
+1. 访问：[http://127.0.0.1:8888?admin](http://127.0.0.1:8888?admin)，进入管理员页面，点击域名，然后点击添加域名
+
+![|700](attachments/Pasted%20image%2020251203101741.png)
+
+2. QQ 邮箱配置：
+	1. 名字：`qq.com`
+	2. IMAP：
+		1. 服务器：`imap.qq.com`
+		2. 加密：`SSL/TLS`
+		3. 端口：`993`
+	3. SMTP：
+		1. 服务器：`smtp.qq.com`
+		2. 加密：`SSL/TLS`
+		3. 端口：`465` 或 `587`
+
+![|425](attachments/Pasted%20image%2020251203101955.png)
+
+![|425](attachments/Pasted%20image%2020251203102002.png)
+
+3. 配置完成后，点击测试，然后输入自己的邮箱名和刚才生成的授权码进行登录
+4. 配置成功、测试成功后，点击保存即可
+
+#### Ⅲ、访问 WebMail 进入邮箱首页
+
+1. 访问：[http://127.0.0.1:8888](http://127.0.0.1:8888)，进入用户页面，输入自己的邮箱名和刚才生成的授权码进行登录
+
+![|675](attachments/Pasted%20image%2020251203102402.png)
+
+2. 第一次进入后会弹出更新身份弹窗，按需求设置即可
+
+![|700](attachments/Pasted%20image%2020251203124337.png)
+
+### ②、添加谷歌邮箱
+
+#### Ⅰ、申请应用授权码
+
+1. 确保开启两步验证：Google 账户必须已经开启了两步验证(2-Step Verification)。如果没有，需要先登录 Google 账户，在安全设置中开启它。这是生成应用密码的前提
+2. 打开浏览器，访问 Google 的应用密码页面： https://myaccount.google.com/apppasswords ，需要登录自己的 Google 账户
+3. 输入应用名称，然后点击创建即可；<font color="#ff0000">一定要复制到别处保存，否则离开这个页面就再也找不回来了</font>
+
+![|600](attachments/Pasted%20image%2020251203104957.png)
+
+#### Ⅱ、snappymail 中添加 谷歌 邮箱域名
+
+1. 访问：[http://127.0.0.1:8888?admin](http://127.0.0.1:8888?admin)，进入管理员页面，点击域名，然后点击添加域名
+
+![|400](attachments/Pasted%20image%2020251203101741.png)
+
+2. 谷歌 邮箱配置：
+	1. 名字：`gmail.com`
+	2. IMAP：
+		1. 服务器：`imap.gmail.com`
+		2. 加密：`SSL/TLS`
+		3. 端口：`993`
+	3. SMTP：
+		1. 服务器：`smtp.gmail.com`
+		2. 加密：`SSL/TLS`
+		3. 端口：`465` 或 `587`
+
+![|450](attachments/Pasted%20image%2020251203105427.png)
+
+![|450](attachments/Pasted%20image%2020251203105435.png)
+
+3. 配置完成后，点击测试，然后输入自己的邮箱名和刚才生成的授权码进行登录
+4. 配置成功、测试成功后，点击保存即可
+
+#### Ⅲ、访问 WebMail 进入邮箱首页
+
+1. 如果是第一个账户，访问：[http://127.0.0.1:8888](http://127.0.0.1:8888)，进入用户页面，输入自己的邮箱名和刚才生成的授权码进行登录
+2. 如果不是第一个账户，点击添加账户，输入自己的邮箱名和刚才生成的授权码进行登录即可
+
+![|700](attachments/Pasted%20image%2020251203124433.png)
+
+### ③、
+
+#### Ⅰ、申请应用授权码
+
+#### Ⅱ、snappymail 中添加邮箱域名
+
+#### Ⅲ、访问 WebMail 进入邮箱首页
+
+### ④、
+
+#### Ⅰ、申请应用授权码
+
+#### Ⅱ、snappymail 中添加邮箱域名
+
+#### Ⅲ、访问 WebMail 进入邮箱首页
+
+
 # 500、QD 一个 HTTP 定时任务自动执行 Web 框架
 
 > 1. 项目 github：https://github.com/qd-today/qd
