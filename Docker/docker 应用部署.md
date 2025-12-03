@@ -300,6 +300,110 @@ location /oneNav {
 
 ![](attachments/Pasted%20image%2020250617092837.png)
 
+## 11、懒加载解析
+
+### ①、使用的原因
+
+1. 在使用 Nginx Proxy Manager 部署 Docker 应用时，经常遇到以下问题：
+2. 强依赖导致启动失败：Nginx 默认在启动（或重载配置）时，会立即检查所有 upstream（后端服务）的域名是否可解析
+3. 死循环：如果被代理的容器（如 onlyoffice、minio）启动速度比 NPM 慢，或者意外停止了，NPM 会因为无法解析域名而报错 host not found 并直接退出。Docker 守护进程会尝试重启 NPM，NPM 再次检查失败又退出，陷入无限重启循环
+4. 服务雪崩：只要有一个无关紧要的代理服务挂了，会导致整个网关（NPM）瘫痪，所有其他正常的服务也无法访问
+5. 所以需要一种机制，让 NPM 忽略启动时的后端状态，只有在用户真正发起请求时才去解析域名
+
+### ②、懒加载原理
+
+1. 利用 Nginx 的 变量延迟解析机制 和 Docker 内部 DNS：
+2. 欺骗启动检查：在 NPM 图形界面上填写一个永远在线的假地址如 `127.0.0.1`，让 Nginx 顺利通过启动时的语法检查
+3. 变量动态转发：在 Nginx 配置文件中，不直接写 `proxy_pass http://onlyoffice:80`;，而是使用变量 `proxy_pass $upstream;`
+4. 机制：Nginx 遇到变量作为目标地址时，不会在启动阶段解析它，而是推迟到请求处理阶段（Runtime）
+5. 运行时解析 (Resolver)：当请求到来时，Nginx 需要知道去哪里解析这个变量对应的域名。我们指定 Docker 的内部 DNS 服务器（127.0.0.11），让它动态获取后端容器的最新 IP
+
+### ③、解决方案
+
+#### Ⅰ、图形界面配置 (欺骗 Nginx 启动)
+
+1. 在 NPM 的 详细内容 (Details) 标签页中：
+2. 转发主机/IP：`127.0.0.1`
+3. 转发端口：随便填如 `80`，只要格式正确即可
+4. <font color="#ff0000">缓存资源：必须关闭</font> (原因见注意事项)
+
+![](attachments/Pasted%20image%2020251202165648.png)
+
+#### Ⅱ、高级配置 (注入懒加载逻辑)
+
+1. 在 高级 (Advanced) 标签页中，填入以下完整代码
+2. 需要对应的修改 `upstream_proto`、`upstream_host`、`upstream_port` 的值：
+
+```nginx
+# 定义一个 location 块，匹配所有进入的请求 (/)
+location / {
+  # 使用 Docker 内部 DNS(127.0.0.11)解析器，可以使用他通过容器名字找到对应的动态 IP 地址
+  # valid=30s 表示每 30 秒重新解析一次 IP，这样即使服务重启换了 IP 也能自动恢复
+  resolver 127.0.0.11 valid=30s;
+  
+  # 设置真实的容器名和端口
+  set $upstream_proto http;
+  set $upstream_host onlyoffice;
+  set $upstream_port 80;
+  # 使用变量请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+  # Nginx 看到变量时，不会在启动时检查域名，而是在有人访问网站时才去解析
+  proxy_pass $upstream_proto://$upstream_host:$upstream_port;
+  
+  # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
+  # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
+  # $scheme 变量的值是 http 或 https
+  proxy_set_header X-Forwarded-Proto $scheme;
+  # 设置 HTTP 头部 Host，将原始请求中的 Host 头部传递给后端服务器
+  # $http_host 变量包含了客户端请求中的 Host 头部信息
+  proxy_set_header Host $http_host;
+  # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
+  # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
+  proxy_set_header X-Real-IP $remote_addr;
+  # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
+  # $http_range 变量包含了客户端请求中的 Range 头部信息
+  proxy_set_header Range $http_range;
+  # 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
+  # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
+  proxy_set_header If-Range $http_if_range;
+
+  # 强制使用 HTTP/1.1
+  # Nginx 代理默认使用 HTTP/1.0，而 WebSocket 协议强制要求 HTTP/1.1，长连接 (Keep-Alive) 也需要它
+  proxy_http_version 1.1;
+  # 传递 Upgrade 头部
+  # WebSocket 连接建立时，客户端会发送 Upgrade: websocket 头，必须透传给后端，否则后端不知道要升级协议
+  proxy_set_header Upgrade $http_upgrade;
+  # 设置 Connection 头部
+  # 告诉后端这是一个需要升级协议的连接，通常设置为 upgrade
+  proxy_set_header Connection "upgrade";
+
+  # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
+  # 这通常在后端应用自己能正确处理重定向 URL 时使用
+  proxy_redirect off;
+  # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+  # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
+  client_max_body_size 20000m;
+}
+```
+
+### ④、重要避坑说明
+
+#### Ⅰ、报错现象
+
+1. 配置好后，网页能打开，但图片、CSS、JS 报 Connection refused 或 404 错误
+
+#### Ⅱ、原因
+
+1. Nginx 的匹配优先级规则是 正则表达式 (Regex) > 通用匹配
+2. 如果在界面上勾选了 缓存资源，NPM 会自动生成一个类似 `location ~* \.(css|js|jpg)...` 的正则规则
+3. 这个正则规则优先级极高，会抢走所有静态资源的请求，并试图把它们转发到界面上填写的假地址 `127.0.0.1`，导致连接被拒绝
+
+#### Ⅲ、解决
+
+1. 务必在界面上 取消勾选 缓存资源 和 阻止常见漏洞
+2. 让所有请求都进入自定义的 `location /` 块中处理
+
 
 # 1、docker 可视化 portainer-ce
 
@@ -889,15 +993,28 @@ docker exec -it openlist ./openlist admin set NEW_PASSWORD
 
 ## 4、nginx 代理配置
 
-1. 代理配置不变，高级中自定义 Nginx 配置填入以下内容，注意修改转发地址：
+1. 基础代理部分：
+
+![](attachments/Pasted%20image%2020251202165648.png)
+
+2. 高级自定义 Nginx 配置填入以下内容，注意修改转发地址：
+
+![](attachments/Pasted%20image%2020251202164206.png)
 
 ```nginx
 # 定义一个 location 块，匹配所有进入的请求 (/)
 location / {
-  # 关键：将请求代理到指定服务
-  # proxy_pass 指令指定了后端服务器的地址和端口
-  # 所有匹配此 location 块的请求都将被转发到 http://openlist:5244
-  proxy_pass http://openlist:5244;
+  # 使用 Docker 内部 DNS(127.0.0.11)解析器，可以使用他通过容器名字找到对应的动态 IP 地址
+  # valid=30s 表示每 30 秒重新解析一次 IP，这样即使服务重启换了 IP 也能自动恢复
+  resolver 127.0.0.11 valid=30s;
+  
+  # 设置真实的容器名和端口
+  set $upstream_proto http;
+  set $upstream_host openlist;
+  set $upstream_port 5244;
+  # 使用变量请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+  # Nginx 看到变量时，不会在启动时检查域名，而是在有人访问网站时才去解析
+  proxy_pass $upstream_proto://$upstream_host:$upstream_port;
   
   # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
   # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
@@ -918,31 +1035,22 @@ location / {
   # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
   proxy_set_header If-Range $http_if_range;
 
+  # 强制使用 HTTP/1.1
+  # Nginx 代理默认使用 HTTP/1.0，而 WebSocket 协议强制要求 HTTP/1.1，长连接 (Keep-Alive) 也需要它
+  proxy_http_version 1.1;
+  # 传递 Upgrade 头部
+  # WebSocket 连接建立时，客户端会发送 Upgrade: websocket 头，必须透传给后端，否则后端不知道要升级协议
+  proxy_set_header Upgrade $http_upgrade;
+  # 设置 Connection 头部
+  # 告诉后端这是一个需要升级协议的连接，通常设置为 upgrade
+  proxy_set_header Connection "upgrade";
+
   # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
   # 这通常在后端应用自己能正确处理重定向 URL 时使用
   proxy_redirect off;
-  # 设置客户端请求体的最大允许大小
-  # openlist 官方文档推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+  # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
   # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
   client_max_body_size 20000m;
-
-  # --- 以下是针对 WebSocket 的可选配置 ---
-  # 如果 openlist 使用 WebSockets (例如某些实时功能)，
-  # 并且 NPM 的 "支持 WebSockets" 开关没有自动处理好，可以手动添加：
-
-  # 设置代理使用的 HTTP 版本为 1.1
-  # WebSocket 协议需要 HTTP/1.1 或更高版本
-  # proxy_http_version 1.1;
-
-  # 设置 HTTP 头部 Upgrade
-  # 这个头部用于请求协议升级，例如从 HTTP 升级到 WebSocket
-  # $http_upgrade 变量包含了客户端请求中的 Upgrade 头部信息
-  # proxy_set_header Upgrade $http_upgrade;
-
-  # 设置 HTTP 头部 Connection
-  # 当进行协议升级时，Connection 头部通常设置为 "upgrade"
-  # 这告诉服务器连接将被用于不同的协议
-  # proxy_set_header Connection "upgrade";
 }
 ```
 
@@ -1309,65 +1417,7 @@ docker logs qbittorrent
 
 ![](attachments/Pasted%20image%2020250617095408.png)
 
-## 5、使用 nginx 代理 2
-
-1. 确保启动参数无误，尤其是配置文件的目录，必须是 qbittorrent 的父级目录，不可以到 qbittorrent 这一层
-2. 如果是在外网通过 IP 访问内网服务器，则需查看 `qbittorrent.conf` 中，是否设置了 `WebUI\HostHeaderValidation=true` 参数，如有，请改为 false
-3. 如果是在外网通过域名访问内网服务器，则第二条同样适用；但安全起见，建议改为 true 并把值设置为域名
-4. 如果并未配置 HTTPS 证书，或未安装相关组件，则需查看 `qbittorrent.conf` 中，是否设置了 `WebUI\HTTPS\Enabled=ture` 参数，如有，请改为 false
-5. 在 nginx-proxy-manager 中设置代理，然后点击高级，设置以下内容：
-
-```nginx
-# 定义一个 location 块，匹配所有进入的请求 (/)
-location / {
-	# 关键：将请求代理到指定服务
-	# proxy_pass 指令指定了后端服务器的地址和端口
-	# 所有匹配此 location 块的请求都将被转发到 http://172.17.0.1:8081
-	proxy_pass http://172.17.0.1:8081/;
-	
-	# 设置 HTTP 头部 Host，将原始请求中的 Host 头部传递给后端服务器
-	# $http_host 变量包含了客户端请求中的 Host 头部信息
-	proxy_set_header Host $http_host;
-	# 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
-	# $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	# 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
-	# $scheme 变量的值是 http 或 https
-	proxy_set_header X-Forwarded-Proto $scheme;
-	proxy_set_header X-Forwarded-Host $http_host;
-	
-	# 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
-	# $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
-	proxy_set_header X-Real-IP $remote_addr;
-	# 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
-	# $http_range 变量包含了客户端请求中的 Range 头部信息
-	proxy_set_header Range $http_range;
-	# 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
-	# $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
-	proxy_set_header If-Range $http_if_range;
-
-	# 从 4.2.2 版本起，若在 qBittorrent 内部设置了 HTTPS，则不需要设置该参数。否则，必须设置该参数用以保证 Cookie 的安全性
-	proxy_cookie_path / "/; Secure";
-	# 可选，设置后可一次性添加 100M 的种子
-	# client_max_body_size 100M;
-	
-	# proxy_http_version 1.1;
-}
-```
-
-6. 以下参数不适用于 qBittorrent，若是有请务必移除：
-
-```nginx
-location / {
-	#  以下参数不适用于 qBittorrent，若是有请务必移除
-	#proxy_set_header   X-Forwarded-Proto  $scheme;
-	#proxy_set_header   X-Real-IP          $remote_addr;
-}
-```
-
-7. 其中 3、5 条最重要，修改完毕后重启即可
-
-## 6、使用 nginx 代理方式 3
+## 5、使用 nginx 代理方式 2
 
 1. 如果经过上面的方式依然无法访问，访问时 qbittorrent 日志可能提示：
 
@@ -2188,21 +2238,28 @@ docker exec onlyoffice sudo sed 's,autostart=false,autostart=true,' -i /etc/supe
 
 ## 4、Nginx 代理 配置
 
-1. 在 nginx 中点击添加代理，详细内容中和其他代理相同，不再详细说明
+1. 基础代理部分：
 
-![](attachments/Pasted%20image%2020250617103017.png)
+![](attachments/Pasted%20image%2020251202165648.png)
 
-1. 点击高级，填入以下自定义 Nginx 配置
+2. 高级自定义 Nginx 配置填入以下内容，注意修改转发地址：
 
-![](attachments/Pasted%20image%2020250617103038.png)
+![](attachments/Pasted%20image%2020251202164206.png)
 
 ```nginx
 # 定义一个 location 块，匹配所有进入的请求 (/)
 location / {
-  # 关键：将请求代理到指定服务
-  # proxy_pass 指令指定了后端服务器的地址和端口
-  # 所有匹配此 location 块的请求都将被转发到 http://onlyoffice
-  proxy_pass http://onlyoffice;
+  # 使用 Docker 内部 DNS(127.0.0.11)解析器，可以使用他通过容器名字找到对应的动态 IP 地址
+  # valid=30s 表示每 30 秒重新解析一次 IP，这样即使服务重启换了 IP 也能自动恢复
+  resolver 127.0.0.11 valid=30s;
+  
+  # 设置真实的容器名和端口
+  set $upstream_proto http;
+  set $upstream_host onlyoffice;
+  set $upstream_port 80;
+  # 使用变量请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+  # Nginx 看到变量时，不会在启动时检查域名，而是在有人访问网站时才去解析
+  proxy_pass $upstream_proto://$upstream_host:$upstream_port;
   
   # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
   # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
@@ -2223,20 +2280,22 @@ location / {
   # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
   proxy_set_header If-Range $http_if_range;
 
+  # 强制使用 HTTP/1.1
+  # Nginx 代理默认使用 HTTP/1.0，而 WebSocket 协议强制要求 HTTP/1.1，长连接 (Keep-Alive) 也需要它
+  proxy_http_version 1.1;
+  # 传递 Upgrade 头部
+  # WebSocket 连接建立时，客户端会发送 Upgrade: websocket 头，必须透传给后端，否则后端不知道要升级协议
+  proxy_set_header Upgrade $http_upgrade;
+  # 设置 Connection 头部
+  # 告诉后端这是一个需要升级协议的连接，通常设置为 upgrade
+  proxy_set_header Connection "upgrade";
+
   # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
   # 这通常在后端应用自己能正确处理重定向 URL 时使用
   proxy_redirect off;
-  # 设置客户端请求体的最大允许大小
+  # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
   # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
   client_max_body_size 20000m;
-
-  # 设置代理使用的 HTTP 版本为 1.1
-  # WebSocket 协议需要 HTTP/1.1 或更高版本
-  proxy_http_version 1.1;
-  # 设置 HTTP 头部 Upgrade
-  # 这个头部用于请求协议升级，例如从 HTTP 升级到 WebSocket
-  # $http_upgrade 变量包含了客户端请求中的 Upgrade 头部信息
-  proxy_set_header Upgrade $http_upgrade;
 }
 ```
 
@@ -3410,41 +3469,62 @@ networks:
 1. 确保申请了 `*.a.com` 或 `lobe-chat-database.a.com` 的 sll 证书
 2. 设置代理和选择 ssl 证书
 
-![](attachments/Pasted%20image%2020251111153128.png)
+![](attachments/Pasted%20image%2020251203084616.png)
 
-3. 点击高级选项卡，输入以下自定义 Nginx 配置
+2. 高级自定义 Nginx 配置填入以下内容，注意修改转发地址：
+
+![](attachments/Pasted%20image%2020251202164206.png)
 
 ```nginx
 # 定义一个 location 块，匹配所有进入的请求 (/)
 location / {
-    # 将请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
-    proxy_pass http://lobe-chat:3210;
-    
-    # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
-    # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
-    # $scheme 变量的值是 http 或 https
-    proxy_set_header X-Forwarded-Proto $scheme;
-    # 设置 HTTP 头部 Host，将原始请求中的 Host 头部传递给后端服务器
-    # $http_host 变量包含了客户端请求中的 Host 头部信息
-    proxy_set_header Host $http_host;
-    # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
-    # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
-    proxy_set_header X-Real-IP $remote_addr;
-    # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
-    # $http_range 变量包含了客户端请求中的 Range 头部信息
-    proxy_set_header Range $http_range;
-    # 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
-    # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
-    proxy_set_header If-Range $http_if_range;
-    
-    # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
-    # 这通常在后端应用自己能正确处理重定向 URL 时使用
-    proxy_redirect off;
-    # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
-    # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
-    client_max_body_size 20000m;
+  # 使用 Docker 内部 DNS(127.0.0.11)解析器，可以使用他通过容器名字找到对应的动态 IP 地址
+  # valid=30s 表示每 30 秒重新解析一次 IP，这样即使服务重启换了 IP 也能自动恢复
+  resolver 127.0.0.11 valid=30s;
+  
+  # 设置真实的容器名和端口
+  set $upstream_proto http;
+  set $upstream_host lobe-chat;
+  set $upstream_port 3210;
+  # 使用变量请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+  # Nginx 看到变量时，不会在启动时检查域名，而是在有人访问网站时才去解析
+  proxy_pass $upstream_proto://$upstream_host:$upstream_port;
+  
+  # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
+  # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
+  # $scheme 变量的值是 http 或 https
+  proxy_set_header X-Forwarded-Proto $scheme;
+  # 设置 HTTP 头部 Host，将原始请求中的 Host 头部传递给后端服务器
+  # $http_host 变量包含了客户端请求中的 Host 头部信息
+  proxy_set_header Host $http_host;
+  # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
+  # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
+  proxy_set_header X-Real-IP $remote_addr;
+  # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
+  # $http_range 变量包含了客户端请求中的 Range 头部信息
+  proxy_set_header Range $http_range;
+  # 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
+  # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
+  proxy_set_header If-Range $http_if_range;
+
+  # 强制使用 HTTP/1.1
+  # Nginx 代理默认使用 HTTP/1.0，而 WebSocket 协议强制要求 HTTP/1.1，长连接 (Keep-Alive) 也需要它
+  proxy_http_version 1.1;
+  # 传递 Upgrade 头部
+  # WebSocket 连接建立时，客户端会发送 Upgrade: websocket 头，必须透传给后端，否则后端不知道要升级协议
+  proxy_set_header Upgrade $http_upgrade;
+  # 设置 Connection 头部
+  # 告诉后端这是一个需要升级协议的连接，通常设置为 upgrade
+  proxy_set_header Connection "upgrade";
+
+  # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
+  # 这通常在后端应用自己能正确处理重定向 URL 时使用
+  proxy_redirect off;
+  # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+  # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
+  client_max_body_size 20000m;
 }
 ```
 
@@ -3461,34 +3541,63 @@ location / {
 
 2. 设置代理和选择 ssl 证书
 
-![](attachments/Pasted%20image%2020251111153421.png)
+![](attachments/Pasted%20image%2020251203084616.png)
 
-3. 点击高级选项卡，输入以下自定义 Nginx 配置
+3. 高级自定义 Nginx 配置填入以下内容，注意修改转发地址：
+
+![](attachments/Pasted%20image%2020251202164206.png)
 
 ```nginx
+# 定义一个 location 块，匹配所有进入的请求 (/)
 location / {
-    # 将请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
-    proxy_pass http://code-minio:9000;
-    
-    # 【关键修改】
-    # 将 Host 头部固定为 minio 服务的地址，确保 MinIO 能正确识别请求来源，避免 CORS 问题
-    # 按理说 $http_host 也可以，但测试发现这样的话 minio 收不到端口号，导致报错
-    proxy_set_header Host "b.minio.a.com";
-    
-    # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
-    # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
-    # $scheme 变量的值是 http 或 https
-    proxy_set_header X-Forwarded-Proto $scheme;
-    # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
-    # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
-    proxy_set_header X-Real-IP $remote_addr;
-    # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
-    # $http_range 变量包含了客户端请求中的 Range 头部信息
-    proxy_set_header Range $http_range;
-    # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
-    proxy_set_header If-Range $http_if_range;
+  # 使用 Docker 内部 DNS(127.0.0.11)解析器，可以使用他通过容器名字找到对应的动态 IP 地址
+  # valid=30s 表示每 30 秒重新解析一次 IP，这样即使服务重启换了 IP 也能自动恢复
+  resolver 127.0.0.11 valid=30s;
+  
+  # 设置真实的容器名和端口
+  set $upstream_proto http;
+  set $upstream_host code-minio;
+  set $upstream_port 9000;
+  # 使用变量请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+  # Nginx 看到变量时，不会在启动时检查域名，而是在有人访问网站时才去解析
+  proxy_pass $upstream_proto://$upstream_host:$upstream_port;
+  
+  # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
+  # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  # 设置 HTTP 头部 X-Forwarded-Proto，告诉后端应用客户端最初是使用 HTTP 还是 HTTPS 协议访问的
+  # $scheme 变量的值是 http 或 https
+  proxy_set_header X-Forwarded-Proto $scheme;
+  # 【关键修改】
+  # 将 Host 头部固定为 minio 服务的地址，确保 MinIO 能正确识别请求来源，避免 CORS 问题
+  # 按理说 $http_host 也可以，但测试发现这样的话 minio 收不到端口号，导致报错
+  proxy_set_header Host "b.minio.a.com";
+  # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
+  # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
+  proxy_set_header X-Real-IP $remote_addr;
+  # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
+  # $http_range 变量包含了客户端请求中的 Range 头部信息
+  proxy_set_header Range $http_range;
+  # 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
+  # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
+  proxy_set_header If-Range $http_if_range;
+
+  # 强制使用 HTTP/1.1
+  # Nginx 代理默认使用 HTTP/1.0，而 WebSocket 协议强制要求 HTTP/1.1，长连接 (Keep-Alive) 也需要它
+  proxy_http_version 1.1;
+  # 传递 Upgrade 头部
+  # WebSocket 连接建立时，客户端会发送 Upgrade: websocket 头，必须透传给后端，否则后端不知道要升级协议
+  proxy_set_header Upgrade $http_upgrade;
+  # 设置 Connection 头部
+  # 告诉后端这是一个需要升级协议的连接，通常设置为 upgrade
+  proxy_set_header Connection "upgrade";
+
+  # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
+  # 这通常在后端应用自己能正确处理重定向 URL 时使用
+  proxy_redirect off;
+  # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+  # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
+  client_max_body_size 20000m;
 }
 ```
 

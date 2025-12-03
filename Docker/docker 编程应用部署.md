@@ -350,16 +350,28 @@ networks:
 
 ## 5、使用 nginx 代理
 
-1. 只设定基础的 nginx 代理，登录后可能提示：`Failed to load preferences`
-2. 此时需要添加如下配置：
+1. 基础代理部分：
+
+![](attachments/Pasted%20image%2020251202165648.png)
+
+2. 高级自定义 Nginx 配置填入以下内容，注意修改转发地址：
+
+![](attachments/Pasted%20image%2020251202164206.png)
 
 ```nginx
 # 定义一个 location 块，匹配所有进入的请求 (/)
 location / {
-  # 关键：将请求代理到指定服务
-  # proxy_pass 指令指定了后端服务器的地址和端口
-  # 所有匹配此 location 块的请求都将被转发到 http://code-pgadmin4:80
-  proxy_pass http://code-pgadmin4:80;
+  # 使用 Docker 内部 DNS(127.0.0.11)解析器，可以使用他通过容器名字找到对应的动态 IP 地址
+  # valid=30s 表示每 30 秒重新解析一次 IP，这样即使服务重启换了 IP 也能自动恢复
+  resolver 127.0.0.11 valid=30s;
+  
+  # 设置真实的容器名和端口
+  set $upstream_proto http;
+  set $upstream_host code-pgadmin4;
+  set $upstream_port 80;
+  # 使用变量请求代理到指定服务，所有匹配此 location 块的请求都将被转发到指定地址
+  # Nginx 看到变量时，不会在启动时检查域名，而是在有人访问网站时才去解析
+  proxy_pass $upstream_proto://$upstream_host:$upstream_port;
   
   # 设置 HTTP 头部 X-Forwarded-For，包含了客户端的原始 IP 地址以及代理服务器的 IP 地址列表
   # $proxy_add_x_forwarded_for 变量会自动将 $remote_addr（直接连接到 Nginx 的客户端 IP）附加到已有的 X-Forwarded-For 头部（如果存在）
@@ -373,6 +385,29 @@ location / {
   # 设置 HTTP 头部 X-Real-IP，传递了直接连接到 Nginx 的客户端的真实 IP 地址
   # $remote_addr 变量的值是直接连接到 Nginx 的客户端的 IP 地址
   proxy_set_header X-Real-IP $remote_addr;
+  # 设置 HTTP 头部 Range，用于支持部分内容请求，例如视频拖动播放或断点续传
+  # $http_range 变量包含了客户端请求中的 Range 头部信息
+  proxy_set_header Range $http_range;
+  # 设置 HTTP 头部 If-Range，与 Range 头部配合使用，用于条件性的部分内容请求
+  # $http_if_range 变量包含了客户端请求中的 If-Range 头部信息
+  proxy_set_header If-Range $http_if_range;
+
+  # 强制使用 HTTP/1.1
+  # Nginx 代理默认使用 HTTP/1.0，而 WebSocket 协议强制要求 HTTP/1.1，长连接 (Keep-Alive) 也需要它
+  proxy_http_version 1.1;
+  # 传递 Upgrade 头部
+  # WebSocket 连接建立时，客户端会发送 Upgrade: websocket 头，必须透传给后端，否则后端不知道要升级协议
+  proxy_set_header Upgrade $http_upgrade;
+  # 设置 Connection 头部
+  # 告诉后端这是一个需要升级协议的连接，通常设置为 upgrade
+  proxy_set_header Connection "upgrade";
+
+  # 关闭代理重定向处理，off 表示 Nginx 不会修改后端服务器返回的 Location 和 Refresh 头部中的 URL
+  # 这通常在后端应用自己能正确处理重定向 URL 时使用
+  proxy_redirect off;
+  # 设置客户端请求体的最大允许大小，一般推荐设置为 20000m (即 20000MB 或约 19.5GB)，以支持大文件上传
+  # 如果上传的文件超过此大小，Nginx 会返回 "413 Request Entity Too Large" 错误
+  client_max_body_size 20000m;
 }
 ```
 
