@@ -4800,6 +4800,97 @@ felinae98/nonebot-bison
 ![](attachments/Pasted%20image%2020250107151702.png)
 
 
+# 600、docker-freecad 开源 3D 参数化建模软件
+
+> 1. 项目 github：https://github.com/linuxserver/docker-freecad
+> 2. dockerHub 地址：https://hub.docker.com/r/linuxserver/freecad
+
+## 1、介绍
+
+1. `linuxserver/freecad` 是一个将强大的开源 3D 参数化建模软件 FreeCAD 容器化的 Docker 镜像。它通过内置的 KasmVNC 技术，让用户可以直接在网页浏览器中访问和使用完整的 FreeCAD 桌面应用程序，无需在本地计算机上进行任何安装
+2. 它的主要特点包括：
+	1. Web 访问：在任何支持现代浏览器的设备上，随时随地访问功能齐全的 FreeCAD 软件
+	2. 免安装：无需在本地工作站安装庞大的 CAD 软件及其依赖，保持本地系统整洁
+	3. 数据集中管理：通过 Docker 的数据卷挂载功能，可以将所有的配置文件和 CAD 图纸文件集中存储在服务器上，便于备份、迁移和共享
+	4. 跨平台一致性：由于软件运行在标准化的容器环境中，因此无论您使用 Windows、macOS 还是 Linux 访问，都能获得完全一致的操作体验
+	5. 资源隔离：作为 Docker 容器运行，FreeCAD 的资源使用（CPU、内存）被有效隔离，不会影响宿主机上其他服务的稳定性
+
+## 2、docker 部署
+
+1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
+	1. 配置和数据目录：`/vol1/1000/docker/app/freecad/config`
+	2. CAD 图纸文件目录：`/vol1/1000/docker/app/freecad/data`
+2. 使用 docker run 部署：
+
+```shell
+docker run -d \
+--name=freecad \
+-e PUID=1000 \
+-e PGID=1001 \
+-e TZ=Asia/Shanghai \
+-p 3000:3000 \
+-v /vol1/1000/docker/app/freecad/config:/config \
+-v /vol1/1000/docker/app/freecad/data:/data \
+--security-opt seccomp=unconfined \
+--restart unless-stopped \
+--network yuehai-net \
+linuxserver/freecad:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 freecad 的服务
+    freecad:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: linuxserver/freecad:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: freecad
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义容器的安全选项
+        security_opt:
+            # 为容器禁用 seccomp 安全配置文件，为桌面 GUI 环境提供必要的权限
+            - seccomp:unconfined
+        # 定义端口映射规则
+        ports:
+            # Web访问端口
+            - "3000:3000"
+        # 定义环境变量
+        environment:
+            # 设置运行用户 ID，以避免权限问题
+            - PUID=1000
+            # 设置运行组 ID，以避免权限问题
+            - PGID=1001
+            # 设置容器的时区为亚洲/上海
+            - TZ=Asia/Shanghai
+        volumes:
+            # 配置和数据目录
+            - /vol1/1000/docker/app/freecad/config:/config # 必需：用于存放所有配置和数据
+            # CAD 图纸文件目录
+            - /vol1/1000/docker/app/freecad/data:/data # 推荐：用于存放您的CAD图纸文件
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
+```
+
+## 3、访问
+
+1. 访问：[http://127.0.0.1:3000](http://127.0.0.1:3000)
+2. 需进行 https 代理后方可访问
+
+
 # 【----------------主机模式 ----------------】
 
 
