@@ -236,7 +236,7 @@ screen -S XXX -X quit
 	<!-- 在游戏时间内，白天时间为：游戏日中每天18小时的日照 -->
 	<property name="DayLightLength"					value="18" />
 	<!-- 玩家死亡时掉落 0 =无，1 =一切，2 =仅工具带，3 =仅背包，4 =全部删除 -->
-	<property name="DropOnDeath"					value="1" />
+	<property name="DropOnDeath"					value="0" />
 	<!-- 玩家退出游戏时掉落 0 =无，1 =一切，2 =仅工具带，3 =仅背包 -->
 	<property name="DropOnQuit"						value="0" />
 	<!--在床多少范围内不产生僵尸Size-->

@@ -14492,6 +14492,25 @@ adb disconnect 手机ip:端口号
 
 ![](attachments/Pasted%20image%2020250507151734.png)
 
+### ③、手动下载并替换 gradle
+
+1. 先手动下载 gradle：https://services.gradle.org/distributions/gradle-8.14.3-bin.zip
+2. 进入本地的 gradle 缓存目录，默认缓存位置：`C:\Users\用户名\.gradle\wrapper\dists`
+3. 在这个文件夹下，应该能看到一个名为和版本号一样的文件夹，比如 `gradle-8.14.3-bin`，进入该目录会看到一个名字是一串随机字符的文件夹，再次进入该随机字符的目录
+4. 在这个乱码文件夹里，通常会看到两个文件：
+	1. `gradle-8.12-all.zip.part`：下载了一半的临时文件
+	2. `gradle-8.12-all.zip.lck`：锁文件
+5. 然后：
+	1. 关闭 Android Studio，停止所有正在运行的 gradle 任务
+	2. 删除这个文件夹里所有的 `.part` 和 `.lck` 文件
+	3. 将刚才手动下载好的 gradle-8.14.3-bin.zip 完整包复制进去。注意：不需要解压！ 直接放 zip 包进去就行
+6. 重新打开 Android Studio，重新编译即可
+
+![|700](attachments/Pasted%20image%2020251225123705.png)
+
+### ④、
+
+
 ## 6、应用签名
 
 1. 电脑中需要有 jdk 环境，在 cmd 中执行以下命令：
