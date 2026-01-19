@@ -4913,4 +4913,121 @@ EOF
 ## 2、
 
 
-# 十、
+# 十、DMIT 服务器配置
+
+## 1、设置 ssh 密钥登录
+
+1. 打开命令提示符 (CMD) 或 PowerShell，复制并粘贴以下命令，然后按回车：
+	1. `-t ed25519`：指定生成一种高安全性的密钥类型
+	2. `-C "dmit-key"`：给这个密钥一个备注，方便识别
+	3. `-f ~/.ssh/dmit_key`：将生成的私钥命名为 dmit_key，并保存在 .ssh 文件夹下
+
+```shell
+ssh-keygen -t ed25519 -C "dmit-key" -f C:/Users/10222148/.ssh/dmit_key
+```
+
+2. 按三次回车，执行命令后，它会问三次问题：
+	1. Enter file in which to save the key...：保存密钥到哪里？ 直接按回车，使用默认位置
+	2. Enter passphrase...：是否给密钥文件本身再加一个密码？ 直接按回车，表示不需要
+	3. Enter same passphrase again...：再次输入密码。 直接按回车
+	4. 完成后，它会提示密钥已经生成，并显示一个图案
+3. 进入目录 `C:/Users/10222148/.ssh`，打开新生成的文件 `dmit_key.pub`，这里的完整内容就是公钥，一会会用到
+4. 进入 dmit 控制台，点击更改密钥
+
+![|700](attachments/Pasted%20image%2020260119133620.png)
+
+5. 点击添加密钥，将刚才生成的 `dmit_key.pub` 文件中的全部内容都复制到公钥中，然后随意设定一个名字，点击添加 SSH Key 即可
+
+![|700](attachments/Pasted%20image%2020260119133850.png)
+
+6. 最后返回 dmit 控制台，点击更改密钥，然后选择刚才添加的 SSH Key 即可
+
+![|700](attachments/Pasted%20image%2020260119134057.png)
+
+7. dmit 服务器设置完毕后，在 ssh 终端中，选择生成的私钥文件 `C:/Users/10222148/.ssh/dmit_key` 即可进行登录
+
+![|640](attachments/Pasted%20image%2020260119134337.png)
+
+
+## 2、使用账号密码登录
+
+1. 修改主配置文件 `/etc/ssh/sshd_config`
+
+```shell
+# 打开主配置文件
+nano /etc/ssh/sshd_config
+
+# 找到 PermitRootLogin prohibit-password 这一行
+PermitRootLogin yes
+```
+
+2. 修改 Cloud-init 的 SSH 配置文件 `/etc/ssh/sshd_config.d/50-cloud-init.conf`，确保 Cloud-init 在下次启动时，不会把设置再改回去
+
+```shell
+# 打开 Cloud-init 的 SSH 配置文件
+nano /etc/ssh/sshd_config.d/50-cloud-init.conf
+
+# 修改或者添加配置：
+PasswordAuthentication yes
+```
+
+3. 修改完毕，之后就可以直接使用账号密码密码登录
+
+## 3、安装 UFW 防火墙
+
+1. 安装 UFW 防火墙
+
+```shell
+# 更新软件源
+sudo apt update
+
+# 安装 UFW
+sudo apt install ufw
+```
+
+2. 设置默认规则
+
+```shell
+# 拒绝所有进入服务器的网络连接
+sudo ufw default deny incoming
+# 允许所有从服务器出去的网络连接
+sudo ufw default allow outgoing
+# 许所有通过SSH服务（22号端口）的连接进入
+sudo ufw allow ssh
+
+```
+
+3. 开启 http、https 端口
+
+```shell
+# 开启 http 80 端口
+sudo ufw allow 80
+# 开启 https 443 端口
+sudo ufw allow 443
+```
+
+4. 启动 UFW 防火墙
+
+```
+sudo ufw enable
+```
+
+5. 列出防火墙状态，以及设置的所有规则列表
+
+```shell
+sudo ufw status verbose
+```
+
+## 4、
+
+## 5、
+
+# 十一、
+
+# 十二、
+
+# 十三、
+
+# 十四
+
+# 十五、
