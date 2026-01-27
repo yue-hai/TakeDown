@@ -4,86 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "52edeea6191ec90c",
+        "id": "7d67ce877f259295",
         "type": "tabs",
         "children": [
           {
-            "id": "aab7828a5aa0c908",
+            "id": "0fa48b5abea1f608",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android/Kotlin 基础.md",
+                "file": "01、编程/20、网络相关/01、域名证书.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Kotlin 基础"
-            }
-          },
-          {
-            "id": "818a1e0bccbc41d2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/Android 基础.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Android 基础"
-            }
-          },
-          {
-            "id": "437025e07622aae1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Flutter/Dart 基础.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Dart 基础"
-            }
-          },
-          {
-            "id": "de6d53c45f93a17a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Flutter/Flutter 基础.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Flutter 基础"
-            }
-          },
-          {
-            "id": "a84017e781763502",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "其他/教程/n2n/n2n教程地址.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "n2n教程地址"
+              "title": "01、域名证书"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -146,8 +85,7 @@
               "title": "搜索"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -170,16 +108,6 @@
               "icon": "lines-of-text",
               "title": "Quiet Outline"
             }
-          },
-          {
-            "id": "39ee73aa4620b336",
-            "type": "leaf",
-            "state": {
-              "type": "copilot-chat-view",
-              "state": {},
-              "icon": "message-square",
-              "title": "Copilot"
-            }
           }
         ]
       }
@@ -193,52 +121,53 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "2c960a24d23e051f",
+  "active": "0fa48b5abea1f608",
   "lastOpenFiles": [
-    "Flutter/Flutter 基础.md",
-    "其他/教程/n2n/n2n教程地址.md",
-    "其他/教程/n2n/n2n使用方法.md",
-    "其他/教程/n2n/n2n绕过UDP屏蔽.md",
-    "其他/教程/n2n/n2n服务端部署.md",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203101540.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251117123411.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251111153757.png",
+    "01、编程/11、Docker 应用/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar",
+    "01、编程/11、Docker 应用/attachments/token_extractor.exe",
+    "01、编程/11、Docker 应用/attachments/token_extractor-qr.exe",
+    "01、编程/11、Docker 应用/attachments/PixPin_2025-11-04_15-56-13.png",
+    "01、编程/11、Docker 应用/attachments/PixPin_2025-11-04_15-51-38.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203134452.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203134437.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203124433.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203124337.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203105435.png",
+    "01、编程/11、Docker 应用/attachments/Pasted image 20251203105427.png",
+    "01、编程/11、Docker 应用/attachments/drawio-v3.0.3.tar.gz",
+    "01、编程/11、Docker 应用/attachments/openssl-1.1.1g.tar.gz",
+    "01、编程/11、Docker 应用/attachments/onlyoffice.tar.gz",
+    "01、编程/11、Docker 应用/attachments/notes-v4.11.0.tar.gz",
+    "01、编程/11、Docker 应用/attachments/n2n-3.0.zip",
+    "01、编程/11、Docker 应用/attachments/libssl.so.1.1",
+    "01、编程/11、Docker 应用/attachments/libcrypto.so.1.1",
+    "01、编程/11、Docker 应用/docker 编程应用部署.md",
+    "01、编程/11、Docker 应用/docker 游戏应用部署.md",
+    "01、编程/11、Docker 应用/docker 应用部署.md",
+    "01、编程/10、编程工具/Git.md",
+    "01、编程/10、编程工具/Docker.md",
+    "01、编程/编程相关/网络相关.md",
+    "01、编程/20、网络相关/01、域名证书.md",
     "标题.md",
-    "其他/教程/n2n/n2n常见问题解决.md",
-    "Docker/docker 编程应用部署.md",
-    "其他/教程/n2n/未命名",
-    "其他/软件使用/软件使用.md",
-    "其他/教程/n2n",
-    "其他/教程",
-    "其他/软件使用/n2n",
-    "Docker/docker 应用部署.md",
-    "Docker/docker 游戏应用部署.md",
-    "Docker/attachments/Pasted image 20251111144121.png",
-    "Docker/attachments/Pasted image 20251111144005.png",
-    "Docker/attachments/Pasted image 20251111143709.png",
-    "Docker/attachments/Pasted image 20251111132524.png",
-    "Docker/attachments/Pasted image 20251111132220.png",
-    "Docker/attachments/Pasted image 20251111131819.png",
-    "Docker/attachments/Pasted image 20251111131416.png",
-    "Docker/attachments/gnb_udp_over_tcp.zip",
-    "attachments/gnb_udp_over_tcp.zip.md",
-    "attachments",
-    "Docker/attachments/Pasted image 20251111131138.png",
-    "Docker/attachments/Pasted image 20251107161831.png",
-    "Docker/attachments/Pasted image 20251111134832.png",
-    "Docker/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar",
-    "Docker/attachments/EasyN2N_3.3.zip",
-    "Docker/attachments/n2n-3.0.zip",
-    "Flutter/Dart 基础.md",
-    "其他/n2n/n2n 的使用方法和问题.md",
-    "其他/n2n/n2n 的安装配置.md",
-    "编程相关/Docker.md",
-    "其他/设备和工具/windows.md",
-    "Python/Python 基础.md",
-    "Web/JS框架/Vue3.md",
-    "Web/JS框架/jQuery.md",
-    "Web/【其他】.md",
-    "Web/三件套/ES6-11 - JavaScript 新特性.md",
-    "Android/Kotlin 基础.md",
-    "Android/Android 基础.md",
-    "其他/设备和工具/飞牛fnos.md",
-    "Docker/attachments/Bitwarden_2025.8.0.apk"
+    "10、设备/12、外设/键盘.md",
+    "10、设备/10、主机/01、友善 Nanopi R6s.md",
+    "10、设备/03、文件/音频处理.md",
+    "10、设备/033、文件/音频处理.md",
+    "10、设备/13、文件/音频处理.md",
+    "10、设备/0/音频处理.md",
+    "10、设备/02、软件/软件使用.md",
+    "10、设备/11、软件/软件使用.md",
+    "13、文件/音频处理.md",
+    "11、软件/软件使用.md",
+    "10、设备/10、外设/键盘.md",
+    "10、设备/02、主机/01、友善 Nanopi R6s.md",
+    "10、设备/01、系统/30、飞牛fnos.md",
+    "10、设备/01、系统/20、android.md",
+    "10、设备/01、系统/10、ubuntu.md",
+    "10、设备/01、系统/01、windows.md",
+    "11、设备/01、系统/30、飞牛fnos.md"
   ]
 }
