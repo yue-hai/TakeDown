@@ -20,7 +20,8 @@
                 {
                   "type": "file",
                   "ctime": 1769490052011,
-                  "path": "01、编程/01、编程语言/Android/Kotlin 基础.md"
+                  "path": "01、编程/01、编程语言/Android/Kotlin 基础.md",
+                  "title": "Kotlin 基础"
                 }
               ],
               "title": "Android"
@@ -471,6 +472,11 @@
               "type": "file",
               "ctime": 1769490783294,
               "path": "10、设备/10、主机/01、友善 Nanopi R6s.md"
+            },
+            {
+              "type": "file",
+              "ctime": 1770098660293,
+              "path": "10、设备/10、主机/02、radxa o6n.md"
             }
           ],
           "title": "10、主机"
@@ -535,10 +541,27 @@
                 {
                   "type": "file",
                   "ctime": 1769490854884,
-                  "path": "90、公司/01、创迹/SSC/SSC 购物车.md"
+                  "path": "90、公司/01、创迹/05_SSC-智能购物车/SSC 购物车.md"
                 }
               ],
-              "title": "SSC"
+              "title": "05_SSC-智能购物车"
+            },
+            {
+              "type": "group",
+              "ctime": 1770016673780,
+              "items": [
+                {
+                  "type": "file",
+                  "ctime": 1770016830532,
+                  "path": "90、公司/01、创迹/06_货架布置-棚取り/01、flutter_app.md"
+                },
+                {
+                  "type": "file",
+                  "ctime": 1770016837889,
+                  "path": "90、公司/01、创迹/06_货架布置-棚取り/02、web.md"
+                }
+              ],
+              "title": "06_货架布置-棚取り"
             }
           ],
           "title": "01、创迹"

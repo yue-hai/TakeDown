@@ -361,3 +361,12 @@ telnet localhost 8081
 | shutdown                  | 关闭服务器                                                             |
 | say <信息>                  | 以server的名义广播一条信息                                                  |
 
+4. 常用：
+
+```shell
+admin add 谐 0
+admin remove 谐
+```
+
+
+
