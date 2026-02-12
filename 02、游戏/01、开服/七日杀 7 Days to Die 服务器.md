@@ -366,6 +366,9 @@ telnet localhost 8081
 ```shell
 admin add 谐 0
 admin remove 谐
+
+admin add 171 0
+admin remove 171
 ```
 
 
