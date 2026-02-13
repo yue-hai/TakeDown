@@ -68,36 +68,6 @@
             }
           },
           {
-            "id": "69c3807b2e3558a4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "10、设备/01、系统/10、ubuntu.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "10、ubuntu"
-            }
-          },
-          {
-            "id": "eb006f092c6dfd3f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "10、设备/10、主机/02、radxa o6n.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "02、radxa o6n"
-            }
-          },
-          {
             "id": "4804588eb4452192",
             "type": "leaf",
             "state": {
@@ -110,6 +80,21 @@
               },
               "icon": "lucide-file",
               "title": "标题"
+            }
+          },
+          {
+            "id": "178282a710dcfed4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "90、公司/01、创迹/06_货架布置-棚取り/02、web.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "02、web"
             }
           }
         ],
@@ -212,34 +197,38 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "eb006f092c6dfd3f",
+  "active": "178282a710dcfed4",
   "lastOpenFiles": [
-    "标题.md",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212140421.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/02、web.md",
+    "90、公司/01、创迹/06_货架布置-棚取り/01、flutter_app.md",
     "10、设备/10、主机/02、radxa o6n.md",
-    "10、设备/10、主机/attachments/Pasted image 20260203142633.png",
+    "标题.md",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212140133.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212135939.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212135906.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212135836.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212134929.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212134825.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212134815.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212134746.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments/Pasted image 20260212134712.png",
+    "90、公司/01、创迹/06_货架布置-棚取り/attachments",
+    "02、游戏/01、开服/七日杀 7 Days to Die 服务器.md",
+    "10、设备/02、软件/软件使用.md",
     "10、设备/01、系统/10、ubuntu.md",
     "10、设备/10、主机/01、友善 Nanopi R6s.md",
-    "90、公司/01、创迹/06_货架布置-棚取り/02、web.md",
     "90、公司/01、创迹/05_SSC-智能购物车/SSC 购物车.md",
-    "90、公司/01、创迹/06_货架布置-棚取り/01、flutter_app.md",
     "90、公司/01、创迹/06_货架布置-棚取り",
     "01、编程/01、编程语言/Flutter/Flutter 基础.md",
-    "10、设备/02、软件/软件使用.md",
     "10、设备/11、配件/01、硬盘.md",
-    "02、游戏/01、开服/七日杀 7 Days to Die 服务器.md",
     "01、编程/01、编程语言/Web/JS框架/Vue3.md",
     "01、编程/01、编程语言/Flutter/Dart 基础.md",
     "02、游戏/02、指令/其他游戏.md",
     "02、游戏/02、指令/attachments/Raft v1.0 Plus 20 Trainer.exe",
-    "02、游戏/02、指令/attachments/Pasted image 20251202111748.png",
-    "02、游戏/02、指令/attachments/Pasted image 20251202105444.png",
-    "02、游戏/02、指令/attachments/Pasted image 20251202104833.png",
     "02、游戏/02、指令/attachments",
     "02、游戏/02、指令/新建文件夹",
     "02、游戏/02、指令/Raft v1.0 Plus 20 Trainer.exe",
-    "02、游戏/02、指令/Pasted image 20251202111748.png",
-    "02、游戏/02、指令/Pasted image 20251202105444.png",
-    "02、游戏/02、指令/Pasted image 20251202104833.png",
     "02、游戏/01、开服/其他游戏.md",
     "02、游戏/02、指令",
     "02、游戏/新建文件夹",
@@ -247,11 +236,7 @@
     "01、编程/01、编程语言/Java/【其他】.md",
     "01、编程/01、编程语言/新建文件夹",
     "01、编程/20、网络相关/01、域名证书.md",
-    "01、编程/11、Docker 应用/attachments/Pasted image 20251203101540.png",
-    "01、编程/11、Docker 应用/attachments/Pasted image 20251117123411.png",
-    "01、编程/11、Docker 应用/attachments/Pasted image 20251111153757.png",
     "01、编程/11、Docker 应用/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar",
-    "01、编程/11、Docker 应用/attachments/token_extractor.exe",
     "01、编程/11、Docker 应用/docker 编程应用部署.md",
     "01、编程/11、Docker 应用/docker 游戏应用部署.md",
     "01、编程/11、Docker 应用/docker 应用部署.md",
