@@ -180,9 +180,11 @@ yan@yuehai:~/sky1-live-build$
 
 ## 3、
 
-# 二、安装 xrdp
+# 二、安装软件
 
-## 1、安装 xrdp
+## 1、xrdp
+
+### ①、安装 xrdp
 
 1. 更新软件列表
 
@@ -204,7 +206,13 @@ sudo apt install xrdp xfce4 xfce4-goodies -y
 sudo adduser xrdp ssl-cert
 ```
 
-4. 修改 xrdp 的启动脚本，防止它读取本地用户的环境变量，这是导致黑屏闪退的元凶
+4. 创建一个名为 `.xsession` 的文件，并写入启动 XFCE 的指令：
+
+```shell
+echo xfce4-session > ~/.xsession
+```
+
+5. 修改 xrdp 的启动脚本，防止它读取本地用户的环境变量，这是导致黑屏闪退的元凶
 
 ```shell
 # 打开配置文件
@@ -227,29 +235,29 @@ fi
 # ...
 ```
 
-5. 重启 xrdp 服务
+6. 重启 xrdp 服务
 
 ```shell
 sudo systemctl restart xrdp
 ```
 
-## 2、安装 xrdp 问题记录
+### ②、安装 xrdp 问题记录
 
-### ①、Failed to execute child process "dbus-launch" (No such file or directory)
+#### Ⅰ、Failed to execute child process "dbus-launch" (No such file or directory)
 
-#### Ⅰ、报错现象
+##### （1）、报错现象
 
 1. 无法连接，报错：
 
 ![|700](attachments/Pasted%20image%2020260203142633.png)
 
-#### Ⅱ、原因
+##### （2）、原因
 
 1. 系统里少了一个叫 dbus-x11 的关键组件
 2. 没有它，XFCE 桌面无法启动它的**消息总线**，所以就弹窗报错了
 3. 这是 Debian 系精简版系统常见的一个问题
 
-#### Ⅲ、解决
+##### （3）、解决
 
 1. 补装缺失的组件，这个包包含了报错里提到的 dbus-launch 工具
 
@@ -263,13 +271,40 @@ sudo apt install dbus-x11 -y
 sudo systemctl restart xrdp
 ```
 
+#### Ⅱ、
+
+## 3、docker
+
+### ①、安装 docker
+
+1. 更新系统软件源：
+
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+2. 下载并执行 Docker 安装脚本：
+
+```shell
+# 从官网下载脚本到当前目录，命名为 get-docker.sh
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+# 执行脚本进行安装
+sudo sh get-docker.sh
+```
+
+3. 将当前用户添加到 docker 组
+
+```shell
+sudo usermod -aG docker $USER
+```
+
+4. 安装完成，可以使用 `docker ps` 命令查看是否报错
+
 ### ②、
 
 ### ③、
 
-### ④、
-
-## 3、
 
 ## 4、
 
