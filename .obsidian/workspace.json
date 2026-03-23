@@ -23,7 +23,7 @@
             }
           },
           {
-            "id": "e620155eef8aa34c",
+            "id": "0f1c9b928b8c5994",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -58,17 +58,32 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10、设备/02、软件/软件使用.md",
+                "file": "10、电子设备/10、主机/02、radxa o6n.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "软件使用"
+              "title": "02、radxa o6n"
+            }
+          },
+          {
+            "id": "e9934e9daec420d9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "10、电子设备/01、系统/01、windows.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "01、windows"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -105,16 +120,6 @@
             }
           },
           {
-            "id": "ced252e80acf5b12",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "插件不再活动"
-            }
-          },
-          {
             "id": "7645db7678a31276",
             "type": "leaf",
             "state": {
@@ -129,6 +134,16 @@
               },
               "icon": "lucide-search",
               "title": "搜索"
+            }
+          },
+          {
+            "id": "ced252e80acf5b12",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           }
         ],
@@ -167,52 +182,53 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "4804588eb4452192",
+  "active": "2c960a24d23e051f",
   "lastOpenFiles": [
+    "10、电子设备/01、系统/attachments/Pasted image 20260323104010.png",
+    "10、电子设备/01、系统/attachments/Pasted image 20260323103731.png",
+    "10、电子设备/01、系统/attachments/Pasted image 20260323103710.png",
+    "10、电子设备/01、系统/attachments/Pasted image 20260323103625.png",
+    "10、电子设备/01、系统/10、ubuntu.md",
+    "10、电子设备/01、系统/01、windows.md",
+    "10、电子设备/01、系统/30、飞牛fnos.md",
     "标题.md",
-    "01、编程/01、编程语言/Web/JS框架/Vue3.md",
-    "01、编程/20、网络相关/01、域名.md",
-    "90、公司/01、创迹/06_货架布置-棚取り/02、web.md",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224154343.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224154101.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224153404.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224153333.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224153050.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224143151.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224142953.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224142843.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224142748.png",
-    "01、编程/20、网络相关/attachments/Pasted image 20260224142139.png",
-    "10、设备/10、主机/02、radxa o6n.md",
-    "10、设备/10、主机/01、友善 Nanopi R6s.md",
-    "01、编程/10、编程工具/Docker.md",
-    "10、设备/01、系统/10、ubuntu.md",
-    "90、公司/01、创迹/06_货架布置-棚取り/01、flutter_app.md",
-    "90、公司/01、创迹/06_货架布置-棚取り/attachments",
-    "02、游戏/01、开服/七日杀 7 Days to Die 服务器.md",
-    "10、设备/02、软件/软件使用.md",
-    "90、公司/01、创迹/05_SSC-智能购物车/SSC 购物车.md",
-    "90、公司/01、创迹/06_货架布置-棚取り",
+    "10、电子设备/10、主机/02、radxa o6n.md",
+    "01、编程/01、编程语言/Android/Android 基础.md",
+    "20、出行工具/01、电动车.md",
+    "20、出行工具/attachments/Pasted image 20260304143744.png",
+    "20、出行工具/attachments/Pasted image 20260304143733.png",
+    "20、出行工具/attachments",
     "01、编程/01、编程语言/Flutter/Flutter 基础.md",
-    "10、设备/11、配件/01、硬盘.md",
     "01、编程/01、编程语言/Flutter/Dart 基础.md",
-    "02、游戏/02、指令/其他游戏.md",
-    "02、游戏/02、指令/attachments/Raft v1.0 Plus 20 Trainer.exe",
-    "02、游戏/02、指令/attachments",
-    "02、游戏/02、指令/新建文件夹",
-    "02、游戏/02、指令/Raft v1.0 Plus 20 Trainer.exe",
-    "02、游戏/01、开服/其他游戏.md",
-    "02、游戏/02、指令",
-    "02、游戏/新建文件夹",
-    "01、编程/01、编程语言/Java/01、JAVA 基础.md",
-    "01、编程/01、编程语言/Java/【其他】.md",
-    "01、编程/01、编程语言/新建文件夹",
-    "01、编程/11、Docker 应用/attachments/yuehai-tool-1.0-SNAPSHOT-jar-with-dependencies.jar",
-    "01、编程/11、Docker 应用/docker 编程应用部署.md",
-    "01、编程/11、Docker 应用/docker 游戏应用部署.md",
-    "01、编程/11、Docker 应用/docker 应用部署.md",
-    "01、编程/10、编程工具/Git.md",
-    "01、编程/编程相关/网络相关.md",
-    "10、设备/12、外设/键盘.md"
+    "20、出行工具/01、电动车",
+    "20、出行工具",
+    "新建文件夹",
+    "90、软件教程/n2n/n2n绕过UDP屏蔽.md",
+    "90、软件教程/n2n/n2n服务端部署.md",
+    "90、软件教程/n2n/n2n教程地址.md",
+    "90、软件教程/n2n/n2n常见问题解决.md",
+    "90、软件教程/n2n/n2n使用方法.md",
+    "90、软件教程/n2n",
+    "90、软件教程",
+    "10、电子设备/10、主机/attachments/Pasted image 20251205090840.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260203142633.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20251205104815.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20251205104808.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20251205101331.png",
+    "10、电子设备/02、软件/attachments/WindTerm_2.6.0.zip",
+    "10、电子设备/02、软件/attachments/steamguard.exe",
+    "10、电子设备/02、软件/attachments/clashpremium-linux-amd64",
+    "10、电子设备/02、软件/attachments/Clash.for.Windows-0.20.39-Opt.3-win.7z",
+    "10、电子设备/12、外设/键盘.md",
+    "10、电子设备/11、配件/01、硬盘.md",
+    "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
+    "10、电子设备/02、软件/软件使用.md",
+    "10、电子设备/01、系统/20、android.md",
+    "10、电子设备/03、文件/音频处理.md",
+    "10、设备/10、主机/02、radxa o6n.md",
+    "10、设备/02、软件/软件使用.md",
+    "02、游戏/01、开服/泰拉瑞亚 tModLoader 服务器.md",
+    "01、编程/01、编程语言/Web/JS框架/Vue3.md",
+    "01、编程/20、网络相关/01、域名.md"
   ]
 }

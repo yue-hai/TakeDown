@@ -300,14 +300,19 @@ lines 1-22/22 (END)
 2. 修改配置文件 `/etc/ssh/sshd_config`：
 
 ```shell
-# 编辑或创建文件
 sudo nano /etc/ssh/sshd_config
+```
 
+```shell
 # 将：
-# PermitRootLogin prohibit-password
-
+#PermitRootLogin prohibit-password
 # 改成
 PermitRootLogin yes
+
+# 将：
+#PasswordAuthentication yes
+# 改成
+PasswordAuthentication yes
 ```
 
 3. 重启服务：`sudo systemctl restart ssh`

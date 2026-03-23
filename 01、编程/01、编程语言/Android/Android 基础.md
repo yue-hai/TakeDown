@@ -14140,6 +14140,11 @@ class GuideScanDialog : BaseGuidePocDialog() {
 8. 不要关闭此命令行窗口，再开启一个 scrcpy 的命令行窗口
 9. 以上面的方式连接 scrcpy 即可
 10. 该程序的原理是通过在手机端安装 sndcpyapp，拦截手机端的声音，再通过 adb 转发到 PC 端，再通过 VLC 播放器播放声音
+11. Scrcpy 从 2.0 版本开始，默认会自动把手机的声音通过底层转发到电脑上播放。但是，如果 Windows 电脑没有插入耳机或音箱（或者默认音频输出设备有问题），导致 Scrcpy 的音频解码器（WASAPI）找不到地方发声，就会引发了 Demuxer error 并导致整个程序崩溃退出。解决方法是在启动 Scrcpy 时，加上禁用音频转发的参数即可完美解决：
+
+```shell
+scrcpy --no-audio -m 1920 --video-bit-rate=8M
+```
 
 #### Ⅴ、常用快捷键
 
@@ -14610,7 +14615,29 @@ android {
 
 7. 最后使用 `flutter build apk --release --dart-define=ENV=prod --verbose` 打包即可
 
-## 7、
+## 7、实体机设置
+
+### ①、修改 adb 端口号
+
+1. 授予 root 权限
+
+```shell
+su
+```
+
+2. 强行打开 5555 端口并重启底层 ADB 守护进程
+
+```shell
+setprop service.adb.tcp.port 5555
+stop adbd
+start adbd
+```
+
+### ②、
+
+### ③、
+
+### ④、
 
 ## 8、
 
