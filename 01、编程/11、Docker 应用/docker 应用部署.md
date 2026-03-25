@@ -4775,7 +4775,7 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 ## 5、
 
 
-# 51、astrbot 一站式个人和群聊助手
+# 504、astrbot 一站式个人和群聊助手
 
 > 1. 项目 github：https://github.com/AstrBotDevs/AstrBot
 > 2. dockerHub 地址：https://hub.docker.com/r/soulter/astrbot
@@ -4802,7 +4802,7 @@ sudo docker run -itd \
 soulter/astrbot:latest
 ```
 
-1. 使用 `docker-compose.yml` 部署：
+3. 使用 `docker-compose.yml` 部署：
 
 ```yaml
 # 定义所有要管理的服务（容器）
