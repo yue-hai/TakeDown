@@ -4540,14 +4540,6 @@ apk add --no-cache docker-cli
 > 2. 项目 Docker 版本 github：https://github.com/NapNeko/NapCat-Docker
 > 3. dockerHub 地址：https://hub.docker.com/r/mlikiowa/napcat-docker
 > 4. 官网：https://napneko.github.io/
-> -------- 
-> 1. 本来想将 NapCatQQ 和 nonebot-bison 都部署在阿里云上，但是阿里云的 WebSocket 好像要收费才能开通，所以 nonebot-bison 部署后连接不上
-> 2. 但是不知道为什么 NapCatQQ 可以启动，WebSocket 的客户端和服务端都可以正常启动并连接，为什么 nonebot-bison 不行？
-> 3. 具体原因到底是不是这个，还有待考证；[WebSocket 官网计费说明](https://help.aliyun.com/zh/edge-security-acceleration/dcdn/configure-websocket)
-> 4. 所以现在 NapCatQQ 部署在阿里云上，nonebot-bison 部署在自己的实体机上
-> -------- 
-> 1. 经过尝试，阿里云上部署之后有可以链接上了，参数都没变，只是将我实体机上使用的镜像导出，上传到了阿里云的服务器上使用
-> 2. 难道是上一次镜像下载时出错了？还有待考证
 
 ## 1、介绍
 
@@ -4558,18 +4550,21 @@ apk add --no-cache docker-cli
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录 1：`/home/docker/docker/volumes/napcat-docker/config`
-	2. 配置目录 2：`/home/docker/docker/volumes/napcat-docker/.config`
-	3. 日志目录：`/home/docker/docker/volumes/napcat-docker/logs`
+	1. QQ 数据：`/mnt/data/docker/volumes/script/napcatQQ/QQ`
+	2. 配置目录：`/mnt/data/docker/volumes/script/napcatQQ/config`
+	3. 日志目录：`/mnt/data/docker/volumes/script/napcatQQ/logs`
+	4. 缓存目录：`/mnt/data/docker/volumes/script/napcatQQ/cache`
+	5. 插件目录：`/mnt/data/docker/volumes/script/napcatQQ/plugins`
 2. 使用 docker 部署：
-	4. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	5. `-p`：指定端口映射
+	1. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
+	2. `-p`：指定端口映射
 		1. 3000、3001：NapCatQQ 与 QQ 服务器通信的端口
 		2. 6099：NapCatQQ 的 web 端口
 		3. 3003、3004：预留的，NapCatQQ 服务器端口；只使用反向连接的话，不要这两个端口也可以
-	6. `-e WEBUI_TOKEN`：TOKEN，登录 web 后台时需要提供，作为密码
-	7. `-v`：指定挂载目录
-	8. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+	3. `-e`：设置环境变量
+		1. `WEBUI_TOKEN`：TOKEN，登录 web 后台时需要提供，作为密码
+	4. `-v`：指定挂载目录
+	5. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
 
 ```shell
 docker run -d \
@@ -4581,12 +4576,72 @@ docker run -d \
 -e NAPCAT_GID=$(id -g) \
 -e NAPCAT_UID=$(id -u) \
 -e WEBUI_TOKEN='***' \
--v /home/docker/docker/volumes/napcat-docker/config:/app/napcat/config \
--v /home/docker/docker/volumes/napcat-docker/.config:/app/.config/QQ \
--v /home/docker/docker/volumes/napcat-docker/logs:/app/napcat/logs \
+-v /mnt/data/docker/volumes/script/napcatQQ/QQ:/app/.config/QQ \
+-v /mnt/data/docker/volumes/script/napcatQQ/config:/app/napcat/config \
+-v /mnt/data/docker/volumes/script/napcatQQ/logs:/app/napcat/logs \
+-v /mnt/data/docker/volumes/script/napcatQQ/cache:/app/napcat/cache \
+-v /mnt/data/docker/volumes/script/napcatQQ/plugins:/app/napcat/plugins \
+--network yuehai-net \
 --restart=unless-stopped \
 --name napcat \
 mlikiowa/napcat-docker:latest
+```
+
+3. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 napcatQQ 的服务
+    napcatQQ:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: mlikiowa/napcat-docker:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: napcatQQ
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # NapCatQQ 与 QQ 服务器通信的端口
+            - "3000:3000"
+            - "3001:3001"
+            # NapCatQQ 的 web 端口
+            - "6099:6099"
+            # 预留的，NapCatQQ 服务器端口
+            - "3003:3003"
+            - "3004:3004"
+        # 定义环境变量
+        environment:
+            # 设置运行用户 ID，以避免权限问题
+            - PUID=1000
+            # 设置运行组 ID，以避免权限问题
+            - PGID=1001
+            # 设置 WebUI 的访问令牌
+            - WEBUI_TOKEN=***
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # QQ 核心数据和账户信息目录
+            - /mnt/data/docker/volumes/script/napcatQQ/QQ:/app/.config/QQ
+            # napcat 配置文件目录
+            - /mnt/data/docker/volumes/script/napcatQQ/config:/app/napcat/config
+            # napcat 日志文件目录
+            - /mnt/data/docker/volumes/script/napcatQQ/logs:/app/napcat/logs
+            # napcat 缓存文件目录
+            - /mnt/data/docker/volumes/script/napcatQQ/cache:/app/napcat/cache
+            # napcat 插件目录
+            - /mnt/data/docker/volumes/script/napcatQQ/plugins:/app/napcat/plugins
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
 ## 3、访问
@@ -4594,43 +4649,62 @@ mlikiowa/napcat-docker:latest
 1. 访问：[http://127.0.0.1:6099/webui](http://127.0.0.1:6099/webui)
 2. TOKEN 是创建 docker 容器时指定的，如果没有指定，查找挂载目录的 `/config/webui.json` 文件中，填入 `token` 字段的值即可
 3. 登录成功后，点击 `QR Code`，使用想要作为机器人的 QQ 扫描登录即可
-
-![](attachments/Pasted%20image%2020250108105258.png)
-
 4. 扫描并且确认后，等待几面就会自动进入管理页面
 
-## 4、日志查看
+![|544](attachments/Pasted%20image%2020260324102328.png)
 
-1. 点击日志查看，可以看到登录的 QQ 号接收的消息，私聊和群聊都可以看到
 
-![|700](attachments/Pasted%20image%2020250108105417.png)
+## 4、网络配置服务端
 
-## 5、将 NapCatQQ 作为 java 端的 WebSocket 服务器
+### ①、http 服务器
 
 1. 点击网络配置 -> 添加配置
-	1. 名称：比如：`将 NapCatQQ 作为 java 端的 WebSocket 服务器`
+	1. 名称：比如：`作为 java 端的 http 服务器`
+	2. 类型：HTTP 服务器
+
+![](attachments/Pasted%20image%2020250110092000.png)
+
+2. 勾选启用
+3. 端口修改为 10063、10064 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
+4. 主机使用默认 `0.0.0.0`，不用修改
+5. CORS 和 WS 可以关闭
+6. 其他默认，不用修改，点击确定
+
+![](attachments/Pasted%20image%2020250110092357.png)
+
+7. 开启后，可通过 ip 和 端口，调用其接口，实现各种操作
+
+
+### ②、HTTP SSE服务器
+
+### ③、HTTP客户端
+
+### ④、WebSocket 服务器
+
+1. 点击网络配置 -> 新建 -> WebSocket 服务器
+	1. 名称：比如：`作为 java 端的 WebSocket 服务器`
 	2. 类型：WebSocket 服务器
 
-![](attachments/Pasted%20image%2020250108105436.png)
+![](attachments/Pasted%20image%2020250107125837.png)
 
 2. 勾选启用
 3. 主机使用默认 `0.0.0.0`，不用修改
-4. 端口修改为 3003、3004 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
+4. 端口修改为 10063、10064 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
 5. 其他默认，不用修改，点击确定
 
-![](attachments/Pasted%20image%2020250108105626.png)
+![](attachments/Pasted%20image%2020250107141335.png)
 
-6. 在 java 中，使用 `ws://ip:3003` 连接服务器
+6. 在 java 中，使用 `ws://101.200.86.248:10063` 连接服务器
 
 ```java
-URI uri = new URI("ws://ip:3003");
+URI uri = new URI("ws://101.200.86.248:10063");
 NapcatQQWebSocketServer client = new NapcatQQWebSocketServer(uri);
 client.connect();
 ```
 
 7. 使用 `Java-WebSocket` 库接收、发送消息
 
-```maven
+```xml
 <!-- Java-WebSocket 是一个 Java 实现的 WebSocket 协议的开源项目 -->
 <!-- https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket -->
 <dependency>
@@ -4686,118 +4760,94 @@ public class NapcatQQWebSocketServer extends WebSocketClient {
 
 8. 启动后，连接上 ws 后，即可发送、接收消息
 
-## 6、将 NapCatQQ 作为 java 端的 http 服务器
+### ⑤、Websocket 客户端
 
-> 1. 可通过 ip 和 端口，调用其接口，实现各种操作
-> 2. api 文档：https://napcat.apifox.cn/
+1. NapCatQQ Websocket 客户端配置
 
-1. 点击网络配置 -> 添加配置
-	1. 名称：比如：`将 NapCatQQ 作为 java 端的 http 服务器`
-	2. 类型：HTTP 服务器
+![|412](attachments/Pasted%20image%2020260313165813.png)
 
-![](attachments/Pasted%20image%2020250110092528.png)
+2. astrbot OneBot v11 机器人配置
 
-2. 勾选启用
-3. 端口修改为 3003、3004 其中之一；如果想使用别的端口，需在创建 docker 容器时指定
-4. 主机使用默认 `0.0.0.0`，不用修改
-5. CORS 和 WS 可以关闭
-6. 其他默认，不用修改，点击确定
+![|575](attachments/Pasted%20image%2020260324102519.png)
 
-![](attachments/Pasted%20image%2020250110092539.png)
 
-7. 开启后，可通过 ip 和 端口，调用其接口，实现各种操作
 
-## 7、将 NapCatQQ 接入 nonebot11 的服务端
+## 5、
 
-1. 继续看下面的 nonebot-bison 的部署和使用
 
-# 504、nonebot-bison 通用订阅推送插件机器人
+# 51、astrbot 一站式个人和群聊助手
 
-> 1. 项目 github：https://github.com/MountainDash/nonebot-bison
-> 2. dockerHub 地址：https://hub.docker.com/r/felinae98/nonebot-bison
+> 1. 项目 github：https://github.com/AstrBotDevs/AstrBot
+> 2. dockerHub 地址：https://hub.docker.com/r/soulter/astrbot
+> 3. 官方文档：https://docs.astrbot.app/deploy/astrbot/docker.html
 
 ## 1、介绍
-
-1. NoneBot-Bison 是 NoneBot 的一个扩展插件，专注于多种消息源（例如 RSS、B 站、推特等）的订阅与推送功能
-2. 它的主要功能是帮助用户自动获取指定消息源的内容，并根据需求推送到指定的平台，如 QQ 群聊、Telegram 群组等
-3. 主要功能：
-4. 多消息源支持：
-	1. RSS 订阅
-	2. Bilibili 动态
-	3. Twitter 帖子
-	4. 更多消息源通过插件扩展实现
-5. 灵活的推送目标：
-	1. 支持将订阅内容推送至：
-	2. QQ（通过 OneBot 协议）
-	3. Telegram
-	4. Discord 等
 
 ## 2、docker 部署
 
 1. 为防止容器意外停止后数据丢失，首先在宿主机创建目录：
-	1. 配置目录：`/home/docker/docker/volumes/nonebot-bison/data`
-2. 使用 docker 部署：
-	2. `-d`：后台运行容器并返回容器 ID，也即启动守护式容器(后台运行)
-	3. `-p`：指定端口映射
-	4. `-e`：设置环境变量
-		1. `SUPERUSERS`：管理员 QQ，可管理、配置机器人 QQ
-		2. `BISON_CONFIG_PATH`：配置文件目录
-		3. `BISON_OUTER_URL`：从外部访问服务器的地址，因为 nonebot-bison 并不能自动识别 IP，所以需要手动指定；
-		4. `BISON_FILTER_LOG`：是否过滤来自 nonebot 的 warning 级以下的 log，如果你的 bot 只运行了这个插件可以考虑 开启，默认关
-		5. `BISON_USE_PIC`：将几乎所有文字渲染成图片后进行发送，多用于规避风控
-	5. `-v`：指定挂载目录
-	6. `--restart=unless-stopped`：指定容器的重启策略。除非显式停止，否则总是在宿主机重启或容器退出时重启容器。
+	1. 数据目录：`/mnt/data/docker/volumes/script/astrbot/data`
+2. 使用 docker run 部署：
 
 ```shell
-docker run -d \
--p 8080:8080 \
--e SUPERUSERS='["123456"]' \
--e BISON_CONFIG_PATH='/data' \
--e BISON_OUTER_URL='http://ip:8080/bison' \
--e BISON_FILTER_LOG='true' \
--e BISON_USE_PIC='false' \
--v /home/docker/docker/volumes/nonebot-bison/data:/data \
+sudo docker run -itd \
+-p 6185:6185 \
+-p 6199:6199 \
+-v /mnt/data/docker/volumes/script/astrbot/data:/AstrBot/data \
+-v /etc/localtime:/etc/localtime:ro \
+-v /etc/timezone:/etc/timezone:ro \
+--network yuehai-net \
 --restart=unless-stopped \
---name nonebot-bison \
-felinae98/nonebot-bison
+--name astrbot \
+soulter/astrbot:latest
+```
+
+1. 使用 `docker-compose.yml` 部署：
+
+```yaml
+# 定义所有要管理的服务（容器）
+services:
+    # 定义一个名为 astrbot 的服务
+    astrbot:
+        # 指定该服务使用的 Docker 镜像及其标签（版本）
+        image: soulter/astrbot:latest
+        # 设置容器的固定名称，方便识别和管理
+        container_name: astrbot
+        # 定义容器的重启策略：除非手动停止，否则总是在退出或宿主机重启时自动重启
+        restart: unless-stopped
+        # 定义端口映射规则
+        ports:
+            # Web UI 端口
+            - "6185:6185"
+            # 机器人通信端口
+            - "6199:6199"
+        # 定义数据卷挂载规则，用于持久化存储数据
+        volumes:
+            # 配置存档文件目录
+            - /mnt/data/docker/volumes/script/astrbot/data:/AstrBot/data
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
+        # 定义此服务要连接的网络
+        networks:
+            # 将此服务连接到名为 yuehai-net 的网络
+            - yuehai-net
+
+# 在文件末尾定义此 Compose 文件中使用的所有网络
+networks:
+    # 定义一个名为 yuehai-net 的网络配置
+    yuehai-net:
+        # 将此网络声明为外部网络
+        # external: true 的意思是：不要创建这个网络，而是去使用一个已经存在的、名字完全相同的网络
+        external: true
 ```
 
 ## 3、访问
 
-1. 无法直接访问，关联上面的 NapCatQQ 后，通过管理员 QQ 发送 `/后台管理` 才可以获取访问地址
+1. 访问：[http://127.0.0.1:6185](http://127.0.0.1:6185)
+2. 默认账号密码：astrbot
 
-## 4、将 NapCatQQ 接入 onebot11 的服务端
+## 4、使用
 
-1. 进入 NapCatQQ 的管理后台，点击网络配置 -> 添加配置
-	1. 名称：比如：`接入 onebot11 的服务端`
-	2. 类型：WebSocket 客户端
-
-![](attachments/Pasted%20image%2020250108105850.png)
-
-2. 勾选启用
-3. URL 填入：`ws://172.17.0.1:8080/onebot/v11/ws`
-	1. IP 和端口根据 nonebot-bison 所在主机的地址进行修改
-	2. 我是在同一个机器的 docker 下部署的，所以 `172.17.0.1` 指向本机地址，即类似 `127.0.0.1`
-4. 其他默认，不用修改，点击确定
-
-![](attachments/Pasted%20image%2020250108105926.png)
-
-5. NapCatQQ 与 nonebot-bison 成功建立链接时，日志上会显示 connect open
-
-```shell
-01-07 07:46:40 [INFO] uvicorn | ('172.17.0.1', 37354) - "WebSocket /onebot/v11/ws" [accepted]
-01-07 07:46:40 [INFO] websockets | connection open
-```
-
-## 5、后台管理
-
-1. NapCatQQ 与 nonebot-bison 成功建立链接后，可以私聊 `/后台管理` 获取后台管理地址
-
-![|700](attachments/Pasted%20image%2020250108105948.png)
-
-2. 也可以直接在群里 @，然后发送指令进行管理：
-
-![](attachments/Pasted%20image%2020250107151702.png)
 
 
 # 600、docker-freecad 开源 3D 参数化建模软件
