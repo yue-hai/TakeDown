@@ -1427,7 +1427,40 @@ sudo service cron restart
 sudo systemctl restart cron
 ```
 
-## 6、
+## 6、按需启动桌面环境
+
+1. 将 Ubuntu 的默认启动状态设置为纯命令行，但保留所有图形界面（GNOME）和 XRDP 的组件
+
+```shell
+# 设置开机默认不启动桌面
+sudo systemctl set-default multi-user.target
+```
+
+
+2. 之后直接连接显示器时，显示器上不会显示桌面画面，而是终端，要输入下面这个命令才会唤醒桌面环境：
+
+```shell
+sudo systemctl isolate graphical.target
+```
+
+
+3. 拔掉显示器后，再输入这个命令，关闭图形界面回到纯命令行
+
+```shell
+sudo systemctl isolate multi-user.target
+```
+
+4. 远程桌面 (XRDP) 的按需唤醒：
+	1. xrdp 本身是一个非常轻量级的后台服务，驻留在后台几乎不占资源
+	2. 它的工作原理是：当通过 Windows 远程桌面连接时，xrdp 会临时生成（唤醒）一个桌面会话
+	3. 核心注意点：当通过 RDP 使用完之后，绝对不能只点击右上角的 X 直接关闭窗口！ 这样只是断开了连接，GNOME 桌面依然在服务器后台运行，继续消耗资源
+	4. 必须在 Ubuntu 桌面的右上角选择 <font color="#ff0000">注销</font> (Log Out)。注销后，本次生成的桌面会话就会被彻底销毁，系统再次回到低负载状态
+
+## 7、
+
+## 8、
+
+## 9、
 
 # 六、问题记录
 
@@ -3834,7 +3867,87 @@ sudo smartctl -T permissive -s on /dev/sda
 4. 如果以上方法仍然不起作用，可能表明该硬盘不支持 smartctl 或需要专用的厂商工具。
 5. HGST 硬盘通常可以使用 Western Digital 的诊断工具进行检测，可以尝试从 HGST 或 Western Digital 官方网站下载相应的工
 
-### ⑧、
+### ⑧、cockpit 网页系统控制台
+
+#### Ⅰ、说明
+
+#### Ⅱ、安装
+
+1. 更新软件源
+
+```shell
+sudo apt update
+```
+
+2. 安装 cockpit 本体、虚拟机管理器
+
+```shell
+sudo apt install cockpit cockpit-machines -y
+```
+
+3. cockpit 依赖于 python3，如果没安装 python3 需要手动安装：
+
+```shell
+sudo apt install python3-venv -y
+```
+
+#### Ⅲ、访问
+
+1. 访问：[http://127.0.0.1:9090](http://127.0.0.1:9090)
+2. 进入登录页面后，输入机器的用户名密码即可进入
+
+#### Ⅳ、nginx 代理
+
+##### （1）、创建 cockpit 配置文件
+
+1. 编辑或创建配置文件：
+
+```shell
+sudo vi /etc/cockpit/cockpit.conf
+```
+
+2. 写入针对您域名的专有配置：
+
+```shell
+[WebService]
+# 带上完整域名端口，否则安全校验依然无法通过
+Origins = https://cockpit.yuehai.fun:63 http://127.0.0.1:9090 https://127.0.0.1:9090 http://192.168.1.5:9090 https://192.168.1.5:9090
+ProtocolHeader = X-Forwarded-Proto
+# 可通过 http 访问，转到 http 放行
+AllowUnencrypted = true
+```
+
+3. 重新加载配置文件
+
+```shell
+systemctl daemon-reload
+```
+
+4. 重启 Cockpit 服务让新规则生效：
+
+```shell
+sudo systemctl restart cockpit.socket
+sudo systemctl restart cockpit
+```
+
+##### （2）、nginx 添加内网通信规则
+
+1. 仅允许内网 `192.168.0.0/16` 访问
+
+![|500](attachments/Pasted%20image%2020260331105459.png)
+
+![](attachments/Pasted%20image%2020260331105505.png)
+
+![](attachments/Pasted%20image%2020260331105511.png)
+
+##### （3）、代理服务，应用内网通信规则
+
+![](attachments/Pasted%20image%2020260331105604.png)
+
+#### Ⅴ、
+
+#### Ⅵ、
+
 
 ### ⑨、
 
