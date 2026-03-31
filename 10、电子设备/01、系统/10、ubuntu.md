@@ -1456,7 +1456,120 @@ sudo systemctl isolate multi-user.target
 	3. 核心注意点：当通过 RDP 使用完之后，绝对不能只点击右上角的 X 直接关闭窗口！ 这样只是断开了连接，GNOME 桌面依然在服务器后台运行，继续消耗资源
 	4. 必须在 Ubuntu 桌面的右上角选择 <font color="#ff0000">注销</font> (Log Out)。注销后，本次生成的桌面会话就会被彻底销毁，系统再次回到低负载状态
 
-## 7、
+## 7、开机自动挂载硬盘到指定目录
+
+1. 查看所有磁盘列表：
+
+```shell
+lsblk
+```
+
+```shell
+NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0     7:0    0     4K  1 loop /snap/bare/5
+loop1     7:1    0    74M  1 loop /snap/core22/2292
+loop2     7:2    0 251.7M  1 loop /snap/firefox/7766
+loop3     7:3    0  66.8M  1 loop /snap/core24/1587
+loop4     7:4    0 531.4M  1 loop /snap/gnome-42-2204/247
+loop5     7:5    0  10.8M  1 loop /snap/snap-store/1270
+loop6     7:6    0  91.7M  1 loop /snap/gtk-common-themes/1535
+loop7     7:7    0  48.1M  1 loop /snap/snapd/25935
+loop8     7:8    0   576K  1 loop /snap/snapd-desktop-integration/343
+loop9     7:9    0  48.4M  1 loop /snap/snapd/26382
+loop10    7:10   0 254.9M  1 loop /snap/firefox/7967
+loop11    7:11   0  66.8M  1 loop /snap/core24/1499
+loop12    7:12   0  15.5M  1 loop /snap/snap-store/1310
+loop13    7:13   0    74M  1 loop /snap/core22/2411
+loop14    7:14   0   395M  1 loop /snap/mesa-2404/1165
+loop15    7:15   0 606.1M  1 loop /snap/gnome-46-2404/153
+loop16    7:16   0  18.5M  1 loop /snap/firmware-updater/212
+loop17    7:17   0  16.4M  1 loop /snap/firmware-updater/223
+sda       8:0    0 465.8G  0 disk 
+├─sda1    8:1    0     1G  0 part /boot/efi
+├─sda2    8:2    0     2G  0 part 
+├─sda3    8:3    0     8G  0 part [SWAP]
+└─sda4    8:4    0 454.7G  0 part 
+nvme0n1 259:0    0   1.8T  0 disk /mnt/data
+yan@yuehai-nas:~$ 
+```
+
+2. 通过硬盘的大小来判断目标硬盘的代号，比如我当前需要处理的硬盘是 2t 的，那么就是 `nvme0n1`
+3. 卸载当前的临时挂载：
+
+```shell
+sudo umount /dev/nvme0n1
+```
+
+4. 在系统根目录创建数据文件夹：
+
+```shell
+sudo mkdir -p /mnt/data
+```
+
+5. 获取硬盘的唯一身份证 UUID：
+
+```shell
+sudo blkid /dev/nvme0n1
+```
+
+```shell
+/dev/nvme0n1: LABEL="970_EVO_Plus" UUID="f05320df-gd4k-4da9-bc5a-7e3a151b623f" BLOCK_SIZE="4096" TYPE="ext4"
+```
+
+6. 备份配置文件：
+
+```shell
+# 备份文件
+sudo cp /etc/fstab /etc/fstab.bak
+```
+
+7. 使用 nano 编辑器打开配置文件，然后在文件的最末尾，另起一行，添加配置：
+	1. `defaults`：使用默认的读写权限；
+	2. `0`：不让系统自带的 dump 备份它
+	3. `2`：开机时在系统盘之后检查它的磁盘错误
+
+```shell
+# 使用 nano 编辑器打开
+sudo nano /etc/fstab
+```
+
+```shell
+UUID=上面获取的UUID /mnt/data ext4 defaults 0 2
+```
+
+8. 执行自动挂载测试，如果敲完回车后什么提示都没有（没有报错），那么配置正确：
+
+```shell
+sudo mount -a
+```
+
+```shell
+# 出现这个提示是正常的
+mount: (hint) your fstab has been modified, but systemd still uses
+
+       the old version; use 'systemctl daemon-reload' to reload.
+```
+
+9. 配置权限，把这个 2TB 硬盘的所有权交给自己：
+
+```shell
+sudo chown -R yan:yan /mnt/data
+```
+
+10. 刷新 systemd 的配置缓存：
+
+```shell
+systemctl daemon-reload
+```
+
+11. 再次执行全盘挂载：
+
+```shell
+mount -a
+```
+
+12. 配置完毕，测试可以输入 `df -h` 检查一下，列表的最下方已经稳稳地出现了挂载在 `/mnt/data` 上的 2TB 硬盘。以后无论怎么断电重启，它都会死死地钉在这个目录下
+
 
 ## 8、
 
