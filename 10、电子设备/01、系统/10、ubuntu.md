@@ -359,7 +359,7 @@ tty -s && mesg n || true
 
 ![|700](attachments/Pasted%20image%2020231226102848.png)
 
-## 4、通过 Windows 远程桌面连接 Ubuntu 桌面
+## 4、安装 xrdp 开启远程桌面
 
 ### ①、Ubuntu 中安装 xrdp
 
@@ -375,19 +375,24 @@ sudo apt update
 sudo apt install xrdp
 ```
 
-3. 安装完成后启动 xrdp 程序：
+3. 将 xrdp 用户加入 ssl-cert 用户组
+
+```shell
+adduser xrdp ssl-cert
+```
+
+4. 安装完成后启动 xrdp 程序：
 
 ```shell
 sudo systemctl enable --now xrdp
 ```
 
-4. 再执行下面的命令打开防火墙端口 3389
+5. 再执行下面的命令打开防火墙端口 3389
 
 ```shell
 sudo ufw allow from any to any port 3389 proto tcp
 ```
 
-5. 以上就是 Ubuntu 系统中的所有操作。
 
 ### ②、Windows 系统远程桌面连接
 
@@ -405,7 +410,7 @@ sudo ufw allow from any to any port 3389 proto tcp
 
 4. 没有问题的话，这样就可以登录进去了
 
-## 5、通过 Windows 远程桌面连接 Ubuntu 桌面问题记录
+## 5、安装 xrdp 开启远程桌面问题记录
 
 ### ①、Windows 远程连接后没有声音
 
@@ -1435,7 +1440,6 @@ sudo systemctl restart cron
 # 设置开机默认不启动桌面
 sudo systemctl set-default multi-user.target
 ```
-
 
 2. 之后直接连接显示器时，显示器上不会显示桌面画面，而是终端，要输入下面这个命令才会唤醒桌面环境：
 
@@ -4068,7 +4072,442 @@ sudo systemctl restart cockpit
 ![](attachments/Pasted%20image%2020260331105604.png)
 
 
-## 8、
+## 8、kvm 虚拟机
+
+### ①、安装 KVM 底层 + virt-manager 桌面版
+
+1. 检查 CPU 是否支持虚拟化，只要输出的数字大于 0 就没问题：
+
+```shell
+egrep -c '(vmx|svm)' /proc/cpuinfo
+```
+
+2. 安装 KVM 核心组件和图形化管理器
+
+```shell
+# 更新软件源
+sudo apt update
+
+# 安装 KVM 核心组件和图形化管理器
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager -y
+```
+
+3. 将 yan 账户加入权限组
+
+```shell
+sudo adduser yan libvirt
+sudo adduser yan kvm
+```
+
+4. 重启机器或者注销并重新登录
+
+### ②、设置数据盘
+
+1. KVM 虚拟机默认会把所有创建的虚拟硬盘文件 `.qcow2` 放在 `/var/lib/libvirt/images/` 目录下。也就是说，如果不改配置，虚拟机都会存在系统盘
+2. 创建目录 `/mnt/data/VMs`：
+
+```shell
+mkdir -p /mnt/data/VMs
+```
+
+3. 在 **虚拟系统管理器** 中修改默认路径：
+4. 打开虚拟系统管理器，点击顶部菜单栏的 编辑 (Edit) -> 连接详情 (Connection Details)
+
+![](attachments/Pasted%20image%2020260401090443.png)
+
+5. 切换到 **存储** (Storage) 选项卡，点击左下角的 `+` 号添加一个新的存储池。名字可以叫 `Data_VMs`，类型选 `dir: 文件系统目录`，目标路径选择自己想要指定的目录，比如 `/mnt/data/VMs`
+
+![](attachments/Pasted%20image%2020260401090709.png)
+
+6. 点击完成即可
+
+### ③、下载 virtio-win 驱动
+
+1. `virtio-win` 是虚拟化环境中 ‌Windows 虚拟机高性能运行的基石‌，尤其适用于对磁盘和网络性能敏感的场景
+2. `virtio-win` 是一个专为 ‌Windows 虚拟机‌ 设计的 ‌半虚拟化驱动集合‌，主要用于在基于 KVM/QEMU 的虚拟化环境（如 Proxmox VE、OpenStack 等）中提升 Windows 客户机（Guest OS）的性能和功能支持
+3. 包含 磁盘控制器（viostor/vioscsi）、网卡（netkvm）、内存气球（balloon）、串口（vioserial）‌ 等驱动，使 Windows 虚拟机能够识别和使用 KVM/QEMU 提供的 VirtIO 设备
+4. 相比传统模拟设备（如 IDE 磁盘或 E1000 网卡），VirtIO 驱动可显著降低 I/O 延迟，提升吞吐量
+5. 官方最新稳定版 virtio-win.iso 下载：https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+
+### ④、创建虚拟机
+
+1. 第一步，选择 本地安装介质(ISO映像或者光驱)(L)
+
+![](attachments/Pasted%20image%2020260401091812.png)
+
+2. 第二步，选择想要安装的 iso 镜像文件
+
+![](attachments/Pasted%20image%2020260401091925.png)
+
+3. 第三步，设置内存和 cpu 数，虚拟机运行时，并不会全部占用设置的数量
+
+![](attachments/Pasted%20image%2020260401092103.png)
+
+4. 第四步，操作 1，选择或创建自定义存储(S)，然后点击管理
+
+![](attachments/Pasted%20image%2020260401092305.png)
+
+5. 第四步，操作 2，确保左侧选中了 Data_VMs，然后点击中间带有绿色加号 `+` 的按钮
+
+![](attachments/Pasted%20image%2020260401103607.png)
+
+6. 第四步，操作 3，创建存储卷
+	1. 名称：随便起，比如 `windows_server_2016`
+	2. 格式：建议保持默认的 `qcow2`。这是 KVM 的原生格式，支持极速快照，而且是 **动态扩容** 的，即如果分配了 100G，但里面只装了 20G 的文件，它在物理硬盘上实际上只占用 20G 的空间
+	3. 容量：想要给这台虚拟机分配的最大硬盘大小
+	4. 点击完成
+
+![](attachments/Pasted%20image%2020260401103648.png)
+
+7. 第四步，操作 4，选择刚才创建的储存卷，然后点击 Choose Volume
+
+![](attachments/Pasted%20image%2020260401103724.png)
+
+8. 第四步，操作 5，自定义存储创建完成，点击下一步
+
+![](attachments/Pasted%20image%2020260401104029.png)
+
+9. 第五步，创建信息确认
+	1. 名称：随便起，比如 `windows_server_2016`
+	2. 一定要勾选 <font color="#ff0000">安装前自定义配置</font>
+	3. 点击完成
+
+![](attachments/Pasted%20image%2020260401104124.png)
+
+### ⑤、虚拟机安装前自定义配置
+
+1. 上面勾选安装前自定义配置点击完成后，系统不会立刻开机进入安装界面，而是会弹出一个极其详细的虚拟硬件编辑窗口。在这里，要对 Windows 虚拟机进行三项必须的微调，否则鼠标会卡顿，甚至可能无法识别虚拟硬盘
+2. 第一步：改 BIOS 为 UEFI
+	1. 点击左侧列表最上面的 **概况** (Overview)
+	2. 在右侧找到 **固件** (Firmware) 选项
+	3. 从默认的 BIOS 改为 UEFI
+
+![|700](attachments/Pasted%20image%2020260401105206.png)
+
+3. 第二步：修改磁盘总线类型
+	1. 点击左侧的 **SATA 磁盘 1**
+	2. 把 **磁盘总线** (Disk bus) 改为 `VirtIO`，VirtIO 是 KVM 的半虚拟化直通技术，硬盘跑满速全靠它
+	3. 此时应用后，左侧的 **SATA 磁盘 1** 会变成 **Virtlo 磁盘 1**
+
+![|700](attachments/Pasted%20image%2020260401105236.png)
+
+4. 第三步：修改网卡类型
+	1. 如果没改桥接的话，这里的 **网络源** 应该是 **虚拟网络'default'：NAT**，我是已经修改为桥接了，没有桥接选择虚拟网络即可
+	2. 点击左侧的 **NIC : xx:xx:xx**（网卡）
+	3. 把右侧的 **设备型号** (Device model) 改为 `virtio`
+	4. 点击应用
+
+![|700](attachments/Pasted%20image%2020260401105441.png)
+
+### ⑥、添加 virtio-win 驱动光盘
+
+1. 点击添加硬件
+
+![|700](attachments/Pasted%20image%2020260401105640.png)
+
+2. 设备类型选择 **CDROM 设备**，总线类型选择 **SATA**，勾选 **选择或创建自定义存储**，点击 **管理**
+
+![|700](attachments/Pasted%20image%2020260401110309.png)
+
+3. 找到刚才下载的 `virtio-win.iso` 并选中，点击完成
+
+![](attachments/Pasted%20image%2020260401110421.png)
+
+![|700](attachments/Pasted%20image%2020260401110450.png)
+
+4. 现在左侧列表里应该有两个 CDROM 设备了
+
+![|700](attachments/Pasted%20image%2020260401110528.png)
+
+### ⑦、安装系统
+
+1. 上面的配置完成后，点击最上方的开始安装
+2. 显示出来虚拟机的画面后，立刻用鼠标在黑色的画面里点一下，然后只要屏幕上一出现 `Press any key to boot from CD or DVD...` 这行字，立刻狂按空格键或回车键，如果错过了就强制重启然后重复这个步骤
+3. Windows 安装光盘加载成功，点击 **下一步**，然后点击 **现在安装**
+
+![|700](attachments/Pasted%20image%2020260401112232.png)
+
+4. 选择要安装的系统，建议选择第二个：Windows Server 2016 Standard (桌面体验)
+	1. 带不带 **桌面体验** 的区别：第一、三项没有任何括号的选项是 Server Core（服务器核心版），装完之后没有图形界面，只有纯命令提示符窗口
+	2. Standard（标准版） 和 Datacenter（数据中心版）：这两者的图形界面和基础功能一模一样。Datacenter 主要是给大型数据中心做无限制嵌套虚拟化和软件定义网络用的，日常使用来说 Standard 标准版完全足够了
+
+![|700](attachments/Pasted%20image%2020260401112510.png)
+
+5. 选择 自定义：仅安装 Windows (高级)
+
+![|700](attachments/Pasted%20image%2020260401112735.png)
+
+6. 加载 virtio-win 驱动
+	1. 点击左下角的 加载驱动程序
+	2. 点击 浏览
+	3. 找到叫 virtio-win 的光驱盘符，依次展开进入：viostor -> 2k16 (因为是 Server 2016 系统) -> amd64 文件夹
+	4. 点击确定，列表里会出现 Red Hat VirtIO SCSI controller，选中它点下一步
+
+![|700](attachments/Pasted%20image%2020260401112913.png)
+
+![|700](attachments/Pasted%20image%2020260401112925.png)
+
+![|700](attachments/Pasted%20image%2020260401112943.png)
+
+![|700](attachments/Pasted%20image%2020260401123936.png)
+
+![|700](attachments/Pasted%20image%2020260401124241.png)
+
+7. 进度条跑完后，128G 的虚拟硬盘就会出现在列表里了，选中那块 128G 的未分配空间，点击下一步，Windows 就会开始复制文件、正式进入安装流程了
+
+![|700](attachments/Pasted%20image%2020260401124427.png)
+
+8. 系统安装完成，设置密码
+
+![|700](attachments/Pasted%20image%2020260401124840.png)
+
+9. 安卓完毕，进入桌面
+
+![|700](attachments/Pasted%20image%2020260401124947.png)
+
+
+### ⑧、安装 VirtIO 全套驱动
+
+1. 不论底层网络是 NAT 还是桥接，这台虚拟机的 **物理网卡** 已经被设置成了 virtio 模式
+2. Windows 原生根本就不认识这种网卡设备，所以它现在是断网状态。只有打上驱动，它才能认出网卡
+
+![|700](attachments/Pasted%20image%2020260401125543.png)
+
+3. 在虚拟机里打开 **此电脑** (文件资源管理器)，找到那个挂载了 virtio-win 驱动的光驱，双击打开它
+
+![|700](attachments/Pasted%20image%2020260401130959.png)
+
+4. 在光盘根目录里，一直往下滚动，找到一个名为 `virtio-win-guest-tools.exe` 的程序
+
+![|700](attachments/Pasted%20image%2020260401131037.png)
+
+5. 双击运行它，一路无脑点击 **下一步**，同意许可协议，然后点击 **Install** (安装)
+
+![|700](attachments/Pasted%20image%2020260401131057.png)
+
+6. 安装过程中可能会弹出几次 **是否信任来自 Red Hat 的软件** 的确认框，全部勾选信任并点击 **安装**
+
+![|700](attachments/Pasted%20image%2020260401131128.png)
+
+7. 安装进度条跑完后，就会：
+	1. 右下角那个带红叉的网络图标会自动变成连接状态，通过 NAT 连上了外网
+	2. 如果打开 **设备管理器**，里面所有带黄色感叹号的未知设备（PCI 设备、以太网控制器等）都会全部消失，被完美识别
+8. 打完驱动后，可以试着打开虚拟机里的浏览器，随便上个网测试一下。如果网络畅通，就可以把它正常关机，然后去 Ubuntu 底层把桥接（Bridge）给做出来了
+
+![|700](attachments/Pasted%20image%2020260401131152.png)
+
+
+### ⑨、ubuntu 修改底层网络为桥接（Bridge）
+
+1. 将虚拟机关机
+2. 获取当前的真实网络信息：
+
+```shell
+# 查看网卡名称和 IP
+ip a
+
+# 查看目前的网络配置文件
+cat /etc/netplan/*.yaml
+```
+
+```shell
+user@my-nas-server:~$ ip a
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+
+# 物理网卡，连接到局域网
+2: enp4s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    # MAC 地址
+    link/ether 00:1a:2b:3c:4d:5e brd ff:ff:ff:ff:ff:ff
+    # IP 地址
+    inet 192.168.1.100/24 brd 192.168.1.255 scope global dynamic noprefixroute enp4s0
+       valid_lft 86400sec preferred_lft 86400sec
+    # 本地链路 IPv6 地址
+    inet6 fe80::21a:2bff:fe3c:4d5e/64 scope link 
+       valid_lft forever preferred_lft forever
+
+# KVM/libvirt创建的默认虚拟网桥，用于NAT模式的虚拟机。
+3: virbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    # MAC地址
+    link/ether 52:54:00:ab:cd:ef brd ff:ff:ff:ff:ff:ff
+    # 这是虚拟网络的网关地址
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+
+# 连接到virbr0网桥上的一台虚拟机的虚拟网卡接口。
+5: vnet1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master virbr0 state UNKNOWN group default qlen 1000
+    # MAC 地址
+    link/ether fe:54:00:11:22:33 brd ff:ff:ff:ff:ff:ff
+    # 本地链路 IPv6 地址
+    inet6 fe80::fc54:ff:fe11:2233/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+```shell
+yan@yuehai-nas:~$ sudo cat /etc/netplan/*.yaml
+[sudo] yan 的密码： 
+
+# Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+network:
+  version: 2
+  ethernets:
+    enp4s0:
+      dhcp4: true
+yan@yuehai-nas:~$ 
+```
+
+3. 通过上面的命令，拿到了最核心的三个数据
+	1. 物理网卡名称： `enp4s0`
+	2. 当前 IP 地址： `192.168.1.100`
+	3. 网卡 MAC 地址： `00:1a:2b:3c:4d:5e`，使用时请修改为自己的
+4. 先备份网络配置
+
+```shell
+sudo cp /etc/netplan/50-cloud-init.yaml /etc/netplan/50-cloud-init.yaml.bak
+```
+
+5. 使用 nano 打开配置文件
+
+```shell
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
+
+6. 删掉里面的所有内容，替换为以下代码，然后保存
+
+```shell
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp4s0:
+      dhcp4: false
+  bridges:
+    br0:
+      interfaces:
+        - enp4s0
+      dhcp4: true
+      macaddress: 00:1a:2b:3c:4d:5e
+```
+
+7. 把配置文件的权限收紧：
+
+```shell
+sudo chmod 600 /etc/netplan/*.yaml
+```
+
+8. 安全应用配置，敲下回车后，会发生以下两种情况之一：
+	1. 情况 A（极其顺利）： 远程桌面画面卡顿了 1-3 秒，然后马上恢复了，或者短暂断开然后很快又可以连上了。终端里提示你是否要保留配置并进入倒计时。此时只需要 按下回车键 (Enter)，配置就永久生效了！
+	2. 情况 B（有惊无险）： 远程桌面断开，并且暂时连接不上了，120 秒后才能连接上。120 秒后，Ubuntu 会自动撤销刚才的配置，远程桌面就可以重新连上了。如果遇到这种情况，说明代码复制时缩进乱了，需要排查后重新应用
+
+```shell
+sudo netplan try
+```
+
+9. 成功时的提示，此时此时只需要 按下回车键 即可
+
+```shell
+yan@yuehai-nas:~$ sudo netplan try
+
+Do you want to keep these settings?
+
+Press ENTER before the timeout to accept the new configuration
+
+Changes will revert in  39 seconds
+Configuration accepted.
+```
+
+
+### ⑩、修改虚拟机网络为桥接
+
+1. 打开虚拟机的虚拟硬件详情
+2. 在左侧列表找到并点击 **NIC :xx:xx:xx (网卡)**
+3. 在右侧的配置中：
+	1. 网络源 (Network source)：在下拉菜单里选择 **桥接设备** (Bridge device)
+	2. 设备名称 (Device name)：手动输入 `br0`
+	3. 设备型号 (Device model)：保持 `virtio` 不变
+4. 点击右下角的 应用 (Apply)
+5. 修改完毕，此时在开启虚拟机即可
+
+![|700](attachments/Pasted%20image%2020260401134530.png)
+
+### ⑪、使用 qcow2 恢复虚拟机
+
+1. 点击新建虚拟机
+
+![|560](attachments/Pasted%20image%2020260401102555.png)
+
+2. 选择：导入现有磁盘映像(E)
+
+![](attachments/Pasted%20image%2020260401102610.png)
+
+3. 选择想要恢复的虚拟机 qcow2 文件后，再选择对应的具体系统
+
+![](attachments/Pasted%20image%2020260401102738.png)
+
+4. 设置内存和 cpu 数，虚拟机运行时，并不会全部占用设置的数量
+
+![](attachments/Pasted%20image%2020260401102801.png)
+
+5. 创建信息确认
+	1. 名称：随便起，比如 `windows_server_2016
+	2. 一定要勾选 <font color="#ff0000">安装前自定义配置</font>
+	3. 网络可以直接选择桥接模式，前提是宿主机已经修改为桥接
+	4. 点击完成
+
+![](attachments/Pasted%20image%2020260401102850.png)
+
+6. 进入虚拟机安装前自定义配置后，同样是修改那三个地方：
+7. 第一步：改 BIOS 为 UEFI
+	1. 点击左侧列表最上面的 **概况** (Overview)
+	2. 在右侧找到 **固件** (Firmware) 选项
+	3. 从默认的 BIOS 改为 UEFI
+
+![|700](attachments/Pasted%20image%2020260401102908.png)
+
+8. 第二步：修改磁盘总线类型
+	1. 点击左侧的 **SATA 磁盘 1**
+	2. 把 **磁盘总线** (Disk bus) 改为 `VirtIO`，VirtIO 是 KVM 的半虚拟化直通技术，硬盘跑满速全靠它
+	3. 此时应用后，左侧的 **SATA 磁盘 1** 会变成 **Virtlo 磁盘 1**
+
+![|700](attachments/Pasted%20image%2020260401102928.png)
+
+9. 第三步：修改网卡类型
+	1. ，我是已经修改为桥接了没有桥接选择虚拟网络即可
+	2. 点击左侧的 **NIC : xx:xx:xx**（网卡）
+	3. 右侧 **网络源** 确定为是 **桥接设备**
+	4. **设备型号** (Device model) 改为 `virtio`
+	5. 点击应用
+
+![|700](attachments/Pasted%20image%2020260401102955.png)
+
+10. 修改完毕后，点击开始安装即可
+
+## 9、docker
+
+### ①、安装 docker
+
+### ②、
+
+### ③、
+
+### ④、
+
+### ⑤、
+
+## 10、
+
+## 11、
+
+## 12、
+
 
 # 八、命令使用
 
