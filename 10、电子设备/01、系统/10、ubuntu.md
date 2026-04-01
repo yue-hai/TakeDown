@@ -4494,7 +4494,89 @@ Configuration accepted.
 
 ### ①、安装 docker
 
-### ②、
+1. 如果之前可能装过其他来源的 Docker，先运行此命令进行一次彻底的清理：
+
+```shell
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
+
+2. 安装依赖，确保 apt 可以通过 HTTPS 使用软件源：
+
+```shell
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common lsb-release -y
+```
+
+3. 添加 Docker 官方的 GPG 密钥（数字签名）：
+
+```shell
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+4. 添加 Docker 的软件源地址：
+
+```shell
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+5. 更新软件源：
+
+```shell
+sudo apt update
+```
+
+6. 安装 docker 标准最小化三件套：
+	1. `containerd.io`：真正运行和管理容器的底层核心组件，负责所有基础工作
+	2. `docker-ce`：作为后台服务运行，提供了完整的 Docker API，并指挥 `containerd.io`
+	3. `docker-ce-cli`：输入的 docker 命令本身，用来向 `docker-ce` 下达指令
+
+```shell
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+```
+
+7. 将当前用户添加到 docker 用户组：
+
+```shell
+sudo usermod -aG docker $USER
+```
+
+### ②、配置 docker 数据目录
+
+1. 在想要存放数据的硬盘里建一个专门的文件夹：
+
+```shell
+sudo mkdir -p /mnt/data/docker/root
+```
+
+2. 新建 Docker 的核心配置文件：
+
+```shell
+sudo nano /etc/docker/daemon.json
+```
+
+3. 编写配置
+
+```json
+{
+  "data-root": "/mnt/data/docker/root",
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "20m",
+    "max-file": "3"
+  }
+}
+```
+
+4. 重启 Docker 服务让新路径生效：
+
+```shell
+sudo systemctl restart docker
+```
+
 
 ### ③、
 
