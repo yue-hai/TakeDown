@@ -4584,7 +4584,54 @@ sudo systemctl restart docker
 
 ### ⑤、
 
-## 10、
+## 10、samba 目录共享
+
+1. 更新软件源：
+
+```shell
+sudo apt update
+```
+
+2. 安装 samba 服务
+
+```shell
+sudo apt install samba -y
+```
+
+3. 创建一个专门用于共享的文件夹：
+
+```shell
+sudo mkdir -p /mnt/public_share
+sudo chmod 777 /mnt/public_share
+```
+
+4. 打开 samba 配置文件：
+
+```shell
+sudo nano /etc/samba/smb.conf
+```
+
+5. 用方向键一直拉到文件的最底部，新起一行，把下面这段粘贴进去：
+
+```ini
+[NAS-Share]
+   comment = nas share
+   path = /mnt/public_share
+   browseable = yes
+   read only = no
+   guest ok = yes
+   create mask = 0777
+   directory mask = 0777
+```
+
+6. 重启服务强制生效：
+
+```shell
+sudo systemctl restart smbd
+```
+
+7. 在 Windows 电脑中，打开文件管理器，在顶部的路径地址栏输入 `\\192.168.1.5` 然后回车，就会看到一个名为 `nas_share` 的文件夹
+
 
 ## 11、
 
