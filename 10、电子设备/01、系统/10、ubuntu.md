@@ -2573,11 +2573,11 @@ cd ~/.local/state/syncthing/
 rm https-cert.pem https-key.pem
 ```
 
-3. 将 `/etc/letsencrypt/archive/www.yue-hai.top/` 下的证书文件复制到当前目录，来替换 `https-cert.pem` 和 `https-key.pem`
+1. 将 `/etc/letsencrypt/archive/www.yuehai.fun/` 下的证书文件复制到当前目录，来替换 `https-cert.pem` 和 `https-key.pem`
 
 ```shell
-sudo cp /etc/letsencrypt/archive/www.yue-hai.top/cert1.pem ./https-cert.pem
-sudo cp /etc/letsencrypt/archive/www.yue-hai.top/privkey1.pem ./https-key.pem
+sudo cp /etc/letsencrypt/archive/www.yuehai.fun/cert1.pem ./https-cert.pem
+sudo cp /etc/letsencrypt/archive/www.yuehai.fun/privkey1.pem ./https-key.pem
 ```
 
 4. 修改生成的文件的用户组：
@@ -3219,13 +3219,13 @@ yan@yan:~$
 1. 使用 `mail` 命令发送邮件：
 
 ```shell
-echo "测试邮件正文" | mail -s "测试邮件主题" -r yan@yue-hai.top 770717410@qq.com
+echo "测试邮件正文" | mail -s "测试邮件主题" -r yan@yuehai.fun 770717410@qq.com
 ```
 
 2. `"测试邮件正文"`：邮件正文
 3. `mail`：用于发送邮件
 4. `-s "测试邮件主题"`：指定邮件的主题（标题）为：测试邮件主题
-5. `-r yan@yue-hai.top`：指定邮件的发件人地址为 `yan@yue-hai.top`
+5. `-r yan@yuehai.fun`：指定邮件的发件人地址为 `yan@yuehai.fun`
 6. `770717410@qq.com`：指定邮件的收件人地址为 `770717410@qq.com`
 
 ## 5、使用 NUT 配置 UPS 不间断电源
@@ -3297,16 +3297,30 @@ nano /etc/nut/ups.conf
   desc = "SANTAK TGBOX-850"
 ```
 
-4. 接下来可以通过以下命令启动 UPS：
+4. 设置 NUT 运行模式，找到 `/etc/nut/ups.conf` 文件中的 `MODE` 属性，将其配置为 `standalone` 模式
 
 ```shell
-/sbin/upsdrvctl start
+# 将其配置为 standalone 模式
+MODE=standalone
 ```
 
-5. 停止 UPS：
+5. 重新加载并应用最新的 USB 设备权限规则
 
 ```shell
-/sbin/upsdrvctl stop
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+6. 接下来可以通过以下命令启动 UPS：
+
+```shell
+sudo systemctl start nut-server
+```
+
+7. 停止 UPS：
+
+```shell
+sudo systemctl stop nut-server nut-client nut-monitor
 ```
 
 #### Ⅱ、查看 UPS 的相关信息
@@ -3413,13 +3427,13 @@ chmod 0640 /etc/nut/upsd.conf /etc/nut/upsd.users
 1. 启动服务：
 
 ```shell
-/sbin/upsd
+sudo systemctl start nut-server
 ```
 
 2. 重启服务：
 
 ```shell
-/sbin/upsd -c reload
+sudo systemctl restart nut-server
 ```
 
 3. 查看帮助
@@ -3428,16 +3442,6 @@ chmod 0640 /etc/nut/upsd.conf /etc/nut/upsd.users
 /sbin/upsd --help
 ```
 
-4. 如果在启动服务时产生报错，可先设置 NUT 运行模式。使用编辑 `/etc/nut/nut.conf` 文件并选择模式，将其配置为 `standalone` 模式
-
-```shell
-nano /etc/nut/nut.conf
-```
-
-```shell
-# 将其配置为 standalone 模式
-MODE=standalone
-```
 
 #### Ⅳ、设置电池低电量自动关机
 
@@ -3486,7 +3490,7 @@ chmod 0640 /etc/nut/upsmon.conf
 6. 最后只需启动服务即可：
 
 ```shell
-/sbin/upsmon
+sudo systemctl start nut-monitor
 ```
 
 ### ④、自定义事件
@@ -3602,7 +3606,7 @@ Failed to connect to parent and failed to create parent: No such file or directo
 6. 启动服务：
 
 ```shell
-/sbin/upsmon
+sudo systemctl start nut-monitor
 ```
 
 7. 如果报错，看看上面【设置电池低电量自动关机】有没有配置
@@ -3634,7 +3638,7 @@ nano /usr/local/bin/upssched
 #! /bin/sh
 
 # 定日志文件路径，用于记录 UPS 电源状态变化
-path_log="/usr/local/bin/SANTAK-TGBOX-850-NUT.log"
+path_log="/var/log/nut/SANTAK-TGBOX-850-NUT.log"
 
 # 定义方法，用于记录日志
 sava_log() {
@@ -3642,7 +3646,7 @@ sava_log() {
 }
 # 定义方法，用于发送邮件通知
 send_mail() {
-    echo "【$(date '+%Y-%m-%d %H:%M:%S')】 - $1" | mail -s "$2" -r yan@yue-hai.top 770717410@qq.com
+    echo "【$(date '+%Y-%m-%d %H:%M:%S')】 - $1" | mail -s "$2" -r yan@yuehai.fun 770717410@qq.com
 }
 
 
@@ -3731,26 +3735,32 @@ esac
 echo "" >> $path_log
 ```
 
-3. 创建日志文件
+3. 给予脚本文件权限：
 
 ```shell
-touch /usr/local/bin/SANTAK-TGBOX-850-NUT.log
+sudo chmod +x /usr/local/bin/upssched; sudo chown root:nut /usr/local/bin/upssched
 ```
 
-4. 设置日志文件的权限，允许所有人进行读写
+4. 创建日志目录并给权限：
 
 ```shell
-chmod 666 /usr/local/bin/SANTAK-TGBOX-850-NUT.log
+sudo mkdir -p /var/log/nut; sudo chown nut:nut /var/log/nut
 ```
 
-5. 将日志文件软连接到其他地方，以便于查看：
+5. 创建日志文件并设置日志文件的权限，允许所有人进行读写
+
+```shell
+touch /var/log/nut/SANTAK-TGBOX-850-NUT.log; chmod 666 /var/log/nut/SANTAK-TGBOX-850-NUT.log
+```
+
+6. 将日志文件软连接到其他地方，以便于查看：
 
 ```shell
 # 登录 yan 用户
 su yan
 
-# 将文件 /usr/local/bin/SANTAK-TGBOX-850-NUT.log 软连接到 目录 ~/apply/tools/SANTAK-TGBOX-850/ 下
-ln -s /usr/local/bin/SANTAK-TGBOX-850-NUT.log ~/apply/tools/SANTAK-TGBOX-850/
+# 将文件 /var/log/nut/SANTAK-TGBOX-850-NUT.log 软连接到 目录 /mnt/data/app_data/system/SystemEnhancement/nut/ 下
+ln -s /var/log/nut/SANTAK-TGBOX-850-NUT.log /mnt/data/app_data/system/SystemEnhancement/nut/
 ```
 
 ### ⑤、文件的简单解释
