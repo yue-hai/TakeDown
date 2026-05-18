@@ -1,0 +1,24 @@
+{
+  "id": "conv-1778823362499-8uaxi8dtd",
+  "providerId": "opencode",
+  "title": "List workspace files and current open file",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778823362500,
+  "updatedAt": 1779087705164,
+  "lastResponseAt": 1779087705164,
+  "sessionId": "ses_1c61d4e52ffeHh6ZWLk5yd1Gmq",
+  "providerState": {
+    "databasePath": "C:\\Users\\10222148\\AppData\\Roaming\\opencode\\opencode.db"
+  },
+  "currentNote": "10、电子设备/20、维修/CH341A 烧录器.md",
+  "usage": {
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 12736,
+    "contextTokens": 13365,
+    "contextWindow": 204800,
+    "contextWindowIsAuthoritative": true,
+    "inputTokens": 629,
+    "model": "opencode:opencode/minimax-m2.5-free",
+    "percentage": 7
+  }
+}

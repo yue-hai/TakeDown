@@ -1,0 +1,100 @@
+{
+  "userName": "月海",
+  "permissionMode": "yolo",
+  "model": "opus",
+  "thinkingBudget": "medium",
+  "effortLevel": "high",
+  "serviceTier": "default",
+  "enableAutoTitleGeneration": true,
+  "titleGenerationModel": "",
+  "excludedTags": [],
+  "mediaFolder": "./attachments",
+  "systemPrompt": "除非有我的允许，否则任何情况下都不要改动任何文件\n如果要改动任何文件，都必须额外的征求我的同意，我明确同意了才可以进行改动",
+  "persistentExternalContextPaths": [],
+  "sharedEnvironmentVariables": "",
+  "envSnippets": [],
+  "customContextLimits": {},
+  "keyboardNavigation": {
+    "scrollUpKey": "w",
+    "scrollDownKey": "s",
+    "focusInputKey": "i"
+  },
+  "requireCommandOrControlEnterToSend": false,
+  "locale": "zh-CN",
+  "providerConfigs": {
+    "claude": {
+      "safeMode": "acceptEdits",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "loadUserSettings": true,
+      "enableChrome": false,
+      "enableBangBash": false,
+      "enableOpus1M": false,
+      "enableSonnet1M": false,
+      "customModels": "",
+      "lastModel": "opus",
+      "environmentVariables": "",
+      "environmentHash": ""
+    },
+    "codex": {
+      "enabled": false,
+      "safeMode": "workspace-write",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "customModels": "",
+      "reasoningSummary": "detailed",
+      "environmentVariables": "",
+      "environmentHash": "",
+      "installationMethodsByHost": {
+        "EQDP-10222148": "native-windows"
+      },
+      "wslDistroOverridesByHost": {}
+    },
+    "opencode": {
+      "cliPath": "",
+      "cliPathsByHost": {
+        "EQDP-10222148": "C:\\Users\\10222148\\AppData\\Local\\OpenCode\\opencode-cli.exe"
+      },
+      "enabled": true,
+      "environmentHash": "",
+      "environmentVariables": "OPENCODE_ENABLE_EXA=1",
+      "modelAliases": {},
+      "preferredThinkingByModel": {},
+      "selectedMode": "claudian-safe",
+      "visibleModels": [
+        "opencode/big-pickle",
+        "new_api/openai/gpt-4.1",
+        "new_api/openai/gpt-4.1-mini",
+        "opencode/deepseek-v4-flash-free",
+        "opencode/qwen3.6-plus-free",
+        "opencode/nemotron-3-super-free",
+        "opencode/minimax-m2.5-free"
+      ]
+    }
+  },
+  "settingsProvider": "claude",
+  "savedProviderModel": {
+    "claude": "opus",
+    "opencode": "opencode:opencode/minimax-m2.5-free"
+  },
+  "savedProviderEffort": {
+    "claude": "high",
+    "opencode": "default"
+  },
+  "savedProviderServiceTier": {},
+  "savedProviderThinkingBudget": {
+    "claude": "medium",
+    "opencode": "off"
+  },
+  "savedProviderPermissionMode": {
+    "claude": "yolo",
+    "opencode": "normal"
+  },
+  "lastCustomModel": "",
+  "maxTabs": 3,
+  "tabBarPosition": "input",
+  "enableAutoScroll": true,
+  "deferMathRenderingDuringStreaming": true,
+  "chatViewPlacement": "right-sidebar",
+  "hiddenProviderCommands": {}
+}
