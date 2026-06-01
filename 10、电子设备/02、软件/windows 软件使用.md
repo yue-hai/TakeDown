@@ -1,0 +1,1491 @@
+# 一、开发工具
+
+## 1、Idea
+
+### ①、相关下载
+
+1. 官方最新版本下载：https://www.jetbrains.com/idea/download
+2. 官方其他版本下载：https://www.jetbrains.com/idea/download/other.html
+
+### ②、插件
+
+1. Alibaba Java Coding Guidelines：阿里编码指南，集成阿里巴巴 Java 开发规范，实时检测并提示不符合规范的代码
+2. Android：安卓开发套件，提供 Android 项目开发、调试和构建的核心支持
+3. Android Design Tools：安卓设计工具，提供布局预览、编辑器等 Android UI 设计辅助功能
+4. CodeGlance Pro：右侧概览小地图，在编辑器右侧显示代码的缩略图，方便快速定位和导航
+5. Dart：Dart 语言支持，提供 Dart 语言的语法高亮、代码补全和调试功能
+6. Flutter：Flutter 开发套件，提供 Flutter 项目创建、运行、调试和热重载等功能
+7. GitHub Copilot：AI 代码提示，根据上下文自动补全代码的人工智能编程助手
+8. Indent Rainbow：彩虹缩进，使用不同颜色高亮代码的缩进层级，使代码结构更清晰
+9. Key Promoter X：快捷键提示，当您使用鼠标执行有快捷键的操作时，会弹出提示，帮助学习和记忆快捷键
+10. Rainbow Brackets Lite - Free and OpenSource：彩虹括号，为成对的括号、方括号和花括号使用不同的颜色，方便识别代码块
+11. Smart Input Pro (Chinese)：自动切换输入法，根据光标所在位置（如代码区、注释、字符串）自动切换中英文输入法
+12. Translation：翻译插件，在 IDE 中提供划词翻译或通过输入框进行文本翻译的功能
+
+13. GitHub：GitHub 集成，提供 Git 版本控制功能，方便地与 GitHub 仓库进行交互
+14. GitLab：GitLab 集成，提供与 GitLab 仓库的深度集成，如 Merge Request 管理
+
+![](attachments/Pasted%20image%2020250904180404.png)
+
+![](attachments/Pasted%20image%2020250904180419.png)
+
+### ③、快速注释 `ctrl+/`，注释会在行首位置的问题
+
+1. 文件 -> 设置 -> 代码样式 -> 代码生成 -> 注释代码 -> 取消行注释在第一列的勾选 -> 勾选在行注释开始处添加空格即可
+2. Code Generation -> Comment Code -> 取消 Line Comment at first column的勾选 -> 将 Add a space at comment start
+
+![|700](attachments/Pasted%20image%2020230724103223.png)
+
+### ④、Toncat 在 IDEA 控制台中文乱码
+
+#### Ⅰ、乱码
+
+![|572](attachments/Pasted%20image%2020230724103300.png)
+
+#### Ⅱ、解决
+
+1. 设置 IDEA
+
+![|700](attachments/Pasted%20image%2020230724103339.png)
+
+2. 打开服务器配置，在虚拟机选项中输入：`-Dfile.encoding=UTF-8`
+
+![|273](attachments/Pasted%20image%2020230724103518.png)
+
+![|700](attachments/Pasted%20image%2020230724103541.png)
+
+3. 点击帮助，编辑自定义 VM 选项，在最后加入：`-Dfile.encoding=UTF-8`
+
+![|350](attachments/Pasted%20image%2020230724103417.png)
+
+![|700](attachments/Pasted%20image%2020230724103614.png)
+
+4. 进入 IDEA 安装目录，进入 bin 目录，打开下面两个文件，在最后加入：`-Dfile.encoding=UTF-8`
+
+![|700](attachments/Pasted%20image%2020230724103646.png)
+
+![|629](attachments/Pasted%20image%2020230724103710.png)
+
+5. 进入 Tomcat 安装目录，进入 conf 目录，打开 logging.properties 文件，将 `java.util.logging.ConsoleHandler.encoding` 的值改为 `UTF-8`
+
+![|700](attachments/Pasted%20image%2020230724103728.png)
+
+### ⑤、设置忽略文件
+
+1. 设置 -> 编辑器 -> 文件类型 -> 忽略的文件和文件夹
+2. 点击添加
+
+![|675](attachments/Pasted%20image%2020230724103826.png)
+
+### ⑥、idea 启动时报错：`Your JRE: 17.0.5+1-b653.14 amd64 (JetBrains s.r.o.) D:\\Idea\\IntelliJ IDEA 2022.3\\jbr`
+
+![|700](attachments/Pasted%20image%2020230330080650.png)
+
+1. 管理员方式运行如下命令：`netsh winsock reset`
+2. 运行完成之后重启电脑即可永久解决此问题
+
+### ⑦、离线下载插件
+
+1. gitee 插件：[https://plugins.jetbrains.com/plugin/11491-gitee](https://plugins.jetbrains.com/plugin/11491-gitee)
+2. 点击 Versions
+
+![|700](attachments/Pasted%20image%2020230724124032.png)
+
+3. 根据 idea 的版本号下载安装包
+
+![|700](attachments/Pasted%20image%2020230724124054.png)
+
+4. 下载完成后，在 idea 中点击设置 --> 插件 --> 设置 --> 从磁盘安装插件
+
+![|700](attachments/Pasted%20image%2020230724124106.png)
+
+5. 选择下载的安装包即可
+
+![|700](attachments/Pasted%20image%2020230724124119.png)
+
+### ⑧、开了 vpn，idea 推送到 github 还是失败
+
+- 问题：浏览器可以访问 `github.com`，但是 idea 或者 gitbash 推送失败
+- 原因：并不是所有软件或工具的网络请求都会走系统代理，有些应用的网络请求可能绕过代理，直接与网络通信。
+- 解决：
+1. 根据原因，我们可以分别给 idea 等工具和 git 分别设置代理即可
+2. 如我使用的软件 Clash 的端口为 7890
+
+![|700](attachments/Pasted%20image%2020231009092901.png)
+
+3. 那么我 idea 中设置代理，使其走本机的 7890 端口，这样 idea 就可以访问外网了
+
+![|700](attachments/Pasted%20image%2020231009093028.png)
+
+4. 但是这样操作之后，idea 提交 git 还是失败，是因为 idea 也还是调用 gitbash 进行提交，所以我们还要设置 gitbash 的代理：
+
+```bash
+git config --global http.proxy http://127.0.0.1:7890 
+git config --global https.proxy http://127.0.0.1:7890
+```
+
+5. 这样设置完就可以使用 gitbash 提交了
+
+### ⑨、idea 同时打开多个项目窗口
+
+1. 文件 -> 最近的项目 -> 点击选择想要打开的项目
+2. 会弹出弹窗让选择是在此窗口打开项目，还是新窗口，选择新窗口即可
+
+![|725](attachments/Pasted%20image%2020231013081045.png)
+
+### ⑩、idea 主菜单不见了解决方法
+
+#### Ⅰ、在 IDEA 里面进行操作
+
+  1. 在 idea 中按两次 Shift，打开搜索窗口，输入 view
+  2. 如果 Actions 里面有 Main view，则打开，里面就是原来的视图页面
+  3. 或者输入 menu 打开主菜单，通常也可以找到。
+  4. 当然我没找到，所以就不贴图了。
+
+#### Ⅱ、修改 IDEA 安装根路径的 ui.lnf.xml 文件中的配置
+
+1. 进入目录：`C:\Users\10222148\AppData\Roaming\JetBrains\IntelliJIdea2023.2\options`
+2. 打开该目录中的 `ui.lnf.xml` 文件
+3. 将下图圈起来的 `SHOW_MAIN_MENU` 的 `value` 值修改为 `true`
+
+![|700](attachments/Pasted%20image%2020231117135129.png)
+
+4. 保存退出，最后重启 IDEA，主菜单栏就回来了。
+
+### ⑪、Idea 工具栏控件设置
+
+![|675](attachments/Pasted%20image%2020231122090823.png)
+
+### ⑫、GitHub Copilot 与 idea 提示冲突的解决
+
+> 问题：GitHub Copilot 开启的自动显示之后，idea 自带的提示就不会显示了
+> 
+> 解决：关闭 GitHub Copilot 的自动显示，改为快捷键显示
+
+1. 进入设置，选择 语言和框架 -> GitHub Copilot
+2. 取消勾选 `Automatically show completions`，点击应用
+
+![](attachments/Pasted%20image%2020231205164432.png)
+
+3. 在设置中点击按键映射，搜索：`copilot`，给下面划出来的项目设置快捷键即可，比如鼠标侧键
+
+![](attachments/Pasted%20image%2020231205165346.png)
+
+4. 这样想要看 GitHub Copilot 提示时，按快捷键即可
+
+### ⑬、`try catch` 快捷键
+
+1. 选择想要被 `try..catch` 包围的语句
+2. 按键盘上 `CTRL +ALT + t`  快捷键，会出现下图：
+
+![](attachments/Pasted%20image%2020240524153453.png)
+
+3. 点击 `try... catch` 即可
+4. 若是按快捷键没有出现，可能是被其他软件占用了，比如 qq
+
+### ⑭、配置使用 idea 启动按钮启动 nodejs 项目
+
+> 我启动的是 vite 的 vue3 项目
+
+1. 点击启动按钮前方的：当前文件
+
+![|700](attachments/Pasted%20image%2020240912081722.png)
+
+2. 在弹出的选项中点击：编辑配置
+
+![|700](attachments/Pasted%20image%2020240912082121.png)
+
+3. 在弹出的窗口中选择 `+`，然后选择：npm
+
+![|700](attachments/Pasted%20image%2020240912082251.png)
+
+4. 因为 vite 的启动命令是：`npm run dev`，所以命令选择：`run`，脚本选择：`dev`，之后点击应用，然后点击确定即可
+
+![|700](attachments/Pasted%20image%2020240912082413.png)
+
+5. 选中 dev 配置，点击启动按钮即可启动项目
+
+![|700](attachments/Pasted%20image%2020240912082657.png)
+
+6. 项目启动成功
+
+![|700](attachments/Pasted%20image%2020240912082609.png)
+
+### ⑮、工作树差异标签页独立了怎么合并
+
+1. 独立的情况：
+
+![|700](attachments/Pasted%20image%2020241009131718.png)
+
+2. 点击独立标签页的设置，然后选择：在编辑器标签页中显示差异
+
+![|700](attachments/Pasted%20image%2020241009131747.png)
+
+3. 标签页合并了：
+
+![|700](attachments/Pasted%20image%2020241009131913.png)
+
+### ⑯、
+
+### ⑰、
+
+## 2、VS Code
+
+### ①、相关下载
+
+### ②、插件
+
+1. Bookmarks：代码书签，在代码中添加标记，方便快速跳转和定位
+2. Chinese (Simplified) Language Pack：中文语言包，为 VS Code 编辑器界面提供官方中文支持
+3. Code Runner：代码运行器，无需完整编译项目，可快速运行单个文件或代码片段
+4. DotEnv：`.env` 文件支持，为项目中的 .env 环境变量文件提供语法高亮
+5. ESLint：ESLint 集成在编辑器中集成 JavaScript/TypeScript 的代码规范和错误检查
+6. GitHub Copilot：AI 代码提示，根据上下文自动补全代码的人工智能编程助手
+7. GitHub Copilot Chat：AI 编程对话，提供一个聊天窗口，可以通过对话形式与 Copilot 互动，解决编程问题
+8. HTML CSS Support：HTML/CSS 智能提示，增强 HTML 中 class 和 id 属性的智能提示和补全
+9. indent-rainbow：彩虹缩进，使用不同颜色高亮代码的缩进层级，使代码结构更清晰
+10. IntelliJ IDEA Keybindings：IDEA 快捷键，将 VS Code 的快捷键设置为与 IntelliJ IDEA 类似，方便切换开发环境
+11. Live Server：实时预览服务器，启动一个本地开发服务器，提供网页实时刷新预览功能
+12. Path Intellisense：路径智能感知，在代码中自动补全文件路径
+13. PDZ：数据库管理，一个用于在 VS Code 中连接和管理数据库的工具
+14. Prettier - Code formatter：代码格式化，集成 Prettier 工具，用于一键格式化代码，统一团队风格
+15. REG：Windows 注册表文件支持，为 Windows 的 `.reg` 注册表文件提供语法高亮
+16. Remote - SSH：远程 SSH 开发，通过 SSH 连接到远程服务器，直接在 VS Code 中编辑远程文件
+17. Remote - SSH: Editing Configuration Files：远程 SSH 配置文件编辑，为 SSH 的配置文件（如 config 文件）提供语法高亮、智能提示和格式化
+18. Remote Explorer：远程连接管理器,提供一个侧边栏，用于管理所有远程连接（如 SSH、WSL）
+19. shell-format：Shell 脚本格式化，格式化 Shell、Dockerfile 等多种脚本文件
+20. ShellCheck：Shell 脚本检查，对 Shell 脚本进行静态分析，发现潜在的错误和问题
+21. shellman：Shell 脚本片段，提供常用的 Shell 脚本代码片段，提高编写效率
+22. SonarLint for VS Code：代码质量检查，实时分析代码，检测并提示代码中的 Bug 和安全漏洞
+23. Vite：Vite 项目支持，为使用 Vite 构建工具的项目提供增强支持（如调试）
+24.  Vue (Official)：Vue 官方支持，由 Vue 官方维护的最新插件，提供对 Vue 的全面语言支持
+25. Vue 3 Snippets：Vue 3 代码片段，提供大量 Vue 3 常用的代码片段
+26. Vue Jumper：Vue 文件跳转，在 Vue 单文件组件的 `<template>`, `<script>`, `<style>` 块之间快速跳转
+
+![](attachments/Pasted%20image%2020250904182313.png)
+
+
+### ③、强制缩进为 4 格
+
+1. 在设置中搜索 `Tab Size`，都改为 4
+
+![|700](attachments/Pasted%20image%2020230724103852.png)
+
+2. 搜索 `detectindentation`，取掉勾选
+
+![|700](attachments/Pasted%20image%2020230724103907.png)
+
+3. 之后格式化文档，代码就都是 4格缩进了
+
+### ④、根据之前补全过的建议的前缀来优先提示
+
+1. 打开设置，搜索：Suggest Selection
+2. 选择：recentlyUsedByPrefix
+
+![|700](attachments/Pasted%20image%2020230724104016.png)
+
+### <span id="1-2-5">⑤、Remote - SSH 连接 linux 远程开发</span>
+
+1. 安装插件：`Remote - SSH`，安装时会自动安装另外两个插件：`Remote - SSH: Editing Configuration Files`、`Remote Explorer`
+
+![|562](attachments/Pasted%20image%2020230525083915.png)
+
+2. 安装完成后重启，左边侧边栏会多一个远程资源管理器的按钮，点击
+
+![|613](attachments/Pasted%20image%2020230525084223.png)
+
+3. 点击设置，打开 ssh 配置文件
+
+![|700](attachments/Pasted%20image%2020230616150322.png)
+
+4. 在配置文件中以下面的格式输入参数，尽量使用这个格式，其他格式或者有中文可能会报错
+
+```ssh
+Host 用户名@IP
+    HostName IP
+    Port 端口
+    User 用户名
+```
+
+![|325](attachments/Pasted%20image%2020230525091005.png)
+
+5. 保存配置文件后，点击刷新
+
+![|700](attachments/Pasted%20image%2020230616150616.png)
+
+6. 点击刷新后，新配置的连接就会显示出来
+
+![|675](attachments/Pasted%20image%2020230525091210.png)
+
+7. 点击后方按钮进行连接，第一个是在当前窗口进行连接，第二个是在新窗口进行连接
+
+![|395](attachments/Pasted%20image%2020230525090043.png)
+
+8. 选择连接的机器的系统类型
+
+![|651](attachments/Pasted%20image%2020230525090240.png)
+
+9. 询问是否继续，点击 `Continue` 继续
+
+![|627](attachments/Pasted%20image%2020230525090435.png)
+
+10. 输入密码，回车确认
+
+![|641](attachments/Pasted%20image%2020230525090608.png)
+
+11. 点击打开文件夹
+
+![|495](attachments/Pasted%20image%2020230525091913.png)
+
+12. 选择一个目录作为根目录，点击确定
+
+![|652](attachments/Pasted%20image%2020230525091942.png)
+
+13. 再次输入密码
+
+![|653](attachments/Pasted%20image%2020230525092221.png)
+
+14. 此时即可直接处理服务器上的文件
+
+![|700](attachments/Pasted%20image%2020230525092032.png)
+
+
+### ⑥、Remote - SSH 免除密码登录
+
+> 需要在上面的基础上：[Remote - SSH 连接 linux 远程开发](#1-2-5)
+
+1. 我使用的设备：本地 Windows，远程 ubuntu 服务器
+2. 在本地打开 Windows PowerShell，输入：`ssh-keygen`，一直回车直到结束，若是已经生成过密钥，则可以跳过这一步
+	1. `id_rsa`：私钥，本地机器使用
+	2. `id_rsa.pub`：公钥，远程服务器使用
+
+![|538](attachments/Pasted%20image%2020230616151933.png)
+
+3. 在远程服务器的 ubuntu 用户根目录中，若没有 `.ssh` 目录，则创建，权限为 `700`
+4. 将本地的文件 `C:\Users\10222148\.ssh\id_rsa.pub` 复制到 `.ssh` 目录中
+5. 将 `id_rsa.pub` 追加到 `authorized_keys` 中：
+
+```shell
+cat id_rsa.pub >> authorized_keys
+```
+
+6. 设置 `id_rsa.pub` 的权限为 `644`，设置 `authorized_keys` 的权限为 `600`
+7. 重启SSH：
+
+```shell
+sudo service sshd restart
+```
+
+8. 若还是需要密码，执行命令：`sudo vim /etc/ssh/sshd_config`，查看下面的两项配置：
+
+```vim
+RSAAuthentication yes
+PubkeyAuthentication yes
+```
+
+9. 主要是 `PubkeyAuthentication`，若是 `no` 则将其改为 `yes`，再次重启 SSH 尝试连接
+
+### ⑦、Remote - SSH 连接报错
+
+#### Ⅰ、报错
+
+1. 提示：没有注册配置 editor.parameterHints，因此无法写入 用户设置
+2. 弹窗失败
+
+![](attachments/Pasted%20image%2020240202135127.png)
+
+#### Ⅱ、原因
+
+1. 由于远程主机标识发生了变化所致。
+2. 具体原因可能是连接的远程主机的身份验证信息发生了改变，或者存在中间人攻击的风险。
+3. 解决此问题的方法是更新本地计算机上的 known_hosts 文件，以匹配远程主机的最新身份验证信息
+
+#### Ⅲ、解决
+
+1. 找到并打开本地计算机上的 `known_hosts` 文件。该文件一般位于` /c/Users/用户名/.ssh/known_hosts`
+2. 在文件中找到对应的远程主机条目，即包含当前连接的 ip 和端口号的行。
+3. 删除该行或整个文件中的相关条目。
+4. 重新连接远程主机时，将被提示接受远程主机的新身份验证信息。确认之后，系统将更新 `known_hosts` 文件。
+5. 请注意，删除 `known_hosts` 文件中的条目将清除与该远程主机的所有已知连接，因此请确保在进行操作之前，对这些连接的身份验证信息没有任何疑虑。
+
+### ⑧、同时打开多个项目
+
+- 点击文件 -> 将文件夹添加到工作区
+
+![|504](attachments/Pasted%20image%2020231121144504.png)
+
+### ⑨、下载和更新便携版
+
+1. 访问下载页面：https://code.visualstudio.com/download
+2. 选择下载 `.zip`
+
+![|700](attachments/Pasted%20image%2020240816150713.png)
+
+3. 下载后加压，并在目录中<font color="#ff0000">创建</font> `data` 目录
+
+![|700](attachments/Pasted%20image%2020240816150820.png)
+
+4. 当要更新时，下载新版本，然后将 `data` 目录复制过去即可
+
+### ⑩、修改侧边栏资源管理器文件树的缩进距离
+
+1. 原先文件树的缩进距离太短了，个人用着很不习惯
+
+![](attachments/Pasted%20image%2020241022130518.png)
+
+2. 点击 vscode 的文件 -> 首选项 -> 设置，在设置中选择：工作区 -> 工作台 -> 外观
+
+![|700](attachments/Pasted%20image%2020241022131152.png)
+
+3. 向下拉，找到：Tree: Indent（控制树缩进(以像素为单位)），改为自己喜欢的数值，比如我是 24
+
+![|700](attachments/Pasted%20image%2020241022131249.png)
+
+4. 修改完毕后，文件树的缩进距离就会改变了
+
+![](attachments/Pasted%20image%2020241022131337.png)
+
+### ⑪、使用 debug 调试 web 项目
+
+1. 完全关闭使用的浏览器，比如 edge
+2. 右键快捷方式，选择属性，在目标最后面添加：`--remote-debugging-port=9222`
+
+![|271](attachments/Pasted%20image%2020250822145946.png)
+
+3. 在项目根路径下，创建目录 `.vscode`，然后创建文件 `launch.json`，并输入以下内容：
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // 配置名称，会显示在调试面板的下拉菜单中
+      "name": "附加到 Edge (本地调试)",
+      // 请求类型，launch 表示启动一个新的浏览器实例，attach 表示附加到一个已经运行的浏览器实例
+      "request": "attach",
+      // 类型，chrome 表示使用 Chrome 浏览器进行调试，还有 msedge、 firefox 等
+      "type": "msedge",
+      // 指定远程调试的端口，必须和浏览器快捷方式里设置的一致
+      // 需要通过在快捷方式最后添加 --remote-debugging-port=9222 来设置
+      "port": 9222,
+      // 浏览器将要打开的 URL，确保这里的端口号和项目启动的端口号一致
+      "url": "http://localhost*",
+      // 项目的根目录，通常保持默认的 "${workspaceFolder}" 即可
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
+```
+
+4. 在 vscode 中，打开调试选项卡，选择刚才创建的配置，然后点击绿色三角启动调试
+
+![](attachments/Pasted%20image%2020250822150345.png)
+
+5. 在项目中选择一处代码添加断点
+
+![|600](attachments/Pasted%20image%2020250822150608.png)
+
+6. 启动项目，使用刚才修改完的快捷方式打开浏览器，访问项目页面
+7. 此时就会进入断点
+
+![|600](attachments/Pasted%20image%2020250822150713.png)
+
+### ⑫、
+
+## 3、WindTerm
+
+### ①、相关下载
+
+1. 项目地址：https://github.com/kingToolbox/WindTerm
+2. 2.6.0 下载： [WindTerm_2.6.0.zip](attachments/WindTerm_2.6.0.zip)
+
+### ②、关闭自动锁屏
+
+1. 打开：`安装目录\global\wind.config`
+2. 将 `application.lockScreenTimeout` 的值修改为 0 或 负数
+
+### ③、选中自动复制
+
+1. 会话 -> 首选项 -> 设置
+2. 文本 -> 自动选定复制内容
+
+![|454](attachments/Pasted%20image%2020230724104044.png)
+
+![|700](attachments/Pasted%20image%2020230724104100.png)
+
+### ④、右键点击粘贴
+
+1. 会话 -> 首选项 -> 设置
+2. 终端 -> 右键单击：设置为粘贴文本
+
+![|454](attachments/Pasted%20image%2020230724104121.png)
+
+![|700](attachments/Pasted%20image%2020230724104138.png)
+
+### ⑤、打开软件自动连接
+
+1. 会话 -> 首选项 -> 设置
+2. 应用 -> 指定会话
+
+![|504](attachments/Pasted%20image%2020230724104153.png)
+
+![|700](attachments/Pasted%20image%2020230724104208.png)
+
+### ⑥、设置文件下载上传目录
+
+1. 会话 -> 首选项 -> 会话设置
+2. X/Y/Z Modem -> 设置目录
+
+![|542](attachments/Pasted%20image%2020230724104226.png)
+
+![|675](attachments/Pasted%20image%2020230724104241.png)
+
+### ⑦、取消登录主密码
+
+1. 打开：`安装目录\save\.wind\profiles\default.v10\user.config`
+2. 将 `application.masterPassword` 的值修改为 `false`
+
+### ⑧、软件中英文切换
+
+#### Ⅰ、方式一：软件内操作
+
+1. 会话 -> 首选项 -> 设置
+2. 外观 -> 语言 -> 选择语言
+
+![|479](attachments/Pasted%20image%2020230724104307.png)
+
+![|700](attachments/Pasted%20image%2020230724104323.png)
+
+#### Ⅱ、方式二：修改配置文件
+
+1. 打开：`安装目录\save\.wind\profiles\default.v10\user.config`
+2. 修改 `application.language` 的值
+   1. 中文：`zh-CN`
+   2. 英文：`en`
+
+### ⑨、解决一段时间不使用连接自动断开的问题
+
+1. 点击：会话 -> 首选项 -> 会话设置
+
+![|700](attachments/Pasted%20image%2020231130110233.png)
+
+2. 进入会话设置后，选择连接
+
+![|700](attachments/Pasted%20image%2020231130110404.png)
+
+3. 将发送空包以保持会话活动设置为 30 秒即可
+
+![](attachments/Pasted%20image%2020231130110448.png)
+
+### ⑩、修改默认编辑器
+
+![](attachments/Pasted%20image%2020240510133736.png)
+
+## 4、
+
+
+# 二、系统工具
+
+## 1、copyq 剪切板
+
+### ①、介绍
+
+> 官网：https://hluk.github.io/CopyQ/
+
+1. CopyQ 是一个功能强大且高度可定制的开源剪贴板管理器。
+2. 它适用于多种操作系统，包括 Windows、macOS 和 Linux。
+3. CopyQ 提供了比默认剪贴板功能更强大的工具，允许用户管理、编辑和搜索剪贴板历史记录
+
+### ②、安装
+
+#### Ⅰ、windows 安装
+
+1. 进入官网，点击下载即可
+
+![|700](attachments/Pasted%20image%2020241127150047.png)
+
+![|700](attachments/Pasted%20image%2020241127150110.png)
+
+#### Ⅱ、ubuntu 安装
+
+1. Snap 中可以直接搜索到
+
+![|700](attachments/Pasted%20image%2020241127150129.png)
+
+### ③、基本功能设置
+
+#### Ⅰ、打开剪切板快捷键
+
+1. 第一次安装好后，默认的全局唤起快捷键是空的，也就是说，如果不自行设置快捷键，你就不能用键盘唤起 CopyQ，很奇怪的设定
+2. 点击文件 -> 首选项 -> 快捷键设置一个 “显示/隐藏主窗口”快捷键即可，全局生效。
+
+![|533](attachments/Pasted%20image%2020241127150508.png)
+
+![|550](attachments/Pasted%20image%2020241127150531.png)
+
+#### Ⅱ、添加标签页
+
+1. 点击标签页 -> 新建标签页即可添加一个
+
+![|508](attachments/Pasted%20image%2020241127150713.png)
+
+2. 复制的内容会添加到 `剪切板` 标签页，可拖动到其他标签页
+
+#### Ⅲ、固定、添加标记
+
+1. 右键条目，点击固定，可以固定该条目
+2. 固定后，该条目不可删除、不可移动
+
+![|633](attachments/Pasted%20image%2020241127151433.png)
+
+3. 点击添加一个标记，可以添加标记，相当于给该条目一个标签，用于描述该条目
+
+![|633](attachments/Pasted%20image%2020241127152021.png)
+
+#### Ⅳ、始终置顶
+
+1. 点击文件 -> 首选项 -> 通用，勾选始终置顶，可以永远显示在其他应用前面，便于使用
+
+![|650](attachments/Pasted%20image%2020241127152232.png)
+
+#### Ⅴ、不聚焦时关闭
+
+1. 点击文件 -> 首选项 -> 通用，勾选不聚焦时关闭，可以在点击其他应用时，自动关闭该应用窗口
+
+![|650](attachments/Pasted%20image%2020241127152419.png)
+
+#### Ⅵ、
+
+
+### ④、数据同步设置
+
+#### Ⅰ、介绍
+
+1. 这个同步说的并不是登录账号，然后在软件内进行同步
+2. 而是软件将数据保存在一个目录中，然后使用其他软件如 `OneDrive`、`syncthing` 等对这这些数据文件进行同步，然后其他设备上的 copyq 会自动读取配置的同步目录中新增的数据
+
+#### Ⅱ、配置同步功能
+
+1. 点击文件 -> 首选项 -> 条目 -> 同步
+2. 在右侧 `同步标签页和目录` 中：
+	1. 标签页填入标签页的名称
+	2. 文件夹路径填入想要保存到的路径中，没有通配符，需要每个单独指定
+
+![|700](attachments/Pasted%20image%2020241127153351.png)
+
+3. 需要注意的是，要填入的剪切板标签页的名称和显示的名称不同：
+	1. windows 中应填入：`剪贴板(&C)`
+	2. ubuntu 中应填入：`&clipboard`
+4. 设置完毕后，对应的目录中会生成对应各条目的文件，同步这些文件即可
+
+![](attachments/Pasted%20image%2020241127154929.png)
+
+#### Ⅲ、修改同步目录
+
+1. 这个软件的修改同步目录似乎有些问题
+2. 一开始我修改完毕后点击应用，它依然使用原目录，不会显示新设置的目录中的内容，而且新条目依然是保存在之前的目录下
+3. 现在的办法是：修改完毕后，删除标签页，然后重新创建同名的标签页即可
+
+## 2、ModernFlyouts 按键提示
+
+> ltsc 等系统没有微软商店的安装方式：[4、ltsc 安装 `.msixbundle` 或 `.msix` 应用包](../设备和工具/windows.md#6-4)
+
+1. 在微软商店中搜索：`ModernFlyouts`
+2. 或进入官网：https://modernflyouts-community.github.io/
+
+![|600](attachments/Pasted%20image%2020240902150244.png)
+
+3. 安装完毕后，打开软件，点击锁定键浮出控件模块，启动即可
+
+![|600](attachments/Pasted%20image%2020240902150435.png)
+
+## 3、rime 小狼毫输入法
+
+### ①、下载输入法本体
+
+1. 官方地址：https://rime.im/download/
+2. 下载对应的版本即可
+
+![|700](attachments/Pasted%20image%2020260601141000.png)
+
+### ②、添加 雾凇拼音
+
+1. 雾凇拼音 github：https://github.com/iDvel/rime-ice
+2. 下载全量包 full.zip，2026.03.26 版本本地下载：[full.zip](attachments/full.zip)
+
+![|700](attachments/Pasted%20image%2020260601141349.png)
+
+3. 右键状态栏输入法图标，点击打开用户文件夹
+
+![|279](attachments/Pasted%20image%2020260601141542.png)
+
+4. 然后将上面的 雾凇拼音 full.zip 解压，将其中的所有文件复制到 用户文件夹 中
+5. 再次右键状态栏输入法图标，然后点击重新部署
+
+![](attachments/Pasted%20image%2020260601141718.png)
+
+6. 重新部署完毕后，再次右键状态栏输入法图标，选择输入法设定
+
+![](attachments/Pasted%20image%2020260601141854.png)
+
+7. 在弹窗中勾选 雾凇拼音，取消勾选其他项目，然后点击确定即可
+
+![](attachments/Pasted%20image%2020260601142000.png)
+
+8. 以后更新的时候也可以这样直接覆盖文件，因为雾凇拼音的全量包不会包含 `default.custom.yaml`、`rime_ice.userdb` 等文件或目录
+9. `default.custom.yaml`、`rime_ice.userdb` 等文件或目录才是保存个人配置、数据的地方
+
+### ③、输入法配置
+
+#### Ⅰ、设置预选词数量
+
+1. 右键状态栏输入法图标，点击打开用户文件夹
+
+![](attachments/Pasted%20image%2020260601141542.png)
+
+2. 在打开的文件夹中，找到一个名为 `default.custom.yaml` 的文件，将其打开
+3. 在里面写入或补充以下配置：
+
+```yaml
+# default.custom.yaml
+patch:
+  "menu/page_size": 9   # 候选词个数，推荐设为 9
+```
+
+#### Ⅱ、
+
+
+### ④、数据操作
+
+#### Ⅰ、导入安卓端 语燕输入法 数据
+
+1. 首先在安卓端 语燕输入法 导出数据，得到类似 `yuyanIme_2026-06-01_10_56_06.zip` 的压缩文件
+2. 将其复制到电脑并解压缩，进入 `.\yuyanIme_2026-06-01_10_56_06\external\rime` 目录
+3. 将其中的目录 `pinyin.userdb` 复制一份，然后重命名为 `yuyan_test.userdb`
+
+![|475](attachments/Pasted%20image%2020260601145028.png)
+
+4. 右键状态栏输入法图标，点击打开用户文件夹
+
+![](attachments/Pasted%20image%2020260601141542.png)
+
+5. 将目录 `yuyan_test.userdb` 复制进去
+6. 然后右键状态栏输入法图标，点击用户资料同步
+
+![](attachments/Pasted%20image%2020260601145244.png)
+
+7. 再次右键状态栏输入法图标，点击用户词典管理
+
+![](attachments/Pasted%20image%2020260601145355.png)
+
+8. 在用户词典管理弹窗中，点击新出现的 `yuyan_test`，然后点击 **输出词典快照**，将弹出的页面中的 `yuyan_test.userdb.txt` 复制到一个地方
+9. 然后再点击 `rime_ice`，同样点击 **输出词典快照**，将弹出的页面中的 `rime_ice.userdb.txt` 复制到同一个地方
+
+![](attachments/Pasted%20image%2020260601145824.png)
+
+10. 打开 `rime_ice.userdb.txt`，内容类似下面这样，将前 6 行（`#@/user_id` 以及之前）的所有内容复制
+11. 打开 `yuyan_test.userdb.txt` ，使用刚才复制的前 6 行替换该文件的前 6 行，然后保存文件
+
+```shell
+# Rime user dictionary
+#@/db_name	rime_ice
+#@/db_type	userdb
+#@/rime_version	1.13.1
+#@/tick	40
+#@/user_id	c20b3gfd-560d-4d8e-bdc0-42f5sje26b1d
+a 	啊	c=385 d=1.16821 t=40
+ai 	爱	c=12 d=1.00001 t=40
+```
+
+12. 再次右键状态栏输入法图标，点击用户词典管理
+
+![](attachments/Pasted%20image%2020260601145355.png)
+
+13. 选择 `rime_ice`，点击 **合入词典快照**，选择刚才修改过的  `yuyan_test.userdb.txt` 即可
+
+![](attachments/Pasted%20image%2020260601150534.png)
+
+#### Ⅱ、
+
+
+### ⑤、
+
+### ⑥、
+
+## 4、
+
+## 5、
+
+# 三、网络通信
+
+## 1、Via 浏览器
+
+### ①、基于 WebDav 使用坚果云同步书签
+
+1. 在配置 Via 浏览器之前，要完成谷歌浏览器的第一项：基于 WebDav 使用 floccus 扩展和坚果云同步书签 的配置
+2. 打开 Via 浏览器，点击菜单 -> 设置 -> 通用 -> 同步 -> 右上角 WebDav
+
+![|422](attachments/Pasted%20image%2020231115145315.png)
+
+3. 点击 WebDav 进行配置
+
+![|422](attachments/Pasted%20image%2020231115145419.png)
+
+4. 在弹窗中，输入和上面谷歌浏览器中相同的 WebDAV URL、用户名、密码：
+	1. WebDAV URL：`https://dav.jianguoyun.com/dav/`，后面不要跟 Via
+	2. 用户名：坚果云账户
+	3. 密码：刚才创建的应用的应用密码，点击显示密码来查看
+	4. 上面三个输入完成后点击确定
+
+![|422](attachments/Pasted%20image%2020231115150756.png)
+
+5. 点击手动同步，根据需要选择不同的选项
+
+![|447](attachments/Pasted%20image%2020231115145907.png)
+
+6. 完成，查看书签
+
+### ②、
+
+
+## 2、Chrome 谷歌浏览器
+
+### ①、基于 WebDav 使用 floccus 扩展和坚果云同步书签
+
+1. 在 Chrome 应用商店中安装扩展 `floccus bookmarks sync`
+
+![|412](attachments/Pasted%20image%2020231115141736.png)
+
+2. 访问坚果云，注册登录：https://www.jianguoyun.com/d/home#/
+3. 成功登录后，选择我的文件 -> 同步文件夹 -> 创建 -> 个人同步文件夹 -> 输入 `Via`，注意大小写
+
+![|700](attachments/Pasted%20image%2020231115142929.png)
+
+4. 创建完成后，点击用户名 -> 账户信息 -> 安全选项，点击下方的添加应用，输入 `Via`，点击生成密码；此处的应用名一定要和刚才创建的个人同步文件夹名称相同
+
+![|700](attachments/Pasted%20image%2020231115143046.png)
+
+![|700](attachments/Pasted%20image%2020231115143744.png)
+
+5. 查看服务器地址、账户、应用密码等，一会会用到
+
+![|700](attachments/Pasted%20image%2020231115143116.png)
+
+6. 设置同步账户：在 Chrome 中打开 floccus，选择：新建账户 -> WebDAV 分享
+	1. WebDAV URL：`https://dav.jianguoyun.com/dav/Via/`，Via 需替换为刚才创建的应用名称
+	2. 用户名：坚果云账户
+	3. 密码：刚才创建的应用的应用密码，点击显示密码来查看
+	4. 上面三个输入完成后点击继续
+
+![|644](attachments/Pasted%20image%2020231115144114.png)
+
+7. 设置同步文件夹：
+	1. 书签路径：`bookmarks.html`
+	2. 文件格式选择 HTML
+	3. 本地文件夹设置根目录
+	4. 上面三个输入完成后点击继续
+
+![|631](attachments/Pasted%20image%2020231115144549.png)
+
+8. 设置同步策略，这一页可以随意选择
+
+![|616](attachments/Pasted%20image%2020231115144658.png)
+
+9. 点击继续，设置完成
+10. 可以点击插件，推送一下进行测试
+
+![|420](attachments/Pasted%20image%2020231115144910.png)
+
+### ②、使标签分组不再平铺在书签栏中
+
+1. 原先的显示情况：
+
+![](attachments/Pasted%20image%2020241118083314.png)
+
+2. 修改方式：
+3. 在地址栏中输入 `chrome://flags`，然后按回车
+4. 搜索 `Tab Groups Save` 或类似功能选项
+5. 选中 `Tab Groups Save UI Update`，将相关实验选项设置为 `Enabled`，然后重启浏览器
+
+![|700](attachments/Pasted%20image%2020241118083445.png)
+
+6. 修改后的样式：
+
+![](attachments/Pasted%20image%2020241118083515.png)
+
+![](attachments/Pasted%20image%2020241118083530.png)
+
+## 3、clash vpn
+
+### ①、windows 下使用 clash
+
+1. 下载 clash 客户端：
+	1. github 下载： [clash 客户端](https://github.com/Z-Siqi/Clash-for-Windows_Chinese)
+	2. 本地 0.20.39-Opt.3-win 版：[Clash.for.Windows-0.20.39-Opt.3-win.7z](attachments/Clash.for.Windows-0.20.39-Opt.3-win.7z)
+2. 解压缩后打开运行，进入一个节点网站，比如：[ikuuu.one](https://ikuuu.one/)
+3. 点击一键导入Clash配置，然后弹窗中点击确认即可
+
+![|700](attachments/Pasted%20image%2020250911092945.png)
+
+### ②、linux 下使用 clash
+
+1. 下载 clash 客户端，一般个人的 64 位电脑下载 clashpremium-linux-amd64 即可
+	1. github 下载： [clash 客户端](https://github.com/DustinWin/clash-tools/tree/main/ClashPremium-release)
+	2. 本地 2023.08.17 版：[clashpremium-linux-amd64](attachments/clashpremium-linux-amd64)
+
+![|700](attachments/Pasted%20image%2020231226134647.png)
+
+2. 在 linux 中创建 clash 目录，然后进入
+
+```shell
+mkdir ~/clash; cd ~/clash
+```
+
+1. 将下载的文件复制到该目录中，<font color="#ff0000">并重命名为 clash</font>
+2. 从节点网站下载 Clash 配置文件，比如：[ikuuu.one](https://ikuuu.one/)
+
+```shell
+wget -O config.yaml "https://hpzzf.no-mad-world.club/link/3lzOUap8zIV0QA?clash=3"
+```
+
+5. 执行 `./clash -d .` 即可启动 Clash，同时启动 HTTP 代理和 Socks5 代理。
+	1. `-d [string]`：设置配置目录
+	2. `-ext-ctl [string]`：覆盖外部控制器地址
+	3. `-ext-ui [string]`：覆盖外部UI目录
+	4. `-f [string]`：指定配置文件
+	5. `-secret [string]`：覆盖 RESTful API 的密钥
+	6. `-t`：测试配置并退出
+	7. `-v`：显示当前Clash版本
+6. 如提示权限不足，请执行 `chmod +x clash`
+7. 浏览器访问 [Clash Dashboard](https://clash.razord.top/) 可以进行切换节点、测延迟等操作。Host: `127.0.0.1`，端口: `9090`
+
+![|700](attachments/Pasted%20image%2020231226135801.png)
+
+8. 设置系统代理：以 Ubuntu 19.04 为例：
+	1. 打开系统设置，选择网络，点击网络代理右边的 ⚙ 按钮
+	2. 选择手动，填写 `HTTP`、`HTTPS`、`Socks` 代理为 `127.0.0.1:7890`
+	3. 即可启用系统代理
+
+![|700](attachments/Pasted%20image%2020231226140038.png)
+
+### ③、使用黑名单模式
+
+1. 打开 clash，在常规选项卡中，点击 Mixin 后面的齿轮图标
+
+![|700](attachments/Pasted%20image%2020250911094545.png)
+
+2. 在打开打弹窗中的最后输入以下内容，然后点击保存：
+
+```yaml
+# Clash Mixin 配置 - 通用黑名单模式，使用 prepend 来确保规则优先级
+rules-prepend:
+  # 1. 绕过局域网、特殊地址及本机
+  - DOMAIN,localhost,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+
+  # 2. 自定义直连规则 ---
+  - DOMAIN-SUFFIX,yuehai.fun,DIRECT
+  
+  # 3. 引用社区维护的国内域名规则集
+  - RULE-SET,geosite:cn,DIRECT
+  
+  # 4. 绕过所有中国大陆的IP地址
+  - GEOIP,CN,DIRECT
+  
+  # 5. 最终规则：所有其他流量都走代理
+  - MATCH,PROXY
+```
+
+![|700](attachments/Pasted%20image%2020250911094939.png)
+
+3. 先开启 Mixin，再开启系统代理
+
+![](attachments/Pasted%20image%2020250911095128.png)
+
+4. 最后在 代理 -> 规则中选择节点即可，<font color="#c00000">不要在全局中选择</font>
+
+![](attachments/Pasted%20image%2020250911095151.png)
+
+## 4、
+
+## 5、
+
+# 四、生产力工具
+
+## 1、Obsidian 笔记
+
+### ①、介绍
+
+> 官网：https://obsidian.md/
+
+1. Obsidian 是一款强大的知识管理和笔记软件，主打 Markdown 文件 的本地化存储与多设备同步功能。
+2. 它的核心目标是通过帮助用户建立非线性的知识网络（类似脑图），提高个人的学习、思考和创作能力
+
+### ②、插件
+
+#### Ⅰ、插件的使用
+
+1. 下载插件，比如：https://github.com/PKM-er/obsidian-editing-toolbar
+2. 下载 `main.js`、`manifest.json`、`styles.css`
+3. 进入想要安装插件的库，然后进入 `.obsidian` 目录
+
+![|700](attachments/Pasted%20image%2020240709091724.png)
+
+4. 再进入 `plugins` 目录，没有的话自行创建
+
+![|700](attachments/Pasted%20image%2020240709091816.png)
+
+5. 根据插件的名字创建一个目录，用于存放刚才下载的插件，比如对应刚才下载的 `editing-toolbar`
+
+![|700](attachments/Pasted%20image%2020240709091942.png)
+
+6. 将刚才下载的 `main.js`、`manifest.json`、`styles.css` 复制到 `editing-toolbar` 目录中
+
+![|700](attachments/Pasted%20image%2020240709092200.png)
+
+7. 打开 obsidian 软件，进入设置，选择第三方插件，启用对应的插件即可
+
+![|700](attachments/Pasted%20image%2020240709092448.png)
+
+#### Ⅱ、editing toolbar
+
+1. 名称：editing toolbar
+2. 地址：https://github.com/PKM-er/obsidian-editing-toolbar
+3. 介绍：https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/editing-toolbar/
+4. 功能：增强 Obsidian 的可视化编辑体验。提供类似于 Word，在线办公软件 的浮动工具栏等交互方式
+
+![|700](attachments/Pasted%20image%2020240709090758.png)
+
+#### Ⅲ、lapel
+
+1. 名称：lapel
+2. 地址：https://github.com/liamcain/obsidian-lapel
+3. 介绍：https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/lapel/
+4. 功能：
+	1. 在编辑器中显示对应标题级别（例如 H1、H2、H3 等）
+	2. 点击显示标题级别，可以通过下拉菜单，快速切换标题级别
+
+![](attachments/Pasted%20image%2020240709091338.png)
+
+#### Ⅳ、minimal Theme settings
+
+1. 名称：minimal Theme settings
+2. 地址：https://github.com/kepano/obsidian-minimal-settings
+3. 介绍：https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-minimal-settings/
+4. 功能：
+	1. 这个插件是伴随 Minimal 主题应运而生的，允许在该插件的设置界面中自定义该 Minimal 主题的一些样式。
+	2. 有几种预设的浅色/ 深色模式主题，你可以分别为浅色和深色主题，选择不同的样式。
+
+#### Ⅴ、mousewheel-image-zoom
+
+1. 名称：mousewheel image zoom
+2. 地址：https://github.com/nicojeske/mousewheel-image-zoom
+3. 介绍：https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/mousewheel-image-zoom/
+4. 功能：按住可配置键（默认为左 alt），在预览模式下通过滚轮来调节图像的大小
+
+![|625](attachments/mousewheel-image-zoom.gif)
+
+#### Ⅵ、quiet outline
+
+1. 名称：quiet outline
+2. 地址：https://github.com/guopenghui/obsidian-quiet-outline
+3. 介绍：https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-quiet-outline/
+4. 功能：增强大纲插件，按需自动展开大纲，可设定展开层级，功能丰富
+5. 使用：
+	1. 安装并开启插件后，插件不会自动为你生成大纲界面。
+	2. 需要使用命令面板 (Ctrl+P) 打开，搜索 Quiet Outline，回车开启，在右侧显示
+
+![|675](attachments/quiet-outline-1.gif)
+
+![|675](attachments/quiet-outline-2.gif)
+
+#### Ⅶ、Text Generator
+
+1. 名称：Text Generator
+2. 地址：https://github.com/nhaouari/obsidian-textgenerator-plugin
+3. 介绍：https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-textgenerator-plugin/
+4. 功能：使用 OpenAI 的模型生成文本，包括 gpt3.5 和 gpt4 在内的近一百个文本模型
+5. 使用 openrouter 的 api，可以免费使用，而且不需要验证手机号
+##### （1）、安装插件
+
+1. obsidian 中搜索 Text Generator，点击进入后，点击安装，然后点击启用
+
+![](attachments/Pasted%20image%2020241024144247.png)
+
+2. 启用后，返回 obsidian 的设置，选择 Text Generator，进入其设置页面
+
+![|700](attachments/Pasted%20image%2020241024144431.png)
+
+##### （2）、申请 openrouter api
+
+1. 进入网址：https://openrouter.ai/
+2. 点击登录/注册，可使用谷歌账号
+3. 点击 Browse，搜索并选择一个模型，比如：mistral，<font color="#ff0000">模型名后面的 free 表示免费</font>
+4. 点击后面的复制按钮，复制模型名：`mistralai/mistral-7b-instruct:free`，留着之后使用
+
+![|700](attachments/Pasted%20image%2020241024142952.png)
+
+5. 点击模型名进入详情，点击 API，然后点击 Create APl key 创建 key
+
+![|700](attachments/Pasted%20image%2020241024143122.png)
+
+6. 在新页面中，再次点击 Create APl key，输入名称点击 Create 即可
+
+![](attachments/Pasted%20image%2020241024143250.png)
+
+7. 创建后，会有一个弹窗，其中是 key，格式大概是：
+
+```shell
+sk-or-v1-12......
+```
+
+8. <font color="#ff0000">一定要好好复制保存，不然丢掉了只能重新创建</font>
+
+##### （3）、设置模型
+
+1. 经过上面的操作，我们获得了模型名和 key，请求地址是固定的，那么就得到了：
+
+```shell
+# 以 OpenRouter 的免费 Mistral-7b 为例
+请求地址: https://openrouter.ai/api/v1/chat/completions
+模型名字: mistralai/mistral-7b-instruct:free
+api_key: sk-or-v1-12......
+```
+
+2.  点击 obsidian 的设置，选择 Text Generator，进入其设置页面
+
+![|700](attachments/Pasted%20image%2020241024144431.png)
+
+3. 在 Provider Profile 中选择 Custom，然后点击右侧的 +
+
+![|700](attachments/Pasted%20image%2020241024145628.png)
+
+4. 在 Endpoint 中，填入请求地址，即上面的：https://openrouter.ai/api/v1/chat/completions
+
+![|700](attachments/Pasted%20image%2020241024145913.png)
+
+5. 在 API Key 中填入 api_key，即上面的：`sk-or-v1-12......`
+
+![](attachments/Pasted%20image%2020241024150718.png)
+
+6. 在 Name 中填入当前提供商的名字，随意，我填的是：`openrouter-mistral-7b-free`
+
+![](attachments/Pasted%20image%2020241024151733.png)
+
+7. 点击 Advance mode 后面的开关，使其打开
+
+![|700](attachments/Pasted%20image%2020241024151942.png)
+
+8. 向下拉，在 model 中，填入模型名字，即上面的：mistralai/mistral-7b-instruct:free
+
+![](attachments/Pasted%20image%2020241024152011.png)
+
+9. 这样模型的设置就完成了
+
+##### （4）、设置插件文件保存路径
+
+1. 在 Text Generator 设置中，点击 Advanced Settings 将其打开
+
+![|700](attachments/Pasted%20image%2020241024160926.png)
+
+2. 向下找到 Templates Path 和 TextGenerator Path，分别是模板目录 和 TextGenerato 的主文件保存目录；
+	1. 其中的路径是相对于仓库根目录的
+	2. 注意 Templates Path 现在不能放在 `.` 开头的目录下，不然不能识别，不知道为什么，可能是 bug
+	3. Templates Path 我填的是：`其他/textgenerator/templates`
+	4. TextGenerator Path 我填的是：`其他/textgenerator/`
+3. 设置完毕后，点击 `Reload` 按钮，重新加载插件
+4. 点击导出配置文件，配置文件就会在 `其他/textgenerator/configs/llm/` 目录下生成
+
+![](attachments/Pasted%20image%2020241024161647.png)
+
+5. 接下来配置模板文件
+
+##### （5）、配置模板文件
+
+1. TextGen 用模板来管理各种不同功能的提示词
+2. 因为上面配置了 Templates Path：`其他/textgenerator/templates`，所以我们要在这个目录下创建模板文件
+3. 模板也是个 `.md` 文件，文件名不重要，FrontMatter 里的 `promptId`、 `name`、最下方的内容才重要
+4. 比如我配置的简单的模板文件 `简单续写.md`：
+
+```md
+---
+promptId: Simple_continuation
+name: 简单续写
+description: 请根据上文的内容，继续写出后面的文本，请使用中文回答
+---
+请根据上文的内容，继续写出后面的文本，请使用中文回答
+
+{{tg_selection}}
+```
+
+5. 创建模板文件并写入内容后，在命令行执行 `Templates: Generate & Insert`，然后选中选刚才的模板，就可以使用了：
+
+![|700](attachments/Pasted%20image%2020241024162433.png)
+
+![](attachments/Pasted%20image%2020241024162521.png)
+
+##### （6）、设置快捷键
+
+1. 点击设置，然后选择快捷键，拉到最后，直到看到 Text Generator 开头的项
+
+![|700](attachments/Pasted%20image%2020241024163034.png)
+
+2. 这里设置了三个快捷键，主要是最后一个
+3. 在某段文本后面，按下快捷键，选择模板，就可以生成内容了：
+
+![](attachments/Pasted%20image%2020241024163859.png)
+
+### ③、软件打开时报错：A JavaScript error occurred in the main process Uncaught Exception
+
+#### Ⅰ、报错
+
+![](attachments/Pasted%20image%2020240709084030.png)
+
+#### Ⅱ、原因
+
+1. 可能是缓存的问题：清除缓存
+2. 可能是网络的问题：开启代理试一下
+
+#### Ⅲ、缓存的问题
+
+1. 关闭 obsidian 软件
+2. `Win + R` 打开运行框
+3. 输入 `%appdata%` 并按 Enter，这将进入 `C:\Users\xxx\AppData\Roaming` 目录
+4. 进入 `obsidian` 目录，备份 `cache` 目录，并将其删除
+5. 启动 Obsidian 并查看缓存是否已重新创建并且错误消息是否消失
+6. 如果已修复，则可以删除备份的 `cache` 目录
+
+#### Ⅳ、网络的问题
+
+1. 关闭 obsidian 软件
+2. 开启代理，重新进入软件看还有没有报错
+3. 若是没有报错，则进入设置，关闭自动更新
+
+![|675](attachments/Pasted%20image%2020240709085956.png)
+
+4. 关闭 obsidian 软件，关闭代理
+5. 重新进入 obsidian 软件，看还有没有报错
+
+### ④、锚点跳转的使用
+
+1. 在要跳转到的目的地加上锚点标签：
+
+```html
+<span id="1-3">3、锚点跳转的使用</span>
+```
+
+2. 在想要跳转的地方使用连接，需要保证 id 一样：
+
+```html
+[跳转到：3、锚点跳转的使用](#1-3)
+```
+
+## 2、
+
+# 五、媒体与创作
+
+## 1、SubtitleEdit 字幕处理
+
+### ①、语音识别 Whisper 设置为简体中文
+
+1. 点击视频 -> 语音识别 Whisper
+
+![|700](attachments/Pasted%20image%2020240107201712.png)
+
+2. 点击高级
+
+![](attachments/Pasted%20image%2020240107201738.png)
+
+3. 在弹出的页面中添加参数：`--initial_prompt 以下是普通话的句子`
+
+![|700](attachments/Pasted%20image%2020240107201850.png)
+
+4. 点击确定即可
+
+### ②、Whisper 和 Vosk/Kaldi 的区别
+
+#### Ⅰ、Whisper
+
+1. 开发者：Whisper 是由 OpenAI 开发的一个语音识别模型
+2. 技术基础：Whisper 使用了深度学习模型，特别是基于 Transformer 架构的模型。它可以处理多种语言，并且在噪音较大的环境下也能保持较高的准确率
+3. 准确性：Whisper 通常能够提供非常高的语音识别准确性，特别是在处理多语言和口音时表现突出
+4. 硬件要求：由于 Whisper 是一个深度学习模型，它对硬件的要求较高，尤其是在本地运行时，通常需要强大的 GPU 支持
+5. 适用场景：Whisper 适合用于需要高准确度和多语言支持的项目，特别是在有较大计算资源的情况下
+
+#### Ⅱ、Vosk/Kaldi
+
+1. 开发者：Kaldi 是一个开源的语音识别工具包，广泛应用于学术界和工业界；Vosk 是基于 Kaldi 的一个轻量级语音识别库
+2. 技术基础：Kaldi 使用的是传统的语音识别技术，结合了统计模型和深度学习的方法。Vosk 作为 Kaldi 的衍生项目，专注于提供易于使用的接口
+3. 准确性：Vosk/Kaldi 的准确性通常依赖于具体的模型和训练数据。虽然它们的准确性可能不如 Whisper 在复杂场景中的表现，但在特定任务中仍然非常可靠
+4. 硬件要求：与 Whisper 相比，Vosk/Kaldi 对硬件的要求较低，可以在普通的 CPU 上运行，非常适合嵌入式系统或资源受限的环境
+5. 适用场景：Vosk/Kaldi 适合用于资源受限的场景或不需要极高精度的应用，如嵌入式设备、实时处理等
+
+#### Ⅲ、总结
+
+1. 如果有强大的硬件资源，并且需要处理多语言或噪音较大的音频，那么 Whisper 是更好的选择
+2. 如果资源有限，或是在嵌入式系统中应用，Vosk/Kaldi 会是更合适的选择
+
+### ③、b 站上传时提示字幕格式不正确
+
+> 原因：有空行，即时间下面的一行应该跟着字幕内容，但是此处却为空
+
+1. 将字幕内容复制到 word
+2. 点击查找，然后点击特殊格式
+3. 查找一个任意数字和三个段落标记：
+
+![|700](attachments/Pasted%20image%2020240315100518.png)
+
+1. 符号表示为：`^#^p^p^p`
+2. 找到空行后，可以添加空格，也可以直接删掉时间
+
+
+## 2、
+
+# 六、脚本与自动化
+
+# 七、游戏相关
+
+## 1、steam
+
+### ①、使用 2fauth 保存 steam 手机令牌验证码
+
+1. 如果 steam 已经绑定了手机令牌，那么首先解绑原先的手机令牌
+2. 下载 `steamguard.exe`：
+	1. 本地 v0.15.0 下载：[steamguard.exe](attachments/steamguard.exe)
+	2. github 下载：https://github.com/dyc3/steamguard-cli
+3. 将下载的 `steamguard.exe` 放到 D 盘根目录
+4. 打开 PowerShell，输入命令，会要求输入账号、密码、邮箱验证码，根据提示输入即可
+
+```PowerShell
+# 进入 D 盘根目录
+cd D:
+
+# 启动 steamguard
+./steamguard setup
+```
+
+5. 验证成功后会提示：Authenticator has not yet been linked. Before continuing with finalization, please take the time to write down your revocation code: R12345，记下 `R12345`，这是移除这个验证器的恢复密码
+6. 按下回车确认，【速验通】会给绑定的手机发来一个验证码，输入验证码，此时添加验证令牌成功
+7. 然后在 PowerShell 中输入命令打印二维码，尝试使用 2fauth 扫描该二维码，如果扫描失败，则进行下面的步骤
+
+```PowerShell
+./steamguard qr
+```
+
+8. 进入目录：`C:\Users\用户\AppData\Roaming\steamguard-cli\maFiles`，打开 `*.maFile` 文件，搜索 `uri` 字段，将 `uri` 字段的值复制下来
+
+```shell
+{
+    ...
+    "uri": "otpauth://totp/Steam:johndoe?secret=D5RTFGT8Z7SW4DYU6I9UH5F4RRE1DF4G&issuer=Steam",
+    ...
+}
+```
+
+9. 打开 2fauth，点击新建，选择导入，将上面 `uri` 字段的值复制到直接输入的框中，然后点击提交
+
+![|575](attachments/Pasted%20image%2020241226101009.png)
+
+10. 点击提交后会进入一个新页面，点击导入即可
+
+![|575](attachments/Pasted%20image%2020241226101054.png)
+
+11. 整体流程：
+
+```PowerShell
+PS C:\Users\10222148> cd D:
+PS D:\> ./steamguard setup
+INFO reading manifest from C:\Users\10222148\AppData\Roaming\steamguard-cli/maFiles
+Log in to the account that you want to link to steamguard-cli
+Username: INFO Logging in to 770717410
+Password:
+Enter the 2fa code sent to your email: INFO Polling for tokens... -- If this takes a long time, try logging in again.
+INFO Logged in successfully!
+INFO Adding authenticator...
+INFO Saving manifest and accounts...
+Authenticator has not yet been linked. Before continuing with finalization, please take the time to write down your revocation code: R12345
+Press enter to continue...A code has been sent to your phone number ending in 6394.
+Enter SMS code: INFO Verifying authenticator status...
+INFO Authenticator finalized.
+INFO Saving manifest and accounts...
+Authenticator has been finalized. Please actually write down your revocation code: R12345
+PS D:\> ./steamguard qr
+INFO reading manifest from C:\Users\10222148\AppData\Roaming\steamguard-cli/maFiles
+INFO Generating QR codes for 1 accounts
+INFO Printing QR code for 770717410
+█████████████████████████████████████████████
+█████████████████████████████████████████████
+████ ▄▄▄▄▄ █▄▄▄█ ▀█ ▄▄ ▄▄ █ ▀ ████ ▄▄▄▄▄ ████
+████ █   █ █▄▀██▄▀▀ █ ▀▄█▄▀ ▀ ▀  █ █   █ ████
+████ █▄▄▄█ █▀ ▄█▀  ▄▀▀▀██▄▀▀▄▀▀▄▀█ █▄▄▄█ ████
+████▄▄▄▄▄▄▄█▄█▄▀▄█▄▀ ▀▄▀▄▀ ▀▄█▄▀ █▄▄▄▄▄▄▄████
+████▀▀█▄█▄▄▄▀▀▀ ▀ ▀▄█▄██▀  █▀▄█  ▀▀▄▄▄▀█▄████
+████▀▀▀▄▄ ▄▀▄ █▄ ▀▄ ▄█  ▀█▄█▄▀█ ▄▄ ▄███▀▄████
+████▄▀  ▄ ▄  ▀▀▀▀▀█ █▄  █ ▀ ▀▄▀▄▄▄▄▄▀ ▄▄▀████
+████▄█▄▀█▀▄█▄▄▄█   ▀ ▄▀█▀▄██▀▄▀ ▄▀▀  █ ▀ ████
+█████  ▄ ▀▄ ▄▀ ▄   ▀█ █   ▄ ▄▀█▀▀▀ ███▄▀█████
+████▀ █▄▀█▄▀▄▀▄▄██▀ ▀▀█▄▀ ▄▄▄ ▄▄  ▄▄ ▀▄ ▀████
+████▄█▀ ▀█▄▀ ▄██ ▄▄▄█▄█▄█▀▀ ▄▄▀▄█ █  █▀▄▀████
+████▄▄▀██▄▄█ ▄█▄▀█ ▄██▄██▄▀██▄ ▀ █▄ ▄█ ▀▄████
+████ ▄▄▄▄▄ █▄ ▄▀██▄▄ ▄  █▄▀ ▄▄▄▀ █▄█ ▀▄██████
+████ █   █ ██▄  █▀▄▄   ▄▀ ███▀    ▄▄ ▀▀ ▄████
+████ █▄▄▄█ █▄▀█ ▄ ▄▀ █ █▀█▀█ ▄▀██ ▀█▄  ▄▄████
+████▄▄▄▄▄▄▄█▄█████▄███▄████▄██▄▄██▄█▄█▄█▄████
+█████████████████████████████████████████████
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+PS D:\>
+```
+
+## 2、
+
+# 八、
+
+# 九、
+
+# 十、Office
+
+## 1、Excel
+
+### ①、快捷键进入单元格
+
+1. 选中单元格的状态下，按 F2 即可进入此单元格，光标会出现在文字的最后
+2. 与双击鼠标左键相同
+
+### ②、单元格内换行
+
+- 按住 alt 然后点击 Enter 即可换行
+
+### ③、选中下方全部内容
+
+- `shift + ctrl + 上/下/左/右按键`
+
+
+## 2、Word
+
+### ①、查找特殊格式
+
+1. 打开文档后，点击查找，然后点击特殊格式
+2. 比如：查找一个任意数字和三个段落标记：
+
+![|700](attachments/Pasted%20image%2020240315100518.png)
+
+3. 符号表示为：`^#^p^p^p`
+
+![|312](attachments/Pasted%20image%2020240315100600.png)
+
+## 3、
+
+
+# 十一、
+
+# 十二、
+
+# 十三、
+
+# 十四
+
+# 十五、
