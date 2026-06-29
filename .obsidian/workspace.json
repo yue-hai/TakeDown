@@ -8,6 +8,20 @@
         "type": "tabs",
         "children": [
           {
+            "id": "216aea520d76891b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "标题.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "标题"
+            }
+          },
+          {
             "id": "0f1c9b928b8c5994",
             "type": "leaf",
             "state": {
@@ -23,48 +37,47 @@
             }
           },
           {
-            "id": "c94cfb78abad69de",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "01、编程/01、编程语言/Web/JS框架/Vue3.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Vue3"
-            }
-          },
-          {
             "id": "e9934e9daec420d9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10、电子设备/10、主机/02、radxa o6n.md",
+                "file": "01、编程/01、编程语言/Web/环境/nodejs.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "02、radxa o6n"
+              "title": "nodejs"
             }
           },
           {
-            "id": "99ae54f04e472d86",
+            "id": "c94cfb78abad69de",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "标题.md",
+                "file": "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "标题"
+              "title": "01、友善 Nanopi R6s"
+            }
+          },
+          {
+            "id": "12ddd01d5fe904f6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01、友善 Nanopi R6s"
             }
           }
         ],
@@ -110,7 +123,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "#1",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -165,6 +178,83 @@
               "icon": "bot",
               "title": "Claudian"
             }
+          },
+          {
+            "id": "04da2a7fa3cb531c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "10、电子设备/10、主机/02、radxa o6n.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "02、radxa o6n 的反向链接列表"
+            }
+          },
+          {
+            "id": "39861b6fd5f07024",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "10、电子设备/10、主机/02、radxa o6n.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "02、radxa o6n 的出链列表"
+            }
+          },
+          {
+            "id": "d3c3027d59656e2b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "69c0930a47696afc",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "01372ed9b474b559",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "10、电子设备/10、主机/02、radxa o6n.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "02、radxa o6n 的大纲"
+            }
           }
         ]
       }
@@ -174,57 +264,62 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "99ae54f04e472d86",
+  "active": "c94cfb78abad69de",
   "lastOpenFiles": [
-    "10、电子设备/10、主机/02、radxa o6n.md",
-    "10、电子设备/01、系统/10、ubuntu.md",
-    "10、电子设备/20、维修/CH341A烧录器.md",
-    "10、电子设备/02、软件/软件使用.md",
-    "CH341A 烧录器使用向导.md",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629133604.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629130308.png",
+    "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629133010.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629133004.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629132955.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629130339.png",
     "标题.md",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518155557.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518155548.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518155539.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518155403.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518154936.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518154851.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518154441.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518154309.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260518154248.png",
-    "10、电子设备/20、维修/attachments/Pasted image 20260515142139.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629125100.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260629125044.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260626165920.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260626165911.png",
+    "10、电子设备/10、主机/attachments/Pasted image 20260626165903.png",
+    "10、电子设备/01、系统/10、ubuntu.md",
+    "01、编程/01、编程语言/Web/环境/nodejs.md",
+    "01、编程/01、编程语言/Web/JS框架/Vue3.md",
+    "01、编程/01、编程语言/Web/【其他】.md",
+    "01、编程/01、编程语言/Web/JS框架/Vue2.md",
+    "01、编程/01、编程语言/Web/环境/attachments/nvm-noinstall-1.1.12.zip",
+    "01、编程/01、编程语言/Web/环境/attachments",
+    "01、编程/01、编程语言/Python/Python 基础.md",
+    "01、编程/01、编程语言/Linux/正则表达式.md",
+    "01、编程/01、编程语言/Web/环境",
+    "10、电子设备/02、软件/windows 软件使用.md",
+    "10、电子设备/01、系统/01、windows.md",
+    "21、型材配件/01、铝型材/02、铝型材配件.md",
+    "21、型材配件/01、铝型材",
+    "21、型材配件/01、铝型材/01、铝型材.md",
+    "21、型材配件",
+    "10、电子设备/02、软件/android 软件使用.md",
+    "01、编程/10、编程工具/Docker.md",
+    "10、电子设备/02、软件/attachments/full.zip",
+    "10、电子设备/20、维修/CH341A 烧录器.md",
+    "01、编程/01、编程语言/Flutter/Flutter 基础.md",
+    "10、电子设备/10、主机/02、radxa o6n.md",
+    "CH341A 烧录器使用向导.md",
     "10、电子设备/20、维修/attachments/NeoProgrammer_2.2.0.10-2026.2.20.zip",
     "10、电子设备/20、维修/attachments/NeoProgrammer_2.2.0.10-  (2026.2.20).zip",
     "01、编程/01、编程语言/Android/Android 基础.md",
     "10、电子设备/20、维修/attachments/CH341SER.exe",
     "10、电子设备/20、维修/attachments",
     "10、电子设备/12、外设/键盘.md",
-    "10、电子设备/20、维修",
-    "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
     "10、电子设备/01、系统/30、飞牛fnos.md",
     "01、编程/01、编程语言/Android/Kotlin 基础.md",
     "10、电子设备/01、系统/20、android.md",
-    "10、电子设备/01、系统/01、windows.md",
-    "01、编程/01、编程语言/Flutter/Flutter 基础.md",
-    "01、编程/11、Docker 应用/docker 应用部署.md",
-    "20、出行工具/01、电动车.md",
-    "20、出行工具/attachments",
-    "01、编程/01、编程语言/Flutter/Dart 基础.md",
-    "20、出行工具/01、电动车",
-    "20、出行工具",
-    "新建文件夹",
-    "90、软件教程/n2n/n2n绕过UDP屏蔽.md",
-    "90、软件教程/n2n/n2n服务端部署.md",
-    "90、软件教程/n2n/n2n教程地址.md",
-    "90、软件教程/n2n/n2n常见问题解决.md",
-    "90、软件教程/n2n/n2n使用方法.md",
-    "90、软件教程/n2n",
-    "10、电子设备/11、配件/01、硬盘.md",
-    "10、电子设备/03、文件/音频处理.md",
-    "10、设备/10、主机/02、radxa o6n.md",
-    "10、设备/02、软件/软件使用.md"
+    "01、编程/11、Docker 应用/docker 应用部署.md"
   ]
 }
