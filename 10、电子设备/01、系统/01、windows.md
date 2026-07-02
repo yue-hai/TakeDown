@@ -569,7 +569,7 @@ public class WakeOnLan {
 
 3. 其中第二列就是 QQ 这个进程使用的所有的端口号
 
-## 2、想要允许你的电脑被此网络上的其他电脑和设备发现吗？
+## 2、允许设备发现
 
 1. 当新安装系统时，电脑通知中会出现这个选项
 
@@ -822,15 +822,40 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 
 ### ①、为所有文件类型添加 Notepad3
 
-1. 添加 reg 脚本：[Notepad3_Add_SubMenu.reg](attachments/Notepad3_Add_SubMenu.reg)，清理 reg 脚本：[Notepad3_Remove_Menu.reg](attachments/Notepad3_Remove_Menu.reg)
-2. 如不想使用脚本，可手动修改注册表：
-3. `Windows + R` 打开运行，输入 `regedit` 后点击确定，打开 注册表编辑器 窗口
-4. 进入注册表路径：`HKEY_CLASSES_ROOT\*\shell`
-5. 在左侧的树状目录中，右键点击 shell 项，选择 新建 -> 项(K)，将这个新建的项命名为您想在菜单上看到的文字，例如：用 Notepad3 编辑
-6. 添加图标：
+1. 添加 reg 脚本 `Notepad3_Add_SubMenu.reg`：
+
+```shell
+Windows Registry Editor Version 5.00
+
+; 说明: 为所有文件类型的右键菜单添加一个顶层的 用 Notepad3 打开 选项
+
+; 定义右键菜单项的名称和图标
+[HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开]
+@="用 Notepad3 打开"
+"Icon"="E:\\app\\devTools\\TextEditor\\Notepad3\\Notepad3.exe,0"
+
+; 定义右键菜单项的命令
+[HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开\command]
+@="\"E:\\app\\devTools\\TextEditor\\Notepad3\\Notepad3.exe\" \"%1\""
+```
+
+2. 清理 reg 脚本 `Notepad3_Remove_Menu.reg`：
+
+```shell
+Windows Registry Editor Version 5.00
+
+; 说明: 此脚本用于清理之前手动添加的顶层 用 Notepad3 打开 右键菜单项
+[-HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开]
+```
+
+3. 如不想使用脚本，可手动修改注册表：
+4. `Windows + R` 打开运行，输入 `regedit` 后点击确定，打开 注册表编辑器 窗口
+5. 进入注册表路径：`HKEY_CLASSES_ROOT\*\shell`
+6. 在左侧的树状目录中，右键点击 shell 项，选择 新建 -> 项(K)，将这个新建的项命名为您想在菜单上看到的文字，例如：用 Notepad3 编辑
+7. 添加图标：
 	1. 选中刚刚创建的 用 Notepad3 编辑 项，在右侧空白处，右键点击 -> 新建 -> 字符串值(S)，将这个字符串值命名为 Icon
 	2. 双击 Icon，在 数值数据 中输入 Notepad3 程序 Notepad3.exe 的完整路径。例如：E:\apply\devTools\TextEditor\Notepad3\Notepad3.exe,这会让菜单项旁边显示程序的图标
-7. 新建 command 项：
+8. 新建 command 项：
 	1. 在左侧目录中，右键点击刚创建的 用 Notepad3 编辑 项，选择 新建 -> 项(K)，将这个新建的子项命名为 command
 	2. 单击选中 command 项，在右侧窗口中，会有一个名为 (默认) 的值。双击它
 	3. 在弹出的 编辑字符串 对话框的 数值数据 一栏中，输入 Notepad3 的完整路径，并在后面加上 "%1"（包含英文双引号）
@@ -867,209 +892,7 @@ PS C:\Windows\system32>
 
 ## 10、
 
-# 六、问题记录
-
-## 1、Win10 系统下任务栏图标显示白色方块变成空白的解决方法
-
-1. 按快捷键 `Win+R` 打开 cmd 命令行，输入 `%localappdata%`，回车，进入 `C:\Users\10222148\AppData\Local` 目录
-2. 在打开的文件夹中，找到 `Iconcache.db`，将其删除。（如果找不到 `Iconcache.db` 文件，说明被系统隐藏了，在文件夹选项中，查看的选项卡，点击“显示隐藏的文件、文件夹和驱动器”即可）
-3. 打开 `任务管理器`，在任务管理器中找到 `Windows资源管理器`，右击鼠标，选择 `重新启动` 即可重建图标缓存。
-
-## 2、win10 企业版 LTSC 激活方法
-
-1. win+R 输入 PowerShell 打开 PowerShell 管理员版本
-2. 逐条输入以下代码：
-
-```PowerShell
-# 安装产品密钥
-# 此命令使用 slmgr 脚本（Windows 软件许可管理工具）来安装指定的产品密钥
-slmgr -ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
-
-# 设置密钥管理服务(KMS)服务器地址
-# slmgr -skms 命令用于指定 KMS 服务的地址，用于激活 Windows
-slmgr -skms kms.03k.org
-
-# 激活 Windows
-# slmgr -ato 命令触发操作系统使用先前安装的密钥和配置的 KMS 服务器进行在线激活
-slmgr -ato
-
-# 显示许可信息
-# slmgr -dlv 命令用于显示详细的许可信息，包括激活状态和许可证类型
-slmgr -dlv
-```
-
-## 3、延长 windows 系统暂停更新时间
-
-1. 按下 `Win + R` 组合键，打开运行，然后输入 `regedit` 命令，再按回车，打开注册表编辑器
-
-![](attachments/Pasted%20image%2020240820090204.png)
-
-2. 注册表编辑器窗口，依次展开到以下路径：`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings`
-
-![|700](attachments/Pasted%20image%2020240820090327.png)
-
-3. 在 `Settings` 右侧空白处，点击右键，选择：新建 -> DWORD(32 位)值(D)
-
-![|700](attachments/Pasted%20image%2020240820090429.png)
-
-4. 新建的 DWORD(32 位)值(D) 命名为 `FlightSettingsMaxPauseDays`
-
-![](attachments/Pasted%20image%2020240820090540.png)
-
-5. 双击打开 `FlightSettingsMaxPauseDays` 编辑窗口，基数选择十进制，数值数据输入你想暂停更新的的天数，比如设置 3000 天，再点击确定
-
-![](attachments/Pasted%20image%2020240820090708.png)
-
-6. `Win+I` 快捷键打开设置，选择：更新和安全 -> Windows 更新 -> 高级选项，设置暂停更新的截止日期
-
-![|700](attachments/Pasted%20image%2020240820090858.png)
-
-## <span id="6-4">4、ltsc 安装 `.msixbundle` 或 `.msix` 应用包</span>
-
-### ①、正常安装
-
-1. 将安装包放到磁盘根目录，比如：`E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle`
-2. 使用管理员打开 PowerShell
-
-![|700](attachments/Pasted%20image%2020250811083002.png)
-
-3. 输入命令安装软件：
-
-```PowerShell
-Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
-```
-
-4. 如果提示：此程序包依赖于一个找不到的框架
-
-```PowerShell
-PS C:\Windows\system32> Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"                             
-Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              
-Windows 无法安装程序包 32669SamG.ModernFlyouts_0.9.3.0_x64__pcy8vm99wrpcg，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.VCLibs.140.00.UWPDesktop”(具有中性或 x64 处理器体系结构，最低版本为 14.0.29231.0)。
-当前已安装的名称为“Microsoft.VCLibs.140.00.UWPDesktop”的框架为: {}
-注意: 有关其他信息，请在事件日志中查找 [ActivityId] 50b5dcb5-09db-0004-e135-ba50db09dc01，或使用命令行 Get-AppPackageLog -ActivityID 50b5dcb5-09db-0004-e135-ba50db09dc01
-
-所在位置 行:1 字符: 1
-+ Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (E:\ModernFlyout...tral.Msixbundle:String) [Add-AppxPackage], IOException
-    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
-
-PS C:\Windows\system32>
-```
-
-5. 原因是该系统缺少一个必要的 依赖项 或 公共组件，首先下载并安装缺失的 VCLibs 运行库：
-	1. 网络下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx)
-	2. 本地下载 [Microsoft.VCLibs.x64.14.00.Desktop.appx](attachments/Microsoft.VCLibs.x64.14.00.Desktop.appx)
-6. 将下载的运行库安装包也放入到磁盘根目录，比如：`E:\Microsoft.VCLibs.x64.14.00.Desktop.appx`
-7. 输入命令安装运行库：
-
-```PowerShell
-Add-AppxPackage -Path "E:\Microsoft.VCLibs.x64.14.00.Desktop.appx"
-```
-
-8. 如果安装成功，再次输入命令安装软件：
-
-```PowerShell
-Add-AppxPackage -Path "E:\ModernFlyouts_0.9.3.0_neutral.Msixbundle"
-```
-
-### ②、其他报错
-
-#### Ⅰ、查看卸载软件包和依赖
-
-1. 根据名称查看已经安装的的应用包，这两个分别是 `Microsoft.VCLibs.140.00.UWPDesktop` 的 `x64` 和 `x86` 版本
-
-```PowerShell
-PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00*"
-
-Name              : Microsoft.VCLibs.140.00.UWPDesktop
-Publisher         : CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-Architecture      : X64
-ResourceId        :
-Version           : 14.0.33728.0
-PackageFullName   : Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe
-InstallLocation   : C:\Program Files\WindowsApps\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe
-IsFramework       : True
-PackageFamilyName : Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe
-PublisherId       : 8wekyb3d8bbwe
-IsResourcePackage : False
-IsBundle          : False
-IsDevelopmentMode : False
-NonRemovable      : False
-IsPartiallyStaged : False
-SignatureKind     : Store
-Status            : Ok
-
-Name              : Microsoft.VCLibs.140.00.UWPDesktop
-Publisher         : CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-Architecture      : X86
-ResourceId        :                                                                                                     
-Version           : 14.0.33728.0                                                                                        PackageFullName   : Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x86__8wekyb3d8bbwe                                  InstallLocation   : C:\Program Files\WindowsApps\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x86__8wekyb3d8bbwe     
-IsFramework       : True                                                                                                PackageFamilyName : Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe                                                    
-PublisherId       : 8wekyb3d8bbwe                                                                                       IsResourcePackage : False                                                                                               
-IsBundle          : False                                                                                               IsDevelopmentMode : False                                                                                               
-NonRemovable      : False                                                                                               IsPartiallyStaged : False                                                                                               
-SignatureKind     : Store                                                                                               
-Status            : Ok                                                                                                                                                                                            
-PS C:\Windows\system32>
-```
-
-2. 使用 `Remove-AppxPackage` 卸载应用包，此处提示由两个应用包依赖于本应用，需要先卸载这两个应用包才可以
-
-```PowerShell
-PS C:\Windows\system32> Remove-AppxPackage -Package "Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe"
-Remove-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。
-Windows 无法删除框架 Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64__8wekyb3d8bbwe，因为程序包  32669SamG.ModernFl
-youts Microsoft.Edge.GameAssist 当前依赖于该框架。如果删除所有依赖于该框架的程序包，则会自动删除该框架。
-注意: 有关其他信息，请在事件日志中查找 [ActivityId] 24293e96-0bf0-000c-095f-2924f00bdc01，或使用命令行 Get-AppPackageLo
-g -ActivityID 24293e96-0bf0-000c-095f-2924f00bdc01
-所在位置 行:1 字符: 1
-+ Remove-AppxPackage -Package "Microsoft.VCLibs.140.00.UWPDesktop_14.0. ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (Microsoft.VCLib...__8wekyb3d8bbwe:String) [Remove-AppxPackage], IOException
-    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.RemoveAppxPackageCommand
-
-PS C:\Windows\system32>
-```
-
-3. 卸载这两个依赖的应用程序
-
-```PowerShell
-PS C:\Windows\system32> Get-AppxPackage *ModernFlyouts* | Remove-AppxPackage
-PS C:\Windows\system32> Get-AppxPackage *Microsoft.Edge.GameAssist* | Remove-AppxPackage
-```
-
-4. 卸载这 `Microsoft.VCLibs.140.00.UWPDesktop`，包括 `x64` 和 `x86` 版本
-
-```PowerShell
-PS C:\Windows\system32> Get-AppxPackage -Name "Microsoft.VCLibs.140.00.UWPDesktop" | Remove-AppxPackage
-```
-
-#### Ⅱ、缺少 `Microsoft.UI.Xaml.2.8`
-
-1. 网络下载 [Microsoft.UI.Xaml-2.8.6](https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.8.6)，此链接会下载一个 `.nupkg` 文件，需要将其后缀名改为 `.zip`，然后解压，在 `tools\AppX\x64\Release` 目录下找到 `Microsoft.UI.Xaml.2.8.appx` 文件
-2. 本地下载 [Microsoft.UI.Xaml.2.8.appx](attachments/)
-3. 下载后使用上面的命令进行安装
-
-```PowerShell
-PS C:\Windows\system32> Add-AppxPackage -Path "E:\bundle.msixbundle"                                                    
-Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。                              
-Windows 无法安装程序包 28017CharlesMilette.TranslucentTB_2025.1.0.0_x64__v826wp6bftszj，因为此程序包依赖于一个找不到的框架。请随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的框架“Microsoft.UI.Xaml.2.8”(具有中性或 x64 处理器体系结构，最低版本为 8.2310.30001.0)。
-当前已安装的名称为“Microsoft.UI.Xaml.2.8”的框架为: {}
-注意: 有关其他信息，请在事件日志中查找 [ActivityId] 24293e96-0bf0-0004-738f-2924f00bdc01，或使用命令行 Get-AppPackageLog -ActivityID 24293e96-0bf0-0004-738f-2924f00bdc01
-
-所在位置 行:1 字符: 1
-+ Add-AppxPackage -Path "E:\bundle.msixbundle"
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (E:\bundle.msixbundle:String) [Add-AppxPackage], IOException
-    + FullyQualifiedErrorId : DeploymentError,Microsoft.Windows.Appx.PackageManager.Commands.AddAppxPackageCommand
-
-PS C:\Windows\system32>
-```
-
-## 5、
-
-# 七、命令使用
+# 六、命令使用
 
 ## 1、查看及导出目录结构
 
@@ -1178,9 +1001,52 @@ curl -o downloaded.mp3 ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b72
 
 ## 4、
 
-# 八、硬件驱动 AMD 
+# 七、配置脚本
 
-## 1、去除或恢复 AMD 显卡的右键菜单的方法
+# 八、
+
+# 九、问题记录
+
+## 1、Win10 系统下任务栏图标显示白色方块变成空白的解决方法
+
+1. 按快捷键 `Win+R` 打开 cmd 命令行，输入 `%localappdata%`，回车，进入 `C:\Users\10222148\AppData\Local` 目录
+2. 在打开的文件夹中，找到 `Iconcache.db`，将其删除。（如果找不到 `Iconcache.db` 文件，说明被系统隐藏了，在文件夹选项中，查看的选项卡，点击“显示隐藏的文件、文件夹和驱动器”即可）
+3. 打开 `任务管理器`，在任务管理器中找到 `Windows资源管理器`，右击鼠标，选择 `重新启动` 即可重建图标缓存。
+
+## 2、延长 windows 系统暂停更新时间
+
+1. 按下 `Win + R` 组合键，打开运行，然后输入 `regedit` 命令，再按回车，打开注册表编辑器
+
+![](attachments/Pasted%20image%2020240820090204.png)
+
+2. 注册表编辑器窗口，依次展开到以下路径：`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings`
+
+![|700](attachments/Pasted%20image%2020240820090327.png)
+
+3. 在 `Settings` 右侧空白处，点击右键，选择：新建 -> DWORD(32 位)值(D)
+
+![|700](attachments/Pasted%20image%2020240820090429.png)
+
+4. 新建的 DWORD(32 位)值(D) 命名为 `FlightSettingsMaxPauseDays`
+
+![](attachments/Pasted%20image%2020240820090540.png)
+
+5. 双击打开 `FlightSettingsMaxPauseDays` 编辑窗口，基数选择十进制，数值数据输入你想暂停更新的的天数，比如设置 3000 天，再点击确定
+
+![](attachments/Pasted%20image%2020240820090708.png)
+
+6. `Win+I` 快捷键打开设置，选择：更新和安全 -> Windows 更新 -> 高级选项，设置暂停更新的截止日期
+
+![|700](attachments/Pasted%20image%2020240820090858.png)
+
+## 3、
+
+
+# 十、硬件驱动
+
+## 1、AMD
+
+### ①、去除或恢复 AMD 显卡的右键菜单的方法
 
 1. amd 显卡驱动安装完之后，在资源管理器右键会显示 amd 的菜单：
 
@@ -1199,8 +1065,28 @@ curl -o downloaded.mp3 ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b72
 
 ![|700](attachments/Pasted%20image%2020231023093902.png)
 
-# 九、
+### ②、
 
-# 十、
+## 2、
+
+# 十一、
+
+# 十二、
+
+# 十三、
+
+# 十四
+
+# 十五、
+
+# 十六、
+
+# 十七、
+
+# 十八、
+
+# 十九、
+
+# 二十、
 
 

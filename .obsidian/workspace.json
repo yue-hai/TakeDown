@@ -22,6 +22,20 @@
             }
           },
           {
+            "id": "6f49f5f391cf1c16",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01、编程/01、编程语言/Android/Android 基础.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Android 基础"
+            }
+          },
+          {
             "id": "0f1c9b928b8c5994",
             "type": "leaf",
             "state": {
@@ -50,38 +64,9 @@
               "icon": "lucide-file",
               "title": "nodejs"
             }
-          },
-          {
-            "id": "c94cfb78abad69de",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "01、友善 Nanopi R6s"
-            }
-          },
-          {
-            "id": "12ddd01d5fe904f6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01、友善 Nanopi R6s"
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -273,53 +258,52 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "c94cfb78abad69de",
+  "active": "6f49f5f391cf1c16",
   "lastOpenFiles": [
-    "10、电子设备/10、主机/attachments/Pasted image 20260629133604.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629130308.png",
-    "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629133010.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629133004.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629132955.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629130339.png",
-    "标题.md",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629125100.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260629125044.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260626165920.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260626165911.png",
-    "10、电子设备/10、主机/attachments/Pasted image 20260626165903.png",
-    "10、电子设备/01、系统/10、ubuntu.md",
     "01、编程/01、编程语言/Web/环境/nodejs.md",
+    "10、电子设备/02、软件/01、windows 软件使用.md",
+    "10、电子设备/01、系统/20、android.md",
+    "01、编程/01、编程语言/Android/Android 基础.md",
+    "标题.md",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_9.0.zip",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_8.0.zip",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_7.X.zip",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_6.0.zip",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_5.1.zip",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_4.4.zip",
+    "10、电子设备/02、软件/attachments/Genymotion-ARM-Translation_for_4.3.zip",
+    "10、电子设备/02、软件/attachments/Pasted image 20240308181742.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20240308181725.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20231019152956.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20231019152919.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20231019152707.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20240903083653.png",
+    "10、电子设备/02、软件/attachments/SyncAudio(同步听) 1.0.3.7z",
+    "10、电子设备/02、软件/attachments/Pasted image 20231023141820.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20231023141752.png",
+    "10、电子设备/02、软件/attachments/Pasted image 20231023141708.png",
+    "10、电子设备/02、软件/attachments/SoundWire_Free.apk",
+    "10、电子设备/02、软件/attachments/SoundWire_Server_setup7-8-10.zip",
+    "10、电子设备/02、软件/attachments/Pasted image 20230420084501.png",
+    "01、编程/01、编程语言/Flutter/Flutter 基础.md",
+    "10、电子设备/01、系统/01、windows.md",
+    "10、电子设备/02、软件/10、ubuntu 软件使用.md",
+    "10、电子设备/01、系统/10、ubuntu.md",
+    "10、电子设备/10、主机/01、友善 Nanopi R6s.md",
+    "10、电子设备/02、软件/20、android 软件使用.md",
+    "10、电子设备/01、系统/30、飞牛fnos.md",
     "01、编程/01、编程语言/Web/JS框架/Vue3.md",
     "01、编程/01、编程语言/Web/【其他】.md",
     "01、编程/01、编程语言/Web/JS框架/Vue2.md",
-    "01、编程/01、编程语言/Web/环境/attachments/nvm-noinstall-1.1.12.zip",
-    "01、编程/01、编程语言/Web/环境/attachments",
     "01、编程/01、编程语言/Python/Python 基础.md",
     "01、编程/01、编程语言/Linux/正则表达式.md",
-    "01、编程/01、编程语言/Web/环境",
-    "10、电子设备/02、软件/windows 软件使用.md",
-    "10、电子设备/01、系统/01、windows.md",
     "21、型材配件/01、铝型材/02、铝型材配件.md",
-    "21、型材配件/01、铝型材",
     "21、型材配件/01、铝型材/01、铝型材.md",
-    "21、型材配件",
-    "10、电子设备/02、软件/android 软件使用.md",
     "01、编程/10、编程工具/Docker.md",
-    "10、电子设备/02、软件/attachments/full.zip",
     "10、电子设备/20、维修/CH341A 烧录器.md",
-    "01、编程/01、编程语言/Flutter/Flutter 基础.md",
     "10、电子设备/10、主机/02、radxa o6n.md",
     "CH341A 烧录器使用向导.md",
-    "10、电子设备/20、维修/attachments/NeoProgrammer_2.2.0.10-2026.2.20.zip",
-    "10、电子设备/20、维修/attachments/NeoProgrammer_2.2.0.10-  (2026.2.20).zip",
-    "01、编程/01、编程语言/Android/Android 基础.md",
-    "10、电子设备/20、维修/attachments/CH341SER.exe",
-    "10、电子设备/20、维修/attachments",
     "10、电子设备/12、外设/键盘.md",
-    "10、电子设备/01、系统/30、飞牛fnos.md",
-    "01、编程/01、编程语言/Android/Kotlin 基础.md",
-    "10、电子设备/01、系统/20、android.md",
-    "01、编程/11、Docker 应用/docker 应用部署.md"
+    "01、编程/01、编程语言/Android/Kotlin 基础.md"
   ]
 }
