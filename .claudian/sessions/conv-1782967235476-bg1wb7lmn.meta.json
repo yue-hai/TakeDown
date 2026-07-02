@@ -1,0 +1,24 @@
+{
+  "id": "conv-1782967235476-bg1wb7lmn",
+  "providerId": "opencode",
+  "title": "Identify DingTalk fingerprint page intent",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782967235477,
+  "updatedAt": 1782967321962,
+  "lastResponseAt": 1782967321962,
+  "sessionId": "ses_0dedf01e5ffeacarKPfrmPwKdk",
+  "providerState": {
+    "databasePath": "C:\\Users\\10222148\\AppData\\Roaming\\opencode\\opencode.db"
+  },
+  "currentNote": "10、电子设备/02、软件/20、android 软件使用.md",
+  "usage": {
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 11520,
+    "contextTokens": 13621,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": true,
+    "inputTokens": 2101,
+    "model": "opencode:opencode/minimax-m2.5-free",
+    "percentage": 7
+  }
+}
