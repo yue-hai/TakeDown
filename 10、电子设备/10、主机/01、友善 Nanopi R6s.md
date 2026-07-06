@@ -332,7 +332,100 @@ sysupgrade -F -n /sysupgrade.img.gz
 
 ## 2、分区挂载磁盘
 
-挂载到：`/mnt/data`
+> 1. 格式化时 mmcblk1p3 下没有数据可以不用进行打包、docker 等操作
+> 2. 这里是之前已经在 mmcblk1p3 下设置了 docker 目录、存放了数据的处理流程
+
+1. 在 web 端删除挂载点 `/mnt/data`
+
+![|700](attachments/Pasted%20image%2020260705165350.png)
+
+2. 登录 ssh 终端，停止 Docker 服务：
+
+```shell
+service dockerd stop
+```
+
+3. 进入数据目录：
+
+```shell
+cd /mnt/data
+```
+
+4. 打包数据，带 `-p` 参数完美保留文件读写权限，这对数据库至关重要：
+	1. 如果原先有数据的话则执行这一步
+	2. 打包完毕后将生成的 `docker_backup.tar.gz` 下载到电脑
+
+```shell
+tar -czpvf docker_backup.tar.gz --exclude=docker_backup.tar.gz .
+```
+
+5. 彻底禁用 Docker 开机自启：
+
+```shell
+service dockerd disable || service docker disable
+```
+
+6. 重启路由器，刷新系统底层：
+
+```shell
+reboot
+```
+
+7. 路由器重启完毕后，重新连接 SSH，卸载目标分区：
+
+```shell
+umount /dev/mmcblk1p3
+```
+
+8. 强制格式化为 f2fs：
+	1. 使用命令而不是 web 端的原因是 web 端显示不全，没有 f2fs 格式
+
+```shell
+mkfs.f2fs -f /dev/mmcblk1p3
+```
+
+9. 进入 web 端可以看到 mmcblk1p3 被格式化为了 f2fs
+
+![|700](attachments/Pasted%20image%2020260705165322.png)
+
+10. 然后进入系统 -> 挂载点 -> 添加，
+	1. UUID：选择 mmcblk1p3
+	2. 挂载点：输入 `/mnt/data`
+	3. 点击保存
+
+![|700](attachments/Pasted%20image%2020260705165435.png)
+
+11. 进入  `/mnt` 目录，其中可能同时有 `data` 和 `mmcblk1p3` 两个目录，挂载  `/mnt/data` 完成后直接删除 `mmcblk1p3` 目录即可
+12. 进入数据目录：
+
+```shell
+cd /mnt/data
+```
+
+13. 上传之前打包的 `docker_backup.tar.gz` 到 `/mnt/data` 目录下
+14. 解压并恢复权限：
+
+```shell
+tar -xzpvf docker_backup.tar.gz
+```
+
+15. 清理压缩包释放空间：
+
+```shell
+rm docker_backup.tar.gz
+```
+
+16. 重新设置 docker 服务开机自启动：
+
+```shell
+service dockerd enable
+```
+
+17. 启动 docker 服务
+
+```shell
+service dockerd start
+```
 
 ## 3、网络配置
 
@@ -412,10 +505,6 @@ sysupgrade -F -n /sysupgrade.img.gz
 ### ③、
 
 ### ④、
-
-### ⑤、
-
-### ⑥、
 
 ## 4、docker 配置
 
@@ -638,9 +727,7 @@ root@ImmortalWrt:~#
 
 ### ⑥、
 
-## 5、防火墙配置
-
-## 6、HomeProxy 配置
+## 5、HomeProxy 配置
 
 ### ①、安装 HomeProxy
 
@@ -1055,6 +1142,8 @@ swiftui.com.cn
 ### ⑤、
 
 ### ⑥、
+
+## 6、
 
 ## 7、
 

@@ -3769,7 +3769,7 @@ unzip -P 000123 压缩文件名
 
 # 二十、docker
 
-## 1、docker
+## 1、docker 安装配置
 
 ### ①、安装 docker
 
@@ -3857,7 +3857,53 @@ sudo systemctl restart docker
 ```
 
 
-### ③、
+### ③、配置自定义网络的网段
+
+> 1. 为什么要配置网段：Docker 默认使用 `172.17.0.0/16` 及后续网段，极易与公司内网、VPN 或云服务器的 VPC 网段发生重叠
+> 2. 这会导致 路由黑洞，例如 SSH 突然断开或无法直连宿主机
+> 3. 需要将其全局限制在一个安全的、未被占用的可用网段池中，例如 `172.31.0.0/16`
+
+1. 编辑 Docker 的核心配置文件：
+
+```shell
+sudo nano /etc/docker/daemon.json
+```
+
+2. 加入网段配置：
+	1. `bip`：强制指定 Docker 默认 `docker0` 网桥的 IP 地址与子网掩码
+	2. `default-address-pools`：限制后续使用 `docker compose` 或 `docker network create` 创建自定义网络时，只能从该安全池子里按 `/24` 切分网段
+
+```json
+{
+  "bip": "172.31.0.1/24",
+  "default-address-pools": [
+    {
+      "base": "172.31.0.0/16",
+      "size": 24
+    }
+  ]
+}
+
+```
+
+3. 重新加载 systemd 守护进程配置：
+
+```shell
+sudo systemctl daemon-reload
+```
+
+4. 重启 Docker 服务让网段新规生效：
+
+```shell
+sudo systemctl restart docker
+```
+
+5. 如果是在已经运行了一段时间的机器上补齐此配置，重启 Docker 后还需清理历史遗留的冲突网络：
+
+```shell
+# 清理前需确保冲突网络上的容器已停止或已移除
+sudo docker network prune -f
+```
 
 ### ④、
 
