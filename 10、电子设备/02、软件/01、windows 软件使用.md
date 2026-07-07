@@ -7,7 +7,59 @@
 1. 官方最新版本下载：https://www.jetbrains.com/idea/download
 2. 官方其他版本下载：https://www.jetbrains.com/idea/download/other.html
 
-### ②、插件
+### ②、破解
+
+#### Ⅰ、破解文件下载
+
+1. 适配 2026.1 版本：[pojie2099-2026.1.zip](attachments/pojie2099-2026.1.zip)
+
+#### Ⅱ、破解流程
+
+1. 下载上面对应的破解文件，将其解压到某个目录，比如：`D:\Idea\plugins\pojie2099`
+2. 确定解压目录中存在这些文件，并且该目录、目录下的文件以后都不可以删除或移动
+
+![|700](attachments/Pasted%20image%2020260707100453.png)
+
+3. 打开 idea，点击试用进入软件，修改区域为未指定
+	1. <font color="#d83931">不要设置为中国区</font>，否则会在激活的时候反复跳出激活码并提示激活码无效
+	2. 原因是新版本会拦截 `.cn` 域名，导致激活许可被吊销
+
+![|700](attachments/Pasted%20image%2020260707101332.png)
+
+4. idea 中点击 帮助 -> 编辑自定义虚拟机选项...，会打开 `idea64.exe.vmoptions` 文件
+	1. 该文件的路径在：`C:\Users\用户\AppData\Roaming\JetBrains\IntelliJIdea2026.1\idea64.exe.vmoptions`
+
+![|700](attachments/Pasted%20image%2020260707100635.png)
+
+5. 输入以下内容，注意修改对应目录：
+
+```shell
+# JDK 17
+--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
+--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
+
+# idea 旗舰版 破解
+-javaagent:D:\Idea\plugins\pojie2099\ja-netfilter.jar=jetbrains
+```
+
+6. 然后进入破解目录下的 `Activation_Code` 目录，复制对应产品的激活码，比如 `IntelliJ IDEA.txt`
+
+![|600](attachments/Pasted%20image%2020260707101720.png)
+
+7. idea 中点击 帮助 -> 管理订阅
+
+![|675](attachments/Pasted%20image%2020260707101938.png)
+
+8. 在弹出的窗口中选择激活码，然后粘贴刚才复制的激活码，最后点击激活即可
+
+![|575](attachments/Pasted%20image%2020260707102031.png)
+
+9. 激活成功后显示：有效期至 2099/12/31
+
+![|575](attachments/Pasted%20image%2020260707102136.png)
+
+
+### ③、插件
 
 1. Alibaba Java Coding Guidelines：阿里编码指南，集成阿里巴巴 Java 开发规范，实时检测并提示不符合规范的代码
 2. Android：安卓开发套件，提供 Android 项目开发、调试和构建的核心支持
@@ -29,12 +81,6 @@
 
 ![](attachments/Pasted%20image%2020250904180419.png)
 
-### ③、快速注释 `ctrl+/`，注释会在行首位置的问题
-
-1. 文件 -> 设置 -> 代码样式 -> 代码生成 -> 注释代码 -> 取消行注释在第一列的勾选 -> 勾选在行注释开始处添加空格即可
-2. Code Generation -> Comment Code -> 取消 Line Comment at first column的勾选 -> 将 Add a space at comment start
-
-![|700](attachments/Pasted%20image%2020230724103223.png)
 
 ### ④、Toncat 在 IDEA 控制台中文乱码
 
@@ -225,7 +271,13 @@ git config --global https.proxy http://127.0.0.1:7890
 
 ![|700](attachments/Pasted%20image%2020241009131913.png)
 
-### ⑯、
+### ⑯、快速注释 `ctrl+/`，注释会在行首位置的问题
+
+1. 文件 -> 设置 -> 代码样式 -> 代码生成 -> 注释代码 -> 取消行注释在第一列的勾选 -> 勾选在行注释开始处添加空格即可
+2. Code Generation -> Comment Code -> 取消 Line Comment at first column的勾选 -> 将 Add a space at comment start
+
+![|700](attachments/Pasted%20image%2020230724103223.png)
+
 
 ### ⑰、
 
