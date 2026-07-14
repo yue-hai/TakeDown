@@ -822,30 +822,50 @@ HKEY_CLASSES_ROOT\Drive\shell\encrypt-bde-elev
 
 ### ①、为所有文件类型添加 Notepad3
 
-1. 添加 reg 脚本 `Notepad3_Add_SubMenu.reg`：
+1. 添加 reg 脚本 `Notepad3_Add_Menu.bat`（使用管理员运行）：
 
 ```shell
-Windows Registry Editor Version 5.00
+@echo off
+:: 设置控制台编码为 UTF-8，防止中文乱码
+chcp 65001 >nul
 
-; 说明: 为所有文件类型的右键菜单添加一个顶层的 用 Notepad3 打开 选项
+echo Notepad3 正在动态注册右键菜单...
 
-; 定义右键菜单项的名称和图标
-[HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开]
-@="用 Notepad3 打开"
-"Icon"="E:\\app\\devTools\\TextEditor\\Notepad3\\Notepad3.exe,0"
+:: %~dp0 会获取当前脚本所在目录的绝对路径，且自带结尾的反斜杠（如 E:\app\devTools\TextEditor\Notepad3\）
+set "APP_DIR=%~dp0"
+:: 拼接可执行文件的完整路径
+set "EXE_PATH=%APP_DIR%Notepad3.exe"
 
-; 定义右键菜单项的命令
-[HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开\command]
-@="\"E:\\app\\devTools\\TextEditor\\Notepad3\\Notepad3.exe\" \"%1\""
+echo 自动解析的 Notepad3 路径为: %EXE_PATH%
+
+:: 1. 创建右键菜单的顶层名称
+reg add "HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开" /ve /t REG_SZ /d "用 Notepad3 打开" /f >nul
+
+:: 2. 添加菜单图标 (注意：给路径加上 \” 转义双引号，防止路径中有空格导致解析失败)
+reg add "HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开" /v "Icon" /t REG_SZ /d "\"%EXE_PATH%\",0" /f >nul
+
+:: 3. 写入执行命令 (注意：%%1 在批处理中代表被右键选中的目标文件)
+reg add "HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开\command" /ve /t REG_SZ /d "\"%EXE_PATH%\" \"%%1\"" /f >nul
+
+echo.
+echo [√] 部署完毕！现在你可以随处右键使用 Notepad3 了。
+pause
 ```
 
-2. 清理 reg 脚本 `Notepad3_Remove_Menu.reg`：
+2. 清理 reg 脚本 `Notepad3_Remove_Menu.bat`（使用管理员运行）：
 
 ```shell
-Windows Registry Editor Version 5.00
+@echo off
+chcp 65001 >nul
 
-; 说明: 此脚本用于清理之前手动添加的顶层 用 Notepad3 打开 右键菜单项
-[-HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开]
+echo Notepad3 正在清理右键菜单...
+
+:: /f 参数表示强制删除，不弹出 [Y/N] 确认提示
+reg delete "HKEY_CLASSES_ROOT\*\shell\用 Notepad3 打开" /f >nul
+
+echo.
+echo [√] 痕迹已清理，右键菜单已移除。
+pause
 ```
 
 3. 如不想使用脚本，可手动修改注册表：
