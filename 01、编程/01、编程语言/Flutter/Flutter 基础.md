@@ -21607,40 +21607,69 @@ Running Gradle task 'assembleDebug'...
 
 4. 解压复制的 gradle 压缩文件，然后 flutter 中重新 run app 即可
 
-## 4、报错：
+## 4、使用浏览器调试
 
+1. 项目启动时，最上方会显示类似：`http://127.0.0.1:9102`
+
+![|700](attachments/Pasted%20image%2020260713092401.png)
+
+2. 复制该地址，在浏览器中打开，会进入这个页面
+
+![](attachments/Pasted%20image%2020260713092943.png)
+
+3. 项目启动成功后，在项目启动日志中搜索：`ws://127.0.0.1:`，会搜到类似 `ws://127.0.0.1:53522/Cpaemg_w24o=/ws` 的数据
+
+![|700](attachments/Pasted%20image%2020260713093050.png)
+
+4. 将 `ws://127.0.0.1:53522/Cpaemg_w24o=/ws` 复制到浏览器输入框中，然后点击 connect
+
+![|700](attachments/Pasted%20image%2020260713093143.png)
+
+5. 正常情况下就会进入 Widget Inspector
+
+![|700](attachments/Pasted%20image%2020260713093514.png)
+
+
+## 5、升级 flutter SDK
+
+1. 解除文件占用锁：
 
 ```shell
-PS D:\Idea\save\Study\Flutter\flutter_demo\android> ./gradlew clean
+taskkill /F /IM dart.exe /T
+taskkill /F /IM flutter.exe /T
+taskkill /F /IM java.exe /T
+```
 
-FAILURE: Build failed with an exception.
+2. 清除脏数据与状态锁，注意替换为实际的 Flutter 安装路径：
 
-* Where:
-Build file 'D:\Idea\save\Study\Flutter\flutter_demo\android\build.gradle.kts' line: 16
+```shell
+rmdir /S /Q "D:\IDE\Flutter\flutter_windows_3.41.3-stable\bin\cache\dart-sdk"
+del /F /Q "D:\IDE\Flutter\flutter_windows_3.41.3-stable\bin\cache\lockfile"
+```
 
-* What went wrong:
-A problem occurred configuring project ':app'.
-> [CXX1101] NDK at D:\IDE\Android\Android_SDK\ndk\26.3.11579264 did not have a source.properties file
+3. 强制拉取最新 SDK：
 
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
+```shell
+flutter upgrade --force
+```
 
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+4. 在项目中，清理旧版本的编译产物并重新获取依赖：
 
-You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
-
-For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
-
-BUILD FAILED in 1s
-6 actionable tasks: 1 executed, 5 up-to-date
-PS D:\Idea\save\Study\Flutter\flutter_demo\android> 
+```shell
+flutter clean
+flutter pub get
 ```
 
 
-## 5、
+5. 
+6. 
+7. 1
+
+## 6、
+
+## 7、
+
+## 8、
 
 # 十七、
 
