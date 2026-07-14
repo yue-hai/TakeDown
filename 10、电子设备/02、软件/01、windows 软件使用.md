@@ -633,7 +633,185 @@ PubkeyAuthentication yes
 
 ![](attachments/Pasted%20image%2020240510133736.png)
 
-## 4、
+## 4、Cursor
+
+### ①、添加忽略目录
+
+1. 在项目根目录下创建目录 `.cursor`，然后在 `.cursor` 中创建文件 `settings.json`，然后填入以下内容：
+
+```shell
+{
+  "plugins": {
+    "figma": {
+      "enabled": true
+    }
+  }
+}
+```
+
+2. 在项目根目录下创建文件 `.cursorignore`，然后填入以下内容：
+
+```shell
+# ==========================================
+# .cursorignore - 全栈多语言通用拦截器
+# ==========================================
+
+# ------------------------------------------
+# 1. 操作系统与通用环境垃圾 (OS & IDE)
+# ------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ------------------------------------------
+# 2. 全局通用：锁文件、日志与巨型数据
+# ------------------------------------------
+# 锁文件 (Token 吞噬者)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+Pipfile.lock
+poetry.lock
+Cargo.lock
+Gemfile.lock
+composer.lock
+packages.lock.json
+
+# 日志与数据 (无上下文价值)
+*.log
+*.sql
+*.sqlite
+*.db
+*.csv
+*.tsv
+*.dump
+
+# ------------------------------------------
+# 3. Python 环境
+# ------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+env/
+ENV/
+.venv/
+.pytest_cache/
+
+# ------------------------------------------
+# 4. Java / JVM / Android 体系
+# ------------------------------------------
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+# 构建工具产物
+target/
+build/
+.gradle/
+# Android 专有
+*.apk
+*.ap_
+*.aab
+*.dex
+
+# ------------------------------------------
+# 5. C / C++ 体系
+# ------------------------------------------
+# 编译对象与动态/静态库
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+# CMake/Make 等构建缓存
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# ------------------------------------------
+# 6. Go / Rust 环境
+# ------------------------------------------
+# Go
+/vendor/
+/bin/
+*.exe
+*.test
+*.prof
+# Rust
+/target/
+**/*.rs.bk
+
+# ------------------------------------------
+# 7. 巨大的静态与多媒体资源
+# ------------------------------------------
+*.pdf
+*.mp4
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.webp
+*.svg
+
+# ------------------------------------------
+# 8. 安全与凭证 (Security)
+# ------------------------------------------
+.env
+*.pem
+*.key
+*.cert
+*.p12
+*.jks
+id_rsa*
+```
+
+3. 若想忽略该文件，可在项目根目录下的 `.gitignore` 文件中加入以下内容：
+
+```shell
+/.cursor/*
+/.cursorignore
+```
+
+4. 然后直接使用 Cursor 即可
+
+### ②、
+
+
+## 5、
+
+## 6、
 
 
 # 二、系统工具
@@ -1687,6 +1865,8 @@ PS C:\Windows\system32>
 
 ## 1、adb 常用命令
 
+### ①、常用命令
+
 1. 多设备时要在 adb 后加 -s 指定设备
 2. 官网：
 	1. https://android-doc.github.io/tools/help/adb.html
@@ -1723,6 +1903,56 @@ PS C:\Windows\system32>
 | adb shell input tap x y                                                               | 按照(x,y)位置模拟点击                     |             |
 | adb shell input swipe x1 y1 x2 y2                                                     | 从(x1,y1)位置到(x2,y2)位置模拟滑动          |             |
 | adb shell monkey -p jp.retailai.raicart 100>C:\Users\10153702\Desktop\\monkey_log.txt | 执行 monkey100 次随意点击测试，并记录日志到本地     |             |
+
+### ②、问题记录
+
+#### Ⅰ、丢失 wlanapi.dll
+
+##### （1）、报错现象
+
+1. 使用 adb 时报错：无法启动此程序，因为计算机中丢失 wlanapi.dll。尝试重新安装该程序以解决此问题。
+
+![](attachments/Pasted%20image%2020260714135046.png)
+
+##### （2）、原因
+
+1. 某些 Windows 系统出于精简和安全考虑，默认是不安装/开启无线局域网服务 (Wireless LAN Service) 的，所以天生没有这个 DLL
+2. 而较新版本的 adb 为了支持 Android 11+ 的无线调试配对（Pairing）功能，在代码底层强依赖了 `wlanapi.dll`。所以该问题可能出现在更新了 adb 的时候
+
+##### （3）、解决方案 1：为 Windows Server 安装无线局域网服务
+
+1. 这是最正规的做法，补全 Windows Server 缺失的功能
+2. 优缺点：最稳定，适配未来所有新版 ADB；但缺点是必须重启服务器
+3. 操作步骤：
+4. 以管理员身份打开 PowerShell 或 CMD，执行以下命令安装对应功能：
+
+```shell
+Install-WindowsFeature -Name Wireless-Networking
+```
+
+5. 安装完成后，重启计算机。
+
+##### （4）、解决方案 2：降级替换旧版 adb.exe
+
+1. 如果只是想简单用 `scrcpy --tcpip` 连上设备投屏，旧版 ADB 完全够用
+2. 优缺点：立竿见影，无需触碰系统底层，无需重启；缺点是无法使用 Android 11+ 的 adb pair 新特性
+3. 操作步骤：
+4. 找到旧版本的 `adb.exe`、`AdbWinApi.dll`、`AdbWinUsbApi.dll`
+5. 将它们直接复制到对应目录下，覆盖掉当前会报错的那个新版 `adb.exe`
+6. 重新运行命令即可
+
+##### （4）、解决方案 3：暴力外借 DLL（Hack 方案）
+
+1. 利用 Windows DLL 的加载顺序机制：优先读取当前目录
+2. 优缺点：操作极快，不需要旧版 ADB 也不需要重启；缺点是不够优雅，跨系统版本的 DLL 偶尔会有玄学报错
+3. 操作步骤：
+4. 找一台正常的 Windows 10 个人电脑
+5. 进入 `C:\Windows\System32` 目录，找到 `wlanapi.dll` 文件
+6. 把这个文件拷出来，直接丢进报错的文件夹中，和 `adb.exe` 放同一层级
+7. 重新运行命令即可
+
+#### Ⅱ、
+
 
 ## 2、手机开启无线调试功能
 
@@ -1995,6 +2225,7 @@ scrcpy --no-audio -m 1920 --video-bit-rate=8M
 2. 夜神模拟器：adb connect 127.0.0.1:62001
 3. 蓝叠模拟器：adb connect 127.0.0.1:5555
 4. 雷电模拟器：adb connect 127.0.0.1:5555
+
 
 ## 5、安卓手机当电脑摄像头 DroidCam
 
