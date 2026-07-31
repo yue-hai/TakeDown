@@ -21643,8 +21643,8 @@ taskkill /F /IM java.exe /T
 2. 清除脏数据与状态锁，注意替换为实际的 Flutter 安装路径：
 
 ```shell
-rmdir /S /Q "D:\IDE\Flutter\flutter_windows_3.41.3-stable\bin\cache\dart-sdk"
-del /F /Q "D:\IDE\Flutter\flutter_windows_3.41.3-stable\bin\cache\lockfile"
+rmdir /S /Q "D:\app\devTools\Environments\Flutter\flutter_windows-stable\bin\cache\dart-sdk"
+del /F /Q "D:\app\devTools\Environments\Flutter\flutter_windows-stable\bin\cache\lockfile"
 ```
 
 3. 强制拉取最新 SDK：

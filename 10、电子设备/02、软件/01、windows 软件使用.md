@@ -39,7 +39,7 @@
 --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
 
 # idea 旗舰版 破解
--javaagent:D:\Idea\plugins\pojie2099\ja-netfilter.jar=jetbrains
+-javaagent:D:\app\devTools\IDE\IntelliJ-idea-2026.1.3.win\plugins\pojie2099\ja-netfilter.jar=jetbrains
 ```
 
 6. 然后进入破解目录下的 `Activation_Code` 目录，复制对应产品的激活码，比如 `IntelliJ IDEA.txt`
@@ -542,7 +542,19 @@ PubkeyAuthentication yes
 
 ![|600](attachments/Pasted%20image%2020250822150713.png)
 
-### ⑫、
+### ⑫、左侧边栏改为垂直独立工具栏
+
+1. 新版本的左侧边栏是横向的
+
+![|700](attachments/Pasted%20image%2020260717152842.png)
+
+2. 点击 file -> 首选项 -> VS Code Settings，搜索：`Activity Bar: Orientation`
+
+![|700](attachments/Pasted%20image%2020260717154820.png)
+
+3. 将其改为 `vertical` 即可
+
+![|700](attachments/Pasted%20image%2020260717154849.png)
 
 ## 3、WindTerm
 
@@ -806,7 +818,15 @@ id_rsa*
 
 4. 然后直接使用 Cursor 即可
 
-### ②、
+### ②、Cursor 启动时打开 IDE 而不是 Agent
+
+1. 在 Agent 窗口中选择 View -> Settings
+
+![|700](attachments/Pasted%20image%2020260717165648.png)
+
+2. 然后选择 General -> Window Restoration，选择 `Last Used Windows` 即可
+
+![|700](attachments/Pasted%20image%2020260717165735.png)
 
 
 ## 5、
@@ -967,14 +987,19 @@ id_rsa*
 
 ### ③、输入法配置
 
-#### Ⅰ、设置预选词数量
+> Rime 输入法的不同配置文件有不同的职责，不同的配置需要修改不同的配置文件
+
+#### Ⅰ、进入配置目录
 
 1. 右键状态栏输入法图标，点击打开用户文件夹
 
 ![](attachments/Pasted%20image%2020260601141542.png)
 
-2. 在打开的文件夹中，找到一个名为 `default.custom.yaml` 的文件，将其打开
-3. 在里面写入或补充以下配置：
+2. 在打开的文件夹中，可以找到各种配置文件
+
+#### Ⅱ、底层全局 `default.custom.yaml`
+
+> 管方案开关、候选词个数、全局快捷键
 
 ```yaml
 # default.custom.yaml
@@ -982,7 +1007,25 @@ patch:
   "menu/page_size": 9   # 候选词个数，推荐设为 9
 ```
 
-#### Ⅱ、
+#### Ⅲ、前端 UI `weasel.custom.yaml`
+
+> 管皮肤、字体、弹窗、托盘图标
+
+```yaml
+# weasel.custom.yaml
+patch:
+  # 关闭中英文切换时的屏幕状态提示
+  show_notifications: false
+```
+
+#### Ⅳ、具体方案 `rime_ice.custom.yaml`
+
+> 管该特定方案的词库、模糊音、标点符号
+
+
+```yaml
+
+```
 
 
 ### ④、数据操作
@@ -1144,6 +1187,154 @@ ai 	爱	c=12 d=1.00001 t=40
 ![](attachments/Pasted%20image%2020241118083515.png)
 
 ![](attachments/Pasted%20image%2020241118083530.png)
+
+### ③、Chrome 全局调试代理与环境隔离
+
+#### Ⅰ、编译原生 C# 代理
+
+1. 进入 Chrome 安装目录：`C:\Program Files\Google\Chrome\Application`
+2. 将正版的 `chrome.exe` 重命名为 `chrome_real.exe`
+3. 在目录 `D:\app_data\internet\browser\chrome\script` 下新建 `proxy.cs` 文件，填入以下内容：
+
+```cs
+using System;
+using System.Diagnostics;
+
+class Program {
+    static void Main(string[] args) {
+        string finalArgs = "";
+        bool isChild = false;
+
+        // 1. 遍历并重新封装参数
+        foreach (string arg in args) {
+            if (arg.StartsWith("--type=")) {
+                isChild = true; 
+            }
+            
+            // 智能转义。如果参数带有空格且未被引号包裹，才加引号；否则原样透传 URL
+            string safeArg = arg;
+            if (safeArg.Contains(" ") && !safeArg.StartsWith("\"")) {
+                safeArg = "\"" + safeArg + "\"";
+            }
+            finalArgs += safeArg + " ";
+        }
+
+        // 2. 核心逻辑：仅对主进程注入 Debug 端口和独立沙盒目录
+        if (!isChild) {
+            string injectArgs = "--remote-debugging-port=9222 --user-data-dir=\"D:\\app_data\\internet\\browser\\chrome\\ChromeDevProfile\" ";
+            finalArgs = injectArgs + finalArgs;
+        }
+
+        // 3. 极速唤起真身并透传参数
+        ProcessStartInfo psi = new ProcessStartInfo();
+        psi.FileName = "chrome_real.exe"; 
+        psi.Arguments = finalArgs.Trim();
+        psi.UseShellExecute = false;
+
+        Process.Start(psi);
+    }
+}
+```
+
+4. 用管理员打开 cmd，执行以下命令进行原生编译：
+
+```shell
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:"D:\app_data\internet\browser\chrome\script\chrome.exe" "D:\app_data\internet\browser\chrome\script\proxy.cs"
+```
+
+5. 基于 chrome 150.0.7871.125 备份
+    1. 个人编译产物：[chrome_proxy.exe](attachments/chrome_proxy.exe)
+    2. 正版 chrome：[chrome_real.exe](attachments/chrome_real.exe)
+6. 将生成的 `chrome.exe` (约 4KB) 复制到 `C:\Program Files\Google\Chrome\Application` 目录中，不要删除留作以后自动化恢复使用
+7. 此时点击连接、其他应用自动打开的 chrome 浏览器就是携带了启动参数的进程
+8. 此时可以访问：`http://127.0.0.1:9222/json`，如果显示出了一些 json 文本就是成功了，无法访问就是失败了
+9. 不过通过快捷方式、任务栏打开的依然不携带参数，下面进行处理
+
+#### Ⅱ、快捷方式添加参数
+
+1. 进入 Chrome 安装目录：`C:\Program Files\Google\Chrome\Application`
+2. 右键正版 chrome `chrome_real.exe`，选择：创建快捷方式
+3. 将该快捷方式移动到桌面，然后右键 -> 属性 -> 目标，在输入框中加一个空格，然后输入：` --remote-debugging-port=9222 --user-data-dir="D:\app_data\internet\browser\chrome\ChromeDevProfile"`
+4. 之后直接双击该快捷方式也可以启动携带了启动参数的进程
+
+![|295](attachments/Pasted%20image%2020260721125919.png)
+
+
+#### Ⅲ、解决任务栏 AUMID 图标分裂
+
+1. 通过上面的方式创建快捷方式后，右键 ->固定到开始 之后，点击开始屏幕上的图标也可以直接启动携带了启动参数的进程
+
+![|207](attachments/Pasted%20image%2020260721130225.png)
+
+2. 然后启动谷歌浏览器后，右键任务栏应用图标 -> 固定到任务栏，但是之后用任务栏图标打开会额外打开一个而不是直接在原来的图标显示
+3. 原因是 Chrome 的底层防御与多用户隔离机制：
+    1. 当 Chrome 检测到启动参数中带有自定义的 `--user-data-dir` 时，为了防止不同用户的数据混淆，它会在内核里动态生成一个带有路径哈希值的专属 AUMID（例如 Google.Chrome.Profile.Hash），以宣告自己是一个全新的独立应用
+    2. 然而，刚才在桌面手动创建并固定到任务栏的前门快捷方式，其内部依然携带着 Chrome 默认的 AUMID。Windows 任务栏比对后发现：快捷方式的 AUMID ≠ 运行窗口的 AUMID，于是会把它们拆分成两个图标
+
+![|482](attachments/Pasted%20image%2020260721130623.png)
+
+4. 此时将任务栏左侧不带横线的 chrome 图标右键：从任务栏取消固定
+5. 然后将任务栏右侧带横线的 chrome 图标右键：固定到任务栏，然后彻底关闭当前打开的 Chrome 浏览器窗口
+6. 右键任务栏的 chrome 图标，在弹出的菜单底端：从任务栏取消固定 的上方会看到 Google Chrome 的字样。对着这行字再次右键，选择：属性
+
+![|302](attachments/Pasted%20image%2020260721131951.png)
+
+
+7. 和上面一样，找到目标输入框，在输入框中加一个空格，然后输入：` --remote-debugging-port=9222 --user-data-dir="D:\app_data\internet\browser\chrome\ChromeDevProfile"`
+8. 点击 确定 保存
+
+#### Ⅳ、对抗 Chrome 自动更新
+
+1. 由于 Chrome 后台更新会覆盖 4KB 代理，所以需要每次更新后手动复制代理覆盖
+2. 或者使用一键修复脚本：
+3. 在目录 `D:\app_data\internet\browser\chrome\script` 下新建 `修复Chrome代理.bat` 文件，填入以下内容：
+
+```shell
+@echo off
+echo [INFO] 正在强制关闭运行中的 Chrome 进程...
+taskkill /im chrome.exe /f /t >nul 2>&1
+taskkill /im chrome_real.exe /f /t >nul 2>&1
+
+:: 等待 1 秒释放文件句柄
+timeout /t 1 /nobreak >nul
+
+set "ChromeDir=C:\Program Files\Google\Chrome\Application"
+set "ProxyBackup=D:\app_data\internet\browser\chrome\script\chrome.exe"
+
+:: 比对当前 exe 与代理备份，若一致说明未更新，直接拦截
+fc "%ChromeDir%\chrome.exe" "%ProxyBackup%" >nul
+if %errorlevel% equ 0 (
+    echo [INFO] 校验通过：当前代理正常，Chrome 未更新，无需修复！
+    pause
+    exit /b
+)
+
+echo [WARN] 检测到 Chrome 核心被覆盖！正在清理旧版真身...
+if exist "%ChromeDir%\chrome_real.exe" del /f /q "%ChromeDir%\chrome_real.exe"
+
+echo [INFO] 正在将更新后的新 Chrome 重命名为真身...
+ren "%ChromeDir%\chrome.exe" "chrome_real.exe"
+
+echo [INFO] 正在重新注入 C# 代理层...
+copy /y "%ProxyBackup%" "%ChromeDir%\chrome.exe"
+
+echo [SUCCESS] 代理修复完成！一切恢复完美架构。
+pause
+```
+
+4. 如果以后外部软件唤起的 Chrome 没有进入独立开发环境（说明 Chrome 偷偷更新了），直接双击运行一下这个 `.bat` 文件，立即可恢复整个拦截架构
+5. 但是如果在未来的某次大更新后，发现运行 修复Chrome代理.bat 之后浏览器依然无法启动，或者瞬间闪退：
+    1. 可能是出现了底层架构级的更新
+    2. 直接丢弃代理：临时删掉代理，把真身改回 chrome.exe，保证正常浏览
+    3. 重新抓包分析：打开任务管理器，查看原版 Chrome 启动时到底传了什么新参数给子进程，然后修改上面的 C# 源码，重新运行编译命令生成新的代理即可
+
+#### Ⅴ、
+
+
+### ④、
+
+### ⑤、
+
 
 ## 3、clash vpn
 
@@ -1675,6 +1866,21 @@ description: 请根据上文的内容，继续写出后面的文本，请使用�
 ```
 
 
+### ⑤、官方安装包转换为便携版
+
+1. 下载 Ob 官方安装包，将 exe 后缀改成 zip ，解压第一次，无视报错
+2. 进入解压后的 `$PLUGINSDIR` 目录，选择想要的版本比如 `app-64.7z`，解压第二次
+3. 找到 Obsidian 双击打开，就可以开始用了，免去安装步骤
+
+![|700](attachments/Pasted%20image%2020260717104714.png)
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
+
+
 ## 2、Microsoft office
 
 ### ①、Excel
@@ -2146,7 +2352,7 @@ genymotion:/sdcard/Download #
 7. 验证：
 
 ```shell
-# 验证系统当前挂载的 adb 路径，预期结果：D:\IDE\Android\Android_SDK\platform-tools\adb.exe
+# 验证系统当前挂载的 adb 路径，预期结果：D:\app\devTools\Environments\Android\Android_SDK\platform-tools\adb.exe
 where adb
 
 # 验证 scrcpy 是否能正常调起唯一的 adb

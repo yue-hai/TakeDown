@@ -886,7 +886,31 @@ pause
 
 ### ②、
 
-## 9、设置开发环境变量脚本
+## 9、win 11 右键菜单直接显示更多选项
+
+1. 打开 PowerShell
+2. 直接显示更多选项：
+
+```shell
+# 1. 写入注册表：向指定 CLSID 写入空的 InprocServer32 项，劫持 Win11 新版菜单的 COM 调用
+reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+
+# 2. 杀掉并重启资源管理器：使注册表变更立即生效（此时任务栏和桌面会闪烁一次）
+Stop-Process -Name explorer -Force; Start-Process explorer.exe
+```
+
+3. 恢复默认菜单，默认显示少数内容：
+
+```shell
+# 1. 删除注册表：清理我们之前注入的 CLSID 劫持项
+reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+
+# 2. 杀掉并重启资源管理器：恢复 Win11 默认的折叠菜单UI
+Stop-Process -Name explorer -Force; Start-Process explorer.exe
+```
+
+
+## 10、设置开发环境变量脚本
 
 1. 脚本下载：[setup_env.ps1](attachments/setup_env.ps1)
 2. 如果无法运行，查看当前的执行策略：

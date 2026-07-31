@@ -14134,10 +14134,10 @@ class GuideScanDialog : BaseGuidePocDialog() {
 
 1. 缓存目录：`.gradle` 里放的是下载的依赖、守护进程日志等，在电脑环境变量中设置：
 	1. 变量名：`GRADLE_USER_HOME`
-	2. 变量值:  缓存目录，如：`D:\IDE\Gradle\.gradle`
+	2. 变量值:  缓存目录，如：`D:\app\devTools\Environments\Android\Gradle\.gradle`
 2. Gradle 安装目录：真正的 gradle 程序，在电脑环境变量中设置：
 	1. 变量名：`GRADLE_HOME`（或改 gradle-wrapper.properties 指向本地 zip）
-	2. 变量值:  gradle 程序目录，如：`D:\IDE\Gradle\gradle-8.14`
+	2. 变量值:  gradle 程序目录，如：`D:\app\devTools\Environments\Android\Gradle\gradle-8.14`
 
 ### ②、idea 中设置 gradle 目录
 
