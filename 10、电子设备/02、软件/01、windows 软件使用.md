@@ -1331,7 +1331,80 @@ pause
 #### Ⅴ、
 
 
-### ④、
+### ④、自用油猴脚本
+
+#### Ⅰ、Hoppscotch 工作区本地名称排序
+
+> Hoppscotch 的工作区不能手动排序，这个脚本可以根据名称排序
+
+```js
+// ==UserScript==
+// @name         Hoppscotch 工作区本地名称排序
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  拦截 GraphQL 响应并对工作区进行字典序排列 (针对自建实例)
+// @author       Your Coding Partner
+// @match        *://hopp.yuehai.fun/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // 备份浏览器原生的 fetch API
+    const originalFetch = window.fetch;
+
+    // 重写 fetch 拦截请求
+    window.fetch = async function(...args) {
+        // 1. 先放行原始请求，拿到后端真实响应
+        const response = await originalFetch.apply(this, args);
+
+        try {
+            const requestInit = args[1];
+
+            // 2. 仅过滤 POST 且带有 body 的 GraphQL 请求
+            if (requestInit && requestInit.method === 'POST' && typeof requestInit.body === 'string') {
+                const body = JSON.parse(requestInit.body);
+
+                // 3. 精准狙击：只拦截查询工作区列表的 Operation
+                if (body.operationName === 'GetMyTeams') {
+
+                    // 克隆 response，因为 response body 的 stream 只能读取一次
+                    const clone = response.clone();
+                    const json = await clone.json();
+
+                    // 4. 确认响应体结构与你提供的抓包数据一致
+                    if (json.data && Array.isArray(json.data.myTeams)) {
+
+                        // 核心逻辑：按工作区名称 (name) 执行本地中文字典序强排
+                        json.data.myTeams.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
+
+                        // 5. 将排好序的 JSON 重新打包成标准的 Response 对象，欺骗前端框架
+                        return new Response(JSON.stringify(json), {
+                            status: response.status,
+                            statusText: response.statusText,
+                            headers: response.headers
+                        });
+                    }
+                }
+            }
+        } catch (e) {
+            // 兜底机制：一旦劫持逻辑发生任何解析异常，直接静默失败，把原始 response 交给前端，保证业务不中断
+            console.warn("[Hoppscotch Sorter] 拦截或排序失败，已降级使用原始响应:", e);
+        }
+
+        // 其他非 GetMyTeams 的请求直接原样返回
+        return response;
+    };
+})();
+```
+
+
+#### Ⅱ、
+
+#### Ⅲ、
+
+#### Ⅳ、
 
 ### ⑤、
 
