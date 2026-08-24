@@ -20,5 +20,6 @@
   },
   "vimMode": false,
   "showInlineTitle": true,
-  "smartIndentList": true
+  "smartIndentList": true,
+  "useTab": false
 }

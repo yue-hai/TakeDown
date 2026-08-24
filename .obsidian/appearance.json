@@ -7,5 +7,7 @@
   ],
   "baseFontSizeAction": false,
   "theme": "obsidian",
-  "translucency": false
+  "translucency": false,
+  "showViewHeader": false,
+  "showRibbon": true
 }

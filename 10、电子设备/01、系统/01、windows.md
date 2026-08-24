@@ -912,7 +912,7 @@ Stop-Process -Name explorer -Force; Start-Process explorer.exe
 
 ## 10、设置开发环境变量脚本
 
-1. 脚本下载：[setup_env.ps1](attachments/setup_env.ps1)
+1. 创建一个文件如 `setup_env.ps1`，复制下方的脚本代码粘贴到文件中，然后右键脚本选择：使用 PowerShell 运行
 2. 如果无法运行，查看当前的执行策略：
 3. 使用管理员打开 PowerShell，输入： `Get-ExecutionPolicy`
 4. 如果是 `Restricted` 的话，将其更改为 `RemoteSigned`，在确认中输入 A 表示确定修改
@@ -932,6 +932,154 @@ PS C:\Windows\system32>
 ```
 
 4. 修改完毕后，重新执行脚本
+5. 脚本内容：
+
+```powershell
+# ==================================================
+#  月海的个人开发环境变量设置脚本
+#  使用方法：以管理员身份右键点击此 .ps1 文件，选择 使用 PowerShell 运行
+# ==================================================
+
+# 阶段一：管理员权限自我检查与提升
+# ==================================================
+# 获取当前用户的身份信息
+$currentUser = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
+# 检查当前用户角色是否为 管理员
+if (-not $currentUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    # 如果不是管理员，则准备以管理员权限重新启动当前脚本
+    $arguments = "& '" + $myinvocation.mycommand.definition + "'"
+    Start-Process powershell -Verb runAs -ArgumentList $arguments
+    # 退出当前的非管理员进程
+    exit
+}
+
+# 定义注册表路径，方便复用
+$RegPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
+
+# 阶段二：设置独立的 HOME 变量
+# 为各个开发工具（如 Git、Java 等）设置一个独立的、指向其安装根目录的 HOME 变量
+# 这样做的好处是，当未来升级工具版本时（例如 JDK 从 21 升级到 22），只需要修改这一处的路径即可
+# 而 Path 变量中对它的引用（%JAVA_HOME%\bin）无需任何改动，极大地简化了维护工作
+
+# 获取当前脚本所在的根目录 (例如: D:\app\devTools\Environments)
+$BaseDir = $PSScriptRoot
+if (-not $BaseDir) {
+    Write-Error "无法获取当前脚本目录，请确保是通过运行 .ps1 文件执行，而不是直接粘贴代码到终端。"
+    exit 1
+}
+# 打印基础目录
+Write-Host "检测到基础目录: $BaseDir" -ForegroundColor Cyan
+
+# 开发工具
+Set-ItemProperty -Path $RegPath -Name "GIT_HOME" -Value "$BaseDir\Git\PortableGit"
+# java 开发环境
+Set-ItemProperty -Path $RegPath -Name "JAVA_HOME" -Value "$BaseDir\Java\JDK\jdk-21.0.1"
+Set-ItemProperty -Path $RegPath -Name "MAVEN_HOME" -Value "$BaseDir\Java\Maven\maven-3.9.5"
+Set-ItemProperty -Path $RegPath -Name "MAVEN_REPOSITORY" -Value "$BaseDir\Java\Maven\Repository"
+# nodejs 开发环境
+Set-ItemProperty -Path $RegPath -Name "NODEJS_HOME" -Value "$BaseDir\Web\nodejs\node-v22.16.0-win-x64"
+Set-ItemProperty -Path $RegPath -Name "NVM_HOME" -Value "$BaseDir\Web\nvm-noinstall"
+Set-ItemProperty -Path $RegPath -Name "NVM_SYMLINK" -Value "$BaseDir\Web\nvm-nodejs"
+# android 开发环境
+Set-ItemProperty -Path $RegPath -Name "ADB" -Value "$BaseDir\Android\Android_SDK\platform-tools\adb.exe"
+Set-ItemProperty -Path $RegPath -Name "ANDROID_HOME" -Value "$BaseDir\Android\Android_SDK"
+Set-ItemProperty -Path $RegPath -Name "ANDROID_SCRCPY" -Value "$BaseDir\Android\scrcpy-win64"
+Set-ItemProperty -Path $RegPath -Name "GRADLE_USER_HOME" -Value "$BaseDir\Android\Gradle\.gradle"
+Set-ItemProperty -Path $RegPath -Name "GRADLE_HOME" -Value "$BaseDir\Android\Gradle\gradle-8.14.2"
+# Flutter 开发环境
+Set-ItemProperty -Path $RegPath -Name "FLUTTER_HOME" -Value "$BaseDir\Flutter\flutter_windows-stable"
+# python 开发环境
+Set-ItemProperty -Path $RegPath -Name "PYTHON_HOME" -Value "$BaseDir\Python\python-embed-amd64"
+
+
+# 阶段三：安全地向系统 Path 变量追加路径
+# Path 变量是系统查找命令的依据，直接覆盖会导致系统命令失效，因此必须采用 追加 模式
+# 为了避免反复运行脚本导致路径重复，本阶段采用 读取 -> 检查 -> 追加 的幂等性逻辑，确保脚本可安全地重复执行
+
+# 打印提示信息，告知用户脚本正在执行哪一步操作。
+Write-Host ""
+Write-Host "正在处理 Path 变量..."
+
+# 定义一个 PowerShell 数组，其中包含所有希望添加到系统 Path 变量中的路径
+# 使用 %HOME_VAR%\bin 的格式引用之前设置的变量，使得 Path 的配置与工具版本解耦
+$pathsToAdd = @(
+    "%GIT_HOME%\bin",
+    "%JAVA_HOME%\bin",
+    "%MAVEN_HOME%\bin",
+    "%NODEJS_HOME%",
+    "%NVM_HOME%",
+    "%ANDROID_HOME%\platform-tools",
+    "%ANDROID_SCRCPY%",
+    "%GRADLE_HOME%\bin",
+    "%FLUTTER_HOME%\bin",
+    "%FLUTTER_HOME%\bin\cache\dart-sdk\bin",
+    "%PYTHON_HOME%",
+    "%PYTHON_HOME%\Scripts"
+)
+
+try {
+    # 从注册表中读取当前系统 Path 变量的原始值
+    # -ErrorAction Stop 表示如果此命令出错（如权限不足），则立即停止并跳转到 catch 块
+    # Select-Object -ExpandProperty Path 用于仅提取 Path 的值，而不是整个注册表项对象
+    $currentPath = Get-ItemProperty -Path $RegPath -Name "Path" -ErrorAction Stop | Select-Object -ExpandProperty Path
+    # 将获取到的长字符串 Path，按分号 ; 进行分割，转换成一个路径数组，方便后续逐项检查
+    # Where-Object { $_ -ne "" } 用于过滤掉可能因 ;; 产生的空条目，确保数组干净
+    $currentPathArray = $currentPath.Split(';') | Where-Object { $_ -ne "" }
+}
+catch {
+    # 打印详细的错误信息，帮助用户定位问题。$_ 变量包含了具体的错误详情
+    Write-Error "读取 Path 变量失败！请确认是否以管理员身份运行。错误: $_"
+    # 退出脚本，避免在错误状态下继续执行
+    exit 1
+}
+
+# 初始化一个空数组，用于记录本次操作中实际被新添加的路径
+$pathsActuallyAdded = @()
+# 遍历预先定义好的 $pathsToAdd 数组中的每一个期望路径
+foreach ($path in $pathsToAdd) {
+    # 这是核心逻辑：检查当前的期望路径 $path 是否已经存在于系统当前的路径数组 $currentPathArray 中
+    # -notcontains 是 PowerShell 中的数组操作符，用于判断数组是否不包含某个元素（不区分大小写）
+    if ($currentPathArray -notcontains $path) {
+        # 如果路径不存在，则向用户打印提示，表明正在追加此路径
+        Write-Host "  -> 正在追加路径: $path"
+        # 将这个新路径追加到内存中的路径数组的末尾
+        $currentPathArray += $path
+        # 同时，将这个新路径记录到 实际添加 的列表中，用于最后的总结
+        $pathsActuallyAdded += $path
+    }
+    # 如果路径已经存在...
+    else {
+        # ...则向用户打印提示，表明将跳过此路径，以避免重复。
+        Write-Host "  -- 路径已存在，跳过: $path"
+    }
+}
+
+# 在所有路径都检查完毕后，判断本次操作是否真的添加了新的路径
+# .Count -gt 0 是 PowerShell 中的数组属性，用于获取数组的元素数量
+# 如果 pathsActuallyAdded 数组中有元素，则说明有新路径被添加
+if ($pathsActuallyAdded.Count -gt 0) {
+    # 如果有新路径被添加，则将更新后的路径数组用分号 ; 重新连接成一个长字符串
+    $finalPath = $currentPathArray -join ';'
+    # 将这个最终的、无重复的、合并好的 Path 字符串写回到注册表中，完成更新
+    # -Type ExpandString 是至关重要的参数，它告诉 Windows 这是一个 可扩展字符串
+    # 这样系统才能正确地将 %JAVA_HOME% 这样的占位符展开成实际的路径
+    Set-ItemProperty -Path $RegPath -Name "Path" -Value $finalPath -Type ExpandString
+    # 打印成功信息，并用绿色高亮显示，给用户明确的正面反馈
+    Write-Host "Path 变量更新成功！" -ForegroundColor Green
+}
+# 如果没有任何新路径被添加
+else {
+    # 则告知用户无需更新，所有路径都已配置妥当。
+    Write-Host "无需更新，所有路径均已存在。" -ForegroundColor Cyan
+}
+
+
+# 阶段四：结束提示
+Write-Host ""
+Write-Host "✅ 所有环境变量配置完成！请重启电脑或注销后生效。" -ForegroundColor Green
+# 暂停一下，让用户看清输出信息后再关闭窗口
+Pause
+```
 
 
 ## 10、

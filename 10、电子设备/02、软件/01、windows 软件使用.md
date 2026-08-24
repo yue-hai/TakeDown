@@ -1188,77 +1188,21 @@ ai 	爱	c=12 d=1.00001 t=40
 
 ![](attachments/Pasted%20image%2020241118083530.png)
 
-### ③、Chrome 全局调试代理与环境隔离
+### ③、Chrome 独立调试实例与启动入口统一
 
-#### Ⅰ、编译原生 C# 代理
+#### Ⅰ、确定目录
 
-1. 进入 Chrome 安装目录：`C:\Program Files\Google\Chrome\Application`
-2. 将正版的 `chrome.exe` 重命名为 `chrome_real.exe`
-3. 在目录 `D:\app_data\internet\browser\chrome\script` 下新建 `proxy.cs` 文件，填入以下内容：
-
-```cs
-using System;
-using System.Diagnostics;
-
-class Program {
-    static void Main(string[] args) {
-        string finalArgs = "";
-        bool isChild = false;
-
-        // 1. 遍历并重新封装参数
-        foreach (string arg in args) {
-            if (arg.StartsWith("--type=")) {
-                isChild = true; 
-            }
-            
-            // 智能转义。如果参数带有空格且未被引号包裹，才加引号；否则原样透传 URL
-            string safeArg = arg;
-            if (safeArg.Contains(" ") && !safeArg.StartsWith("\"")) {
-                safeArg = "\"" + safeArg + "\"";
-            }
-            finalArgs += safeArg + " ";
-        }
-
-        // 2. 核心逻辑：仅对主进程注入 Debug 端口和独立沙盒目录
-        if (!isChild) {
-            string injectArgs = "--remote-debugging-port=9222 --user-data-dir=\"D:\\app_data\\internet\\browser\\chrome\\ChromeDevProfile\" ";
-            finalArgs = injectArgs + finalArgs;
-        }
-
-        // 3. 极速唤起真身并透传参数
-        ProcessStartInfo psi = new ProcessStartInfo();
-        psi.FileName = "chrome_real.exe"; 
-        psi.Arguments = finalArgs.Trim();
-        psi.UseShellExecute = false;
-
-        Process.Start(psi);
-    }
-}
-```
-
-4. 用管理员打开 cmd，执行以下命令进行原生编译：
-
-```shell
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:"D:\app_data\internet\browser\chrome\script\chrome.exe" "D:\app_data\internet\browser\chrome\script\proxy.cs"
-```
-
-5. 基于 chrome 150.0.7871.125 备份
-    1. 个人编译产物：[chrome_proxy.exe](attachments/chrome_proxy.exe)
-    2. 正版 chrome：[chrome_real.exe](attachments/chrome_real.exe)
-6. 将生成的 `chrome.exe` (约 4KB) 复制到 `C:\Program Files\Google\Chrome\Application` 目录中，不要删除留作以后自动化恢复使用
-7. 此时点击连接、其他应用自动打开的 chrome 浏览器就是携带了启动参数的进程
-8. 此时可以访问：`http://127.0.0.1:9222/json`，如果显示出了一些 json 文本就是成功了，无法访问就是失败了
-9. 不过通过快捷方式、任务栏打开的依然不携带参数，下面进行处理
+1. 谷歌安装目录，确定是不是这个目录：`C:\Program Files\Google\Chrome\Application`
+2. 自定义数据目录，需提前创建：`D:\app_data\internet\browser\chrome\ChromeDevProfile`
 
 #### Ⅱ、快捷方式添加参数
 
-1. 进入 Chrome 安装目录：`C:\Program Files\Google\Chrome\Application`
-2. 右键正版 chrome `chrome_real.exe`，选择：创建快捷方式
-3. 将该快捷方式移动到桌面，然后右键 -> 属性 -> 目标，在输入框中加一个空格，然后输入：` --remote-debugging-port=9222 --user-data-dir="D:\app_data\internet\browser\chrome\ChromeDevProfile"`
-4. 之后直接双击该快捷方式也可以启动携带了启动参数的进程
+1. 选择桌面的谷歌浏览器快捷方式，然后
+    1. 右键 -> 属性 -> 目标，在输入框中加一个空格，然后输入：
+    2. ` --remote-debugging-port=9222 --user-data-dir="D:\app_data\internet\browser\chrome\ChromeDevProfile"`
+2. 之后直接双击该快捷方式也可以启动携带了启动参数的进程
 
 ![|295](attachments/Pasted%20image%2020260721125919.png)
-
 
 #### Ⅲ、解决任务栏 AUMID 图标分裂
 
@@ -1266,10 +1210,12 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:"D:\
 
 ![|207](attachments/Pasted%20image%2020260721130225.png)
 
-2. 然后启动谷歌浏览器后，右键任务栏应用图标 -> 固定到任务栏，但是之后用任务栏图标打开会额外打开一个而不是直接在原来的图标显示
+2. 但是启动谷歌浏览器后，右键任务栏应用图标 -> 固定到任务栏，之后用任务栏图标打开会额外打开一个而不是直接在原来的图标显示
 3. 原因是 Chrome 的底层防御与多用户隔离机制：
-    1. 当 Chrome 检测到启动参数中带有自定义的 `--user-data-dir` 时，为了防止不同用户的数据混淆，它会在内核里动态生成一个带有路径哈希值的专属 AUMID（例如 Google.Chrome.Profile.Hash），以宣告自己是一个全新的独立应用
-    2. 然而，刚才在桌面手动创建并固定到任务栏的前门快捷方式，其内部依然携带着 Chrome 默认的 AUMID。Windows 任务栏比对后发现：快捷方式的 AUMID ≠ 运行窗口的 AUMID，于是会把它们拆分成两个图标
+    1. Chrome 窗口和 Windows 快捷方式都具有 AppUserModelID（AUMID），Windows 使用 AUMID 判断多个窗口是否应归到同一个任务栏图标下
+    2. 使用独立用户数据目录启动 Chrome 后，运行窗口可能具有与默认 Chrome 快捷方式不同的 Profile 应用标识
+    3. 如果固定快捷方式的 AUMID 与运行窗口的 AUMID 不匹配，Windows 就会显示两个任务栏图标
+    4. Chromium 官方文档确认，Chrome 的任务栏分组会受到安装类型、浏览器类型和 Profile 标识的影响
 
 ![|482](attachments/Pasted%20image%2020260721130623.png)
 
@@ -1283,52 +1229,124 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:"D:\
 7. 和上面一样，找到目标输入框，在输入框中加一个空格，然后输入：` --remote-debugging-port=9222 --user-data-dir="D:\app_data\internet\browser\chrome\ChromeDevProfile"`
 8. 点击 确定 保存
 
-#### Ⅳ、对抗 Chrome 自动更新
+#### Ⅳ、处理点击连接自动打开浏览器的情况
 
-1. 由于 Chrome 后台更新会覆盖 4KB 代理，所以需要每次更新后手动复制代理覆盖
-2. 或者使用一键修复脚本：
-3. 在目录 `D:\app_data\internet\browser\chrome\script` 下新建 `修复Chrome代理.bat` 文件，填入以下内容：
+1. 完全退出所有 Chrome 窗口和后台进程
+2. 创建一个文件如 `Set-ChromeDebugProtocol.ps1`，复制下方的脚本代码粘贴到文件中
+3. 然后右键脚本选择：使用 PowerShell 运行
 
-```shell
-@echo off
-echo [INFO] 正在强制关闭运行中的 Chrome 进程...
-taskkill /im chrome.exe /f /t >nul 2>&1
-taskkill /im chrome_real.exe /f /t >nul 2>&1
+```powershell
+# ======================== 用户配置 ========================
 
-:: 等待 1 秒释放文件句柄
-timeout /t 1 /nobreak >nul
+# Chrome 主程序路径
+$ChromeExe = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
-set "ChromeDir=C:\Program Files\Google\Chrome\Application"
-set "ProxyBackup=D:\app_data\internet\browser\chrome\script\chrome.exe"
+# Chrome DevTools Protocol 调试端口
+$DebugPort = 9222
 
-:: 比对当前 exe 与代理备份，若一致说明未更新，直接拦截
-fc "%ChromeDir%\chrome.exe" "%ProxyBackup%" >nul
-if %errorlevel% equ 0 (
-    echo [INFO] 校验通过：当前代理正常，Chrome 未更新，无需修复！
-    pause
-    exit /b
-)
+# Chrome 用户数据根目录
+# 注意：Chrome 会自动使用该目录下的 Default 配置文件
+$UserDataDir = "D:\app_data\internet\browser\chrome\ChromeDevProfile"
 
-echo [WARN] 检测到 Chrome 核心被覆盖！正在清理旧版真身...
-if exist "%ChromeDir%\chrome_real.exe" del /f /q "%ChromeDir%\chrome_real.exe"
+# Windows 当前默认 Chrome 通常使用 ChromeHTML
+# 此值已在当前电脑确认是 ChromeHTML
+# 如果以后更换默认浏览器或 Chrome 安装渠道，需要重新确认 ProgId
+$ProgId = "ChromeHTML"
 
-echo [INFO] 正在将更新后的新 Chrome 重命名为真身...
-ren "%ChromeDir%\chrome.exe" "chrome_real.exe"
+# =========================================================
 
-echo [INFO] 正在重新注入 C# 代理层...
-copy /y "%ProxyBackup%" "%ChromeDir%\chrome.exe"
+# 任何 PowerShell 错误都立即进入 catch，避免静默失败
+$ErrorActionPreference = "Stop"
 
-echo [SUCCESS] 代理修复完成！一切恢复完美架构。
-pause
+# 当前用户的 ChromeHTML 协议启动命令位置
+# 使用 HKCU 只修改当前用户，不需要管理员权限
+$RegistrySubKey = "Software\Classes\$ProgId\shell\open\command"
+$RegistryPath = "Registry::HKEY_CURRENT_USER\$RegistrySubKey"
+
+# 最终写入注册表的完整 Chrome 启动命令
+# %1 由 Windows 替换为其他软件传入的网页地址
+$ChromeCommand = (
+    '"{0}" --remote-debugging-port={1} ' +
+    '--user-data-dir="{2}" --single-argument %1'
+) -f $ChromeExe, $DebugPort, $UserDataDir
+
+try {
+    # 提前检查路径，避免写入无法使用的注册表命令
+    if (-not (Test-Path -LiteralPath $ChromeExe)) {
+        throw "找不到 Chrome：$ChromeExe"
+    }
+
+    if (-not (Test-Path -LiteralPath $UserDataDir)) {
+        throw "找不到用户数据目录：$UserDataDir"
+    }
+
+    # 删除旧的当前用户覆盖项，确保不残留错误参数
+    if (Test-Path -LiteralPath $RegistryPath) {
+        Remove-Item -LiteralPath $RegistryPath -Recurse -Force
+    }
+
+    # CreateSubKey 会创建缺失的父级，并返回可写注册表句柄
+    $Key = [Microsoft.Win32.Registry]::CurrentUser.CreateSubKey(
+        $RegistrySubKey,
+        $true
+    )
+
+    if ($null -eq $Key) {
+        throw "无法创建注册表项：$RegistrySubKey"
+    }
+
+    try {
+        # 空字符串表示写入注册表项的“默认值”
+        $Key.SetValue(
+            "",
+            $ChromeCommand,
+            [Microsoft.Win32.RegistryValueKind]::String
+        )
+
+        # 立即回读，确认注册表中的内容与预期完全一致
+        $ActualCommand = $Key.GetValue("")
+
+        if ($ActualCommand -ne $ChromeCommand) {
+            throw "注册表写入结果与预期不一致"
+        }
+    }
+    finally {
+        # 无论写入成功还是失败，都释放注册表句柄
+        $Key.Close()
+    }
+
+    Write-Host "配置成功：" -ForegroundColor Green
+    Write-Host $ChromeCommand
+    Write-Host ""
+    Write-Host "请完全退出 Chrome，再从其他软件点击链接测试。"
+    Write-Host "调试地址：http://127.0.0.1:$DebugPort/json/version"
+}
+catch {
+    # 显示明确错误原因，不输出冗长调用栈
+    Write-Host "配置失败：" -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
+}
+finally {
+    # 支持右键“使用 PowerShell 运行”，防止窗口立即关闭
+    Write-Host ""
+    Read-Host "按 Enter 键关闭窗口"
+}
 ```
 
-4. 如果以后外部软件唤起的 Chrome 没有进入独立开发环境（说明 Chrome 偷偷更新了），直接双击运行一下这个 `.bat` 文件，立即可恢复整个拦截架构
-5. 但是如果在未来的某次大更新后，发现运行 修复Chrome代理.bat 之后浏览器依然无法启动，或者瞬间闪退：
-    1. 可能是出现了底层架构级的更新
-    2. 直接丢弃代理：临时删掉代理，把真身改回 chrome.exe，保证正常浏览
-    3. 重新抓包分析：打开任务管理器，查看原版 Chrome 启动时到底传了什么新参数给子进程，然后修改上面的 C# 源码，重新运行编译命令生成新的代理即可
 
-#### Ⅴ、
+#### Ⅴ、验证
+
+1. 分别从桌面快捷方式、任务栏图标和其他软件中的链接启动 Chrome
+2. 打开 `chrome://version`，检查：
+    1. 命令行包含 `--remote-debugging-port=9222`
+    2. 命令行包含正确的 `--user-data-dir`
+    3. 个人资料路径位于 `ChromeDevProfile\Default`
+3. 访问 `http://127.0.0.1:9222/json/version`：
+    1. 能返回 JSON 表示调试端口已启用
+    2. 返回内容中应包含 `webSocketDebuggerUrl`
+4. 不要将 9222 端口通过防火墙、代理或端口转发暴露到局域网或公网
+5. 该目录应只作为调试 Profile 使用，不要与日常 Chrome 默认数据目录混用
+6. Chrome 更新、重新设为默认浏览器或修改默认应用后，应重新运行注册表脚本并验证
 
 
 ### ④、自用油猴脚本
