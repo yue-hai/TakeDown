@@ -829,7 +829,153 @@ id_rsa*
 ![|700](attachments/Pasted%20image%2020260717165735.png)
 
 
-## 5、
+## 5、OpenCode
+
+### ①、添加代理商和模型
+
+1. 打开文件 `%USERPROFILE%\.config\opencode\opencode.jsonc`，根据以下格式添加内容：
+
+```json
+{
+  // 启用 OpenCode 配置的 JSONC Schema 校验和编辑器自动补全
+  "$schema": "https://opencode.ai/config.json",
+  // OpenCode 终端命令和 bash 工具使用的 Shell
+  "shell": "bash",
+  // 在模型选择器中隐藏 provider，元素为 provider 下的键名，比如："company"
+  "disabled_providers": [],
+  // 全局默认模型，所有未单独配置项目默认模型的目录，默认使用此模型
+  "model": "company/gpt-5.6-terra",
+
+  // 注册模型供应商，选择模型时 OpenCode 会使用 company/gpt-5.6-terra 的方式来调用网关的模型接口
+  "provider": {
+    // 自定义的公司 OpenAI 兼容网关
+    "company": {
+      // 在 OpenCode 模型选择器中显示的 provider 名称
+      "name": "公司",
+      // 使用 Vercel AI SDK 的 OpenAI 兼容 API 网关适配器
+      "npm": "@ai-sdk/openai-compatible",
+      // provider 的连接配置；OpenCode 使用这些配置创建并调用 OpenAI 兼容网关
+      "options": {
+        // 自定义 API 基地址，所有 API 请求均使用此 OpenAI 兼容的 v1 端点
+        "baseURL": "http://47.79.3.25/v1",
+        // API Key，推荐通过环境变量读取，不要直接写进配置文件
+        "apiKey": "{env:OPENCODE_API_KEY_COMPANY}",
+      },
+      // models 表示当前 provider 下可用的模型列表，OpenCode 会根据模型 ID 调用网关的模型接口
+      "models": {
+        // 模型 ID，OpenCode 会使用 company/gpt-5.4 的方式调用网关的模型接口，也可以使用 id 字段指定模型 id
+        "gpt-5.4": {
+          // 在 OpenCode 模型选择器中显示的模型名称
+          "name": "gpt-5.4",
+          // 声明模型支持推理，使 OpenCode 在界面和模型能力判断中将其识别为推理模型
+          "reasoning": true,
+          // 声明模型支持工具调用
+          "tool_call": true,
+          // 模型声明的总上下文窗口和单次最大输出 token 数，output 当前为保守值 16384，应以公司网关实际最大输出限制为准
+          "limit": { "context": 1050000, "output": 16384 },
+          // 允许文本和图片附件作为输入、仅返回文本输出
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.5": {
+          "name": "gpt-5.5",
+          "reasoning": true,
+          "tool_call": true,
+          "limit": { "context": 400000, "output": 16384 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.6-terra": {
+          "name": "gpt-5.6-terra",
+          "reasoning": true,
+          "tool_call": true,
+          "limit": { "context": 353000, "output": 16384 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.6-sol": {
+          "name": "gpt-5.6-sol",
+          "reasoning": true,
+          "tool_call": true,
+          "limit": { "context": 353000, "output": 16384 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        }
+      }
+    }
+  }
+}
+```
+
+2. 如果上方 `apiKey` 的配置是： `"{env:OPENCODE_API_KEY_COMPANY}"`，那么需要在用户环境变量中添加配置：
+
+![|406](attachments/Pasted%20image%2020260827095647.png)
+
+3. 如果不想配置环境变量，可以删掉 `apiKey` 这项配置，然后打开文件 `%USERPROFILE%\.local\share\opencode\auth.json`，在其中添加：
+    1. `company` 必须和 `opencode.jsonc` 中的自定义的公司 OpenAI 兼容网关的键名一致
+    2. `opencode.jsonc` 和 `auth.json` 中都可以添加多个配置
+
+```json
+{
+  "company": {
+    "type": "api",
+    "key": "sk-xxx"
+  }
+}
+```
+
+4. 环境变量和 `auth.json` 配置一个即可
+5. 配置完毕后需重启 OpenCode，之后直接使用即可
+
+### ②、配置 figma mcp
+
+1. 打开文件 `%USERPROFILE%\.config\opencode\opencode.jsonc`，根据以下格式添加内容：
+
+```json
+{
+  // 启用 OpenCode 配置的 JSONC Schema 校验和编辑器自动补全
+  "$schema": "https://opencode.ai/config.json",
+
+  // 注册 MCP（Model Context Protocol）服务
+  "mcp": {
+    // 自定义的 Figma MCP 服务，OpenCode 会使用 stdio 方式调用本地运行的 figma-developer-mcp
+    "figma": {
+      // MCP 连接类型，local 表示 OpenCode 在本机启动一个子进程，并通过标准输入/输出（stdio）通信
+      "type": "local",
+      // 启动 MCP 服务的命令和参数数组
+      // npx：Node.js 的包执行器
+      // -y：自动确认下载和执行，不要求人工输入 y
+      // figma-developer-mcp：Framelink MCP for Figma 的 npm 包名
+      // --stdio：以 MCP 标准输入/输出协议运行，而非启动 HTTP 服务
+      "command": ["npx", "-y", "figma-developer-mcp", "--stdio"],
+      // 向 MCP 子进程传入的环境变量
+      "environment": {
+        // MCP 需要的 Figma API Key，推荐通过环境变量读取，不要直接写进配置文件
+        "FIGMA_API_KEY": "{env:OPENCODE_API_KEY_FIGMA}"
+      },
+      // 是否在 OpenCode 启动时启用并连接该 MCP，如果设置为 false，则需要在 OpenCode 中手动启用 MCP
+      "enabled": true,
+      // MCP 单次请求的最大等待时间，单位毫秒
+      "timeout": 10000
+    }
+  }
+}
+```
+
+2. 在 Figma 网页端进入 Settings → Security → Personal access tokens，创建 token，限制最多 90 天
+
+![|400](attachments/Pasted%20image%2020260827111527.png)
+
+3. 创建完 token 后，在用户环境变量中添加配置 `OPENCODE_API_KEY_FIGMA`：
+
+![|409](attachments/Pasted%20image%2020260827125250.png)
+
+4. 配置完毕后需重启 OpenCode，之后直接使用即可
+5. 在 figma 中选中一个完整的页面，然后点击右侧的 Copy link 复制地址，然后粘贴给 ai 即可
+
+![|650](attachments/Pasted%20image%2020260827125555.png)
+
+
+### ③、
+
+### ④、
+
 
 ## 6、
 
