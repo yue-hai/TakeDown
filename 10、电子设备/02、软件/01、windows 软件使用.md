@@ -972,7 +972,30 @@ id_rsa*
 ![|650](attachments/Pasted%20image%2020260827125555.png)
 
 
-### ③、
+### ③、配置 谷歌浏览器 mcp
+
+1. 打开文件 `%USERPROFILE%\.config\opencode\opencode.jsonc`，根据以下格式添加内容：
+
+```json
+{
+  // 启用 OpenCode 配置的 JSONC Schema 校验和编辑器自动补全
+  "$schema": "https://opencode.ai/config.json",
+
+  // 注册 MCP（Model Context Protocol）服务
+  "mcp": {
+    // 自定义的 Chrome DevTools MCP 服务，OpenCode 会使用 stdio 方式调用本地运行的 chrome-devtools-mcp
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--browser-url=http://127.0.0.1:9222"],
+      "enabled": true
+    }
+  }
+}
+```
+
+2. 浏览器需使用调试端口启动：` --remote-debugging-port=9222 `
+3. 配置完毕后需重启 OpenCode，之后直接使用即可
+
 
 ### ④、
 
@@ -1566,11 +1589,15 @@ finally {
 
 #### Ⅱ、
 
-#### Ⅲ、
-
-#### Ⅳ、
 
 ### ⑤、
+
+### ⑥、
+
+### ⑦、
+
+### ⑧、
+
 
 
 ## 3、clash vpn
