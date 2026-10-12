@@ -521,7 +521,119 @@ nc -u [服务器IP地址] 9001
 
 3. 客户端和服务器端可以相互发送和接收消息，验证 UDP 连接。
 
-## 5、
+## 5、限制 SSH 端口连接频率
+
+> `ufw limit` 适合的 SSH 端口：不限制登录来源 IP，但会限制同一 IP 在短时间内建立过多的新连接，适合家庭动态 IP 和多设备登录。
+
+### ①、将 SSH 规则改为 LIMIT
+
+1. 先查看当前规则：
+
+```shell
+sudo ufw status numbered
+```
+
+2. 添加 SSH 连接频率限制：
+
+```shell
+sudo ufw limit 22/tcp
+```
+
+3. 删除原来的 SSH 放行规则：
+
+```shell
+sudo ufw delete allow 22/tcp
+```
+
+4. IPv4 和 IPv6 规则会一并添加
+5. 查看设置结果
+
+```shell
+sudo ufw status verbose
+```
+
+6. 如果看到以下信息，表示设置成功：
+
+```latex
+22/tcp  LIMIT IN  Anywhere
+22/tcp  LIMIT IN  Anywhere (v6)
+```
+
+### ②、LIMIT 的作用
+
+1. 默认规则大致为：同一 IP 在 30 秒内建立达到 6 个新的 SSH 连接后，后续连接会被临时拒绝
+2. 它具备以下特点：
+    1. 按来源 IP 分别统计
+    2. 不限制正常的 SSH 公钥登录
+    3. 不要求固定公网 IP
+    4. 不会断开已经建立的 SSH 会话
+    5. 限制会自动恢复，不是永久封禁
+    6. 只限制新建连接，不负责判断密码是否正确
+3. 建议同时关闭 SSH 密码登录：
+
+```shell
+sudo sshd -T | grep -E \
+'permitrootlogin|passwordauthentication|maxauthtries|logingracetime'
+```
+
+4. 推荐至少确认：
+
+```latex
+passwordauthentication no
+maxauthtries 3
+logingracetime 20
+```
+
+### ③、验证是否有连接被限制
+
+1. 查看当前 SSH 连接：
+
+```shell
+ss -tn state established '( sport = :22 )'
+```
+
+2. 查看等待建立的连接：
+
+```shell
+ss -tn state syn-recv '( sport = :22 )'
+```
+
+3. 查看 UFW 限制日志：
+
+```shell
+sudo journalctl -k --since "10 minutes ago" \
+  | grep 'UFW LIMIT BLOCK'
+```
+
+### ④、注意事项
+
+1. 不要为了开放端口直接执行：
+
+```shell
+sudo iptables -F
+sudo iptables -P INPUT ACCEPT
+```
+
+2. 这会绕过或破坏 UFW 的现有防火墙策略。使用 UFW 管理防火墙时，应继续使用：
+
+```shell
+sudo ufw allow ...
+sudo ufw delete ...
+sudo ufw limit ...
+```
+
+3. 对外提供服务时，只开放实际需要的端口，例如：
+
+```shell
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+```
+
+## 6、
+
+## 7、
+
+## 8、
 
 
 # 五、系统设置
@@ -993,7 +1105,111 @@ mount -a
 12. 配置完毕，测试可以输入 `df -h` 检查一下，列表的最下方已经稳稳地出现了挂载在 `/mnt/data` 上的 2TB 硬盘。以后无论怎么断电重启，它都会死死地钉在这个目录下
 
 
-## 8、
+## 8、节省内存的方式
+
+### ⓪、`top` 使用 `%MEM` 字段降序内存排列
+
+
+```shell
+top -o %MEM
+```
+
+
+### ①、优化系统日志  systemd-journald
+
+1. 编辑 journald 配置文件
+
+```shell
+sudo nano /etc/systemd/journald.conf
+```
+
+2. 在文件中找到或添加以下两行：
+
+```shell
+[Journal]
+# 限制日志在内存中的最大体积为 16MB (默认可能更大)
+RuntimeMaxUse=16M
+# 限制日志在磁盘上的最大体积为 50MB
+SystemMaxUse=50M
+```
+
+3. 重启日志服务使配置生效
+
+```shell
+sudo systemctl restart systemd-journald
+```
+
+
+### ②、引入 zram 内存压缩技术
+
+1. 传统 Swap：数据存入硬盘，虽然增加了可用空间，但硬盘 I/O 较慢，频繁 Swap 会导致系统严重卡顿
+2. zram：在物理内存中划出一块区域，将不常用的数据压缩后存储。CPU 压缩解压极快，几乎不产生 I/O 瓶颈，相当于用微小的 CPU 消耗换取 1.5 倍 - 2 倍的内存容量
+3. 安装 zram 工具：
+
+```shell
+sudo apt update
+sudo apt install zram-tools -y
+```
+
+4. 配置 zram：
+
+```shell
+sudo nano /etc/default/zramswap
+```
+
+5. 修改配置如下：
+
+```shell
+# 使用 lz4 压缩算法，速度极快
+ALGO=lz4
+# 将 zram 限制为总物理内存的 50% (约 500MB，压缩后可存储更多数据)
+PERCENT=50
+```
+
+6. 重启服务并查看效果：
+
+```shell
+sudo systemctl restart zramswap
+```
+
+7. 使用以下命令确认 zram 已生效：
+
+```shell
+zramctl
+```
+
+
+### ③、全局限制 Docker 容器内存与日志
+
+1. Docker 默认不限制容器的日志大小，这不仅会导致磁盘爆满，还会增加 dockerd 的内存寻址压力
+2. 配置 Docker 守护进程，设置全局日志轮转：
+
+```shell
+sudo nano /etc/docker/daemon.json
+```
+
+3. 输入以下内容（如果文件不存在则新建）：
+
+```shell
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
+```
+
+4. 重载系统并重启 Docker：
+
+```shell
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+
+### ④、
+
 
 ## 9、
 

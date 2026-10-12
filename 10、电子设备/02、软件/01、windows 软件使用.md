@@ -857,7 +857,7 @@ id_rsa*
       // provider 的连接配置；OpenCode 使用这些配置创建并调用 OpenAI 兼容网关
       "options": {
         // 自定义 API 基地址，所有 API 请求均使用此 OpenAI 兼容的 v1 端点
-        "baseURL": "http://47.79.3.25/v1",
+        "baseURL": "http://127.0.0.1/v1",
         // API Key，推荐通过环境变量读取，不要直接写进配置文件
         "apiKey": "{env:OPENCODE_API_KEY_COMPANY}",
       },
@@ -923,7 +923,9 @@ id_rsa*
 4. 环境变量和 `auth.json` 配置一个即可
 5. 配置完毕后需重启 OpenCode，之后直接使用即可
 
-### ②、配置 figma mcp
+### ②、添加 mcp
+
+#### Ⅰ、配置 figma mcp
 
 1. 打开文件 `%USERPROFILE%\.config\opencode\opencode.jsonc`，根据以下格式添加内容：
 
@@ -972,7 +974,7 @@ id_rsa*
 ![|650](attachments/Pasted%20image%2020260827125555.png)
 
 
-### ③、配置 谷歌浏览器 mcp
+#### Ⅱ、配置 谷歌浏览器 mcp
 
 1. 打开文件 `%USERPROFILE%\.config\opencode\opencode.jsonc`，根据以下格式添加内容：
 
@@ -996,8 +998,68 @@ id_rsa*
 2. 浏览器需使用调试端口启动：` --remote-debugging-port=9222 `
 3. 配置完毕后需重启 OpenCode，之后直接使用即可
 
+### ③、添加插件
 
-### ④、
+1. opencode 插件页面：https://opencode.ai/docs/zh-cn/ecosystem/
+2. 打开文件 `%USERPROFILE%\.config\opencode\opencode.jsonc`，根据以下格式添加内容：
+
+```json
+{
+  // 启用 OpenCode 配置的 JSONC Schema 校验和编辑器自动补全
+  "$schema": "https://opencode.ai/config.json",
+
+  // 注册 OpenCode 插件，插件可以扩展 OpenCode 的功能和能力
+  "plugin": [
+    // 通过修剪过时的工具输出来优化 Token 使用
+    "opencode-dynamic-context-pruning",
+    // 非交互式 shell 命令指令——防止依赖 TTY 的操作导致挂起
+    "opencode-shell-strategy",
+    // 使 AI 代理能够在 PTY 中运行后台进程，并向其发送交互式输入
+    "opencode-pty",
+    // 清理 LLM 生成的 Markdown 表格
+    "opencode-md-table-formatter",
+    // 通过查找工具自动将 TypeScript/Svelte 类型注入到文件读取中
+    "opencode-type-inject"
+  ]
+}
+
+```
+
+3. 配置完毕后需重启 OpenCode，之后直接使用即可
+
+### ④、命令记录
+
+#### Ⅰ、复制对话
+
+1. 列出会话列表：
+    1. 有可能会提示：`WARNING: terminal is not fully functional Press RETURN to continue`
+    2. 按回车继续即可
+
+```shell
+opencode session list
+```
+
+2. 复制指定的会话：
+
+```shell
+opencode --session <会话ID> --fork
+```
+
+3. 或者在 opencode 桌面端中打开一个对话，然后点击菜单 -> 视图 -> 切换终端，执行以下命令复制当前会话：
+    1. 如果输入命令后进入 opencode cli，输入 `/exit` 退出即可成功复制
+
+```
+opencode --continue --fork
+```
+
+#### Ⅱ、
+
+#### Ⅲ、
+
+#### Ⅳ、
+
+#### Ⅴ、
+
 
 
 ## 6、

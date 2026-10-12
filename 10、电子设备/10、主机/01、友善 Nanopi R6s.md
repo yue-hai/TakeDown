@@ -275,7 +275,7 @@ C:\Users\yan>
 bash curl wget-ssl ca-certificates unzip tar openssh-sftp-server
 luci-app-diskman luci-i18n-diskman-zh-cn 
 luci-i18n-firewall-zh-cn
-docker docker-compose luci-app-dockerman luci-i18n-dockerman-zh-cn 
+docker dockerd
 luci-app-homeproxy luci-i18n-homeproxy-zh-cn
 ```
 
