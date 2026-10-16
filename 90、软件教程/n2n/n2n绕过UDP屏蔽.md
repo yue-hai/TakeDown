@@ -1,9 +1,9 @@
 #### Ⅰ、windows 客户端配置
 
-1. 下载上面的 [gnb_udp_over_tcp.zip](../../../Docker/attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
+1. 下载上面的 [gnb_udp_over_tcp.zip](attachments/gnb_udp_over_tcp.zip)，解压，进入目录 `bin\Window10_x86_64`
 2. 在目录中，按住键盘的 shift 键，然后点击鼠标右键，选择：在此处打开 Powershell 窗口
 
-![](../../../Docker/attachments/Pasted%20image%2020251111131416.png)
+![](attachments/Pasted%20image%2020251111131416.png)
 
 3. 之后会弹出一个窗口，在其中输入以下内容并回车：
 	1. `-u`：表示启用 UDP 模式，即将接收到的 TCP 数据转换为 UDP 数据
@@ -15,21 +15,21 @@
 .\gnb_udp_over_tcp.exe -u -l 41984 83.229.120.176 41985
 ```
 
-![](../../../Docker/attachments/Pasted%20image%2020251111131819.png)
+![](attachments/Pasted%20image%2020251111131819.png)
 
 4. 若是不想手动输入上面的命令，也可以直接双击目录的脚本 `run_gnb_udp_over_tcp.bat`，会自动执行该命令；但是这种脚本的方式有时会失败，如果失败，需手动输入命令
 
-![](../../../Docker/attachments/Pasted%20image%2020251111132220.png)
+![](attachments/Pasted%20image%2020251111132220.png)
 
 5. 打开 n2n，服务端填写：`127.0.0.1:41984`，点击启动，等待时间会稍长一点，大概六七秒
 6. 等待右侧出现绿色对号，即为连接成功
 
-![](../../../Docker/attachments/Pasted%20image%2020251111132524.png)
+![](attachments/Pasted%20image%2020251111132524.png)
 
 #### Ⅱ、ubuntu 客户端配置
 
 1. 客户端先正常编译安装 n2n 客户端
-2. 下载上面的 [gnb_udp_over_tcp.zip](../../../Docker/attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
+2. 下载上面的 [gnb_udp_over_tcp.zip](attachments/gnb_udp_over_tcp.zip)，上传到服务器的对应目录中，比如 `/home/docker/volumes/services/other/n2n_gnb_udp_over_tcp/`
 3. 进入对应目录：
 
 ```shell
