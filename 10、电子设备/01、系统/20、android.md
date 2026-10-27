@@ -1,5 +1,176 @@
 # 一、系统安装
 
+## 1、LineageOS
+
+1. 应确认索贝已经解锁 Bootloader 
+2. 确定 LineageOS 所需的原厂底层固件，比如 LineageOS 20261019 要求的是 Android 16 原厂底层固件
+
+### ①、设备信息
+
+| 项目           | 内容                                  |
+| ------------ | ----------------------------------- |
+| 手机           | 一加 Ace 3，国行 PJE110                  |
+| LineageOS 代号 | `astonc`                            |
+| 电脑           | Windows、PowerShell                  |
+| 原厂恢复工具       | 欧加真 Fastboot 线刷工具 v7.3.1            |
+| 原厂恢复包        | `PJE110_16.0.5.1002(CN01)-F.31.zip` |
+| 目标系统         | LineageOS 24.0，Android 17           |
+| 系统版本         | `20261019-NIGHTLY-astonc`           |
+| Google 服务    | MindTheGapps 17.0.0，ARM64           |
+| 最终结果         | 系统与 GApps 安装成功，正常进入系统               |
+
+### ②、下载文件
+
+1. LineageOS 官方下载页：https://download.lineageos.org/devices/astonc
+2. 下载指定版本下提供的所有文件
+3. GApps 下载页：https://github.com/MindTheGapps/17.0.0-arm64/releases/tag/MindTheGapps-17.0.0-arm64-20261022_132445
+4. LineageOS 24 是 Android 17，因此 GApps 使用 17.0／ARM64 手机版本，不是 Android 16，也不是 ATV 电视版本
+
+### ③、刷入启动与 Recovery 镜像
+
+1. 原厂系统开启 USB 调试，授权电脑后进入 Bootloader Fastboot：
+
+```shell
+adb devices
+adb -d reboot bootloader
+fastboot devices
+```
+
+2. 刷入六个镜像：
+
+```shell
+fastboot flash boot boot.img
+fastboot flash dtbo dtbo.img
+fastboot flash init_boot init_boot.img
+fastboot flash vbmeta vbmeta.img
+fastboot flash vendor_boot vendor_boot.img
+fastboot reboot bootloader
+fastboot flash recovery recovery.img
+
+fastboot wipe-super super_empty.img
+```
+
+2. 每条命令确认成功，没有 FAILED
+3. 用手机 Bootloader 菜单进入 Recovery
+4. 确认是 Lineage Recovery，本次版本为：`24.0 (20261019)`
+
+### ④、安装 LineageOS
+
+1. 手机选择：
+
+```shell
+Apply update
+→ Apply from ADB
+```
+
+2. 电脑执行：
+
+```shell
+adb -d sideload "lineage-24.0-20261019-nightly-astonc-signed.zip"
+```
+
+3. 等待手机完成：
+
+```shell
+Step 1/2
+Step 2/2
+```
+
+4. 以手机端最新的成功结果为准，电脑进度停在约 47% 不一定失败
+5. 系统安装完成后，手机提示：
+
+```shell
+To install additional packages, you need to reboot recovery first.
+Do you want to reboot to recovery now?
+```
+
+6. 为了接着安装 GApps，选择 `Yes` 
+7. 如果不想安装 GApps，可以选择 `No`
+
+### ⑤、安装 Google Play 与 Google 服务
+
+1. 重新进入 Recovery 后，选择：
+
+```shell
+Apply update
+→ Apply from ADB
+```
+
+2. 电脑执行：
+
+```shell
+adb -d sideload "MindTheGapps-17.0.0-arm64-20261022_132445.zip"
+```
+
+3. 若手机出现提示：
+
+```shell
+Signature verification failed
+```
+
+4. 并询问是否继续安装，确认使用的是上述官方来源、完整的安装包后，选择 `Yes`
+    1. MindTheGapps 不是使用 LineageOS 官方密钥签名，因此附加包出现这个确认提示属于预期情况
+    2. 这个 `Yes` 是允许继续安装，与前面重启 Recovery 的 Yes 是两回事。不要因此关闭全局验证，也不要对来源不明的包随意放行
+5. 等待实际安装完成后，返回主菜单选择：
+
+```shell
+Reboot system now
+```
+
+6. 等待首次启动，完成初始化
+
+### ⑥、问题记录
+
+#### Ⅰ、LineageOS 安装 Error 7
+
+##### （1）、报错现象
+
+1. 系统安装在 Step 1/2 中止：
+
+```shell
+Error applying update: 7 (ErrorCode::kInstallDeviceOpenError)
+Error in /sideload/package.zip (status 7)
+Installation aborted.
+```
+
+2. 日志中的直接错误：
+
+```shell
+Attempting to create duplication partition with name: odm_b
+Cannot add partition odm_b to group oneplus_dynamic_partitions_b
+```
+
+##### （2）、原因
+
+1. 安装器准备 B 槽布局时发生 odm_b 重名冲突
+2. 对本机导出的动态分区元数据检查发现：
+    1. 校验和正常
+    2. 多个原厂 A 槽分区归入 default 组
+    3. 预期的 OnePlus 分区组没有对应成员
+3. 这与安装器按分区组清理后仍出现重名的现象吻合
+4. 没有证据证明闪存硬件损坏，也不能确定由线刷工具的哪条操作造成
+
+##### （3）、解决
+
+1. 在 fastbootd 使用匹配的官方空布局重建 super：
+
+```shell
+fastboot wipe-super super_empty.img
+fastboot reboot recovery
+```
+
+2. 然后重新侧载 LineageOS，安装成功
+
+### ⑦、
+
+
+## 2、
+
+## 3、
+
+## 4、
+
+
 # 二、用户和密码
 
 # 三、用户登录
@@ -7,6 +178,37 @@
 # 四、端口设置
 
 # 五、系统设置
+
+## 1、刷入面具修补镜像 init_boot
+
+1. 在手机 Magisk 首页，点击 Magisk 卡片里的安装，选择：选择并修补一个文件
+2. 选择手机系统的原始 `init_boot.img`，开始修补
+3. 完成后会生成文件通常类似：`magisk_patched-xxxxx_xxxxx.img`，将该文件复制到电脑中
+4. 手机连接电脑，进入 Bootloader Fastboot
+
+```shell
+adb -d reboot bootloader
+fastboot devices
+```
+
+5. 刷入 init_boot：
+
+```shell
+fastboot flash init_boot "magisk_patched.img"
+```
+
+6. 确认输出成功、没有 FAILED 后重启手机：
+
+```shell
+fastboot reboot
+```
+
+
+## 2、
+
+## 3、
+
+## 4、
 
 # 六、命令使用
 

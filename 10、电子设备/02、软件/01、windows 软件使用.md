@@ -2810,38 +2810,7 @@ scrcpy --no-audio -m 1920 --video-bit-rate=8M
 2. 使用手机任意软件扫描二维码即可
 3. 推荐使用微信等不会被经常杀掉后台的软件
 
-
-## 8、刷入面具修补镜像 init_boot
-
-1. 在手机 Magisk 首页，点击 Magisk 卡片里的安装，选择：选择并修补一个文件
-2. 选择手机系统的原始 `init_boot.img`，开始修补
-3. 完成后会生成文件通常类似：`magisk_patched-xxxxx_xxxxx.img`，将该文件复制到电脑中
-4. 手机连接电脑，进入 Bootloader Fastboot
-
-```shell
-adb.exe -d reboot bootloader
-fastboot devices
-```
-
-5. 刷入 init_boot：
-
-```shell
-fastboot flash init_boot "magisk_patched.img"
-```
-
-6. 确认输出成功、没有 FAILED 后重启手机：
-
-```shell
-fastboot reboot
-```
-
-
-7. 
-8. 
-9. 
-10. 
-11. 
-12. 1
+## 8、
 
 ## 9、
 
