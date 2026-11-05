@@ -1,5 +1,219 @@
 # 一、系统安装
 
+## 1、
+
+## 2、
+
+## 3、
+
+## 4、
+
+## 5、
+
+## 6、
+
+## 7、
+
+## 8、
+
+## 9、
+
+## 10、WSL 2
+
+### ①、安装 WSL 2
+
+1. 以管理员身份打开 PowerShell
+2. 执行安装命令
+
+```shell
+wsl --install
+```
+
+3. 该命令通常会自动完成：
+    1. 启用 WSL 功能
+    2. 启用虚拟机平台
+    3. 安装 WSL 2
+    4. 安装默认的 Ubuntu
+    5. 安装必要的 Linux 内核组件
+4. 安装完成后，根据提示重启电脑
+5. 重启后，Ubuntu 可能会自动启动。按照提示设置：
+    1. 注意：Linux 输入密码时不会显示字符，这是正常现象
+
+```shell
+Enter new UNIX username:
+New password:
+Retype new password:
+```
+
+6. 验证是否安装成功，在 PowerShell 中执行：
+
+```shell
+wsl --status
+```
+
+7. 查看已安装的 Linux 发行版：
+
+```shell
+wsl --list --verbose
+```
+
+8. 正常情况下会看到类似：
+
+```shell
+  NAME      STATE           VERSION
+* Ubuntu    Running         2
+```
+
+9. 其中 VERSION 为 2 表示使用 WSL 2
+10. 进入 WSL Ubuntu
+
+```shell
+wsl -d Ubuntu
+```
+
+### ②、指定安装其他 Linux 发行版
+
+1. 先查看可用发行版：
+
+```shell
+wsl --list --online
+```
+
+2. 例如安装 Debian：
+
+```shell
+wsl --install -d Debian
+```
+
+3. 安装 Kali Linux：
+
+```shell
+wsl --install -d kali-linux
+```
+
+4. 将 WSL 2 设置为默认版本：
+
+```shell
+wsl --set-default-version 2
+```
+
+5. 设置默认发行版：
+
+```shell
+wsl --set-default Ubuntu
+```
+
+### ③、系统配置
+
+#### Ⅰ、设置 root 用户密码
+
+1. 进入 Ubuntu
+
+```shell
+wsl -d Ubuntu
+```
+
+2. 在 Ubuntu 中执行：
+
+```shell
+sudo passwd root
+```
+
+3. 按提示输入两次新密码：
+
+```shell
+New password:
+Retype new password:
+```
+
+4. 设置成功后，测试切换到 root：
+
+```shell
+su - root
+```
+
+5. 输入刚才设置的 root 密码即可
+6. 也可以直接以 root 身份进入：
+
+```shell
+wsl -d Ubuntu -u root
+```
+
+#### Ⅱ、设置默认使用 root 登录
+
+1. 在 Ubuntu 中执行：
+
+```shell
+sudo nano /etc/wsl.conf
+```
+
+2. 写入以下内容：
+
+```shell
+[user]
+default=root
+```
+
+3. 保存后退出，然后在 PowerShell 中关闭 WSL：
+
+```shell
+wsl --shutdown
+```
+
+4. 再次进入 Ubuntu：
+
+```shell
+wsl -d Ubuntu
+```
+
+5. 此时默认就是 root 用户
+6. 验证当前用户：
+
+```shell
+whoami
+```
+
+7. 应输出：
+
+```shell
+root
+```
+
+#### Ⅲ、设置 WSL 开机启动，后台运行
+
+1. 在 Windows 的 PowerShell 或 CMD 中执行：
+
+```shell
+wsl -l -v
+```
+
+2. 会显示类似：
+
+```shell
+  NAME              STATE           VERSION
+* Ubuntu-26.04      Running         2
+  Debian            Stopped         2
+```
+
+3. NAME 列就是发行版名称，例如 `Ubuntu-26.04`，`*` 表示默认发行版，不是名称的一部分
+4. WIN+R 运行 `shell:startup` 打开启动目录
+5. 在此目录中创建文件 `wsl-startup.vbs`
+6. 在 `wsl-startup.vbs` 中填充如下内容，`Ubuntu-26.04` 需替换为使用的发行版名称
+
+```shell
+Set ws = WScript.CreateObject("WScript.Shell")
+ws.Run "wsl.exe -d Ubuntu-26.04 --exec sleep infinity", 0, False
+```
+
+7. 这样当系统启动，登录系统后，Windows 会开启 WSL 实例，它会永久等待输入，不会关闭
+
+#### Ⅳ、
+
+#### Ⅴ、
+
+### ④、
+
+
 # 二、用户和密码
 
 ## 1、设置账号为空密码
