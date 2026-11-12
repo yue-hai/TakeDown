@@ -1,218 +1,5 @@
 # 一、系统安装
 
-## 1、
-
-## 2、
-
-## 3、
-
-## 4、
-
-## 5、
-
-## 6、
-
-## 7、
-
-## 8、
-
-## 9、
-
-## 10、WSL 2
-
-### ①、安装 WSL 2
-
-1. 以管理员身份打开 PowerShell
-2. 执行安装命令
-
-```shell
-wsl --install
-```
-
-3. 该命令通常会自动完成：
-    1. 启用 WSL 功能
-    2. 启用虚拟机平台
-    3. 安装 WSL 2
-    4. 安装默认的 Ubuntu
-    5. 安装必要的 Linux 内核组件
-4. 安装完成后，根据提示重启电脑
-5. 重启后，Ubuntu 可能会自动启动。按照提示设置：
-    1. 注意：Linux 输入密码时不会显示字符，这是正常现象
-
-```shell
-Enter new UNIX username:
-New password:
-Retype new password:
-```
-
-6. 验证是否安装成功，在 PowerShell 中执行：
-
-```shell
-wsl --status
-```
-
-7. 查看已安装的 Linux 发行版：
-
-```shell
-wsl --list --verbose
-```
-
-8. 正常情况下会看到类似：
-
-```shell
-  NAME      STATE           VERSION
-* Ubuntu    Running         2
-```
-
-9. 其中 VERSION 为 2 表示使用 WSL 2
-10. 进入 WSL Ubuntu
-
-```shell
-wsl -d Ubuntu
-```
-
-### ②、指定安装其他 Linux 发行版
-
-1. 先查看可用发行版：
-
-```shell
-wsl --list --online
-```
-
-2. 例如安装 Debian：
-
-```shell
-wsl --install -d Debian
-```
-
-3. 安装 Kali Linux：
-
-```shell
-wsl --install -d kali-linux
-```
-
-4. 将 WSL 2 设置为默认版本：
-
-```shell
-wsl --set-default-version 2
-```
-
-5. 设置默认发行版：
-
-```shell
-wsl --set-default Ubuntu
-```
-
-### ③、系统配置
-
-#### Ⅰ、设置 root 用户密码
-
-1. 进入 Ubuntu
-
-```shell
-wsl -d Ubuntu
-```
-
-2. 在 Ubuntu 中执行：
-
-```shell
-sudo passwd root
-```
-
-3. 按提示输入两次新密码：
-
-```shell
-New password:
-Retype new password:
-```
-
-4. 设置成功后，测试切换到 root：
-
-```shell
-su - root
-```
-
-5. 输入刚才设置的 root 密码即可
-6. 也可以直接以 root 身份进入：
-
-```shell
-wsl -d Ubuntu -u root
-```
-
-#### Ⅱ、设置默认使用 root 登录
-
-1. 在 Ubuntu 中执行：
-
-```shell
-sudo nano /etc/wsl.conf
-```
-
-2. 写入以下内容：
-
-```shell
-[user]
-default=root
-```
-
-3. 保存后退出，然后在 PowerShell 中关闭 WSL：
-
-```shell
-wsl --shutdown
-```
-
-4. 再次进入 Ubuntu：
-
-```shell
-wsl -d Ubuntu
-```
-
-5. 此时默认就是 root 用户
-6. 验证当前用户：
-
-```shell
-whoami
-```
-
-7. 应输出：
-
-```shell
-root
-```
-
-#### Ⅲ、设置 WSL 开机启动，后台运行
-
-1. 在 Windows 的 PowerShell 或 CMD 中执行：
-
-```shell
-wsl -l -v
-```
-
-2. 会显示类似：
-
-```shell
-  NAME              STATE           VERSION
-* Ubuntu-26.04      Running         2
-  Debian            Stopped         2
-```
-
-3. NAME 列就是发行版名称，例如 `Ubuntu-26.04`，`*` 表示默认发行版，不是名称的一部分
-4. WIN+R 运行 `shell:startup` 打开启动目录
-5. 在此目录中创建文件 `wsl-startup.vbs`
-6. 在 `wsl-startup.vbs` 中填充如下内容，`Ubuntu-26.04` 需替换为使用的发行版名称
-
-```shell
-Set ws = WScript.CreateObject("WScript.Shell")
-ws.Run "wsl.exe -d Ubuntu-26.04 --exec sleep infinity", 0, False
-```
-
-7. 这样当系统启动，登录系统后，Windows 会开启 WSL 实例，它会永久等待输入，不会关闭
-
-#### Ⅳ、
-
-#### Ⅴ、
-
-### ④、
-
 
 # 二、用户和密码
 
@@ -1475,7 +1262,298 @@ curl -o downloaded.mp3 ^"https://s2.aigei.com/src/aud/mp3/60/6086bbeccfe84fe7b72
 
 ## 2、
 
-# 十一、
+# 十一、WSL: Windows Subsystem for Linux
+
+## 1、系统安装
+
+### ①、安装 WSL 2
+
+1. 以管理员身份打开 PowerShell
+2. 执行安装命令
+
+```shell
+wsl --install
+```
+
+3. 该命令通常会自动完成：
+    1. 启用 WSL 功能
+    2. 启用虚拟机平台
+    3. 安装 WSL 2
+    4. 安装默认的 Ubuntu
+    5. 安装必要的 Linux 内核组件
+4. 安装完成后，根据提示重启电脑
+5. 重启后，Ubuntu 可能会自动启动。按照提示设置：
+    1. 注意：Linux 输入密码时不会显示字符，这是正常现象
+
+```shell
+Enter new UNIX username:
+New password:
+Retype new password:
+```
+
+6. 验证是否安装成功，在 PowerShell 中执行：
+
+```shell
+wsl --status
+```
+
+7. 查看已安装的 Linux 发行版：
+
+```shell
+wsl --list --verbose
+```
+
+8. 正常情况下会看到类似：
+
+```shell
+  NAME      STATE           VERSION
+* Ubuntu    Running         2
+```
+
+9. 其中 VERSION 为 2 表示使用 WSL 2
+10. 进入 WSL Ubuntu
+
+```shell
+wsl -d Ubuntu
+```
+
+### ②、指定安装其他 Linux 发行版
+
+1. 先查看可用发行版：
+
+```shell
+wsl --list --online
+```
+
+2. 例如安装 Debian：
+
+```shell
+wsl --install -d Debian
+```
+
+3. 安装 Kali Linux：
+
+```shell
+wsl --install -d kali-linux
+```
+
+4. 将 WSL 2 设置为默认版本：
+
+```shell
+wsl --set-default-version 2
+```
+
+5. 设置默认发行版：
+
+```shell
+wsl --set-default Ubuntu
+```
+
+### ③、系统配置
+
+#### Ⅰ、设置 root 用户密码
+
+1. 进入 Ubuntu
+
+```shell
+wsl -d Ubuntu
+```
+
+2. 在 Ubuntu 中执行：
+
+```shell
+sudo passwd root
+```
+
+3. 按提示输入两次新密码：
+
+```shell
+New password:
+Retype new password:
+```
+
+4. 设置成功后，测试切换到 root：
+
+```shell
+su - root
+```
+
+5. 输入刚才设置的 root 密码即可
+6. 也可以直接以 root 身份进入：
+
+```shell
+wsl -d Ubuntu -u root
+```
+
+#### Ⅱ、设置默认使用 root 登录
+
+1. 在 Ubuntu 中执行：
+
+```shell
+sudo nano /etc/wsl.conf
+```
+
+2. 写入以下内容：
+
+```shell
+[user]
+default=root
+```
+
+3. 保存后退出，然后在 PowerShell 中关闭 WSL：
+
+```shell
+wsl --shutdown
+```
+
+4. 再次进入 Ubuntu：
+
+```shell
+wsl -d Ubuntu
+```
+
+5. 此时默认就是 root 用户
+6. 验证当前用户：
+
+```shell
+whoami
+```
+
+7. 应输出：
+
+```shell
+root
+```
+
+#### Ⅲ、设置 WSL 开机启动，后台运行
+
+1. 在 Windows 的 PowerShell 或 CMD 中执行：
+
+```shell
+wsl -l -v
+```
+
+2. 会显示类似：
+
+```shell
+  NAME              STATE           VERSION
+* Ubuntu-26.04      Running         2
+  Debian            Stopped         2
+```
+
+3. NAME 列就是发行版名称，例如 `Ubuntu-26.04`，`*` 表示默认发行版，不是名称的一部分
+4. WIN+R 运行 `shell:startup` 打开启动目录
+5. 在此目录中创建文件 `wsl-startup.vbs`
+6. 在 `wsl-startup.vbs` 中填充如下内容，`Ubuntu-26.04` 需替换为使用的发行版名称
+
+```shell
+Set ws = WScript.CreateObject("WScript.Shell")
+ws.Run "wsl.exe -d Ubuntu-26.04 --exec sleep infinity", 0, False
+```
+
+7. 这样当系统启动，登录系统后，Windows 会开启 WSL 实例，它会永久等待输入，不会关闭
+
+### ④、
+
+## 2、用户和密码
+
+## 3、用户登录
+
+## 4、端口设置
+
+## 5、系统设置
+
+### ①、创建 Linux 应用的快捷方式
+
+> 1. WSLg 可以将 WSL 中的 Linux 图形应用窗口显示在 Windows 桌面上
+> 2. 本节以已安装的 Grok Bot 为例，发行版为 Ubuntu-26.04，Linux 用户为 yan。发行版名称、用户名及程序路径按实际环境替换
+> 3. deb 软件安装步骤参考 Ubuntu 笔记中的「五、系统设置 → 9、安装 deb 软件包」，此处只记录 Windows 侧的启动和快捷方式设置
+
+#### Ⅰ、确认发行版及启动入口
+
+1. 在 Windows PowerShell 中查看已安装的发行版：
+
+```shell
+wsl.exe --list --verbose
+```
+
+2. 记录实际发行版名称，例如：
+
+```shell
+Ubuntu-26.04
+```
+
+3. 应用必须已经安装在指定发行版中；安装在其他发行版的软件不会自动出现在当前发行版中
+4. 在目标 Ubuntu 的终端中查询启动命令：
+
+```shell
+command -v grok-bot
+```
+
+5. 本例返回：
+
+```shell
+/usr/bin/grok-bot
+```
+
+6. 快捷方式应指向安装后的可执行程序，不能指向 `.deb` 安装包
+7. 运行图形应用需要可用的 WSLg 环境；WSL2 本身不保证所有 Linux 图形应用都能正常运行
+
+#### Ⅱ、先从 PowerShell 测试启动
+
+1. 创建快捷方式前，先在 Windows PowerShell 中测试：
+
+```shell
+& "C:\Program Files\WSL\wsl.exe" -d Ubuntu-26.04 -u yan --cd "~" -- /usr/bin/grok-bot
+```
+
+2. 这里使用 `wsl.exe` 保留终端输出，方便看到报错；图形窗口仍可通过 WSLg 显示
+3. 参数说明：
+
+| 参数                                | 说明                        |
+| --------------------------------- | ------------------------- |
+| `"C:\Program Files\WSL\wslg.exe"` | WSLg 启动程序，用于不显示控制台的图形应用启动 |
+| `-d Ubuntu-26.04`                 | 指定 Linux 发行版              |
+| `-u yan`                          | 指定运行应用的 Linux 用户          |
+| `--cd "~"`                        | 将工作目录设置为该用户的主目录           |
+| `--`                              | 后面的内容作为 Linux 程序及其参数执行    |
+| `/usr/bin/grok-bot`               | 已安装应用的启动入口                |
+
+#### Ⅲ、创建 Windows 桌面快捷方式
+
+1.  在 Windows 桌面右键，选择「新建 → 快捷方式」
+2. 在对象的位置中填写：
+
+```shell
+"C:\Program Files\WSL\wslg.exe" -d Ubuntu-26.04 -u yan --cd "~" -- /usr/bin/grok-bot
+```
+
+3. 设置快捷方式名称，例如：
+
+```shell
+Ubuntu-26.04 Grok Bot
+```
+
+4. 修改已有快捷方式时，右键选择 属性 -> 快捷方式，将上述内容填写到目标
+5. 如果程序路径包含空格，需要加引号，例如：
+
+```shell
+"C:\Program Files\WSL\wslg.exe" -d Ubuntu-26.04 -u yan --cd "~" -- "/opt/Grok Bot/grok-bot"
+```
+
+6. 如果存在标准启动入口，优先使用 `/usr/bin/grok-bot`，无需直接引用带空格的安装目录
+7. WSLg 通常会根据 Linux 应用的桌面启动配置生成 Windows 开始菜单入口，但自动入口可能使用发行版默认用户
+8. 如果默认用户为 root，而应用需要普通用户，建议自行创建明确带有 `-u yan` 的快捷方式
+9. 自动生成的开始菜单入口可能在应用更新或 WSLg 同步时被重新生成，自建快捷方式更适合保存自己的启动参数
+
+## 6、命令使用
+
+## 7、配置脚本
+
+## 8、
+
+## 9、问题记录
+
 
 # 十二、
 
