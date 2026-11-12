@@ -1211,7 +1211,137 @@ sudo systemctl restart docker
 ### ④、
 
 
-## 9、
+## 9、安装 deb 软件包
+
+### ①、安装本地 deb 软件包
+
+1. 使用 `apt install` 安装本地软件包：
+    1. APT 会尝试从已配置的软件源安装缺少的依赖
+    2. 安装过程中会显示依赖列表、下载大小及占用空间，确认后输入 y 继续
+
+```shell
+sudo apt install /root/app/devTools/IDE/grok-bot/grok-bot_1.0.1_amd64.deb
+```
+
+2. 安装完成后检查状态：
+
+```shell
+dpkg-query -W -f='${Status}\n' grok-bot
+```
+
+3. 正常输出：
+
+```shell
+install ok installed
+```
+
+4. 系统级安装通常只需进行一次；可以使用 root 安装，再由普通用户运行，不需要为每个用户重复安装。
+
+### ②、查看安装位置和启动命令
+
+1. deb 软件的安装位置由软件包内部规定，`apt install` 不能像部分 Windows 安装向导那样指定安装目录
+2. 下载目录不等于安装目录。即使安装包放在自定义目录，程序仍会安装到包内规定的位置
+3. 安装前可以查看软件包中的文件及目标路径：
+
+```shell
+dpkg-deb --contents /root/app/devTools/IDE/grok-bot/grok-bot_1.0.1_amd64.deb
+```
+
+4. 查询安装包的实际包名：
+
+```shell
+dpkg-deb -f /root/app/devTools/IDE/grok-bot/grok-bot_1.0.1_amd64.deb Package
+```
+
+5. 安装后查看包登记的文件：
+
+```shell
+dpkg -L grok-bot
+```
+
+6. 查看启动命令所在位置：
+
+```shell
+command -v grok-bot
+```
+
+7. 本次安装的启动入口及实际程序位置如下：
+
+```shell
+启动入口：
+/usr/bin/grok-bot
+
+实际程序：
+/opt/Grok Bot/grok-bot
+```
+
+8. 可以检查启动入口最终指向的位置：
+
+```shell
+readlink -f /usr/bin/grok-bot
+```
+
+9. 启动时优先使用安装程序提供的标准入口：
+
+```shell
+/usr/bin/grok-bot
+```
+
+10. 不要安装后直接移动系统中的程序目录，否则可能破坏启动、更新或卸载
+11. 将 deb 解包到指定目录只是提取文件，不等于安装：不会自动处理依赖、运行安装脚本或注册快捷方式，程序也不一定能直接运行
+
+### ③、APT 的 `_apt` 权限提示
+
+1. 安装包位于 /root 等受限目录时，可能出现：
+
+```shell
+由于文件无法被用户 '_apt' 访问，已脱离沙盒并提权为根用户来进行下载。
+pkgAcquire::Run (13: 权限不够)
+```
+
+2. APT 通常使用低权限用户 `_apt` 获取软件包，但该用户可能没有权限访问安装包所在目录
+3. 因此，APT 改为使用 root 权限读取本地安装包，并显示提示
+4. 这条提示本身不代表安装失败，应结合安装日志及软件包状态判断：
+
+```shell
+dpkg-query -W -f='${Status}\n' grok-bot
+```
+
+5. 返回 `install ok installed` 表示软件包已经安装并完成配置
+6. 此处沙盒指 APT 获取软件包时的权限隔离，不是应用程序运行时的沙箱
+7. 已经成功安装时无需重新安装，也不要为了消除提示而修改整个 /root 的访问权限
+8. 如果需要避免该提示，可以先将安装包复制到可读取的位置，再安装：
+
+```shell
+sudo install -m 644 \
+  /root/app/devTools/IDE/grok-bot/grok-bot_1.0.1_amd64.deb \
+  /var/tmp/grok-bot_1.0.1_amd64.deb
+
+sudo apt install /var/tmp/grok-bot_1.0.1_amd64.deb
+```
+
+### ④、安装权限与运行权限
+
+1. 使用 root 或 sudo 安装软件，不代表以后必须使用 root 运行
+2. 日常桌面应用优先使用普通用户：
+    1. 配置通常保存在该用户自己的主目录中
+    2. 文件访问受该用户权限限制
+    3. 减少误操作、插件或应用漏洞影响整个系统的风险
+3. 某些 Electron 应用以 root 启动时会提示：
+
+```shell
+Running as root without --no-sandbox is not supported.
+```
+
+4. 这属于 Electron/Chromium 的启动限制，不代表 deb 安装失败
+5. 推荐切换到普通用户的桌面会话运行，不要把关闭沙箱作为日常解决方案
+6. 不同用户的应用配置、缓存及登录状态通常相互独立，换用户运行后可能需要重新登录
+
+## 10、
+
+## 11、
+
+## 12、
 
 
 # 六、命令使用
